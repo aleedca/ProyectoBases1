@@ -24,6 +24,6 @@ public class sysConnection {
         }catch(SQLException e){
             System.out.println("El erro es: "+ e);
         return null;
-        }
+        } //probando ando 
     }
 }
