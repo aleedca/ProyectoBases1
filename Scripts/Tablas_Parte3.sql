@@ -2,10 +2,12 @@
 -- News
 CREATE TABLE News(
     idNews NUMBER(10) PRIMARY KEY,
-    title VARCHAR(16) CONSTRAINT news_title_nn NOT NULL,
+    idState NUMBER(10) CONSTRAINT news_idState_nn NOT NULL
+    idNewsType NUMBER(10) CONSTRAINT news_idNewsType_nn NOT NULL
+    title VARCHAR(20) CONSTRAINT news_title_nn NOT NULL,
     publicationDate DATE CONSTRAINT news_publicationDate_nn NOT NULL,
-    views NUMBER(20) CONSTRAINT news_views_nn NOT NULL,
-    link VARCHAR(30) CONSTRAINT news_link_nn NOT NULL,
+    views NUMBER(32) CONSTRAINT news_views_nn NOT NULL,
+    link VARCHAR(32) CONSTRAINT news_link_nn NOT NULL,
     user VARCHAR(16) CONSTRAINT news_user_nn NOT NULL,
     lastUser VARCHAR(16) CONSTRAINT news_lastUser_nn NOT NULL,
     lastDate DATE CONSTRAINT news_lastDate_nn NOT NULL,
@@ -17,6 +19,8 @@ CREATE TABLE News(
 -- Change
 CREATE TABLE Change(
     idChange NUMBER(10) PRIMARY KEY,
+    idNews NUMBER(10) CONSTRAINT change_idNews_nn NOT NULL,
+    idBlog NUMBER(10) CONSTRAINT change_idBlog_nn NOT NULL,
     username VARCHAR(10) CONSTRAINT change_username_nn NOT NULL,
     currentText VARCHAR(70) CONSTRAINT change_currentText_nn NOT NULL,
     user VARCHAR(16) CONSTRAINT change_user_nn NOT NULL,
@@ -61,6 +65,8 @@ CREATE TABLE NewsType(
 -- Rating
 CREATE TABLE Rating(
     idRating NUMBER(10) PRIMARY KEY,
+    userUsername VARCHAR(16) CONSTRAINT rating_userUsername_nn NOT NULL,
+    idNews NUMBER(10) CONSTRAINT rating_idNews_nn NOT NULL,
     rating NUMBER(10) CONSTRAINT rating_description_nn NOT NULL,
     user VARCHAR(16) CONSTRAINT rating_user_nn NOT NULL,
     lastUser VARCHAR(16) CONSTRAINT rating_lastUser_nn NOT NULL,
@@ -71,6 +77,8 @@ CREATE TABLE Rating(
 -- FavoriteNews
 CREATE TABLE FavoriteNews(
     idFavoriteNews NUMBER(10) PRIMARY KEY,
+    userUsername VARCHAR(16) CONSTRAINT favoriteNews_userUsername_nn NOT NULL,
+    idNews NUMBER(10) CONSTRAINT favoriteNews_idNews_nn NOT NULL,
     user VARCHAR(16) CONSTRAINT favoriteNews_user_nn NOT NULL,
     lastUser VARCHAR(16) CONSTRAINT favoriteNews_lastUser_nn NOT NULL,
     lastDate DATE CONSTRAINT favoriteNews_lastDate_nn NOT NULL,
@@ -80,6 +88,8 @@ CREATE TABLE FavoriteNews(
 -- Comment
 CREATE TABLE Comment(
     idComment NUMBER(10) PRIMARY KEY,
+    userUsername VARCHAR(16) CONSTRAINT comment_userUsername_nn NOT NULL,
+    idNews NUMBER(10) CONSTRAINT comment_idNews_nn NOT NULL,
     text VARCHAR(20) CONSTRAINT comment_text_nn NOT NULL,
     user VARCHAR(16) CONSTRAINT comment_user_nn NOT NULL,
     lastUser VARCHAR(16) CONSTRAINT comment_lastUser_nn NOT NULL,
