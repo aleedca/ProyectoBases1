@@ -3,40 +3,40 @@
 CREATE TABLE Gender(
     idGender NUMBER(10) PRIMARY KEY,
     description VARCHAR(16) CONSTRAINT gender_description_nn NOT NULL,
-    user VARCHAR(16) CONSTRAINT gender_user_nn NOT NULL,
-    lastUser VARCHAR(16) CONSTRAINT gender_lastUser_nn NOT NULL,
-    lastDate DATE CONSTRAINT gender_lastDate_nn NOT NULL,
-    dateCreation DATE CONSTRAINT gender_dateCreation_nn NOT NULL
+    user VARCHAR(16) CONSTRAINT gender_user_nn,
+    lastUser VARCHAR(16) CONSTRAINT gender_lastUser_nn,
+    lastDate DATE CONSTRAINT gender_lastDate_nn,
+    dateCreation DATE CONSTRAINT gender_dateCreation_nn
 );
 
 -- TypeIdentification
 CREATE TABLE TypeIdentification(
     idTypeIdentification NUMBER(10) PRIMARY KEY,
     mask VARCHAR(16) CONSTRAINT typeIdentification_mask_nn NOT NULL,
-    user VARCHAR(16) CONSTRAINT typeIdentification_user_nn NOT NULL,
-    lastUser VARCHAR(16) CONSTRAINT typeIdentification_lastUser_nn NOT NULL,
-    lastDate DATE CONSTRAINT typeIdentification_lastDate_nn NOT NULL,
-    dateCreation DATE CONSTRAINT typeIdentification_dateCreation_nn NOT NULL
+    user VARCHAR(16) CONSTRAINT typeIdentification_user_nn,
+    lastUser VARCHAR(16) CONSTRAINT typeIdentification_lastUser_nn,
+    lastDate DATE CONSTRAINT typeIdentification_lastDate_nn,
+    dateCreation DATE CONSTRAINT typeIdentification_dateCreation_nn
 );
 
 -- Calendar
 CREATE TABLE Calendar(
     idCalendar NUMBER(10) PRIMARY KEY,
     description VARCHAR(16) CONSTRAINT calendar_description_nn NOT NULL,
-    user VARCHAR(16) CONSTRAINT calendar_user_nn NOT NULL,
-    lastUser VARCHAR(16) CONSTRAINT calendar_lastUser_nn NOT NULL,
-    lastDate DATE CONSTRAINT calendar_lastDate_nn NOT NULL,
-    dateCreation DATE CONSTRAINT calendar_dateCreation_nn NOT NULL
+    user VARCHAR(16) CONSTRAINT calendar_user_nn,
+    lastUser VARCHAR(16) CONSTRAINT calendar_lastUser_nn,
+    lastDate DATE CONSTRAINT calendar_lastDate_nn,
+    dateCreation DATE CONSTRAINT calendar_dateCreation_nn
 );
 
 -- Continent
 CREATE TABLE Continent(
     idContinent NUMBER(10) PRIMARY KEY,
     name VARCHAR(16) CONSTRAINT continent_name_nn NOT NULL,
-    user VARCHAR(16) CONSTRAINT continent_user_nn NOT NULL,
-    lastUser VARCHAR(16) CONSTRAINT continent_lastUser_nn NOT NULL,
-    lastDate DATE CONSTRAINT continent_lastDate_nn NOT NULL,
-    dateCreation DATE CONSTRAINT continent_dateCreation_nn NOT NULL
+    user VARCHAR(16) CONSTRAINT continent_user_nn,
+    lastUser VARCHAR(16) CONSTRAINT continent_lastUser_nn,
+    lastDate DATE CONSTRAINT continent_lastDate_nn,
+    dateCreation DATE CONSTRAINT continent_dateCreation_nn
 );
 
 -- Event
@@ -44,10 +44,10 @@ CREATE TABLE Event(
     idEvent NUMBER(10) PRIMARY KEY,
     idCalendar NUMBER(10) CONSTRAINT event_idCalendar_nn NOT NULL,
     typeEvent VARCHAR(16) CONSTRAINT event_typeEvent_nn NOT NULL,
-    user VARCHAR(16) CONSTRAINT event_user_nn NOT NULL,
-    lastUser VARCHAR(16) CONSTRAINT event_lastUser_nn NOT NULL,
-    lastDate DATE CONSTRAINT event_lastDate_nn NOT NULL,
-    dateCreation DATE CONSTRAINT event_dateCreation_nn NOT NULL
+    user VARCHAR(16) CONSTRAINT event_user_nn,
+    lastUser VARCHAR(16) CONSTRAINT event_lastUser_nn,
+    lastDate DATE CONSTRAINT event_lastDate_nn,
+    dateCreation DATE CONSTRAINT event_dateCreation_nn
 );
 
 -- Group
@@ -55,10 +55,10 @@ CREATE TABLE Group(
     idGroup NUMBER(10) PRIMARY KEY,
     idEvent NUMBER(10) CONSTRAINT group_idEvent_nn NOT NULL,
     description VARCHAR(16) CONSTRAINT group_description_nn NOT NULL,
-    user VARCHAR(16) CONSTRAINT group_user_nn NOT NULL,
-    lastUser VARCHAR(16) CONSTRAINT group_lastUser_nn NOT NULL,
-    lastDate DATE CONSTRAINT group_lastDate_nn NOT NULL,
-    dateCreation DATE CONSTRAINT group_dateCreation_nn NOT NULL
+    user VARCHAR(16) CONSTRAINT group_user_nn,
+    lastUser VARCHAR(16) CONSTRAINT group_lastUser_nn,
+    lastDate DATE CONSTRAINT group_lastDate_nn,
+    dateCreation DATE CONSTRAINT group_dateCreation_nn
 );
 
 -- CountryTeam
@@ -66,10 +66,10 @@ CREATE TABLE CountryTeam(
     idCountryTeam NUMBER(10) PRIMARY KEY,
     idContinent NUMBER(10) CONSTRAINT countryTeam_idContinent_nn NOT NULL,
     name VARCHAR(16) CONSTRAINT countryTeam_name_nn NOT NULL,
-    user VARCHAR(16) CONSTRAINT countryTeam_user_nn NOT NULL,
-    lastUser VARCHAR(16) CONSTRAINT countryTeam_lastUser_nn NOT NULL,
-    lastDate DATE CONSTRAINT countryTeam_lastDate_nn NOT NULL,
-    dateCreation DATE CONSTRAINT countryTeam_dateCreation_nn NOT NULL
+    user VARCHAR(16) CONSTRAINT countryTeam_user_nn,
+    lastUser VARCHAR(16) CONSTRAINT countryTeam_lastUser_nn,
+    lastDate DATE CONSTRAINT countryTeam_lastDate_nn,
+    dateCreation DATE CONSTRAINT countryTeam_dateCreation_nn
 );
 
 -- Team
@@ -78,10 +78,10 @@ CREATE TABLE Team(
     idCountryTeam NUMBER(10) CONSTRAINT team_idCountryTeam_nn NOT NULL,
     idGroup NUMBER(10) CONSTRAINT team_idGroup_nn NOT NULL,
     name VARCHAR(16) CONSTRAINT team_name_nn NOT NULL,
-    user VARCHAR(16) CONSTRAINT team_user_nn NOT NULL,
-    lastUser VARCHAR(16) CONSTRAINT team_lastUser_nn NOT NULL,
-    lastDate DATE CONSTRAINT team_lastDate_nn NOT NULL,
-    dateCreation DATE CONSTRAINT team_dateCreation_nn NOT NULL
+    user VARCHAR(16) CONSTRAINT team_user_nn,
+    lastUser VARCHAR(16) CONSTRAINT team_lastUser_nn,
+    lastDate DATE CONSTRAINT team_lastDate_nn,
+    dateCreation DATE CONSTRAINT team_dateCreation_nn
 );
 
 -- GroupStats
@@ -94,10 +94,10 @@ CREATE TABLE GroupStats(
     goalsScored NUMBER(10) CONSTRAINT groupStats_goalsScored_nn NOT NULL,
     goalsReceived NUMBER(10) CONSTRAINT groupStats_goalsReceived_nn NOT NULL,
     fairPlayPoints NUMBER(10) CONSTRAINT groupStats_fairPlayPoints_nn NOT NULL,
-    user VARCHAR(16) CONSTRAINT groupStats_user_nn NOT NULL,
-    lastUser VARCHAR(16) CONSTRAINT groupStats_lastUser_nn NOT NULL,
-    lastDate DATE CONSTRAINT groupStats_lastDate_nn NOT NULL,
-    dateCreation DATE CONSTRAINT groupStats_dateCreation_nn NOT NULL
+    user VARCHAR(16) CONSTRAINT groupStats_user_nn,
+    lastUser VARCHAR(16) CONSTRAINT groupStats_lastUser_nn,
+    lastDate DATE CONSTRAINT groupStats_lastDate_nn,
+    dateCreation DATE CONSTRAINT groupStats_dateCreation_nn
 );
 
 -- ////////////////////////////////////// FOREING KEYS PARTE 1////////////////////////////////////
