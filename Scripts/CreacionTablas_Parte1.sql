@@ -1,4 +1,13 @@
--- ////////////////////////////////////// CREACION TABLAS PARTE 1////////////////////////////////////
+/* File Name: TableCreation_Part_1
+Description: This file contains the code to create tables, their sequences and associations.
+Authors:
+Isaac Araya Solano - 2018151703
+Alexia Cerdas Aguilar - 2019026961
+Nahomi Bolaños Valverde - 2022089165
+Mariana Fernández Martínez - 2021104026
+*/
+
+-- ////////////////////////////////////// TABLE CREATION ////////////////////////////////////
 -- Gender
 CREATE TABLE Gender(
     idGender NUMBER(10) PRIMARY KEY,
@@ -141,3 +150,95 @@ ALTER TABLE SoccerMatchXStadium
 -- FK SoccerMatchXStadium-Stadium
 ALTER TABLE SoccerMatchXStadium
     ADD CONSTRAINT fk_soccerMatchXStadium_stadium FOREIGN KEY (idStadium) REFERENCES Stadium(idStadium);
+
+ -- ////////////////////////////////////// SEQUENCES ////////////////////////////////////    
+
+-- Gender
+CREATE SEQUENCE s_gender
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- TypeIdentification
+CREATE SEQUENCE s_typeIdentification
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- Calendar
+CREATE SEQUENCE s_calendar
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- Continent
+CREATE SEQUENCE s_continent
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- Event
+CREATE SEQUENCE s_event
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- GroupEvent
+CREATE SEQUENCE s_groupEvent
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- CountryTeam
+CREATE SEQUENCE s_countryTeam
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- Team
+CREATE SEQUENCE s_team
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- GroupStats
+CREATE SEQUENCE s_groupStats
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- SoccerMatchXStadium
+CREATE SEQUENCE s_soccerMatch_stadium
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
