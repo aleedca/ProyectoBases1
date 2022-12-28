@@ -420,7 +420,7 @@ IS 'Last modification date of the record in the SoccerMatchXStadium Table.';
 ALTER TABLE Event
     ADD CONSTRAINT fk_event_calendar FOREIGN KEY (idCalendar) REFERENCES Calendar(idCalendar);
 
--- FK Group-Event
+-- FK GroupEvent-Event
 ALTER TABLE GroupEvent
     ADD CONSTRAINT fk_group_event FOREIGN KEY (idEvent) REFERENCES Event(idEvent);
 
@@ -432,7 +432,7 @@ ALTER TABLE CountryTeam
 ALTER TABLE Team
     ADD CONSTRAINT fk_team_countryTeam FOREIGN KEY (idCountryTeam) REFERENCES CountryTeam(idCountryTeam);
 
--- FK Team-Group
+-- FK Team-GroupEvent
 ALTER TABLE Team 
     ADD CONSTRAINT fk_team_group FOREIGN KEY (idGroupEvent) REFERENCES GroupEvent(idGroupEvent);
 
