@@ -27,7 +27,7 @@ CREATE TABLE News(
     
 );
 
--- Table News
+-- Table Comment
 COMMENT ON TABLE News
 IS 'Repository for storing the information of the news';
 --------------- Comment on Attributes -------------------------------------
@@ -80,15 +80,60 @@ CREATE TABLE Change(
     idBlog NUMBER(10) CONSTRAINT change_idBlog_nn NOT NULL,
     username VARCHAR(10) CONSTRAINT change_username_nn NOT NULL,
     currentText VARCHAR(70) CONSTRAINT change_currentText_nn NOT NULL,
-    user VARCHAR(16) CONSTRAINT change_user_nn NOT NULL,
     previousText VARCHAR(70) CONSTRAINT change_previousText_nn NOT NULL,
     descriptionChange VARCHAR(16) CONSTRAINT change_description_nn NOT NULL,
     date DATE CONSTRAINT change_date_nn NOT NULL,
     hour TIME CONSTRAINT change_hour_nn NOT NULL,
+    userCreation VARCHAR(16) CONSTRAINT change_userCreation_nn NOT NULL,
     lastUser VARCHAR(16) CONSTRAINT change_lastUser_nn NOT NULL,
     lastDate DATE CONSTRAINT change_lastDate_nn NOT NULL,
     dateCreation DATE CONSTRAINT change_dateCreation_nn NOT NULL
 );
+
+-- Table Comment
+COMMENT ON TABLE Change
+IS 'Repository for storing the information of the change';
+--------------- Comment on Attributes -------------------------------------
+COMMENT ON COLUMN Change.idChange
+IS 'Unique identifier of the Change Table.';
+
+COMMENT ON COLUMN Change.idNews
+IS 'Reference to News Table.';
+
+COMMENT ON COLUMN Change.idBlog
+IS 'Reference to Blog Table.';
+
+COMMENT ON COLUMN Change.username
+IS 'Username that made the change.';
+
+COMMENT ON COLUMN Change.currentText
+IS 'Text after the change.';
+
+COMMENT ON COLUMN Change.previousText
+IS 'Text before the change.';
+
+COMMENT ON COLUMN Change.descriptionChange
+IS 'Description of the change.';
+
+COMMENT ON COLUMN Change.date
+IS 'Date of the change.';
+
+COMMENT ON COLUMN Change.hour
+IS 'Hour of the change.';
+
+-- Audit Fields 
+COMMENT ON COLUMN Change.userCreation
+IS 'User who creates the Change Table record.';
+
+COMMENT ON COLUMN Change.dateCreation
+IS 'Date of creation of the Change ChangeTable record.';
+
+COMMENT ON COLUMN Change.lastUser
+IS 'Last user to modify a record in the Change Table.';
+
+COMMENT ON COLUMN Change.lastDate
+IS 'Last modification date of the record in the Change Table.';
+-------------------------------------------------------------------------------------------
 
 -- Blog
 CREATE TABLE Blog(
