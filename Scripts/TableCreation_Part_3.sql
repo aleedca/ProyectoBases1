@@ -24,7 +24,6 @@ CREATE TABLE News(
     lastUser VARCHAR(16) CONSTRAINT news_lastUser_nn NOT NULL,
     lastDate DATE CONSTRAINT news_lastDate_nn NOT NULL,
     dateCreation DATE CONSTRAINT news_dateCreation_nn NOT NULL,
-    
 );
 
 -- Table Comment
@@ -239,11 +238,41 @@ CREATE TABLE Rating(
     userUsername VARCHAR(16) CONSTRAINT rating_userUsername_nn NOT NULL,
     idNews NUMBER(10) CONSTRAINT rating_idNews_nn NOT NULL,
     rating NUMBER(10) CONSTRAINT rating_description_nn NOT NULL,
-    user VARCHAR(16) CONSTRAINT rating_user_nn NOT NULL,
+    userCreation VARCHAR(16) CONSTRAINT rating_userCreation_nn NOT NULL,
     lastUser VARCHAR(16) CONSTRAINT rating_lastUser_nn NOT NULL,
     lastDate DATE CONSTRAINT rating_lastDate_nn NOT NULL,
     dateCreation DATE CONSTRAINT rating_dateCreation_nn NOT NULL
 );
+
+-- Table Comment
+COMMENT ON TABLE Rating
+IS 'Repository for storing the information of the Rating';
+--------------- Comment on Attributes -------------------------------------
+COMMENT ON COLUMN Rating.idRating
+IS 'Unique identifier of the Rating Table.';
+
+COMMENT ON COLUMN Rating.userUsername
+IS 'Reference to User Table.';
+
+COMMENT ON COLUMN Rating.idNews
+IS 'Reference to News Table.';
+
+COMMENT ON COLUMN Rating.rating
+IS 'Rating number.';
+
+-- Audit Fields 
+COMMENT ON COLUMN Rating.userCreation
+IS 'User who creates the Rating Table record.';
+
+COMMENT ON COLUMN Rating.dateCreation
+IS 'Date of creation of the Rating Table record.';
+
+COMMENT ON COLUMN Rating.lastUser
+IS 'Last user to modify a record in the Rating Table.';
+
+COMMENT ON COLUMN Rating.lastDate
+IS 'Last modification date of the record in the Rating Table.';
+-------------------------------------------------------------------------------------------
 
 -- FavoriteNews
 CREATE TABLE FavoriteNews(
