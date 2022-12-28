@@ -31,3 +31,7 @@ GRANT create session to proyectoBD;
 GRANT create table to proyectoBD;
 --------------------------------------------------
 GRANT create view to proyectoBD;
+--------------------------------------------------
+GRANT create sequence to proyectoBD;
+--------------------------------------------------
+GRANT create procedure to proyectoBD;
