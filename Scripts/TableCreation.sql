@@ -1552,54 +1552,9 @@ NOCACHE
 NOCYCLE;
 
 -------------------------------------------------------------------------------------------
--- Calendar
-CREATE TABLE Calendar(
-    idCalendar NUMBER(10) PRIMARY KEY,
-    descriptionCalendar VARCHAR2(32) CONSTRAINT calendar_description_nn NOT NULL,
-    userCreation VARCHAR2(16),
-    lastUser VARCHAR2(16),
-    lastDate DATE,
-    dateCreation DATE
-);
-
--- Table Comment
-COMMENT ON TABLE Calendar
-IS 'Repository for storing the information of calendar';
-
---------------- Comment on Attributes -------------------------------------
-COMMENT ON COLUMN Calendar.idCalendar
-IS 'Unique identifier of the Calendar Table.';
-
-COMMENT ON COLUMN Calendar.descriptionCalendar
-IS 'Description of the calendar.';
-
--- Audit Fields 
-COMMENT ON COLUMN Calendar.userCreation
-IS 'User who creates the Calendar Table record.';
-
-COMMENT ON COLUMN Calendar.dateCreation
-IS 'Date of creation of the Calendar Table record.';
-
-COMMENT ON COLUMN Calendar.lastUser
-IS 'Last user to modify a record in the Calendar Table.';
-
-COMMENT ON COLUMN Calendar.lastDate
-IS 'Last modification date of the record in the Calendar Table.';
-
--- Calendar Sequence
-CREATE SEQUENCE s_calendar
-START WITH 0
-INCREMENT BY 1
-MINVALUE 0
-MAXVALUE 10000000
-NOCACHE
-NOCYCLE;
-
--------------------------------------------------------------------------------------------
 -- Event
 CREATE TABLE Event(
     idEvent NUMBER(10) PRIMARY KEY,
-    idCalendar NUMBER(10) CONSTRAINT event_idCalendar_nn NOT NULL,
     typeEvent VARCHAR2(32) CONSTRAINT event_typeEvent_nn NOT NULL,
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
@@ -1614,9 +1569,6 @@ IS 'Repository for storing the information of the event';
 --------------- Comment on Attributes -------------------------------------
 COMMENT ON COLUMN Event.idEvent
 IS 'Unique identifier of the Event Table.';
-
-COMMENT ON COLUMN Event.idCalendar
-IS 'Reference to Calendar Table.';
 
 COMMENT ON COLUMN Event.typeEvent
 IS 'Type of event.';
@@ -2046,10 +1998,6 @@ ALTER TABLE PlayerXSoccerMatchXTeam
     ADD CONSTRAINT fk_PxMxT_team FOREIGN KEY (idTeam) REFERENCES Team(idTeam);
     
 -----------------------------------------------------------------------------------------------------------------
--- FK Event-Calendar
-ALTER TABLE Event
-    ADD CONSTRAINT fk_event_calendar FOREIGN KEY (idCalendar) REFERENCES Calendar(idCalendar);
-
 -- FK GroupEvent-Event
 ALTER TABLE GroupEvent
     ADD CONSTRAINT fk_group_event FOREIGN KEY (idEvent) REFERENCES Event(idEvent);
