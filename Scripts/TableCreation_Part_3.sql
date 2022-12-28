@@ -279,11 +279,38 @@ CREATE TABLE FavoriteNews(
     idFavoriteNews NUMBER(10) PRIMARY KEY,
     userUsername VARCHAR(16) CONSTRAINT favoriteNews_userUsername_nn NOT NULL,
     idNews NUMBER(10) CONSTRAINT favoriteNews_idNews_nn NOT NULL,
-    user VARCHAR(16) CONSTRAINT favoriteNews_user_nn NOT NULL,
+    userCreation VARCHAR(16) CONSTRAINT favoriteNews_userCreation_nn NOT NULL,
     lastUser VARCHAR(16) CONSTRAINT favoriteNews_lastUser_nn NOT NULL,
     lastDate DATE CONSTRAINT favoriteNews_lastDate_nn NOT NULL,
     dateCreation DATE CONSTRAINT favoriteNews_dateCreation_nn NOT NULL
 );
+
+-- Table Comment
+COMMENT ON TABLE FavoriteNews
+IS 'Repository for storing the information of the FavoriteNews';
+--------------- Comment on Attributes -------------------------------------
+COMMENT ON COLUMN FavoriteNews.idFavoriteNews
+IS 'Unique identifier of the Rating Table.';
+
+COMMENT ON COLUMN FavoriteNews.userUsername
+IS 'Reference to User Table.';
+
+COMMENT ON COLUMN FavoriteNews.idNews
+IS 'Reference to News Table.';
+
+-- Audit Fields 
+COMMENT ON COLUMN FavoriteNews.userCreation
+IS 'User who creates the FavoriteNews Table record.';
+
+COMMENT ON COLUMN FavoriteNews.dateCreation
+IS 'Date of creation of the FavoriteNews Table record.';
+
+COMMENT ON COLUMN FavoriteNews.lastUser
+IS 'Last user to modify a record in the FavoriteNews Table.';
+
+COMMENT ON COLUMN FavoriteNews.lastDate
+IS 'Last modification date of the record in the FavoriteNews Table.';
+-------------------------------------------------------------------------------------------
 
 -- Comment
 CREATE TABLE Comment(
