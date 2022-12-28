@@ -166,6 +166,25 @@ BEGIN
     :new.lastDate:=SYSDATE;
 END beforeUpdateParameterTable;
 
+-- PersonPosition 
+
+CREATE OR REPLACE TRIGGER proyectoBD.beforeInsertPersonPosition
+BEFORE INSERT
+ON proyectoBD.PersonPosition
+FOR EACH ROW
+BEGIN
+    :new.userCreation:=USER;
+    :new.dateCreation:=SYSDATE;
+END beforeInsertPersonPosition;
+
+CREATE OR REPLACE TRIGGER proyectoBD.beforeUpdatePersonPosition
+BEFORE UPDATE
+ON proyectoBD.PersonPosition
+FOR EACH ROW
+BEGIN
+    :new.lastUser:=USER;
+    :new.lastDate:=SYSDATE;
+END beforeUpdatePersonPosition;
 
 
 

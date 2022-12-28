@@ -33,7 +33,7 @@ IS 'Second last name of the person.';
 COMMENT ON COLUMN Person.photo
 IS 'Link to the photo of the person.';
 
-COMMENT ON COLUMN Person.idPosition
+COMMENT ON COLUMN Person.idPersonPosition
 IS 'Reference to the PersonPosition Table.';
 
 COMMENT ON COLUMN Person.idCountry
@@ -66,7 +66,7 @@ CREATE TABLE Person (
    firstLastName VARCHAR2(45) CONSTRAINT person_fstlastname_nn NOT NULL,
    secondLastName VARCHAR2(45) CONSTRAINT person_sndlastname_nn NOT NULL,
    photo VARCHAR2(45) CONSTRAINT person_photo_nn NOT NULL,
-   idPosition NUMBER(11) CONSTRAINT person_idrole_nn NOT NULL,
+   idPersonPosition NUMBER(11) CONSTRAINT person_idpersonposition_nn NOT NULL,
    idCountry NUMBER(11) CONSTRAINT person_idcountry_nn NOT NULL,
    idTypeIdentification NUMBER(11) CONSTRAINT person_idtypeident_nn NOT NULL,
    idGender NUMBER(11) CONSTRAINT person_idgender_nn NOT NULL,
@@ -324,6 +324,49 @@ NOCACHE
 NOCYCLE;
 
 ---------------------------------------------------------------------    
+-- PersonPosition    
+
+COMMENT ON TABLE PersonPosition
+IS 'Repository for storing the information of a UserType.';
+-- Comment on attributes
+COMMENT ON COLUMN PersonPosition.idPersonPosition
+IS 'Unique identifier of the PersonPosition Table.';
+
+COMMENT ON COLUMN PersonPosition.descriptionPersonPosition
+IS 'Description of the position a person has';
+
+--Audit Fields
+COMMENT ON COLUMN PersonPosition.userCreation
+IS 'User who creates the PersonPosition Table record.';
+
+COMMENT ON COLUMN PersonPosition.lastUser
+IS 'Last user to modify a record in the PersonPosition Table.';
+
+COMMENT ON COLUMN PersonPosition.lastDate
+IS 'Last modification date of the record in the PersonPosition Table.';
+
+COMMENT ON COLUMN PersonPosition.dateCreation
+IS 'Date of creation of the PersonPosition Table record.';
+
+    
+CREATE TABLE PersonPosition (
+   idPersonPosition NUMBER(11) PRIMARY KEY,
+   descriptionPersonPosition VARCHAR2(32) CONSTRAINT userxnews_username_nn NOT NULL,
+   userCreation VARCHAR2(45),
+   lastUser VARCHAR2(45),
+   lastDate DATE,
+   dateCreation DATE
+);
+
+CREATE SEQUENCE s_userxnews
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+---------------------------------------------------------------------    
 -- ParameterTable    
 
 COMMENT ON TABLE ParameterTable
@@ -374,7 +417,7 @@ NOCYCLE;
 --FOREING KEYS-------------------------------------------------------
 --Person foreing keys
 ALTER TABLE Person
-    ADD CONSTRAINT fk_person_personposition FOREIGN KEY (idPosition) REFERENCES PersonPosition(idPosition);
+    ADD CONSTRAINT fk_person_personposition FOREIGN KEY (idPersonPosition) REFERENCES PersonPosition(idPersonPosition);
     
 ALTER TABLE Person
     ADD CONSTRAINT fk_person_country FOREIGN KEY (idCountry) REFERENCES Country(idCountry);

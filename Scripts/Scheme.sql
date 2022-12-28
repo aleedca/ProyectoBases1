@@ -1,6 +1,6 @@
 -- Scheme
 CREATE TABLESPACE proyectoBD_Data
-   DATAFILE 'C:\app\Mariana\oradata\demo\proyectoBDdata01.dbf'
+   DATAFILE 'D:\app\Isaac\oradata\DBPRUEBA\proyectoBDdata01.dbf'
    SIZE 10M
    REUSE
    AUTOEXTEND ON
@@ -8,7 +8,7 @@ CREATE TABLESPACE proyectoBD_Data
    MAXSIZE 200M;
    
 CREATE TABLESPACE proyectoBD_Ind
-   DATAFILE 'C:\app\Mariana\oradata\demo\proyectoBDind01.dbf'
+   DATAFILE 'D:\app\Isaac\oradata\DBPRUEBA\proyectoBDind01.dbf'
    SIZE 10M
    REUSE
    AUTOEXTEND ON
