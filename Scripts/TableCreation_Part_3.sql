@@ -8,6 +8,7 @@ Mariana Fernández Martínez - 2021104026
 */
 
 -- ////////////////////////////////////// TABLE CREATION ////////////////////////////////////
+
 -- News
 CREATE TABLE News(
     idNews NUMBER(10) PRIMARY KEY,
@@ -17,13 +18,60 @@ CREATE TABLE News(
     publicationDate DATE CONSTRAINT news_publicationDate_nn NOT NULL,
     views NUMBER(32) CONSTRAINT news_views_nn NOT NULL,
     link VARCHAR(32) CONSTRAINT news_link_nn NOT NULL,
-    user VARCHAR(16) CONSTRAINT news_user_nn NOT NULL,
+    --photo VARCHAR() CONSTRAINT news_photo_nn NOT NULL,
+    text VARCHAR(70) CONSTRAINT news_text_nn NOT NULL
+    userCreation VARCHAR(16) CONSTRAINT news_userCreation_nn NOT NULL,
     lastUser VARCHAR(16) CONSTRAINT news_lastUser_nn NOT NULL,
     lastDate DATE CONSTRAINT news_lastDate_nn NOT NULL,
     dateCreation DATE CONSTRAINT news_dateCreation_nn NOT NULL,
-    --photo VARCHAR() CONSTRAINT news_photo_nn NOT NULL,
-    text VARCHAR(70) CONSTRAINT news_text_nn NOT NULL
+    
 );
+
+-- Table News
+COMMENT ON TABLE News
+IS 'Repository for storing the information of the news';
+--------------- Comment on Attributes -------------------------------------
+COMMENT ON COLUMN News.idNews
+IS 'Unique identifier of the News Table.';
+
+COMMENT ON COLUMN News.idState
+IS 'Reference to State Table.';
+
+COMMENT ON COLUMN News.idNewsType
+IS 'Reference to idNewsType Table.';
+
+COMMENT ON COLUMN News.title
+IS 'News title.';
+
+COMMENT ON COLUMN News.publicationDate
+IS 'Date of publication of each news.';
+
+COMMENT ON COLUMN News.views
+IS 'Views of each news.';
+
+COMMENT ON COLUMN News.link
+IS 'Link of each news.';
+
+--COMMENT ON COLUMN News.photo
+--IS 'Photo of each news.';
+
+COMMENT ON COLUMN News.text
+IS 'Text of each news.';
+
+-- Audit Fields 
+COMMENT ON COLUMN News.userCreation
+IS 'User who creates the News Table record.';
+
+COMMENT ON COLUMN News.dateCreation
+IS 'Date of creation of the News Table record.';
+
+COMMENT ON COLUMN News.lastUser
+IS 'Last user to modify a record in the News Table.';
+
+COMMENT ON COLUMN News.lastDate
+IS 'Last modification date of the record in the News Table.';
+
+-------------------------------------------------------------------------------------------
 
 -- Change
 CREATE TABLE Change(
