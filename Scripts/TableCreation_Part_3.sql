@@ -150,3 +150,5 @@ ALTER TABLE Comment
 -- FK Comment-News
 ALTER TABLE Comment
     ADD CONSTRAINT fk_comment_news FOREIGN KEY (idNews) REFERENCES News(idNews);
+    
+ -- ////////////////////////////////////// SEQUENCES ////////////////////////////////////
