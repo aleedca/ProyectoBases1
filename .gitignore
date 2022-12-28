@@ -1,9 +1,8 @@
-/ProjectDB1/build/
-**/nbproject/private/
-**/nbproject/Makefile-*.mk
-**/nbproject/Package-*.bash
+# NetBeans specific
+nbproject/private/
 build/
 nbbuild/
 dist/
 nbdist/
-.nb-gradle/
+nbactions.xml
+nb-configuration.xml
