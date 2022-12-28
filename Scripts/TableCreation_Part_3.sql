@@ -126,7 +126,7 @@ COMMENT ON COLUMN Change.userCreation
 IS 'User who creates the Change Table record.';
 
 COMMENT ON COLUMN Change.dateCreation
-IS 'Date of creation of the Change ChangeTable record.';
+IS 'Date of creation of the Change Table record.';
 
 COMMENT ON COLUMN Change.lastUser
 IS 'Last user to modify a record in the Change Table.';
@@ -138,21 +138,66 @@ IS 'Last modification date of the record in the Change Table.';
 -- Blog
 CREATE TABLE Blog(
     idBlog NUMBER(10) PRIMARY KEY,
-    user VARCHAR(16) CONSTRAINT blog_user_nn NOT NULL,
+    userCreation VARCHAR(16) CONSTRAINT blog_userCreation_nn NOT NULL,
     lastUser VARCHAR(16) CONSTRAINT blog_lastUser_nn NOT NULL,
     lastDate DATE CONSTRAINT blog_lastDate_nn NOT NULL,
     dateCreation DATE CONSTRAINT blog_dateCreation_nn NOT NULL
 );
 
+-- Table Comment
+COMMENT ON TABLE Blog
+IS 'Repository for storing the information of the blog';
+--------------- Comment on Attributes -------------------------------------
+COMMENT ON COLUMN Blog.idBlog 
+IS 'Unique identifier of the Blog Table.';
+
+-- Audit Fields 
+COMMENT ON COLUMN Blog.userCreation
+IS 'User who creates the Blog Table record.';
+
+COMMENT ON COLUMN Blog.dateCreation
+IS 'Date of creation of the Blog Table record.';
+
+COMMENT ON COLUMN Blog.lastUser
+IS 'Last user to modify a record in the Blog Table.';
+
+COMMENT ON COLUMN Blog.lastDate
+IS 'Last modification date of the record in the Blog Table.';
+-------------------------------------------------------------------------------------------
+
 -- State
 CREATE TABLE State(
     idState NUMBER(10) PRIMARY KEY,
-    user VARCHAR(16) CONSTRAINT state_user_nn NOT NULL,
-    description VARCHAR(16) CONSTRAINT state_description_nn NOT NULL,
+    descriptionState VARCHAR(16) CONSTRAINT state_description_nn NOT NULL,
+    userCreation VARCHAR(16) CONSTRAINT state_userCreation_nn NOT NULL,
     lastUser VARCHAR(16) CONSTRAINT state_lastUser_nn NOT NULL,
     lastDate DATE CONSTRAINT state_lastDate_nn NOT NULL,
     dateCreation DATE CONSTRAINT state_dateCreation_nn NOT NULL
 );
+
+-- Table Comment
+COMMENT ON TABLE State
+IS 'Repository for storing the information of the state';
+--------------- Comment on Attributes -------------------------------------
+COMMENT ON COLUMN State.idState
+IS 'Unique identifier of the State Table.';
+
+COMMENT ON COLUMN State.descriptionState
+IS 'Description of the State';
+
+-- Audit Fields 
+COMMENT ON COLUMN State.userCreation
+IS 'User who creates the State Table record.';
+
+COMMENT ON COLUMN State.dateCreation
+IS 'Date of creation of the State Table record.';
+
+COMMENT ON COLUMN State.lastUser
+IS 'Last user to modify a record in the State Table.';
+
+COMMENT ON COLUMN State.lastDate
+IS 'Last modification date of the record in the State Table.';
+-------------------------------------------------------------------------------------------
 
 -- NewsType
 CREATE TABLE NewsType(
