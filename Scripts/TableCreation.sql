@@ -376,9 +376,9 @@ NOCYCLE;
 -- PersonPosition    
 CREATE TABLE PersonPosition (
    idPersonPosition NUMBER(10) PRIMARY KEY,
-   descriptionPersonPosition VARCHAR22(32) CONSTRAINT personPosition_description_nn NOT NULL,
-   userCreation VARCHAR22(16),
-   lastUser VARCHAR22(16),
+   descriptionPersonPosition VARCHAR2(32) CONSTRAINT personPosition_description_nn NOT NULL,
+   userCreation VARCHAR2(16),
+   lastUser VARCHAR2(16),
    lastDate DATE,
    dateCreation DATE
 );
@@ -750,7 +750,7 @@ IS 'Repository for storing the information of the news';
 COMMENT ON COLUMN News.idNews
 IS 'Unique identifier of the News Table.';
 
-COMMENT ON COLUMN News.idState
+COMMENT ON COLUMN News.idNewsStatus
 IS 'Reference to State Table.';
 
 COMMENT ON COLUMN News.idNewsType
@@ -856,7 +856,7 @@ CREATE TABLE NewsChange(
 COMMENT ON TABLE NewsChange
 IS 'Repository for storing the information of the change';
 --------------- Comment on Attributes -------------------------------------
-COMMENT ON COLUMN NewsChange.idChange
+COMMENT ON COLUMN NewsChange.idNewsChange
 IS 'Unique identifier of the NewsChange Table.';
 
 COMMENT ON COLUMN NewsChange.idNews
@@ -877,11 +877,8 @@ IS 'Text before the change.';
 COMMENT ON COLUMN NewsChange.descriptionNewsChange
 IS 'Description of the change.';
 
-COMMENT ON COLUMN NewsChange.dateNewsChange
-IS 'Date of the change.';
-
-COMMENT ON COLUMN NewsChange.hourNewsChange
-IS 'Hour of the change.';
+COMMENT ON COLUMN NewsChange.dateHour
+IS 'Date and hour of the change.';
 
 -- Audit Fields 
 COMMENT ON COLUMN NewsChange.userCreation
@@ -1359,12 +1356,8 @@ IS 'Repository for storing the information of the SoccerMatch';
 COMMENT ON COLUMN SoccerMatch.idSoccerMatch
 IS 'Unique identifier of the SoccerMatch Table.';
 
-COMMENT ON COLUMN SoccerMatch.dateSoccerMatch
-IS 'Date of the Soccer Match.';
-
-COMMENT ON COLUMN SoccerMatch.hourSoccerMatch
-IS 'Hour of the Soccer Match.';
-
+COMMENT ON COLUMN SoccerMatch.dateHour
+IS 'Date and hour of the Soccer Match.';
 
 -- Audit Fields 
 COMMENT ON COLUMN SoccerMatch.userCreation
@@ -1987,10 +1980,10 @@ ALTER TABLE News
     
     
 -- FK NewsChange-News
-ALTER TABLE Change
+ALTER TABLE NewsChange
     ADD CONSTRAINT fk_newsChange_news FOREIGN KEY (idNews) REFERENCES News(idNews);
 -- FK NewsChange-Blog
-ALTER TABLE Change
+ALTER TABLE NewsChange
     ADD CONSTRAINT fk_newsChange_blog FOREIGN KEY (idBlog) REFERENCES Blog(idBlog);
 
 
@@ -2042,15 +2035,15 @@ ALTER TABLE Address
 -----------------------------------------------------------------------------------------
 -- FK PlayerXSoccerMatchXTeam-Player
 ALTER TABLE PlayerXSoccerMatchXTeam
-    ADD CONSTRAINT fk_playerxsoccermatchxteam_player FOREIGN KEY (idPerson) REFERENCES Player(idPerson);
+    ADD CONSTRAINT fk_PxMxT_player FOREIGN KEY (idPerson) REFERENCES Player(idPerson);
 
 -- FK PlayerXSoccerMatchXTeam-SoccerMatch
 ALTER TABLE PlayerXSoccerMatchXTeam
-    ADD CONSTRAINT fk_playerxsoccermatchxteam_soccermatch FOREIGN KEY (idSoccerMatch) REFERENCES SoccerMatch(idSoccerMatch);
+    ADD CONSTRAINT fk_PxMxT_soccermatch FOREIGN KEY (idSoccerMatch) REFERENCES SoccerMatch(idSoccerMatch);
 
 -- FK PlayerXSoccerMatchXTeam-Team
 ALTER TABLE PlayerXSoccerMatchXTeam
-    ADD CONSTRAINT fk_playerxsoccermatchxteam_team FOREIGN KEY (idTeam) REFERENCES Team(idTeam);
+    ADD CONSTRAINT fk_PxMxT_team FOREIGN KEY (idTeam) REFERENCES Team(idTeam);
     
 -----------------------------------------------------------------------------------------------------------------
 -- FK Event-Calendar
@@ -2079,10 +2072,10 @@ ALTER TABLE GroupStats
 
 -- FK SoccerMatchXStadium-SoccerMatch
 ALTER TABLE SoccerMatchXStadium
-    ADD CONSTRAINT fk_soccerMatchXStadium_soccerMatch FOREIGN KEY (idSoccerMatch) REFERENCES SoccerMatch(idSoccerMatch);
+    ADD CONSTRAINT fk_SMxS_soccerMatch FOREIGN KEY (idSoccerMatch) REFERENCES SoccerMatch(idSoccerMatch);
 
 -- FK SoccerMatchXStadium-Stadium
 ALTER TABLE SoccerMatchXStadium
-    ADD CONSTRAINT fk_soccerMatchXStadium_stadium FOREIGN KEY (idStadium) REFERENCES Stadium(idStadium);
+    ADD CONSTRAINT fk_SMxS_stadium FOREIGN KEY (idStadium) REFERENCES Stadium(idStadium);
     
     
