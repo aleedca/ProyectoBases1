@@ -10,7 +10,7 @@ Mariana Fernández Martínez - 2021104026
 -- ////////////////////////////////////// TABLE CREATION ////////////////////////////////////
 -- ParameterTable        
 CREATE TABLE ParameterTable (
-   idParameterTable NUMBER(11) PRIMARY KEY,
+   idParameterTable NUMBER(10) PRIMARY KEY,
    nameParameter VARCHAR2(32) CONSTRAINT parameter_name_nn NOT NULL,
    valueParameter NUMBER(11) CONSTRAINT parameter_value_nn NOT NULL,
    userCreation VARCHAR2(45),
@@ -244,9 +244,9 @@ IS 'Date of creation of the EventWorker Table record.';
 -- Country
 CREATE TABLE Country(
     idCountry NUMBER(10) PRIMARY KEY,
-    nameCountry VARCHAR(32) CONSTRAINT country_nameCountry_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    nameCountry VARCHAR2(32) CONSTRAINT country_nameCountry_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -288,9 +288,9 @@ NOCYCLE;
 -- Gender
 CREATE TABLE Gender(
     idGender NUMBER(10) PRIMARY KEY,
-    descriptionGender VARCHAR(32) CONSTRAINT gender_descriptionGender_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    descriptionGender VARCHAR2(32) CONSTRAINT gender_descriptionGender_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -332,9 +332,9 @@ NOCYCLE;
 -- TypeIdentification
 CREATE TABLE TypeIdentification(
     idTypeIdentification NUMBER(10) PRIMARY KEY,
-    typeMask VARCHAR(16) CONSTRAINT typeIdentification_typeMask_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    typeMask VARCHAR2(16) CONSTRAINT typeIdentification_typeMask_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -376,9 +376,9 @@ NOCYCLE;
 -- PersonPosition    
 CREATE TABLE PersonPosition (
    idPersonPosition NUMBER(10) PRIMARY KEY,
-   descriptionPersonPosition VARCHAR2(32) CONSTRAINT personPosition_descriptionPersonPosition_nn NOT NULL,
-   userCreation VARCHAR2(16),
-   lastUser VARCHAR2(16),
+   descriptionPersonPosition VARCHAR22(32) CONSTRAINT personPosition_description_nn NOT NULL,
+   userCreation VARCHAR22(16),
+   lastUser VARCHAR22(16),
    lastDate DATE,
    dateCreation DATE
 );
@@ -420,9 +420,9 @@ NOCYCLE;
 CREATE TABLE Mail(
     idMail NUMBER(10) PRIMARY KEY,
     idPerson NUMBER(10) CONSTRAINT mail_idPerson_nn NOT NULL,
-    descriptionMail VARCHAR(32) CONSTRAINT mail_descriptionMail_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    descriptionMail VARCHAR2(32) CONSTRAINT mail_descriptionMail_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -468,8 +468,8 @@ NOCYCLE;
 CREATE TABLE Phone(
     idPhone NUMBER(10) PRIMARY KEY,
     phoneNumber NUMBER(8) CONSTRAINT phone_phoneNumber_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -513,8 +513,8 @@ CREATE TABLE PersonXPhone(
     idPersonXPhone NUMBER(10) PRIMARY KEY,
     idPerson NUMBER(10) CONSTRAINT phone_idPerson_nn NOT NULL,
     idPhone NUMBER(10) CONSTRAINT phone_idPhone_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -559,7 +559,7 @@ NOCYCLE;
 -- UserType
 CREATE TABLE UserType (
    idUserType NUMBER(10) PRIMARY KEY,
-   descriptionUserType VARCHAR2(32) CONSTRAINT usertype_descriptionUserType_nn NOT NULL,
+   descriptionUserType VARCHAR2(32) CONSTRAINT usertype_description_nn NOT NULL,
    userCreation VARCHAR2(16),
    lastUser VARCHAR2(16),
    lastDate DATE,
@@ -643,9 +643,9 @@ IS 'Date of creation of the UserPerson Table record.';
 -- NewsType
 CREATE TABLE NewsType(
     idNewsType NUMBER(10) PRIMARY KEY,
-    descriptionNewsType VARCHAR(32) CONSTRAINT newsType_descriptionNewsType_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    descriptionNewsType VARCHAR2(32) CONSTRAINT newsType_description_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -686,9 +686,9 @@ NOCYCLE;
 -- NewsStatus
 CREATE TABLE NewsStatus(
     idNewsStatus NUMBER(10) PRIMARY KEY,
-    descriptionNewsStatus VARCHAR(32) CONSTRAINT newsStatus_descriptionNewsStatus_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    descriptionNewsStatus VARCHAR2(32) CONSTRAINT newsStatus_description_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -731,14 +731,14 @@ CREATE TABLE News(
     idNews NUMBER(10) PRIMARY KEY,
     idNewsStatus NUMBER(10) CONSTRAINT news_idNewsStatus_nn NOT NULL,
     idNewsType NUMBER(10) CONSTRAINT news_idNewsType_nn NOT NULL,
-    title VARCHAR(20) CONSTRAINT news_title_nn NOT NULL,
+    title VARCHAR2(20) CONSTRAINT news_title_nn NOT NULL,
     publicationDate DATE CONSTRAINT news_publicationDate_nn NOT NULL,
     viewsNews NUMBER(32) CONSTRAINT news_viewsNews_nn NOT NULL,
-    linkNews VARCHAR(128) CONSTRAINT news_linkNews_nn NOT NULL,
-    photo VARCHAR(128) CONSTRAINT news_photo_nn NOT NULL,
-    textNews VARCHAR(256) CONSTRAINT news_textNews_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    linkNews VARCHAR2(128) CONSTRAINT news_linkNews_nn NOT NULL,
+    photo VARCHAR2(128) CONSTRAINT news_photo_nn NOT NULL,
+    textNews VARCHAR2(256) CONSTRAINT news_textNews_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -800,8 +800,8 @@ NOCYCLE;
 -- Blog
 CREATE TABLE Blog(
     idBlog NUMBER(10) PRIMARY KEY,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -839,16 +839,15 @@ NOCYCLE;
 -- NewsChange
 CREATE TABLE NewsChange(
     idNewsChange NUMBER(10) PRIMARY KEY,
-    idNews NUMBER(10) CONSTRAINT newsChange_idNews_nn NOT NULL,
-    idBlog NUMBER(10) CONSTRAINT newsChange_idBlog_nn NOT NULL,
-    username VARCHAR(32) CONSTRAINT newsChange_username_nn NOT NULL,
-    currentText VARCHAR(256) CONSTRAINT newsChange_currentText_nn NOT NULL,
-    previousText VARCHAR(256) CONSTRAINT newsChange_previousText_nn NOT NULL,
-    descriptionNewsChange VARCHAR(32) CONSTRAINT newsChange_descriptionNewsChange_nn NOT NULL,
-    dateNewsChange DATE CONSTRAINT newsChange_dateNewsChange_nn NOT NULL,
-    hourNewsChange TIME CONSTRAINT newsChange_hourNewsChange_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    idNews NUMBER(10) CONSTRAINT newschange_idNews_nn NOT NULL,
+    idBlog NUMBER(10) CONSTRAINT newschange_idBlog_nn NOT NULL,
+    username VARCHAR2(32) CONSTRAINT newschange_username_nn NOT NULL,
+    currentText VARCHAR2(256) CONSTRAINT newschange_currentText_nn NOT NULL,
+    previousText VARCHAR2(256) CONSTRAINT newschange_previousText_nn NOT NULL,
+    descriptionNewsChange VARCHAR2(32) CONSTRAINT newschange_description_nn NOT NULL,
+    dateHour DATE CONSTRAINT newschange_dateHour_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -956,11 +955,11 @@ NOCYCLE;
 -- Rating
 CREATE TABLE Rating(
     idRating NUMBER(10) PRIMARY KEY,
-    username VARCHAR(32) CONSTRAINT rating_username_nn NOT NULL,
+    username VARCHAR2(32) CONSTRAINT rating_username_nn NOT NULL,
     idNews NUMBER(10) CONSTRAINT rating_idNews_nn NOT NULL,
     rating NUMBER(1, 2) CONSTRAINT rating_rating_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1008,11 +1007,11 @@ NOCYCLE;
 -- NewsComment
 CREATE TABLE NewsComment(
     idNewsComment NUMBER(10) PRIMARY KEY,
-    username VARCHAR(32) CONSTRAINT comment_username_nn NOT NULL,
-    idNews NUMBER(10) CONSTRAINT comment_idNews_nn NOT NULL,
-    textNewsComment VARCHAR(128) CONSTRAINT comment_textNewsComment_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    username VARCHAR2(32) CONSTRAINT newscomment_username_nn NOT NULL,
+    idNews NUMBER(10) CONSTRAINT newscomment_idNews_nn NOT NULL,
+    textNewsComment VARCHAR2(128) CONSTRAINT newscomment_text_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1059,10 +1058,10 @@ NOCYCLE;
 -- FavoriteNews
 CREATE TABLE FavoriteNews(
     idFavoriteNews NUMBER(10) PRIMARY KEY,
-    username VARCHAR(32) CONSTRAINT favoriteNews_username_nn NOT NULL,
+    username VARCHAR2(32) CONSTRAINT favoriteNews_username_nn NOT NULL,
     idNews NUMBER(10) CONSTRAINT favoriteNews_idNews_nn NOT NULL,
-    userCreation VARCHAR(16) CONSTRAINT favoriteNews_userCreation_nn NOT NULL,
-    lastUser VARCHAR(16) CONSTRAINT favoriteNews_lastUser_nn NOT NULL,
+    userCreation VARCHAR2(16) CONSTRAINT favoriteNews_userCreation_nn NOT NULL,
+    lastUser VARCHAR2(16) CONSTRAINT favoriteNews_lastUser_nn NOT NULL,
     lastDate DATE,
     dateCreation DATE
 );
@@ -1107,9 +1106,9 @@ NOCYCLE;
 CREATE TABLE Stadium(
     idStadium NUMBER(10) PRIMARY KEY,
     idCountry NUMBER(10) CONSTRAINT stadium_idCountry_nn NOT NULL, 
-    nameStadium VARCHAR(32) CONSTRAINT stadium_name_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    nameStadium VARCHAR2(32) CONSTRAINT stadium_name_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1155,9 +1154,9 @@ NOCYCLE;
 CREATE TABLE Province(
     idProvince NUMBER(10) PRIMARY KEY,
     idCountry NUMBER(10) CONSTRAINT province_idCountry_nn NOT NULL, 
-    nameProvince VARCHAR(32) CONSTRAINT province_name_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    nameProvince VARCHAR2(32) CONSTRAINT province_name_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1203,9 +1202,9 @@ NOCYCLE;
 CREATE TABLE Canton(
     idCanton NUMBER(10) PRIMARY KEY,
     idProvince NUMBER(10) CONSTRAINT canton_idProvince_nn NOT NULL,
-    nameCanton VARCHAR(32) CONSTRAINT canton_name_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    nameCanton VARCHAR2(32) CONSTRAINT canton_name_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1251,9 +1250,9 @@ NOCYCLE;
 CREATE TABLE District(
     idDistrict NUMBER(10) PRIMARY KEY,
     idCanton NUMBER(10) CONSTRAINT district_idCanton_nn NOT NULL,
-    nameDistrict VARCHAR(32) CONSTRAINT district_name_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    nameDistrict VARCHAR2(32) CONSTRAINT district_name_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1299,9 +1298,9 @@ NOCYCLE;
 CREATE TABLE Address(
     idAddress NUMBER(10) PRIMARY KEY,
     idDistrict NUMBER(10) CONSTRAINT address_idDistrict_nn NOT NULL, 
-    descriptionAddress VARCHAR(32) CONSTRAINT address_description_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    descriptionAddress VARCHAR2(32) CONSTRAINT address_description_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1346,10 +1345,9 @@ NOCYCLE;
 -- SoccerMatch
 CREATE TABLE SoccerMatch(
     idSoccerMatch NUMBER(10) PRIMARY KEY,
-    dateSoccerMatch DATE CONSTRAINT soccerMatch_dateSoccerMatch_nn NOT NULL,
-    hourSoccerMatch TIME CONSTRAINT soccerMatch_hourSoccerMatch_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    dateHour DATE CONSTRAINT soccermatch_dateHour_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1441,17 +1439,17 @@ NOCYCLE;
 -- PlayerXSoccerMatchXTeam
 CREATE TABLE PlayerXSoccerMatchXTeam(
     idPlayerXMatchXTeam NUMBER(10) PRIMARY KEY,
-    idPerson NUMBER(10) CONSTRAINT playerxsoccermatchxteam_idPerson_nn NOT NULL, 
-    idSoccerMatch NUMBER(10) CONSTRAINT playerxsoccermatchxteam_idSoccerMatch_nn NOT NULL, 
-    idTeam NUMBER(10) CONSTRAINT playerxsoccermatchxteam_idTeam_nn NOT NULL, 
-    yellowCards NUMBER(1) CONSTRAINT playerxsoccermatchxteam_yellowCards_nn NOT NULL,
-    redCards NUMBER(1) CONSTRAINT playerxsoccermatchxteam_redCards_nn NOT NULL,
-    offsides NUMBER(2) CONSTRAINT playerxsoccermatchxteam_offsides_nn NOT NULL,
-    corners NUMBER(2) CONSTRAINT playerxsoccermatchxteam_corners_nn NOT NULL,
-    goals NUMBER(2) CONSTRAINT playerxsoccermatchxteam_goals_nn NOT NULL,
-    saves NUMBER(2) CONSTRAINT playerxsoccermatchxteam_saves_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    idPerson NUMBER(10) CONSTRAINT pxsmxt_idPerson_nn NOT NULL, 
+    idSoccerMatch NUMBER(10) CONSTRAINT pxsmxt_idSoccerMatch_nn NOT NULL, 
+    idTeam NUMBER(10) CONSTRAINT pxsmxt_idTeam_nn NOT NULL, 
+    yellowCards NUMBER(1) CONSTRAINT pxsmxt_yellowCards_nn NOT NULL,
+    redCards NUMBER(1) CONSTRAINT pxsmxt_redCards_nn NOT NULL,
+    offsides NUMBER(2) CONSTRAINT pxsmxt_offsides_nn NOT NULL,
+    corners NUMBER(2) CONSTRAINT pxsmxt_corners_nn NOT NULL,
+    goals NUMBER(2) CONSTRAINT pxsmxt_goals_nn NOT NULL,
+    saves NUMBER(2) CONSTRAINT pxsmxt_saves_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1516,10 +1514,10 @@ NOCYCLE;
 ---------------------------------------------------------------------
 CREATE TABLE SoccerMatchXStadium(
     idSoccerMatchXStadium NUMBER(10) PRIMARY KEY,
-    idSoccerMatch NUMBER(10) CONSTRAINT soccerMatchXStadium_idSoccerMatch_nn NOT NULL,
-    idStadium NUMBER(10) CONSTRAINT soccerMatchXStadium_idStadium_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    idSoccerMatch NUMBER(10) CONSTRAINT smxstadium_idSoccerMatch_nn NOT NULL,
+    idStadium NUMBER(10) CONSTRAINT smxstadium_idStadium_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1564,9 +1562,9 @@ NOCYCLE;
 -- Calendar
 CREATE TABLE Calendar(
     idCalendar NUMBER(10) PRIMARY KEY,
-    descriptionCalendar VARCHAR(32) CONSTRAINT calendar_description_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    descriptionCalendar VARCHAR2(32) CONSTRAINT calendar_description_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1609,9 +1607,9 @@ NOCYCLE;
 CREATE TABLE Event(
     idEvent NUMBER(10) PRIMARY KEY,
     idCalendar NUMBER(10) CONSTRAINT event_idCalendar_nn NOT NULL,
-    typeEvent VARCHAR(32) CONSTRAINT event_typeEvent_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    typeEvent VARCHAR2(32) CONSTRAINT event_typeEvent_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1663,8 +1661,8 @@ CREATE TABLE GroupStats(
     goalsScored NUMBER(10) CONSTRAINT groupStats_goalsScored_nn NOT NULL,
     goalsReceived NUMBER(10) CONSTRAINT groupStats_goalsReceived_nn NOT NULL,
     fairPlayPoints NUMBER(10) CONSTRAINT groupStats_fairPlayPoints_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1726,9 +1724,9 @@ CREATE TABLE Team(
     idTeam NUMBER(10) PRIMARY KEY,
     idCountryTeam NUMBER(10) CONSTRAINT team_idCountryTeam_nn NOT NULL,
     idGroupEvent NUMBER(10) CONSTRAINT team_idGroupEvent_nn NOT NULL,
-    nameTeam VARCHAR(32) CONSTRAINT team_name_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    nameTeam VARCHAR2(32) CONSTRAINT team_name_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1777,9 +1775,9 @@ NOCYCLE;
 CREATE TABLE GroupEvent(
     idGroupEvent NUMBER(10) PRIMARY KEY,
     idEvent NUMBER(10) CONSTRAINT groupEvent_idEvent_nn NOT NULL,
-    descriptionGroupEvent VARCHAR(32) CONSTRAINT groupEvent_description_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    descriptionGroupEvent VARCHAR2(32) CONSTRAINT groupEvent_description_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1825,9 +1823,9 @@ NOCYCLE;
 CREATE TABLE CountryTeam(
     idCountryTeam NUMBER(10) PRIMARY KEY,
     idContinent NUMBER(10) CONSTRAINT countryTeam_idContinent_nn NOT NULL,
-    nameCountryTeam VARCHAR(32) CONSTRAINT countryTeam_name_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    nameCountryTeam VARCHAR2(32) CONSTRAINT countryTeam_name_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1872,9 +1870,9 @@ NOCYCLE;
 -- Continent
 CREATE TABLE Continent(
     idContinent NUMBER(10) PRIMARY KEY,
-    nameContinent VARCHAR(32) CONSTRAINT continent_name_nn NOT NULL,
-    userCreation VARCHAR(16),
-    lastUser VARCHAR(16),
+    nameContinent VARCHAR2(32) CONSTRAINT continent_name_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
