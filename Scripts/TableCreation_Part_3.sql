@@ -365,7 +365,32 @@ CREATE TABLE SoccerMatch(
     dateCreation DATE CONSTRAINT soccerMatch_dateCreation_nn NOT NULL
 );
 
+-- Table Comment
+COMMENT ON TABLE SoccerMatch
+IS 'Repository for storing the information of the SoccerMatch';
+--------------- Comment on Attributes -------------------------------------
+COMMENT ON COLUMN SoccerMatch.idSoccerMatch
+IS 'Unique identifier of the SoccerMatch Table.';
 
+COMMENT ON COLUMN SoccerMatch.date
+IS 'Date of the Soccer Match.';
+
+COMMENT ON COLUMN SoccerMatch.hour
+IS 'Hour of the Soccer Match.';
+
+
+-- Audit Fields 
+COMMENT ON COLUMN SoccerMatch.userCreation
+IS 'User who creates the SoccerMatch Table record.';
+
+COMMENT ON COLUMN SoccerMatch.dateCreation
+IS 'Date of creation of the SoccerMatch Table record.';
+
+COMMENT ON COLUMN SoccerMatch.lastUser
+IS 'Last user to modify a record in the SoccerMatch Table.';
+
+COMMENT ON COLUMN SoccerMatch.lastDate
+IS 'Last modification date of the record in the SoccerMatch Table.';
 
 -------------------------------------------------------------------------------------------------
 
