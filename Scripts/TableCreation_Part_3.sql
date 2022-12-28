@@ -1,4 +1,13 @@
--- ////////////////////////////////////// CREACION TABLAS PARTE 3////////////////////////////////////
+/* File Name: TableCreation_Part_3
+Description: This file contains the code to create tables, their sequences and associations.
+Authors:
+Isaac Araya Solano - 2018151703
+Alexia Cerdas Aguilar - 2019026961
+Nahomi Bolaños Valverde - 2022089165
+Mariana Fernández Martínez - 2021104026
+*/
+
+-- ////////////////////////////////////// TABLE CREATION ////////////////////////////////////
 -- News
 CREATE TABLE News(
     idNews NUMBER(10) PRIMARY KEY,
