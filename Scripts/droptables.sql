@@ -8,7 +8,7 @@ DROP TABLE TeamWorker;
 DROP TABLE EventWorker;
 DROP TABLE PersonXPhone;
 
-DROP TABLE PersonPosition;
+
 
 DROP TABLE NewsChange;
 DROP TABLE Blog;
@@ -26,6 +26,7 @@ DROP TABLE UserType;
 
 DROP TABLE Mail;
 DROP TABLE Person;
+DROP TABLE PersonPosition; 
 
 DROP TABLE Stadium;
 DROP TABLE Address;
