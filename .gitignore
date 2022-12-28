@@ -1,6 +1,9 @@
 # NetBeans specific #
-ProjectDB1/nbproject/private/
-ProjectDB1/nbproject/
+ProjectDB1/nbproject/private/private.properties
+ProjectDB1/nbproject/build-impl.xml
+ProjectDB1/nbproject/genfiles.properties
+ProjectDB1/nbproject/project.properties
+ProjectDB1/nbproject/project.xml
 
 # Class Files #
 *.class
