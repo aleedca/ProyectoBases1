@@ -202,12 +202,36 @@ IS 'Last modification date of the record in the State Table.';
 -- NewsType
 CREATE TABLE NewsType(
     idNewsType NUMBER(10) PRIMARY KEY,
-    user VARCHAR(16) CONSTRAINT newsType_user_nn NOT NULL,
-    description VARCHAR(16) CONSTRAINT newsType_description_nn NOT NULL,
+    descriptionNewsType VARCHAR(16) CONSTRAINT newsType_description_nn NOT NULL,
+    userCreation VARCHAR(16) CONSTRAINT newsType_userCreation_nn NOT NULL,
     lastUser VARCHAR(16) CONSTRAINT newsType_lastUser_nn NOT NULL,
     lastDate DATE CONSTRAINT newsType_lastDate_nn NOT NULL,
     dateCreation DATE CONSTRAINT newsType_dateCreation_nn NOT NULL
 );
+
+-- Table Comment
+COMMENT ON TABLE NewsType
+IS 'Repository for storing the information of the News Type';
+--------------- Comment on Attributes -------------------------------------
+COMMENT ON COLUMN NewsType.idNewsType
+IS 'Unique identifier of the NewsType Table.';
+
+COMMENT ON COLUMN NewsType.descriptionNewsType
+IS 'Description of the NewsType';
+
+-- Audit Fields 
+COMMENT ON COLUMN NewsType.userCreation
+IS 'User who creates the NewsType Table record.';
+
+COMMENT ON COLUMN NewsType.dateCreation
+IS 'Date of creation of the NewsType Table record.';
+
+COMMENT ON COLUMN NewsType.lastUser
+IS 'Last user to modify a record in the NewsType Table.';
+
+COMMENT ON COLUMN NewsType.lastDate
+IS 'Last modification date of the record in the NewsType Table.';
+-------------------------------------------------------------------------------------------
 
 -- Rating
 CREATE TABLE Rating(
