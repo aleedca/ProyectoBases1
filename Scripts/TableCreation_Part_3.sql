@@ -107,7 +107,9 @@ CREATE TABLE Comment(
 );
 
 
--- ////////////////////////////////////// FOREING KEYS PARTE 3////////////////////////////////////
+-------------------------------------------------------------------------------------------------
+
+-- ////////////////////////////////////// FOREING KEYS PART 3////////////////////////////////////
 -- FK News-State
 ALTER TABLE News
     ADD CONSTRAINT fk_news_state FOREIGN KEY (idState) REFERENCES State(idState);
