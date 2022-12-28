@@ -106,6 +106,18 @@ CREATE TABLE Comment(
     dateCreation DATE CONSTRAINT comment_dateCreation_nn NOT NULL
 );
 
+-- SoccerMatch
+CREATE TABLE SoccerMatch(
+    idSoccerMatch NUMBER(10) PRIMARY KEY,
+    date DATE CONSTRAINT soccerMatch_date_nn NOT NULL,
+    hour TIME CONSTRAINT soccerMatch_hour_nn NOT NULL,
+    userCreation VARCHAR(16) CONSTRAINT soccerMatch_userCreation_nn NOT NULL,
+    lastUser VARCHAR(16) CONSTRAINT soccerMatch_lastUser_nn NOT NULL,
+    lastDate DATE CONSTRAINT soccerMatch_lastDate_nn NOT NULL,
+    dateCreation DATE CONSTRAINT soccerMatch_dateCreation_nn NOT NULL
+);
+
+
 
 -------------------------------------------------------------------------------------------------
 
@@ -150,5 +162,97 @@ ALTER TABLE Comment
 -- FK Comment-News
 ALTER TABLE Comment
     ADD CONSTRAINT fk_comment_news FOREIGN KEY (idNews) REFERENCES News(idNews);
-    
- -- ////////////////////////////////////// SEQUENCES ////////////////////////////////////
+
+
+-- ////////////////////////////////////// SEQUENCES ////////////////////////////////////
+-- News
+CREATE SEQUENCE s_news
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- Change
+CREATE SEQUENCE s_change
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- Blog
+CREATE SEQUENCE s_blog
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- State
+CREATE SEQUENCE s_state
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- NewsType
+CREATE SEQUENCE s_newsType
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- Rating
+CREATE SEQUENCE s_rating
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- FavoriteNews
+CREATE SEQUENCE s_favoriteNews
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- Comment
+CREATE SEQUENCE s_comment
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+-- SoccerMatch
+CREATE SEQUENCE s_soccerMatch
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
