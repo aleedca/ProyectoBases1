@@ -290,7 +290,7 @@ COMMENT ON TABLE FavoriteNews
 IS 'Repository for storing the information of the FavoriteNews';
 --------------- Comment on Attributes -------------------------------------
 COMMENT ON COLUMN FavoriteNews.idFavoriteNews
-IS 'Unique identifier of the Rating Table.';
+IS 'Unique identifier of the FavoriteNews Table.';
 
 COMMENT ON COLUMN FavoriteNews.userUsername
 IS 'Reference to User Table.';
@@ -318,11 +318,41 @@ CREATE TABLE Comment(
     userUsername VARCHAR(16) CONSTRAINT comment_userUsername_nn NOT NULL,
     idNews NUMBER(10) CONSTRAINT comment_idNews_nn NOT NULL,
     text VARCHAR(20) CONSTRAINT comment_text_nn NOT NULL,
-    user VARCHAR(16) CONSTRAINT comment_user_nn NOT NULL,
+    userCreation VARCHAR(16) CONSTRAINT comment_userCreation_nn NOT NULL,
     lastUser VARCHAR(16) CONSTRAINT comment_lastUser_nn NOT NULL,
     lastDate DATE CONSTRAINT comment_lastDate_nn NOT NULL,
     dateCreation DATE CONSTRAINT comment_dateCreation_nn NOT NULL
 );
+
+-- Table Comment
+COMMENT ON TABLE Comment
+IS 'Repository for storing the information of the Comment';
+--------------- Comment on Attributes -------------------------------------
+COMMENT ON COLUMN Comment.idComment
+IS 'Unique identifier of the Comment Table.';
+
+COMMENT ON COLUMN Comment.userUsername
+IS 'Reference to User Table.';
+
+COMMENT ON COLUMN Comment.idNews
+IS 'Reference to News Table.';
+
+COMMENT ON COLUMN Comment.text
+IS 'Text of each comment';
+
+-- Audit Fields 
+COMMENT ON COLUMN Comment.userCreation
+IS 'User who creates the Comment Table record.';
+
+COMMENT ON COLUMN Comment.dateCreation
+IS 'Date of creation of the Comment Table record.';
+
+COMMENT ON COLUMN Comment.lastUser
+IS 'Last user to modify a record in the Comment Table.';
+
+COMMENT ON COLUMN Comment.lastDate
+IS 'Last modification date of the record in the Comment Table.';
+-------------------------------------------------------------------------------------------
 
 -- SoccerMatch
 CREATE TABLE SoccerMatch(
