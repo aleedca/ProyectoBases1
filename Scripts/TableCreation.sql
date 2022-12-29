@@ -62,7 +62,7 @@ CREATE TABLE Person (
    firstName VARCHAR2(32) CONSTRAINT person_firstname_nn NOT NULL,
    secondName VARCHAR2(32),
    firstLastName VARCHAR2(32) CONSTRAINT person_fstlastname_nn NOT NULL,
-   secondLastName VARCHAR2(32) CONSTRAINT person_sndlastname_nn NOT NULL,
+   secondLastName VARCHAR2(32),
    photo VARCHAR2(128) CONSTRAINT person_photo_nn NOT NULL,
    idPersonPosition NUMBER(10) CONSTRAINT person_idpersonposition_nn NOT NULL,
    idCountry NUMBER(10) CONSTRAINT person_idcountry_nn NOT NULL,
