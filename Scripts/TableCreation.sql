@@ -1622,7 +1622,7 @@ NOCYCLE;
 CREATE TABLE Team(
     idTeam NUMBER(10) PRIMARY KEY,
     idCountryTeam NUMBER(10) CONSTRAINT team_idCountryTeam_nn NOT NULL,
-    idGroupEvent NUMBER(10) CONSTRAINT team_idGroupEvent_nn NOT NULL,
+    idGroupEvent NUMBER(10),
     nameTeam VARCHAR2(32) CONSTRAINT team_name_nn NOT NULL,
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
