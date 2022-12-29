@@ -1727,7 +1727,7 @@ CREATE TABLE CountryTeam(
     idCountryTeam NUMBER(10) PRIMARY KEY,
     idContinent NUMBER(10) CONSTRAINT countryTeam_idContinent_nn NOT NULL,
     nameCountryTeam VARCHAR2(32) CONSTRAINT countryTeam_name_nn NOT NULL,
-    flag VARCHAR2(128) CONSTRAINT countryTeam_flag_nn NOT NULL
+    flag VARCHAR2(128) CONSTRAINT countryTeam_flag_nn NOT NULL,
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
     lastDate DATE,
