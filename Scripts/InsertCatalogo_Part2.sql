@@ -2,17 +2,17 @@
 INSERT INTO Stadium(idStadium, idCountry, nameStadium, userCreation, lastUser, lastDate, dateCreation)
 VALUES(s_stadium.NEXTVAL, 1, 'Estadio Nacional', NULL, NULL, NULL, NULL);
 INSERT INTO Stadium(idCountry, nameStadium, userCreation, lastUser, lastDate, dateCreation)
-VALUES(s_stadium.NEXTVAL, 1, 'Estadio Ricardo Saprissa Aym√°', NULL, NULL, NULL, NULL);
+VALUES(s_stadium.NEXTVAL, 1, 'Estadio Ricardo Saprissa Aym·°', NULL, NULL, NULL, NULL);
 
 INSERT INTO Stadium(idStadium, idCountry, nameStadium, userCreation, lastUser, lastDate, dateCreation)
-VALUES(s_stadium.NEXTVAL, 'La Bombonera', NULL, NULL, NULL, NULL); 
+VALUES(s_stadium.NEXTVAL, 2, 'La Bombonera', NULL, NULL, NULL, NULL); 
 INSERT INTO Stadium(idStadium, idCountry, nameStadium, userCreation, lastUser, lastDate, dateCreation)
-VALUES(s_stadium.NEXTVAL, 'Luna Park', NULL, NULL, NULL, NULL);
+VALUES(s_stadium.NEXTVAL, 2, 'Luna Park', NULL, NULL, NULL, NULL);
 
 INSERT INTO Stadium(idStadium, idCountry, nameStadium, userCreation, lastUser, lastDate, dateCreation)
-VALUES(s_stadium.NEXTVAL, 'Santiago Bernab√©u', NULL, NULL, NULL, NULL);
+VALUES(s_stadium.NEXTVAL, 3, 'Santiago BernabÈu', NULL, NULL, NULL, NULL);
 INSERT INTO Stadium(idStadium, idCountry, nameStadium, userCreation, lastUser, lastDate, dateCreation)
-VALUES(s_stadium.NEXTVAL, 'Camp Nou', NULL, NULL, NULL, NULL);
+VALUES(s_stadium.NEXTVAL, 3, 'CampNou', NULL, NULL, NULL, NULL);
 
 -- NewsStatus
 INSERT INTO NewsStatus(idNewsStatus, descriptionNewsStatus, userCreation, lastUser, lastDate, dateCreation)
@@ -23,10 +23,10 @@ VALUES(s_newsStatus.NEXTVAL, 'Pendiente', NULL, NULL, NULL, NULL);
 
 -- Continent
 INSERT INTO Continent(idContinent, nameContinent, userCreation, lastUser, lastDate, dateCreation)
-VALUES(s_continent.NEXTVAL, '√Åfrica', NULL, NULL, NULL, NULL);
+VALUES(s_continent.NEXTVAL, '¡frica', NULL, NULL, NULL, NULL);
 
 INSERT INTO Continent(idContinent, nameContinent, userCreation, lastUser, lastDate, dateCreation)
-VALUES(s_continent.NEXTVAL, 'Am√©rica', NULL, NULL, NULL, NULL);
+VALUES(s_continent.NEXTVAL, 'AmÈrica', NULL, NULL, NULL, NULL);
 
 INSERT INTO Continent(idContinent, nameContinent, userCreation, lastUser, lastDate, dateCreation)
 VALUES(s_continent.NEXTVAL, 'Europa', NULL, NULL, NULL, NULL);
