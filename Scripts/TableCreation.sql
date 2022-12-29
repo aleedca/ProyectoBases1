@@ -1342,6 +1342,7 @@ NOCYCLE;
 -- SoccerMatch
 CREATE TABLE SoccerMatch(
     idSoccerMatch NUMBER(10) PRIMARY KEY,
+    idStadium NUMBER(10) CONSTRAINT soccermatch_idStadium_nn NOT NULL,
     dateHour DATE CONSTRAINT soccermatch_dateHour_nn NOT NULL,
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
@@ -1497,53 +1498,6 @@ IS 'Last modification date of the record in the PlayerXSoccerMatchXTeam Table.';
 
 -- PlayerXSoccerMatchXTeam Sequence
 CREATE SEQUENCE s_player_soccerMatch_team
-START WITH 0
-INCREMENT BY 1
-MINVALUE 0
-MAXVALUE 10000000
-NOCACHE
-NOCYCLE;
-
----------------------------------------------------------------------
-CREATE TABLE SoccerMatchXStadium(
-    idSoccerMatchXStadium NUMBER(10) PRIMARY KEY,
-    idSoccerMatch NUMBER(10) CONSTRAINT smxstadium_idSoccerMatch_nn NOT NULL,
-    idStadium NUMBER(10) CONSTRAINT smxstadium_idStadium_nn NOT NULL,
-    userCreation VARCHAR2(16),
-    lastUser VARCHAR2(16),
-    lastDate DATE,
-    dateCreation DATE
-);
-
--- Table Comment
-COMMENT ON TABLE SoccerMatchXStadium
-IS 'Repository for storing the information about the relationship between soccerMatch and stadium';
-
---------------- Comment on Attributes -------------------------------------
-COMMENT ON COLUMN SoccerMatchXStadium.idSoccerMatchXStadium
-IS 'Unique identifier of the SoccerMatchXStadium Table.';
-
-COMMENT ON COLUMN SoccerMatchXStadium.idSoccerMatch
-IS 'Reference to SoccerMatch Table.';
-
-COMMENT ON COLUMN SoccerMatchXStadium.idStadium
-IS 'Reference to Stadium Table.';
-
--- Audit Fields 
-COMMENT ON COLUMN SoccerMatchXStadium.userCreation
-IS 'User who creates the SoccerMatchXStadium Table record.';
-
-COMMENT ON COLUMN SoccerMatchXStadium.dateCreation
-IS 'Date of creation of the SoccerMatchXStadium Table record.';
-
-COMMENT ON COLUMN SoccerMatchXStadium.lastUser
-IS 'Last user to modify a record in the SoccerMatchXStadium Table.';
-
-COMMENT ON COLUMN SoccerMatchXStadium.lastDate
-IS 'Last modification date of the record in the SoccerMatchXStadium Table.';
-
--- SoccerMatchXStadium
-CREATE SEQUENCE s_soccerMatch_stadium
 START WITH 0
 INCREMENT BY 1
 MINVALUE 0
@@ -1997,6 +1951,10 @@ ALTER TABLE PlayerXSoccerMatchXTeam
 ALTER TABLE PlayerXSoccerMatchXTeam
     ADD CONSTRAINT fk_PxMxT_team FOREIGN KEY (idTeam) REFERENCES Team(idTeam);
     
+-- FK SoccerMatch-Stadium
+ALTER TABLE SoccerMatch
+    ADD CONSTRAINT fk_soccermatch_stadium FOREIGN KEY (idStadium) REFERENCES Stadium(idStadium);
+    
 -----------------------------------------------------------------------------------------------------------------
 -- FK GroupEvent-Event
 ALTER TABLE GroupEvent
@@ -2018,12 +1976,4 @@ ALTER TABLE Team
 ALTER TABLE GroupStats 
     ADD CONSTRAINT fk_groupStats_team FOREIGN KEY (idTeam) REFERENCES Team(idTeam);
 
--- FK SoccerMatchXStadium-SoccerMatch
-ALTER TABLE SoccerMatchXStadium
-    ADD CONSTRAINT fk_SMxS_soccerMatch FOREIGN KEY (idSoccerMatch) REFERENCES SoccerMatch(idSoccerMatch);
-
--- FK SoccerMatchXStadium-Stadium
-ALTER TABLE SoccerMatchXStadium
-    ADD CONSTRAINT fk_SMxS_stadium FOREIGN KEY (idStadium) REFERENCES Stadium(idStadium);
-    
-    
+        

@@ -48,6 +48,14 @@ BEGIN
     COMMIT;
 END insertFavoriteNews;
 
+--UserXNews
+CREATE OR REPLACE PROCEDURE insertUserXNews(pUsername IN VARCHAR2, pIdNews IN NUMBER) AS
+BEGIN
+    INSERT INTO UserXNews (idUserXNews, username, idNews, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_userxnews.nextval, pUsername, pIdNews, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertUserXNews;
+
 
 
 
