@@ -1,5 +1,4 @@
 DROP TABLE PlayerXSoccerMatchXTeam;
-DROP TABLE SoccerMatchXStadium;
 DROP TABLE EventWorkerXSoccerMatch;
 DROP TABLE ParameterTable;
 
@@ -47,12 +46,10 @@ DROP TABLE Continent;
 
 DROP TABLE GroupEvent;
 DROP TABLE Event;
-DROP TABLE Calendar;
 
 --------------------------------------------------------------------------------
 DROP SEQUENCE s_address;
 DROP SEQUENCE s_blog;
-DROP SEQUENCE s_calendar;
 DROP SEQUENCE s_canton;
 DROP SEQUENCE s_continent;
 DROP SEQUENCE s_country;
@@ -83,6 +80,5 @@ DROP SEQUENCE s_newsType;
 DROP SEQUENCE s_newsComment;
 DROP SEQUENCE s_personPosition;
 DROP SEQUENCE s_player_soccermatch_team;
-DROP SEQUENCE s_soccermatch_stadium;
 DROP SEQUENCE s_eventworkerxsoccermatch;
 
