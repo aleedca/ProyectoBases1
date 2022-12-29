@@ -3,8 +3,8 @@ Description: This file contains the creation of the tables, sequences and forein
 Authors:
 Isaac Araya Solano - 2018151703
 Alexia Cerdas Aguilar - 2019026961
-Nahomi Bolaños Valverde - 2022089165
-Mariana Fernández Martínez - 2021104026
+Nahomi Bolaï¿½os Valverde - 2022089165
+Mariana Fernï¿½ndez Martï¿½nez - 2021104026
 */
 
 -- ////////////////////////////////////// TABLE CREATION ////////////////////////////////////
@@ -1723,6 +1723,7 @@ CREATE TABLE CountryTeam(
     idCountryTeam NUMBER(10) PRIMARY KEY,
     idContinent NUMBER(10) CONSTRAINT countryTeam_idContinent_nn NOT NULL,
     nameCountryTeam VARCHAR2(32) CONSTRAINT countryTeam_name_nn NOT NULL,
+    flag VARCHAR2(128) CONSTRAINT countryTeam_flag_nn NOT NULL
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
     lastDate DATE,
@@ -1742,6 +1743,9 @@ IS 'Reference to Continent Table.';
 
 COMMENT ON COLUMN CountryTeam.nameCountryTeam
 IS 'Name of the country of the team.';
+
+COMMENT ON COLUMN CountryTeam.flag
+IS 'Photo of the flag of the country of the team.';
 
 -- Audit Fields 
 COMMENT ON COLUMN CountryTeam.userCreation
