@@ -332,6 +332,7 @@ NOCYCLE;
 -- TypeIdentification
 CREATE TABLE TypeIdentification(
     idTypeIdentification NUMBER(10) PRIMARY KEY,
+    nameTypeIdentification VARCHAR2(16) CONSTRAINT typeIdentification_name_nn NOT NULL,
     typeMask VARCHAR2(16) CONSTRAINT typeIdentification_typeMask_nn NOT NULL,
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
@@ -346,6 +347,9 @@ IS 'Repository for storing the information of type identification';
 --------------- Comment on Attributes -------------------------------------
 COMMENT ON COLUMN TypeIdentification.idTypeIdentification
 IS 'Unique identifier of the TypeIdentification Table.';
+
+COMMENT ON COLUMN TypeIdentification.nameTypeIdentification
+IS 'Name of the TypeIdentification.';
 
 COMMENT ON COLUMN TypeIdentification.typeMask
 IS 'Mask of the TypeIdentification.';
