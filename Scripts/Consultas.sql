@@ -37,8 +37,9 @@ END getTeamList;
 /*
 Se deben mostrar todas las noticias (autor, título, fecha de publicación, tipo de artículo)
 ordenados por antigüedad del más reciente al más antiguo. Filtros: autor, fecha, mundial.
-*/
 
+FALTA TERMINARLO PORQUE HAY QUE ARREGLAR EVENTO
+*/
 
 CREATE OR REPLACE PROCEDURE getNewsList(pNewsList OUT SYS_REFCURSOR, pAuthorName IN VARCHAR2, pAuthorLastName IN VARCHAR2, pDate IN DATE, pEvent IN VARCHAR2)
 IS 
@@ -51,8 +52,9 @@ BEGIN
     INNER JOIN Person ON Person.idPerson = UserPerson.idPerson
     INNER JOIN NewsType ON News.idNewsType = NewsType.idNewsType
     WHERE Person.firstName = NVL(pAuthorName, Person.firstName) AND Person.lastName = NVL(pAuthorLastName, Person.lastName)
-    AND News.publicationDate = NVL(pDate, News.publicationDate) AND 
-END getTeamList;
+    AND News.publicationDate = NVL(pDate, News.publicationDate)
+    ORDER BY News.publicationDate DESC;
+END getNewsList;
 
 
 
