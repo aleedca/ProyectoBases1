@@ -13,8 +13,13 @@ BEGIN
     AND Stadium.nameStadium = NVL (pStadium, Stadium.nameStadium) AND CountryTeam.flag = NVL (pTeamFlag, CountryTeam.flag);
 END getGroupList;
 
---
-CREATE OR REPLACE PROCEDURE getTeamList(pTeamList OUT SYS_REFCURSOR, pTeamName IN VARCHAR2, pPlayerName IN VARCHAR2, pPosition IN VARCHAR2 )
+--Listado de los equipos:
+--Muestran el nombres completos, foto y su posición (portero, delantero, capitán, director técnico, entre otros).
+--Filtros nombre del equipo, nombre completo de los jugadores, posición.
+
+
+CREATE OR REPLACE PROCEDURE getTeamList(pTeamList OUT SYS_REFCURSOR, pTeamName IN VARCHAR2, pPlayerFstName IN VARCHAR2, pPlayerSndName IN VARCHAR2,
+                                        pPlayerFstLastName IN VARCHAR2, pPlayerSndLastName IN VARCHAR2, pPosition IN VARCHAR2 )
 IS 
 BEGIN
     OPEN pTeamList FOR 
@@ -23,15 +28,33 @@ BEGIN
     INNER JOIN Player ON Player.idTeam = Team.idTeam
     INNER JOIN Person ON Person.idPerson = Player.idPerson
     INNER JOIN PersonPosition ON PersonPosition.idPersonPosition = Person.idPersonPosition 
-    WHERE Team.nameTeam = NVL (pTeamName, Team.nameTeam) AND Person.firstName = NVL (pPlayerName, Person.firstName) 
+    WHERE Team.nameTeam = NVL (pTeamName, Team.nameTeam) AND Person.firstName = NVL(pPlayerFstName, Person.firstName)
+    AND Person.secondName = NVL(pPlayerSndName, Person.secondName) AND Person.firstLastName = NVL(pPlayerFstLastName, Person.firstLastName)
+    AND Person.secondLastName = NVL(pPlayerSndLastName, Person.secondLastName)
     AND PersonPosition.descriptionPersonPosition= NVL (pPosition, PersonPosition.descriptionPersonPosition);
 END getTeamList;
 
+/*
+Se deben mostrar todas las noticias (autor, título, fecha de publicación, tipo de artículo)
+ordenados por antigüedad del más reciente al más antiguo. Filtros: autor, fecha, mundial.
+*/
 
 
---Listado de los equipos:
---Muestran el nombres completos, foto y su posición (portero, delantero, capitán, director técnico, entre otros).
---Filtros nombre del equipo, nombre completo de los jugadores, posición.
+CREATE OR REPLACE PROCEDURE getNewsList(pNewsList OUT SYS_REFCURSOR, pAuthorName IN VARCHAR2, pAuthorLastName IN VARCHAR2, pDate IN DATE, pEvent IN VARCHAR2)
+IS 
+BEGIN
+    OPEN pTeamList FOR 
+    SELECT Person.firstName, Person.lastName, News.title, News.publicationDate, NewsType.descriptionNewsType
+    FROM UserXNews
+    INNER JOIN News ON News.idNews = UserXNews.idNews
+    INNER JOIN UserPerson ON UserPerson.username = UserXNews.username
+    INNER JOIN Person ON Person.idPerson = UserPerson.idPerson
+    INNER JOIN NewsType ON News.idNewsType = NewsType.idNewsType
+    WHERE Person.firstName = NVL(pAuthorName, Person.firstName) AND Person.lastName = NVL(pAuthorLastName, Person.lastName)
+    AND News.publicationDate = NVL(pDate, News.publicationDate) AND 
+END getTeamList;
+
+
 
 
 
