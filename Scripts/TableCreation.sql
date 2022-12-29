@@ -12,9 +12,9 @@ Mariana Fernández Martínez - 2021104026
 CREATE TABLE ParameterTable (
    idParameterTable NUMBER(10) PRIMARY KEY,
    nameParameter VARCHAR2(32) CONSTRAINT parameter_name_nn NOT NULL,
-   valueParameter NUMBER(11) CONSTRAINT parameter_value_nn NOT NULL,
-   userCreation VARCHAR2(45),
-   lastUser VARCHAR2(45),
+   valueParameter NUMBER(10) CONSTRAINT parameter_value_nn NOT NULL,
+   userCreation VARCHAR2(16),
+   lastUser VARCHAR2(16),
    lastDate DATE,
    dateCreation DATE
 );
@@ -60,7 +60,7 @@ CREATE TABLE Person (
    idPerson NUMBER(10) PRIMARY KEY,
    identification NUMBER(9)CONSTRAINT person_identification_nn NOT NULL,
    firstName VARCHAR2(32) CONSTRAINT person_firstname_nn NOT NULL,
-   secondName VARCHAR2(32) CONSTRAINT person_secondname_nn NOT NULL,
+   secondName VARCHAR2(32),
    firstLastName VARCHAR2(32) CONSTRAINT person_fstlastname_nn NOT NULL,
    secondLastName VARCHAR2(32) CONSTRAINT person_sndlastname_nn NOT NULL,
    photo VARCHAR2(128) CONSTRAINT person_photo_nn NOT NULL,
