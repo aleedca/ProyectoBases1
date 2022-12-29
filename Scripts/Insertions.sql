@@ -18,7 +18,7 @@ BEGIN
     VALUES (s_country.NEXTVAL, 'Argentina', NULL, NULL, NULL, NULL);
     
     INSERT INTO Country (idCountry, nameCountry, userCreation, lastUser, lastDate, dateCreation) 
-    VALUES (s_country.NEXTVAL, 'España', NULL, NULL, NULL, NULL);
+    VALUES (s_country.NEXTVAL, 'Espaï¿½a', NULL, NULL, NULL, NULL);
     COMMIT;
 END insertCountry;
 
@@ -45,16 +45,16 @@ BEGIN
     VALUES (s_personPosition.NEXTVAL, 'Lateral', NULL, NULL, NULL, NULL);
     
     INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
-    VALUES (s_personPosition.NEXTVAL, 'Técnico', NULL, NULL, NULL, NULL);
+    VALUES (s_personPosition.NEXTVAL, 'Tï¿½cnico', NULL, NULL, NULL, NULL);
     
     INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
-    VALUES (s_personPosition.NEXTVAL, 'Cuerpo Técnico', NULL, NULL, NULL, NULL);
+    VALUES (s_personPosition.NEXTVAL, 'Cuerpo Tï¿½cnico', NULL, NULL, NULL, NULL);
     
     INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
-    VALUES (s_personPosition.NEXTVAL, 'Árbitro', NULL, NULL, NULL, NULL);
+    VALUES (s_personPosition.NEXTVAL, 'ï¿½rbitro', NULL, NULL, NULL, NULL);
     
     INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
-    VALUES (s_personPosition.NEXTVAL, 'Árbitro de línea', NULL, NULL, NULL, NULL);
+    VALUES (s_personPosition.NEXTVAL, 'ï¿½rbitro de lï¿½nea', NULL, NULL, NULL, NULL);
     COMMIT;
 END insertPersonPosition;
 
@@ -63,10 +63,11 @@ CREATE OR REPLACE PROCEDURE insertTypeIdentification
 AS
 BEGIN
     INSERT INTO TypeIdentification (idTypeIdentification, nameTypeIdentification, typeMask, userCreation, lastUser, lastDate, dateCreation) 
-    VALUES (s_typeIdentification.NEXTVAL, 'Cédula', 'X-XXXX-XXXX', NULL, NULL, NULL, NULL);
+    VALUES (s_typeIdentification.NEXTVAL, 'Cï¿½dula', 'X-XXXX-XXXX', NULL, NULL, NULL, NULL);
     
     INSERT INTO TypeIdentification (idTypeIdentification, nameTypeIdentification, typeMask, userCreation, lastUser, lastDate, dateCreation) 
     VALUES (s_typeIdentification.NEXTVAL, 'Pasaporte','X-XXXX-XXXX', NULL, NULL, NULL, NULL);
+    COMMIT;
 END insertTypeIdentification;
 
 -- Gender
@@ -81,6 +82,7 @@ BEGIN
     
     INSERT INTO Gender (idGender, descriptionGender, userCreation, lastUser, lastDate, dateCreation) 
     VALUES (s_gender.NEXTVAL, 'Otro', NULL, NULL, NULL, NULL);
+    COMMIT;
 END insertGender;
 
 -- Stadium
@@ -90,7 +92,7 @@ BEGIN
     INSERT INTO Stadium(idStadium, idCountry, nameStadium, userCreation, lastUser, lastDate, dateCreation)
     VALUES(s_stadium.NEXTVAL, 1, 'Estadio Nacional', NULL, NULL, NULL, NULL);
     INSERT INTO Stadium(idStadium, idCountry, nameStadium, userCreation, lastUser, lastDate, dateCreation)
-    VALUES(s_stadium.NEXTVAL, 1, 'Estadio Ricardo Saprissa Aymá¡', NULL, NULL, NULL, NULL);
+    VALUES(s_stadium.NEXTVAL, 1, 'Estadio Ricardo Saprissa Aymï¿½', NULL, NULL, NULL, NULL);
     
     INSERT INTO Stadium(idStadium, idCountry, nameStadium, userCreation, lastUser, lastDate, dateCreation)
     VALUES(s_stadium.NEXTVAL, 2, 'La Bombonera', NULL, NULL, NULL, NULL); 
@@ -98,7 +100,7 @@ BEGIN
     VALUES(s_stadium.NEXTVAL, 2, 'Luna Park', NULL, NULL, NULL, NULL);
     
     INSERT INTO Stadium(idStadium, idCountry, nameStadium, userCreation, lastUser, lastDate, dateCreation)
-    VALUES(s_stadium.NEXTVAL, 3, 'Santiago Bernabéu', NULL, NULL, NULL, NULL);
+    VALUES(s_stadium.NEXTVAL, 3, 'Santiago Bernabï¿½u', NULL, NULL, NULL, NULL);
     INSERT INTO Stadium(idStadium, idCountry, nameStadium, userCreation, lastUser, lastDate, dateCreation)
     VALUES(s_stadium.NEXTVAL, 3, 'CampNou', NULL, NULL, NULL, NULL);
     COMMIT;
@@ -121,10 +123,10 @@ CREATE OR REPLACE PROCEDURE insertContinent
 AS
 BEGIN
     INSERT INTO Continent(idContinent, nameContinent, userCreation, lastUser, lastDate, dateCreation)
-    VALUES(s_continent.NEXTVAL, 'África', NULL, NULL, NULL, NULL);
+    VALUES(s_continent.NEXTVAL, 'ï¿½frica', NULL, NULL, NULL, NULL);
     
     INSERT INTO Continent(idContinent, nameContinent, userCreation, lastUser, lastDate, dateCreation)
-    VALUES(s_continent.NEXTVAL, 'América', NULL, NULL, NULL, NULL);
+    VALUES(s_continent.NEXTVAL, 'Amï¿½rica', NULL, NULL, NULL, NULL);
     
     INSERT INTO Continent(idContinent, nameContinent, userCreation, lastUser, lastDate, dateCreation)
     VALUES(s_continent.NEXTVAL, 'Europa', NULL, NULL, NULL, NULL);
@@ -160,7 +162,7 @@ BEGIN
     VALUES (s_newsType.nextval, 'Historia', NULL, NULL, NULL, NULL);
     
     INSERT INTO NewsType(idNewsType, descriptionNewsType, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_newsType.nextval, 'Reseña', NULL, NULL, NULL, NULL);
+    VALUES (s_newsType.nextval, 'Reseï¿½a', NULL, NULL, NULL, NULL);
     
     INSERT INTO NewsType(idNewsType, descriptionNewsType, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_newsType.nextval, 'Fichajes', NULL, NULL, NULL, NULL);
@@ -172,7 +174,7 @@ CREATE OR REPLACE PROCEDURE insertProvince
 AS
 BEGIN
     INSERT INTO Province(idProvince, idCountry, nameProvince, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_province.nextval, 1,'San José', NULL, NULL, NULL, NULL);
+    VALUES (s_province.nextval, 1,'San Josï¿½', NULL, NULL, NULL, NULL);
     
     INSERT INTO Province(idProvince, idCountry, nameProvince, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_province.nextval, 1,'Heredia', NULL, NULL, NULL, NULL);
@@ -190,7 +192,7 @@ BEGIN
     VALUES (s_province.nextval, 1,'Puntarenas', NULL, NULL, NULL, NULL);
     
     INSERT INTO Province(idProvince, idCountry, nameProvince, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_province.nextval, 1,'Limón', NULL, NULL, NULL, NULL);
+    VALUES (s_province.nextval, 1,'Limï¿½n', NULL, NULL, NULL, NULL);
     
     INSERT INTO Province(idProvince, idCountry, nameProvince, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_province.nextval, 2,'Mendoza', NULL, NULL, NULL, NULL);
@@ -206,7 +208,7 @@ CREATE OR REPLACE PROCEDURE insertCanton
 AS
 BEGIN
     INSERT INTO Canton(idCanton, idProvince, nameCanton, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_canton.nextval, 1,'Escazú', NULL, NULL, NULL, NULL);
+    VALUES (s_canton.nextval, 1,'Escazï¿½', NULL, NULL, NULL, NULL);
     
     INSERT INTO Canton(idCanton, idProvince, nameCanton, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_canton.nextval, 2,'Flores', NULL, NULL, NULL, NULL);
@@ -216,7 +218,7 @@ BEGIN
     INSERT INTO Canton(idCanton, idProvince, nameCanton, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_canton.nextval, 3,'Oreamuno', NULL, NULL, NULL, NULL);
     INSERT INTO Canton(idCanton, idProvince, nameCanton, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_canton.nextval, 3,'Jiménez', NULL, NULL, NULL, NULL);
+    VALUES (s_canton.nextval, 3,'Jimï¿½nez', NULL, NULL, NULL, NULL);
     
     INSERT INTO Canton(idCanton, idProvince, nameCanton, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_canton.nextval, 4,'Atenas', NULL, NULL, NULL, NULL);
@@ -238,14 +240,14 @@ BEGIN
     VALUES (s_canton.nextval, 8,'Santa Rosa', NULL, NULL, NULL, NULL);
     
     INSERT INTO Canton(idCanton, idProvince, nameCanton, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_canton.nextval, 9,'Cataluña', NULL, NULL, NULL, NULL);
+    VALUES (s_canton.nextval, 9,'Cataluï¿½a', NULL, NULL, NULL, NULL);
     COMMIT;
 END insertCanton;
 
 CREATE OR REPLACE PROCEDURE insertDistrict
 AS
 BEGIN
-    -- Escazú
+    -- Escazï¿½
     INSERT INTO District(idDistrict, idCanton, nameDistrict, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_district.nextval, 1,'San Antonio', NULL, NULL, NULL, NULL);
     INSERT INTO District(idDistrict, idCanton, nameDistrict, userCreation, lastUser, lastDate, dateCreation)
@@ -263,7 +265,7 @@ BEGIN
     INSERT INTO District(idDistrict, idCanton, nameDistrict, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_district.nextval, 4,'Cipreses', NULL, NULL, NULL, NULL);
     
-    -- Jiménez
+    -- Jimï¿½nez
     INSERT INTO District(idDistrict, idCanton, nameDistrict, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_district.nextval, 5,'Pejibaye', NULL, NULL, NULL, NULL);
     INSERT INTO District(idDistrict, idCanton, nameDistrict, userCreation, lastUser, lastDate, dateCreation)
@@ -287,7 +289,7 @@ BEGIN
     
     --- Esparza
     INSERT INTO District(idDistrict, idCanton, nameDistrict, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_district.nextval,9,'Espíritu Santo', NULL, NULL, NULL, NULL);
+    VALUES (s_district.nextval,9,'Espï¿½ritu Santo', NULL, NULL, NULL, NULL);
     
     -- Buenos Aires
     INSERT INTO District(idDistrict, idCanton, nameDistrict, userCreation, lastUser, lastDate, dateCreation)
@@ -303,7 +305,7 @@ BEGIN
     INSERT INTO District(idDistrict, idCanton, nameDistrict, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_district.nextval,12, 'Villa Cabecera', NULL, NULL, NULL, NULL);
     
-    --- Cataluña
+    --- Cataluï¿½a
     INSERT INTO District(idDistrict, idCanton, nameDistrict, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_district.nextval,12, 'Guardiola', NULL, NULL, NULL, NULL);
     COMMIT;
