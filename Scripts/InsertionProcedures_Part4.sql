@@ -50,3 +50,35 @@ BEGIN
     VALUES(pUsername, pIdUserType, pIdPerson, pPassword, NULL, NULL, NULL, NULL);
     COMMIT;
 END userPersonInsertion;
+
+-- Insertion PlayerXSoccerMatchXTeam
+CREATE OR REPLACE PROCEDURE PlayerMatchTeamInsertion(pIdMatch IN NUMBER, pIdTeam1 IN NUMBER, pIdTeam2 IN NUMBER)
+AS
+BEGIN
+    CURSOR playersTeam1 IS
+
+    SELECT Player.idPerson
+    FROM Player
+    WHERE Player.idTeam = pIdTeam1;
+
+    BEGIN
+        FOR playerIndex IN playersTeam1
+        LOOP
+            INSERT INTO PlayerXSoccerMatchXTeam(idPlayerXSoccerMatchXTeam, idPerson, idSoccerMatch, idTeam, yellowCards, redCards, offsides, corners, goals, saves, userCreation, lastUser, lastDate, dateCreation)
+            VALUES(s_player_soccerMatch_team.NEXTVAL, playerIndex, pIdMatch, pIdTeam1, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL);
+    END 
+
+    CURSOR playersTeam2 IS
+
+    SELECT Player.idPerson
+    FROM Player
+    WHERE Player.idTeam = pIdTeam2;
+
+    BEGIN
+        FOR playerIndex IN playersTeam2
+        LOOP
+            INSERT INTO PlayerXSoccerMatchXTeam(idPlayerXSoccerMatchXTeam, idPerson, idSoccerMatch, idTeam, yellowCards, redCards, offsides, corners, goals, saves, userCreation, lastUser, lastDate, dateCreation)
+            VALUES(s_player_soccerMatch_team.NEXTVAL, playerIndex, pIdMatch, pIdTeam2, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL);
+    END 
+
+END PlayerMatchTeamInsertion;
