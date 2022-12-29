@@ -29,17 +29,17 @@ VALUES (s_personPosition.NEXTVAL, 'Extremo', NULL, NULL, NULL, NULL);
 INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
 VALUES (s_personPosition.NEXTVAL, 'Lateral', NULL, NULL, NULL, NULL);
 INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
-VALUES (s_personPosition.NEXTVAL, 'T√©cnico', NULL, NULL, NULL, NULL);
+VALUES (s_personPosition.NEXTVAL, 'TÈcnico', NULL, NULL, NULL, NULL);
 INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
-VALUES (s_personPosition.NEXTVAL, 'Cuerpo T√©cnico', NULL, NULL, NULL, NULL);
+VALUES (s_personPosition.NEXTVAL, 'Cuerpo TÈcnico', NULL, NULL, NULL, NULL);
 INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
-VALUES (s_personPosition.NEXTVAL, '√?rbitro', NULL, NULL, NULL, NULL);
+VALUES (s_personPosition.NEXTVAL, '¡rbitro', NULL, NULL, NULL, NULL);
 INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
-VALUES (s_personPosition.NEXTVAL, '√?rbitro de l√≠nea', NULL, NULL, NULL, NULL);
+VALUES (s_personPosition.NEXTVAL, '¡rbitro de l√≠nea', NULL, NULL, NULL, NULL);
 
 --TypeIdentification
 INSERT INTO TypeIdentification (idTypeIdentification, nameTypeIdentification, typeMask, userCreation, lastUser, lastDate, dateCreation) 
-VALUES (s_typeIdentification.NEXTVAL, 'C√©dula', 'X-XXXX-XXXX', NULL, NULL, NULL, NULL);
+VALUES (s_typeIdentification.NEXTVAL, 'CÈdula', 'X-XXXX-XXXX', NULL, NULL, NULL, NULL);
 INSERT INTO TypeIdentification (idTypeIdentification, typeMask, userCreation, lastUser, lastDate, dateCreation) 
 VALUES (s_typeIdentification.NEXTVAL, 'Pasaporte','X-XXXX-XXXX', NULL, NULL, NULL, NULL);
 
