@@ -27,11 +27,12 @@ DROP TABLE Mail;
 DROP TABLE Person;
 DROP TABLE PersonPosition; 
 
-DROP TABLE Stadium;
+
 DROP TABLE Address;
 DROP TABLE District;
 DROP TABLE Canton;
 DROP TABLE Province;
+DROP TABLE Stadium;
 DROP TABLE Country;
 
 DROP TABLE Phone;

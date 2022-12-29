@@ -1,0 +1,12 @@
+DELETE FROM PersonPosition;
+DELETE FROM TypeIdentification;
+DELETE FROM Gender;
+DELETE FROM Stadium;
+DELETE FROM NewsStatus;
+DELETE FROM Continent;
+DELETE FROM UserType;
+DELETE FROM NewsType;
+DELETE FROM Province;
+DELETE FROM Country;
+DELETE FROM Canton;
+DELETE FROM District;
