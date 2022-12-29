@@ -177,22 +177,3 @@ BEGIN
     :new.lastUser:=USER;
     :new.lastDate:=SYSDATE;
 END beforeUpdateGroupStats;
-
--- SoccerMatchXStadium
-CREATE OR REPLACE TRIGGER proyectoBD.beforeInsertSoccerMatchXStadium
-BEFORE INSERT
-ON proyectoBD.SoccerMatchXStadium
-FOR EACH ROW
-BEGIN
-    :new.userCreation:=USER;
-    :new.dateCreation:=SYSDATE;
-END beforeInsertSoccerMatchXStadium;
-
-CREATE OR REPLACE TRIGGER proyectoBD.beforeUpdateSoccerMatchXStadium
-BEFORE UPDATE
-ON proyectoBD.SoccerMatchXStadium
-FOR EACH ROW
-BEGIN
-    :new.lastUser:=USER;
-    :new.lastDate:=SYSDATE;
-END beforeUpdateSoccerMatchXStadium;
