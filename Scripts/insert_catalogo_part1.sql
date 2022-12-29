@@ -13,7 +13,7 @@ VALUES (s_country.NEXTVAL, 'Costa Rica', NULL, NULL, NULL, NULL);
 INSERT INTO Country (idCountry, nameCountry, userCreation, lastUser, lastDate, dateCreation) 
 VALUES (s_country.NEXTVAL, 'Argentina', NULL, NULL, NULL, NULL);
 INSERT INTO Country (idCountry, nameCountry, userCreation, lastUser, lastDate, dateCreation) 
-VALUES (s_country.NEXTVAL, 'España', NULL, NULL, NULL, NULL);
+VALUES (s_country.NEXTVAL, 'Espa�a', NULL, NULL, NULL, NULL);
 
 -- posiciones
 INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
@@ -33,9 +33,9 @@ VALUES (s_personPosition.NEXTVAL, 'Técnico', NULL, NULL, NULL, NULL);
 INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
 VALUES (s_personPosition.NEXTVAL, 'Cuerpo Técnico', NULL, NULL, NULL, NULL);
 INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
-VALUES (s_personPosition.NEXTVAL, 'Árbitro', NULL, NULL, NULL, NULL);
+VALUES (s_personPosition.NEXTVAL, '�?rbitro', NULL, NULL, NULL, NULL);
 INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
-VALUES (s_personPosition.NEXTVAL, 'Árbitro de línea', NULL, NULL, NULL, NULL);
+VALUES (s_personPosition.NEXTVAL, '�?rbitro de línea', NULL, NULL, NULL, NULL);
 
 --TypeIdentification
 INSERT INTO TypeIdentification (idTypeIdentification, nameTypeIdentification, typeMask, userCreation, lastUser, lastDate, dateCreation) 
