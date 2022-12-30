@@ -9,6 +9,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import java.util.regex.Pattern;
+
 /**
  *
  * @author Mariana
@@ -47,7 +49,31 @@ public class model_Register {
         return false;
     }
     
+    
+    // 4-8 character password requiring numbers and alphabets of both cases
+    private static final String PASSWORD_REGEX = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$";
+    
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
+    
+    public boolean validarFormatPassword(String password){
+        if (PASSWORD_PATTERN.matcher(password).matches()) {
+		return true;
+	}
         
+        return false;
+    }
+    
+    public boolean validarFormatUsername(String username){
+        if(username.length() >= 5){
+            return true;
+        }
+        
+        return false;
+    }
+    
+
+    
+       
     private void setImageLabel(JLabel labelName, String imageDirectory){
         ImageIcon image = new ImageIcon(imageDirectory);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_DEFAULT));
@@ -55,7 +81,5 @@ public class model_Register {
         System.out.println("Entré aquí");
         //this.repaint();
     }
-    
-    
-    
+     
 }

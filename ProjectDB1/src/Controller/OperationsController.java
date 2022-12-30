@@ -83,6 +83,7 @@ public class OperationsController implements ActionListener{
         if(e.getSource() == viewPrincipal.getBtnSalir()){
             viewPrincipal.setVisible(false);
             
+            viewPrincipal.getLblBienvenido().setVisible(false);
             viewPrincipal.getBtnOpAdm().setVisible(false);
             viewPrincipal.getBtnCuenta().setVisible(false);
             viewPrincipal.getBtnSalir().setVisible(false);
