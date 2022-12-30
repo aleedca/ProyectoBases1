@@ -28,13 +28,6 @@ DROP TABLE Person;
 DROP TABLE PersonPosition; 
 
 
-DROP TABLE Address;
-DROP TABLE District;
-DROP TABLE Canton;
-DROP TABLE Province;
-DROP TABLE Stadium;
-DROP TABLE Country;
-
 DROP TABLE Phone;
 DROP TABLE Gender;
 DROP TABLE TypeIdentification;
@@ -44,6 +37,14 @@ DROP TABLE GroupStats;
 DROP TABLE Team;
 DROP TABLE CountryTeam;
 DROP TABLE Continent;
+
+DROP TABLE Address;
+DROP TABLE District;
+DROP TABLE Canton;
+DROP TABLE Province;
+DROP TABLE Stadium;
+DROP TABLE Country;
+
 
 DROP TABLE GroupEvent;
 DROP TABLE Event;
