@@ -4,8 +4,6 @@
  */
 package Model;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Mariana
@@ -25,11 +23,11 @@ public class model_Login {
     }
     
     public boolean validarUsername(){ //Falta realizar la validación de si es Admin o Usuario
-        return true;
+        return false;
     }
     
     public boolean validarPassword(){ //Falta realizar la validación de si es Admin o Usuario
-        return true;
+        return false;
     }
     
     //------------ GETTERS AND SETTERS ----------------------

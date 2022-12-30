@@ -5,6 +5,7 @@
 package View;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
@@ -38,6 +39,16 @@ public class JF_Principal extends javax.swing.JFrame {
     public JButton getBtnSalir() {
         return btnSalir;
     }
+
+    public JLabel getLblBienvenido() {
+        return lblBienvenido;
+    }
+    
+    //SETTER
+    public void setTxtLblBienvenido(String lblBienvenido) {
+        this.lblBienvenido.setText(lblBienvenido);
+    }
+    
     
     
     @SuppressWarnings("unchecked")
@@ -54,7 +65,7 @@ public class JF_Principal extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblBienvenido = new javax.swing.JLabel();
         btnIniciarSesion = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -62,6 +73,7 @@ public class JF_Principal extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
         btnCuenta = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1285, 752));
@@ -105,11 +117,11 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(jLabel4);
         jLabel4.setBounds(890, 440, 171, 32);
 
-        jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Noticias más vistas");
-        pnlBackground.add(jLabel5);
-        jLabel5.setBounds(780, 170, 220, 50);
+        lblBienvenido.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblBienvenido.setForeground(new java.awt.Color(255, 255, 255));
+        lblBienvenido.setText("BIENVENIDX NOMBRE APELLIDO");
+        pnlBackground.add(lblBienvenido);
+        lblBienvenido.setBounds(30, 60, 580, 50);
 
         btnIniciarSesion.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnIniciarSesion.setText("Iniciar Sesión");
@@ -197,6 +209,12 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(btnCuenta);
         btnCuenta.setBounds(800, 70, 120, 30);
 
+        jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Noticias más vistas");
+        pnlBackground.add(jLabel6);
+        jLabel6.setBounds(780, 170, 220, 50);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -246,10 +264,11 @@ public class JF_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblBienvenido;
     private javax.swing.JPanel pnlBackground;
     // End of variables declaration//GEN-END:variables
 }

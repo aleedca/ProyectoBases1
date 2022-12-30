@@ -26,15 +26,18 @@ public class OperationsController implements ActionListener{
         
     //Constructor 2da version
     public OperationsController(JF_Principal principal) { 
+        //View Principal
         this.viewPrincipal = principal;
         
-        
+        //View Login
         JF_Login login = new JF_Login();
         this.viewLogin = login;  
         
+        //View Register
         JF_Register register = new JF_Register();
         this.viewRegister = register;
         
+        //Modelo Login
         model_Login validarLogin = new model_Login();
         this.modelLogin = validarLogin;  
         
@@ -44,24 +47,53 @@ public class OperationsController implements ActionListener{
     
     //Init de ActionListener
     public void _init_(){
+        //Principal
         viewPrincipal.getBtnIniciarSesion().addActionListener(this);
         viewPrincipal.getBtnRegistrar().addActionListener(this);
         viewPrincipal.getBtnOpAdm().addActionListener(this);
         viewPrincipal.getBtnCuenta().addActionListener(this);
         viewPrincipal.getBtnSalir().addActionListener(this);
         
-        
+        //Login
         viewLogin.getBtnLogin().addActionListener(this);
         viewLogin.getBtnBack().addActionListener(this);
+        
+        //Register
+        
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
+        //-------------- PANTALLA PRINCIPAL ----------------------
+        /*NOTA: FALTA EL BOTON DE 'MI CUENTA' Y DE 'MENU ADMIN'*/
+        
         if(e.getSource() == viewPrincipal.getBtnIniciarSesion()){    
             viewLogin.setVisible(true);
             viewPrincipal.setVisible(false);
         }
+        
+                
+        if(e.getSource() == viewPrincipal.getBtnRegistrar()){
+            viewRegister.setVisible(true);
+            viewPrincipal.setVisible(false);
+        }
+        
+        
+        if(e.getSource() == viewPrincipal.getBtnSalir()){
+            viewPrincipal.setVisible(false);
+            
+            viewPrincipal.getBtnOpAdm().setVisible(false);
+            viewPrincipal.getBtnCuenta().setVisible(false);
+            viewPrincipal.getBtnSalir().setVisible(false);
+            
+            viewPrincipal.getBtnIniciarSesion().setVisible(true);
+            viewPrincipal.getBtnRegistrar().setVisible(true);
+                        
+            viewPrincipal.setVisible(true);
+        }
+        
+        //-------------- PANTALLA LOGIN ----------------------
         
         if(e.getSource() == viewLogin.getBtnLogin()){
             modelLogin.setUsernameLogin(viewLogin.getTxtUsernameLogin());
@@ -78,35 +110,23 @@ public class OperationsController implements ActionListener{
                 viewLogin.cleanPasswordLogin();
                 viewLogin.setVisible(false);
             
-                //**Validar username y password***
-            
+                viewPrincipal.getBtnIniciarSesion().setVisible(false);
+                viewPrincipal.getBtnRegistrar().setVisible(false);
+                
+                viewPrincipal.getBtnCuenta().setVisible(true);
+                viewPrincipal.getBtnSalir().setVisible(true);
+                
+                viewPrincipal.setTxtLblBienvenido("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
+                viewPrincipal.getLblBienvenido().setVisible(true);
+                
+                //**NOTA: Validar username y password***
                 if(modelLogin.validarUsername() == true && modelLogin.validarPassword() == true){ //Es true -> Admin
                     //Frame de Admin                         
-                    viewPrincipal.getBtnIniciarSesion().setVisible(false);
-                    viewPrincipal.getBtnRegistrar().setVisible(false);
-                    
                     viewPrincipal.getBtnOpAdm().setVisible(true);
-                    viewPrincipal.getBtnCuenta().setVisible(true);
-                    viewPrincipal.getBtnSalir().setVisible(true);
-                    
-                    viewPrincipal.setVisible(true);    
-                }else{
-                    //Frame Usuario     
-                    viewPrincipal.getBtnIniciarSesion().setVisible(false);
-                    viewPrincipal.getBtnRegistrar().setVisible(false);
-                    
-                    viewPrincipal.getBtnCuenta().setVisible(true);
-                    viewPrincipal.getBtnSalir().setVisible(true);
-                    
-                    viewPrincipal.setVisible(true);    
-                }    
+                }
+  
+                viewPrincipal.setVisible(true);   
             }
-        }
-        
-        
-        if(e.getSource() == viewPrincipal.getBtnRegistrar()){
-            viewRegister.setVisible(true);
-            viewPrincipal.setVisible(false);
         }
         
         
@@ -115,18 +135,10 @@ public class OperationsController implements ActionListener{
             viewLogin.setVisible(false);
         }
         
-        if(e.getSource() == viewPrincipal.getBtnSalir()){
-            viewPrincipal.setVisible(false);
-            
-            viewPrincipal.getBtnOpAdm().setVisible(false);
-            viewPrincipal.getBtnCuenta().setVisible(false);
-            viewPrincipal.getBtnSalir().setVisible(false);
-            
-            viewPrincipal.getBtnIniciarSesion().setVisible(true);
-            viewPrincipal.getBtnRegistrar().setVisible(true);
-            
-            viewPrincipal.setVisible(true);
-        }
+        
+        //------ PANTALLA DE REGISTRO ---------------------
+//         this.setLocationRelativeTo(this);
+//        setImageLabel(lblAvatar, "src/Images/avatar.png");
         
     }
     
@@ -136,6 +148,8 @@ public class OperationsController implements ActionListener{
         viewPrincipal.getBtnOpAdm().setVisible(false);
         viewPrincipal.getBtnCuenta().setVisible(false);
         viewPrincipal.getBtnSalir().setVisible(false);
+        viewPrincipal.getLblBienvenido().setVisible(false);
+        
         viewPrincipal.setVisible(true);
      }
   
