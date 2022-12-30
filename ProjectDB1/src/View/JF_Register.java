@@ -112,7 +112,7 @@ public class JF_Register extends javax.swing.JFrame {
             }
         });
         pnlBackground.add(btnBack);
-        btnBack.setBounds(40, 40, 46, 40);
+        btnBack.setBounds(40, 40, 52, 40);
         pnlBackground.add(jLabel1);
         jLabel1.setBounds(19, 44, 0, 0);
 
@@ -164,7 +164,7 @@ public class JF_Register extends javax.swing.JFrame {
         pnlBackground.add(lblPassword);
         lblPassword.setBounds(40, 640, 120, 30);
         pnlBackground.add(txtUsername);
-        txtUsername.setBounds(310, 500, 230, 22);
+        txtUsername.setBounds(310, 500, 230, 24);
 
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,7 +204,7 @@ public class JF_Register extends javax.swing.JFrame {
             }
         });
         pnlBackground.add(jComboBox1);
-        jComboBox1.setBounds(790, 260, 180, 22);
+        jComboBox1.setBounds(790, 260, 180, 26);
 
         jLabel10.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -212,7 +212,7 @@ public class JF_Register extends javax.swing.JFrame {
         pnlBackground.add(jLabel10);
         jLabel10.setBounds(630, 190, 100, 40);
         pnlBackground.add(jTextField7);
-        jTextField7.setBounds(790, 200, 180, 22);
+        jTextField7.setBounds(790, 200, 180, 24);
 
         jLabel11.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -222,7 +222,7 @@ public class JF_Register extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnlBackground.add(jComboBox2);
-        jComboBox2.setBounds(790, 320, 180, 22);
+        jComboBox2.setBounds(790, 320, 180, 26);
 
         jLabel13.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -232,7 +232,7 @@ public class JF_Register extends javax.swing.JFrame {
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnlBackground.add(jComboBox4);
-        jComboBox4.setBounds(790, 440, 180, 22);
+        jComboBox4.setBounds(790, 440, 180, 26);
 
         jLabel12.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -242,7 +242,7 @@ public class JF_Register extends javax.swing.JFrame {
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnlBackground.add(jComboBox3);
-        jComboBox3.setBounds(790, 380, 180, 22);
+        jComboBox3.setBounds(790, 380, 180, 26);
 
         jLabel14.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -252,7 +252,7 @@ public class JF_Register extends javax.swing.JFrame {
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnlBackground.add(jComboBox5);
-        jComboBox5.setBounds(790, 500, 180, 22);
+        jComboBox5.setBounds(790, 500, 180, 26);
 
         jLabel15.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -298,17 +298,17 @@ public class JF_Register extends javax.swing.JFrame {
         pnlBackground.add(jLabel8);
         jLabel8.setBounds(40, 490, 110, 30);
         pnlBackground.add(txtUsername1);
-        txtUsername1.setBounds(310, 600, 230, 22);
+        txtUsername1.setBounds(310, 600, 230, 24);
         pnlBackground.add(txtUsername2);
-        txtUsername2.setBounds(310, 140, 230, 22);
+        txtUsername2.setBounds(310, 140, 230, 24);
         pnlBackground.add(txtUsername3);
-        txtUsername3.setBounds(310, 200, 230, 22);
+        txtUsername3.setBounds(310, 200, 230, 24);
         pnlBackground.add(txtUsername4);
-        txtUsername4.setBounds(310, 260, 230, 22);
+        txtUsername4.setBounds(310, 260, 230, 24);
         pnlBackground.add(txtUsername5);
-        txtUsername5.setBounds(310, 320, 230, 22);
+        txtUsername5.setBounds(310, 320, 230, 24);
         pnlBackground.add(txtUsername6);
-        txtUsername6.setBounds(310, 440, 230, 22);
+        txtUsername6.setBounds(310, 440, 230, 24);
 
         jLabel20.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 20)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
@@ -323,7 +323,7 @@ public class JF_Register extends javax.swing.JFrame {
             }
         });
         pnlBackground.add(jComboBox6);
-        jComboBox6.setBounds(790, 150, 180, 22);
+        jComboBox6.setBounds(790, 150, 180, 26);
 
         jLabel21.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));

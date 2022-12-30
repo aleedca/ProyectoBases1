@@ -62,7 +62,7 @@ public class FrmUserPrincipal extends javax.swing.JFrame {
         jLabel1.setBounds(790, 10, 190, 120);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(-10, -10, 970, 460);
+        jPanel2.setBounds(0, 0, 1000, 510);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
