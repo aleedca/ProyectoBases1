@@ -3,8 +3,8 @@ Description: This file contains the creation of the tables, sequences and forein
 Authors:
 Isaac Araya Solano - 2018151703
 Alexia Cerdas Aguilar - 2019026961
-Nahomi Bola�os Valverde - 2022089165
-Mariana Fern�ndez Mart�nez - 2021104026
+Nahomi Bolanos Valverde - 2022089165
+Mariana Fernandez Martinez - 2021104026
 */
 
 -- ////////////////////////////////////// TABLE CREATION ////////////////////////////////////
