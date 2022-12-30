@@ -25,11 +25,11 @@ public class model_Login {
     }
     
     public boolean validarUsername(){ //Falta realizar la validación de si es Admin o Usuario
-        return false;
+        return true;
     }
     
     public boolean validarPassword(){ //Falta realizar la validación de si es Admin o Usuario
-        return false;
+        return true;
     }
     
     //------------ GETTERS AND SETTERS ----------------------

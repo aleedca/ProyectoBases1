@@ -7,6 +7,7 @@ package Controller;
 import Model.model_Login;
 import View.JF_Login;
 import View.JF_Principal;
+import View.JF_Register;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -19,6 +20,7 @@ import javax.swing.JOptionPane;
 
 public class OperationsController implements ActionListener{
     private JF_Login viewLogin;
+    private JF_Register viewRegister;
     private model_Login modelLogin;
     private JF_Principal viewPrincipal;
         
@@ -30,6 +32,9 @@ public class OperationsController implements ActionListener{
         JF_Login login = new JF_Login();
         this.viewLogin = login;  
         
+        JF_Register register = new JF_Register();
+        this.viewRegister = register;
+        
         model_Login validarLogin = new model_Login();
         this.modelLogin = validarLogin;  
         
@@ -37,14 +42,7 @@ public class OperationsController implements ActionListener{
         _init_(); 
     }
     
-    //SETTERS
-
-    public void setViewLogin(JF_Login viewLogin) {
-        this.viewLogin = viewLogin;
-    }
-    
-  
-    // inicia el binding con la vista
+    //Init de ActionListener
     public void _init_(){
         viewPrincipal.getBtnIniciarSesion().addActionListener(this);
         viewPrincipal.getBtnRegistrar().addActionListener(this);
@@ -61,7 +59,6 @@ public class OperationsController implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if(e.getSource() == viewPrincipal.getBtnIniciarSesion()){    
-            System.out.println("Entro Iniciar Sesion");
             viewLogin.setVisible(true);
             viewPrincipal.setVisible(false);
         }
@@ -84,17 +81,32 @@ public class OperationsController implements ActionListener{
                 //**Validar username y password***
             
                 if(modelLogin.validarUsername() == true && modelLogin.validarPassword() == true){ //Es true -> Admin
-                        //Frame de Admin
+                    //Frame de Admin                         
+                    viewPrincipal.getBtnIniciarSesion().setVisible(false);
+                    viewPrincipal.getBtnRegistrar().setVisible(false);
+                    
+                    viewPrincipal.getBtnOpAdm().setVisible(true);
+                    viewPrincipal.getBtnCuenta().setVisible(true);
+                    viewPrincipal.getBtnSalir().setVisible(true);
+                    
+                    viewPrincipal.setVisible(true);    
                 }else{
                     //Frame Usuario     
                     viewPrincipal.getBtnIniciarSesion().setVisible(false);
                     viewPrincipal.getBtnRegistrar().setVisible(false);
+                    
                     viewPrincipal.getBtnCuenta().setVisible(true);
                     viewPrincipal.getBtnSalir().setVisible(true);
                     
                     viewPrincipal.setVisible(true);    
                 }    
             }
+        }
+        
+        
+        if(e.getSource() == viewPrincipal.getBtnRegistrar()){
+            viewRegister.setVisible(true);
+            viewPrincipal.setVisible(false);
         }
         
         
@@ -105,8 +117,14 @@ public class OperationsController implements ActionListener{
         
         if(e.getSource() == viewPrincipal.getBtnSalir()){
             viewPrincipal.setVisible(false);
+            
+            viewPrincipal.getBtnOpAdm().setVisible(false);
+            viewPrincipal.getBtnCuenta().setVisible(false);
             viewPrincipal.getBtnSalir().setVisible(false);
+            
             viewPrincipal.getBtnIniciarSesion().setVisible(true);
+            viewPrincipal.getBtnRegistrar().setVisible(true);
+            
             viewPrincipal.setVisible(true);
         }
         
