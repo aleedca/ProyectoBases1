@@ -5,8 +5,6 @@
 package Main;
 
 import Controller.OperationsController;
-import Model.ValidarLogin;
-import View.JF_Login;
 import View.JF_Principal;
 
 /**
@@ -20,16 +18,10 @@ public class mainProject {
      */
     public static void main(String[] args) {
         JF_Principal principal = new JF_Principal();
-        ValidarLogin validarLogin = new ValidarLogin();
-        //JF_Login login = new JF_Login();
-        OperationsController controlador = new OperationsController(principal, validarLogin);
+        
+        OperationsController controlador = new OperationsController(principal);
+        
         controlador.showView();
-        
-        /*
-        PantallaPrincipal vista = new PantallaPrincipal();
-        OperationsModel modelo = new OperationsModel();
-        
-        controlador.showView();*/
         
     }
     

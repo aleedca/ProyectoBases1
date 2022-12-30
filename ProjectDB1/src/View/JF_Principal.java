@@ -21,6 +21,8 @@ public class JF_Principal extends javax.swing.JFrame {
      */
     public JF_Principal() {
         initComponents();
+        
+        //this.btnSalir.setVisible(false);
 
     }
 
@@ -35,16 +37,25 @@ public class JF_Principal extends javax.swing.JFrame {
     
     //GETTERS
 
+    public JButton getBtnCuenta() {
+        return btnCuenta;
+    }
+
     public JButton getBtnIniciarSesion() {
         return btnIniciarSesion;
+    }
+
+    public JButton getBtnOpAdm() {
+        return btnOpAdm;
     }
 
     public JButton getBtnRegistrar() {
         return btnRegistrar;
     }
-    
-    
-    
+
+    public JButton getBtnSalir() {
+        return btnSalir;
+    }
     
     
     @SuppressWarnings("unchecked")
@@ -55,7 +66,7 @@ public class JF_Principal extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         pnlBackground = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnRegistrar = new javax.swing.JButton();
+        btnOpAdm = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -66,6 +77,9 @@ public class JF_Principal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        btnSalir = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
+        btnCuenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1285, 752));
@@ -78,16 +92,16 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(jLabel1);
         jLabel1.setBounds(19, 44, 0, 0);
 
-        btnRegistrar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        btnRegistrar.setText("Registrar");
-        btnRegistrar.setAlignmentY(0.0F);
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        btnOpAdm.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnOpAdm.setText("Menu Admin");
+        btnOpAdm.setAlignmentY(0.0F);
+        btnOpAdm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
+                btnOpAdmActionPerformed(evt);
             }
         });
-        pnlBackground.add(btnRegistrar);
-        btnRegistrar.setBounds(790, 70, 120, 30);
+        pnlBackground.add(btnOpAdm);
+        btnOpAdm.setBounds(650, 70, 120, 30);
         pnlBackground.add(jLabel17);
         jLabel17.setBounds(582, 44, 0, 0);
         pnlBackground.add(jLabel19);
@@ -113,7 +127,7 @@ public class JF_Principal extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Noticias más vistas");
         pnlBackground.add(jLabel5);
-        jLabel5.setBounds(760, 170, 220, 50);
+        jLabel5.setBounds(780, 170, 220, 50);
 
         btnIniciarSesion.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnIniciarSesion.setText("Iniciar Sesión");
@@ -124,7 +138,7 @@ public class JF_Principal extends javax.swing.JFrame {
             }
         });
         pnlBackground.add(btnIniciarSesion);
-        btnIniciarSesion.setBounds(930, 70, 120, 30);
+        btnIniciarSesion.setBounds(940, 70, 120, 30);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -168,6 +182,39 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(jPanel3);
         jPanel3.setBounds(690, 490, 550, 190);
 
+        btnSalir.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.setAlignmentY(0.0F);
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        pnlBackground.add(btnSalir);
+        btnSalir.setBounds(940, 70, 120, 30);
+
+        btnRegistrar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.setAlignmentY(0.0F);
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+        pnlBackground.add(btnRegistrar);
+        btnRegistrar.setBounds(800, 70, 120, 30);
+
+        btnCuenta.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnCuenta.setText("Mi cuenta");
+        btnCuenta.setAlignmentY(0.0F);
+        btnCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuentaActionPerformed(evt);
+            }
+        });
+        pnlBackground.add(btnCuenta);
+        btnCuenta.setBounds(800, 70, 120, 30);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,12 +236,24 @@ public class JF_Principal extends javax.swing.JFrame {
 //       this.dispose();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
+    private void btnOpAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpAdmActionPerformed
+//        JF_Register register = new JF_Register();
+//        register.setVisible(true); 
+//       
+//        this.dispose();
+    }//GEN-LAST:event_btnOpAdmActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalirActionPerformed
+
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        JF_Register register = new JF_Register();
-        register.setVisible(true); 
-       
-        this.dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCuentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,8 +292,11 @@ public class JF_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCuenta;
     private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JButton btnOpAdm;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;

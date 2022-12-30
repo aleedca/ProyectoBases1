@@ -158,12 +158,7 @@ public class JF_Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-
-       //F_Login login = new JF_Login();
-       //login.setVisible(true); 
-       
-       //this.dispose();
-       
+  
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUsernameLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameLoginActionPerformed
@@ -175,10 +170,7 @@ public class JF_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPasswordLoginActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-       JF_Principal principal = new JF_Principal();
-       principal.setVisible(true); 
-       
-       this.dispose();
+
     }//GEN-LAST:event_btnBackActionPerformed
 
 

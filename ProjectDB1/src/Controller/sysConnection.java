@@ -16,8 +16,8 @@ public class sysConnection {
         public static Connection obtConexion(){
         try{
             String myDB = "jdbc:oracle:thin:@localhost:1521:demo"; //Cambia por Services->ConexionBD(cuando se haga)->Properties->Database URL
-            String user = "AD"; //Nombre del usuario de la BD
-            String password = "ad"; //Contraseña de la BD
+            String user = "proyectoBD"; //Nombre del usuario de la BD
+            String password = "proyectoBD"; //Contraseña de la BD
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
             java.sql.Connection connection = DriverManager.getConnection(myDB, user, password);
             return (Connection) connection;

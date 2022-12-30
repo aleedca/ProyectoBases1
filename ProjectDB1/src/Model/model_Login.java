@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  *
  * @author Mariana
  */
-public class ValidarLogin {
+public class model_Login {
     private String usernameLogin;
     private String passwordLogin;
     
