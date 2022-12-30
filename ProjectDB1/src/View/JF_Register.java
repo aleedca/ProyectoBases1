@@ -172,7 +172,11 @@ public class JF_Register extends javax.swing.JFrame {
         pnlBackground.add(txtUsername);
         txtUsername.setBounds(310, 500, 230, 22);
 
-        jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
         pnlBackground.add(jPasswordField1);
         jPasswordField1.setBounds(310, 650, 230, 22);
         pnlBackground.add(jLabel17);
@@ -381,6 +385,10 @@ public class JF_Register extends javax.swing.JFrame {
     private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox7ActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**
      * @param args the command line arguments
