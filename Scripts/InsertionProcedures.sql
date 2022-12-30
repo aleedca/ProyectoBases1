@@ -146,6 +146,7 @@ BEGIN
 END insertPerson;
 
 -- Player
+
 CREATE OR REPLACE PROCEDURE insertPlayer (pIdentification IN NUMBER, pFirstName IN VARCHAR2, 
             pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2, 
             pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER, pIdCountry IN NUMBER, 
@@ -181,12 +182,11 @@ BEGIN
         
     END;
 END insertPlayer;
-
 -- PersonXPhone
 CREATE OR REPLACE PROCEDURE insertPersonXPhone (pIdPerson IN NUMBER,pIdPhone IN NUMBER)
 AS
 BEGIN
-    INSERT INTO Person(idPerson ,idPhone, userCreation, lastUser, lastDate, dateCreation)
+    INSERT INTO PersonXPhone(idPerson ,idPhone, userCreation, lastUser, lastDate, dateCreation)
     VALUES (pIdPerson, pIdPhone, NULL, NULL, NULL, NULL);
     COMMIT;
 END insertPersonXPhone;
