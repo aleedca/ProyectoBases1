@@ -522,10 +522,7 @@ public class JF_Register extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbGeneroActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-       JF_Principal principal = new JF_Principal();
-       principal.setVisible(true); 
-       
-       this.dispose();
+
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void cmbTipoTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoTelefonoActionPerformed
