@@ -5,11 +5,13 @@
 package Controller;
 
 import Model.model_Login;
+import Model.model_Register;
 import View.JF_Login;
 import View.JF_Principal;
 import View.JF_Register;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JOptionPane;
 
 
@@ -19,11 +21,14 @@ import javax.swing.JOptionPane;
  */
 
 public class OperationsController implements ActionListener{
+    private JF_Principal viewPrincipal;
     private JF_Login viewLogin;
     private JF_Register viewRegister;
+    
     private model_Login modelLogin;
-    private JF_Principal viewPrincipal;
+    private model_Register modelRegister;
         
+    
     //Constructor 2da version
     public OperationsController(JF_Principal principal) { 
         //View Principal
@@ -40,6 +45,10 @@ public class OperationsController implements ActionListener{
         //Modelo Login
         model_Login validarLogin = new model_Login();
         this.modelLogin = validarLogin;  
+        
+        //Model Register
+        model_Register validarRegister = new model_Register();
+        this.modelRegister = validarRegister;
         
         
         _init_(); 
@@ -59,6 +68,9 @@ public class OperationsController implements ActionListener{
         viewLogin.getBtnBack().addActionListener(this);
         
         //Register
+        viewRegister.getBtnBack().addActionListener(this);
+        viewRegister.getBtnVerificarRegistro().addActionListener(this);
+        viewRegister.getBtnCargarFoto().addActionListener(this);
         
     }
     
@@ -138,9 +150,46 @@ public class OperationsController implements ActionListener{
         
         
         //------ PANTALLA DE REGISTRO ---------------------
-//         this.setLocationRelativeTo(this);
-//        setImageLabel(lblAvatar, "src/Images/avatar.png");
         
+        if(e.getSource() == viewRegister.getBtnBack()){
+            viewPrincipal.setVisible(true);
+            viewRegister.setVisible(false);
+        }
+        
+        if(e.getSource() == viewRegister.getBtnCargarFoto()){
+            modelRegister.setFoto("src/Images/avatar.png");
+            
+            viewRegister.setLocationRelativeTo(viewRegister);
+            modelRegister.setImageLabel(viewRegister.getLblAvatar());
+        }
+        
+        if(e.getSource() == viewRegister.getBtnVerificarRegistro()){
+            modelRegister.setPrimerNombre(viewRegister.getTxtNombre());
+            modelRegister.setSegundoNombre(viewRegister.getTxtSegundoNombre());
+            modelRegister.setPrimerApellido(viewRegister.getTxtPrimerApellido());
+            modelRegister.setSegundoApellido(viewRegister.getTxtSegundoApellido());
+            
+            modelRegister.setTipoIdentificacion(viewRegister.getCmbTipoIdentificacion());
+            modelRegister.setIdentificacion(viewRegister.getTxtIdentificacion());
+            
+            modelRegister.setUsernameRegister(viewRegister.getTxtUsername());
+            modelRegister.setPasswordRegister(viewRegister.getTxtPassword());
+            
+            modelRegister.setTipoTelefono(viewRegister.getCmbTipoTelefono());
+            modelRegister.setTelefono(viewRegister.getTxtTelefono());
+            modelRegister.setCorreo(viewRegister.getTxtCorreo());
+            
+            modelRegister.setGenero(viewRegister.getCmbGenero());
+            modelRegister.setPais(viewRegister.getCmbPais());
+            modelRegister.setProvincia(viewRegister.getCmbProvincia());
+            modelRegister.setCanton(viewRegister.getCmbCanton());
+            modelRegister.setDistrito(viewRegister.getCmbDistrito());
+            modelRegister.setDireccion(viewRegister.getTxtDireccionExacta());
+            
+            
+            
+        }
+
     }
     
     
