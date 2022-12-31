@@ -69,11 +69,11 @@
                           </Group>
                           <EmptySpace pref="35" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                           <Component id="btnBack" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="lblOpcionesAdmin" min="-2" pref="521" max="-2" attributes="0"/>
+                          <Component id="lblAdminOpciones" min="-2" pref="521" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -91,10 +91,10 @@
                           <Component id="lblLogo" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="btnBack" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="lblOpcionesAdmin" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblAdminOpciones" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -189,7 +189,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBitacoraActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblOpcionesAdmin">
+        <Component class="javax.swing.JLabel" name="lblAdminOpciones">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="36" style="1"/>
@@ -209,7 +209,6 @@
               <Image iconType="3" name="/Images/back.png"/>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
-            <Property name="opaque" type="boolean" value="true"/>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Images/backPressed.png"/>
             </Property>

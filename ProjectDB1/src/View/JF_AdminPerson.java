@@ -52,14 +52,12 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         lblTipoIden = new javax.swing.JLabel();
         cmbEquipo = new javax.swing.JComboBox<>();
         lblIden = new javax.swing.JLabel();
-        txtIden = new javax.swing.JTextField();
         lblCorreo = new javax.swing.JLabel();
         lblTipoTel = new javax.swing.JLabel();
         cmbTipoTel = new javax.swing.JComboBox<>();
         lblTelef = new javax.swing.JLabel();
         lblGenero = new javax.swing.JLabel();
         cmbGenero = new javax.swing.JComboBox<>();
-        txtTelef = new javax.swing.JTextField();
         lblPais = new javax.swing.JLabel();
         cmbPais = new javax.swing.JComboBox<>();
         lblProvin = new javax.swing.JLabel();
@@ -68,18 +66,20 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         cmbCanton = new javax.swing.JComboBox<>();
         lblFechaNac = new javax.swing.JLabel();
         cmbDistrito = new javax.swing.JComboBox<>();
-        lblNumCam = new javax.swing.JLabel();
+        lblNumCamisa = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         lblAvatar = new javax.swing.JLabel();
         lblSelecFoto = new javax.swing.JLabel();
         btnCargarFoto = new javax.swing.JButton();
-        btnRegistrar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         lblDistrito = new javax.swing.JLabel();
         cmbTipoIden = new javax.swing.JComboBox<>();
         lblEquipo = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
         spnNumCamisa = new javax.swing.JSpinner();
         lblDireccion = new javax.swing.JLabel();
+        txtIden = new javax.swing.JFormattedTextField();
+        txtTelef = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -113,7 +113,12 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         lblLogo.setBounds(1070, 10, 200, 125);
 
         cmbPersona.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        cmbPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Default", "Jugador", "Cuerpo Técnico" }));
+        cmbPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Jugador", "Cuerpo Técnico" }));
+        cmbPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPersonaActionPerformed(evt);
+            }
+        });
         pnlAdminPersonas.add(cmbPersona);
         cmbPersona.setBounds(230, 110, 346, 31);
 
@@ -152,6 +157,11 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         rbtnEliminar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         rbtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         rbtnEliminar.setText("Eliminar");
+        rbtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnEliminarActionPerformed(evt);
+            }
+        });
         pnlAdminPersonas.add(rbtnEliminar);
         rbtnEliminar.setBounds(890, 110, 150, 37);
         pnlAdminPersonas.add(txtFechaNac);
@@ -223,8 +233,6 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         lblIden.setText("Identificación *");
         pnlAdminPersonas.add(lblIden);
         lblIden.setBounds(60, 470, 190, 40);
-        pnlAdminPersonas.add(txtIden);
-        txtIden.setBounds(290, 480, 230, 22);
 
         lblCorreo.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblCorreo.setForeground(new java.awt.Color(255, 255, 255));
@@ -267,8 +275,6 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         });
         pnlAdminPersonas.add(cmbGenero);
         cmbGenero.setBounds(770, 300, 180, 22);
-        pnlAdminPersonas.add(txtTelef);
-        txtTelef.setBounds(770, 240, 180, 22);
 
         lblPais.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblPais.setForeground(new java.awt.Color(255, 255, 255));
@@ -310,11 +316,11 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         pnlAdminPersonas.add(cmbDistrito);
         cmbDistrito.setBounds(770, 540, 180, 22);
 
-        lblNumCam.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        lblNumCam.setForeground(new java.awt.Color(255, 255, 255));
-        lblNumCam.setText("Num Camisa*");
-        pnlAdminPersonas.add(lblNumCam);
-        lblNumCam.setBounds(1000, 180, 150, 40);
+        lblNumCamisa.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblNumCamisa.setForeground(new java.awt.Color(255, 255, 255));
+        lblNumCamisa.setText("Num Camisa*");
+        pnlAdminPersonas.add(lblNumCamisa);
+        lblNumCamisa.setBounds(1000, 180, 150, 40);
         pnlAdminPersonas.add(txtDireccion);
         txtDireccion.setBounds(590, 630, 360, 60);
 
@@ -344,18 +350,18 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         pnlAdminPersonas.add(btnCargarFoto);
         btnCargarFoto.setBounds(1080, 530, 120, 30);
 
-        btnRegistrar.setBackground(new java.awt.Color(86, 4, 44));
-        btnRegistrar.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
-        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrar.setText("Registrar");
-        btnRegistrar.setBorderPainted(false);
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setBackground(new java.awt.Color(86, 4, 44));
+        btnGuardar.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardar.setText("Guardar");
+        btnGuardar.setBorderPainted(false);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
-        pnlAdminPersonas.add(btnRegistrar);
-        btnRegistrar.setBounds(1070, 650, 130, 40);
+        pnlAdminPersonas.add(btnGuardar);
+        btnGuardar.setBounds(1070, 650, 130, 40);
 
         lblDistrito.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblDistrito.setForeground(new java.awt.Color(255, 255, 255));
@@ -393,6 +399,22 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         pnlAdminPersonas.add(lblDireccion);
         lblDireccion.setBounds(590, 590, 190, 40);
 
+        try {
+            txtIden.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#-####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        pnlAdminPersonas.add(txtIden);
+        txtIden.setBounds(290, 480, 230, 22);
+
+        try {
+            txtTelef.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        pnlAdminPersonas.add(txtTelef);
+        txtTelef.setBounds(770, 240, 180, 22);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -410,7 +432,59 @@ public class JF_AdminPerson extends javax.swing.JFrame {
    public boolean validarTextField(JTextField text){
        return text.getText().equals("");
    }
-    
+   
+   public void esconderMostrarTodo(boolean flag){
+       lblNombre.setVisible(flag);
+       txtNombre.setVisible(flag);
+       lblSegNombre.setVisible(flag);
+       txtSegNombre.setVisible(flag);
+       lblPrimerAp.setVisible(flag);
+       txtPrimerAp.setVisible(flag);
+       lblSegAp.setVisible(flag);
+       txtSegAp.setVisible(flag);
+       lblTipoIden.setVisible(flag);
+       cmbTipoIden.setVisible(flag);
+       lblIden.setVisible(flag);
+       txtIden.setVisible(flag);
+       lblCorreo.setVisible(flag);
+       txtCorreo.setVisible(flag);
+       
+       lblEquipo.setVisible(flag);
+       cmbEquipo.setVisible(flag);
+       lblFechaNac.setVisible(flag);
+       txtFechaNac.setVisible(flag);
+       lblNumCamisa.setVisible(flag);
+       spnNumCamisa.setVisible(flag);
+       
+       lblTipoTel.setVisible(flag);
+       cmbTipoTel.setVisible(flag);
+       lblTelef.setVisible(flag);
+       txtTelef.setVisible(flag);
+       lblGenero.setVisible(flag);
+       cmbGenero.setVisible(flag);
+       lblPais.setVisible(flag);
+       cmbPais.setVisible(flag);
+       lblProvin.setVisible(flag);
+       cmbProvin.setVisible(flag);
+       lblCanton.setVisible(flag);
+       cmbCanton.setVisible(flag);
+       lblDistrito.setVisible(flag);
+       cmbDistrito.setVisible(flag);
+       lblDireccion.setVisible(flag);
+       txtDireccion.setVisible(flag);
+       
+       lblAvatar.setVisible(flag);
+       lblSelecFoto.setVisible(flag);
+       btnCargarFoto.setVisible(flag);
+   }
+   
+   public void deshabilitarOpciones(boolean flag){
+       lblFechaNac.setVisible(flag);
+       txtFechaNac.setVisible(flag);
+       lblNumCamisa.setVisible(flag);
+       spnNumCamisa.setVisible(flag);
+   }
+   
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         JF_AdminOptions adminOptions = new JF_AdminOptions();
         adminOptions.setVisible(true);
@@ -418,11 +492,16 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void rbtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnAgregarActionPerformed
-        // TODO add your handling code here:
+        esconderMostrarTodo(true);
+        
+        String tipoPersona = cmbPersona.getSelectedItem().toString();
+        if("Cuerpo Técnico".equals(tipoPersona)){
+           deshabilitarOpciones(false);
+       }
     }//GEN-LAST:event_rbtnAgregarActionPerformed
 
     private void rbtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEditarActionPerformed
-        // TODO add your handling code here:
+        esconderMostrarTodo(false);
     }//GEN-LAST:event_rbtnEditarActionPerformed
 
     private void cmbEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEquipoActionPerformed
@@ -441,14 +520,10 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCargarFotoActionPerformed
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        String typePerson = cmbPersona.getSelectedItem().toString();
-        String option = btnGroupAdmiPersonas.getSelection().getActionCommand();
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+
         
-        if(validarTextField(txtNombre)){System.out.println("hiii");}
-        //validar contraseña y todo aqui
-        
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void cmbTipoIdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoIdenActionPerformed
         // TODO add your handling code here:
@@ -461,6 +536,21 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void cmbPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPersonaActionPerformed
+       String tipoPersona = cmbPersona.getSelectedItem().toString();
+        
+       if(rbtnAgregar.isSelected() && "Cuerpo Técnico".equals(tipoPersona)){
+           deshabilitarOpciones(false);
+       }
+       if(rbtnAgregar.isSelected() && "Jugador".equals(tipoPersona)){
+           deshabilitarOpciones(true);
+       }
+    }//GEN-LAST:event_cmbPersonaActionPerformed
+
+    private void rbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEliminarActionPerformed
+        esconderMostrarTodo(false);
+    }//GEN-LAST:event_rbtnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -502,7 +592,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCargarFoto;
     private javax.swing.ButtonGroup btnGroupAdmiPersonas;
-    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<String> cmbCanton;
     private javax.swing.JComboBox<String> cmbDistrito;
     private javax.swing.JComboBox<String> cmbEquipo;
@@ -524,7 +614,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private javax.swing.JLabel lblIden;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblNumCam;
+    private javax.swing.JLabel lblNumCamisa;
     private javax.swing.JLabel lblPais;
     private javax.swing.JLabel lblPersona;
     private javax.swing.JLabel lblPrimerAp;
@@ -543,11 +633,11 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtFechaNac;
-    private javax.swing.JTextField txtIden;
+    private javax.swing.JFormattedTextField txtIden;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrimerAp;
     private javax.swing.JTextField txtSegAp;
     private javax.swing.JTextField txtSegNombre;
-    private javax.swing.JTextField txtTelef;
+    private javax.swing.JFormattedTextField txtTelef;
     // End of variables declaration//GEN-END:variables
 }
