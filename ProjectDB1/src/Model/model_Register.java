@@ -48,25 +48,24 @@ public class model_Register {
         return false;
     }
     
-    
     // 4-8 character password requiring numbers and alphabets of both cases
     private static final String PASSWORD_REGEX = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$";
     
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
     
-    public boolean validarFormatPassword(String password){
-        if (PASSWORD_PATTERN.matcher(password).matches()) {
+    public boolean validarFormatPassword(){
+        if (PASSWORD_PATTERN.matcher(this.passwordRegister).matches()) {
 		return true;
 	}
         
         return false;
     }
     
-    //[A-Za-z]{5,10}
-    public boolean validarFormatUsername(String username){
+    
+    public boolean validarFormatUsername(){
         String regex = "^\\w{5,10}\\[^s]$";
         Pattern pattern = Pattern.compile(regex);
-        Matcher mather = pattern.matcher(username);
+        Matcher mather = pattern.matcher(this.usernameRegister);
         
         if (mather.matches()) {
             return true;
@@ -75,9 +74,9 @@ public class model_Register {
         return false;
     }
     
-    public boolean validarFormatCorreo(String correo){
+    public boolean validarFormatCorreo(){
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        Matcher mather = pattern.matcher(correo);
+        Matcher mather = pattern.matcher(this.correo);
         
         if (mather.find() == true) {
             return true;

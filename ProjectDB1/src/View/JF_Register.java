@@ -298,7 +298,6 @@ public class JF_Register extends javax.swing.JFrame {
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
         btnBack.setContentAreaFilled(false);
-        btnBack.setOpaque(true);
         btnBack.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backPressed.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -547,7 +546,7 @@ public class JF_Register extends javax.swing.JFrame {
         txtTelefono.setBounds(790, 200, 180, 22);
 
         try {
-            txtIdentificacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#-###-###")));
+            txtIdentificacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#-####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
