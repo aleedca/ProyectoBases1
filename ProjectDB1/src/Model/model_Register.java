@@ -42,7 +42,7 @@ public class model_Register {
     public boolean validarCamposVacios(){
         if(this.primerNombre.isEmpty() || this.primerApellido.isEmpty() || this.identificacion.isEmpty()){
             if(this.usernameRegister.isEmpty() || this.passwordRegister.isEmpty() ||this.correo.isEmpty()){
-                if(this.telefono.isEmpty() || this.direccion.isEmpty()){
+                if(this.telefono.isEmpty() || this.direccion.isEmpty() || this.foto.isEmpty()){
                     return true;
                 }
             }
@@ -65,10 +65,15 @@ public class model_Register {
         return false;
     }
     
+    //[A-Za-z]{5,10}
     public boolean validarFormatUsername(String username){
-        if(username.length() >= 5){
+        String regex = "^\\w{5,10}\\[^s]$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher mather = pattern.matcher(username);
+        
+        if (mather.matches()) {
             return true;
-        }
+        } 
         
         return false;
     }
@@ -85,10 +90,26 @@ public class model_Register {
     }
     
     
-    public boolean validarFormatoTelefono(String telefono){
-        String regex = "^\\d{4}-\\d{4}$";
+    public boolean validarSegundoNombre(){
+        if(this.segundoNombre != null){
+             return true;
+        }
+        return false;
+    }
+    
+    public boolean validarSegundoApellido(){
+        if(this.segundoApellido != null){
+             return true;
+        }
+        return false;
+    }
+    
+    
+    
+    public boolean validarFormatoCadena(String cadena){
+        String regex = "^\\[A-Za-z]{3,20}$";
         Pattern pattern = Pattern.compile(regex);
-        Matcher mather = pattern.matcher(telefono);
+        Matcher mather = pattern.matcher(cadena);
         
         if (mather.matches()) {
             return true;
