@@ -63,7 +63,7 @@ public class model_Register {
     
     
     public boolean validarFormatUsername(){
-        String regex = "^\\w{5,10}\\[^s]$";
+        String regex = "^[^s]\\w{5,10}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher mather = pattern.matcher(this.usernameRegister);
         

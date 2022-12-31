@@ -86,7 +86,9 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(jLabel1);
         jLabel1.setBounds(19, 44, 0, 0);
 
+        btnOpAdm.setBackground(new java.awt.Color(86, 4, 44));
         btnOpAdm.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnOpAdm.setForeground(new java.awt.Color(255, 255, 255));
         btnOpAdm.setText("Menu Admin");
         btnOpAdm.setAlignmentY(0.0F);
         btnOpAdm.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +125,9 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(lblBienvenido);
         lblBienvenido.setBounds(30, 60, 580, 50);
 
+        btnIniciarSesion.setBackground(new java.awt.Color(86, 4, 44));
         btnIniciarSesion.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion.setText("Iniciar Sesión");
         btnIniciarSesion.setAlignmentY(0.0F);
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
@@ -176,9 +180,12 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(jPanel3);
         jPanel3.setBounds(690, 490, 550, 190);
 
+        btnSalir.setBackground(new java.awt.Color(86, 4, 44));
         btnSalir.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Salir");
         btnSalir.setAlignmentY(0.0F);
+        btnSalir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -187,7 +194,9 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(btnSalir);
         btnSalir.setBounds(940, 70, 120, 30);
 
+        btnRegistrar.setBackground(new java.awt.Color(86, 4, 44));
         btnRegistrar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrar.setText("Registrar");
         btnRegistrar.setAlignmentY(0.0F);
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -198,7 +207,9 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(btnRegistrar);
         btnRegistrar.setBounds(800, 70, 120, 30);
 
+        btnCuenta.setBackground(new java.awt.Color(86, 4, 44));
         btnCuenta.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnCuenta.setForeground(new java.awt.Color(255, 255, 255));
         btnCuenta.setText("Mi cuenta");
         btnCuenta.setAlignmentY(0.0F);
         btnCuenta.addActionListener(new java.awt.event.ActionListener() {

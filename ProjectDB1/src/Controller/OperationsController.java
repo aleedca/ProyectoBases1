@@ -186,7 +186,7 @@ public class OperationsController implements ActionListener{
             modelRegister.setDistrito(viewRegister.getCmbDistrito());
             modelRegister.setDireccion(viewRegister.getTxtDireccionExacta());
             
-            if(modelRegister.validarCamposVacios()){
+            if(modelRegister.validarCamposVacios() == true){
                 
                 JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);
                 
@@ -236,7 +236,7 @@ public class OperationsController implements ActionListener{
                             JOptionPane.showMessageDialog(null, "Formato de contraseña incorrecta. Debe contener al menos 4 caracteres(letras o numeros)", "Error", JOptionPane.WARNING_MESSAGE);
                         }//Formato Password
                     }else{
-                    JOptionPane.showMessageDialog(null, "Por favor, ingrese únicamente letras, numeros o el caracter _", "Error", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Por favor, ingrese únicamente letras, números o el caracter _ para crear su username.\nDebe tener al menos 5 caracteres", "Error", JOptionPane.WARNING_MESSAGE);
                     }//Formato Username
                 }else{
                     JOptionPane.showMessageDialog(null, "Formato de correo no válido", "Error", JOptionPane.WARNING_MESSAGE);
