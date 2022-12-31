@@ -158,7 +158,7 @@ public class OperationsController implements ActionListener{
         }
         
         if(e.getSource() == viewRegister.getBtnCargarFoto()){
-            modelRegister.setFoto("src/Images/avatar.png");
+            modelRegister.setFoto("src/Images/prueba.jpg");
             
             viewRegister.setLocationRelativeTo(viewRegister);
             modelRegister.setImageLabel(viewRegister.getLblAvatar());
@@ -274,13 +274,20 @@ public class OperationsController implements ActionListener{
                     viewRegister.cleanDireccion();
                     flagRegister = false;
                 }
+                
+                if(modelRegister.validarFoto(modelRegister.getFoto())){
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar una foto", "Error", JOptionPane.WARNING_MESSAGE);
+                    flagRegister = false;
+                }
 
             }
+           
             
             if(flagRegister == true){
                 JOptionPane.showMessageDialog(null, "Felicidades, su cuenta se creó correctamte.\nInicie sesión para comenzar a disfrutar de nuestra aplicación" );
                 viewRegister.cleanAll();
                 viewRegister.setVisible(false);
+                viewPrincipal.getBtnRegistrar().setVisible(false);
                 
                 viewPrincipal.setVisible(true);
             }

@@ -111,7 +111,7 @@ public class model_Register {
     
     
     public boolean validarFormatoCadena(String cadena){
-        String regex = "^[A-Za-z]{3,20}$";
+        String regex = "^[A-Za-z\\ÑñáéíóúÁÉÍÓÚ]{3,20}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher mather = pattern.matcher(cadena);
         
@@ -124,7 +124,7 @@ public class model_Register {
     }
     
     public boolean validarFormatoDireccion(String direccion){
-        String regex = "^[A-Za-z\\s\\d\\#,.]{50,200}$";
+        String regex = "^[A-Za-z\\s\\d\\#,.ÑñáéíóúÁÉÍÓÚ]{50,200}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher mather = pattern.matcher(direccion);
         
@@ -135,13 +135,21 @@ public class model_Register {
         
         return false;
     }
+    
+    public boolean validarFoto(String foto){
+        if(foto == null){
+            return true;
+        }
+        
+       return false;
+    }
    
         
     public void setImageLabel(JLabel labelName){
         ImageIcon image = new ImageIcon(this.foto);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_DEFAULT));
         labelName.setIcon(icon);
-        System.out.println("Entré aquí");
+        //System.out.println("Entré aquí");
         //this.repaint();
     }
     

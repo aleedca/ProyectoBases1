@@ -4,6 +4,7 @@
  */
 package View;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -173,6 +174,7 @@ public class JF_Register extends javax.swing.JFrame {
         this.txtDireccionExacta.setText("");
     }
     
+    
     //---------------------------------------------------------------------------------------
     
     //SETTERS    
@@ -214,18 +216,14 @@ public class JF_Register extends javax.swing.JFrame {
     public void setCmbTipoTelefono(JComboBox<String> cmbTipoTelefono) {
         this.cmbTipoTelefono = cmbTipoTelefono;
     }
-
-
-
+    
     
     //-----------------------------------------------------------------
     public JLabel getLblAvatar() {
         return lblAvatar;
     }
 
-    public void setLblAvatar(JLabel lblAvatar) {
-        this.lblAvatar = lblAvatar;
-    }
+
     //----------------------------------------------------------------------
     
     
