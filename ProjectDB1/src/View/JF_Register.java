@@ -4,8 +4,10 @@
  */
 package View;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -36,152 +38,194 @@ public class JF_Register extends javax.swing.JFrame {
         return btnVerificarRegistro;
     }
     
+    //------------------------------------------------------------------------------------------------------
+      
+    public String getTxtNombre() {
+        return txtNombre.getText();
+    }    
+     
+    public String getTxtSegundoNombre() {
+        return txtSegundoNombre.getText();
+    }
     
-    //GETTERS AND SETTERS
-
-    public JComboBox<String> getCmbCanton() {
-        return cmbCanton;
+    public String getTxtPrimerApellido() {
+        return txtPrimerApellido.getText();
+    }
+    
+    public String getTxtSegundoApellido() {
+        return txtSegundoApellido.getText();
+    }
+    
+    public String getCmbTipoIdentificacion() {
+        String tipoIdentificacion = (String)cmbTipoIdentificacion.getSelectedItem();
+        return tipoIdentificacion;
     }
 
+    public String getTxtIdentificacion() {
+        return txtIdentificacion.getText();
+    }
+
+    public String getTxtUsername() {
+        return txtUsername.getText();
+    }
+    
+    public String getTxtPassword() {
+        String password = new String(txtPassword.getPassword());
+        return password;
+    }
+    
+    public String getCmbTipoTelefono() {
+        String tipoTelefono = (String)cmbTipoTelefono.getSelectedItem();
+        return tipoTelefono;
+    }
+    
+   
+    public String getTxtTelefono() {
+        return txtTelefono.getText();
+    }
+
+    public String getCmbGenero() {
+        String genero = (String)cmbGenero.getSelectedItem();
+        return genero;
+    }
+    
+    public String getCmbPais() {
+        String pais = (String)cmbPais.getSelectedItem();
+        return pais;
+    }
+        
+    public String getCmbProvincia() {
+        String provincia = (String)cmbProvincia.getSelectedItem();
+        return provincia;
+    }
+    
+    public String getCmbCanton() {
+        String canton = (String)cmbCanton.getSelectedItem();
+        return canton;
+    }
+    
+    public String getCmbDistrito() {
+        String distrito = (String)cmbDistrito.getSelectedItem();
+        return distrito;
+    }
+    
+    public String getTxtCorreo() {
+        return txtCorreo.getText();
+    }
+    
+    public String getTxtDireccionExacta() {
+        return txtDireccionExacta.getText();
+    }
+    
+    //------------------------------------------------------------------------------------------------------
+    
+//CLEAN Functions
+    public void cleanAll() {
+       cleanPrimerNombre();
+       cleanSegundoNombre();
+       cleanPrimerApellido();
+       cleanSegundoApellido();
+       cleanUsername();
+       cleanPassword();
+       cleanIdentificacion();
+       cleanTelefono();
+       cleanCorreo();
+       cleanDireccion();
+       System.out.println("Limpia todo...");
+    }
+    
+    public void cleanPrimerNombre() {
+        this.txtNombre.setText("");
+    }
+    
+    public void cleanPrimerApellido() {
+        this.txtPrimerApellido.setText("");
+    }
+    
+    public void cleanSegundoNombre() {
+        this.txtSegundoNombre.setText("");
+    }
+    
+    public void cleanSegundoApellido() {
+        this.txtSegundoApellido.setText("");
+    }
+
+    private void cleanIdentificacion() {
+        this.txtIdentificacion.setText("");
+    }
+    
+    private void cleanTelefono() {
+        this.txtTelefono.setText("");
+    }
+
+    public void cleanUsername() {
+        this.txtUsername.setText("");
+    }
+    
+    public void cleanPassword() {
+        this.txtPassword.setText("");
+    }
+    
+    public void cleanCorreo() {
+        this.txtCorreo.setText("");
+    }
+
+    public void cleanDireccion() {
+        this.txtDireccionExacta.setText("");
+    }
+    
+    
+    //---------------------------------------------------------------------------------------
+    
+    //SETTERS    
+    
     public void setCmbCanton(JComboBox<String> cmbCanton) {
         this.cmbCanton = cmbCanton;
     }
 
-    public JComboBox<String> getCmbDistrito() {
-        return cmbDistrito;
-    }
-
+    
     public void setCmbDistrito(JComboBox<String> cmbDistrito) {
         this.cmbDistrito = cmbDistrito;
     }
 
-    public JComboBox<String> getCmbGenero() {
-        return cmbGenero;
-    }
 
     public void setCmbGenero(JComboBox<String> cmbGenero) {
         this.cmbGenero = cmbGenero;
     }
 
-    public JComboBox<String> getCmbPais() {
-        return cmbPais;
-    }
+
 
     public void setCmbPais(JComboBox<String> cmbPais) {
         this.cmbPais = cmbPais;
     }
 
-    public JComboBox<String> getCmbProvincia() {
-        return cmbProvincia;
-    }
+
 
     public void setCmbProvincia(JComboBox<String> cmbProvincia) {
         this.cmbProvincia = cmbProvincia;
     }
 
-    public JComboBox<String> getCmbTipoIdentificacion() {
-        return cmbTipoIdentificacion;
-    }
+
 
     public void setCmbTipoIdentificacion(JComboBox<String> cmbTipoIdentificacion) {
         this.cmbTipoIdentificacion = cmbTipoIdentificacion;
     }
 
-    public JComboBox<String> getCmbTipoTelefono() {
-        return cmbTipoTelefono;
-    }
+
 
     public void setCmbTipoTelefono(JComboBox<String> cmbTipoTelefono) {
         this.cmbTipoTelefono = cmbTipoTelefono;
     }
-
+    
+    
+    //-----------------------------------------------------------------
     public JLabel getLblAvatar() {
         return lblAvatar;
     }
 
-    public void setLblAvatar(JLabel lblAvatar) {
-        this.lblAvatar = lblAvatar;
-    }
 
-    public JTextField getTxtCorreo() {
-        return txtCorreo;
-    }
-
-    public void setTxtCorreo(JTextField txtCorreo) {
-        this.txtCorreo = txtCorreo;
-    }
-
-    public JTextField getTxtDireccionExacta() {
-        return txtDireccionExacta;
-    }
-
-    public void setTxtDireccionExacta(JTextField txtDireccionExacta) {
-        this.txtDireccionExacta = txtDireccionExacta;
-    }
-
-    public JTextField getTxtIdentificacion() {
-        return txtIdentificacion;
-    }
-
-    public void setTxtIdentificacion(JTextField txtIdentificacion) {
-        this.txtIdentificacion = txtIdentificacion;
-    }
-
-    public JTextField getTxtNombre() {
-        return txtNombre;
-    }
-
-    public void setTxtNombre(JTextField txtNombre) {
-        this.txtNombre = txtNombre;
-    }
-
-    public JPasswordField getTxtPassword() {
-        return txtPassword;
-    }
-
-    public void setTxtPassword(JPasswordField txtPassword) {
-        this.txtPassword = txtPassword;
-    }
-
-    public JTextField getTxtPrimerApellido() {
-        return txtPrimerApellido;
-    }
-
-    public void setTxtPrimerApellido(JTextField txtPrimerApellido) {
-        this.txtPrimerApellido = txtPrimerApellido;
-    }
-
-    public JTextField getTxtSegundoApellido() {
-        return txtSegundoApellido;
-    }
-
-    public void setTxtSegundoApellido(JTextField txtSegundoApellido) {
-        this.txtSegundoApellido = txtSegundoApellido;
-    }
-
-    public JTextField getTxtSegundoNombre() {
-        return txtSegundoNombre;
-    }
-
-    public void setTxtSegundoNombre(JTextField txtSegundoNombre) {
-        this.txtSegundoNombre = txtSegundoNombre;
-    }
-
-    public JTextField getTxtTelefono() {
-        return txtTelefono;
-    }
-
-    public void setTxtTelefono(JTextField txtTelefono) {
-        this.txtTelefono = txtTelefono;
-    }
-
-    public JTextField getTxtUsername() {
-        return txtUsername;
-    }
-
-    public void setTxtUsername(JTextField txtUsername) {
-        this.txtUsername = txtUsername;
-    }
+    //----------------------------------------------------------------------
+    
     
 
     
@@ -211,7 +255,6 @@ public class JF_Register extends javax.swing.JFrame {
         lblGenero = new javax.swing.JLabel();
         cmbGenero = new javax.swing.JComboBox<>();
         lblTelefono = new javax.swing.JLabel();
-        txtTelefono = new javax.swing.JTextField();
         lblPais = new javax.swing.JLabel();
         cmbPais = new javax.swing.JComboBox<>();
         lblCanton = new javax.swing.JLabel();
@@ -233,11 +276,12 @@ public class JF_Register extends javax.swing.JFrame {
         txtSegundoNombre = new javax.swing.JTextField();
         txtPrimerApellido = new javax.swing.JTextField();
         txtSegundoApellido = new javax.swing.JTextField();
-        txtIdentificacion = new javax.swing.JTextField();
         lblTipoTelefono = new javax.swing.JLabel();
         cmbTipoTelefono = new javax.swing.JComboBox<>();
         lblTipoIdentificacion = new javax.swing.JLabel();
         cmbTipoIdentificacion = new javax.swing.JComboBox<>();
+        txtTelefono = new javax.swing.JFormattedTextField();
+        txtIdentificacion = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1285, 752));
@@ -257,7 +301,6 @@ public class JF_Register extends javax.swing.JFrame {
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
         btnBack.setContentAreaFilled(false);
-        btnBack.setOpaque(true);
         btnBack.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backPressed.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -324,6 +367,11 @@ public class JF_Register extends javax.swing.JFrame {
                 txtPasswordActionPerformed(evt);
             }
         });
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyTyped(evt);
+            }
+        });
         pnlBackground.add(txtPassword);
         txtPassword.setBounds(310, 650, 230, 22);
         pnlBackground.add(jLabel17);
@@ -364,8 +412,6 @@ public class JF_Register extends javax.swing.JFrame {
         lblTelefono.setText("Teléfono*");
         pnlBackground.add(lblTelefono);
         lblTelefono.setBounds(630, 190, 110, 40);
-        pnlBackground.add(txtTelefono);
-        txtTelefono.setBounds(790, 200, 180, 22);
 
         lblPais.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblPais.setForeground(new java.awt.Color(255, 255, 255));
@@ -450,8 +496,20 @@ public class JF_Register extends javax.swing.JFrame {
         lblCorreo.setText("Correo*");
         pnlBackground.add(lblCorreo);
         lblCorreo.setBounds(40, 490, 110, 30);
+
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyTyped(evt);
+            }
+        });
         pnlBackground.add(txtUsername);
         txtUsername.setBounds(310, 600, 230, 22);
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         pnlBackground.add(txtNombre);
         txtNombre.setBounds(310, 140, 230, 22);
         pnlBackground.add(txtSegundoNombre);
@@ -460,8 +518,6 @@ public class JF_Register extends javax.swing.JFrame {
         txtPrimerApellido.setBounds(310, 260, 230, 22);
         pnlBackground.add(txtSegundoApellido);
         txtSegundoApellido.setBounds(310, 320, 230, 22);
-        pnlBackground.add(txtIdentificacion);
-        txtIdentificacion.setBounds(310, 440, 230, 22);
 
         lblTipoTelefono.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 20)); // NOI18N
         lblTipoTelefono.setForeground(new java.awt.Color(255, 255, 255));
@@ -494,6 +550,32 @@ public class JF_Register extends javax.swing.JFrame {
         });
         pnlBackground.add(cmbTipoIdentificacion);
         cmbTipoIdentificacion.setBounds(310, 380, 230, 22);
+
+        try {
+            txtTelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonoActionPerformed(evt);
+            }
+        });
+        pnlBackground.add(txtTelefono);
+        txtTelefono.setBounds(790, 200, 180, 22);
+
+        try {
+            txtIdentificacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#-####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtIdentificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdentificacionActionPerformed(evt);
+            }
+        });
+        pnlBackground.add(txtIdentificacion);
+        txtIdentificacion.setBounds(310, 440, 230, 22);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -537,6 +619,32 @@ public class JF_Register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
 
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoActionPerformed
+
+    private void txtIdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdentificacionActionPerformed
+
+    private void txtUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyTyped
+       if(this.getTxtUsername().length() >= 15){
+            evt.consume();
+       }
+    }//GEN-LAST:event_txtUsernameKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        if(this.getTxtNombre().length() >= 20){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
+        if(this.getTxtPassword().length() >= 16){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPasswordKeyTyped
+
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -579,13 +687,13 @@ public class JF_Register extends javax.swing.JFrame {
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccionExacta;
-    private javax.swing.JTextField txtIdentificacion;
+    private javax.swing.JFormattedTextField txtIdentificacion;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtPrimerApellido;
     private javax.swing.JTextField txtSegundoApellido;
     private javax.swing.JTextField txtSegundoNombre;
-    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JFormattedTextField txtTelefono;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
