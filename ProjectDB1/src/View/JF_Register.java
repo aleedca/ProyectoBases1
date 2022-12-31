@@ -37,9 +37,8 @@ public class JF_Register extends javax.swing.JFrame {
         return btnVerificarRegistro;
     }
     
-    
-    //GETTERS AND SETTERS
-    
+    //------------------------------------------------------------------------------------------------------
+      
     public String getTxtNombre() {
         return txtNombre.getText();
     }    
@@ -118,15 +117,71 @@ public class JF_Register extends javax.swing.JFrame {
     }
     
     //------------------------------------------------------------------------------------------------------
-   
     
+//CLEAN Functions
+    public void cleanAll() {
+       cleanPrimerNombre();
+       cleanSegundoNombre();
+       cleanPrimerApellido();
+       cleanSegundoApellido();
+       cleanUsername();
+       cleanPassword();
+       cleanIdentificacion();
+       cleanTelefono();
+       cleanCorreo();
+       cleanDireccion();
+       System.out.println("Limpia todo...");
+    }
+    
+    public void cleanPrimerNombre() {
+        this.txtNombre.setText("");
+    }
+    
+    public void cleanPrimerApellido() {
+        this.txtPrimerApellido.setText("");
+    }
+    
+    public void cleanSegundoNombre() {
+        this.txtSegundoNombre.setText("");
+    }
+    
+    public void cleanSegundoApellido() {
+        this.txtSegundoApellido.setText("");
+    }
+
+    private void cleanIdentificacion() {
+        this.txtIdentificacion.setText("");
+    }
+    
+    private void cleanTelefono() {
+        this.txtTelefono.setText("");
+    }
+
+    public void cleanUsername() {
+        this.txtUsername.setText("");
+    }
+    
+    public void cleanPassword() {
+        this.txtPassword.setText("");
+    }
+    
+    public void cleanCorreo() {
+        this.txtCorreo.setText("");
+    }
+
+    public void cleanDireccion() {
+        this.txtDireccionExacta.setText("");
+    }
+    
+    //---------------------------------------------------------------------------------------
+    
+    //SETTERS    
     
     public void setCmbCanton(JComboBox<String> cmbCanton) {
         this.cmbCanton = cmbCanton;
     }
 
-
-
+    
     public void setCmbDistrito(JComboBox<String> cmbDistrito) {
         this.cmbDistrito = cmbDistrito;
     }
@@ -160,6 +215,10 @@ public class JF_Register extends javax.swing.JFrame {
         this.cmbTipoTelefono = cmbTipoTelefono;
     }
 
+
+
+    
+    //-----------------------------------------------------------------
     public JLabel getLblAvatar() {
         return lblAvatar;
     }
@@ -167,61 +226,7 @@ public class JF_Register extends javax.swing.JFrame {
     public void setLblAvatar(JLabel lblAvatar) {
         this.lblAvatar = lblAvatar;
     }
-
-
-
-    public void setTxtCorreo(JTextField txtCorreo) {
-        this.txtCorreo = txtCorreo;
-    }
-
-
-
-    public void setTxtDireccionExacta(JTextField txtDireccionExacta) {
-        this.txtDireccionExacta = txtDireccionExacta;
-    }
-
-
-
-
-    public void setTxtNombre(JTextField txtNombre) {
-        this.txtNombre = txtNombre;
-    }
-
-
-
-    public void setTxtPassword(JPasswordField txtPassword) {
-        this.txtPassword = txtPassword;
-    }
-
-
-
-    public void setTxtPrimerApellido(JTextField txtPrimerApellido) {
-        this.txtPrimerApellido = txtPrimerApellido;
-    }
-
-
-
-    public void setTxtSegundoApellido(JTextField txtSegundoApellido) {
-        this.txtSegundoApellido = txtSegundoApellido;
-    }
-
-
-
-    public void setTxtSegundoNombre(JTextField txtSegundoNombre) {
-        this.txtSegundoNombre = txtSegundoNombre;
-    }
-
-
-
-    public void setTxtTelefono(JFormattedTextField txtTelefono) {
-        this.txtTelefono = txtTelefono;
-    }
-
-
-
-    public void setTxtUsername(JTextField txtUsername) {
-        this.txtUsername = txtUsername;
-    }
+    //----------------------------------------------------------------------
     
     
 
@@ -364,6 +369,11 @@ public class JF_Register extends javax.swing.JFrame {
                 txtPasswordActionPerformed(evt);
             }
         });
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyTyped(evt);
+            }
+        });
         pnlBackground.add(txtPassword);
         txtPassword.setBounds(310, 650, 230, 22);
         pnlBackground.add(jLabel17);
@@ -488,8 +498,20 @@ public class JF_Register extends javax.swing.JFrame {
         lblCorreo.setText("Correo*");
         pnlBackground.add(lblCorreo);
         lblCorreo.setBounds(40, 490, 110, 30);
+
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyTyped(evt);
+            }
+        });
         pnlBackground.add(txtUsername);
         txtUsername.setBounds(310, 600, 230, 22);
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         pnlBackground.add(txtNombre);
         txtNombre.setBounds(310, 140, 230, 22);
         pnlBackground.add(txtSegundoNombre);
@@ -536,7 +558,6 @@ public class JF_Register extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtTelefono.setPreferredSize(new java.awt.Dimension(64, 22));
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoActionPerformed(evt);
@@ -607,6 +628,24 @@ public class JF_Register extends javax.swing.JFrame {
     private void txtIdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdentificacionActionPerformed
+
+    private void txtUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyTyped
+       if(this.getTxtUsername().length() >= 15){
+            evt.consume();
+       }
+    }//GEN-LAST:event_txtUsernameKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        if(this.getTxtNombre().length() >= 20){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
+        if(this.getTxtPassword().length() >= 16){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPasswordKeyTyped
 
  
     // Variables declaration - do not modify//GEN-BEGIN:variables

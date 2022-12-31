@@ -36,49 +36,56 @@ public class model_Register {
     
     
     //--------- METODOS -------------------    
-    public boolean validarCamposVacios(){
-        if(this.primerNombre.isEmpty() || this.primerApellido.isEmpty() || this.identificacion.isEmpty()){
-            if(this.usernameRegister.isEmpty() || this.passwordRegister.isEmpty() ||this.correo.isEmpty()){
-                if(this.telefono.isEmpty() || this.direccion.isEmpty() || this.foto.isEmpty()){
-                    return true;
-                }
+    public boolean validarCamposVacios(String primerNombre, String primerApellido, String identificacion, 
+            String username, String password, String correo, String telefono, String direccion, String foto){
+        
+        if(primerNombre.isEmpty() || primerApellido.isEmpty() || identificacion.isEmpty() || direccion.isEmpty()){
+            return true;
+        }else{
+            if(username.isEmpty() || password.isEmpty() ||correo.isEmpty() || telefono.isEmpty()){
+                return true;
             }
         }
        
+        System.out.println("Campos completos");
         return false;
     }
     
-    // 4-8 character password requiring numbers and alphabets of both cases
-    private static final String PASSWORD_REGEX = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$";
+    // La contraseña debe tener al entre 4 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.
+    //NO puede tener otros símbolos.
+    private static final String PASSWORD_REGEX = "^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{4,16}$";
     
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
     
-    public boolean validarFormatPassword(){
-        if (PASSWORD_PATTERN.matcher(this.passwordRegister).matches()) {
-		return true;
+    public boolean validarFormatPassword(String password){
+        if (PASSWORD_PATTERN.matcher( password).matches()) {
+            System.out.println("Contrasenna valida");
+            return true;
 	}
         
         return false;
     }
     
     
-    public boolean validarFormatUsername(){
-        String regex = "^[^s]\\w{5,10}$";
+    public boolean validarFormatUsername(String username){
+        String regex = "^[A-Za-z0-9_]{5,15}$";
         Pattern pattern = Pattern.compile(regex);
-        Matcher mather = pattern.matcher(this.usernameRegister);
+        Matcher mather = pattern.matcher(username);
         
         if (mather.matches()) {
+            System.out.println("Username valido");
             return true;
         } 
         
         return false;
     }
     
-    public boolean validarFormatCorreo(){
+    public boolean validarFormatCorreo(String correo){
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        Matcher mather = pattern.matcher(this.correo);
+        Matcher mather = pattern.matcher(correo);
         
         if (mather.find() == true) {
+            System.out.println("Correo valido");
             return true;
         } 
          
@@ -86,28 +93,43 @@ public class model_Register {
     }
     
     
-    public boolean validarSegundoNombre(){
-        if(this.segundoNombre != null){
-             return true;
+    public boolean validarSegundoNombre(String segundoNombre){
+        if(segundoNombre.isEmpty()){
+             return false;
         }
-        return false;
+        return true;
     }
     
-    public boolean validarSegundoApellido(){
-        if(this.segundoApellido != null){
-             return true;
+    public boolean validarSegundoApellido(String segundoApellido){
+        if(segundoApellido.isEmpty()){
+             return false;
         }
-        return false;
+        
+        return true;
     }
     
     
     
     public boolean validarFormatoCadena(String cadena){
-        String regex = "^\\[A-Za-z]{3,20}$";
+        String regex = "^[A-Za-z]{3,20}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher mather = pattern.matcher(cadena);
         
         if (mather.matches()) {
+            System.out.println("Cadena valida");
+            return true;
+        } 
+        
+        return false;
+    }
+    
+    public boolean validarFormatoDireccion(String direccion){
+        String regex = "^[A-Za-z\\s\\d\\#,.]{50,200}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher mather = pattern.matcher(direccion);
+        
+        if (mather.matches()) {
+            System.out.println("Direccion valida");
             return true;
         } 
         

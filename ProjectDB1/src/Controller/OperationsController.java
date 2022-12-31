@@ -27,6 +27,7 @@ public class OperationsController implements ActionListener{
     
     private model_Login modelLogin;
     private model_Register modelRegister;
+    private boolean flagRegister;
         
     
     //Constructor 2da version
@@ -186,64 +187,104 @@ public class OperationsController implements ActionListener{
             modelRegister.setDistrito(viewRegister.getCmbDistrito());
             modelRegister.setDireccion(viewRegister.getTxtDireccionExacta());
             
-            if(modelRegister.validarCamposVacios() == true){
-                
+            flagRegister = true;
+            if(modelRegister.validarCamposVacios(modelRegister.getPrimerNombre(), modelRegister.getPrimerApellido(),
+                                                modelRegister.getIdentificacion(), modelRegister.getUsernameRegister(), 
+                                                modelRegister.getPasswordRegister(), modelRegister.getCorreo(), modelRegister.getTelefono(), 
+                                                modelRegister.getDireccion(), modelRegister.getFoto()) == true)
+            {
                 JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);
-                
+                //viewRegister.cleanAll();
+                flagRegister = false;
             }else{
-                if(modelRegister.validarFormatCorreo()){ 
-                    if(modelRegister.validarFormatUsername()){
-                        if(modelRegister.validarFormatPassword()){
-                            if(modelRegister.validarFormatoCadena(modelRegister.getPrimerNombre()) &&  modelRegister.validarFormatoCadena(modelRegister.getPrimerApellido())){
-                                if(modelRegister.validarSegundoNombre() && modelRegister.validarSegundoApellido())
-                                {
-                                    if(modelRegister.validarFormatoCadena(modelRegister.getSegundoNombre()) &&  modelRegister.validarFormatoCadena(modelRegister.getSegundoApellido())){
-                                        JOptionPane.showMessageDialog(null, "Felicidades, su cuenta se creó correctamte.\nInicie sesión para comenzar a disfrutar de nuestra aplicación" );
-                                        
-                                        //Devuelve a la principal
-                                        viewRegister.setVisible(false);
-                                        viewPrincipal.setVisible(true);
-                                    }
-                                }else{
-                                    if(modelRegister.validarSegundoNombre() && modelRegister.validarSegundoApellido() == false){
-                                        if(modelRegister.validarFormatoCadena(modelRegister.getSegundoNombre())){
-                                            JOptionPane.showMessageDialog(null, "Felicidades, su cuenta se creó correctamte.\nInicie sesión para comenzar a disfrutar de nuestra aplicación" );
-                                            
-                                            //Devuelve a la principal
-                                            viewRegister.setVisible(false);
-                                            viewPrincipal.setVisible(true);
-                                            
-                                        }else{
-                                             JOptionPane.showMessageDialog(null, "Formato inválido. Recuerde solo ingresar letras", "Error", JOptionPane.WARNING_MESSAGE);
-                                        }//Formato SegundoNombre
-                                    }else{
-                                        if(modelRegister.validarFormatoCadena(modelRegister.getSegundoApellido())){
-                                            JOptionPane.showMessageDialog(null, "Felicidades, su cuenta se creó correctamte.\nInicie sesión para comenzar a disfrutar de nuestra aplicación" );
-                                            
-                                            //Devuelve a la principal
-                                            viewRegister.setVisible(false);
-                                            viewPrincipal.setVisible(true);
-                                            
-                                        }else{
-                                             JOptionPane.showMessageDialog(null, "Formato inválido. Recuerde solo ingresar letras", "Error", JOptionPane.WARNING_MESSAGE);
-                                        } //Formato Segundo Apellido
-                                    }// Not null SegundoNombre-Apellido  
-                                }// Not null SegundoNombre-Apellido  
-                            }else{
-                                JOptionPane.showMessageDialog(null, "Formato inválido. Recuerde solo ingresar letras", "Error", JOptionPane.WARNING_MESSAGE);
-                            }//Formato PrimerNombre-Apellido   
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Formato de contraseña incorrecta. Debe contener al menos 4 caracteres(letras o numeros)", "Error", JOptionPane.WARNING_MESSAGE);
-                        }//Formato Password
-                    }else{
-                    JOptionPane.showMessageDialog(null, "Por favor, ingrese únicamente letras, números o el caracter _ para crear su username.\nDebe tener al menos 5 caracteres", "Error", JOptionPane.WARNING_MESSAGE);
-                    }//Formato Username
-                }else{
+                              
+                if(modelRegister.validarFormatoCadena(modelRegister.getPrimerNombre()) == false ||  modelRegister.validarFormatoCadena(modelRegister.getPrimerApellido())== false)
+                {
+                    
+                    JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Nombre y Primer Apellido", "Error", JOptionPane.WARNING_MESSAGE);
+                    
+              
+                    if(modelRegister.validarFormatoCadena(modelRegister.getPrimerNombre()) == false){
+                        System.out.println("Nombre");
+                        viewRegister.cleanPrimerNombre();
+                    }
+                    
+                    if(modelRegister.validarFormatoCadena(modelRegister.getPrimerApellido()) == false){
+                        System.out.println("Apellido");
+                        viewRegister.cleanPrimerApellido();
+                    }
+                    
+                                     
+                    flagRegister = false;
+                }
+                
+                
+                if(modelRegister.validarSegundoNombre(modelRegister.getSegundoNombre()) || modelRegister.validarSegundoApellido(modelRegister.getSegundoApellido())){
+                    
+                    if(modelRegister.validarSegundoNombre(modelRegister.getSegundoNombre())){
+                        System.out.println("SegundoNombre no nulo");
+                        
+                        if(modelRegister.validarFormatoCadena(modelRegister.getSegundoNombre()) == false){
+                            
+                            JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Nombre", "Error", JOptionPane.WARNING_MESSAGE);
+                            
+                            System.out.println("SegundoNombre");
+                            viewRegister.cleanSegundoNombre();
+                            flagRegister = false;
+                        }
+                    }
+                    
+                    if(modelRegister.validarSegundoApellido(modelRegister.getSegundoApellido())){
+                        System.out.println("SegundoApellido no nulo");
+                        
+                        if(modelRegister.validarFormatoCadena(modelRegister.getSegundoApellido()) == false){
+                            
+                            JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Apellido", "Error", JOptionPane.WARNING_MESSAGE);
+                            
+                            System.out.println("SegundoApellido");
+                            viewRegister.cleanSegundoApellido();
+                            flagRegister = false;
+                        }   
+                    }
+                    
+                }
+                
+                
+                if(modelRegister.validarFormatCorreo(modelRegister.getCorreo()) == false){ 
                     JOptionPane.showMessageDialog(null, "Formato de correo no válido", "Error", JOptionPane.WARNING_MESSAGE);
-                }//Formato Correo
-            }//Campos Vacios
+                    viewRegister.cleanCorreo();
+                    flagRegister = false;
+                }
+                
+                
+                if(modelRegister.validarFormatUsername(modelRegister.getUsernameRegister()) == false){
+                    JOptionPane.showMessageDialog(null, "Por favor, ingrese únicamente letras, números o el caracter _ para crear su username.\nDebe tener al menos 5 caracteres y sin espacios.", "Error", JOptionPane.WARNING_MESSAGE);
+                    viewRegister.cleanUsername();
+                    flagRegister = false;
+                }
+                
+                if(modelRegister.validarFormatPassword(modelRegister.getPasswordRegister()) == false){
+                    JOptionPane.showMessageDialog(null, "Formato de contraseña incorrecta.\nDebe contener entre 4 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.", "Error", JOptionPane.WARNING_MESSAGE);
+                    viewRegister.cleanPassword();
+                    flagRegister = false;
+                }
+                
+                if(modelRegister.validarFormatoDireccion(modelRegister.getDireccion()) == false){
+                    JOptionPane.showMessageDialog(null, "Dirección no válida.\nDebe contener un mínimo de 50 caracteres", "Error", JOptionPane.WARNING_MESSAGE);
+                    viewRegister.cleanDireccion();
+                    flagRegister = false;
+                }
+
+            }
             
-            
+            if(flagRegister == true){
+                JOptionPane.showMessageDialog(null, "Felicidades, su cuenta se creó correctamte.\nInicie sesión para comenzar a disfrutar de nuestra aplicación" );
+                viewRegister.cleanAll();
+                viewRegister.setVisible(false);
+                
+                viewPrincipal.setVisible(true);
+            }
+                
         }
 
     }
