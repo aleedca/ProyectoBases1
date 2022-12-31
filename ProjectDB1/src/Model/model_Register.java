@@ -10,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
 
 /**
  *
@@ -71,9 +73,31 @@ public class model_Register {
         return false;
     }
     
-
+    public boolean validarFormatCorreo(String correo){
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(correo);
+        
+        if (mather.find() == true) {
+            return true;
+        } 
+         
+        return false;
+    }
     
-       
+    
+    public boolean validarFormatoTelefono(String telefono){
+        String regex = "^\\d{4}-\\d{4}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher mather = pattern.matcher(telefono);
+        
+        if (mather.matches()) {
+            return true;
+        } 
+        
+        return false;
+    }
+   
+        
     private void setImageLabel(JLabel labelName, String imageDirectory){
         ImageIcon image = new ImageIcon(imageDirectory);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_DEFAULT));
