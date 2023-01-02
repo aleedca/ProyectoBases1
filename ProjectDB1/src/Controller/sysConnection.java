@@ -8,10 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author Mariana
- */
+
 public class sysConnection {
         public static Connection obtConexion(){
         try{
