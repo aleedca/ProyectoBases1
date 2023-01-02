@@ -13,9 +13,7 @@ BEGIN
     AND Stadium.nameStadium = NVL (pStadium, Stadium.nameStadium) AND CountryTeam.flag = NVL (pTeamFlag, CountryTeam.flag);
 END getGroupList;
 
---Listado de los equipos:
---Muestran el nombres completos, foto y su posición (portero, delantero, capitán, director técnico, entre otros).
---Filtros nombre del equipo, nombre completo de los jugadores, posición.
+
 
 
 CREATE OR REPLACE PROCEDURE getTeamList(pTeamList OUT SYS_REFCURSOR, pTeamName IN VARCHAR2, pPlayerFstName IN VARCHAR2, pPlayerSndName IN VARCHAR2,
