@@ -21,12 +21,12 @@ import javax.swing.JOptionPane;
  */
 
 public class OperationsController implements ActionListener{
-    private JF_Principal viewPrincipal;
-    private JF_Login viewLogin;
-    private JF_Register viewRegister;
+    private final JF_Principal viewPrincipal;
+    private final JF_Login viewLogin;
+    private final JF_Register viewRegister;
     
-    private model_Login modelLogin;
-    private model_Register modelRegister;
+    private final model_Login modelLogin;
+    private final model_Register modelRegister;
     private boolean flagRegister;
         
     
@@ -44,19 +44,23 @@ public class OperationsController implements ActionListener{
         this.viewRegister = register;
         
         //Modelo Login
-        model_Login validarLogin = new model_Login();
-        this.modelLogin = validarLogin;  
+        model_Login validateLogin = new model_Login();
+        this.modelLogin = validateLogin;  
         
         //Model Register
-        model_Register validarRegister = new model_Register();
-        this.modelRegister = validarRegister;
+        model_Register validateRegister = new model_Register();
+        this.modelRegister = validateRegister;
         
         
         _init_(); 
+        
+        fillGenders();
+        fillIdentificationTypes();
+        fillCountries();
     }
     
     //Init de ActionListener
-    public void _init_(){
+    private void _init_(){
         //Principal
         viewPrincipal.getBtnIniciarSesion().addActionListener(this);
         viewPrincipal.getBtnRegistrar().addActionListener(this);
@@ -74,6 +78,32 @@ public class OperationsController implements ActionListener{
         viewRegister.getBtnCargarFoto().addActionListener(this);
         
     }
+    
+    
+    private void fillGenders(){
+        viewRegister.getCmbGenero().removeAllItems();
+        for(int i=0; i<modelRegister.getGenders().size();i++){
+           viewRegister.getCmbGenero().addItem(modelRegister.getGenders().get(i).getDescriptionGender());
+        }
+    }
+    
+    private void fillIdentificationTypes(){
+        viewRegister.getCmbTipoIdentificacion().removeAllItems();
+        
+        for(int i=0; i< modelRegister.getIdentificationTypes().size();i++){
+           viewRegister.getCmbTipoIdentificacion().addItem(modelRegister.getIdentificationTypes().get(i).getNameTypeIdentification());
+        }
+    }
+    
+    private void fillCountries(){
+        viewRegister.getCmbPais().removeAllItems();
+        
+        for(int i=0; i<modelRegister.getCountries().size();i++){
+           viewRegister.getCmbPais().addItem(modelRegister.getCountries().get(i).getNameCountry());
+        }
+    }
+    
+    
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -158,58 +188,59 @@ public class OperationsController implements ActionListener{
         }
         
         if(e.getSource() == viewRegister.getBtnCargarFoto()){
-            modelRegister.setFoto("src/Images/prueba.jpg");
+            modelRegister.setPhoto("src/Images/prueba.jpg");
             
             viewRegister.setLocationRelativeTo(viewRegister);
             modelRegister.setImageLabel(viewRegister.getLblAvatar());
+            viewRegister.repaint();
         }
         
         if(e.getSource() == viewRegister.getBtnVerificarRegistro()){
-            modelRegister.setPrimerNombre(viewRegister.getTxtNombre());
-            modelRegister.setSegundoNombre(viewRegister.getTxtSegundoNombre());
-            modelRegister.setPrimerApellido(viewRegister.getTxtPrimerApellido());
-            modelRegister.setSegundoApellido(viewRegister.getTxtSegundoApellido());
+            modelRegister.setFirstName(viewRegister.getTxtNombre());
+            modelRegister.setSecondName(viewRegister.getTxtSegundoNombre());
+            modelRegister.setFirstLastName(viewRegister.getTxtPrimerApellido());
+            modelRegister.setSecondLastName(viewRegister.getTxtSegundoApellido());
             
-            modelRegister.setTipoIdentificacion(viewRegister.getCmbTipoIdentificacion());
-            modelRegister.setIdentificacion(viewRegister.getTxtIdentificacion());
+            modelRegister.setTypeIdentification(viewRegister.getSelectedTypeIdentification());
+            modelRegister.setIdentification(viewRegister.getTxtIdentificacion());
             
             modelRegister.setUsernameRegister(viewRegister.getTxtUsername());
             modelRegister.setPasswordRegister(viewRegister.getTxtPassword());
             
-            modelRegister.setTipoTelefono(viewRegister.getCmbTipoTelefono());
-            modelRegister.setTelefono(viewRegister.getTxtTelefono());
-            modelRegister.setCorreo(viewRegister.getTxtCorreo());
             
-            modelRegister.setGenero(viewRegister.getCmbGenero());
-            modelRegister.setPais(viewRegister.getCmbPais());
-            modelRegister.setProvincia(viewRegister.getCmbProvincia());
+            modelRegister.setPhone(viewRegister.getTxtTelefono());
+            modelRegister.setMail(viewRegister.getTxtCorreo());
+            
+            modelRegister.setGender(viewRegister.getSelectedGender());
+            modelRegister.setCountry(viewRegister.getSelectedCountry());
+            modelRegister.setProvince(viewRegister.getCmbProvincia());
             modelRegister.setCanton(viewRegister.getCmbCanton());
-            modelRegister.setDistrito(viewRegister.getCmbDistrito());
-            modelRegister.setDireccion(viewRegister.getTxtDireccionExacta());
+            modelRegister.setDistrict(viewRegister.getCmbDistrito());
+            modelRegister.setAddress(viewRegister.getTxtDireccionExacta());
             
             flagRegister = true;
-            if(modelRegister.validarCamposVacios(modelRegister.getPrimerNombre(), modelRegister.getPrimerApellido(),
-                                                modelRegister.getIdentificacion(), modelRegister.getUsernameRegister(), 
-                                                modelRegister.getPasswordRegister(), modelRegister.getCorreo(), modelRegister.getTelefono(), 
-                                                modelRegister.getDireccion(), modelRegister.getFoto()) == true)
+            if(modelRegister.validateEmptyFields(modelRegister.getFirstName(), modelRegister.getFirstLastName(),
+                                                modelRegister.getIdentification(), modelRegister.getUsernameRegister(), 
+                                                modelRegister.getPasswordRegister(), modelRegister.getMail(), modelRegister.getPhone(), 
+                                                modelRegister.getAddress()) == true)
             {
                 JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);
                 //viewRegister.cleanAll();
                 flagRegister = false;
             }else{
                               
-                if(modelRegister.validarFormatoCadena(modelRegister.getPrimerNombre()) == false ||  modelRegister.validarFormatoCadena(modelRegister.getPrimerApellido())== false)
+                if(modelRegister.validateFormatString(modelRegister.getFirstName()) == false ||  modelRegister.validateFormatString(modelRegister.getFirstLastName())== false)
                 {
                     
                     JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Nombre y Primer Apellido", "Error", JOptionPane.WARNING_MESSAGE);
                     
               
-                    if(modelRegister.validarFormatoCadena(modelRegister.getPrimerNombre()) == false){
+                    if(modelRegister.validateFormatString(modelRegister.getFirstName()) == false){
                         System.out.println("Nombre");
                         viewRegister.cleanPrimerNombre();
                     }
                     
-                    if(modelRegister.validarFormatoCadena(modelRegister.getPrimerApellido()) == false){
+                    if(modelRegister.validateFormatString(modelRegister.getFirstName()) == false){
                         System.out.println("Apellido");
                         viewRegister.cleanPrimerApellido();
                     }
@@ -219,12 +250,12 @@ public class OperationsController implements ActionListener{
                 }
                 
                 
-                if(modelRegister.validarSegundoNombre(modelRegister.getSegundoNombre()) || modelRegister.validarSegundoApellido(modelRegister.getSegundoApellido())){
+                if(modelRegister.validateSecondName(modelRegister.getSecondName()) || modelRegister.validateSecondLastName(modelRegister.getSecondLastName())){
                     
-                    if(modelRegister.validarSegundoNombre(modelRegister.getSegundoNombre())){
+                    if(modelRegister.validateSecondName(modelRegister.getSecondName())){
                         System.out.println("SegundoNombre no nulo");
                         
-                        if(modelRegister.validarFormatoCadena(modelRegister.getSegundoNombre()) == false){
+                        if(modelRegister.validateFormatString(modelRegister.getSecondName()) == false){
                             
                             JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Nombre", "Error", JOptionPane.WARNING_MESSAGE);
                             
@@ -234,10 +265,10 @@ public class OperationsController implements ActionListener{
                         }
                     }
                     
-                    if(modelRegister.validarSegundoApellido(modelRegister.getSegundoApellido())){
+                    if(modelRegister.validateSecondLastName(modelRegister.getSecondLastName())){
                         System.out.println("SegundoApellido no nulo");
                         
-                        if(modelRegister.validarFormatoCadena(modelRegister.getSegundoApellido()) == false){
+                        if(modelRegister.validateFormatString(modelRegister.getSecondLastName()) == false){
                             
                             JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Apellido", "Error", JOptionPane.WARNING_MESSAGE);
                             
@@ -250,32 +281,32 @@ public class OperationsController implements ActionListener{
                 }
                 
                 
-                if(modelRegister.validarFormatCorreo(modelRegister.getCorreo()) == false){ 
+                if(modelRegister.validateFormatMail(modelRegister.getMail()) == false){ 
                     JOptionPane.showMessageDialog(null, "Formato de correo no válido", "Error", JOptionPane.WARNING_MESSAGE);
                     viewRegister.cleanCorreo();
                     flagRegister = false;
                 }
                 
                 
-                if(modelRegister.validarFormatUsername(modelRegister.getUsernameRegister()) == false){
+                if(modelRegister.validateFormatUsername(modelRegister.getUsernameRegister()) == false){
                     JOptionPane.showMessageDialog(null, "Por favor, ingrese únicamente letras, números o el caracter _ para crear su username.\nDebe tener al menos 5 caracteres y sin espacios.", "Error", JOptionPane.WARNING_MESSAGE);
                     viewRegister.cleanUsername();
                     flagRegister = false;
                 }
                 
-                if(modelRegister.validarFormatPassword(modelRegister.getPasswordRegister()) == false){
+                if(modelRegister.validateFormatPassword(modelRegister.getPasswordRegister()) == false){
                     JOptionPane.showMessageDialog(null, "Formato de contraseña incorrecta.\nDebe contener entre 4 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.", "Error", JOptionPane.WARNING_MESSAGE);
                     viewRegister.cleanPassword();
                     flagRegister = false;
                 }
                 
-                if(modelRegister.validarFormatoDireccion(modelRegister.getDireccion()) == false){
+                if(modelRegister.validarFormatoDireccion(modelRegister.getAddress()) == false){
                     JOptionPane.showMessageDialog(null, "Dirección no válida.\nDebe contener un mínimo de 50 caracteres", "Error", JOptionPane.WARNING_MESSAGE);
                     viewRegister.cleanDireccion();
                     flagRegister = false;
                 }
                 
-                if(modelRegister.validarFoto(modelRegister.getFoto())){
+                if(modelRegister.validatePhoto(modelRegister.getPhoto())){
                     JOptionPane.showMessageDialog(null, "Debe seleccionar una foto", "Error", JOptionPane.WARNING_MESSAGE);
                     flagRegister = false;
                 }
