@@ -4,8 +4,16 @@
  */
 package Main;
 
+
 import Controller.OperationsController;
+
+
 import View.JF_Principal;
+
+import Objects.Gender;
+import DataAccess.DA_Catalogos;
+import java.util.ArrayList;
+import java.sql.SQLException;
 
 /**
  *
@@ -17,12 +25,26 @@ public class mainProject {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        /*        
+        
         JF_Principal principal = new JF_Principal();
         
         OperationsController controlador = new OperationsController(principal);
         
         controlador.showView();
         
+        */
+        
+        try{
+        ArrayList<Gender> genders = DA_Catalogos.getGender();
+        genders.forEach(gender ->{
+            System.out.println(gender.getDescriptionGender());
+        });
+
+        }catch(SQLException ex){
+            System.out.println(ex);
+        }
+
     }
     
 }
