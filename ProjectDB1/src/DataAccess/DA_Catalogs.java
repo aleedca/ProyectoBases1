@@ -4,8 +4,11 @@
  */
 package DataAccess;
 
+import Objects.Canton;
 import Objects.Country;
+import Objects.District;
 import Objects.Gender;
+import Objects.Province;
 import Objects.TypeIdentification;
 import java.util.ArrayList;
 
@@ -82,6 +85,68 @@ public class DA_Catalogs {
 
         return countries;
     }
+    
+    public static ArrayList<Province> getProvince() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getProvince(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<Province> provinces = new ArrayList<>();
+        while(rs.next()){
+            Province province = new Province();
+            
+            province.setIdProvince(rs.getInt("idProvince"));
+            province.setNameProvince(rs.getString("nameProvince"));
+            provinces.add(province);
+        }
+
+        return provinces;
+    }
+    
+    
+    public static ArrayList<Canton> getCanton() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getCanton(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<Canton> cantons = new ArrayList<>();
+        while(rs.next()){
+            Canton canton = new Canton();
+            
+            canton.setIdCanton(rs.getInt("idCanton"));
+            canton.setNameCanton(rs.getString("nameCanton"));
+            cantons.add(canton);
+        }
+
+        return cantons;
+    }
+    
+    public static ArrayList<District> getDistrict() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getDistrict(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<District> districts = new ArrayList<>();
+        while(rs.next()){
+            District district = new District();
+            
+            district.setIdDistrict(rs.getInt("idDistrict"));
+            district.setNameDistrict(rs.getString("nameDistrict"));
+            districts.add(district);
+        }
+
+        return districts;
+    }
+    
     
     
     

@@ -57,6 +57,9 @@ public class OperationsController implements ActionListener{
         fillGenders();
         fillIdentificationTypes();
         fillCountries();
+        fillProvinces();
+        fillCantons();
+        fillDistricts();
     }
     
     //Init de ActionListener
@@ -100,6 +103,30 @@ public class OperationsController implements ActionListener{
         
         for(int i=0; i<modelRegister.getCountries().size();i++){
            viewRegister.getCmbPais().addItem(modelRegister.getCountries().get(i).getNameCountry());
+        }
+    }
+    
+    private void fillProvinces(){
+        viewRegister.getCmbProvincia().removeAllItems();
+ 
+        for(int i=0; i<modelRegister.getProvinces().size();i++){
+           viewRegister.getCmbProvincia().addItem(modelRegister.getProvinces().get(i).getNameProvince());
+        }
+    }
+    
+    private void fillCantons(){
+        viewRegister.getCmbCanton().removeAllItems();
+ 
+        for(int i=0; i<modelRegister.getCantons().size();i++){
+           viewRegister.getCmbCanton().addItem(modelRegister.getCantons().get(i).getNameCanton());
+        }
+    }
+    
+    private void fillDistricts(){
+        viewRegister.getCmbDistrito().removeAllItems();
+ 
+        for(int i=0; i<modelRegister.getDistricts().size();i++){
+           viewRegister.getCmbDistrito().addItem(modelRegister.getDistricts().get(i).getNameDistrict());
         }
     }
     
@@ -213,9 +240,9 @@ public class OperationsController implements ActionListener{
             
             modelRegister.setGender(viewRegister.getSelectedGender());
             modelRegister.setCountry(viewRegister.getSelectedCountry());
-            modelRegister.setProvince(viewRegister.getCmbProvincia());
-            modelRegister.setCanton(viewRegister.getCmbCanton());
-            modelRegister.setDistrict(viewRegister.getCmbDistrito());
+            modelRegister.setProvince(viewRegister.getSelectedProvince());
+            modelRegister.setCanton(viewRegister.getSelectedCanton());
+            modelRegister.setDistrict(viewRegister.getSelectedDistrict());
             modelRegister.setAddress(viewRegister.getTxtDireccionExacta());
             
             flagRegister = true;

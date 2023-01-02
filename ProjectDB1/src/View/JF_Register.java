@@ -108,20 +108,36 @@ public class JF_Register extends javax.swing.JFrame {
     
     
         
-    public String getCmbProvincia() {
-        String provincia = (String)cmbProvincia.getSelectedItem();
-        return provincia;
+    public String getSelectedProvince() {
+        String province = (String)cmbProvincia.getSelectedItem();
+        return province;
+    }
+
+    public JComboBox<String> getCmbProvincia() {
+        return cmbProvincia;
     }
     
-    public String getCmbCanton() {
+    
+    public String getSelectedCanton() {
         String canton = (String)cmbCanton.getSelectedItem();
         return canton;
     }
-    
-    public String getCmbDistrito() {
+
+    public JComboBox<String> getCmbCanton() {
+        return cmbCanton;
+    }
+        
+    public String getSelectedDistrict() {
         String distrito = (String)cmbDistrito.getSelectedItem();
         return distrito;
     }
+
+    public JComboBox<String> getCmbDistrito() {
+        return cmbDistrito;
+    }
+    
+    
+    
     
     public String getTxtCorreo() {
         return txtCorreo.getText();

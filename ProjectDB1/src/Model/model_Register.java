@@ -2,8 +2,11 @@
 package Model;
 
 import DataAccess.DA_Catalogs;
+import Objects.Canton;
 import Objects.Country;
+import Objects.District;
 import Objects.Gender;
+import Objects.Province;
 import Objects.TypeIdentification;
 import java.awt.Image;
 import java.sql.SQLException;
@@ -33,10 +36,6 @@ public class model_Register {
     private String usernameRegister;
     private String passwordRegister;
     private String phone;
-  
-    private String province;
-    private String canton;
-    private String district;
     private String address;
     private String photo;
     
@@ -49,30 +48,34 @@ public class model_Register {
     private String country;
     private ArrayList<Country> countries;
     
+    private String province;
+    private ArrayList<Province> provinces;
+    
+    private String canton;
+    private ArrayList<Canton> cantons;
+    
+    private String district;
+    private ArrayList<District> districts;
     
     
     //------------ Builder ----------------------
-
     public model_Register() {
         
         try {
             this.genders = DA_Catalogs.getGender();
+            
+            this.identificationTypes = DA_Catalogs.getTypeIdentification();
+            
+            this.countries = DA_Catalogs.getCountry();
+            
+            this.provinces = DA_Catalogs.getProvince();
+            
+            this.cantons = DA_Catalogs.getCanton();
+            
+            this.districts = DA_Catalogs.getDistrict();
         } catch (SQLException ex) {
              System.out.println(ex);
         }
-        
-        try {
-            this.identificationTypes = DA_Catalogs.getTypeIdentification();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        
-        try {
-            this.countries = DA_Catalogs.getCountry();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        
         
     }
     
@@ -356,6 +359,30 @@ public class model_Register {
 
     public void setCountries(ArrayList<Country> countries) {
         this.countries = countries;
+    }
+
+    public ArrayList<Province> getProvinces() {
+        return provinces;
+    }
+
+    public void setProvinces(ArrayList<Province> provinces) {
+        this.provinces = provinces;
+    }
+
+    public ArrayList<Canton> getCantons() {
+        return cantons;
+    }
+
+    public void setCantons(ArrayList<Canton> cantons) {
+        this.cantons = cantons;
+    }
+
+    public ArrayList<District> getDistricts() {
+        return districts;
+    }
+
+    public void setDistricts(ArrayList<District> districts) {
+        this.districts = districts;
     }
     
     
