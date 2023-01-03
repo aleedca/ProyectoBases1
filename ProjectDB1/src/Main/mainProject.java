@@ -4,6 +4,7 @@
  */
 package Main;
 
+
 import Controller.OperationsController;
 import View.JF_Principal;
 
@@ -17,6 +18,7 @@ public class mainProject {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+    
         JF_Principal principal = new JF_Principal();
         
         OperationsController controlador = new OperationsController(principal);

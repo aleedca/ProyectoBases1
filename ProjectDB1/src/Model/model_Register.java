@@ -1,7 +1,19 @@
 
 package Model;
 
+import DataAccess.DA_Catalogs;
+import Objects.Canton;
+import Objects.Country;
+import Objects.District;
+import Objects.Gender;
+import Objects.Province;
+import Objects.TypeIdentification;
 import java.awt.Image;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -15,34 +27,69 @@ import java.util.regex.Matcher;
  * @author Mariana
  */
 public class model_Register {
-    private String primerNombre;
-    private String segundoNombre;
-    private String primerApellido;
-    private String segundoApellido;
-    private String tipoIdentificacion;
-    private String identificacion;
-    private String correo;
+    private String firstName;
+    private String secondName;
+    private String firstLastName;
+    private String secondLastName;
+    private String identification;
+    private String mail;
     private String usernameRegister;
     private String passwordRegister;
-    private String tipoTelefono;
-    private String telefono;
-    private String genero;
-    private String pais;
-    private String provincia;
+    private String phone;
+    private String address;
+    private String photo;
+    
+    private String gender;
+    private ArrayList<Gender> genders;
+    
+    private String typeIdentification;
+    private ArrayList<TypeIdentification> identificationTypes;
+    
+    private String country;
+    private ArrayList<Country> countries;
+    
+    private String province;
+    private ArrayList<Province> provinces;
+    
     private String canton;
-    private String distrito;
-    private String direccion;
-    private String foto;
+    private ArrayList<Canton> cantons;
+    
+    private String district;
+    private ArrayList<District> districts;
     
     
-    //--------- METODOS -------------------    
-    public boolean validarCamposVacios(String primerNombre, String primerApellido, String identificacion, 
-            String username, String password, String correo, String telefono, String direccion, String foto){
+    //------------ Builder ----------------------
+    public model_Register() {
         
-        if(primerNombre.isEmpty() || primerApellido.isEmpty() || identificacion.isEmpty() || direccion.isEmpty()){
+        try {
+            this.genders = DA_Catalogs.getGender();
+            
+            this.identificationTypes = DA_Catalogs.getTypeIdentification();
+            
+            this.countries = DA_Catalogs.getCountry();
+            
+            this.provinces = DA_Catalogs.getProvince();
+            
+            this.cantons = DA_Catalogs.getCanton();
+            
+            this.districts = DA_Catalogs.getDistrict();
+        } catch (SQLException ex) {
+             System.out.println(ex);
+        }
+        
+    }
+    
+    
+    //--------- METHODS -------------------  
+    
+    //-------------- VALIDATIONS -------------------------------------
+    public boolean validateEmptyFields(String firstName, String firstLastName, String identification, 
+            String username, String password, String mail, String phone, String address){
+        
+        if(firstName.isEmpty() || firstLastName.isEmpty() || identification.isEmpty() || address.isEmpty()){
             return true;
         }else{
-            if(username.isEmpty() || password.isEmpty() ||correo.isEmpty() || telefono.isEmpty()){
+            if(username.isEmpty() || password.isEmpty() || mail.isEmpty() || phone.isEmpty()){
                 return true;
             }
         }
@@ -57,9 +104,9 @@ public class model_Register {
     
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
     
-    public boolean validarFormatPassword(String password){
+    public boolean validateFormatPassword(String password){
         if (PASSWORD_PATTERN.matcher( password).matches()) {
-            System.out.println("Contrasenna valida");
+            System.out.println("Password valida");
             return true;
 	}
         
@@ -67,7 +114,7 @@ public class model_Register {
     }
     
     
-    public boolean validarFormatUsername(String username){
+    public boolean validateFormatUsername(String username){
         String regex = "^[A-Za-z0-9_]{5,15}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher mather = pattern.matcher(username);
@@ -80,9 +127,9 @@ public class model_Register {
         return false;
     }
     
-    public boolean validarFormatCorreo(String correo){
+    public boolean validateFormatMail(String mail){
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        Matcher mather = pattern.matcher(correo);
+        Matcher mather = pattern.matcher(mail);
         
         if (mather.find() == true) {
             System.out.println("Correo valido");
@@ -93,27 +140,25 @@ public class model_Register {
     }
     
     
-    public boolean validarSegundoNombre(String segundoNombre){
-        if(segundoNombre.isEmpty()){
+    public boolean validateSecondName(String secondName){
+        if(secondName.isEmpty()){
              return false;
         }
         return true;
     }
     
-    public boolean validarSegundoApellido(String segundoApellido){
-        if(segundoApellido.isEmpty()){
+    public boolean validateSecondLastName(String secondLastName){
+        if(secondLastName.isEmpty()){
              return false;
         }
         
         return true;
     }
     
-    
-    
-    public boolean validarFormatoCadena(String cadena){
+    public boolean validateFormatString(String sentence){
         String regex = "^[A-Za-z\\ÑñáéíóúÁÉÍÓÚ]{3,20}$";
         Pattern pattern = Pattern.compile(regex);
-        Matcher mather = pattern.matcher(cadena);
+        Matcher mather = pattern.matcher(sentence);
         
         if (mather.matches()) {
             System.out.println("Cadena valida");
@@ -123,10 +168,10 @@ public class model_Register {
         return false;
     }
     
-    public boolean validarFormatoDireccion(String direccion){
+    public boolean validarFormatoDireccion(String address){
         String regex = "^[A-Za-z\\s\\d\\#,.ÑñáéíóúÁÉÍÓÚ]{50,200}$";
         Pattern pattern = Pattern.compile(regex);
-        Matcher mather = pattern.matcher(direccion);
+        Matcher mather = pattern.matcher(address);
         
         if (mather.matches()) {
             System.out.println("Direccion valida");
@@ -136,79 +181,70 @@ public class model_Register {
         return false;
     }
     
-    public boolean validarFoto(String foto){
-        if(foto == null){
+    public boolean validatePhoto(String photo){
+        if(photo == null){
             return true;
         }
         
        return false;
     }
-   
-        
+    
+    //----------------------------------------------------------------------------------------------------------
+  
     public void setImageLabel(JLabel labelName){
-        ImageIcon image = new ImageIcon(this.foto);
+        ImageIcon image = new ImageIcon(this.photo);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_DEFAULT));
         labelName.setIcon(icon);
-        //System.out.println("Entré aquí");
-        //this.repaint();
     }
-    
-    
-    //GETTERS AND SETTERS
-    public String getPrimerNombre() {
-        return primerNombre;
+        
+    //----------------GETTERS AND SETTERS----------------------------------------
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setPrimerNombre(String primerNombre) {
-        this.primerNombre = primerNombre;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSegundoNombre() {
-        return segundoNombre;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setSegundoNombre(String segundoNombre) {
-        this.segundoNombre = segundoNombre;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
-    public String getPrimerApellido() {
-        return primerApellido;
+    public String getFirstLastName() {
+        return firstLastName;
     }
 
-    public void setPrimerApellido(String primerApellido) {
-        this.primerApellido = primerApellido;
+    public void setFirstLastName(String firstLastName) {
+        this.firstLastName = firstLastName;
     }
 
-    public String getSegundoApellido() {
-        return segundoApellido;
+    public String getSecondLastName() {
+        return secondLastName;
     }
 
-    public void setSegundoApellido(String segundoApellido) {
-        this.segundoApellido = segundoApellido;
+    public void setSecondLastName(String secondLastName) {
+        this.secondLastName = secondLastName;
     }
 
-    public String getTipoIdentificacion() {
-        return tipoIdentificacion;
+    public String getIdentification() {
+        return identification;
     }
 
-    public void setTipoIdentificacion(String tipoIdentificacion) {
-        this.tipoIdentificacion = tipoIdentificacion;
+    public void setIdentification(String identification) {
+        this.identification = identification;
     }
 
-    public String getIdentificacion() {
-        return identificacion;
+    public String getMail() {
+        return mail;
     }
 
-    public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getUsernameRegister() {
@@ -227,44 +263,44 @@ public class model_Register {
         this.passwordRegister = passwordRegister;
     }
 
-    public String getTipoTelefono() {
-        return tipoTelefono;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTipoTelefono(String tipoTelefono) {
-        this.tipoTelefono = tipoTelefono;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getTypeIdentification() {
+        return typeIdentification;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setTypeIdentification(String typeIdentification) {
+        this.typeIdentification = typeIdentification;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getGender() {
+        return gender;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public String getPais() {
-        return pais;
+    public String getCountry() {
+        return country;
     }
 
-    public void setPais(String pais) {
-        this.pais = pais;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public String getProvincia() {
-        return provincia;
+    public String getProvince() {
+        return province;
     }
 
-    public void setProvincia(String provincia) {
-        this.provincia = provincia;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
     public String getCanton() {
@@ -275,28 +311,81 @@ public class model_Register {
         this.canton = canton;
     }
 
-    public String getDistrito() {
-        return distrito;
+    public String getDistrict() {
+        return district;
     }
 
-    public void setDistrito(String distrito) {
-        this.distrito = distrito;
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getAddress() {
+        return address;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getFoto() {
-        return foto;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
-     
+    
+    //-------------------------------------------------------------------
+    
+    public ArrayList<Gender> getGenders() {
+        return genders;
+    }
+
+    public void setGenders(ArrayList<Gender> genders) {
+        this.genders = genders;
+    }
+
+    public ArrayList<TypeIdentification> getIdentificationTypes() {
+        return identificationTypes;
+    }
+
+    public void setIdentificationTypes(ArrayList<TypeIdentification> identificationTypes) {
+        this.identificationTypes = identificationTypes;
+    }
+
+    public ArrayList<Country> getCountries() {
+        return countries;
+    }
+
+    public void setCountries(ArrayList<Country> countries) {
+        this.countries = countries;
+    }
+
+    public ArrayList<Province> getProvinces() {
+        return provinces;
+    }
+
+    public void setProvinces(ArrayList<Province> provinces) {
+        this.provinces = provinces;
+    }
+
+    public ArrayList<Canton> getCantons() {
+        return cantons;
+    }
+
+    public void setCantons(ArrayList<Canton> cantons) {
+        this.cantons = cantons;
+    }
+
+    public ArrayList<District> getDistricts() {
+        return districts;
+    }
+
+    public void setDistricts(ArrayList<District> districts) {
+        this.districts = districts;
+    }
+    
+    
+    
+ 
 }
