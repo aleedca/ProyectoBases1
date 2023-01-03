@@ -4,6 +4,8 @@
  */
 package View;
 
+import javax.swing.JTextField;
+
 /**
  *
  * @author Alexia
@@ -26,277 +28,285 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        btnGroupAdmiPersonas = new javax.swing.ButtonGroup();
+        pnlAdminPersonas = new javax.swing.JPanel();
+        lblAdmiPersonas = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
-        jLabel18 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        txtUsername = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtUsername2 = new javax.swing.JTextField();
-        txtUsername3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txtUsername4 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        txtUsername5 = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
-        txtUsername6 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jLabel13 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jLabel14 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jLabel15 = new javax.swing.JLabel();
-        jComboBox8 = new javax.swing.JComboBox<>();
-        jLabel16 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        lblLogo = new javax.swing.JLabel();
+        cmbPersona = new javax.swing.JComboBox<>();
+        lblPersona = new javax.swing.JLabel();
+        rbtnEditar = new javax.swing.JRadioButton();
+        rbtnAgregar = new javax.swing.JRadioButton();
+        rbtnEliminar = new javax.swing.JRadioButton();
+        txtFechaNac = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        txtSegNombre = new javax.swing.JTextField();
+        lblSegNombre = new javax.swing.JLabel();
+        lblPrimerAp = new javax.swing.JLabel();
+        txtPrimerAp = new javax.swing.JTextField();
+        lblSegAp = new javax.swing.JLabel();
+        txtSegAp = new javax.swing.JTextField();
+        lblTipoIden = new javax.swing.JLabel();
+        cmbEquipo = new javax.swing.JComboBox<>();
+        lblIden = new javax.swing.JLabel();
+        lblCorreo = new javax.swing.JLabel();
+        lblTelef = new javax.swing.JLabel();
+        lblGenero = new javax.swing.JLabel();
+        cmbGenero = new javax.swing.JComboBox<>();
+        lblPais = new javax.swing.JLabel();
+        cmbPais = new javax.swing.JComboBox<>();
+        lblProvin = new javax.swing.JLabel();
+        cmbProvin = new javax.swing.JComboBox<>();
+        lblCanton = new javax.swing.JLabel();
+        cmbCanton = new javax.swing.JComboBox<>();
+        lblFechaNac = new javax.swing.JLabel();
+        cmbDistrito = new javax.swing.JComboBox<>();
+        lblNumCamisa = new javax.swing.JLabel();
+        txtDireccion = new javax.swing.JTextField();
         lblAvatar = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel19 = new javax.swing.JLabel();
-        jComboBox9 = new javax.swing.JComboBox<>();
-        jLabel22 = new javax.swing.JLabel();
-        txtUsername1 = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
-        jLabel23 = new javax.swing.JLabel();
+        lblSelecFoto = new javax.swing.JLabel();
+        btnCargarFoto = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
+        lblDistrito = new javax.swing.JLabel();
+        cmbTipoIden = new javax.swing.JComboBox<>();
+        lblEquipo = new javax.swing.JLabel();
+        txtCorreo = new javax.swing.JTextField();
+        spnNumCamisa = new javax.swing.JSpinner();
+        lblDireccion = new javax.swing.JLabel();
+        txtIden = new javax.swing.JFormattedTextField();
+        txtTelef = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblPersonas = new javax.swing.JTable();
+        txtareaEliminar = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
-        jPanel1.setBackground(new java.awt.Color(82, 4, 44));
-        jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1280, 780));
-        jPanel1.setLayout(null);
+        pnlAdminPersonas.setBackground(new java.awt.Color(86, 4, 44));
+        pnlAdminPersonas.setMaximumSize(new java.awt.Dimension(1280, 720));
+        pnlAdminPersonas.setMinimumSize(new java.awt.Dimension(1280, 720));
+        pnlAdminPersonas.setPreferredSize(new java.awt.Dimension(1280, 720));
+        pnlAdminPersonas.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Administrar Personas");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(100, 30, 521, 48);
+        lblAdmiPersonas.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        lblAdmiPersonas.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdmiPersonas.setText("Administrar Personas");
+        pnlAdminPersonas.add(lblAdmiPersonas);
+        lblAdmiPersonas.setBounds(100, 30, 521, 48);
 
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
         btnBack.setContentAreaFilled(false);
-        btnBack.setOpaque(true);
         btnBack.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backPressed.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBack);
+        pnlAdminPersonas.add(btnBack);
         btnBack.setBounds(40, 40, 46, 40);
 
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
-        jPanel1.add(jLabel18);
-        jLabel18.setBounds(1070, 10, 200, 125);
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
+        pnlAdminPersonas.add(lblLogo);
+        lblLogo.setBounds(1070, 10, 200, 125);
 
-        jComboBox1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(230, 110, 346, 31);
-
-        jLabel4.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Tipo persona:");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(60, 110, 165, 32);
-
-        jRadioButton1.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("Editar");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        cmbPersona.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        cmbPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Jugador", "Cuerpo Técnico" }));
+        cmbPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                cmbPersonaActionPerformed(evt);
             }
         });
-        jPanel1.add(jRadioButton1);
-        jRadioButton1.setBounds(770, 110, 139, 37);
+        pnlAdminPersonas.add(cmbPersona);
+        cmbPersona.setBounds(230, 110, 346, 31);
 
-        jRadioButton2.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("Agregar");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        lblPersona.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        lblPersona.setForeground(new java.awt.Color(255, 255, 255));
+        lblPersona.setText("Tipo persona:");
+        pnlAdminPersonas.add(lblPersona);
+        lblPersona.setBounds(60, 110, 165, 32);
+
+        btnGroupAdmiPersonas.add(rbtnEditar);
+        rbtnEditar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        rbtnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnEditar.setText("Editar");
+        rbtnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                rbtnEditarActionPerformed(evt);
             }
         });
-        jPanel1.add(jRadioButton2);
-        jRadioButton2.setBounds(610, 110, 150, 37);
+        pnlAdminPersonas.add(rbtnEditar);
+        rbtnEditar.setBounds(770, 110, 100, 37);
 
-        jRadioButton3.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton3.setText("Eliminar");
-        jPanel1.add(jRadioButton3);
-        jRadioButton3.setBounds(890, 110, 150, 37);
-        jPanel1.add(txtUsername);
-        txtUsername.setBounds(290, 660, 230, 22);
-
-        jLabel3.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nombre*");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(60, 170, 110, 40);
-        jPanel1.add(txtUsername2);
-        txtUsername2.setBounds(290, 180, 230, 22);
-        jPanel1.add(txtUsername3);
-        txtUsername3.setBounds(290, 240, 230, 22);
-
-        jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Segundo nombre");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(60, 230, 210, 32);
-
-        jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Primer apellido*");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(60, 290, 172, 32);
-        jPanel1.add(txtUsername4);
-        txtUsername4.setBounds(290, 300, 230, 22);
-
-        jLabel7.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Segundo apellido");
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(60, 350, 210, 40);
-        jPanel1.add(txtUsername5);
-        txtUsername5.setBounds(290, 360, 230, 22);
-
-        jLabel21.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setText("Tipo Identificación*");
-        jPanel1.add(jLabel21);
-        jLabel21.setBounds(60, 410, 210, 40);
-
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox7.setMinimumSize(new java.awt.Dimension(80, 22));
-        jComboBox7.setPreferredSize(new java.awt.Dimension(80, 22));
-        jComboBox7.addActionListener(new java.awt.event.ActionListener() {
+        btnGroupAdmiPersonas.add(rbtnAgregar);
+        rbtnAgregar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        rbtnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnAgregar.setText("Agregar");
+        rbtnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox7ActionPerformed(evt);
+                rbtnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox7);
-        jComboBox7.setBounds(290, 600, 230, 22);
+        pnlAdminPersonas.add(rbtnAgregar);
+        rbtnAgregar.setBounds(610, 110, 150, 37);
+        rbtnAgregar.setSelected(true);
 
-        jLabel8.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Identificación *");
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(60, 470, 190, 40);
-        jPanel1.add(txtUsername6);
-        txtUsername6.setBounds(290, 480, 230, 22);
-
-        jLabel9.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Correo*");
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(60, 530, 110, 30);
-
-        jLabel20.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("Tipo Teléfono*");
-        jPanel1.add(jLabel20);
-        jLabel20.setBounds(590, 180, 160, 30);
-
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox6.addActionListener(new java.awt.event.ActionListener() {
+        btnGroupAdmiPersonas.add(rbtnEliminar);
+        rbtnEliminar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        rbtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnEliminar.setText("Eliminar");
+        rbtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox6ActionPerformed(evt);
+                rbtnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox6);
-        jComboBox6.setBounds(770, 190, 180, 22);
+        pnlAdminPersonas.add(rbtnEliminar);
+        rbtnEliminar.setBounds(890, 110, 150, 37);
+        pnlAdminPersonas.add(txtFechaNac);
+        txtFechaNac.setBounds(290, 660, 230, 22);
 
-        jLabel10.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Teléfono*");
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(590, 230, 120, 40);
+        lblNombre.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombre.setText("Nombre*");
+        pnlAdminPersonas.add(lblNombre);
+        lblNombre.setBounds(60, 170, 110, 40);
 
-        jLabel11.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Género");
-        jPanel1.add(jLabel11);
-        jLabel11.setBounds(590, 290, 110, 30);
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                txtNombreActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(770, 300, 180, 22);
-        jPanel1.add(jTextField7);
-        jTextField7.setBounds(770, 240, 180, 22);
+        pnlAdminPersonas.add(txtNombre);
+        txtNombre.setBounds(290, 180, 230, 22);
+        pnlAdminPersonas.add(txtSegNombre);
+        txtSegNombre.setBounds(290, 240, 230, 22);
 
-        jLabel12.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("País ");
-        jPanel1.add(jLabel12);
-        jLabel12.setBounds(590, 350, 100, 30);
+        lblSegNombre.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblSegNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblSegNombre.setText("Segundo nombre");
+        pnlAdminPersonas.add(lblSegNombre);
+        lblSegNombre.setBounds(60, 230, 210, 32);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox3);
-        jComboBox3.setBounds(770, 360, 180, 22);
+        lblPrimerAp.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblPrimerAp.setForeground(new java.awt.Color(255, 255, 255));
+        lblPrimerAp.setText("Primer apellido*");
+        pnlAdminPersonas.add(lblPrimerAp);
+        lblPrimerAp.setBounds(60, 290, 172, 32);
 
-        jLabel13.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Provincia");
-        jPanel1.add(jLabel13);
-        jLabel13.setBounds(590, 410, 120, 30);
+        txtPrimerAp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrimerApActionPerformed(evt);
+            }
+        });
+        pnlAdminPersonas.add(txtPrimerAp);
+        txtPrimerAp.setBounds(290, 300, 230, 22);
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox4);
-        jComboBox4.setBounds(770, 420, 180, 22);
+        lblSegAp.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblSegAp.setForeground(new java.awt.Color(255, 255, 255));
+        lblSegAp.setText("Segundo apellido");
+        pnlAdminPersonas.add(lblSegAp);
+        lblSegAp.setBounds(60, 350, 210, 40);
+        pnlAdminPersonas.add(txtSegAp);
+        txtSegAp.setBounds(290, 360, 230, 22);
 
-        jLabel14.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Cantón");
-        jPanel1.add(jLabel14);
-        jLabel14.setBounds(590, 470, 110, 30);
+        lblTipoIden.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblTipoIden.setForeground(new java.awt.Color(255, 255, 255));
+        lblTipoIden.setText("Tipo Identificación*");
+        pnlAdminPersonas.add(lblTipoIden);
+        lblTipoIden.setBounds(60, 410, 210, 40);
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox5);
-        jComboBox5.setBounds(770, 480, 180, 22);
+        cmbEquipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbEquipo.setMinimumSize(new java.awt.Dimension(80, 22));
+        cmbEquipo.setPreferredSize(new java.awt.Dimension(80, 22));
+        cmbEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbEquipoActionPerformed(evt);
+            }
+        });
+        pnlAdminPersonas.add(cmbEquipo);
+        cmbEquipo.setBounds(290, 600, 230, 22);
 
-        jLabel15.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Fecha Nacimiento");
-        jPanel1.add(jLabel15);
-        jLabel15.setBounds(60, 650, 200, 30);
+        lblIden.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblIden.setForeground(new java.awt.Color(255, 255, 255));
+        lblIden.setText("Identificación *");
+        pnlAdminPersonas.add(lblIden);
+        lblIden.setBounds(60, 470, 190, 40);
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox8);
-        jComboBox8.setBounds(770, 540, 180, 22);
+        lblCorreo.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        lblCorreo.setText("Correo*");
+        pnlAdminPersonas.add(lblCorreo);
+        lblCorreo.setBounds(60, 530, 110, 30);
 
-        jLabel16.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Num Camisa:");
-        jPanel1.add(jLabel16);
-        jLabel16.setBounds(1000, 180, 150, 40);
-        jPanel1.add(jTextField8);
-        jTextField8.setBounds(590, 630, 360, 60);
+        lblTelef.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblTelef.setForeground(new java.awt.Color(255, 255, 255));
+        lblTelef.setText("Teléfono*");
+        pnlAdminPersonas.add(lblTelef);
+        lblTelef.setBounds(590, 170, 120, 40);
+
+        lblGenero.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblGenero.setForeground(new java.awt.Color(255, 255, 255));
+        lblGenero.setText("Género");
+        pnlAdminPersonas.add(lblGenero);
+        lblGenero.setBounds(590, 230, 110, 30);
+
+        cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbGenero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbGeneroActionPerformed(evt);
+            }
+        });
+        pnlAdminPersonas.add(cmbGenero);
+        cmbGenero.setBounds(770, 240, 180, 22);
+
+        lblPais.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblPais.setForeground(new java.awt.Color(255, 255, 255));
+        lblPais.setText("País ");
+        pnlAdminPersonas.add(lblPais);
+        lblPais.setBounds(590, 290, 100, 30);
+
+        cmbPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pnlAdminPersonas.add(cmbPais);
+        cmbPais.setBounds(770, 300, 180, 22);
+
+        lblProvin.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblProvin.setForeground(new java.awt.Color(255, 255, 255));
+        lblProvin.setText("Provincia");
+        pnlAdminPersonas.add(lblProvin);
+        lblProvin.setBounds(590, 350, 120, 30);
+
+        cmbProvin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pnlAdminPersonas.add(cmbProvin);
+        cmbProvin.setBounds(770, 360, 180, 22);
+
+        lblCanton.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblCanton.setForeground(new java.awt.Color(255, 255, 255));
+        lblCanton.setText("Cantón");
+        pnlAdminPersonas.add(lblCanton);
+        lblCanton.setBounds(590, 410, 110, 30);
+
+        cmbCanton.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pnlAdminPersonas.add(cmbCanton);
+        cmbCanton.setBounds(770, 420, 180, 22);
+
+        lblFechaNac.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblFechaNac.setForeground(new java.awt.Color(255, 255, 255));
+        lblFechaNac.setText("Fecha Nacimiento");
+        pnlAdminPersonas.add(lblFechaNac);
+        lblFechaNac.setBounds(60, 650, 200, 30);
+
+        cmbDistrito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pnlAdminPersonas.add(cmbDistrito);
+        cmbDistrito.setBounds(770, 480, 180, 22);
+
+        lblNumCamisa.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblNumCamisa.setForeground(new java.awt.Color(255, 255, 255));
+        lblNumCamisa.setText("Num Camisa*");
+        pnlAdminPersonas.add(lblNumCamisa);
+        lblNumCamisa.setBounds(1000, 180, 150, 40);
+        pnlAdminPersonas.add(txtDireccion);
+        txtDireccion.setBounds(590, 580, 360, 100);
 
         lblAvatar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/avatar.png"))); // NOI18N
@@ -304,125 +314,259 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         lblAvatar.setMaximumSize(new java.awt.Dimension(180, 230));
         lblAvatar.setMinimumSize(new java.awt.Dimension(180, 230));
         lblAvatar.setPreferredSize(new java.awt.Dimension(180, 230));
-        jPanel1.add(lblAvatar);
+        pnlAdminPersonas.add(lblAvatar);
         lblAvatar.setBounds(1050, 250, 180, 230);
 
-        jLabel17.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Seleccionar una fotografía");
-        jPanel1.add(jLabel17);
-        jLabel17.setBounds(1040, 490, 200, 30);
+        lblSelecFoto.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 18)); // NOI18N
+        lblSelecFoto.setForeground(new java.awt.Color(255, 255, 255));
+        lblSelecFoto.setText("Seleccionar una fotografía");
+        pnlAdminPersonas.add(lblSelecFoto);
+        lblSelecFoto.setBounds(1040, 490, 200, 30);
 
-        jButton2.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButton2.setText("Cargar foto");
-        jButton2.setAlignmentY(0.0F);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCargarFoto.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnCargarFoto.setText("Cargar foto");
+        btnCargarFoto.setAlignmentY(0.0F);
+        btnCargarFoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCargarFotoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2);
-        jButton2.setBounds(1080, 530, 120, 30);
+        pnlAdminPersonas.add(btnCargarFoto);
+        btnCargarFoto.setBounds(1080, 530, 120, 30);
 
-        jButton1.setBackground(new java.awt.Color(86, 4, 44));
-        jButton1.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Registrar");
-        jButton1.setBorderPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setBackground(new java.awt.Color(86, 4, 44));
+        btnAceptar.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAceptar.setText("Aceptar");
+        btnAceptar.setBorderPainted(false);
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(1070, 650, 130, 40);
+        pnlAdminPersonas.add(btnAceptar);
+        btnAceptar.setBounds(1070, 650, 130, 40);
 
-        jLabel19.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Distrito");
-        jPanel1.add(jLabel19);
-        jLabel19.setBounds(590, 530, 110, 30);
+        lblDistrito.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblDistrito.setForeground(new java.awt.Color(255, 255, 255));
+        lblDistrito.setText("Distrito");
+        pnlAdminPersonas.add(lblDistrito);
+        lblDistrito.setBounds(590, 470, 110, 30);
 
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox9.setMinimumSize(new java.awt.Dimension(80, 22));
-        jComboBox9.setPreferredSize(new java.awt.Dimension(80, 22));
-        jComboBox9.addActionListener(new java.awt.event.ActionListener() {
+        cmbTipoIden.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbTipoIden.setMinimumSize(new java.awt.Dimension(80, 22));
+        cmbTipoIden.setPreferredSize(new java.awt.Dimension(80, 22));
+        cmbTipoIden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox9ActionPerformed(evt);
+                cmbTipoIdenActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox9);
-        jComboBox9.setBounds(290, 420, 230, 22);
+        pnlAdminPersonas.add(cmbTipoIden);
+        cmbTipoIden.setBounds(290, 420, 230, 22);
 
-        jLabel22.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Equipo");
-        jPanel1.add(jLabel22);
-        jLabel22.setBounds(60, 590, 110, 30);
-        jPanel1.add(txtUsername1);
-        txtUsername1.setBounds(290, 540, 230, 22);
+        lblEquipo.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblEquipo.setForeground(new java.awt.Color(255, 255, 255));
+        lblEquipo.setText("Equipo");
+        pnlAdminPersonas.add(lblEquipo);
+        lblEquipo.setBounds(60, 590, 110, 30);
+        pnlAdminPersonas.add(txtCorreo);
+        txtCorreo.setBounds(290, 540, 230, 22);
 
-        jSpinner1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jPanel1.add(jSpinner1);
-        jSpinner1.setBounds(1160, 180, 90, 40);
+        spnNumCamisa.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        spnNumCamisa.setModel(new javax.swing.SpinnerNumberModel(1, 1, 999, 1));
+        pnlAdminPersonas.add(spnNumCamisa);
+        spnNumCamisa.setBounds(1160, 180, 90, 40);
 
-        jLabel23.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel23.setText("Dirección exacta:");
-        jPanel1.add(jLabel23);
-        jLabel23.setBounds(680, 590, 190, 40);
+        lblDireccion.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblDireccion.setForeground(new java.awt.Color(255, 255, 255));
+        lblDireccion.setText("Dirección exacta:");
+        pnlAdminPersonas.add(lblDireccion);
+        lblDireccion.setBounds(590, 530, 190, 40);
+
+        try {
+            txtIden.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#-####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        pnlAdminPersonas.add(txtIden);
+        txtIden.setBounds(290, 480, 230, 22);
+
+        try {
+            txtTelef.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        pnlAdminPersonas.add(txtTelef);
+        txtTelef.setBounds(770, 180, 180, 22);
+
+        tblPersonas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblPersonas);
+        jScrollPane1.setVisible(false);
+
+        pnlAdminPersonas.add(jScrollPane1);
+        jScrollPane1.setBounds(80, 180, 580, 480);
+
+        txtareaEliminar.setBackground(new java.awt.Color(86, 4, 44));
+        txtareaEliminar.setColumns(20);
+        txtareaEliminar.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        txtareaEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        txtareaEliminar.setRows(3);
+        txtareaEliminar.setText("Seleccione una persona de la tabla de \nla izquierda para eliminarla. Presione  \n     aceptar para concluir la acción.");
+        txtareaEliminar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(82, 4, 44)));
+        txtareaEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtareaEliminar.setDisabledTextColor(new java.awt.Color(82, 4, 44));
+        pnlAdminPersonas.add(txtareaEliminar);
+        txtareaEliminar.setBounds(740, 310, 510, 150);
+        txtareaEliminar.setEditable(false);
+        txtareaEliminar.setVisible(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlAdminPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addComponent(pnlAdminPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+   public boolean validarTextField(JTextField text){
+       return text.getText().equals("");
+   }
+   
+   public void esconderMostrarTodo(boolean flag){
+       lblNombre.setVisible(flag);
+       txtNombre.setVisible(flag);
+       lblSegNombre.setVisible(flag);
+       txtSegNombre.setVisible(flag);
+       lblPrimerAp.setVisible(flag);
+       txtPrimerAp.setVisible(flag);
+       lblSegAp.setVisible(flag);
+       txtSegAp.setVisible(flag);
+       lblTipoIden.setVisible(flag);
+       cmbTipoIden.setVisible(flag);
+       lblIden.setVisible(flag);
+       txtIden.setVisible(flag);
+       lblCorreo.setVisible(flag);
+       txtCorreo.setVisible(flag);
+       
+       lblEquipo.setVisible(flag);
+       cmbEquipo.setVisible(flag);
+       lblFechaNac.setVisible(flag);
+       txtFechaNac.setVisible(flag);
+       lblNumCamisa.setVisible(flag);
+       spnNumCamisa.setVisible(flag);
+       
+       lblTelef.setVisible(flag);
+       txtTelef.setVisible(flag);
+       lblGenero.setVisible(flag);
+       cmbGenero.setVisible(flag);
+       lblPais.setVisible(flag);
+       cmbPais.setVisible(flag);
+       lblProvin.setVisible(flag);
+       cmbProvin.setVisible(flag);
+       lblCanton.setVisible(flag);
+       cmbCanton.setVisible(flag);
+       lblDistrito.setVisible(flag);
+       cmbDistrito.setVisible(flag);
+       lblDireccion.setVisible(flag);
+       txtDireccion.setVisible(flag);
+       
+       lblAvatar.setVisible(flag);
+       lblSelecFoto.setVisible(flag);
+       btnCargarFoto.setVisible(flag);
+       
+       jScrollPane1.setVisible(!flag);
+       txtareaEliminar.setVisible(!flag);
+   }
+   
+   public void deshabilitarOpciones(boolean flag){
+       lblFechaNac.setVisible(flag);
+       txtFechaNac.setVisible(flag);
+       lblNumCamisa.setVisible(flag);
+       spnNumCamisa.setVisible(flag);
+   }
+   
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         JF_AdminOptions adminOptions = new JF_AdminOptions();
         adminOptions.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    private void rbtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnAgregarActionPerformed
+        esconderMostrarTodo(true);
+        
+        String tipoPersona = cmbPersona.getSelectedItem().toString();
+        if("Cuerpo Técnico".equals(tipoPersona)){
+           deshabilitarOpciones(false);
+        }
+    }//GEN-LAST:event_rbtnAgregarActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    private void rbtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEditarActionPerformed
+        esconderMostrarTodo(true);
+        
+        String tipoPersona = cmbPersona.getSelectedItem().toString();
+        if("Cuerpo Técnico".equals(tipoPersona)){
+           deshabilitarOpciones(false);
+        }
+    }//GEN-LAST:event_rbtnEditarActionPerformed
 
-    private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
+    private void cmbEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEquipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox7ActionPerformed
+    }//GEN-LAST:event_cmbEquipoActionPerformed
 
-    private void jComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox6ActionPerformed
+    private void cmbGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGeneroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox6ActionPerformed
+    }//GEN-LAST:event_cmbGeneroActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void btnCargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarFotoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_btnCargarFotoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cmbTipoIdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoIdenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_cmbTipoIdenActionPerformed
 
-    private void jComboBox9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox9ActionPerformed
+    private void txtPrimerApActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrimerApActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox9ActionPerformed
+    }//GEN-LAST:event_txtPrimerApActionPerformed
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void cmbPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPersonaActionPerformed
+       String tipoPersona = cmbPersona.getSelectedItem().toString();
+        
+       if((rbtnAgregar.isSelected() || rbtnEditar.isSelected()) && "Cuerpo Técnico".equals(tipoPersona)){
+           deshabilitarOpciones(false);
+       }
+       if((rbtnAgregar.isSelected() || rbtnEditar.isSelected()) && "Jugador".equals(tipoPersona)){
+           deshabilitarOpciones(true);
+       }
+    }//GEN-LAST:event_cmbPersonaActionPerformed
+
+    private void rbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEliminarActionPerformed
+        esconderMostrarTodo(false);
+    }//GEN-LAST:event_rbtnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -461,54 +605,56 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
-    private javax.swing.JComboBox<String> jComboBox9;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JButton btnCargarFoto;
+    private javax.swing.ButtonGroup btnGroupAdmiPersonas;
+    private javax.swing.JComboBox<String> cmbCanton;
+    private javax.swing.JComboBox<String> cmbDistrito;
+    private javax.swing.JComboBox<String> cmbEquipo;
+    private javax.swing.JComboBox<String> cmbGenero;
+    private javax.swing.JComboBox<String> cmbPais;
+    private javax.swing.JComboBox<String> cmbPersona;
+    private javax.swing.JComboBox<String> cmbProvin;
+    private javax.swing.JComboBox<String> cmbTipoIden;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAdmiPersonas;
     private javax.swing.JLabel lblAvatar;
-    private javax.swing.JTextField txtUsername;
-    private javax.swing.JTextField txtUsername1;
-    private javax.swing.JTextField txtUsername2;
-    private javax.swing.JTextField txtUsername3;
-    private javax.swing.JTextField txtUsername4;
-    private javax.swing.JTextField txtUsername5;
-    private javax.swing.JTextField txtUsername6;
+    private javax.swing.JLabel lblCanton;
+    private javax.swing.JLabel lblCorreo;
+    private javax.swing.JLabel lblDireccion;
+    private javax.swing.JLabel lblDistrito;
+    private javax.swing.JLabel lblEquipo;
+    private javax.swing.JLabel lblFechaNac;
+    private javax.swing.JLabel lblGenero;
+    private javax.swing.JLabel lblIden;
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNumCamisa;
+    private javax.swing.JLabel lblPais;
+    private javax.swing.JLabel lblPersona;
+    private javax.swing.JLabel lblPrimerAp;
+    private javax.swing.JLabel lblProvin;
+    private javax.swing.JLabel lblSegAp;
+    private javax.swing.JLabel lblSegNombre;
+    private javax.swing.JLabel lblSelecFoto;
+    private javax.swing.JLabel lblTelef;
+    private javax.swing.JLabel lblTipoIden;
+    private javax.swing.JPanel pnlAdminPersonas;
+    private javax.swing.JRadioButton rbtnAgregar;
+    private javax.swing.JRadioButton rbtnEditar;
+    private javax.swing.JRadioButton rbtnEliminar;
+    private javax.swing.JSpinner spnNumCamisa;
+    private javax.swing.JTable tblPersonas;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtFechaNac;
+    private javax.swing.JFormattedTextField txtIden;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtPrimerAp;
+    private javax.swing.JTextField txtSegAp;
+    private javax.swing.JTextField txtSegNombre;
+    private javax.swing.JFormattedTextField txtTelef;
+    private javax.swing.JTextArea txtareaEliminar;
     // End of variables declaration//GEN-END:variables
 }
