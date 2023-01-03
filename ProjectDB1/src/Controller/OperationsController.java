@@ -83,6 +83,7 @@ public class OperationsController implements ActionListener{
     }
     
     
+    //-------- COMBO BOX FILLING --------------------------
     private void fillGenders(){
         viewRegister.getCmbGenero().removeAllItems();
         for(int i=0; i<modelRegister.getGenders().size();i++){
@@ -130,6 +131,7 @@ public class OperationsController implements ActionListener{
         }
     }
     
+    //-------------------------------------------------------------------------------------------------------
     
     
     @Override
@@ -154,6 +156,7 @@ public class OperationsController implements ActionListener{
             viewPrincipal.setVisible(false);
             
             viewPrincipal.getLblBienvenido().setVisible(false);
+            viewPrincipal.getBtnConsultas().setVisible(false);
             viewPrincipal.getBtnOpAdm().setVisible(false);
             viewPrincipal.getBtnCuenta().setVisible(false);
             viewPrincipal.getBtnSalir().setVisible(false);
@@ -184,6 +187,7 @@ public class OperationsController implements ActionListener{
                 viewPrincipal.getBtnIniciarSesion().setVisible(false);
                 viewPrincipal.getBtnRegistrar().setVisible(false);
                 
+                viewPrincipal.getBtnConsultas().setVisible(true);
                 viewPrincipal.getBtnCuenta().setVisible(true);
                 viewPrincipal.getBtnSalir().setVisible(true);
                 
@@ -191,7 +195,7 @@ public class OperationsController implements ActionListener{
                 viewPrincipal.getLblBienvenido().setVisible(true);
                 
                 //**NOTA: Validar username y password***
-                if(modelLogin.validarUsername() == true && modelLogin.validarPassword() == true){ //Es true -> Admin
+                if(modelLogin.validateUsername() == true && modelLogin.validatePassword() == true){ //Es true -> Admin
                     //Frame de Admin                         
                     viewPrincipal.getBtnOpAdm().setVisible(true);
                 }
@@ -358,6 +362,7 @@ public class OperationsController implements ActionListener{
      public void showView()
      { 
         viewPrincipal.getBtnOpAdm().setVisible(false);
+        viewPrincipal.getBtnConsultas().setVisible(false);
         viewPrincipal.getBtnCuenta().setVisible(false);
         viewPrincipal.getBtnSalir().setVisible(false);
         viewPrincipal.getLblBienvenido().setVisible(false);
