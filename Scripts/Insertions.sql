@@ -307,7 +307,7 @@ BEGIN
     
     --- Catalu�a
     INSERT INTO District(idDistrict, idCanton, nameDistrict, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_district.nextval,12, 'Guardiola', NULL, NULL, NULL, NULL);
+    VALUES (s_district.nextval,13, 'Guardiola', NULL, NULL, NULL, NULL);
     COMMIT;
 END insertDistrict;
 

@@ -11,11 +11,11 @@ import View.JF_Principal;
 import View.JF_Register;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import javax.swing.JFileChooser;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /**
@@ -23,7 +23,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Mariana
  */
 
-public class OperationsController implements ActionListener{
+public class OperationsController implements ActionListener, ItemListener{
     private final JF_Principal viewPrincipal;
     private final JF_Login viewLogin;
     private final JF_Register viewRegister;
@@ -62,10 +62,12 @@ public class OperationsController implements ActionListener{
         
         fillGenders();
         fillIdentificationTypes();
+        
         fillCountries();
-        fillProvinces();
-        fillCantons();
-        fillDistricts();
+        System.out.println("\n");
+        //fillProvinces();
+//        fillCantons();
+//        fillDistricts();
     }
     
     //Init de ActionListener
@@ -86,6 +88,9 @@ public class OperationsController implements ActionListener{
         viewRegister.getBtnVerificarRegistro().addActionListener(this);
         viewRegister.getBtnCargarFoto().addActionListener(this);
         
+        viewRegister.getCmbPais().addItemListener(this);
+        viewRegister.getCmbProvincia().addItemListener(this);
+        viewRegister.getCmbCanton().addItemListener(this);
     }
     
     
@@ -108,37 +113,129 @@ public class OperationsController implements ActionListener{
     private void fillCountries(){
         viewRegister.getCmbPais().removeAllItems();
         
-        for(int i=0; i<modelRegister.getCountries().size();i++){
-           viewRegister.getCmbPais().addItem(modelRegister.getCountries().get(i).getNameCountry());
-        }
-    }
-    
-    private void fillProvinces(){
         viewRegister.getCmbProvincia().removeAllItems();
- 
-        for(int i=0; i<modelRegister.getProvinces().size();i++){
-           viewRegister.getCmbProvincia().addItem(modelRegister.getProvinces().get(i).getNameProvince());
-        }
-    }
-    
-    private void fillCantons(){
+        viewRegister.getCmbProvincia().setEnabled(false);
+        
         viewRegister.getCmbCanton().removeAllItems();
- 
-        for(int i=0; i<modelRegister.getCantons().size();i++){
-           viewRegister.getCmbCanton().addItem(modelRegister.getCantons().get(i).getNameCanton());
+        viewRegister.getCmbCanton().setEnabled(false);
+        
+        viewRegister.getCmbDistrito().removeAllItems();
+        viewRegister.getCmbDistrito().setEnabled(false);
+        
+        viewRegister.getCmbPais().addItem("Seleccione País");
+        for(int i=0; i<modelRegister.getCountries().size();i++){
+            viewRegister.getCmbPais().addItem(modelRegister.getCountries().get(i).getNameCountry());
         }
     }
     
-    private void fillDistricts(){
+    private void fillProvinces(int country){
+        viewRegister.getCmbProvincia().setEnabled(true);
+        viewRegister.getCmbProvincia().removeAllItems();
+       
+        viewRegister.getCmbProvincia().addItem("Seleccione Provincia");
+        for(int i=0; i<modelRegister.getProvinces().size();i++){
+            if(country == modelRegister.getProvinces().get(i).getIdCountry()){
+                 viewRegister.getCmbProvincia().addItem(modelRegister.getProvinces().get(i).getNameProvince());
+            }  
+        }
+    }
+    
+    private void fillCantons(int province){
+        viewRegister.getCmbCanton().setEnabled(true);
+        viewRegister.getCmbCanton().removeAllItems();
+        
+        viewRegister.getCmbCanton().addItem("Seleccione Cantón");
+        for(int i=0; i<modelRegister.getCantons().size();i++){
+            if(province == modelRegister.getCantons().get(i).getIdProvince()){
+                viewRegister.getCmbCanton().addItem(modelRegister.getCantons().get(i).getNameCanton());
+            }
+        }
+    }
+    
+    private void fillDistricts(int canton){
+        viewRegister.getCmbDistrito().setEnabled(true);
         viewRegister.getCmbDistrito().removeAllItems();
  
         for(int i=0; i<modelRegister.getDistricts().size();i++){
-           viewRegister.getCmbDistrito().addItem(modelRegister.getDistricts().get(i).getNameDistrict());
+            if(canton == modelRegister.getDistricts().get(i).getIdCanton()){
+                viewRegister.getCmbDistrito().addItem(modelRegister.getDistricts().get(i).getNameDistrict());  
+            }
         }
     }
     
     //-------------------------------------------------------------------------------------------------------
     
+    @Override
+    public void itemStateChanged(ItemEvent e){
+        //COUNTRY
+        if( e.getSource() == viewRegister.getCmbPais()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewRegister.getSelectedCountry();
+                System.out.println(choice);
+                
+                if(!"Seleccione País".equals(choice)){
+                    
+                    for(int i=0; i<modelRegister.getCountries().size();i++){
+                        if( choice.equals(modelRegister.getCountries().get(i).getNameCountry())){
+                            fillProvinces(modelRegister.getCountries().get(i).getIdCountry());
+                        }
+                    }
+                    
+                }else{
+                    viewRegister.getCmbProvincia().removeAllItems();
+                    viewRegister.getCmbProvincia().setEnabled(false);
+                }
+            }
+        
+        }
+        
+        //PROVINCE
+        if( e.getSource() == viewRegister.getCmbProvincia()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewRegister.getSelectedProvince();
+                System.out.println(choice);
+                
+                if(!"Seleccione Provincia".equals(choice)){
+                    
+                    for(int i=0; i<modelRegister.getProvinces().size();i++){
+                        if( choice.equals(modelRegister.getProvinces().get(i).getNameProvince())){
+                            fillCantons(modelRegister.getProvinces().get(i).getIdProvince());
+                        }
+                    }
+                    
+                }else{
+                    viewRegister.getCmbCanton().removeAllItems();
+                    viewRegister.getCmbCanton().setEnabled(false);
+                }
+            }
+        
+        }
+        
+        //CANTON
+        if( e.getSource() == viewRegister.getCmbCanton()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewRegister.getSelectedCanton();
+                System.out.println(choice);
+                
+                if(!"Seleccione Cantón".equals(choice)){
+                    
+                    for(int i=0; i<modelRegister.getCantons().size();i++){
+                        if( choice.equals(modelRegister.getCantons().get(i).getNameCanton())){
+                            fillDistricts(modelRegister.getCantons().get(i).getIdCanton());
+                        }
+                    }
+                    
+                }else{
+                    viewRegister.getCmbDistrito().removeAllItems();
+                    viewRegister.getCmbDistrito().setEnabled(false);
+                }
+            }
+        
+        }
+        
+        
+
+    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -367,6 +464,7 @@ public class OperationsController implements ActionListener{
     
      public void showView()
      { 
+        
         viewPrincipal.getBtnOpAdm().setVisible(false);
         viewPrincipal.getBtnConsultas().setVisible(false);
         viewPrincipal.getBtnCuenta().setVisible(false);
