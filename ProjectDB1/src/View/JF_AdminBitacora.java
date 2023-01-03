@@ -33,7 +33,7 @@ public class JF_AdminBitacora extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(82, 4, 44));
+        jPanel1.setBackground(new java.awt.Color(86, 4, 44));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 70));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 70));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 70));

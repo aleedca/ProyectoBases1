@@ -53,7 +53,7 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
-        jPanel1.setBackground(new java.awt.Color(82, 4, 44));
+        jPanel1.setBackground(new java.awt.Color(86, 4, 44));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -214,7 +214,7 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         jPanel1.add(lblEstado);
         lblEstado.setBounds(720, 220, 120, 40);
 
-        txtareaEliminar.setBackground(new java.awt.Color(82, 4, 44));
+        txtareaEliminar.setBackground(new java.awt.Color(86, 4, 44));
         txtareaEliminar.setColumns(20);
         txtareaEliminar.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
         txtareaEliminar.setForeground(new java.awt.Color(255, 255, 255));

@@ -191,7 +191,10 @@ public class JF_AdminOptions extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdmiCatalogosActionPerformed
 
     private void btnAdmiNoticiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmiNoticiasActionPerformed
-        // TODO add your handling code here:
+        JF_AdminNoticias adminNoticias = new JF_AdminNoticias();
+        adminNoticias.setVisible(true);
+        this.setVisible(false);
+        //this.dispose();
     }//GEN-LAST:event_btnAdmiNoticiasActionPerformed
 
     private void btnAdmiPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmiPersonasActionPerformed

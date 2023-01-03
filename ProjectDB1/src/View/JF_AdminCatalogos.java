@@ -45,7 +45,7 @@ public class JF_AdminCatalogos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1280, 720));
 
-        jPanel1.setBackground(new java.awt.Color(82, 4, 44));
+        jPanel1.setBackground(new java.awt.Color(86, 4, 44));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -100,7 +100,6 @@ public class JF_AdminCatalogos extends javax.swing.JFrame {
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
         btnBack.setContentAreaFilled(false);
-        btnBack.setOpaque(true);
         btnBack.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backPressed.png"))); // NOI18N
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,10 +143,10 @@ public class JF_AdminCatalogos extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(119, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addGap(25, 25, 25))))
+                        .addGap(15, 15, 15))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

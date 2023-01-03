@@ -4,8 +4,6 @@
  */
 package View;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.JTextField;
 
 /**
@@ -69,7 +67,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         lblAvatar = new javax.swing.JLabel();
         lblSelecFoto = new javax.swing.JLabel();
         btnCargarFoto = new javax.swing.JButton();
-        btnGuardar = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
         lblDistrito = new javax.swing.JLabel();
         cmbTipoIden = new javax.swing.JComboBox<>();
         lblEquipo = new javax.swing.JLabel();
@@ -78,14 +76,17 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         lblDireccion = new javax.swing.JLabel();
         txtIden = new javax.swing.JFormattedTextField();
         txtTelef = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblPersonas = new javax.swing.JTable();
+        txtareaEliminar = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
-        pnlAdminPersonas.setBackground(new java.awt.Color(82, 4, 44));
+        pnlAdminPersonas.setBackground(new java.awt.Color(86, 4, 44));
         pnlAdminPersonas.setMaximumSize(new java.awt.Dimension(1280, 720));
         pnlAdminPersonas.setMinimumSize(new java.awt.Dimension(1280, 720));
-        pnlAdminPersonas.setPreferredSize(new java.awt.Dimension(1280, 780));
+        pnlAdminPersonas.setPreferredSize(new java.awt.Dimension(1280, 720));
         pnlAdminPersonas.setLayout(null);
 
         lblAdmiPersonas.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
@@ -333,18 +334,18 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         pnlAdminPersonas.add(btnCargarFoto);
         btnCargarFoto.setBounds(1080, 530, 120, 30);
 
-        btnGuardar.setBackground(new java.awt.Color(86, 4, 44));
-        btnGuardar.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuardar.setText("Guardar");
-        btnGuardar.setBorderPainted(false);
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setBackground(new java.awt.Color(86, 4, 44));
+        btnAceptar.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAceptar.setText("Aceptar");
+        btnAceptar.setBorderPainted(false);
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
-        pnlAdminPersonas.add(btnGuardar);
-        btnGuardar.setBounds(1070, 650, 130, 40);
+        pnlAdminPersonas.add(btnAceptar);
+        btnAceptar.setBounds(1070, 650, 130, 40);
 
         lblDistrito.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblDistrito.setForeground(new java.awt.Color(255, 255, 255));
@@ -397,6 +398,37 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         }
         pnlAdminPersonas.add(txtTelef);
         txtTelef.setBounds(770, 180, 180, 22);
+
+        tblPersonas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblPersonas);
+        jScrollPane1.setVisible(false);
+
+        pnlAdminPersonas.add(jScrollPane1);
+        jScrollPane1.setBounds(80, 180, 580, 480);
+
+        txtareaEliminar.setBackground(new java.awt.Color(86, 4, 44));
+        txtareaEliminar.setColumns(20);
+        txtareaEliminar.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        txtareaEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        txtareaEliminar.setRows(3);
+        txtareaEliminar.setText("Seleccione una persona de la tabla de \nla izquierda para eliminarla. Presione  \n     aceptar para concluir la acción.");
+        txtareaEliminar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(82, 4, 44)));
+        txtareaEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtareaEliminar.setDisabledTextColor(new java.awt.Color(82, 4, 44));
+        pnlAdminPersonas.add(txtareaEliminar);
+        txtareaEliminar.setBounds(740, 310, 510, 150);
+        txtareaEliminar.setEditable(false);
+        txtareaEliminar.setVisible(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -457,6 +489,9 @@ public class JF_AdminPerson extends javax.swing.JFrame {
        lblAvatar.setVisible(flag);
        lblSelecFoto.setVisible(flag);
        btnCargarFoto.setVisible(flag);
+       
+       jScrollPane1.setVisible(!flag);
+       txtareaEliminar.setVisible(!flag);
    }
    
    public void deshabilitarOpciones(boolean flag){
@@ -478,11 +513,16 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         String tipoPersona = cmbPersona.getSelectedItem().toString();
         if("Cuerpo Técnico".equals(tipoPersona)){
            deshabilitarOpciones(false);
-       }
+        }
     }//GEN-LAST:event_rbtnAgregarActionPerformed
 
     private void rbtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEditarActionPerformed
-        esconderMostrarTodo(false);
+        esconderMostrarTodo(true);
+        
+        String tipoPersona = cmbPersona.getSelectedItem().toString();
+        if("Cuerpo Técnico".equals(tipoPersona)){
+           deshabilitarOpciones(false);
+        }
     }//GEN-LAST:event_rbtnEditarActionPerformed
 
     private void cmbEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEquipoActionPerformed
@@ -497,10 +537,9 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCargarFotoActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void cmbTipoIdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoIdenActionPerformed
         // TODO add your handling code here:
@@ -517,10 +556,10 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private void cmbPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPersonaActionPerformed
        String tipoPersona = cmbPersona.getSelectedItem().toString();
         
-       if(rbtnAgregar.isSelected() && "Cuerpo Técnico".equals(tipoPersona)){
+       if((rbtnAgregar.isSelected() || rbtnEditar.isSelected()) && "Cuerpo Técnico".equals(tipoPersona)){
            deshabilitarOpciones(false);
        }
-       if(rbtnAgregar.isSelected() && "Jugador".equals(tipoPersona)){
+       if((rbtnAgregar.isSelected() || rbtnEditar.isSelected()) && "Jugador".equals(tipoPersona)){
            deshabilitarOpciones(true);
        }
     }//GEN-LAST:event_cmbPersonaActionPerformed
@@ -566,10 +605,10 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCargarFoto;
     private javax.swing.ButtonGroup btnGroupAdmiPersonas;
-    private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<String> cmbCanton;
     private javax.swing.JComboBox<String> cmbDistrito;
     private javax.swing.JComboBox<String> cmbEquipo;
@@ -578,6 +617,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbPersona;
     private javax.swing.JComboBox<String> cmbProvin;
     private javax.swing.JComboBox<String> cmbTipoIden;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdmiPersonas;
     private javax.swing.JLabel lblAvatar;
     private javax.swing.JLabel lblCanton;
@@ -605,6 +645,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtnEditar;
     private javax.swing.JRadioButton rbtnEliminar;
     private javax.swing.JSpinner spnNumCamisa;
+    private javax.swing.JTable tblPersonas;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtFechaNac;
@@ -614,5 +655,6 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private javax.swing.JTextField txtSegAp;
     private javax.swing.JTextField txtSegNombre;
     private javax.swing.JFormattedTextField txtTelef;
+    private javax.swing.JTextArea txtareaEliminar;
     // End of variables declaration//GEN-END:variables
 }
