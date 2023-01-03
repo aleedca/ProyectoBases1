@@ -169,11 +169,9 @@ BEGIN
     BEGIN
         IF (pPhoneNumber IS NOT NULL) THEN
             DECLARE idPhoneInsertion NUMBER :=s_phone.nextval;
-            
-            EXEC insertPhone (pPhoneNumber);
-            EXEC insertPersonXPhone (idPersonInsertion,idPhoneInsertion);
-            
             BEGIN
+                insertPhone (pPhoneNumber);
+                insertPersonXPhone (idPersonInsertion,idPhoneInsertion);
                 COMMIT;
             END;
         ELSE 
@@ -182,6 +180,7 @@ BEGIN
         
     END;
 END insertPlayer;
+
 -- PersonXPhone
 CREATE OR REPLACE PROCEDURE insertPersonXPhone (pIdPerson IN NUMBER,pIdPhone IN NUMBER)
 AS
@@ -236,12 +235,30 @@ BEGIN
 END insertTeamWorker;
 
 -- UserPerson
-CREATE OR REPLACE PROCEDURE insertUserPerson(pUsername IN VARCHAR2, pIdUserType IN NUMBER, pIdPerson IN NUMBER, pPassword IN VARCHAR2)
+CREATE OR REPLACE PROCEDURE insertUserPerson(pUsername IN VARCHAR2, pIdUserType IN NUMBER, pPassword IN VARCHAR2, 
+            pIdentification IN NUMBER, pFirstName IN VARCHAR2, 
+            pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2, 
+            pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER, pIdCountry IN NUMBER, 
+            pIdTypeIdentification IN NUMBER, pIdGender IN NUMBER, pMail IN VARCHAR2, pPhoneNumber IN NUMBER)
 AS 
 BEGIN
-    INSERT INTO UserPerson(username, idUserType, idPerson, passwordUser, userCreation, lastUser, lastDate, dateCreation)
-    VALUES(pUsername, pIdUserType, pIdPerson, pPassword, NULL, NULL, NULL, NULL);
-    COMMIT;
+    DECLARE idPersonInsertion NUMBER :=s_person.nextval;
+    BEGIN   
+        insertPerson (idPersonInsertion, pIdentification, pFirstName, pSecondName, pFirstLastName, 
+                    pSecondLastName, pPhoto, pIdPersonPosition, pIdCountry, pIdTypeIdentification, pIdGender);
+   
+        INSERT INTO UserPerson(username, idUserType, idPerson, passwordUser, userCreation, lastUser, lastDate, dateCreation)
+        VALUES(pUsername, pIdUserType,idPersonInsertion, pPassword, NULL, NULL, NULL, NULL);
+        
+        insertMail (idPersonInsertion, pMail);
+        insertPhone (pPhoneNumber);
+        
+        DECLARE idPhoneInsertion NUMBER :=s_phone.nextval;
+        BEGIN
+            insertPersonXPhone (idPersonInsertion,idPhoneInsertion);
+        END;
+        COMMIT;
+     END;   
 END insertUserPerson;
 
 -- Insertion PlayerXSoccerMatchXTeam

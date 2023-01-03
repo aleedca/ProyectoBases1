@@ -62,8 +62,11 @@ public class JF_Register extends javax.swing.JFrame {
         return cmbTipoIdentificacion;
     }
 
-    public String getTxtIdentificacion() {
-        return txtIdentificacion.getText();
+    public int getTxtIdentificacion() {
+        String cadena =  txtIdentificacion.getText();
+        String combinacion = cadena.substring(0, 1) + cadena.substring(2, 6)+ cadena.substring(7);
+        int identification = Integer.parseInt(combinacion);
+        return identification;
     }
 
     public String getTxtUsername() {
@@ -75,8 +78,12 @@ public class JF_Register extends javax.swing.JFrame {
         return password;
     }
  
-    public String getTxtTelefono() {
-        return txtTelefono.getText();
+    public int getTxtTelefono() {
+        String cadena =  txtTelefono.getText();
+        String combinacion = cadena.substring(0, 4) + cadena.substring(5);
+        System.out.println(combinacion);
+        int phone = Integer.parseInt(combinacion);
+        return phone;
     }
 
     public String getSelectedGender() {
@@ -151,7 +158,6 @@ public class JF_Register extends javax.swing.JFrame {
        cleanTelefono();
        cleanCorreo();
        cleanDireccion();
-       System.out.println("Limpia todo...");
     }
     
     public void cleanPrimerNombre() {

@@ -2,6 +2,7 @@
 package Model;
 
 import DataAccess.DA_Catalogs;
+import DataAccess.DA_Person;
 import Objects.Canton;
 import Objects.Country;
 import Objects.District;
@@ -12,6 +13,8 @@ import View.JF_Register;
 import java.awt.Image;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 import javax.swing.Icon;
@@ -21,7 +24,6 @@ import javax.swing.JLabel;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
@@ -34,21 +36,21 @@ public class model_Register {
     private String secondName;
     private String firstLastName;
     private String secondLastName;
-    private String identification;
+    private int identification;
     private String mail;
     private String usernameRegister;
     private String passwordRegister;
-    private String phone;
+    private int phone;
     private String address;
     private String photo;
     
-    private String gender;
+    private int gender;
     private ArrayList<Gender> genders;
     
-    private String typeIdentification;
+    private int typeIdentification;
     private ArrayList<TypeIdentification> identificationTypes;
     
-    private String country;
+    private int country;
     private ArrayList<Country> countries;
     
     private String province;
@@ -89,13 +91,13 @@ public class model_Register {
     //--------- METHODS -------------------  
     
     //-------------- VALIDATIONS -------------------------------------
-    public boolean validateEmptyFields(String firstName, String firstLastName, String identification, 
-            String username, String password, String mail, String phone, String address){
+    public boolean validateEmptyFields(String firstName, String firstLastName, 
+            String username, String password, String mail, String address){
         
-        if(firstName.isEmpty() || firstLastName.isEmpty() || identification.isEmpty() || address.isEmpty()){
+        if(firstName.isEmpty() || firstLastName.isEmpty() || address.isEmpty()){
             return true;
         }else{
-            if(username.isEmpty() || password.isEmpty() || mail.isEmpty() || phone.isEmpty()){
+            if(username.isEmpty() || password.isEmpty() || mail.isEmpty()){
                 return true;
             }
         }
@@ -197,6 +199,20 @@ public class model_Register {
     
     //----------------------------------------------------------------------------------------------------------
   
+    public void inserUser(){
+        try {   
+            
+            DA_Person.insertUserPerson(this.usernameRegister, this.passwordRegister, this.identification, this.firstName,
+                    this.secondName, this.firstLastName, this.secondLastName, this.photo, 
+                    this.country, this.typeIdentification, this.gender, this.mail, this.phone);
+        
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    
+    
     public boolean selectPhoto(JF_Register register){
         file.setFileFilter(this.filter);
         file.showOpenDialog(register);
@@ -251,11 +267,11 @@ public class model_Register {
         this.secondLastName = secondLastName;
     }
 
-    public String getIdentification() {
+    public int getIdentification() {
         return identification;
     }
 
-    public void setIdentification(String identification) {
+    public void setIdentification(int identification) {
         this.identification = identification;
     }
 
@@ -283,35 +299,35 @@ public class model_Register {
         this.passwordRegister = passwordRegister;
     }
 
-    public String getPhone() {
+    public int getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
     }
 
-    public String getTypeIdentification() {
+    public int getTypeIdentification() {
         return typeIdentification;
     }
 
-    public void setTypeIdentification(String typeIdentification) {
+    public void setTypeIdentification(int typeIdentification) {
         this.typeIdentification = typeIdentification;
     }
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
-    public String getCountry() {
+    public int getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(int country) {
         this.country = country;
     }
 
