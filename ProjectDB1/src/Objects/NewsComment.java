@@ -16,4 +16,21 @@ public class NewsComment {
         this.commentBody = pComment;
         this.username = pUsername;
     }
+
+    public String getCommentBody() {
+        return commentBody;
+    }
+
+    public void setCommentBody(String commentBody) {
+        this.commentBody = commentBody;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
 }
