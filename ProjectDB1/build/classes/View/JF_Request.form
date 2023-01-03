@@ -73,14 +73,21 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblNewsList" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblTeamList" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblGroupList" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblTeamList" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblGroupList" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="227" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblNewsList" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="270" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="227" max="-2" attributes="0"/>
                                   <Component id="lblTeamName1" min="-2" pref="150" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -141,7 +148,7 @@
                           <Component id="lblNewsList" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="34" max="32767" attributes="0"/>
+                          <EmptySpace pref="22" max="32767" attributes="0"/>
                           <Component id="btnBackRequest" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -374,7 +381,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="lblPosition" min="-2" pref="133" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="btnRequestNewsList" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnRequestTeamList" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -409,9 +416,9 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblPosition" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblPlayer2Lastname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnRequestNewsList" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnRequestTeamList" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="10" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -425,8 +432,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtTeamName3">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTeamName3ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtPlayer1Name">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPlayer1NameActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtPlayer2Name">
             </Component>
@@ -459,12 +472,12 @@
                 <Property name="text" type="java.lang.String" value="Posicion"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnRequestNewsList">
+            <Component class="javax.swing.JButton" name="btnRequestTeamList">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRequestNewsListActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRequestTeamListActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -512,7 +525,7 @@
                           <Group type="102" attributes="0">
                               <Component id="lblDateFormat" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnRequestTeamList" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnRequestNewsList" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -554,24 +567,16 @@
                           <Component id="lblNewsDate" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblDateFormat" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnRequestTeamList" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDateFormat" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnRequestNewsList" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="14" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btnRequestTeamList">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRequestTeamListActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JTextField" name="txtAuthorName">
             </Component>
             <Component class="javax.swing.JLabel" name="lblAuthorName">
@@ -604,6 +609,14 @@
             <Component class="javax.swing.JTextField" name="txtNewsDate">
             </Component>
             <Component class="javax.swing.JTextField" name="txtNewsEvent">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnRequestNewsList">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Consultar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRequestNewsListActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

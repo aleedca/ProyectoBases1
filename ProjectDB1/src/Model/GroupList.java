@@ -9,5 +9,11 @@ package Model;
  * @author Nahomy
  */
 public class GroupList {
+    String teamName;
+    String matchDate;
+    String stadium;
+    String teamFlag; 
+    
+    
     
 }
