@@ -8,11 +8,11 @@ import Objects.District;
 import Objects.Gender;
 import Objects.Province;
 import Objects.TypeIdentification;
+import View.JF_Register;
 import java.awt.Image;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -20,6 +20,9 @@ import javax.swing.JLabel;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /**
@@ -56,6 +59,9 @@ public class model_Register {
     
     private String district;
     private ArrayList<District> districts;
+    
+    private final JFileChooser file = new JFileChooser();
+    private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");;
     
     
     //------------ Builder ----------------------
@@ -191,9 +197,23 @@ public class model_Register {
     
     //----------------------------------------------------------------------------------------------------------
   
+    public boolean selectPhoto(JF_Register register){
+        file.setFileFilter(this.filter);
+        file.showOpenDialog(register);
+        try{
+            photo = file.getSelectedFile().getPath();
+            return true;
+        }catch(NullPointerException e){
+            System.out.println("No se ha seleccionado ningún fichero");
+        } 
+        
+        return false;
+    }
+    
+    
     public void setImageLabel(JLabel labelName){
         ImageIcon image = new ImageIcon(this.photo);
-        Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_DEFAULT));
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_SMOOTH));
         labelName.setIcon(icon);
     }
         

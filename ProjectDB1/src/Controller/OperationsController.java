@@ -11,8 +11,11 @@ import View.JF_Principal;
 import View.JF_Register;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import javax.swing.JFileChooser;
 
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /**
@@ -28,6 +31,9 @@ public class OperationsController implements ActionListener{
     private final model_Login modelLogin;
     private final model_Register modelRegister;
     private boolean flagRegister;
+    
+    
+
         
     
     //Constructor 2da version
@@ -219,11 +225,11 @@ public class OperationsController implements ActionListener{
         }
         
         if(e.getSource() == viewRegister.getBtnCargarFoto()){
-            modelRegister.setPhoto("src/Images/prueba.jpg");
-            
-            viewRegister.setLocationRelativeTo(viewRegister);
-            modelRegister.setImageLabel(viewRegister.getLblAvatar());
-            viewRegister.repaint();
+            if(modelRegister.selectPhoto(viewRegister)){
+                viewRegister.setLocationRelativeTo(viewRegister);
+                modelRegister.setImageLabel(viewRegister.getLblAvatar());
+                viewRegister.repaint();
+            }
         }
         
         if(e.getSource() == viewRegister.getBtnVerificarRegistro()){
