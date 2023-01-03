@@ -31,23 +31,24 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         lblAdminNoticias = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblNoticias = new javax.swing.JTable();
         rbtnAgregar = new javax.swing.JRadioButton();
         rbtnEditar = new javax.swing.JRadioButton();
         rbtnEliminar = new javax.swing.JRadioButton();
-        btnGuardar = new javax.swing.JButton();
-        lblEstado = new javax.swing.JLabel();
-        cmbeEstado = new javax.swing.JComboBox<>();
+        cmbEstado = new javax.swing.JComboBox<>();
+        lblTipo = new javax.swing.JLabel();
+        cmbTipo = new javax.swing.JComboBox<>();
         lblTitulo = new javax.swing.JLabel();
-        lblEstado2 = new javax.swing.JLabel();
-        cmbeEstado1 = new javax.swing.JComboBox<>();
         txtTitulo = new javax.swing.JTextField();
         lblTexto = new javax.swing.JLabel();
-        txtTexto = new javax.swing.JTextField();
-        imgFoto = new javax.swing.JLabel();
-        btnCargarFoto = new javax.swing.JButton();
         lblFoto = new javax.swing.JLabel();
+        btnCargarImagen = new javax.swing.JButton();
+        lblImagen = new javax.swing.JLabel();
+        txtTexto = new javax.swing.JTextField();
+        btnAceptar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblNoticias = new javax.swing.JTable();
+        lblEstado = new javax.swing.JLabel();
+        txtareaEliminar = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -56,6 +57,7 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
+        jPanel1.setLayout(null);
 
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
@@ -66,12 +68,121 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
+        jPanel1.add(btnBack);
+        btnBack.setBounds(47, 47, 46, 40);
 
         lblAdminNoticias.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
         lblAdminNoticias.setForeground(new java.awt.Color(255, 255, 255));
         lblAdminNoticias.setText("Administrar Noticias");
+        jPanel1.add(lblAdminNoticias);
+        lblAdminNoticias.setBounds(111, 39, 521, 48);
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
+        jPanel1.add(lblLogo);
+        lblLogo.setBounds(1050, 16, 200, 125);
+
+        btnGroupAdmiNoticias.add(rbtnAgregar);
+        rbtnAgregar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        rbtnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnAgregar.setText("Agregar");
+        rbtnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnAgregarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbtnAgregar);
+        rbtnAgregar.setBounds(720, 160, 150, 37);
+        rbtnAgregar.setSelected(true);
+
+        btnGroupAdmiNoticias.add(rbtnEditar);
+        rbtnEditar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        rbtnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnEditar.setText("Editar");
+        rbtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnEditarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbtnEditar);
+        rbtnEditar.setBounds(910, 160, 100, 37);
+
+        btnGroupAdmiNoticias.add(rbtnEliminar);
+        rbtnEliminar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        rbtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnEliminar.setText("Eliminar");
+        rbtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbtnEliminar);
+        rbtnEliminar.setBounds(1060, 160, 150, 37);
+
+        cmbEstado.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
+        jPanel1.add(cmbEstado);
+        cmbEstado.setBounds(800, 220, 150, 30);
+
+        lblTipo.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        lblTipo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTipo.setText("Tipo:");
+        jPanel1.add(lblTipo);
+        lblTipo.setBounds(990, 220, 60, 40);
+
+        cmbTipo.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
+        jPanel1.add(cmbTipo);
+        cmbTipo.setBounds(1050, 220, 150, 30);
+
+        lblTitulo.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setText("Título:");
+        jPanel1.add(lblTitulo);
+        lblTitulo.setBounds(720, 280, 60, 30);
+
+        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel1.add(txtTitulo);
+        txtTitulo.setBounds(790, 280, 410, 30);
+
+        lblTexto.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        lblTexto.setForeground(new java.awt.Color(255, 255, 255));
+        lblTexto.setText("Texto:");
+        jPanel1.add(lblTexto);
+        lblTexto.setBounds(720, 340, 120, 25);
+
+        lblFoto.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        lblFoto.setForeground(new java.awt.Color(255, 255, 255));
+        lblFoto.setText("Foto:");
+        jPanel1.add(lblFoto);
+        lblFoto.setBounds(990, 340, 70, 30);
+
+        btnCargarImagen.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnCargarImagen.setText("Cargar foto");
+        btnCargarImagen.setAlignmentY(0.0F);
+        jPanel1.add(btnCargarImagen);
+        btnCargarImagen.setBounds(1060, 340, 120, 30);
+
+        lblImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/avatar.png"))); // NOI18N
+        lblImagen.setAlignmentX(0.5F);
+        lblImagen.setMaximumSize(new java.awt.Dimension(180, 230));
+        lblImagen.setMinimumSize(new java.awt.Dimension(180, 230));
+        lblImagen.setPreferredSize(new java.awt.Dimension(180, 230));
+        jPanel1.add(lblImagen);
+        lblImagen.setBounds(1010, 380, 180, 230);
+
+        txtTexto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTexto.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel1.add(txtTexto);
+        txtTexto.setBounds(720, 380, 230, 230);
+
+        btnAceptar.setBackground(new java.awt.Color(86, 4, 44));
+        btnAceptar.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAceptar.setText("Aceptar");
+        btnAceptar.setBorderPainted(false);
+        jPanel1.add(btnAceptar);
+        btnAceptar.setBounds(920, 630, 130, 40);
 
         tblNoticias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,200 +205,28 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblNoticias);
 
-        rbtnAgregar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        rbtnAgregar.setForeground(new java.awt.Color(255, 255, 255));
-        rbtnAgregar.setText("Agregar");
-        rbtnAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnAgregarActionPerformed(evt);
-            }
-        });
-
-        rbtnEditar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        rbtnEditar.setForeground(new java.awt.Color(255, 255, 255));
-        rbtnEditar.setText("Editar");
-        rbtnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnEditarActionPerformed(evt);
-            }
-        });
-
-        rbtnEliminar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        rbtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        rbtnEliminar.setText("Eliminar");
-        rbtnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnEliminarActionPerformed(evt);
-            }
-        });
-
-        btnGuardar.setBackground(new java.awt.Color(86, 4, 44));
-        btnGuardar.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuardar.setText("Guardar");
-        btnGuardar.setBorderPainted(false);
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(40, 160, 616, 480);
 
         lblEstado.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         lblEstado.setForeground(new java.awt.Color(255, 255, 255));
         lblEstado.setText("Estado:");
+        jPanel1.add(lblEstado);
+        lblEstado.setBounds(720, 220, 120, 40);
 
-        cmbeEstado.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        cmbeEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
-        cmbeEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbeEstadoActionPerformed(evt);
-            }
-        });
-
-        lblTitulo.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo.setText("Título:");
-
-        lblEstado2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
-        lblEstado2.setForeground(new java.awt.Color(255, 255, 255));
-        lblEstado2.setText("Tipo:");
-
-        cmbeEstado1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        cmbeEstado1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
-        cmbeEstado1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbeEstado1ActionPerformed(evt);
-            }
-        });
-
-        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        lblTexto.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
-        lblTexto.setForeground(new java.awt.Color(255, 255, 255));
-        lblTexto.setText("Texto:");
-
-        txtTexto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtTexto.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-
-        imgFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/avatar.png"))); // NOI18N
-        imgFoto.setAlignmentX(0.5F);
-        imgFoto.setMaximumSize(new java.awt.Dimension(180, 230));
-        imgFoto.setMinimumSize(new java.awt.Dimension(180, 230));
-        imgFoto.setPreferredSize(new java.awt.Dimension(180, 230));
-
-        btnCargarFoto.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        btnCargarFoto.setText("Cargar foto");
-        btnCargarFoto.setAlignmentY(0.0F);
-        btnCargarFoto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCargarFotoActionPerformed(evt);
-            }
-        });
-
-        lblFoto.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
-        lblFoto.setForeground(new java.awt.Color(255, 255, 255));
-        lblFoto.setText("Foto:");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblAdminNoticias, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblLogo)
-                        .addGap(30, 30, 30))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmbeEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblEstado2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmbeEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(67, 67, 67)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnCargarFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(imgFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(rbtnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(51, 51, 51)
-                                        .addComponent(rbtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(61, 61, 61)
-                                        .addComponent(rbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(73, 73, 73))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(248, 248, 248))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblLogo)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAdminNoticias))))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtnEditar)
-                            .addComponent(rbtnEliminar)
-                            .addComponent(rbtnAgregar))
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbeEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbeEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEstado2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblFoto)
-                            .addComponent(btnCargarFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(imgFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
-        );
-
-        rbtnAgregar.setSelected(true);
+        txtareaEliminar.setBackground(new java.awt.Color(82, 4, 44));
+        txtareaEliminar.setColumns(20);
+        txtareaEliminar.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
+        txtareaEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        txtareaEliminar.setRows(3);
+        txtareaEliminar.setText("Seleccione una noticia de la tabla de \nla izquierda para eliminarla. Presione  \n     aceptar para concluir la acción.");
+        txtareaEliminar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(82, 4, 44)));
+        txtareaEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        txtareaEliminar.setDisabledTextColor(new java.awt.Color(82, 4, 44));
+        jPanel1.add(txtareaEliminar);
+        txtareaEliminar.setBounds(720, 330, 500, 150);
+        txtareaEliminar.setEditable(false);
+        txtareaEliminar.setVisible(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -303,6 +242,21 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void esconderMostrarTodo(boolean flag){
+        lblEstado.setVisible(flag);
+        cmbTipo.setVisible(flag);
+        lblTipo.setVisible(flag);
+        cmbEstado.setVisible(flag);
+        lblTitulo.setVisible(flag);
+        txtTitulo.setVisible(flag);
+        lblTexto.setVisible(flag);
+        txtTexto.setVisible(flag);
+        lblFoto.setVisible(flag);
+        lblImagen.setVisible(flag);
+        btnCargarImagen.setVisible(flag);
+        txtareaEliminar.setVisible(!flag);
+    }
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         JF_AdminOptions adminOptions = new JF_AdminOptions();
         adminOptions.setVisible(true);
@@ -310,32 +264,16 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void rbtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnAgregarActionPerformed
-   
+        esconderMostrarTodo(true);
     }//GEN-LAST:event_rbtnAgregarActionPerformed
 
     private void rbtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEditarActionPerformed
-        
+        esconderMostrarTodo(true);
     }//GEN-LAST:event_rbtnEditarActionPerformed
 
     private void rbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEliminarActionPerformed
-        
+        esconderMostrarTodo(false);
     }//GEN-LAST:event_rbtnEliminarActionPerformed
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void cmbeEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbeEstadoActionPerformed
-        
-    }//GEN-LAST:event_cmbeEstadoActionPerformed
-
-    private void cmbeEstado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbeEstado1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbeEstado1ActionPerformed
-
-    private void btnCargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarFotoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCargarFotoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -373,21 +311,21 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnCargarFoto;
+    private javax.swing.JButton btnCargarImagen;
     private javax.swing.ButtonGroup btnGroupAdmiNoticias;
-    private javax.swing.JButton btnGuardar;
-    private javax.swing.JComboBox<String> cmbeEstado;
-    private javax.swing.JComboBox<String> cmbeEstado1;
-    private javax.swing.JLabel imgFoto;
+    private javax.swing.JComboBox<String> cmbEstado;
+    private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdminNoticias;
     private javax.swing.JLabel lblEstado;
-    private javax.swing.JLabel lblEstado2;
     private javax.swing.JLabel lblFoto;
+    private javax.swing.JLabel lblImagen;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblTexto;
+    private javax.swing.JLabel lblTipo;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JRadioButton rbtnAgregar;
     private javax.swing.JRadioButton rbtnEditar;
@@ -395,5 +333,6 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
     private javax.swing.JTable tblNoticias;
     private javax.swing.JTextField txtTexto;
     private javax.swing.JTextField txtTitulo;
+    private javax.swing.JTextArea txtareaEliminar;
     // End of variables declaration//GEN-END:variables
 }
