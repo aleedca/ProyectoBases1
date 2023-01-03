@@ -4,9 +4,6 @@
  */
 package View;
 
-import java.awt.Image;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -16,34 +13,45 @@ import javax.swing.JLabel;
  */
 public class JF_Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JF_Register
-     */
     public JF_Principal() {
         initComponents();
 
     }
 
-    /*
-    private void setImageLabel(JLabel labelName, String imageDirectory){
-        ImageIcon image = new ImageIcon(imageDirectory);
-        Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_DEFAULT));
-        labelName.setIcon(icon);
-        System.out.println("Entré aquí");
-        this.repaint();
-    }*/
-    
     //GETTERS
+
+    public JButton getBtnCuenta() {
+        return btnCuenta;
+    }
 
     public JButton getBtnIniciarSesion() {
         return btnIniciarSesion;
     }
 
+    public JButton getBtnConsultas() {
+        return btnConsultas;
+    }
+
+    public JButton getBtnOpAdm() {
+        return btnOpAdm;
+    }
+    
     public JButton getBtnRegistrar() {
         return btnRegistrar;
     }
+
+    public JButton getBtnSalir() {
+        return btnSalir;
+    }
+
+    public JLabel getLblBienvenido() {
+        return lblBienvenido;
+    }
     
-    
+    //SETTER
+    public void setTxtLblBienvenido(String lblBienvenido) {
+        this.lblBienvenido.setText(lblBienvenido);
+    }
     
     
     
@@ -55,17 +63,22 @@ public class JF_Principal extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         pnlBackground = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnRegistrar = new javax.swing.JButton();
+        btnConsultas = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblBienvenido = new javax.swing.JLabel();
         btnIniciarSesion = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        btnSalir = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
+        btnCuenta = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        btnOpAdm = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1285, 752));
@@ -78,16 +91,18 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(jLabel1);
         jLabel1.setBounds(19, 44, 0, 0);
 
-        btnRegistrar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        btnRegistrar.setText("Registrar");
-        btnRegistrar.setAlignmentY(0.0F);
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultas.setBackground(new java.awt.Color(86, 4, 44));
+        btnConsultas.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnConsultas.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultas.setText("Consultas");
+        btnConsultas.setAlignmentY(0.0F);
+        btnConsultas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
+                btnConsultasActionPerformed(evt);
             }
         });
-        pnlBackground.add(btnRegistrar);
-        btnRegistrar.setBounds(790, 70, 120, 30);
+        pnlBackground.add(btnConsultas);
+        btnConsultas.setBounds(660, 70, 120, 30);
         pnlBackground.add(jLabel17);
         jLabel17.setBounds(582, 44, 0, 0);
         pnlBackground.add(jLabel19);
@@ -109,13 +124,15 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(jLabel4);
         jLabel4.setBounds(890, 440, 171, 32);
 
-        jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Noticias más vistas");
-        pnlBackground.add(jLabel5);
-        jLabel5.setBounds(760, 170, 220, 50);
+        lblBienvenido.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblBienvenido.setForeground(new java.awt.Color(255, 255, 255));
+        lblBienvenido.setText("BIENVENIDX NOMBRE APELLIDO");
+        pnlBackground.add(lblBienvenido);
+        lblBienvenido.setBounds(30, 60, 580, 50);
 
+        btnIniciarSesion.setBackground(new java.awt.Color(86, 4, 44));
         btnIniciarSesion.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion.setText("Iniciar Sesión");
         btnIniciarSesion.setAlignmentY(0.0F);
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +141,7 @@ public class JF_Principal extends javax.swing.JFrame {
             }
         });
         pnlBackground.add(btnIniciarSesion);
-        btnIniciarSesion.setBounds(930, 70, 120, 30);
+        btnIniciarSesion.setBounds(940, 70, 120, 30);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -168,6 +185,64 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(jPanel3);
         jPanel3.setBounds(690, 490, 550, 190);
 
+        btnSalir.setBackground(new java.awt.Color(86, 4, 44));
+        btnSalir.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir.setText("Salir");
+        btnSalir.setAlignmentY(0.0F);
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        pnlBackground.add(btnSalir);
+        btnSalir.setBounds(940, 70, 120, 30);
+
+        btnRegistrar.setBackground(new java.awt.Color(86, 4, 44));
+        btnRegistrar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.setAlignmentY(0.0F);
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+        pnlBackground.add(btnRegistrar);
+        btnRegistrar.setBounds(800, 70, 120, 30);
+
+        btnCuenta.setBackground(new java.awt.Color(86, 4, 44));
+        btnCuenta.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnCuenta.setForeground(new java.awt.Color(255, 255, 255));
+        btnCuenta.setText("Mi cuenta");
+        btnCuenta.setAlignmentY(0.0F);
+        btnCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuentaActionPerformed(evt);
+            }
+        });
+        pnlBackground.add(btnCuenta);
+        btnCuenta.setBounds(800, 70, 120, 30);
+
+        jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Noticias más vistas");
+        pnlBackground.add(jLabel6);
+        jLabel6.setBounds(780, 170, 220, 50);
+
+        btnOpAdm.setBackground(new java.awt.Color(86, 4, 44));
+        btnOpAdm.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnOpAdm.setForeground(new java.awt.Color(255, 255, 255));
+        btnOpAdm.setText("Menu Admin");
+        btnOpAdm.setAlignmentY(0.0F);
+        btnOpAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpAdmActionPerformed(evt);
+            }
+        });
+        pnlBackground.add(btnOpAdm);
+        btnOpAdm.setBounds(520, 70, 120, 30);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -183,58 +258,37 @@ public class JF_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-//       JF_Login login = new JF_Login();
-//       login.setVisible(true); 
-//       
-//       this.dispose();
+
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
+    private void btnConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultasActionPerformed
+
+    }//GEN-LAST:event_btnConsultasActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalirActionPerformed
+
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        JF_Register register = new JF_Register();
-        register.setVisible(true); 
-       
-        this.dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JF_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JF_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JF_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JF_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void btnCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCuentaActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JF_Principal().setVisible(true);
-            }
-        });
-    }
+    private void btnOpAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpAdmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOpAdmActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConsultas;
+    private javax.swing.JButton btnCuenta;
     private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JButton btnOpAdm;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
@@ -243,10 +297,11 @@ public class JF_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblBienvenido;
     private javax.swing.JPanel pnlBackground;
     // End of variables declaration//GEN-END:variables
 }

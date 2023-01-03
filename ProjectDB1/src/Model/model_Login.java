@@ -4,13 +4,11 @@
  */
 package Model;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Mariana
  */
-public class ValidarLogin {
+public class model_Login {
     private String usernameLogin;
     private String passwordLogin;
     
@@ -24,12 +22,12 @@ public class ValidarLogin {
         return false;
     }
     
-    public boolean validarUsername(){ //Falta realizar la validación de si es Admin o Usuario
-        return false;
+    public boolean validateUsername(){ //Falta realizar la validación de si es Admin o Usuario
+        return true;
     }
     
-    public boolean validarPassword(){ //Falta realizar la validación de si es Admin o Usuario
-        return false;
+    public boolean validatePassword(){ //Falta realizar la validación de si es Admin o Usuario
+        return true;
     }
     
     //------------ GETTERS AND SETTERS ----------------------
