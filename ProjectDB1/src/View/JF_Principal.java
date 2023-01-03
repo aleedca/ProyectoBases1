@@ -28,10 +28,14 @@ public class JF_Principal extends javax.swing.JFrame {
         return btnIniciarSesion;
     }
 
+    public JButton getBtnConsultas() {
+        return btnConsultas;
+    }
+
     public JButton getBtnOpAdm() {
         return btnOpAdm;
     }
-
+    
     public JButton getBtnRegistrar() {
         return btnRegistrar;
     }
@@ -59,7 +63,7 @@ public class JF_Principal extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         pnlBackground = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnOpAdm = new javax.swing.JButton();
+        btnConsultas = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -74,6 +78,7 @@ public class JF_Principal extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
         btnCuenta = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        btnOpAdm = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1285, 752));
@@ -86,16 +91,18 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(jLabel1);
         jLabel1.setBounds(19, 44, 0, 0);
 
-        btnOpAdm.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        btnOpAdm.setText("Menu Admin");
-        btnOpAdm.setAlignmentY(0.0F);
-        btnOpAdm.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultas.setBackground(new java.awt.Color(86, 4, 44));
+        btnConsultas.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnConsultas.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultas.setText("Consultas");
+        btnConsultas.setAlignmentY(0.0F);
+        btnConsultas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOpAdmActionPerformed(evt);
+                btnConsultasActionPerformed(evt);
             }
         });
-        pnlBackground.add(btnOpAdm);
-        btnOpAdm.setBounds(650, 70, 120, 30);
+        pnlBackground.add(btnConsultas);
+        btnConsultas.setBounds(660, 70, 120, 30);
         pnlBackground.add(jLabel17);
         jLabel17.setBounds(582, 44, 0, 0);
         pnlBackground.add(jLabel19);
@@ -123,7 +130,9 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(lblBienvenido);
         lblBienvenido.setBounds(30, 60, 580, 50);
 
+        btnIniciarSesion.setBackground(new java.awt.Color(86, 4, 44));
         btnIniciarSesion.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion.setText("Iniciar Sesión");
         btnIniciarSesion.setAlignmentY(0.0F);
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +185,9 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(jPanel3);
         jPanel3.setBounds(690, 490, 550, 190);
 
+        btnSalir.setBackground(new java.awt.Color(86, 4, 44));
         btnSalir.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Salir");
         btnSalir.setAlignmentY(0.0F);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -187,7 +198,9 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(btnSalir);
         btnSalir.setBounds(940, 70, 120, 30);
 
+        btnRegistrar.setBackground(new java.awt.Color(86, 4, 44));
         btnRegistrar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrar.setText("Registrar");
         btnRegistrar.setAlignmentY(0.0F);
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -198,7 +211,9 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(btnRegistrar);
         btnRegistrar.setBounds(800, 70, 120, 30);
 
+        btnCuenta.setBackground(new java.awt.Color(86, 4, 44));
         btnCuenta.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnCuenta.setForeground(new java.awt.Color(255, 255, 255));
         btnCuenta.setText("Mi cuenta");
         btnCuenta.setAlignmentY(0.0F);
         btnCuenta.addActionListener(new java.awt.event.ActionListener() {
@@ -214,6 +229,19 @@ public class JF_Principal extends javax.swing.JFrame {
         jLabel6.setText("Noticias más vistas");
         pnlBackground.add(jLabel6);
         jLabel6.setBounds(780, 170, 220, 50);
+
+        btnOpAdm.setBackground(new java.awt.Color(86, 4, 44));
+        btnOpAdm.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnOpAdm.setForeground(new java.awt.Color(255, 255, 255));
+        btnOpAdm.setText("Menu Admin");
+        btnOpAdm.setAlignmentY(0.0F);
+        btnOpAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpAdmActionPerformed(evt);
+            }
+        });
+        pnlBackground.add(btnOpAdm);
+        btnOpAdm.setBounds(520, 70, 120, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -233,9 +261,9 @@ public class JF_Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
-    private void btnOpAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpAdmActionPerformed
+    private void btnConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultasActionPerformed
 
-    }//GEN-LAST:event_btnOpAdmActionPerformed
+    }//GEN-LAST:event_btnConsultasActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
@@ -249,8 +277,13 @@ public class JF_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCuentaActionPerformed
 
+    private void btnOpAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpAdmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOpAdmActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConsultas;
     private javax.swing.JButton btnCuenta;
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnOpAdm;
