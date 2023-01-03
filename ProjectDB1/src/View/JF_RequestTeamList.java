@@ -9,7 +9,7 @@ package View;
  * @author Nahomy
  */
 public class JF_RequestTeamList extends javax.swing.JFrame {
-    private final OperationController controller = new OperationController();
+    //private final OperationController controller = new OperationController();
 
     /**
      * Creates new form JF_RequestTeamList

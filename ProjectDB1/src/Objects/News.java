@@ -11,57 +11,100 @@ import java.util.ArrayList;
  *
  * @author Isaac
  */
-public class NewsClass {
-    private String TitleStr;
-    private String AuthorStr;
-    private String photoDirectory;
-    private String newsBody;
+public class News {
+    private int idNews;
+    private int idNewsStatus;
+    private int idNewsType;
+    
+    private String title;
+    private String author;
+    private String publicationDate;
+    private String link;
+    private String photo;
+    private String text;
+    
+    private int views;
     private float rateNumber;
     private ArrayList<NewsComment> comments;
+
+    public int getIdNews() {
+        return idNews;
+    }
+
+    public void setIdNews(int idNews) {
+        this.idNews = idNews;
+    }
     
-    public NewsClass(){
-        
+    public int getIdNewsStatus() {
+        return idNewsStatus;
+    }
+
+    public void setIdNewsStatus(int idNewsStatus) {
+        this.idNewsStatus = idNewsStatus;
     }
     
-    public NewsClass(String pTitle, String pAuthor, String pPhoto, String pBody, float pRating, ArrayList<NewsComment> pComments){
-        this.TitleStr = pTitle;
-        this.AuthorStr = pAuthor;
-        this.photoDirectory = pPhoto;
-        this.newsBody = pBody;
-        this.rateNumber = pRating;
-        this.comments = pComments;
+    public int getIdNewsType() {
+        return idNews;
     }
 
-    public String getTitleStr() {
-        return TitleStr;
+    public void setIdNewsType(int idNewsType) {
+        this.idNewsType = idNewsType;
     }
 
-    public void setTitleStr(String TitleStr) {
-        this.TitleStr = TitleStr;
+    public String getTitle() {
+        return title;
     }
 
-    public String getAuthorStr() {
-        return AuthorStr;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setAuthorStr(String AuthorStr) {
-        this.AuthorStr = AuthorStr;
+    public String getAuthor() {
+        return author;
     }
 
-    public String getPhotoDirectory() {
-        return photoDirectory;
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+    
+    public String getPublicationDate() {
+        return author;
     }
 
-    public void setPhotoDirectory(String photoDirectory) {
-        this.photoDirectory = photoDirectory;
+    public void setPublicationDate(String publicationDate) {
+        this.publicationDate = publicationDate;
     }
 
-    public String getNewsBody() {
-        return newsBody;
+    public String getLink() {
+        return link;
     }
 
-    public void setNewsBody(String newsBody) {
-        this.newsBody = newsBody;
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+    
+    public int getViews() {
+        return views;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
     }
 
     public float getRateNumber() {

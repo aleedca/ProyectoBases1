@@ -4,7 +4,7 @@
  */
 package View;
 
-import Objects.NewsClass;
+import Objects.News;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
