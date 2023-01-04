@@ -102,8 +102,8 @@ IS 'Link to the photo of the person.';
 COMMENT ON COLUMN Person.idPersonPosition
 IS 'Reference to the PersonPosition Table.';
 
-COMMENT ON COLUMN Person.idCountry
-IS 'Reference to the Country Table.';
+COMMENT ON COLUMN Person.idAddress
+IS 'Reference to the Address Table.';
 
 COMMENT ON COLUMN Person.idTypeIdentification
 IS 'Reference to the TypeIdentification Table.';
@@ -1299,7 +1299,7 @@ NOCYCLE;
 CREATE TABLE Address(
     idAddress NUMBER(10) PRIMARY KEY,
     idDistrict NUMBER(10) CONSTRAINT address_idDistrict_nn NOT NULL, 
-    descriptionAddress VARCHAR2(32) CONSTRAINT address_description_nn NOT NULL,
+    descriptionAddress VARCHAR2(64) CONSTRAINT address_description_nn NOT NULL,
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
     lastDate DATE,
@@ -1824,7 +1824,7 @@ ALTER TABLE Person
     ADD CONSTRAINT fk_person_personposition FOREIGN KEY (idPersonPosition) REFERENCES PersonPosition(idPersonPosition);
     
 ALTER TABLE Person
-    ADD CONSTRAINT fk_person_country FOREIGN KEY (idCountry) REFERENCES Country(idCountry);
+    ADD CONSTRAINT fk_person_address FOREIGN KEY (idAddress) REFERENCES Address(idAddress);
 
 ALTER TABLE Person
     ADD CONSTRAINT fk_person_typeid FOREIGN KEY (idTypeIdentification) REFERENCES TypeIdentification(idTypeIdentification);
