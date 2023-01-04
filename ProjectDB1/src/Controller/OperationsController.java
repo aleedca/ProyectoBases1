@@ -11,6 +11,9 @@ import View.JF_Principal;
 import View.JF_Register;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 
 import javax.swing.JOptionPane;
 
@@ -20,7 +23,7 @@ import javax.swing.JOptionPane;
  * @author Mariana
  */
 
-public class OperationsController implements ActionListener{
+public class OperationsController implements ActionListener, ItemListener{
     private final JF_Principal viewPrincipal;
     private final JF_Login viewLogin;
     private final JF_Register viewRegister;
@@ -28,6 +31,9 @@ public class OperationsController implements ActionListener{
     private final model_Login modelLogin;
     private final model_Register modelRegister;
     private boolean flagRegister;
+    
+    
+
         
     
     //Constructor 2da version
@@ -55,14 +61,12 @@ public class OperationsController implements ActionListener{
         _init_(); 
         
         fillGenders();
-        fillIdentificationTypes();
+        fillIdentificationTypes();     
         fillCountries();
-        fillProvinces();
-        fillCantons();
-        fillDistricts();
+
     }
     
-    //Init de ActionListener
+    //Init de ActionListener, itemListener
     private void _init_(){
         //Principal
         viewPrincipal.getBtnIniciarSesion().addActionListener(this);
@@ -80,6 +84,13 @@ public class OperationsController implements ActionListener{
         viewRegister.getBtnVerificarRegistro().addActionListener(this);
         viewRegister.getBtnCargarFoto().addActionListener(this);
         
+        
+        viewRegister.getCmbGenero().addItemListener(this);
+        viewRegister.getCmbTipoIdentificacion().addItemListener(this);
+        viewRegister.getCmbPais().addItemListener(this);
+        viewRegister.getCmbProvincia().addItemListener(this);
+        viewRegister.getCmbCanton().addItemListener(this);
+        viewRegister.getCmbDistrito().addItemListener(this);
     }
     
     
@@ -102,37 +113,174 @@ public class OperationsController implements ActionListener{
     private void fillCountries(){
         viewRegister.getCmbPais().removeAllItems();
         
-        for(int i=0; i<modelRegister.getCountries().size();i++){
-           viewRegister.getCmbPais().addItem(modelRegister.getCountries().get(i).getNameCountry());
-        }
-    }
-    
-    private void fillProvinces(){
         viewRegister.getCmbProvincia().removeAllItems();
- 
-        for(int i=0; i<modelRegister.getProvinces().size();i++){
-           viewRegister.getCmbProvincia().addItem(modelRegister.getProvinces().get(i).getNameProvince());
-        }
-    }
-    
-    private void fillCantons(){
+        viewRegister.getCmbProvincia().setEnabled(false);
+        
         viewRegister.getCmbCanton().removeAllItems();
- 
-        for(int i=0; i<modelRegister.getCantons().size();i++){
-           viewRegister.getCmbCanton().addItem(modelRegister.getCantons().get(i).getNameCanton());
+        viewRegister.getCmbCanton().setEnabled(false);
+        
+        viewRegister.getCmbDistrito().removeAllItems();
+        viewRegister.getCmbDistrito().setEnabled(false);
+        
+        viewRegister.getCmbPais().addItem("Seleccione País");
+        for(int i=0; i<modelRegister.getCountries().size();i++){
+            viewRegister.getCmbPais().addItem(modelRegister.getCountries().get(i).getNameCountry());
         }
     }
     
-    private void fillDistricts(){
+    private void fillProvinces(int country){
+        viewRegister.getCmbProvincia().setEnabled(true);
+        viewRegister.getCmbProvincia().removeAllItems();
+       
+        viewRegister.getCmbProvincia().addItem("Seleccione Provincia");
+        for(int i=0; i<modelRegister.getProvinces().size();i++){
+            if(country == modelRegister.getProvinces().get(i).getIdCountry()){
+                 viewRegister.getCmbProvincia().addItem(modelRegister.getProvinces().get(i).getNameProvince());
+            }  
+        }
+    }
+    
+    private void fillCantons(int province){
+        viewRegister.getCmbCanton().setEnabled(true);
+        viewRegister.getCmbCanton().removeAllItems();
+        
+        viewRegister.getCmbCanton().addItem("Seleccione Cantón");
+        for(int i=0; i<modelRegister.getCantons().size();i++){
+            if(province == modelRegister.getCantons().get(i).getIdProvince()){
+                viewRegister.getCmbCanton().addItem(modelRegister.getCantons().get(i).getNameCanton());
+            }
+        }
+    }
+    
+    private void fillDistricts(int canton){
+        viewRegister.getCmbDistrito().setEnabled(true);
         viewRegister.getCmbDistrito().removeAllItems();
  
         for(int i=0; i<modelRegister.getDistricts().size();i++){
-           viewRegister.getCmbDistrito().addItem(modelRegister.getDistricts().get(i).getNameDistrict());
+            if(canton == modelRegister.getDistricts().get(i).getIdCanton()){
+                viewRegister.getCmbDistrito().addItem(modelRegister.getDistricts().get(i).getNameDistrict());  
+            }
         }
     }
     
     //-------------------------------------------------------------------------------------------------------
     
+    @Override
+    public void itemStateChanged(ItemEvent e){
+        //COUNTRY
+        if( e.getSource() == viewRegister.getCmbPais()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewRegister.getSelectedCountry();
+                
+                
+                if(!"Seleccione País".equals(choice)){
+                    
+                    for(int i=0; i<modelRegister.getCountries().size();i++){
+                        if( choice.equals(modelRegister.getCountries().get(i).getNameCountry())){
+                            int idCountrySeleted = modelRegister.getCountries().get(i).getIdCountry();
+                            modelRegister.setCountry(idCountrySeleted);
+                            fillProvinces(idCountrySeleted);
+                        }
+                    }
+                    
+                }else{
+                    viewRegister.getCmbProvincia().removeAllItems();
+                    viewRegister.getCmbProvincia().setEnabled(false);
+                }
+            }
+        
+        }
+        
+        //PROVINCE
+        if( e.getSource() == viewRegister.getCmbProvincia()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewRegister.getSelectedProvince();
+                
+                
+                if(!"Seleccione Provincia".equals(choice)){
+                    
+                    for(int i=0; i<modelRegister.getProvinces().size();i++){
+                        if( choice.equals(modelRegister.getProvinces().get(i).getNameProvince())){
+                            int idProvinceSeleted = modelRegister.getProvinces().get(i).getIdProvince();
+                            modelRegister.setProvince(idProvinceSeleted);
+                            fillCantons(idProvinceSeleted);
+                        }
+                    }
+                    
+                }else{
+                    viewRegister.getCmbCanton().removeAllItems();
+                    viewRegister.getCmbCanton().setEnabled(false);
+                }
+            }
+        
+        }
+        
+        //CANTON
+        if( e.getSource() == viewRegister.getCmbCanton()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewRegister.getSelectedCanton();
+                
+                
+                if(!"Seleccione Cantón".equals(choice)){
+                    
+                    for(int i=0; i<modelRegister.getCantons().size();i++){
+                        if( choice.equals(modelRegister.getCantons().get(i).getNameCanton())){
+                            int idCantonSeleted = modelRegister.getCantons().get(i).getIdCanton();
+                            modelRegister.setCanton(idCantonSeleted);
+                            fillDistricts(idCantonSeleted);
+                        }
+                    }
+                    
+                }else{
+                    viewRegister.getCmbDistrito().removeAllItems();
+                    viewRegister.getCmbDistrito().setEnabled(false);
+                }
+            }
+        
+        }
+        
+        //DISTRICT
+        if( e.getSource() == viewRegister.getCmbDistrito()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewRegister.getSelectedDistrict();
+                
+                for(int i=0; i<modelRegister.getDistricts().size();i++){
+                    if( choice.equals(modelRegister.getDistricts().get(i).getNameDistrict())){
+                        modelRegister.setDistrict(modelRegister.getDistricts().get(i).getIdDistrict());
+                    }    
+                }                
+            }
+        }
+        
+       
+        //TypeIdentification
+        if( e.getSource() == viewRegister.getCmbTipoIdentificacion()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewRegister.getSelectedTypeIdentification();
+                
+                for(int i=0; i<modelRegister.getIdentificationTypes().size();i++){
+                    if( choice.equals(modelRegister.getIdentificationTypes().get(i).getNameTypeIdentification())){
+                        modelRegister.setTypeIdentification(modelRegister.getIdentificationTypes().get(i).getIdTypeIdentification());
+                    }    
+                }                
+            }
+        }
+        
+        //Gender
+        if(e.getSource() == viewRegister.getCmbGenero()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewRegister.getSelectedGender();
+                
+                for(int i=0; i<modelRegister.getGenders().size();i++){
+                    if( choice.equals(modelRegister.getGenders().get(i).getDescriptionGender())){
+                        modelRegister.setGender(modelRegister.getGenders().get(i).getIdGender());
+                    }    
+                }                
+            }
+        }
+        
+
+    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -219,11 +367,11 @@ public class OperationsController implements ActionListener{
         }
         
         if(e.getSource() == viewRegister.getBtnCargarFoto()){
-            modelRegister.setPhoto("src/Images/prueba.jpg");
-            
-            viewRegister.setLocationRelativeTo(viewRegister);
-            modelRegister.setImageLabel(viewRegister.getLblAvatar());
-            viewRegister.repaint();
+            if(modelRegister.selectPhoto(viewRegister)){
+                viewRegister.setLocationRelativeTo(viewRegister);
+                modelRegister.setImageLabel(viewRegister.getLblAvatar());
+                viewRegister.repaint();
+            }
         }
         
         if(e.getSource() == viewRegister.getBtnVerificarRegistro()){
@@ -232,28 +380,19 @@ public class OperationsController implements ActionListener{
             modelRegister.setFirstLastName(viewRegister.getTxtPrimerApellido());
             modelRegister.setSecondLastName(viewRegister.getTxtSegundoApellido());
             
-            modelRegister.setTypeIdentification(viewRegister.getSelectedTypeIdentification());
-            modelRegister.setIdentification(viewRegister.getTxtIdentificacion());
-            
             modelRegister.setUsernameRegister(viewRegister.getTxtUsername());
             modelRegister.setPasswordRegister(viewRegister.getTxtPassword());
             
-            
+            modelRegister.setIdentification(viewRegister.getTxtIdentificacion());
             modelRegister.setPhone(viewRegister.getTxtTelefono());
+            
             modelRegister.setMail(viewRegister.getTxtCorreo());
-            
-            modelRegister.setGender(viewRegister.getSelectedGender());
-            modelRegister.setCountry(viewRegister.getSelectedCountry());
-            modelRegister.setProvince(viewRegister.getSelectedProvince());
-            modelRegister.setCanton(viewRegister.getSelectedCanton());
-            modelRegister.setDistrict(viewRegister.getSelectedDistrict());
             modelRegister.setAddress(viewRegister.getTxtDireccionExacta());
-            
+                      
             flagRegister = true;
             if(modelRegister.validateEmptyFields(modelRegister.getFirstName(), modelRegister.getFirstLastName(),
-                                                modelRegister.getIdentification(), modelRegister.getUsernameRegister(), 
-                                                modelRegister.getPasswordRegister(), modelRegister.getMail(), modelRegister.getPhone(), 
-                                                modelRegister.getAddress()) == true)
+                                                modelRegister.getUsernameRegister(),modelRegister.getPasswordRegister(), 
+                                                modelRegister.getMail(), modelRegister.getAddress()) == true)
             {
                 JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);
                 //viewRegister.cleanAll();
@@ -267,12 +406,10 @@ public class OperationsController implements ActionListener{
                     
               
                     if(modelRegister.validateFormatString(modelRegister.getFirstName()) == false){
-                        System.out.println("Nombre");
                         viewRegister.cleanPrimerNombre();
                     }
                     
                     if(modelRegister.validateFormatString(modelRegister.getFirstName()) == false){
-                        System.out.println("Apellido");
                         viewRegister.cleanPrimerApellido();
                     }
                     
@@ -284,26 +421,22 @@ public class OperationsController implements ActionListener{
                 if(modelRegister.validateSecondName(modelRegister.getSecondName()) || modelRegister.validateSecondLastName(modelRegister.getSecondLastName())){
                     
                     if(modelRegister.validateSecondName(modelRegister.getSecondName())){
-                        System.out.println("SegundoNombre no nulo");
                         
                         if(modelRegister.validateFormatString(modelRegister.getSecondName()) == false){
                             
                             JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Nombre", "Error", JOptionPane.WARNING_MESSAGE);
-                            
-                            System.out.println("SegundoNombre");
+
                             viewRegister.cleanSegundoNombre();
                             flagRegister = false;
                         }
                     }
                     
                     if(modelRegister.validateSecondLastName(modelRegister.getSecondLastName())){
-                        System.out.println("SegundoApellido no nulo");
                         
                         if(modelRegister.validateFormatString(modelRegister.getSecondLastName()) == false){
                             
                             JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Apellido", "Error", JOptionPane.WARNING_MESSAGE);
                             
-                            System.out.println("SegundoApellido");
                             viewRegister.cleanSegundoApellido();
                             flagRegister = false;
                         }   
@@ -346,6 +479,9 @@ public class OperationsController implements ActionListener{
            
             
             if(flagRegister == true){
+                //Llamarse la función para ingresar los datos a la BD
+                modelRegister.inserUser();
+                
                 JOptionPane.showMessageDialog(null, "Felicidades, su cuenta se creó correctamte.\nInicie sesión para comenzar a disfrutar de nuestra aplicación" );
                 viewRegister.cleanAll();
                 viewRegister.setVisible(false);
@@ -361,6 +497,7 @@ public class OperationsController implements ActionListener{
     
      public void showView()
      { 
+        
         viewPrincipal.getBtnOpAdm().setVisible(false);
         viewPrincipal.getBtnConsultas().setVisible(false);
         viewPrincipal.getBtnCuenta().setVisible(false);

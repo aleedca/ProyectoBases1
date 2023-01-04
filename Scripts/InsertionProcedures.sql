@@ -122,31 +122,36 @@ BEGIN
 END insertParameterTable;
 
 -- Phone
-CREATE OR REPLACE PROCEDURE insertPhone (pPhoneNumber IN NUMBER) AS
+CREATE OR REPLACE PROCEDURE insertPhone (pPhoneNumber IN NUMBER, idPersonInsertion IN NUMBER) AS
 BEGIN
-    INSERT INTO Phone (idPhone, phoneNumber, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_phone.nextval, pPhoneNumber, NULL, NULL, NULL, NULL);
-    COMMIT;
+    DECLARE idPhoneInsertion NUMBER :=s_phone.nextval;
+    BEGIN
+        INSERT INTO Phone (idPhone, phoneNumber, userCreation, lastUser, lastDate, dateCreation)
+        VALUES (idPhoneInsertion, pPhoneNumber, NULL, NULL, NULL, NULL);
+        
+        insertPersonXPhone (idPersonInsertion,idPhoneInsertion);
+        
+        COMMIT;
+    END;
 END insertPhone;
 
 -- Person
 CREATE OR REPLACE PROCEDURE insertPerson (pIdPerson IN NUMBER, pIdentification IN NUMBER, pFirstName IN VARCHAR2, 
             pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2, 
-            pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER, pIdCountry IN NUMBER, 
+            pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER, pIdAddress IN NUMBER, 
             pIdTypeIdentification IN NUMBER, pIdGender IN NUMBER)
 AS
 BEGIN
     INSERT INTO Person(idPerson, identification, firstName, secondName, 
-                firstLastName, secondLastName, photo, idPersonPosition, idCountry, 
+                firstLastName, secondLastName, photo, idPersonPosition, idAddress, 
                 idTypeIdentification, idGender, userCreation, lastUser, lastDate, dateCreation)
     VALUES (pIdPerson, pIdentification, pFirstName, pSecondName, pFirstLastName, pSecondLastName, 
-            pPhoto, pIdPersonPosition, pIdCountry, pIdTypeIdentification, pIdGender, NULL, NULL, NULL, NULL);
+            pPhoto, pIdPersonPosition, pIdAddress, pIdTypeIdentification, pIdGender, NULL, NULL, NULL, NULL);
     
     COMMIT;
 END insertPerson;
 
 -- Player
-
 CREATE OR REPLACE PROCEDURE insertPlayer (pIdentification IN NUMBER, pFirstName IN VARCHAR2, 
             pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2, 
             pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER, pIdCountry IN NUMBER, 
@@ -156,38 +161,28 @@ AS
 BEGIN
     BEGIN
         DECLARE idPersonInsertion NUMBER :=s_person.nextval;
-        
-        EXEC insertPerson (idPersonInsertion, pIdentification, pFirstName, pSecondName, pFirstLastName, 
-                    pSecondLastName, pPhoto, pIdPersonPosition, pIdCountry, pIdTypeIdentification, pIdGender);
-     
         BEGIN
+            insertPerson (idPersonInsertion, pIdentification, pFirstName, pSecondName, pFirstLastName, 
+                    pSecondLastName, pPhoto, pIdPersonPosition, pIdCountry, pIdTypeIdentification, pIdGender);
+            
             INSERT INTO Player(idPerson, idTeam, birthdate, tShirtNum, userCreation, lastUser, lastDate, dateCreation)
             VALUES (idPersonInsertion, pIdTeam, pBirthdate, pTShirtNum, NULL, NULL, NULL, NULL); 
-        END;
-    END;
-    
-    BEGIN
-        IF (pPhoneNumber IS NOT NULL) THEN
-            DECLARE idPhoneInsertion NUMBER :=s_phone.nextval;
             
-            EXEC insertPhone (pPhoneNumber);
-            EXEC insertPersonXPhone (idPersonInsertion,idPhoneInsertion);
+            IF (pPhoneNumber IS NOT NULL) THEN
+                insertPhone (pPhoneNumber,idPersonInsertion);
+            END IF;
             
-            BEGIN
-                COMMIT;
-            END;
-        ELSE 
-             COMMIT;
-        END IF; 
-        
+            COMMIT;
+        END; 
     END;
 END insertPlayer;
+
 -- PersonXPhone
-CREATE OR REPLACE PROCEDURE insertPersonXPhone (pIdPerson IN NUMBER,pIdPhone IN NUMBER)
+CREATE OR REPLACE PROCEDURE insertPersonXPhone(pIdPerson IN NUMBER,pIdPhone IN NUMBER)
 AS
 BEGIN
-    INSERT INTO PersonXPhone(idPerson ,idPhone, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (pIdPerson, pIdPhone, NULL, NULL, NULL, NULL);
+    INSERT INTO PersonXPhone(idPersonXPhone, idPerson ,idPhone, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_personxphone.NEXTVAL, pIdPerson, pIdPhone, NULL, NULL, NULL, NULL);
     COMMIT;
 END insertPersonXPhone;
 
@@ -236,12 +231,29 @@ BEGIN
 END insertTeamWorker;
 
 -- UserPerson
-CREATE OR REPLACE PROCEDURE insertUserPerson(pUsername IN VARCHAR2, pIdUserType IN NUMBER, pIdPerson IN NUMBER, pPassword IN VARCHAR2)
+CREATE OR REPLACE PROCEDURE insertUserPerson(pUsername IN VARCHAR2, pIdUserType IN NUMBER, pPassword IN VARCHAR2, 
+            pIdentification IN NUMBER, pFirstName IN VARCHAR2, 
+            pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2, 
+            pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER,
+            pIdTypeIdentification IN NUMBER, pIdGender IN NUMBER, pMail IN VARCHAR2, pPhoneNumber IN NUMBER,
+            pIdDistrict IN NUMBER, pDescriptionAddress IN VARCHAR2)
 AS 
 BEGIN
-    INSERT INTO UserPerson(username, idUserType, idPerson, passwordUser, userCreation, lastUser, lastDate, dateCreation)
-    VALUES(pUsername, pIdUserType, pIdPerson, pPassword, NULL, NULL, NULL, NULL);
-    COMMIT;
+    DECLARE idPersonInsertion NUMBER:= s_person.nextval;
+    BEGIN 
+        insertAddress (pIdDistrict, pDescriptionAddress); 
+        insertPerson (idPersonInsertion, pIdentification, pFirstName, pSecondName, pFirstLastName, 
+                    pSecondLastName, pPhoto, pIdPersonPosition, s_address.currval, pIdTypeIdentification, pIdGender);
+
+        INSERT INTO UserPerson(username, idUserType, idPerson, passwordUser, userCreation, lastUser, lastDate, dateCreation)
+        VALUES(pUsername, pIdUserType,idPersonInsertion, pPassword, NULL, NULL, NULL, NULL);
+        
+        
+        insertMail (idPersonInsertion, pMail);
+        insertPhone (pPhoneNumber,idPersonInsertion);
+        
+        COMMIT;
+    END;
 END insertUserPerson;
 
 -- Insertion PlayerXSoccerMatchXTeam

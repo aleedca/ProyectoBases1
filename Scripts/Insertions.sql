@@ -55,6 +55,11 @@ BEGIN
     
     INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
     VALUES (s_personPosition.NEXTVAL, 'Arbitro de linea', NULL, NULL, NULL, NULL);
+    
+    INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
+    VALUES (s_personPosition.NEXTVAL, 'Espectador', NULL, NULL, NULL, NULL);
+    
+    
     COMMIT;
 END insertPersonPosition;
 
@@ -307,7 +312,7 @@ BEGIN
     
     --- Catalu�a
     INSERT INTO District(idDistrict, idCanton, nameDistrict, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_district.nextval,12, 'Guardiola', NULL, NULL, NULL, NULL);
+    VALUES (s_district.nextval,13, 'Guardiola', NULL, NULL, NULL, NULL);
     COMMIT;
 END insertDistrict;
 

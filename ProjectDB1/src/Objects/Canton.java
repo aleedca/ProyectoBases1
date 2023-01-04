@@ -9,10 +9,18 @@ package Objects;
  * @author Mariana
  */
 public class Canton {
+    private int idProvince;
     private int idCanton;
     private String nameCanton;
     
     //GETTERS AND SETTERS
+    public int getIdProvince() {
+        return idProvince;
+    }
+
+    public void setIdProvince(int idProvince) {
+        this.idProvince = idProvince;
+    }
 
     public int getIdCanton() {
         return idCanton;
@@ -29,6 +37,13 @@ public class Canton {
     public void setNameCanton(String nameCanton) {
         this.nameCanton = nameCanton;
     }
+
+    @Override
+    public String toString() {
+        return "Canton{" + "idProvince=" + idProvince + ", idCanton=" + idCanton + ", nameCanton=" + nameCanton + '}';
+    }
+    
+    
     
     
 }
