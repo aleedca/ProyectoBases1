@@ -22,21 +22,12 @@ public class JF_RequestTeamList extends javax.swing.JFrame {
      */
     public JF_RequestTeamList()throws SQLException {
         initComponents();
-        
-        
-        
-        
     }
-    
-    
     
     public void showTeamList(String teamName, String playerFstName, String playerSndName, String playerFstLastName, String playerSndLastName, String position) throws SQLException{
         tblTeamList.setModel(controller.showTeamList(teamName,playerFstName,playerSndName,playerFstLastName,playerSndLastName,position));
     }
 
-    
-    
-    
     
     
     /**

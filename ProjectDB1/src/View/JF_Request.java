@@ -498,8 +498,7 @@ public class JF_Request extends javax.swing.JFrame {
                 outPosition = position;
             }
             teamList.showTeamList(outTeamName,outPlayerFstName,outPlayerSndName,outPlayerFstLastName,outPlayerSndLastName,outPosition);
-            
-            
+         
             teamList.setVisible(true);
             
         } catch (SQLException ex) {
@@ -517,7 +516,7 @@ public class JF_Request extends javax.swing.JFrame {
             String teamName = txtTeamName1.getText();
             String matchDate = txtMatchDate.getText();
             String stadium = txtStadium.getText();
-            //String teamFlag = 
+            //TYPE teamFlag = OBTENER EL OBJETO DEL COMBOBOX
             
             
             String outTeamName = "";
@@ -534,9 +533,10 @@ public class JF_Request extends javax.swing.JFrame {
             }
             if(!stadium.isEmpty()){
                 outStadium = stadium;
+            }
             
+            //AQUI VA LA FUNCION DEL SHOWGROUPLIST
             groupList.setVisible(true);
-            }                                                   
 
 
     }//GEN-LAST:event_btnRequestGroupListActionPerformed

@@ -76,7 +76,7 @@ public class DA_TeamList {
             team.setFirstLastname(rs.getString("firstLastname"));
             team.setSecondLastname(rs.getString("secondLastname"));
             team.setPhoto(rs.getString("photo"));
-            team.setPosition(rs.getString("position"));
+            team.setPosition(rs.getString("descriptionPersonPosition"));
            
             teamList.add(team);
         }

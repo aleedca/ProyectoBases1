@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Model.GroupList;
 import Model.TeamList;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +30,19 @@ public class Cargador {
             dtm.setValueAt(teamlist.getPhoto(), i, 4);
             dtm.setValueAt(teamlist.getPosition(), i, 5);
             
+        }
+        return dtm;
+    }
+    
+    DefaultTableModel showGroupList(ArrayList<GroupList> groupList ){
+        Object [] header = {"Equipo", "Fecha del partido", "Estadio", "Bandera"};
+        DefaultTableModel dtm = new DefaultTableModel(header,groupList.size());
+        for (int i = 0; i<dtm.getRowCount(); i++){
+            GroupList group = groupList.get(i);
+            dtm.setValueAt(group.getTeamName(), i, 0);
+            dtm.setValueAt(group.getMatchDate(), i, 1);
+            dtm.setValueAt(group.getStadium(), i, 2);
+            dtm.setValueAt(group.getTeamFlag(), i, 3);
         }
         return dtm;
     }
