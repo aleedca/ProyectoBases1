@@ -81,7 +81,6 @@ public class JF_Register extends javax.swing.JFrame {
     public int getTxtTelefono() {
         String cadena =  txtTelefono.getText();
         String combinacion = cadena.substring(0, 4) + cadena.substring(5);
-        System.out.println(combinacion);
         int phone = Integer.parseInt(combinacion);
         return phone;
     }

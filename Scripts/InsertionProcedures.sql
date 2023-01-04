@@ -122,11 +122,17 @@ BEGIN
 END insertParameterTable;
 
 -- Phone
-CREATE OR REPLACE PROCEDURE insertPhone (pPhoneNumber IN NUMBER) AS
+CREATE OR REPLACE PROCEDURE insertPhone (pPhoneNumber IN NUMBER, idPersonInsertion IN NUMBER) AS
 BEGIN
-    INSERT INTO Phone (idPhone, phoneNumber, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_phone.nextval, pPhoneNumber, NULL, NULL, NULL, NULL);
-    COMMIT;
+    DECLARE idPhoneInsertion NUMBER :=s_phone.nextval;
+    BEGIN
+        INSERT INTO Phone (idPhone, phoneNumber, userCreation, lastUser, lastDate, dateCreation)
+        VALUES (idPhoneInsertion, pPhoneNumber, NULL, NULL, NULL, NULL);
+        
+        insertPersonXPhone (idPersonInsertion,idPhoneInsertion);
+        
+        COMMIT;
+    END;
 END insertPhone;
 
 -- Person
@@ -182,7 +188,7 @@ BEGIN
 END insertPlayer;
 
 -- PersonXPhone
-CREATE OR REPLACE PROCEDURE insertPersonXPhone (pIdPerson IN NUMBER,pIdPhone IN NUMBER)
+CREATE OR REPLACE PROCEDURE insertPersonXPhone(pIdPerson IN NUMBER,pIdPhone IN NUMBER)
 AS
 BEGIN
     INSERT INTO PersonXPhone(idPersonXPhone, idPerson ,idPhone, userCreation, lastUser, lastDate, dateCreation)
@@ -250,17 +256,13 @@ BEGIN
 
         INSERT INTO UserPerson(username, idUserType, idPerson, passwordUser, userCreation, lastUser, lastDate, dateCreation)
         VALUES(pUsername, pIdUserType,idPersonInsertion, pPassword, NULL, NULL, NULL, NULL);
-        COMMIT;
+        
         
         insertMail (idPersonInsertion, pMail);
         insertAddress (pIdDistrict, pDescriptionAddress);
-        insertPhone (pPhoneNumber);
+        insertPhone (pPhoneNumber,idPersonInsertion);
         
-        DECLARE idPhoneInsertion NUMBER :=s_phone.nextval;
-        BEGIN
-            insertPersonXPhone (idPersonInsertion,idPhoneInsertion);
-        END;
-        
+        COMMIT;
     END;
 END insertUserPerson;
 

@@ -171,7 +171,7 @@ public class OperationsController implements ActionListener, ItemListener{
         if( e.getSource() == viewRegister.getCmbPais()){
             if(e.getStateChange() == ItemEvent.SELECTED){
                 String choice = viewRegister.getSelectedCountry();
-                System.out.println(choice);
+                
                 
                 if(!"Seleccione País".equals(choice)){
                     
@@ -195,7 +195,7 @@ public class OperationsController implements ActionListener, ItemListener{
         if( e.getSource() == viewRegister.getCmbProvincia()){
             if(e.getStateChange() == ItemEvent.SELECTED){
                 String choice = viewRegister.getSelectedProvince();
-                System.out.println(choice);
+                
                 
                 if(!"Seleccione Provincia".equals(choice)){
                     
@@ -219,7 +219,7 @@ public class OperationsController implements ActionListener, ItemListener{
         if( e.getSource() == viewRegister.getCmbCanton()){
             if(e.getStateChange() == ItemEvent.SELECTED){
                 String choice = viewRegister.getSelectedCanton();
-                System.out.println(choice);
+                
                 
                 if(!"Seleccione Cantón".equals(choice)){
                     
@@ -406,12 +406,10 @@ public class OperationsController implements ActionListener, ItemListener{
                     
               
                     if(modelRegister.validateFormatString(modelRegister.getFirstName()) == false){
-                        System.out.println("Nombre");
                         viewRegister.cleanPrimerNombre();
                     }
                     
                     if(modelRegister.validateFormatString(modelRegister.getFirstName()) == false){
-                        System.out.println("Apellido");
                         viewRegister.cleanPrimerApellido();
                     }
                     
@@ -423,26 +421,22 @@ public class OperationsController implements ActionListener, ItemListener{
                 if(modelRegister.validateSecondName(modelRegister.getSecondName()) || modelRegister.validateSecondLastName(modelRegister.getSecondLastName())){
                     
                     if(modelRegister.validateSecondName(modelRegister.getSecondName())){
-                        System.out.println("SegundoNombre no nulo");
                         
                         if(modelRegister.validateFormatString(modelRegister.getSecondName()) == false){
                             
                             JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Nombre", "Error", JOptionPane.WARNING_MESSAGE);
-                            
-                            System.out.println("SegundoNombre");
+
                             viewRegister.cleanSegundoNombre();
                             flagRegister = false;
                         }
                     }
                     
                     if(modelRegister.validateSecondLastName(modelRegister.getSecondLastName())){
-                        System.out.println("SegundoApellido no nulo");
                         
                         if(modelRegister.validateFormatString(modelRegister.getSecondLastName()) == false){
                             
                             JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Apellido", "Error", JOptionPane.WARNING_MESSAGE);
                             
-                            System.out.println("SegundoApellido");
                             viewRegister.cleanSegundoApellido();
                             flagRegister = false;
                         }   

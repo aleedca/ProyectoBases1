@@ -99,7 +99,6 @@ public class model_Register {
             }
         }
        
-        System.out.println("Campos completos");
         return false;
     }
     
@@ -111,7 +110,6 @@ public class model_Register {
     
     public boolean validateFormatPassword(String password){
         if (PASSWORD_PATTERN.matcher( password).matches()) {
-            System.out.println("Password valida");
             return true;
 	}
         
@@ -125,7 +123,6 @@ public class model_Register {
         Matcher mather = pattern.matcher(username);
         
         if (mather.matches()) {
-            System.out.println("Username valido");
             return true;
         } 
         
@@ -137,7 +134,6 @@ public class model_Register {
         Matcher mather = pattern.matcher(mail);
         
         if (mather.find() == true) {
-            System.out.println("Correo valido");
             return true;
         } 
          
@@ -166,7 +162,6 @@ public class model_Register {
         Matcher mather = pattern.matcher(sentence);
         
         if (mather.matches()) {
-            System.out.println("Cadena valida");
             return true;
         } 
         
@@ -174,12 +169,11 @@ public class model_Register {
     }
     
     public boolean validarFormatoDireccion(String address){
-        String regex = "^[A-Za-z\\s\\d\\#,.ÑñáéíóúÁÉÍÓÚ]{50,200}$";
+        String regex = "^[A-Za-z\\s\\d\\#,.ÑñáéíóúÁÉÍÓÚ]{20,200}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher mather = pattern.matcher(address);
         
         if (mather.matches()) {
-            System.out.println("Direccion valida");
             return true;
         } 
         
