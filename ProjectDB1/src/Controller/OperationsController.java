@@ -84,9 +84,13 @@ public class OperationsController implements ActionListener, ItemListener{
         viewRegister.getBtnVerificarRegistro().addActionListener(this);
         viewRegister.getBtnCargarFoto().addActionListener(this);
         
+        
+        viewRegister.getCmbGenero().addItemListener(this);
+        viewRegister.getCmbTipoIdentificacion().addItemListener(this);
         viewRegister.getCmbPais().addItemListener(this);
         viewRegister.getCmbProvincia().addItemListener(this);
         viewRegister.getCmbCanton().addItemListener(this);
+        viewRegister.getCmbDistrito().addItemListener(this);
     }
     
     
@@ -197,7 +201,9 @@ public class OperationsController implements ActionListener, ItemListener{
                     
                     for(int i=0; i<modelRegister.getProvinces().size();i++){
                         if( choice.equals(modelRegister.getProvinces().get(i).getNameProvince())){
-                            fillCantons(modelRegister.getProvinces().get(i).getIdProvince());
+                            int idProvinceSeleted = modelRegister.getProvinces().get(i).getIdProvince();
+                            modelRegister.setProvince(idProvinceSeleted);
+                            fillCantons(idProvinceSeleted);
                         }
                     }
                     
@@ -219,7 +225,9 @@ public class OperationsController implements ActionListener, ItemListener{
                     
                     for(int i=0; i<modelRegister.getCantons().size();i++){
                         if( choice.equals(modelRegister.getCantons().get(i).getNameCanton())){
-                            fillDistricts(modelRegister.getCantons().get(i).getIdCanton());
+                            int idCantonSeleted = modelRegister.getCantons().get(i).getIdCanton();
+                            modelRegister.setCanton(idCantonSeleted);
+                            fillDistricts(idCantonSeleted);
                         }
                     }
                     
@@ -231,6 +239,20 @@ public class OperationsController implements ActionListener, ItemListener{
         
         }
         
+        //DISTRICT
+        if( e.getSource() == viewRegister.getCmbDistrito()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewRegister.getSelectedDistrict();
+                
+                for(int i=0; i<modelRegister.getDistricts().size();i++){
+                    if( choice.equals(modelRegister.getDistricts().get(i).getNameDistrict())){
+                        modelRegister.setDistrict(modelRegister.getDistricts().get(i).getIdDistrict());
+                    }    
+                }                
+            }
+        }
+        
+       
         //TypeIdentification
         if( e.getSource() == viewRegister.getCmbTipoIdentificacion()){
             if(e.getStateChange() == ItemEvent.SELECTED){
@@ -358,21 +380,15 @@ public class OperationsController implements ActionListener, ItemListener{
             modelRegister.setFirstLastName(viewRegister.getTxtPrimerApellido());
             modelRegister.setSecondLastName(viewRegister.getTxtSegundoApellido());
             
-            
-            modelRegister.setIdentification(viewRegister.getTxtIdentificacion());
-            
             modelRegister.setUsernameRegister(viewRegister.getTxtUsername());
             modelRegister.setPasswordRegister(viewRegister.getTxtPassword());
             
-            
+            modelRegister.setIdentification(viewRegister.getTxtIdentificacion());
             modelRegister.setPhone(viewRegister.getTxtTelefono());
+            
             modelRegister.setMail(viewRegister.getTxtCorreo());
-            
-            modelRegister.setProvince(viewRegister.getSelectedProvince());
-            modelRegister.setCanton(viewRegister.getSelectedCanton());
-            modelRegister.setDistrict(viewRegister.getSelectedDistrict());
             modelRegister.setAddress(viewRegister.getTxtDireccionExacta());
-            
+                      
             flagRegister = true;
             if(modelRegister.validateEmptyFields(modelRegister.getFirstName(), modelRegister.getFirstLastName(),
                                                 modelRegister.getUsernameRegister(),modelRegister.getPasswordRegister(), 
@@ -470,6 +486,7 @@ public class OperationsController implements ActionListener, ItemListener{
             
             if(flagRegister == true){
                 //Llamarse la función para ingresar los datos a la BD
+                modelRegister.inserUser();
                 
                 JOptionPane.showMessageDialog(null, "Felicidades, su cuenta se creó correctamte.\nInicie sesión para comenzar a disfrutar de nuestra aplicación" );
                 viewRegister.cleanAll();

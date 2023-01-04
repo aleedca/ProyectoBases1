@@ -13,9 +13,6 @@ import View.JF_Register;
 import java.awt.Image;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -53,13 +50,13 @@ public class model_Register {
     private int country;
     private ArrayList<Country> countries;
     
-    private String province;
+    private int province;
     private ArrayList<Province> provinces;
     
-    private String canton;
+    private int canton;
     private ArrayList<Canton> cantons;
     
-    private String district;
+    private int district;
     private ArrayList<District> districts;
     
     private final JFileChooser file = new JFileChooser();
@@ -201,10 +198,11 @@ public class model_Register {
   
     public void inserUser(){
         try {   
-            
+            System.out.println("Entro a llamar a la base");
             DA_Person.insertUserPerson(this.usernameRegister, this.passwordRegister, this.identification, this.firstName,
                     this.secondName, this.firstLastName, this.secondLastName, this.photo, 
-                    this.country, this.typeIdentification, this.gender, this.mail, this.phone);
+                    this.country, this.typeIdentification, this.gender, this.mail, this.phone, 
+                    this.district, this.address);
         
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -331,27 +329,27 @@ public class model_Register {
         this.country = country;
     }
 
-    public String getProvince() {
+    public int getProvince() {
         return province;
     }
 
-    public void setProvince(String province) {
+    public void setProvince(int province) {
         this.province = province;
     }
 
-    public String getCanton() {
+    public int getCanton() {
         return canton;
     }
 
-    public void setCanton(String canton) {
+    public void setCanton(int canton) {
         this.canton = canton;
     }
 
-    public String getDistrict() {
+    public int getDistrict() {
         return district;
     }
 
-    public void setDistrict(String district) {
+    public void setDistrict(int district) {
         this.district = district;
     }
 

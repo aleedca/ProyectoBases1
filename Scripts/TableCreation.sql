@@ -65,7 +65,7 @@ CREATE TABLE Person (
    secondLastName VARCHAR2(32),
    photo VARCHAR2(128) CONSTRAINT person_photo_nn NOT NULL,
    idPersonPosition NUMBER(10) CONSTRAINT person_idpersonposition_nn NOT NULL,
-   idCountry NUMBER(10) CONSTRAINT person_idcountry_nn NOT NULL,
+   idAddress NUMBER(10) CONSTRAINT person_idaddress_nn NOT NULL,
    idTypeIdentification NUMBER(10) CONSTRAINT person_idtypeident_nn NOT NULL,
    idGender NUMBER(10) CONSTRAINT person_idgender_nn NOT NULL,
    userCreation VARCHAR2(16),
