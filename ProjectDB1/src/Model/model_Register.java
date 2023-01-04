@@ -194,8 +194,8 @@ public class model_Register {
         try {   
             System.out.println("Entro a llamar a la base");
             DA_Person.insertUserPerson(this.usernameRegister, this.passwordRegister, this.identification, this.firstName,
-                    this.secondName, this.firstLastName, this.secondLastName, this.photo, 
-                    this.country, this.typeIdentification, this.gender, this.mail, this.phone, 
+                    this.secondName, this.firstLastName, this.secondLastName, 
+                    this.photo, this.typeIdentification, this.gender, this.mail, this.phone, 
                     this.district, this.address);
         
         } catch (SQLException ex) {

@@ -17,12 +17,12 @@ public class DA_Person {
     
     public static void insertUserPerson(String username, String password, int identification, 
             String firstName, String secondName,String firstLastName, String secondLastName, String photo, 
-            int idAddress ,int idTypeIdentification, int idGender, String mail, 
+            int idTypeIdentification, int idGender, String mail, 
             int phoneNumber, int idDistrict, String address) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
-        PreparedStatement sql = conn.prepareStatement("{ call insertUserPerson(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        PreparedStatement sql = conn.prepareStatement("{ call insertUserPerson(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
         //Input parameters
         sql.setString(1,username);
         sql.setInt(2, 2);
@@ -34,13 +34,12 @@ public class DA_Person {
         sql.setString(8, secondLastName);
         sql.setString(9, photo);
         sql.setInt(10, 11);
-        sql.setInt(11, idAddress);
-        sql.setInt(12, idTypeIdentification);
-        sql.setInt(13, idGender);
-        sql.setString(14, mail);
-        sql.setInt(15, phoneNumber);
-        sql.setInt(16, idDistrict);
-        sql.setString(17, address);
+        sql.setInt(11, idTypeIdentification);
+        sql.setInt(12, idGender);
+        sql.setString(13, mail);
+        sql.setInt(14, phoneNumber);
+        sql.setInt(15, idDistrict);
+        sql.setString(16, address);
         
         System.out.println("Entro a la ejecucion");
         sql.execute();
