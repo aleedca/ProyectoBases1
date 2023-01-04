@@ -14,14 +14,14 @@ import javax.swing.JLabel;
  *
  * @author Isaac
  */
-public class JF_NewsWindow extends javax.swing.JFrame {
+public class JF_News extends javax.swing.JFrame {
     
     //private NewsClass NewsInfo = new NewsClass();
 
     /**
      * Creates new form JF_NewsWindow
      */
-    public JF_NewsWindow() {
+    public JF_News() {
         initComponents();
         this.setLocationRelativeTo(this);
         setRatingIcons(3.5);
@@ -252,20 +252,21 @@ public class JF_NewsWindow extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JF_NewsWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_News.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JF_NewsWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_News.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JF_NewsWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_News.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JF_NewsWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_News.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JF_NewsWindow().setVisible(true);
+                new JF_News().setVisible(true);
             }
         });
     }
