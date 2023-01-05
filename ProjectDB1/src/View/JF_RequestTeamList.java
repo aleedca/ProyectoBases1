@@ -4,32 +4,28 @@
  */
 package View;
 
-import Controller.RequestController;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Nahomy
  */
 public class JF_RequestTeamList extends javax.swing.JFrame {
-    private final RequestController controller = new RequestController();
+    //private final OperationController controller = new OperationController();
 
     /**
      * Creates new form JF_RequestTeamList
      */
-    public JF_RequestTeamList()throws SQLException {
+    public JF_RequestTeamList() {
         initComponents();
+        showTeamList();
     }
     
-    public void showTeamList(String teamName, String playerFstName, String playerSndName, String playerFstLastName, String playerSndLastName, String position) throws SQLException{
-        tblTeamList.setModel(controller.showTeamList(teamName,playerFstName,playerSndName,playerFstLastName,playerSndLastName,position));
+    
+    
+    private void showTeamList(){
+    
+    
     }
 
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -197,11 +193,7 @@ public class JF_RequestTeamList extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new JF_RequestTeamList().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(JF_RequestTeamList.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new JF_RequestTeamList().setVisible(true);
             }
         });
     }
