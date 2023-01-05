@@ -24,6 +24,8 @@ public class GroupList {
         this.teamFlag = teamFlag;
     }
     
+    
+    
     //setters
     public void setTeamName(String teamName) {
         this.teamName = teamName;
