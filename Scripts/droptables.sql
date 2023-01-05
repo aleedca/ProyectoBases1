@@ -1,10 +1,8 @@
 DROP TABLE PlayerXSoccerMatchXTeam;
-DROP TABLE EventWorkerXSoccerMatch;
 DROP TABLE ParameterTable;
 
 DROP TABLE Player;
 DROP TABLE TeamWorker;
-DROP TABLE EventWorker;
 DROP TABLE PersonXPhone;
 
 DROP TABLE NewsChange;
@@ -79,7 +77,6 @@ DROP SEQUENCE s_newsType;
 DROP SEQUENCE s_newsComment;
 DROP SEQUENCE s_personPosition;
 DROP SEQUENCE s_player_soccermatch_team;
-DROP SEQUENCE s_eventworkerxsoccermatch;
 
 --------------------------------------------------------------------------------
 DROP PROCEDURE getCanton;
@@ -88,6 +85,12 @@ DROP PROCEDURE getDistrict;
 DROP PROCEDURE getGender;
 DROP PROCEDURE getProvince;
 DROP PROCEDURE getTypeIdentification;
+
+DROP PROCEDURE insertCountryTeam;
+DROP PROCEDURE insertTeam;
+DROP PROCEDURE insertGroupEvent;
+DROP PROCEDURE insertGroupStats;
+DROP PROCEDURE insertEvent;
 
 DROP PROCEDURE insertAddress;
 DROP PROCEDURE insertCanton;
@@ -99,7 +102,8 @@ DROP PROCEDURE insertMail;
 DROP PROCEDURE insertNewsStatus;
 DROP PROCEDURE insertNewsType;
 
-DROP PROCEDURE insertPerson;
+DROP PROCEDURE insertPlayer;
+DROP PROCEDURE insertTeamWorker;
 DROP PROCEDURE insertPersonPosition;
 DROP PROCEDURE insertPersonXPhone;
 DROP PROCEDURE insertPhone;
@@ -108,5 +112,18 @@ DROP PROCEDURE insertStadium;
 DROP PROCEDURE insertTypeIdentification;
 DROP PROCEDURE insertUserType;
 DROP PROCEDURE insertUserPerson;
-DROP PROCEDURE verifyUser;
+DROP PROCEDURE insertPerson;
+
+DROP PROCEDURE insertSoccerMatch;
+DROP PROCEDURE insertTeam1;
+DROP PROCEDURE insertTeam2;
+DROP PROCEDURE insertPlayerXMatchXTeam;
+
+DROP PROCEDURE insertFavoriteNews;
+DROP PROCEDURE insertNewsComment;
+DROP PROCEDURE insertRating;
+DROP PROCEDURE insertUserxNews;
+DROP PROCEDURE insertNews;
+
+---DROP PROCEDURE verifyUser;
 

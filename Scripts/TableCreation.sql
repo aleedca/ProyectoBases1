@@ -211,36 +211,7 @@ COMMENT ON COLUMN TeamWorker.dateCreation
 IS 'Date of creation of the TeamWorker Table record.';
 
 ---------------------------------------------------------------------    
--- EventWorker
-CREATE TABLE EventWorker (
-   idPerson NUMBER(10) PRIMARY KEY,
-   userCreation VARCHAR2(16),
-   lastUser VARCHAR2(16),
-   lastDate DATE,
-   dateCreation DATE
-);
 
--- Table Comment
-COMMENT ON TABLE EventWorker
-IS 'Repository for storing the information of a EventWorker that extends the table Person.';
--- Comment on attributes
-COMMENT ON COLUMN EventWorker.idPerson
-IS 'Unique identifier of the EventWorker Table that also references the Person Table.';
-
---Audit Fields
-COMMENT ON COLUMN EventWorker.userCreation
-IS 'User who creates the EventWorker Table record.';
-
-COMMENT ON COLUMN EventWorker.lastUser
-IS 'Last user to modify a record in the EventWorker Table.';
-
-COMMENT ON COLUMN EventWorker.lastDate
-IS 'Last modification date of the record in the EventWorker Table.';
-
-COMMENT ON COLUMN EventWorker.dateCreation
-IS 'Date of creation of the EventWorker Table record.';
-
----------------------------------------------------------------------  
 -- Country
 CREATE TABLE Country(
     idCountry NUMBER(10) PRIMARY KEY,
@@ -735,12 +706,12 @@ CREATE TABLE News(
     idNews NUMBER(10) PRIMARY KEY,
     idNewsStatus NUMBER(10) CONSTRAINT news_idNewsStatus_nn NOT NULL,
     idNewsType NUMBER(10) CONSTRAINT news_idNewsType_nn NOT NULL,
-    title VARCHAR2(20) CONSTRAINT news_title_nn NOT NULL,
-    publicationDate DATE CONSTRAINT news_publicationDate_nn NOT NULL,
+    title VARCHAR2(128) CONSTRAINT news_title_nn NOT NULL,
+    publicationDate DATE,
     viewsNews NUMBER(32) CONSTRAINT news_viewsNews_nn NOT NULL,
     linkNews VARCHAR2(128) CONSTRAINT news_linkNews_nn NOT NULL,
     photo VARCHAR2(128) CONSTRAINT news_photo_nn NOT NULL,
-    textNews VARCHAR2(256) CONSTRAINT news_textNews_nn NOT NULL,
+    textNews VARCHAR2(1024) CONSTRAINT news_textNews_nn NOT NULL,
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
     lastDate DATE,
@@ -958,7 +929,7 @@ CREATE TABLE Rating(
     idRating NUMBER(10) PRIMARY KEY,
     username VARCHAR2(32) CONSTRAINT rating_username_nn NOT NULL,
     idNews NUMBER(10) CONSTRAINT rating_idNews_nn NOT NULL,
-    rating NUMBER(1, 2) CONSTRAINT rating_rating_nn NOT NULL,
+    rating NUMBER(1) CONSTRAINT rating_rating_nn NOT NULL,
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
     lastDate DATE,
@@ -1061,8 +1032,8 @@ CREATE TABLE FavoriteNews(
     idFavoriteNews NUMBER(10) PRIMARY KEY,
     username VARCHAR2(32) CONSTRAINT favoriteNews_username_nn NOT NULL,
     idNews NUMBER(10) CONSTRAINT favoriteNews_idNews_nn NOT NULL,
-    userCreation VARCHAR2(16) CONSTRAINT favoriteNews_userCreation_nn NOT NULL,
-    lastUser VARCHAR2(16) CONSTRAINT favoriteNews_lastUser_nn NOT NULL,
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
     lastDate DATE,
     dateCreation DATE
 );
@@ -1299,7 +1270,7 @@ NOCYCLE;
 CREATE TABLE Address(
     idAddress NUMBER(10) PRIMARY KEY,
     idDistrict NUMBER(10) CONSTRAINT address_idDistrict_nn NOT NULL, 
-    descriptionAddress VARCHAR2(64) CONSTRAINT address_description_nn NOT NULL,
+    descriptionAddress VARCHAR2(256) CONSTRAINT address_description_nn NOT NULL,
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
     lastDate DATE,
@@ -1379,53 +1350,6 @@ IS 'Last modification date of the record in the SoccerMatch Table.';
 
 -- SoccerMatch Sequence
 CREATE SEQUENCE s_soccerMatch
-START WITH 0
-INCREMENT BY 1
-MINVALUE 0
-MAXVALUE 10000000
-NOCACHE
-NOCYCLE;
-
----------------------------------------------------------------------  
--- EventWorkerXSoccerMatch
-CREATE TABLE EventWorkerXSoccerMatch(
-    idEventWorkerXSoccerMatch NUMBER(10) PRIMARY KEY,
-    idPerson NUMBER(10) CONSTRAINT ewxsm_idperson_nn NOT NULL, 
-    idSoccerMatch NUMBER(10) CONSTRAINT ewxsm_idsoccermatch_nn NOT NULL,
-    userCreation VARCHAR2(16),
-    lastUser VARCHAR2(16),
-    lastDate DATE,
-    dateCreation DATE
-);
-
--- Table Comment
-COMMENT ON TABLE EventWorkerXSoccerMatch
-IS 'Repository for connecting an EventWorker with a SoccerMatch.';
--- Comment on attributes
-COMMENT ON COLUMN EventWorkerXSoccerMatch.idEventWorkerXSoccerMatch
-IS 'Unique identifier of the EventWorkerXSoccerMatch Table.';
-
-COMMENT ON COLUMN EventWorkerXSoccerMatch.idPerson
-IS 'Reference to the Person table.';
-
-COMMENT ON COLUMN EventWorkerXSoccerMatch.idSoccerMatch
-IS 'Reference to the SoccerMatch Table';
-
---Audit Fields
-COMMENT ON COLUMN EventWorkerXSoccerMatch.userCreation
-IS 'User who creates the EventWorkerXSoccerMatch Table record.';
-
-COMMENT ON COLUMN EventWorkerXSoccerMatch.lastUser
-IS 'Last user to modify a record in the EventWorkerXSoccerMatch Table.';
-
-COMMENT ON COLUMN EventWorkerXSoccerMatch.lastDate
-IS 'Last modification date of the record in the EventWorkerXSoccerMatch Table.';
-
-COMMENT ON COLUMN EventWorkerXSoccerMatch.dateCreation
-IS 'Date of creation of the EventWorkerXSoccerMatch Table record.'; 
-
--- EventWorkerXSoccerMatch Sequence
-CREATE SEQUENCE s_eventworkerxsoccermatch
 START WITH 0
 INCREMENT BY 1
 MINVALUE 0
@@ -1846,10 +1770,6 @@ ALTER TABLE TeamWorker
 ALTER TABLE TeamWorker
     ADD CONSTRAINT fk_teamworker_team FOREIGN KEY (idTeam) REFERENCES Team(idTeam);
 
---EventWorker foreing keys
-ALTER TABLE EventWorker
-    ADD CONSTRAINT fk_eventworker_person FOREIGN KEY (idPerson) REFERENCES Person(idPerson);    
-
 --UserPerson foreing keys
 ALTER TABLE UserPerson
     ADD CONSTRAINT fk_userperson_person FOREIGN KEY (idPerson) REFERENCES Person(idPerson); 
@@ -1864,13 +1784,7 @@ ALTER TABLE UserXNews
 ALTER TABLE UserXNews
     ADD CONSTRAINT fk_userxnews_news FOREIGN KEY (idNews) REFERENCES News(idNews);  
 
---EventWorkerXSoccerMatch foreing keys
-ALTER TABLE EventWorkerXSoccerMatch
-    ADD CONSTRAINT fk_ewxsm_person FOREIGN KEY (idPerson) REFERENCES Person(idPerson);
-    
-ALTER TABLE EventWorkerXSoccerMatch
-    ADD CONSTRAINT fk_ewxsm_soccermatch FOREIGN KEY (idSoccerMatch) REFERENCES SoccerMatch(idSoccerMatch);    
-    
+  
 -----------------------------------------------------------------------------------
 -- FK Mail-Person
 ALTER TABLE Mail
