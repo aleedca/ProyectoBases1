@@ -96,8 +96,8 @@ EXEC insertRating('admin01', 3, 5);
 
 --- NewsComments
 EXEC insertNewsComment(1, 'mario97_AK', 'Merecida la copa, todo un campeon');
-EXEC insertNewsComment(5, 'mario97_AK', 'Un ejemplo a seguir, buena historia del fideo!');
-EXEC insertNewsComment(4, 'mario97_AK', 'Realmente es el mejor contrato en la historia del futbol?');
+EXEC insertNewsComment(2, 'mario97_AK', 'Un ejemplo a seguir, buena historia del fideo!');
+EXEC insertNewsComment(3, 'mario97_AK', 'Realmente es el mejor contrato en la historia del futbol?');
 
 
 
