@@ -19,6 +19,7 @@ public class Cargador {
     }
     
     DefaultTableModel showTeamList(ArrayList<TeamList> teamList ){
+        System.out.println("Cargando datos...");
         Object [] header = {"Primer nombre", "Segundo nombre", "Primer apellido", "Segundo apellido", "Foto", "Posicion"};
         DefaultTableModel dtm = new DefaultTableModel(header,teamList.size());
         for (int i = 0; i<dtm.getRowCount(); i++){

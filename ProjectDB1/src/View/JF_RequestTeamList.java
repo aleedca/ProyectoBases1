@@ -4,26 +4,29 @@
  */
 package View;
 
+import Controller.RequestController;
+import java.sql.SQLException;
+
 /**
  *
  * @author Nahomy
  */
 public class JF_RequestTeamList extends javax.swing.JFrame {
-    //private final OperationController controller = new OperationController();
-
+    private final RequestController controller = new RequestController();
     /**
      * Creates new form JF_RequestTeamList
      */
     public JF_RequestTeamList() {
         initComponents();
-        showTeamList();
+        
     }
     
     
     
-    private void showTeamList(){
-    
-    
+    void showTeamList(String teamName, String playerFstName, String playerSndName, String playerFstLastName, String playerSndLastName, String position) throws SQLException{
+        System.out.println("Llamando controller...");
+        tblTeamList.setModel(controller.showTeamList(teamName, playerFstName,  playerSndName, playerFstLastName, playerSndLastName, position));
+
     }
 
     /**

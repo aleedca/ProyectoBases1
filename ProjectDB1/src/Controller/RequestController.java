@@ -21,6 +21,7 @@ public class RequestController {
     
     
     public DefaultTableModel showTeamList(String teamName, String playerFstName, String playerSndName, String playerFstLastName, String playerSndLastName, String position) throws SQLException{
+        System.out.println("Llamando cargador...");
         return cargador.showTeamList(admT.getTeamList(teamName,playerFstName,playerSndName,playerFstLastName,playerSndLastName,position));
    
     }
