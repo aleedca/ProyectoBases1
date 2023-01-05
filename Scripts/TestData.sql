@@ -70,6 +70,9 @@ EXEC insertPlayer (809910128, 'Luka', NULL, 'Modric', NULL, 'Foto Jugador', 3, 1
 EXEC insertPlayer (901440988, 'Vinicius', NULL, 'Junior', NULL, 'Foto Jugador', 4, 2, 2, 5, TO_DATE('12-07-2000'), 20, 83671123,'junior@gmail.com', 2,'De la calle#55 200 metros al Oeste.');  
 EXEC insertPlayer (704100224, 'Kylian', NULL, 'Mbappé', NULL, 'Foto Jugador', 4, 2, 2, 2, TO_DATE('20-12-1998'), 10, 87332385,'kMbappe@gmail.com', 2,'De la calle#33 500 metros al Este.'); 
 
+EXEC insertPlayer (804440333, 'Vinicius', 'Juan', 'Junior', 'De Oliviera', 'Foto Jugador', 4, 2, 2, 5, TO_DATE('12-07-2000'), 20, 83671123,'junior@gmail.com', 2,'De la calle#55 200 metros al Oeste.');  
+
+---EXEC insertPlayer (702210111, '', 'Juan', 'Junior', 'De Oliviera', 'Foto Jugador', 4, 2, 2, 5, TO_DATE('12-07-2000'), 20, 83671123,'junior@gmail.com', 2,'De la calle#55 200 metros al Oeste.');  
 
 --- PlayerXMatchXTeam
 EXEC insertPlayerXMatchXTeam(2, 5, 7);

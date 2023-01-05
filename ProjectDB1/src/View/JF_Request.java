@@ -504,6 +504,7 @@ public class JF_Request extends javax.swing.JFrame {
             if(!position.isEmpty()){
                 outPosition = position;
             }
+            System.out.println("Llamando otra ventana...");
             teamList.showTeamList(outTeamName,outPlayerFstName,outPlayerSndName,outPlayerFstLastName,outPlayerSndLastName,outPosition);
          
             teamList.setVisible(true);
