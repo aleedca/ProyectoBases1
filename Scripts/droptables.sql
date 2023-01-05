@@ -1,13 +1,9 @@
 DROP TABLE PlayerXSoccerMatchXTeam;
-DROP TABLE EventWorkerXSoccerMatch;
 DROP TABLE ParameterTable;
 
 DROP TABLE Player;
 DROP TABLE TeamWorker;
-DROP TABLE EventWorker;
 DROP TABLE PersonXPhone;
-
-
 
 DROP TABLE NewsChange;
 DROP TABLE Blog;
@@ -18,7 +14,6 @@ DROP TABLE NewsComment;
 DROP TABLE News;
 DROP TABLE NewsType;
 DROP TABLE NewsStatus;
-
 
 DROP TABLE UserPerson;
 DROP TABLE UserType;
@@ -45,11 +40,11 @@ DROP TABLE Province;
 DROP TABLE Stadium;
 DROP TABLE Country;
 
-
 DROP TABLE GroupEvent;
 DROP TABLE Event;
 
 --------------------------------------------------------------------------------
+
 DROP SEQUENCE s_address;
 DROP SEQUENCE s_blog;
 DROP SEQUENCE s_canton;
@@ -82,5 +77,53 @@ DROP SEQUENCE s_newsType;
 DROP SEQUENCE s_newsComment;
 DROP SEQUENCE s_personPosition;
 DROP SEQUENCE s_player_soccermatch_team;
-DROP SEQUENCE s_eventworkerxsoccermatch;
+
+--------------------------------------------------------------------------------
+DROP PROCEDURE getCanton;
+DROP PROCEDURE getCountry;
+DROP PROCEDURE getDistrict;
+DROP PROCEDURE getGender;
+DROP PROCEDURE getProvince;
+DROP PROCEDURE getTypeIdentification;
+
+DROP PROCEDURE insertCountryTeam;
+DROP PROCEDURE insertTeam;
+DROP PROCEDURE insertGroupEvent;
+DROP PROCEDURE insertGroupStats;
+DROP PROCEDURE insertEvent;
+
+DROP PROCEDURE insertAddress;
+DROP PROCEDURE insertCanton;
+DROP PROCEDURE insertContinent;
+DROP PROCEDURE insertCountry;
+DROP PROCEDURE insertDistrict;
+DROP PROCEDURE insertGender;
+DROP PROCEDURE insertMail;
+DROP PROCEDURE insertNewsStatus;
+DROP PROCEDURE insertNewsType;
+
+DROP PROCEDURE insertPlayer;
+DROP PROCEDURE insertTeamWorker;
+DROP PROCEDURE insertPersonPosition;
+DROP PROCEDURE insertPersonXPhone;
+DROP PROCEDURE insertPhone;
+DROP PROCEDURE insertProvince;
+DROP PROCEDURE insertStadium;
+DROP PROCEDURE insertTypeIdentification;
+DROP PROCEDURE insertUserType;
+DROP PROCEDURE insertUserPerson;
+DROP PROCEDURE insertPerson;
+
+DROP PROCEDURE insertSoccerMatch;
+DROP PROCEDURE insertTeam1;
+DROP PROCEDURE insertTeam2;
+DROP PROCEDURE insertPlayerXMatchXTeam;
+
+DROP PROCEDURE insertFavoriteNews;
+DROP PROCEDURE insertNewsComment;
+DROP PROCEDURE insertRating;
+DROP PROCEDURE insertUserxNews;
+DROP PROCEDURE insertNews;
+
+---DROP PROCEDURE verifyUser;
 

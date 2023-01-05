@@ -75,9 +75,9 @@ public class DA_Catalogs {
         
         ResultSet rs = (ResultSet) sql.getObject(1);
         ArrayList<Country> countries = new ArrayList<>();
+        
         while(rs.next()){
-            Country country = new Country();
-            
+            Country country = new Country();    
             country.setIdCountry(rs.getInt("idCountry"));
             country.setNameCountry(rs.getString("nameCountry"));
             countries.add(country);
@@ -98,6 +98,7 @@ public class DA_Catalogs {
         while(rs.next()){
             Province province = new Province();
             
+            province.setIdCountry(rs.getInt("idCountry"));
             province.setIdProvince(rs.getInt("idProvince"));
             province.setNameProvince(rs.getString("nameProvince"));
             provinces.add(province);
@@ -118,7 +119,7 @@ public class DA_Catalogs {
         ArrayList<Canton> cantons = new ArrayList<>();
         while(rs.next()){
             Canton canton = new Canton();
-            
+            canton.setIdProvince(rs.getInt("idProvince"));
             canton.setIdCanton(rs.getInt("idCanton"));
             canton.setNameCanton(rs.getString("nameCanton"));
             cantons.add(canton);
@@ -139,6 +140,7 @@ public class DA_Catalogs {
         while(rs.next()){
             District district = new District();
             
+            district.setIdCanton(rs.getInt("idCanton"));
             district.setIdDistrict(rs.getInt("idDistrict"));
             district.setNameDistrict(rs.getString("nameDistrict"));
             districts.add(district);

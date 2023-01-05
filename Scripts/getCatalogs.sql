@@ -25,7 +25,7 @@ END getCountry;
 CREATE OR REPLACE PROCEDURE getProvince(curProvince OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curProvince FOR
-    SELECT idProvince, nameProvince
+    SELECT idCountry, idProvince, nameProvince
     FROM Province;
 END getProvince;
 
@@ -33,7 +33,7 @@ END getProvince;
 CREATE OR REPLACE PROCEDURE getCanton(curCanton OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curCanton FOR
-    SELECT idCanton, nameCanton
+    SELECT idProvince, idCanton, nameCanton
     FROM Canton;
 END getCanton;
 
@@ -41,7 +41,7 @@ END getCanton;
 CREATE OR REPLACE PROCEDURE getDistrict(curDistrict OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curDistrict FOR
-    SELECT idDistrict, nameDistrict
+    SELECT idCanton, idDistrict, nameDistrict
     FROM District;
 END getDistrict;
 

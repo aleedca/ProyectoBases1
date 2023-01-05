@@ -9,10 +9,19 @@ package Objects;
  * @author Mariana
  */
 public class District {
+    private int idCanton;
     private int idDistrict;
     private String nameDistrict;
     
     //GETTERS AND SETTERS
+
+    public int getIdCanton() {
+        return idCanton;
+    }
+
+    public void setIdCanton(int idCanton) {
+        this.idCanton = idCanton;
+    }
 
     public int getIdDistrict() {
         return idDistrict;
@@ -29,6 +38,10 @@ public class District {
     public void setNameDistrict(String nameDistrict) {
         this.nameDistrict = nameDistrict;
     }
-    
+
+    @Override
+    public String toString() {
+        return "District{" + "idCanton=" + idCanton + ", idDistrict=" + idDistrict + ", nameDistrict=" + nameDistrict + '}';
+    }
     
 }

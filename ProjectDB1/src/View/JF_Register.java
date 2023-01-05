@@ -4,13 +4,9 @@
  */
 package View;
 
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 /**
  *
@@ -65,11 +61,12 @@ public class JF_Register extends javax.swing.JFrame {
     public JComboBox<String> getCmbTipoIdentificacion() {
         return cmbTipoIdentificacion;
     }
-    
-    
 
-    public String getTxtIdentificacion() {
-        return txtIdentificacion.getText();
+    public int getTxtIdentificacion() {
+        String cadena =  txtIdentificacion.getText();
+        String combinacion = cadena.substring(0, 1) + cadena.substring(2, 6)+ cadena.substring(7);
+        int identification = Integer.parseInt(combinacion);
+        return identification;
     }
 
     public String getTxtUsername() {
@@ -80,12 +77,12 @@ public class JF_Register extends javax.swing.JFrame {
         String password = new String(txtPassword.getPassword());
         return password;
     }
-    
-
-    
-   
-    public String getTxtTelefono() {
-        return txtTelefono.getText();
+ 
+    public int getTxtTelefono() {
+        String cadena =  txtTelefono.getText();
+        String combinacion = cadena.substring(0, 4) + cadena.substring(5);
+        int phone = Integer.parseInt(combinacion);
+        return phone;
     }
 
     public String getSelectedGender() {
@@ -105,9 +102,7 @@ public class JF_Register extends javax.swing.JFrame {
     public JComboBox<String> getCmbPais() {
         return cmbPais;
     }
-    
-    
-        
+ 
     public String getSelectedProvince() {
         String province = (String)cmbProvincia.getSelectedItem();
         return province;
@@ -136,15 +131,16 @@ public class JF_Register extends javax.swing.JFrame {
         return cmbDistrito;
     }
     
-    
-    
-    
     public String getTxtCorreo() {
         return txtCorreo.getText();
     }
     
     public String getTxtDireccionExacta() {
         return txtDireccionExacta.getText();
+    }
+    
+    public JLabel getLblAvatar() {
+        return lblAvatar;
     }
     
     //------------------------------------------------------------------------------------------------------
@@ -161,7 +157,6 @@ public class JF_Register extends javax.swing.JFrame {
        cleanTelefono();
        cleanCorreo();
        cleanDireccion();
-       System.out.println("Limpia todo...");
     }
     
     public void cleanPrimerNombre() {
@@ -208,54 +203,29 @@ public class JF_Register extends javax.swing.JFrame {
     //---------------------------------------------------------------------------------------
     
     //SETTERS    
-    
     public void setCmbCanton(JComboBox<String> cmbCanton) {
         this.cmbCanton = cmbCanton;
     }
 
-    
     public void setCmbDistrito(JComboBox<String> cmbDistrito) {
         this.cmbDistrito = cmbDistrito;
     }
-
 
     public void setCmbGenero(JComboBox<String> cmbGenero) {
         this.cmbGenero = cmbGenero;
     }
 
-
-
     public void setCmbPais(JComboBox<String> cmbPais) {
         this.cmbPais = cmbPais;
     }
-
-
 
     public void setCmbProvincia(JComboBox<String> cmbProvincia) {
         this.cmbProvincia = cmbProvincia;
     }
 
-
-
     public void setCmbTipoIdentificacion(JComboBox<String> cmbTipoIdentificacion) {
         this.cmbTipoIdentificacion = cmbTipoIdentificacion;
     }
-
-
-
-
-    
-    
-    //-----------------------------------------------------------------
-    public JLabel getLblAvatar() {
-        return lblAvatar;
-    }
-
-
-    //----------------------------------------------------------------------
-    
-    
-
     
     
     @SuppressWarnings("unchecked")
@@ -466,6 +436,11 @@ public class JF_Register extends javax.swing.JFrame {
         lblPronvicia.setBounds(620, 310, 120, 30);
 
         cmbProvincia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbProvincia.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbProvinciaItemStateChanged(evt);
+            }
+        });
         pnlBackground.add(cmbProvincia);
         cmbProvincia.setBounds(780, 320, 180, 22);
 
@@ -651,6 +626,10 @@ public class JF_Register extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtPasswordKeyTyped
+
+    private void cmbProvinciaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbProvinciaItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbProvinciaItemStateChanged
 
     
     

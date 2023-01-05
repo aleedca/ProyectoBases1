@@ -2,17 +2,17 @@
 package Model;
 
 import DataAccess.DA_Catalogs;
+import DataAccess.DA_Person;
 import Objects.Canton;
 import Objects.Country;
 import Objects.District;
 import Objects.Gender;
 import Objects.Province;
 import Objects.TypeIdentification;
+import View.JF_Register;
 import java.awt.Image;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -20,6 +20,8 @@ import javax.swing.JLabel;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /**
@@ -31,31 +33,34 @@ public class model_Register {
     private String secondName;
     private String firstLastName;
     private String secondLastName;
-    private String identification;
+    private int identification;
     private String mail;
     private String usernameRegister;
     private String passwordRegister;
-    private String phone;
+    private int phone;
     private String address;
     private String photo;
     
-    private String gender;
+    private int gender;
     private ArrayList<Gender> genders;
     
-    private String typeIdentification;
+    private int typeIdentification;
     private ArrayList<TypeIdentification> identificationTypes;
     
-    private String country;
+    private int country;
     private ArrayList<Country> countries;
     
-    private String province;
+    private int province;
     private ArrayList<Province> provinces;
     
-    private String canton;
+    private int canton;
     private ArrayList<Canton> cantons;
     
-    private String district;
+    private int district;
     private ArrayList<District> districts;
+    
+    private final JFileChooser file = new JFileChooser();
+    private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");;
     
     
     //------------ Builder ----------------------
@@ -83,18 +88,17 @@ public class model_Register {
     //--------- METHODS -------------------  
     
     //-------------- VALIDATIONS -------------------------------------
-    public boolean validateEmptyFields(String firstName, String firstLastName, String identification, 
-            String username, String password, String mail, String phone, String address){
+    public boolean validateEmptyFields(String firstName, String firstLastName, 
+            String username, String password, String mail, String address){
         
-        if(firstName.isEmpty() || firstLastName.isEmpty() || identification.isEmpty() || address.isEmpty()){
+        if(firstName.isEmpty() || firstLastName.isEmpty() || address.isEmpty()){
             return true;
         }else{
-            if(username.isEmpty() || password.isEmpty() || mail.isEmpty() || phone.isEmpty()){
+            if(username.isEmpty() || password.isEmpty() || mail.isEmpty()){
                 return true;
             }
         }
        
-        System.out.println("Campos completos");
         return false;
     }
     
@@ -106,7 +110,6 @@ public class model_Register {
     
     public boolean validateFormatPassword(String password){
         if (PASSWORD_PATTERN.matcher( password).matches()) {
-            System.out.println("Password valida");
             return true;
 	}
         
@@ -120,7 +123,6 @@ public class model_Register {
         Matcher mather = pattern.matcher(username);
         
         if (mather.matches()) {
-            System.out.println("Username valido");
             return true;
         } 
         
@@ -132,7 +134,6 @@ public class model_Register {
         Matcher mather = pattern.matcher(mail);
         
         if (mather.find() == true) {
-            System.out.println("Correo valido");
             return true;
         } 
          
@@ -161,7 +162,6 @@ public class model_Register {
         Matcher mather = pattern.matcher(sentence);
         
         if (mather.matches()) {
-            System.out.println("Cadena valida");
             return true;
         } 
         
@@ -169,12 +169,11 @@ public class model_Register {
     }
     
     public boolean validarFormatoDireccion(String address){
-        String regex = "^[A-Za-z\\s\\d\\#,.ÑñáéíóúÁÉÍÓÚ]{50,200}$";
+        String regex = "^[A-Za-z\\s\\d\\#,.ÑñáéíóúÁÉÍÓÚ]{20,200}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher mather = pattern.matcher(address);
         
         if (mather.matches()) {
-            System.out.println("Direccion valida");
             return true;
         } 
         
@@ -191,9 +190,38 @@ public class model_Register {
     
     //----------------------------------------------------------------------------------------------------------
   
+    public void inserUser(){
+        try {   
+            System.out.println("Entro a llamar a la base");
+            DA_Person.insertUserPerson(this.usernameRegister, this.passwordRegister, this.identification, this.firstName,
+                    this.secondName, this.firstLastName, this.secondLastName, 
+                    this.photo, this.typeIdentification, this.gender, this.mail, this.phone, 
+                    this.district, this.address);
+        
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    
+    
+    public boolean selectPhoto(JF_Register register){
+        file.setFileFilter(this.filter);
+        file.showOpenDialog(register);
+        try{
+            photo = file.getSelectedFile().getPath();
+            return true;
+        }catch(NullPointerException e){
+            System.out.println("No se ha seleccionado ningún fichero");
+        } 
+        
+        return false;
+    }
+    
+    
     public void setImageLabel(JLabel labelName){
         ImageIcon image = new ImageIcon(this.photo);
-        Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_DEFAULT));
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_SMOOTH));
         labelName.setIcon(icon);
     }
         
@@ -231,11 +259,11 @@ public class model_Register {
         this.secondLastName = secondLastName;
     }
 
-    public String getIdentification() {
+    public int getIdentification() {
         return identification;
     }
 
-    public void setIdentification(String identification) {
+    public void setIdentification(int identification) {
         this.identification = identification;
     }
 
@@ -263,59 +291,59 @@ public class model_Register {
         this.passwordRegister = passwordRegister;
     }
 
-    public String getPhone() {
+    public int getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
     }
 
-    public String getTypeIdentification() {
+    public int getTypeIdentification() {
         return typeIdentification;
     }
 
-    public void setTypeIdentification(String typeIdentification) {
+    public void setTypeIdentification(int typeIdentification) {
         this.typeIdentification = typeIdentification;
     }
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
-    public String getCountry() {
+    public int getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(int country) {
         this.country = country;
     }
 
-    public String getProvince() {
+    public int getProvince() {
         return province;
     }
 
-    public void setProvince(String province) {
+    public void setProvince(int province) {
         this.province = province;
     }
 
-    public String getCanton() {
+    public int getCanton() {
         return canton;
     }
 
-    public void setCanton(String canton) {
+    public void setCanton(int canton) {
         this.canton = canton;
     }
 
-    public String getDistrict() {
+    public int getDistrict() {
         return district;
     }
 
-    public void setDistrict(String district) {
+    public void setDistrict(int district) {
         this.district = district;
     }
 
