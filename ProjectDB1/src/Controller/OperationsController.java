@@ -38,6 +38,8 @@ public class OperationsController implements ActionListener, ItemListener{
     private final model_Register modelRegister;
     private boolean flagRegister;
     
+    private final RequestController requestController = new RequestController();
+    
     
 
         

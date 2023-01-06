@@ -7,6 +7,7 @@ package View;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
@@ -604,13 +605,11 @@ public class JF_Request extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRequestGroupListActionPerformed
 
     private void btnBackRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackRequestActionPerformed
-        JF_Principal principal = new JF_Principal();
-        principal.setVisible(true);
-
-        this.dispose();
+       
     }//GEN-LAST:event_btnBackRequestActionPerformed
     
     //Getters
+    
     public JComboBox<String> getCmbPosition() {
         return cmbPosition;
     }
@@ -618,6 +617,12 @@ public class JF_Request extends javax.swing.JFrame {
     public JComboBox<String> getCmbEvent() {
         return cmbNewsEvent;
     }
+
+    public JButton getBtnBackRequest() {
+        return btnBackRequest;
+    }
+    
+    
     
     
     private void txtTeamName3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeamName3ActionPerformed

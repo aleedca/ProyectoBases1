@@ -25,7 +25,8 @@ public class RequestController {
     private final model_Request modelRequest = new model_Request();
 
     public RequestController() {
-        
+        fillPositions();
+        fillEvents();
     }
 
     
@@ -49,7 +50,7 @@ public class RequestController {
         }
     }
     
-     private void fillGenders(){
+     private void fillEvents(){
         viewRequest.getCmbEvent().removeAllItems();
          for(int i=0; i<modelRequest.getEvents().size();i++){
            viewRequest.getCmbEvent().addItem(modelRequest.getEvents().get(i).getTypeEvent());
