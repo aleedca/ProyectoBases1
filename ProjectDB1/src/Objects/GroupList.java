@@ -2,18 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model;
+package Objects;
 
 /**
  *
  * @author Nahomy
  */
 public class GroupList {
+    
     String teamName;
     String matchDate;
     String stadium;
     String teamFlag; 
 
+    
     public GroupList() {
     }
 
@@ -23,8 +25,6 @@ public class GroupList {
         this.stadium = stadium;
         this.teamFlag = teamFlag;
     }
-    
-    
     
     //setters
     public void setTeamName(String teamName) {
@@ -44,7 +44,6 @@ public class GroupList {
     }
     
     //getters
-
     public String getTeamName() {
         return teamName;
     }

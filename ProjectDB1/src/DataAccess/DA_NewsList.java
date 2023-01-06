@@ -4,8 +4,7 @@
  */
 package DataAccess;
 
-import Model.NewsList;
-import Model.TeamList;
+import Objects.NewsList;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,19 +12,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import oracle.jdbc.OracleTypes;
 
-/**
- *
- * @author Nahomy
- */
+
 public class DA_NewsList {
     
     public static ArrayList<NewsList> getNewsList(String author, String authorLastname, String newsDate, String newsEvent) throws SQLException {
         Connection conn = sysConnection.getConexion();
         CallableStatement sql = conn.prepareCall("{call getNewsList(?,?,?,?)}");
-        
-        
+       
         // input parameters
-        System.out.println("Comienza if-anidados");
         if (author!=""){
           sql.setString(1, author);  
         } else if (author==""){
@@ -50,23 +44,15 @@ public class DA_NewsList {
           sql.setString(4, null);  
         }
         
-        System.out.println("Termina if-anidados");
-        
-        
         // output parameters
         sql.registerOutParameter(7, OracleTypes.REF_CURSOR);
         
         sql.execute();
         
         ResultSet rs = (ResultSet) sql.getObject(7);
-
-        System.out.println("Obtuvo el objeto");
         ArrayList<NewsList> newsList = new ArrayList<>();
-        System.out.println("Creo el arraylist");
-        
-        
+
         while(rs.next()){
-            System.out.println("Entro al while");
             NewsList news = new NewsList();
 
             news.setAuthor(rs.getString("firstName")); 
@@ -75,11 +61,8 @@ public class DA_NewsList {
             news.setNewsDate(rs.getString("publicationDate"));
             news.setTypeNews(rs.getString("descriptionNewsType"));
             
-
             newsList.add(news);
-            System.out.println(news.toString());
         }
-        System.out.println("Termina ejecucion");
         return newsList;
     }
             

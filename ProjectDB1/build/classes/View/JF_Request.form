@@ -394,7 +394,7 @@
                                       <Component id="btnRequestTeamList" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="cbmPosition" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cmbPosition" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -424,7 +424,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtPlayer2Lastname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbmPosition" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbPosition" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -492,7 +492,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRequestTeamListActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cbmPosition">
+            <Component class="javax.swing.JComboBox" name="cmbPosition">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
@@ -563,7 +563,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblEvent" min="-2" pref="133" max="-2" attributes="0"/>
-                                  <Component id="cbmNewsEvent" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cmbNewsEvent" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
                           </Group>
@@ -579,7 +579,7 @@
                           <Component id="txtAuthorName" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtAuthorLastname" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtNewsDate" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbmNewsEvent" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbNewsEvent" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -641,7 +641,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRequestNewsListActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cbmNewsEvent">
+            <Component class="javax.swing.JComboBox" name="cmbNewsEvent">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">

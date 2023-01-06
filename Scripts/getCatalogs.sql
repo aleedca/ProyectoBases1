@@ -5,6 +5,20 @@ BEGIN
     FROM Gender;
 END getGender;
 
+CREATE OR REPLACE PROCEDURE getPosition (curPosition OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curPosition FOR
+    SELECT idPersonPosition, descriptionPersonPosition
+    FROM PersonPosition;
+END getPosition;
+
+CREATE OR REPLACE PROCEDURE getEvent (curEvent OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curEvent FOR
+    SELECT idEvent, typeEvent
+    FROM Event;
+END getEvent;
+
 
 CREATE OR REPLACE PROCEDURE getTypeIdentification(curTypeIdentification OUT SYS_REFCURSOR) IS
 BEGIN

@@ -2,13 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model;
+package Objects;
 
-/**
- *
- * @author Nahomy
- */
+
 public class TeamList {
+    
     String firstName;
     String secondName;
     String firstLastname;
@@ -16,7 +14,6 @@ public class TeamList {
     String photo; 
     String position;
 
-    //Constructores
     public TeamList() {
     }
 
@@ -28,12 +25,33 @@ public class TeamList {
         this.photo = photo;
         this.position = position;
     }
-
     
+    //Setters
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-    
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
+    public void setFirstLastname(String firstLastname) {
+        this.firstLastname = firstLastname;
+    }
+
+    public void setSecondLastname(String secondLastname) {
+        this.secondLastname = secondLastname;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     //Getters
-
     public String getFirstName() {
         return firstName;
     }
@@ -56,33 +74,6 @@ public class TeamList {
 
     public String getPhoto() {
         return photo;
-    }
-
-   //Setters
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public void setFirstLastname(String firstLastname) {
-        this.firstLastname = firstLastname;
-    }
-
-    public void setSecondLastname(String secondLastname) {
-        this.secondLastname = secondLastname;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    //Setters
-    public void setPhoto(String photo) {
-        this.photo = photo;
     }
 
     @Override

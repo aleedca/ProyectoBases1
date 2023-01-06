@@ -7,7 +7,9 @@ package DataAccess;
 import Objects.Canton;
 import Objects.Country;
 import Objects.District;
+import Objects.Event;
 import Objects.Gender;
+import Objects.Position;
 import Objects.Province;
 import Objects.TypeIdentification;
 import java.util.ArrayList;
@@ -147,6 +149,49 @@ public class DA_Catalogs {
         }
 
         return districts;
+    }
+    
+    public static ArrayList<Event> getEvent() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getEvent(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<Event> events = new ArrayList<>();
+        while(rs.next()){
+            Event event = new Event();
+            
+            event.setIdEvent(rs.getInt("idEvent"));
+            event.setTypeEvent(rs.getString("typeEvent"));
+            
+            events.add(event);
+        }
+
+        return events;
+    }
+    
+    
+    public static ArrayList<Position> getPosition() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getPosition(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<Position> positions = new ArrayList<>();
+        while(rs.next()){
+            Position position = new Position();
+            
+            position.setIdPersonPosition(rs.getInt("idPersonPosition"));
+            position.setDescriptionPersonPosition(rs.getString("descriptionPersonPosition"));
+            
+            positions.add(position);
+        }
+
+        return positions;
     }
     
     

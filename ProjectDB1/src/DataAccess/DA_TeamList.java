@@ -4,8 +4,7 @@
  */
 package DataAccess;
 
-import Model.TeamList;
-import Objects.Gender;
+import Objects.TeamList;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,17 +12,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import oracle.jdbc.OracleTypes;
 
-/**
- *
- * @author Nahomy
- */
+
 public class DA_TeamList {
     
     public static ArrayList<TeamList> getTeamList(String teamName, String playerFstName, String playerSndName, String playerFstLastName, String playerSndLastName, String position) throws SQLException {
         Connection conn = sysConnection.getConexion();
         CallableStatement sql = conn.prepareCall("{call getTeamList(?,?,?,?,?,?,?)}");
         
-        System.out.println("Comienza if-anidados");
         // input parameters
         if (teamName!=""){
           sql.setString(1, teamName);  
@@ -61,8 +56,6 @@ public class DA_TeamList {
           sql.setString(6, null);  
         }
         
-        System.out.println("Termina if-anidados");
-        
         // output parameters
         sql.registerOutParameter(7, OracleTypes.REF_CURSOR);
         
@@ -70,13 +63,9 @@ public class DA_TeamList {
         
         
         ResultSet rs = (ResultSet) sql.getObject(7);
-
-        System.out.println("Obtuvo el objeto");
         ArrayList<TeamList> teamList = new ArrayList<>();
-        System.out.println("Creo el arraylist");
         
         while(rs.next()){
-            System.out.println("Entro al while");
             TeamList team = new TeamList();
 
             team.setFirstName(rs.getString("firstName"));
@@ -87,9 +76,7 @@ public class DA_TeamList {
             team.setPosition(rs.getString("descriptionPersonPosition"));
 
             teamList.add(team);
-            System.out.println(team.toString());
         }
-        System.out.println("Termina ejecucion");
         return teamList;
     }
     

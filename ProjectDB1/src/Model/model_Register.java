@@ -38,12 +38,12 @@ public class model_Register {
     private String usernameRegister;
     private String passwordRegister;
     private int phone;
-    private String address;
+    private String address;private int gender;
+    private ArrayList<Gender> genders;
+
     private String photo;
     
-    private int gender;
-    private ArrayList<Gender> genders;
-    
+        
     private int typeIdentification;
     private ArrayList<TypeIdentification> identificationTypes;
     

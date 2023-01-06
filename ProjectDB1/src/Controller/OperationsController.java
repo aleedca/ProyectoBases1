@@ -38,6 +38,8 @@ public class OperationsController implements ActionListener, ItemListener{
     private final model_Register modelRegister;
     private boolean flagRegister;
     
+    private final RequestController requestController;
+    
     
 
         
@@ -75,6 +77,11 @@ public class OperationsController implements ActionListener, ItemListener{
         //Model Register
         model_Register validateRegister = new model_Register();
         this.modelRegister = validateRegister;
+        
+        
+        //Request Controller
+        RequestController controller = new RequestController();
+        this.requestController = controller;
         
         
         _init_(); 
@@ -333,6 +340,8 @@ public class OperationsController implements ActionListener, ItemListener{
         }
         
         if(e.getSource() == viewPrincipal.getBtnRequests()){
+            requestController.fillPositions(viewRequest);
+            requestController.fillEvents(viewRequest);
             viewRequest.setVisible(true);
             viewPrincipal.setVisible(false); 
         }
