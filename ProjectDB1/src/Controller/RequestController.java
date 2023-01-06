@@ -7,6 +7,8 @@ package Controller;
 import DataAccess.DA_GroupList;
 import DataAccess.DA_NewsList;
 import DataAccess.DA_TeamList;
+import Model.model_Request;
+import View.JF_Request;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,6 +20,14 @@ public class RequestController {
     private final DA_NewsList admN = new DA_NewsList();
     private final Cargador cargador = new Cargador();
     
+    private final JF_Request viewRequest = new JF_Request();
+    
+    private final model_Request modelRequest = new model_Request();
+
+    public RequestController() {
+        
+    }
+
     
     public DefaultTableModel showTeamList(String teamName, String playerFstName, String playerSndName, String playerFstLastName, String playerSndLastName, String position) throws SQLException{
         return cargador.showTeamList(admT.getTeamList(teamName,playerFstName,playerSndName,playerFstLastName,playerSndLastName,position));
@@ -29,5 +39,20 @@ public class RequestController {
     
      public DefaultTableModel showNewsList(String author, String authorLastname, String newsDate, String newsEvent)throws SQLException{
         return cargador.showNewsList(admN.getNewsList(author, authorLastname,  newsDate, newsEvent));
+    }
+     
+    //-------- COMBO BOX FILLING --------------------------
+    private void fillPositions(){
+        viewRequest.getCmbPosition().removeAllItems();
+        for(int i=0; i<modelRequest.getPositions().size();i++){
+           viewRequest.getCmbPosition().addItem(modelRequest.getPositions().get(i).getDescriptionPersonPosition());
+        }
+    }
+    
+     private void fillGenders(){
+        viewRequest.getCmbEvent().removeAllItems();
+         for(int i=0; i<modelRequest.getEvents().size();i++){
+           viewRequest.getCmbEvent().addItem(modelRequest.getEvents().get(i).getTypeEvent());
+        }
     }
 }

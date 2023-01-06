@@ -60,7 +60,7 @@ public class JF_Request extends javax.swing.JFrame {
         lblPlayer1Lastname = new javax.swing.JLabel();
         lblPosition = new javax.swing.JLabel();
         btnRequestTeamList = new javax.swing.JButton();
-        cbmPosition = new javax.swing.JComboBox<>();
+        cmbPosition = new javax.swing.JComboBox<>();
         lblTeamList = new javax.swing.JLabel();
         lblNewsList = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -73,7 +73,7 @@ public class JF_Request extends javax.swing.JFrame {
         lblDateFormat = new javax.swing.JLabel();
         txtNewsDate = new javax.swing.JTextField();
         btnRequestNewsList = new javax.swing.JButton();
-        cbmNewsEvent = new javax.swing.JComboBox<>();
+        cmbNewsEvent = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
@@ -222,7 +222,7 @@ public class JF_Request extends javax.swing.JFrame {
             }
         });
 
-        cbmPosition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbPosition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -265,7 +265,7 @@ public class JF_Request extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnRequestTeamList))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(cbmPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -287,7 +287,7 @@ public class JF_Request extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPlayer2Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbmPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPosition)
@@ -327,7 +327,7 @@ public class JF_Request extends javax.swing.JFrame {
             }
         });
 
-        cbmNewsEvent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbNewsEvent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -356,7 +356,7 @@ public class JF_Request extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbmNewsEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbNewsEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 4, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
@@ -367,7 +367,7 @@ public class JF_Request extends javax.swing.JFrame {
                     .addComponent(txtAuthorName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAuthorLastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNewsDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbmNewsEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbNewsEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAuthorName)
@@ -479,7 +479,7 @@ public class JF_Request extends javax.swing.JFrame {
             String playerSndName = txtPlayer2Name.getText();
             String playerFstLastName = txtPlayer1Lastname.getText();
             String playerSndLastName = txtPlayer2Lastname.getText();
-            String position = cbmPosition.getName(); //acá es otro get que agarre el icono y lo pase al string que ocupo
+            String position = cmbPosition.getName(); //acá es otro get que agarre el icono y lo pase al string que ocupo
             
             String outTeamName = "";
             String outPlayerFstName = "";
@@ -529,7 +529,7 @@ public class JF_Request extends javax.swing.JFrame {
             String author = txtAuthorName.getText();
             String authorLastname =txtAuthorLastname.getText();
             String newsDate = txtNewsDate.getText();
-            String newsEvent = cbmNewsEvent.getName(); //acá es otro get que agarre el icono y lo pase al string que ocupo
+            String newsEvent = cmbNewsEvent.getName(); //acá es otro get que agarre el icono y lo pase al string que ocupo
             
             String outAuthor = "";
             String outAuthorLastname = "";
@@ -609,7 +609,15 @@ public class JF_Request extends javax.swing.JFrame {
 
         this.dispose();
     }//GEN-LAST:event_btnBackRequestActionPerformed
-
+    
+    //Getters
+    public JComboBox<String> getCmbPosition() {
+        return cmbPosition;
+    }
+    
+    public JComboBox<String> getCmbEvent() {
+        return cmbNewsEvent;
+    }
     
     
     private void txtTeamName3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeamName3ActionPerformed
@@ -678,9 +686,9 @@ public class JF_Request extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JComboBox<String> cbmNewsEvent;
-    private javax.swing.JComboBox<String> cbmPosition;
     private javax.swing.JComboBox<String> cbmTeamFlag;
+    private javax.swing.JComboBox<String> cmbNewsEvent;
+    private javax.swing.JComboBox<String> cmbPosition;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel3;
