@@ -327,28 +327,36 @@ public class OperationsController implements ActionListener, ItemListener{
                 viewLogin.cleanUsernameLogin();
                 viewLogin.cleanPasswordLogin();
             }else{            
-                JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
                 viewLogin.cleanUsernameLogin();
                 viewLogin.cleanPasswordLogin();
-                viewLogin.setVisible(false);
-            
-                viewPrincipal.getBtnIniciarSesion().setVisible(false);
-                viewPrincipal.getBtnRegistrar().setVisible(false);
                 
-                viewPrincipal.getBtnConsultas().setVisible(true);
-                viewPrincipal.getBtnCuenta().setVisible(true);
-                viewPrincipal.getBtnSalir().setVisible(true);
-                
-                viewPrincipal.setTxtLblBienvenido("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
-                viewPrincipal.getLblBienvenido().setVisible(true);
                 
                 //**NOTA: Validar username y password***
-                if(modelLogin.validateUsername() == true && modelLogin.validatePassword() == true){ //Es true -> Admin
-                    //Frame de Admin                         
-                    viewPrincipal.getBtnOpAdm().setVisible(true);
-                }
+                if(modelLogin.userExists() == true){
+                    viewLogin.setVisible(false);
+                    
+                    viewPrincipal.getBtnIniciarSesion().setVisible(false);
+                    viewPrincipal.getBtnRegistrar().setVisible(false);
+                
+                    viewPrincipal.getBtnConsultas().setVisible(true);
+                    viewPrincipal.getBtnCuenta().setVisible(true);
+                    viewPrincipal.getBtnSalir().setVisible(true);
+                
+                    viewPrincipal.setTxtLblBienvenido("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
+                    viewPrincipal.getLblBienvenido().setVisible(true);
+                    
+                    if(modelLogin.validateUserType() == true){ //Es true -> Admin
+                        //Frame de Admin                         
+                        viewPrincipal.getBtnOpAdm().setVisible(true);
+                    }
   
-                viewPrincipal.setVisible(true);   
+                    viewPrincipal.setVisible(true);   
+                
+                }else{
+                    JOptionPane.showMessageDialog(null, "El usuario ingresado no existe. Intente nuevamente");
+                }
+                
+               
             }
         }
         

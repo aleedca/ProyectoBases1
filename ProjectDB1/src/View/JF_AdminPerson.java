@@ -508,6 +508,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         return btnAceptar;
     }
    
+    
    
    
     public String getTxtCorreo() {
@@ -550,8 +551,8 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         this.txtSegAp = txtSegAp;
     }
 
-    public JTextField getTxtSegNombre() {
-        return txtSegNombre;
+    public String getTxtSegNombre() {
+        return txtSegNombre.getText();
     }
 
     public void setTxtSegNombre(JTextField txtSegNombre) {
