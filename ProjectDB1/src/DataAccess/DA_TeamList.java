@@ -4,7 +4,7 @@
  */
 package DataAccess;
 
-import Model.TeamList;
+import Objects.TeamList;
 import Objects.Gender;
 import java.sql.CallableStatement;
 import java.sql.Connection;

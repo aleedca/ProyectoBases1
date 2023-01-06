@@ -4,9 +4,9 @@
  */
 package Controller;
 
-import Model.GroupList;
-import Model.NewsList;
-import Model.TeamList;
+import Objects.GroupList;
+import Objects.NewsList;
+import Objects.TeamList;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 

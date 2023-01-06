@@ -4,8 +4,8 @@
  */
 package DataAccess;
 
-import Model.NewsList;
-import Model.TeamList;
+import Objects.NewsList;
+import Objects.TeamList;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;

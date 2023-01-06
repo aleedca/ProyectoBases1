@@ -5,7 +5,7 @@
 package DataAccess;
 
 
-import Model.GroupList;
+import Objects.GroupList;
 import Objects.CountryTeam;
 import java.sql.CallableStatement;
 import java.sql.Connection;
