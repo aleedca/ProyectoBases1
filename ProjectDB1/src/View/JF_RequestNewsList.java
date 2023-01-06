@@ -4,11 +4,15 @@
  */
 package View;
 
+import Controller.RequestController;
+import java.sql.SQLException;
+
 /**
  *
  * @author Nahomy
  */
 public class JF_RequestNewsList extends javax.swing.JFrame {
+    private final RequestController controller = new RequestController();
 
     /**
      * Creates new form JF_RequestNewsList
@@ -16,6 +20,16 @@ public class JF_RequestNewsList extends javax.swing.JFrame {
     public JF_RequestNewsList() {
         initComponents();
     }
+    
+    void showNewsList(String author, String authorLastname, String newsDate, String newsEvent) throws SQLException{
+        System.out.println("Llamando controller...");
+        tblNewsList.setModel(controller.showNewsList(author, authorLastname,  newsDate, newsEvent));
+
+    }
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,7 +45,7 @@ public class JF_RequestNewsList extends javax.swing.JFrame {
         lblNewsListTitle = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblNewsList = new javax.swing.JTable();
         jScrollBar1 = new javax.swing.JScrollBar();
         btnClose = new javax.swing.JButton();
 
@@ -48,18 +62,18 @@ public class JF_RequestNewsList extends javax.swing.JFrame {
 
         jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblNewsList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Autor", "Titulo", "Fecha de publicacion", "Tipo de articulo"
+                "Autor", "Apellido", "Titulo", "Fecha de publicacion", "Tipo de articulo"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblNewsList);
 
         btnClose.setText("Cerrar");
         btnClose.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +178,7 @@ public class JF_RequestNewsList extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblNewsListTitle;
+    private javax.swing.JTable tblNewsList;
     // End of variables declaration//GEN-END:variables
 }

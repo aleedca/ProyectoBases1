@@ -128,7 +128,7 @@ public class JF_Principal extends javax.swing.JFrame {
         lblBienvenido.setForeground(new java.awt.Color(255, 255, 255));
         lblBienvenido.setText("BIENVENIDX NOMBRE APELLIDO");
         pnlBackground.add(lblBienvenido);
-        lblBienvenido.setBounds(30, 60, 580, 50);
+        lblBienvenido.setBounds(30, 80, 580, 50);
 
         btnIniciarSesion.setBackground(new java.awt.Color(86, 4, 44));
         btnIniciarSesion.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N

@@ -4,6 +4,7 @@
  */
 package View;
 
+import javax.swing.JButton;
 import javax.swing.JTextField;
 
 /**
@@ -500,6 +501,65 @@ public class JF_AdminPerson extends javax.swing.JFrame {
        lblNumCamisa.setVisible(flag);
        spnNumCamisa.setVisible(flag);
    }
+   
+   //GETTERS AND SETTERS
+
+    public JButton getBtnAceptar() {
+        return btnAceptar;
+    }
+   
+    
+   
+   
+    public String getTxtCorreo() {
+        return txtCorreo.getText();
+    }
+
+    public void setTxtCorreo(JTextField txtCorreo) {
+        this.txtCorreo = txtCorreo;
+    }
+
+    public String getTxtDireccion() {
+        return txtDireccion.getText();
+    }
+
+    public void setTxtDireccion(JTextField txtDireccion) {
+        this.txtDireccion = txtDireccion;
+    }
+
+    public String getTxtNombre() {
+        return txtNombre.getText();
+    }
+
+    public void setTxtNombre(JTextField txtNombre) {
+        this.txtNombre = txtNombre;
+    }
+
+    public String getTxtPrimerAp() {
+        return txtPrimerAp.getText();
+    }
+
+    public void setTxtPrimerAp(JTextField txtPrimerAp) {
+        this.txtPrimerAp = txtPrimerAp;
+    }
+
+    public JTextField getTxtSegAp() {
+        return txtSegAp;
+    }
+
+    public void setTxtSegAp(JTextField txtSegAp) {
+        this.txtSegAp = txtSegAp;
+    }
+
+    public String getTxtSegNombre() {
+        return txtSegNombre.getText();
+    }
+
+    public void setTxtSegNombre(JTextField txtSegNombre) {
+        this.txtSegNombre = txtSegNombre;
+    }
+   
+   
    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         JF_AdminOptions adminOptions = new JF_AdminOptions();

@@ -23,6 +23,7 @@ public class DA_TeamList {
         Connection conn = sysConnection.getConexion();
         CallableStatement sql = conn.prepareCall("{call getTeamList(?,?,?,?,?,?,?)}");
         
+        System.out.println("Comienza if-anidados");
         // input parameters
         if (teamName!=""){
           sql.setString(1, teamName);  
@@ -39,7 +40,7 @@ public class DA_TeamList {
         if (playerSndName!=""){
           sql.setString(3, playerSndName);  
         } else if (playerSndName==""){
-          sql.setString(3, null);  
+          sql.setString(3, "N/A");  
         }
         
         if (playerFstLastName!=""){
@@ -51,35 +52,44 @@ public class DA_TeamList {
         if (playerSndLastName!=""){
           sql.setString(5, playerSndLastName);
         } else if (playerSndLastName==""){
-          sql.setString(5, null);  
+          sql.setString(5, "N/A");  
         }
         
         if (position!=""){
           sql.setString(6, position);
-        } else if (playerSndLastName==""){
+        } else{
           sql.setString(6, null);  
         }
         
+        System.out.println("Termina if-anidados");
         
         // output parameters
-        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.registerOutParameter(7, OracleTypes.REF_CURSOR);
         
         sql.execute();
         
-        ResultSet rs = (ResultSet) sql.getObject(1);
+        
+        ResultSet rs = (ResultSet) sql.getObject(7);
+
+        System.out.println("Obtuvo el objeto");
         ArrayList<TeamList> teamList = new ArrayList<>();
+        System.out.println("Creo el arraylist");
+        
         while(rs.next()){
+            System.out.println("Entro al while");
             TeamList team = new TeamList();
-            
+
             team.setFirstName(rs.getString("firstName"));
             team.setSecondName(rs.getString("secondName"));
             team.setFirstLastname(rs.getString("firstLastname"));
             team.setSecondLastname(rs.getString("secondLastname"));
             team.setPhoto(rs.getString("photo"));
             team.setPosition(rs.getString("descriptionPersonPosition"));
-           
+
             teamList.add(team);
+            System.out.println(team.toString());
         }
+        System.out.println("Termina ejecucion");
         return teamList;
     }
     

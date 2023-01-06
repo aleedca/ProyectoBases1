@@ -15,20 +15,20 @@ END getGroupList;
 
 
 
-
-CREATE OR REPLACE PROCEDURE getTeamList(pTeamList OUT SYS_REFCURSOR, pTeamName IN VARCHAR2, pPlayerFstName IN VARCHAR2, pPlayerSndName IN VARCHAR2,
-                                        pPlayerFstLastName IN VARCHAR2, pPlayerSndLastName IN VARCHAR2, pPosition IN VARCHAR2 )
-IS 
+-- 
+CREATE OR REPLACE PROCEDURE getTeamList(pTeamName IN VARCHAR2, pPlayerFstName IN VARCHAR2, pPlayerSndName IN VARCHAR2,
+                                        pPlayerFstLastName IN VARCHAR2, pPlayerSndLastName IN VARCHAR2, pPosition IN VARCHAR2,pTeamList OUT SYS_REFCURSOR)
+AS  
 BEGIN
-    OPEN pTeamList FOR 
+    OPEN pTeamList FOR
     SELECT Person.firstName, Person.secondName, Person.firstLastname, Person.secondLastname, Person.photo, PersonPosition.descriptionPersonPosition 
     FROM Team
     INNER JOIN Player ON Player.idTeam = Team.idTeam
     INNER JOIN Person ON Person.idPerson = Player.idPerson
     INNER JOIN PersonPosition ON PersonPosition.idPersonPosition = Person.idPersonPosition 
     WHERE Team.nameTeam = NVL (pTeamName, Team.nameTeam) AND Person.firstName = NVL(pPlayerFstName, Person.firstName)
-    AND Person.secondName = NVL(pPlayerSndName, Person.secondName) AND Person.firstLastName = NVL(pPlayerFstLastName, Person.firstLastName)
-    AND Person.secondLastName = NVL(pPlayerSndLastName, Person.secondLastName)
+    AND Person.secondName = NVL(pPlayerSndName, Person.secondName)
+    AND Person.secondLastName = NVL(pPlayerSndLastName, Person.secondLastName) AND Person.firstLastName = NVL(pPlayerFstLastName, Person.firstLastName)
     AND PersonPosition.descriptionPersonPosition= NVL (pPosition, PersonPosition.descriptionPersonPosition);
 END getTeamList;
 

@@ -262,7 +262,6 @@ public class JF_Register extends javax.swing.JFrame {
         lblDistrito = new javax.swing.JLabel();
         cmbDistrito = new javax.swing.JComboBox<>();
         lblDireccionExacta = new javax.swing.JLabel();
-        txtDireccionExacta = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         lblSegundoNombre = new javax.swing.JLabel();
         lblPrimerApellido = new javax.swing.JLabel();
@@ -278,6 +277,8 @@ public class JF_Register extends javax.swing.JFrame {
         cmbTipoIdentificacion = new javax.swing.JComboBox<>();
         txtTelefono = new javax.swing.JFormattedTextField();
         txtIdentificacion = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtDireccionExacta = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1285, 752));
@@ -464,8 +465,6 @@ public class JF_Register extends javax.swing.JFrame {
         lblDireccionExacta.setText("Dirección exacta*");
         pnlBackground.add(lblDireccionExacta);
         lblDireccionExacta.setBounds(630, 550, 210, 30);
-        pnlBackground.add(txtDireccionExacta);
-        txtDireccionExacta.setBounds(630, 590, 350, 80);
 
         lblNombre.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -568,6 +567,13 @@ public class JF_Register extends javax.swing.JFrame {
         pnlBackground.add(txtIdentificacion);
         txtIdentificacion.setBounds(310, 440, 230, 20);
 
+        txtDireccionExacta.setColumns(20);
+        txtDireccionExacta.setRows(5);
+        jScrollPane1.setViewportView(txtDireccionExacta);
+
+        pnlBackground.add(jScrollPane1);
+        jScrollPane1.setBounds(630, 590, 340, 86);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -659,6 +665,7 @@ public class JF_Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAvatar;
     private javax.swing.JLabel lblCanton;
     private javax.swing.JLabel lblCorreo;
@@ -681,7 +688,7 @@ public class JF_Register extends javax.swing.JFrame {
     private javax.swing.JLabel lblidentificacion;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtDireccionExacta;
+    private javax.swing.JTextArea txtDireccionExacta;
     private javax.swing.JFormattedTextField txtIdentificacion;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JPasswordField txtPassword;

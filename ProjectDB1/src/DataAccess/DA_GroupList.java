@@ -41,14 +41,37 @@ public class DA_GroupList {
             countryTeam.add(country);
         }
         return countryTeam;
-        
-    
     }
             
     public static ArrayList<GroupList> getGroupList(String teamName, String matchDate, String stadium, String teamFlag) throws SQLException {
         Connection conn = sysConnection.getConexion();
         CallableStatement sql = conn.prepareCall("{call getGroupList(?,?,?,?,?)}");
+        
         //input parameters
+        if (teamName!=""){
+          sql.setString(1, teamName);  
+        } else if (teamName==""){
+          sql.setString(1, null);  
+        }
+        
+        if (matchDate!=""){
+          sql.setString(2, matchDate);  
+        } else if (matchDate==""){
+          sql.setString(2, null);  
+        }
+        
+        if (stadium!=""){
+          sql.setString(1, stadium);  
+        } else if (stadium==""){
+          sql.setString(1, null);  
+        }
+        
+        if (teamFlag!=""){
+          sql.setString(2, teamFlag);  
+        } else if (teamFlag==""){
+          sql.setString(2, null);  
+        }
+        
         
         //output parameters
         sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
