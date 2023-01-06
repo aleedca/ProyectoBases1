@@ -305,7 +305,7 @@ public class JF_Register extends javax.swing.JFrame {
             }
         });
         pnlBackground.add(btnBack);
-        btnBack.setBounds(40, 40, 46, 40);
+        btnBack.setBounds(40, 40, 52, 40);
         pnlBackground.add(jLabel1);
         jLabel1.setBounds(19, 44, 0, 0);
 
@@ -357,7 +357,7 @@ public class JF_Register extends javax.swing.JFrame {
         pnlBackground.add(lblPassword);
         lblPassword.setBounds(40, 640, 120, 30);
         pnlBackground.add(txtCorreo);
-        txtCorreo.setBounds(310, 500, 230, 22);
+        txtCorreo.setBounds(310, 500, 230, 24);
 
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,7 +402,7 @@ public class JF_Register extends javax.swing.JFrame {
             }
         });
         pnlBackground.add(cmbGenero);
-        cmbGenero.setBounds(780, 200, 180, 22);
+        cmbGenero.setBounds(780, 200, 180, 26);
 
         lblTelefono.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblTelefono.setForeground(new java.awt.Color(255, 255, 255));
@@ -417,8 +417,13 @@ public class JF_Register extends javax.swing.JFrame {
         lblPais.setBounds(620, 250, 100, 30);
 
         cmbPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbPais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPaisActionPerformed(evt);
+            }
+        });
         pnlBackground.add(cmbPais);
-        cmbPais.setBounds(780, 260, 180, 22);
+        cmbPais.setBounds(780, 260, 180, 26);
 
         lblCanton.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblCanton.setForeground(new java.awt.Color(255, 255, 255));
@@ -428,7 +433,7 @@ public class JF_Register extends javax.swing.JFrame {
 
         cmbCanton.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnlBackground.add(cmbCanton);
-        cmbCanton.setBounds(780, 380, 180, 22);
+        cmbCanton.setBounds(780, 380, 180, 26);
 
         lblPronvicia.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblPronvicia.setForeground(new java.awt.Color(255, 255, 255));
@@ -443,7 +448,7 @@ public class JF_Register extends javax.swing.JFrame {
             }
         });
         pnlBackground.add(cmbProvincia);
-        cmbProvincia.setBounds(780, 320, 180, 22);
+        cmbProvincia.setBounds(780, 320, 180, 26);
 
         lblDistrito.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblDistrito.setForeground(new java.awt.Color(255, 255, 255));
@@ -453,7 +458,7 @@ public class JF_Register extends javax.swing.JFrame {
 
         cmbDistrito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnlBackground.add(cmbDistrito);
-        cmbDistrito.setBounds(780, 440, 180, 22);
+        cmbDistrito.setBounds(780, 440, 180, 26);
 
         lblDireccionExacta.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblDireccionExacta.setForeground(new java.awt.Color(255, 255, 255));
@@ -503,7 +508,7 @@ public class JF_Register extends javax.swing.JFrame {
             }
         });
         pnlBackground.add(txtUsername);
-        txtUsername.setBounds(310, 600, 230, 22);
+        txtUsername.setBounds(310, 600, 230, 24);
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -511,13 +516,13 @@ public class JF_Register extends javax.swing.JFrame {
             }
         });
         pnlBackground.add(txtNombre);
-        txtNombre.setBounds(310, 140, 230, 22);
+        txtNombre.setBounds(310, 140, 230, 24);
         pnlBackground.add(txtSegundoNombre);
-        txtSegundoNombre.setBounds(310, 200, 230, 22);
+        txtSegundoNombre.setBounds(310, 200, 230, 24);
         pnlBackground.add(txtPrimerApellido);
-        txtPrimerApellido.setBounds(310, 260, 230, 22);
+        txtPrimerApellido.setBounds(310, 260, 230, 24);
         pnlBackground.add(txtSegundoApellido);
-        txtSegundoApellido.setBounds(310, 320, 230, 22);
+        txtSegundoApellido.setBounds(310, 320, 230, 24);
 
         lblTipoIdentificacion.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblTipoIdentificacion.setForeground(new java.awt.Color(255, 255, 255));
@@ -547,7 +552,7 @@ public class JF_Register extends javax.swing.JFrame {
             }
         });
         pnlBackground.add(txtTelefono);
-        txtTelefono.setBounds(780, 140, 180, 22);
+        txtTelefono.setBounds(780, 140, 180, 20);
 
         try {
             txtIdentificacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#-####-####")));
@@ -560,7 +565,7 @@ public class JF_Register extends javax.swing.JFrame {
             }
         });
         pnlBackground.add(txtIdentificacion);
-        txtIdentificacion.setBounds(310, 440, 230, 22);
+        txtIdentificacion.setBounds(310, 440, 230, 20);
 
         txtDireccionExacta.setColumns(20);
         txtDireccionExacta.setRows(5);
@@ -636,6 +641,10 @@ public class JF_Register extends javax.swing.JFrame {
     private void cmbProvinciaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbProvinciaItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbProvinciaItemStateChanged
+
+    private void cmbPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPaisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPaisActionPerformed
 
     
     

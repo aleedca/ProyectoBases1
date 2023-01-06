@@ -5,6 +5,7 @@
 package Controller;
 
 import DataAccess.DA_GroupList;
+import DataAccess.DA_NewsList;
 import DataAccess.DA_TeamList;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class RequestController {
     private final DA_TeamList admT = new DA_TeamList();
     private final DA_GroupList admG = new DA_GroupList();
+    private final DA_NewsList admN = new DA_NewsList();
     private final Cargador cargador = new Cargador();
     
     
@@ -28,5 +30,9 @@ public class RequestController {
     
     public DefaultTableModel showGroupList(String teamName, String matchDate, String stadium, String teamFlag)throws SQLException{
         return cargador.showGroupList(admG.getGroupList(teamName,matchDate,stadium,teamFlag));
+    }
+    
+     public DefaultTableModel showNewsList(String author, String authorLastname, String newsDate, String newsEvent)throws SQLException{
+        return cargador.showNewsList(admN.getNewsList(author, authorLastname,  newsDate, newsEvent));
     }
 }
