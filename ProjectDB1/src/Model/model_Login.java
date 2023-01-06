@@ -81,5 +81,15 @@ public class model_Login {
     public void setPasswordLogin(String passwordLogin) {
         this.passwordLogin = passwordLogin;
     }
+
+    public int getResultUserType() {
+        return resultUserType;
+    }
+
+    public void setResultUserType(int resultUserType) {
+        this.resultUserType = resultUserType;
+    }
+    
+    
    
 }

@@ -109,6 +109,9 @@ public class OperationsController implements ActionListener, ItemListener{
         //AdminOptions
         viewMenuAdmin.getBtnBack().addActionListener(this);
         
+        //Request
+        viewRequest.getBtnBackRequest().addActionListener(this);
+        
         
          
     }
@@ -306,7 +309,7 @@ public class OperationsController implements ActionListener, ItemListener{
     public void actionPerformed(ActionEvent e) {
         
         //-------------- PANTALLA PRINCIPAL ----------------------
-        /*NOTA: FALTA EL BOTON DE 'MI CUENTA' Y DE 'MENU ADMIN'*/
+        /*NOTA: FALTA EL BOTON DE 'MI CUENTA'*/
         
         if(e.getSource() == viewPrincipal.getBtnIniciarSesion()){    
             viewLogin.setVisible(true);
@@ -542,7 +545,26 @@ public class OperationsController implements ActionListener, ItemListener{
             viewPrincipal.setVisible(true);
         }
         
-
+        //----------- PANTALLA DE Request -------------------------
+        if(e.getSource() == viewRequest.getBtnBackRequest()){
+            viewRequest.setVisible(false);
+            viewPrincipal.getBtnIniciarSesion().setVisible(false);
+            viewPrincipal.getBtnRegistrar().setVisible(false);
+                
+            viewPrincipal.getBtnConsultas().setVisible(true);
+            viewPrincipal.getBtnCuenta().setVisible(true);
+            viewPrincipal.getBtnSalir().setVisible(true);
+            
+            viewPrincipal.setTxtLblBienvenido("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
+            viewPrincipal.getLblBienvenido().setVisible(true);
+            
+            if(modelLogin.getResultUserType() == 0){
+                viewPrincipal.getBtnOpAdm().setVisible(true);
+            }
+            
+            viewPrincipal.setVisible(true);
+        }
+        
     }
     
     

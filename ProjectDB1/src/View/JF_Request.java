@@ -7,6 +7,7 @@ package View;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
@@ -600,10 +601,10 @@ public class JF_Request extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRequestGroupListActionPerformed
 
     private void btnBackRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackRequestActionPerformed
-        JF_Principal principal = new JF_Principal();
-        principal.setVisible(true);
-
-        this.dispose();
+//        JF_Principal principal = new JF_Principal();
+//        principal.setVisible(true);
+//
+//        this.dispose();
     }//GEN-LAST:event_btnBackRequestActionPerformed
 
     private void txtTeamName3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeamName3ActionPerformed
@@ -622,40 +623,7 @@ public class JF_Request extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAuthorLastnameActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JF_Request.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JF_Request.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JF_Request.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JF_Request.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JF_Request().setVisible(true);
-            }
-        });
-    }
     
     //TeamList
     public JTextField getTxtTeamName3() {
@@ -680,6 +648,12 @@ public class JF_Request extends javax.swing.JFrame {
 
     public JComboBox<String> getCbmPosition() {
         return cbmPosition;
+    }
+    
+    //------------------------------------------------------------
+    
+    public JButton getBtnBackRequest() {
+        return btnBackRequest;
     }
 
     
