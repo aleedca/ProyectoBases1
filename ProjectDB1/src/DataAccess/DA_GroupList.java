@@ -14,40 +14,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import oracle.jdbc.OracleTypes;
 
-/**
- *
- * @author Nahomy
- */
+
 public class DA_GroupList {
     
-    public static ArrayList<CountryTeam> getCountryTeam() throws SQLException{
-        Connection conn = sysConnection.getConexion();
-        CallableStatement sql = conn.prepareCall("{call getCountryTeam(?)}");
-        
-        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
-        
-        sql.execute();
-        
-        ResultSet rs = (ResultSet) sql.getObject(1);
-        ArrayList<CountryTeam> countryTeam= new ArrayList<>();
-        while(rs.next()){
-            CountryTeam country = new CountryTeam();
-            
-            country.setIdCountryTeam(rs.getInt("idCountryTeam"));
-            country.setIdContinent(rs.getInt("idContinent"));
-            country.setNameCountryTeam(rs.getString("nameCountryTeam"));
-            country.setTeamFlag(rs.getString("flag"));
-            
-            countryTeam.add(country);
-        }
-        return countryTeam;
-    }
+    
             
     public static ArrayList<GroupList> getGroupList(String teamName, String matchDate, String stadium, String teamFlag) throws SQLException {
         Connection conn = sysConnection.getConexion();
         CallableStatement sql = conn.prepareCall("{call getGroupList(?,?,?,?,?)}");
         
-        //input parameters
+        //Input parameters
         if (teamName!=""){
           sql.setString(1, teamName);  
         } else if (teamName==""){
@@ -72,14 +48,14 @@ public class DA_GroupList {
           sql.setString(2, null);  
         }
         
-        
-        //output parameters
+        //Output parameters
         sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
         
         sql.execute();
         
         ResultSet rs = (ResultSet) sql.getObject(1);
         ArrayList<GroupList> groupList = new ArrayList<>();
+        
         while(rs.next()){
             GroupList group = new GroupList();
             
@@ -91,6 +67,29 @@ public class DA_GroupList {
             groupList.add(group);
         }
         return groupList;
+    }
     
+    //FALTA CORREGIR 
+    public static ArrayList<CountryTeam> getCountryTeam() throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call getCountryTeam(?)}");
+        
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<CountryTeam> countryTeam= new ArrayList<>();
+        while(rs.next()){
+            CountryTeam country = new CountryTeam();
+            
+            country.setIdCountryTeam(rs.getInt("idCountryTeam"));
+            country.setIdContinent(rs.getInt("idContinent"));
+            country.setNameCountryTeam(rs.getString("nameCountryTeam"));
+            country.setTeamFlag(rs.getString("flag"));
+            
+            countryTeam.add(country);
+        }
+        return countryTeam;
     }
 }

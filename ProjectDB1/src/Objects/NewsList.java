@@ -9,9 +9,9 @@ package Objects;
  * @author Nahomy
  */
 public class NewsList {
+    
     String author;
     String authorLastName;
-    
     String title;
     String newsDate;
     String typeNews; 
@@ -26,7 +26,29 @@ public class NewsList {
         this.newsDate = newsDate;
         this.typeNews = typeNews;
     }
+    
+    //setters
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
+    public void setAuthorLastName(String authorLastName) {
+        this.authorLastName = authorLastName;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setNewsDate(String newsDate) {
+        this.newsDate = newsDate;
+    }
+
+    public void setTypeNews(String typeNews) {
+        this.typeNews = typeNews;
+    }
+    
+    //getters
     public String getAuthor() {
         return author;
     }
@@ -47,25 +69,7 @@ public class NewsList {
         return typeNews;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public void setAuthorLastName(String authorLastName) {
-        this.authorLastName = authorLastName;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setNewsDate(String newsDate) {
-        this.newsDate = newsDate;
-    }
-
-    public void setTypeNews(String typeNews) {
-        this.typeNews = typeNews;
-    }
+    
 
     @Override
     public String toString() {
