@@ -157,13 +157,13 @@ public class JF_Request extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtStadium, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cbmTeamFlag, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbmTeamFlag, 0, 119, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblMatchDate)
                         .addGap(60, 60, 60)
                         .addComponent(lblStadium)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblFlag)
                         .addGap(85, 85, 85))))
         );
@@ -358,7 +358,7 @@ public class JF_Request extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbNewsEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 4, Short.MAX_VALUE))))
+                        .addGap(0, 33, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,7 +398,6 @@ public class JF_Request extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblTeamList)
                                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -418,7 +417,8 @@ public class JF_Request extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(lblRequests1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(49, 49, 49)))
-                                .addComponent(jLabel18)))))
+                                .addComponent(jLabel18))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -459,7 +459,7 @@ public class JF_Request extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 704, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,7 +480,7 @@ public class JF_Request extends javax.swing.JFrame {
             String playerSndName = txtPlayer2Name.getText();
             String playerFstLastName = txtPlayer1Lastname.getText();
             String playerSndLastName = txtPlayer2Lastname.getText();
-            String position = cmbPosition.getName(); //acá es otro get que agarre el icono y lo pase al string que ocupo
+            String position = (String)cmbPosition.getSelectedItem(); 
             
             String outTeamName = "";
             String outPlayerFstName = "";
@@ -509,7 +509,7 @@ public class JF_Request extends javax.swing.JFrame {
                 outPlayerSndLastName = playerSndLastName;
             }
             
-            if(!position.isEmpty()){
+            if( !"Seleccione Posición".equals(position)){
                 outPosition = position;
             }
 
@@ -530,7 +530,7 @@ public class JF_Request extends javax.swing.JFrame {
             String author = txtAuthorName.getText();
             String authorLastname =txtAuthorLastname.getText();
             String newsDate = txtNewsDate.getText();
-            String newsEvent = cmbNewsEvent.getName(); //acá es otro get que agarre el icono y lo pase al string que ocupo
+            String newsEvent = (String)cmbNewsEvent.getSelectedItem(); 
             
             String outAuthor = "";
             String outAuthorLastname = "";

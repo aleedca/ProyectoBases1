@@ -20,14 +20,11 @@ public class RequestController {
     private final DA_NewsList admN = new DA_NewsList();
     private final Cargador cargador = new Cargador();
     
-    private final JF_Request viewRequest = new JF_Request();
+    //private final JF_Request viewRequest = new JF_Request();
     
     private final model_Request modelRequest = new model_Request();
 
-    public RequestController() {
-        fillPositions();
-        fillEvents();
-    }
+
 
     
     public DefaultTableModel showTeamList(String teamName, String playerFstName, String playerSndName, String playerFstLastName, String playerSndLastName, String position) throws SQLException{
@@ -43,15 +40,19 @@ public class RequestController {
     }
      
     //-------- COMBO BOX FILLING --------------------------
-    private void fillPositions(){
+    public void fillPositions(JF_Request viewRequest){
         viewRequest.getCmbPosition().removeAllItems();
+        
+        viewRequest.getCmbPosition().addItem("Seleccione Posición");
         for(int i=0; i<modelRequest.getPositions().size();i++){
            viewRequest.getCmbPosition().addItem(modelRequest.getPositions().get(i).getDescriptionPersonPosition());
         }
     }
     
-     private void fillEvents(){
+     public void fillEvents(JF_Request viewRequest){
         viewRequest.getCmbEvent().removeAllItems();
+        
+        viewRequest.getCmbEvent().addItem("Seleccione Evento");
          for(int i=0; i<modelRequest.getEvents().size();i++){
            viewRequest.getCmbEvent().addItem(modelRequest.getEvents().get(i).getTypeEvent());
         }
