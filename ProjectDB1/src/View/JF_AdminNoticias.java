@@ -54,7 +54,6 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         tblNoticias = new javax.swing.JTable();
         lblEstado = new javax.swing.JLabel();
         txtareaEliminar = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
         txtTexto = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -233,10 +232,8 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         txtTexto.setColumns(20);
         txtTexto.setLineWrap(true);
         txtTexto.setRows(5);
-        jScrollPane2.setViewportView(txtTexto);
-
-        jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(720, 380, 234, 230);
+        jPanel1.add(txtTexto);
+        txtTexto.setBounds(720, 380, 232, 230);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -386,7 +383,6 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAdminNoticias;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblFoto;

@@ -51,7 +51,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         cmbEquipo = new javax.swing.JComboBox<>();
         lblIden = new javax.swing.JLabel();
         lblCorreo = new javax.swing.JLabel();
-        lblTelef = new javax.swing.JLabel();
+        lblTipoPosicion = new javax.swing.JLabel();
         lblGenero = new javax.swing.JLabel();
         cmbGenero = new javax.swing.JComboBox<>();
         lblPais = new javax.swing.JLabel();
@@ -63,7 +63,6 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         lblFechaNac = new javax.swing.JLabel();
         cmbDistrito = new javax.swing.JComboBox<>();
         lblNumCamisa = new javax.swing.JLabel();
-        txtDireccion = new javax.swing.JTextField();
         lblAvatar = new javax.swing.JLabel();
         lblSelecFoto = new javax.swing.JLabel();
         btnCargarFoto = new javax.swing.JButton();
@@ -79,6 +78,9 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPersonas = new javax.swing.JTable();
         txtareaEliminar = new javax.swing.JTextArea();
+        txtDireccion = new javax.swing.JTextArea();
+        cmbTipoPosicion = new javax.swing.JComboBox<>();
+        lblTelef = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -239,17 +241,17 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         pnlAdminPersonas.add(lblCorreo);
         lblCorreo.setBounds(60, 530, 110, 30);
 
-        lblTelef.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        lblTelef.setForeground(new java.awt.Color(255, 255, 255));
-        lblTelef.setText("Teléfono*");
-        pnlAdminPersonas.add(lblTelef);
-        lblTelef.setBounds(590, 170, 120, 40);
+        lblTipoPosicion.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblTipoPosicion.setForeground(new java.awt.Color(255, 255, 255));
+        lblTipoPosicion.setText("Tipo Posición*");
+        pnlAdminPersonas.add(lblTipoPosicion);
+        lblTipoPosicion.setBounds(590, 170, 170, 40);
 
         lblGenero.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblGenero.setForeground(new java.awt.Color(255, 255, 255));
         lblGenero.setText("Género");
         pnlAdminPersonas.add(lblGenero);
-        lblGenero.setBounds(590, 230, 110, 30);
+        lblGenero.setBounds(590, 290, 110, 30);
 
         cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbGenero.addActionListener(new java.awt.event.ActionListener() {
@@ -258,37 +260,37 @@ public class JF_AdminPerson extends javax.swing.JFrame {
             }
         });
         pnlAdminPersonas.add(cmbGenero);
-        cmbGenero.setBounds(770, 240, 180, 22);
+        cmbGenero.setBounds(770, 300, 180, 22);
 
         lblPais.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblPais.setForeground(new java.awt.Color(255, 255, 255));
         lblPais.setText("País ");
         pnlAdminPersonas.add(lblPais);
-        lblPais.setBounds(590, 290, 100, 30);
+        lblPais.setBounds(590, 350, 100, 30);
 
         cmbPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnlAdminPersonas.add(cmbPais);
-        cmbPais.setBounds(770, 300, 180, 22);
+        cmbPais.setBounds(770, 360, 180, 22);
 
         lblProvin.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblProvin.setForeground(new java.awt.Color(255, 255, 255));
         lblProvin.setText("Provincia");
         pnlAdminPersonas.add(lblProvin);
-        lblProvin.setBounds(590, 350, 120, 30);
+        lblProvin.setBounds(590, 410, 120, 30);
 
         cmbProvin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnlAdminPersonas.add(cmbProvin);
-        cmbProvin.setBounds(770, 360, 180, 22);
+        cmbProvin.setBounds(770, 420, 180, 22);
 
         lblCanton.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblCanton.setForeground(new java.awt.Color(255, 255, 255));
         lblCanton.setText("Cantón");
         pnlAdminPersonas.add(lblCanton);
-        lblCanton.setBounds(590, 410, 110, 30);
+        lblCanton.setBounds(590, 470, 110, 30);
 
         cmbCanton.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnlAdminPersonas.add(cmbCanton);
-        cmbCanton.setBounds(770, 420, 180, 22);
+        cmbCanton.setBounds(770, 480, 180, 22);
 
         lblFechaNac.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblFechaNac.setForeground(new java.awt.Color(255, 255, 255));
@@ -298,15 +300,13 @@ public class JF_AdminPerson extends javax.swing.JFrame {
 
         cmbDistrito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnlAdminPersonas.add(cmbDistrito);
-        cmbDistrito.setBounds(770, 480, 180, 22);
+        cmbDistrito.setBounds(770, 540, 180, 22);
 
         lblNumCamisa.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblNumCamisa.setForeground(new java.awt.Color(255, 255, 255));
         lblNumCamisa.setText("Num Camisa*");
         pnlAdminPersonas.add(lblNumCamisa);
         lblNumCamisa.setBounds(1000, 180, 150, 40);
-        pnlAdminPersonas.add(txtDireccion);
-        txtDireccion.setBounds(590, 580, 360, 100);
 
         lblAvatar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/avatar.png"))); // NOI18N
@@ -351,7 +351,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         lblDistrito.setForeground(new java.awt.Color(255, 255, 255));
         lblDistrito.setText("Distrito");
         pnlAdminPersonas.add(lblDistrito);
-        lblDistrito.setBounds(590, 470, 110, 30);
+        lblDistrito.setBounds(590, 530, 110, 30);
 
         cmbTipoIden.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbTipoIden.setMinimumSize(new java.awt.Dimension(80, 22));
@@ -381,7 +381,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         lblDireccion.setForeground(new java.awt.Color(255, 255, 255));
         lblDireccion.setText("Dirección exacta:");
         pnlAdminPersonas.add(lblDireccion);
-        lblDireccion.setBounds(590, 530, 190, 40);
+        lblDireccion.setBounds(590, 580, 190, 40);
 
         try {
             txtIden.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#-####-####")));
@@ -397,7 +397,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         pnlAdminPersonas.add(txtTelef);
-        txtTelef.setBounds(770, 180, 180, 22);
+        txtTelef.setBounds(770, 240, 180, 22);
 
         tblPersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -429,6 +429,28 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         txtareaEliminar.setBounds(740, 310, 510, 150);
         txtareaEliminar.setEditable(false);
         txtareaEliminar.setVisible(false);
+
+        txtDireccion.setColumns(20);
+        txtDireccion.setLineWrap(true);
+        txtDireccion.setRows(4);
+        txtDireccion.setPreferredSize(new java.awt.Dimension(232, 100));
+        pnlAdminPersonas.add(txtDireccion);
+        txtDireccion.setBounds(590, 620, 360, 80);
+
+        cmbTipoPosicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbTipoPosicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTipoPosicionActionPerformed(evt);
+            }
+        });
+        pnlAdminPersonas.add(cmbTipoPosicion);
+        cmbTipoPosicion.setBounds(770, 180, 180, 22);
+
+        lblTelef.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblTelef.setForeground(new java.awt.Color(255, 255, 255));
+        lblTelef.setText("Teléfono*");
+        pnlAdminPersonas.add(lblTelef);
+        lblTelef.setBounds(590, 230, 120, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -471,6 +493,8 @@ public class JF_AdminPerson extends javax.swing.JFrame {
        lblNumCamisa.setVisible(flag);
        spnNumCamisa.setVisible(flag);
        
+       lblTipoPosicion.setVisible(flag);
+       cmbTipoPosicion.setVisible(flag);
        lblTelef.setVisible(flag);
        txtTelef.setVisible(flag);
        lblGenero.setVisible(flag);
@@ -490,7 +514,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
        lblSelecFoto.setVisible(flag);
        btnCargarFoto.setVisible(flag);
        
-       jScrollPane1.setVisible(!flag);
+       jScrollPane1.setVisible(!flag); //table
        txtareaEliminar.setVisible(!flag);
    }
    
@@ -509,6 +533,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
 
     private void rbtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnAgregarActionPerformed
         esconderMostrarTodo(true);
+        lblPersona.setText("Tipo persona:");
         
         String tipoPersona = cmbPersona.getSelectedItem().toString();
         if("Cuerpo Técnico".equals(tipoPersona)){
@@ -518,6 +543,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
 
     private void rbtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEditarActionPerformed
         esconderMostrarTodo(true);
+        lblPersona.setText("Personas: ");
         
         String tipoPersona = cmbPersona.getSelectedItem().toString();
         if("Cuerpo Técnico".equals(tipoPersona)){
@@ -568,6 +594,10 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         esconderMostrarTodo(false);
     }//GEN-LAST:event_rbtnEliminarActionPerformed
 
+    private void cmbTipoPosicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoPosicionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTipoPosicionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -617,6 +647,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbPersona;
     private javax.swing.JComboBox<String> cmbProvin;
     private javax.swing.JComboBox<String> cmbTipoIden;
+    private javax.swing.JComboBox<String> cmbTipoPosicion;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdmiPersonas;
     private javax.swing.JLabel lblAvatar;
@@ -640,6 +671,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private javax.swing.JLabel lblSelecFoto;
     private javax.swing.JLabel lblTelef;
     private javax.swing.JLabel lblTipoIden;
+    private javax.swing.JLabel lblTipoPosicion;
     private javax.swing.JPanel pnlAdminPersonas;
     private javax.swing.JRadioButton rbtnAgregar;
     private javax.swing.JRadioButton rbtnEditar;
@@ -647,7 +679,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private javax.swing.JSpinner spnNumCamisa;
     private javax.swing.JTable tblPersonas;
     private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextArea txtDireccion;
     private javax.swing.JTextField txtFechaNac;
     private javax.swing.JFormattedTextField txtIden;
     private javax.swing.JTextField txtNombre;
