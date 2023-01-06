@@ -8,6 +8,7 @@ import Model.model_Login;
 import Model.model_Register;
 import View.JF_AdminOptions;
 import View.JF_Login;
+import View.JF_MyAccount;
 import View.JF_Principal;
 import View.JF_Register;
 import View.JF_Request;
@@ -31,6 +32,7 @@ public class OperationsController implements ActionListener, ItemListener{
     private final JF_Register viewRegister;
     private final JF_AdminOptions viewMenuAdmin;
     private final JF_Request viewRequest;
+    private final JF_MyAccount viewMyAccount;
     
     private final model_Login modelLogin;
     private final model_Register modelRegister;
@@ -60,6 +62,10 @@ public class OperationsController implements ActionListener, ItemListener{
         //View Request
         JF_Request request = new JF_Request();
         this.viewRequest = request;
+        
+        //View Request
+        JF_MyAccount myaccount = new JF_MyAccount();
+        this.viewMyAccount = myaccount;
         
         //Modelo Login
         model_Login validateLogin = new model_Login();
@@ -112,7 +118,8 @@ public class OperationsController implements ActionListener, ItemListener{
         //Request
         viewRequest.getBtnBackRequest().addActionListener(this);
         
-        
+        //MyAccount
+        viewMyAccount.getBtnBackMyAccount().addActionListener(this);
          
     }
     
@@ -332,6 +339,12 @@ public class OperationsController implements ActionListener, ItemListener{
             viewPrincipal.setVisible(false); 
         }
         
+        if(e.getSource() == viewPrincipal.getBtnCuenta()){
+            viewMyAccount.setVisible(true);
+            viewPrincipal.setVisible(false); 
+        }
+        
+        
                
         if(e.getSource() == viewPrincipal.getBtnSalir()){
             viewPrincipal.setVisible(false);
@@ -548,6 +561,26 @@ public class OperationsController implements ActionListener, ItemListener{
         //----------- PANTALLA DE Request -------------------------
         if(e.getSource() == viewRequest.getBtnBackRequest()){
             viewRequest.setVisible(false);
+            viewPrincipal.getBtnIniciarSesion().setVisible(false);
+            viewPrincipal.getBtnRegistrar().setVisible(false);
+                
+            viewPrincipal.getBtnConsultas().setVisible(true);
+            viewPrincipal.getBtnCuenta().setVisible(true);
+            viewPrincipal.getBtnSalir().setVisible(true);
+            
+            viewPrincipal.setTxtLblBienvenido("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
+            viewPrincipal.getLblBienvenido().setVisible(true);
+            
+            if(modelLogin.getResultUserType() == 0){
+                viewPrincipal.getBtnOpAdm().setVisible(true);
+            }
+            
+            viewPrincipal.setVisible(true);
+        }
+        
+        //----------- PANTALLA DE MyAccount -------------------------
+        if(e.getSource() == viewMyAccount.getBtnBackMyAccount()){
+            viewMyAccount.setVisible(false);
             viewPrincipal.getBtnIniciarSesion().setVisible(false);
             viewPrincipal.getBtnRegistrar().setVisible(false);
                 

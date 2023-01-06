@@ -4,6 +4,8 @@
  */
 package View;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author Isaac
@@ -16,6 +18,15 @@ public class JF_MyAccount extends javax.swing.JFrame {
     public JF_MyAccount() {
         initComponents();
     }
+    
+    //GETTERS
+
+    public JButton getBtnBackMyAccount() {
+        return btnBackMyAccount;
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,7 +39,7 @@ public class JF_MyAccount extends javax.swing.JFrame {
 
         panelMyAccount = new javax.swing.JPanel();
         lblLogoMyAccount = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnBackMyAccount = new javax.swing.JButton();
         lblUsername = new javax.swing.JLabel();
         lblWelcome = new javax.swing.JLabel();
         lblMyAccountName = new javax.swing.JLabel();
@@ -58,12 +69,12 @@ public class JF_MyAccount extends javax.swing.JFrame {
         panelMyAccount.add(lblLogoMyAccount);
         lblLogoMyAccount.setBounds(1070, 10, 200, 130);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backPressed.png"))); // NOI18N
-        panelMyAccount.add(jButton1);
-        jButton1.setBounds(70, 80, 46, 40);
+        btnBackMyAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
+        btnBackMyAccount.setBorderPainted(false);
+        btnBackMyAccount.setContentAreaFilled(false);
+        btnBackMyAccount.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backPressed.png"))); // NOI18N
+        panelMyAccount.add(btnBackMyAccount);
+        btnBackMyAccount.setBounds(70, 80, 46, 40);
 
         lblUsername.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(255, 255, 255));
@@ -233,8 +244,8 @@ public class JF_MyAccount extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBackMyAccount;
     private javax.swing.JButton btnEditProfile;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel label;
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label2;
