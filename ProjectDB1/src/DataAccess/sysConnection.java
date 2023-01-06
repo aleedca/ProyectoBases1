@@ -23,7 +23,7 @@ public class sysConnection {
             java.sql.Connection connection = DriverManager.getConnection(myDB, user, password);
             return connection;
         }catch(SQLException e){
-            System.out.println("El erro es: "+ e);
+            System.out.println("El error es: "+ e);
         return null;
         } //probando ando 
     }

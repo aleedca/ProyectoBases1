@@ -4,6 +4,12 @@
  */
 package View;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Alexia
@@ -29,18 +35,22 @@ public class JF_AdminCatalogos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        cmbCatalogo = new javax.swing.JComboBox<>();
+        btnAceptar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        txtAgregar = new javax.swing.JTextField();
+        lblOpciones = new javax.swing.JLabel();
+        txtModificar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        lstOpciones = new javax.swing.JList<>();
         btnBack = new javax.swing.JButton();
+        lblCatalogo1 = new javax.swing.JLabel();
+        lblAgregar = new javax.swing.JLabel();
+        btnAgregar1 = new javax.swing.JButton();
+        cmbSeleccionar = new javax.swing.JComboBox<>();
+        lblSeleccionar = new javax.swing.JLabel();
+        lblModificar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1280, 720));
@@ -49,53 +59,79 @@ public class JF_AdminCatalogos extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
+        jPanel1.setLayout(null);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(1065, 6, 200, 125);
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Administrar Catálogos");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(126, 66, 445, 48);
 
-        jComboBox1.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton1.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        jButton1.setText("Agregar");
-
-        jButton2.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        jButton2.setText("Modificar");
-
-        jButton3.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        jButton3.setText("Eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        cmbCatalogo.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        cmbCatalogo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un catálogo", "Tipo de Identificación", "Género", "Posición", "País", "Provincia", "Cantón", "Distrito", "Estado de Noticia", "Tipo de Noticia" }));
+        cmbCatalogo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                cmbCatalogoActionPerformed(evt);
             }
         });
+        jPanel1.add(cmbCatalogo);
+        cmbCatalogo.setBounds(263, 214, 346, 38);
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAceptar.setBackground(new java.awt.Color(0, 153, 0));
+        btnAceptar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAceptar.setText("Aceptar");
+        jPanel1.add(btnAceptar);
+        btnAceptar.setBounds(330, 660, 196, 39);
+        btnAceptar.setVisible(false);
 
-        jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Opciones de");
+        btnModificar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnModificar.setText("Modificar");
+        jPanel1.add(btnModificar);
+        btnModificar.setBounds(470, 480, 196, 39);
 
-        jLabel4.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Catálogo");
+        btnEliminar.setBackground(new java.awt.Color(204, 0, 0));
+        btnEliminar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar);
+        btnEliminar.setBounds(810, 660, 360, 39);
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtAgregar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel1.add(txtAgregar);
+        txtAgregar.setBounds(180, 360, 260, 40);
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblOpciones.setFont(new java.awt.Font("Yu Gothic UI", 0, 23)); // NOI18N
+        lblOpciones.setForeground(new java.awt.Color(255, 255, 255));
+        lblOpciones.setText("Lista Catálogo");
+        jPanel1.add(lblOpciones);
+        lblOpciones.setBounds(806, 201, 367, 47);
 
-        jList1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", " " };
+        txtModificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel1.add(txtModificar);
+        txtModificar.setBounds(180, 480, 260, 40);
+
+        lstOpciones.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lstOpciones.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList1.setFixedCellHeight(30);
-        jList1.setFixedCellWidth(5);
-        jScrollPane1.setViewportView(jList1);
+        lstOpciones.setFixedCellHeight(30);
+        lstOpciones.setFixedCellWidth(5);
+        jScrollPane1.setViewportView(lstOpciones);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(806, 260, 367, 383);
 
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
@@ -106,87 +142,49 @@ public class JF_AdminCatalogos extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
+        jPanel1.add(btnBack);
+        btnBack.setBounds(62, 74, 46, 40);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(119, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(15, 15, 15))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(77, 77, 77))
-        );
+        lblCatalogo1.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        lblCatalogo1.setForeground(new java.awt.Color(255, 255, 255));
+        lblCatalogo1.setText("Catálogo");
+        jPanel1.add(lblCatalogo1);
+        lblCatalogo1.setBounds(113, 217, 144, 32);
+
+        lblAgregar.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lblAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        lblAgregar.setText("Agregar ");
+        jPanel1.add(lblAgregar);
+        lblAgregar.setBounds(180, 330, 260, 25);
+
+        btnAgregar1.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnAgregar1.setText("Agregar");
+        btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAgregar1);
+        btnAgregar1.setBounds(470, 360, 196, 39);
+
+        cmbSeleccionar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbSeleccionar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cmbSeleccionar);
+        cmbSeleccionar.setBounds(440, 560, 220, 40);
+        cmbSeleccionar.setVisible(false);
+
+        lblSeleccionar.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        lblSeleccionar.setForeground(new java.awt.Color(255, 255, 255));
+        lblSeleccionar.setText("Seleccione");
+        jPanel1.add(lblSeleccionar);
+        lblSeleccionar.setBounds(180, 560, 250, 27);
+        lblSeleccionar.setVisible(false);
+
+        lblModificar.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lblModificar.setForeground(new java.awt.Color(255, 255, 255));
+        lblModificar.setText("Modificar");
+        jPanel1.add(lblModificar);
+        lblModificar.setBounds(180, 450, 260, 25);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -202,15 +200,91 @@ public class JF_AdminCatalogos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    public String getCmbCatalogo() {
+        return cmbCatalogo.getSelectedItem().toString();
+    }
+
+    public void setCmbCatalogo(JComboBox<String> cmbCatalogo) {
+        this.cmbCatalogo = cmbCatalogo;
+    }
+
+    public String getTextAgregar() {
+        return txtAgregar.getText();
+    }
+
+    public void setTextAgregar(String text) {
+        this.txtAgregar.setText(text);
+    }
+
+    public String getTextModificar() {
+        return txtModificar.getText();
+    }
+
+    public void setjTextField3(String text) {
+        this.txtModificar.setText(text);
+    }
+
+    public JList<String> getLstOpciones() {
+        return lstOpciones;
+    }
+
+    public void setLstOpciones(JList<String> lstOpciones) {
+        this.lstOpciones = lstOpciones;
+    }
+    
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // validar si de verdad desea eliminar el item seleccionado de la lista
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         JF_AdminOptions adminOptions = new JF_AdminOptions();
         adminOptions.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void dissapearOptions(boolean flag){
+        lblSeleccionar.setVisible(flag);
+        cmbSeleccionar.setVisible(flag);
+        btnAceptar.setVisible(flag);
+    }
+    
+    private void cmbCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCatalogoActionPerformed
+        lblOpciones.setText("Catálogo ");
+        lblAgregar.setText("Agregar ");
+        lblModificar.setText("Modificar ");
+        String catalog = getCmbCatalogo();
+        
+        
+        if(!"Seleccione un catálogo".equals(catalog)){
+            lblOpciones.setText(lblOpciones.getText() + "" + catalog);
+            lblAgregar.setText(lblAgregar.getText() + "" + catalog);
+            lblModificar.setText(lblModificar.getText() + "" + catalog);
+        }
+        
+        if("Provincia".equals(catalog)){
+            lblSeleccionar.setText("Selecione un Pais");
+            //cmb de seleccionar paises
+        }
+        
+        if("Cantón".equals(catalog)){
+            lblSeleccionar.setText("Selecione una Provincia");
+            //cmb de seleccionar provincias
+        }
+        
+        if("Distrito".equals(catalog)){
+            lblSeleccionar.setText("Selecione un Cantón");
+            //cmb de seleccionar cantones
+        }
+        
+        dissapearOptions(false);
+    }//GEN-LAST:event_cmbCatalogoActionPerformed
+
+    private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
+        String catalog = getCmbCatalogo();
+        if (catalog == "Distrito" || catalog == "Provincia" || catalog == "Cantón"){
+            dissapearOptions(true);
+        }
+    }//GEN-LAST:event_btnAgregar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,20 +322,24 @@ public class JF_AdminCatalogos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnAgregar1;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JComboBox<String> cmbCatalogo;
+    private javax.swing.JComboBox<String> cmbSeleccionar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lblAgregar;
+    private javax.swing.JLabel lblCatalogo1;
+    private javax.swing.JLabel lblModificar;
+    private javax.swing.JLabel lblOpciones;
+    private javax.swing.JLabel lblSeleccionar;
+    private javax.swing.JList<String> lstOpciones;
+    private javax.swing.JTextField txtAgregar;
+    private javax.swing.JTextField txtModificar;
     // End of variables declaration//GEN-END:variables
 }

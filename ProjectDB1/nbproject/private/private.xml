@@ -3,12 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/CPUw0113/Desktop/ProyectoBases1/ProjectDB1/src/Model/model_News.java</file>
-            <file>file:/C:/Users/CPUw0113/Desktop/ProyectoBases1/ProjectDB1/src/Controller/OperationsController.java</file>
-            <file>file:/C:/Users/CPUw0113/Desktop/ProyectoBases1/ProjectDB1/src/Controller/OperationsControllerAlexia.java</file>
-            <file>file:/C:/Users/CPUw0113/Desktop/ProyectoBases1/ProjectDB1/src/View/JF_News.java</file>
-            <file>file:/C:/Users/CPUw0113/Desktop/ProyectoBases1/ProjectDB1/src/DataAccess/DA_News.java</file>
-            <file>file:/C:/Users/CPUw0113/Desktop/ProyectoBases1/ProjectDB1/src/Objects/News.java</file>
+            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/DataAccess/DA_Person.java</file>
+            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/View/JF_Register.java</file>
+            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/Objects/NewsComment.java</file>
+            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/View/JF_Principal.java</file>
+            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/DataAccess/DA_Catalogs.java</file>
+            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/View/JF_NewsWindow.java</file>
+            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/DataAccess/sysConnection.java</file>
+            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/View/JF_RequestTeamList.java</file>
+            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/Objects/NewsClass.java</file>
         </group>
     </open-files>
 </project-private>
