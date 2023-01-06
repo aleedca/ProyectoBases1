@@ -4,6 +4,10 @@
  */
 package Model;
 
+import DataAccess.DA_Person;
+import java.sql.SQLException;
+
+
 /**
  *
  * @author Mariana
@@ -11,6 +15,7 @@ package Model;
 public class model_Login {
     private String usernameLogin;
     private String passwordLogin;
+    private int resultUserType;
     
     
     //--------- METODOS -------------------
@@ -22,13 +27,42 @@ public class model_Login {
         return false;
     }
     
-    public boolean validateUsername(){ //Falta realizar la validación de si es Admin o Usuario
-        return true;
+    public boolean userExists(){
+        try {
+            this.resultUserType = DA_Person.validateUserType(this.usernameLogin, this.passwordLogin);
+            
+            if(this.resultUserType != 0 && this.resultUserType != 1){
+                return false;
+            }else{
+                return true;
+            }
+                     
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return false;
     }
     
-    public boolean validatePassword(){ //Falta realizar la validación de si es Admin o Usuario
-        return true;
+    
+    public boolean validateUserType(){ 
+        try {
+            this.resultUserType = DA_Person.validateUserType(this.usernameLogin, this.passwordLogin);
+            
+            if (this.resultUserType == 0) {
+                return true;
+            } else {
+                return false;
+            }
+                     
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return false;
     }
+    
+
     
     //------------ GETTERS AND SETTERS ----------------------
 
@@ -47,5 +81,15 @@ public class model_Login {
     public void setPasswordLogin(String passwordLogin) {
         this.passwordLogin = passwordLogin;
     }
+
+    public int getResultUserType() {
+        return resultUserType;
+    }
+
+    public void setResultUserType(int resultUserType) {
+        this.resultUserType = resultUserType;
+    }
+    
+    
    
 }

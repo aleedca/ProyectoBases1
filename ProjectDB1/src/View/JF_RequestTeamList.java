@@ -12,22 +12,21 @@ import java.sql.SQLException;
  * @author Nahomy
  */
 public class JF_RequestTeamList extends javax.swing.JFrame {
-        private final RequestController controller = new RequestController();
-
+    private final RequestController controller = new RequestController();
     /**
      * Creates new form JF_RequestTeamList
      */
     public JF_RequestTeamList() {
         initComponents();
-       
+        
     }
     
     
     
     void showTeamList(String teamName, String playerFstName, String playerSndName, String playerFstLastName, String playerSndLastName, String position) throws SQLException{
-        controller.showTeamList(teamName, playerFstName,  playerSndName, playerFstLastName, playerSndLastName, position);
-    
-    
+        System.out.println("Llamando controller...");
+        tblTeamList.setModel(controller.showTeamList(teamName, playerFstName,  playerSndName, playerFstLastName, playerSndLastName, position));
+
     }
 
     /**

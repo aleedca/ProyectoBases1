@@ -5,6 +5,7 @@
 package Controller;
 
 import Model.GroupList;
+import Model.NewsList;
 import Model.TeamList;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +20,7 @@ public class Cargador {
     }
     
     DefaultTableModel showTeamList(ArrayList<TeamList> teamList ){
+        System.out.println("Cargando datos...");
         Object [] header = {"Primer nombre", "Segundo nombre", "Primer apellido", "Segundo apellido", "Foto", "Posicion"};
         DefaultTableModel dtm = new DefaultTableModel(header,teamList.size());
         for (int i = 0; i<dtm.getRowCount(); i++){
@@ -47,5 +49,19 @@ public class Cargador {
         return dtm;
     }
     
+    
+    DefaultTableModel showNewsList(ArrayList<NewsList> newsList ){
+        Object [] header = {"Autor", "Apellido", "Titulo", "Fecha de publicación", "Tipo de artículo"};
+        DefaultTableModel dtm = new DefaultTableModel(header,newsList.size());
+        for (int i = 0; i<dtm.getRowCount(); i++){
+            NewsList news = newsList.get(i);
+            dtm.setValueAt(news.getAuthor(), i, 0);
+            dtm.setValueAt(news.getAuthorLastName(), i, 1);
+            dtm.setValueAt(news.getTitle(), i, 2);
+            dtm.setValueAt(news.getNewsDate(), i, 3);
+            dtm.setValueAt(news.getTypeNews(), i, 4);
+        }
+        return dtm;
+    }
     
 }
