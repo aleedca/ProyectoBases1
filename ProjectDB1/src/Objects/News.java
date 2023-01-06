@@ -44,7 +44,7 @@ public class News {
     }
     
     public int getIdNewsType() {
-        return idNews;
+        return idNewsType;
     }
 
     public void setIdNewsType(int idNewsType) {
@@ -68,7 +68,7 @@ public class News {
     }
     
     public String getPublicationDate() {
-        return author;
+        return publicationDate;
     }
 
     public void setPublicationDate(String publicationDate) {
@@ -122,5 +122,11 @@ public class News {
     public void setComments(ArrayList<NewsComment> comments) {
         this.comments = comments;
     }
+
+    @Override
+    public String toString() {
+        return "News{" + "idNews=" + idNews + ", idNewsStatus=" + idNewsStatus + ", idNewsType=" + idNewsType + ", title=" + title + ", author=" + author + ", publicationDate=" + publicationDate + ", link=" + link + ", photo=" + photo + ", text=" + text + ", views=" + views + ", rateNumber=" + rateNumber + ", comments=" + comments + '}';
+    }
+    
     
 }

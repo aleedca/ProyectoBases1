@@ -202,7 +202,7 @@ public class JF_AdminOptions extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdmiCatalogosActionPerformed
 
     private void btnAdmiNoticiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmiNoticiasActionPerformed
-        JF_AdminNoticias adminNoticias = new JF_AdminNoticias();
+        JF_AdminNews adminNoticias = new JF_AdminNews();
         adminNoticias.setVisible(true);
         this.setVisible(false);
         //this.dispose();

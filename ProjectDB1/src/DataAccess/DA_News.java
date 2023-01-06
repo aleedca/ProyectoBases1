@@ -42,6 +42,7 @@ public class DA_News {
             news.setText(rs.getString("text"));
             
             newsArr.add(news);
+            System.out.println(news.toString());
         }
 
         return newsArr;
