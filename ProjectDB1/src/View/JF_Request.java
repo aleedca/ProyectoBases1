@@ -52,7 +52,7 @@ public class JF_Request extends javax.swing.JFrame {
         txtMatchDate = new javax.swing.JTextField();
         btnRequestGroupList = new javax.swing.JButton();
         lblMatchDateFormat = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbmTeamFlag = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         txtPlayer1Lastname = new javax.swing.JTextField();
         lblTeamName2 = new javax.swing.JLabel();
@@ -134,10 +134,10 @@ public class JF_Request extends javax.swing.JFrame {
 
         lblMatchDateFormat.setText("mm/dd/aaaa");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbmTeamFlag.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbmTeamFlag.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cbmTeamFlagActionPerformed(evt);
             }
         });
 
@@ -162,7 +162,7 @@ public class JF_Request extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtStadium, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbmTeamFlag, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblMatchDate)
@@ -180,7 +180,7 @@ public class JF_Request extends javax.swing.JFrame {
                     .addComponent(txtTeamName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMatchDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtStadium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbmTeamFlag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTeamName)
@@ -520,11 +520,12 @@ public class JF_Request extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRequestNewsListActionPerformed
 
     private void btnRequestGroupListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestGroupListActionPerformed
-        JF_RequestGroupList groupList = new JF_RequestGroupList();
+        try {
+            JF_RequestGroupList groupList = new JF_RequestGroupList();
             String teamName = txtTeamName1.getText();
             String matchDate = txtMatchDate.getText();
             String stadium = txtStadium.getText();
-            //TYPE teamFlag = OBTENER EL OBJETO DEL COMBOBOX get select aja 
+            String teamFlag = (String)cbmTeamFlag.getItemAt(WIDTH); //aqui es otro select 
             
             
             String outTeamName = "";
@@ -543,8 +544,18 @@ public class JF_Request extends javax.swing.JFrame {
                 outStadium = stadium;
             }
             
-            //AQUI VA LA FUNCION DEL SHOWGROUPLIST
+            /*if( teamFlag!='Seleccione la bandera')){
+            outTeamFlag = teamFlag;
+            }*/
+            
+            
+            groupList.showGroupList(outTeamName, outMatchDate, outStadium, outTeamFlag);
             groupList.setVisible(true);
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JF_Request.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }//GEN-LAST:event_btnRequestGroupListActionPerformed
@@ -564,9 +575,9 @@ public class JF_Request extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPlayer1NameActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cbmTeamFlagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmTeamFlagActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cbmTeamFlagActionPerformed
 
     /**
      * @param args the command line arguments
@@ -640,7 +651,7 @@ public class JF_Request extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbmTeamFlag;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel3;
