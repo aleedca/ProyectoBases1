@@ -39,6 +39,7 @@ public class OperationsController implements ActionListener, ItemListener{
     private boolean flagRegister;
     
     private final RequestController requestController;
+    private final AdminNewsController adminNewsController;
     
     
 
@@ -83,6 +84,10 @@ public class OperationsController implements ActionListener, ItemListener{
         RequestController controller = new RequestController();
         this.requestController = controller;
         
+        //AdminNews Controller
+        AdminNewsController adminNewsController = new AdminNewsController();
+        this.adminNewsController = adminNewsController;
+        
         
         _init_(); 
         
@@ -121,6 +126,18 @@ public class OperationsController implements ActionListener, ItemListener{
         
         //AdminOptions
         viewMenuAdmin.getBtnBack().addActionListener(this);
+        viewMenuAdmin.getBtnAdmiNoticias().addActionListener(this);
+        
+        //AdminNewsOption
+        adminNewsController.getViewAdminNews().getRbtnAgregar().addActionListener(this);
+        adminNewsController.getViewAdminNews().getRbtnEditar().addActionListener(this);
+        adminNewsController.getViewAdminNews().getRbtnEliminar().addActionListener(this);
+        
+        adminNewsController.getViewAdminNews().getCmbEstado().addActionListener(this);
+        adminNewsController.getViewAdminNews().getCmbTipo().addActionListener(this);
+        
+        adminNewsController.getViewAdminNews().getBtnAceptar().addActionListener(this);
+        adminNewsController.getViewAdminNews().getBtnBack().addActionListener(this);
         
         //Request
         viewRequest.getBtnBackRequest().addActionListener(this);
@@ -563,6 +580,18 @@ public class OperationsController implements ActionListener, ItemListener{
             viewPrincipal.getBtnOpAdm().setVisible(true);
             
             viewPrincipal.setVisible(true);
+        }
+        
+        if(e.getSource() == viewMenuAdmin.getBtnAdmiNoticias()){
+            viewMenuAdmin.setVisible(false);
+            this.adminNewsController.showView();
+        }
+        
+        //-------------- PANTALLA DE AdminNews -----------------------
+        if(e.getSource() == adminNewsController.getViewAdminNews().getBtnBack()){
+            System.out.println("entra");
+            adminNewsController.getViewAdminNews().setVisible(false);
+            this.viewMenuAdmin.setVisible(true);
         }
         
         //----------- PANTALLA DE Request -------------------------

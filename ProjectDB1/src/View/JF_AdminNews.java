@@ -4,22 +4,25 @@
  */
 package View;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Alexia
  */
-public class JF_AdminNoticias extends javax.swing.JFrame {
+public class JF_AdminNews extends javax.swing.JFrame {
 
     /**
      * Creates new form JF_AdminNoticias
      */
-    public JF_AdminNoticias() {
+    public JF_AdminNews() {
         initComponents();
     }
 
@@ -65,6 +68,7 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
+        btnBack.setBackground(new java.awt.Color(86, 4, 44));
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
         btnBack.setContentAreaFilled(false);
@@ -87,6 +91,7 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         jPanel1.add(lblLogo);
         lblLogo.setBounds(1050, 16, 200, 125);
 
+        rbtnAgregar.setBackground(new java.awt.Color(86, 4, 44));
         btnGroupAdmiNoticias.add(rbtnAgregar);
         rbtnAgregar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         rbtnAgregar.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,6 +105,7 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         rbtnAgregar.setBounds(720, 160, 150, 37);
         rbtnAgregar.setSelected(true);
 
+        rbtnEditar.setBackground(new java.awt.Color(86, 4, 44));
         btnGroupAdmiNoticias.add(rbtnEditar);
         rbtnEditar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         rbtnEditar.setForeground(new java.awt.Color(255, 255, 255));
@@ -112,6 +118,7 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         jPanel1.add(rbtnEditar);
         rbtnEditar.setBounds(910, 160, 100, 37);
 
+        rbtnEliminar.setBackground(new java.awt.Color(86, 4, 44));
         btnGroupAdmiNoticias.add(rbtnEliminar);
         rbtnEliminar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         rbtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
@@ -187,23 +194,31 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
 
         tblNoticias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Id", "Título", "Vistas", "Fecha Publicación"
+                "Estado", "Título", "Vistas", "Fecha Publicación", "Tipo", "Rating"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
+        tblNoticias.setIntercellSpacing(new java.awt.Dimension(3, 3));
+        tblNoticias.setShowGrid(true);
+        tblNoticias.getTableHeader().setResizingAllowed(false);
+        tblNoticias.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblNoticias);
 
         jPanel1.add(jScrollPane1);
@@ -305,6 +320,56 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         this.txtareaEliminar = txtareaEliminar;
     }
 
+    public JButton getBtnAceptar() {
+        return btnAceptar;
+    }
+
+    public void setBtnAceptar(JButton btnAceptar) {
+        this.btnAceptar = btnAceptar;
+    }
+
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
+    public void setBtnBack(JButton btnBack) {
+        this.btnBack = btnBack;
+    }
+
+    public JButton getBtnCargarImagen() {
+        return btnCargarImagen;
+    }
+
+    public void setBtnCargarImagen(JButton btnCargarImagen) {
+        this.btnCargarImagen = btnCargarImagen;
+    }
+
+    public JRadioButton getRbtnAgregar() {
+        return rbtnAgregar;
+    }
+
+    public void setRbtnAgregar(JRadioButton rbtnAgregar) {
+        this.rbtnAgregar = rbtnAgregar;
+    }
+
+    public JRadioButton getRbtnEditar() {
+        return rbtnEditar;
+    }
+
+    public void setRbtnEditar(JRadioButton rbtnEditar) {
+        this.rbtnEditar = rbtnEditar;
+    }
+
+    public JRadioButton getRbtnEliminar() {
+        return rbtnEliminar;
+    }
+
+    public void setRbtnEliminar(JRadioButton rbtnEliminar) {
+        this.rbtnEliminar = rbtnEliminar;
+    }
+    
+    
+
     public void esconderMostrarTodo(boolean flag){
         lblEstado.setVisible(flag);
         cmbTipo.setVisible(flag);
@@ -320,10 +385,9 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         txtareaEliminar.setVisible(!flag);
     }
     
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        JF_AdminOptions adminOptions = new JF_AdminOptions();
-        adminOptions.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void rbtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnAgregarActionPerformed
@@ -355,21 +419,23 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminNoticias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminNews.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminNoticias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminNews.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminNoticias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminNews.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminNoticias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminNews.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JF_AdminNoticias().setVisible(true);
+                new JF_AdminNews().setVisible(true);
             }
         });
     }
