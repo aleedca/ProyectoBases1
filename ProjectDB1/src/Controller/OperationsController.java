@@ -88,12 +88,12 @@ public class OperationsController implements ActionListener, ItemListener{
     //Init de ActionListener, itemListener
     private void _init_(){
         //Principal
-        viewPrincipal.getBtnIniciarSesion().addActionListener(this);
-        viewPrincipal.getBtnRegistrar().addActionListener(this);
+        viewPrincipal.getBtnLogin().addActionListener(this);
+        viewPrincipal.getBtnSignUp().addActionListener(this);
         viewPrincipal.getBtnOpAdm().addActionListener(this);
-        viewPrincipal.getBtnConsultas().addActionListener(this);
-        viewPrincipal.getBtnCuenta().addActionListener(this);
-        viewPrincipal.getBtnSalir().addActionListener(this);
+        viewPrincipal.getBtnRequests().addActionListener(this);
+        viewPrincipal.getBtnAccount().addActionListener(this);
+        viewPrincipal.getBtnExit().addActionListener(this);
         
         //Login
         viewLogin.getBtnLogin().addActionListener(this);
@@ -101,16 +101,16 @@ public class OperationsController implements ActionListener, ItemListener{
         
         //Register
         viewRegister.getBtnBack().addActionListener(this);
-        viewRegister.getBtnVerificarRegistro().addActionListener(this);
-        viewRegister.getBtnCargarFoto().addActionListener(this);
+        viewRegister.getBtnCheckRegister().addActionListener(this);
+        viewRegister.getBtnUploadPhoto().addActionListener(this);
         
         
-        viewRegister.getCmbGenero().addItemListener(this);
-        viewRegister.getCmbTipoIdentificacion().addItemListener(this);
-        viewRegister.getCmbPais().addItemListener(this);
-        viewRegister.getCmbProvincia().addItemListener(this);
+        viewRegister.getCmbGender().addItemListener(this);
+        viewRegister.getCmbTypeIdentification().addItemListener(this);
+        viewRegister.getCmbCountry().addItemListener(this);
+        viewRegister.getCmbProvince().addItemListener(this);
         viewRegister.getCmbCanton().addItemListener(this);
-        viewRegister.getCmbDistrito().addItemListener(this);
+        viewRegister.getCmbDistrict().addItemListener(this);
         
         //AdminOptions
         viewMenuAdmin.getBtnBack().addActionListener(this);
@@ -126,46 +126,46 @@ public class OperationsController implements ActionListener, ItemListener{
     
     //-------- COMBO BOX FILLING --------------------------
     private void fillGenders(){
-        viewRegister.getCmbGenero().removeAllItems();
+        viewRegister.getCmbGender().removeAllItems();
         for(int i=0; i<modelRegister.getGenders().size();i++){
-           viewRegister.getCmbGenero().addItem(modelRegister.getGenders().get(i).getDescriptionGender());
+           viewRegister.getCmbGender().addItem(modelRegister.getGenders().get(i).getDescriptionGender());
         }
     }
     
     private void fillIdentificationTypes(){
-        viewRegister.getCmbTipoIdentificacion().removeAllItems();
+        viewRegister.getCmbTypeIdentification().removeAllItems();
         
         for(int i=0; i< modelRegister.getIdentificationTypes().size();i++){
-           viewRegister.getCmbTipoIdentificacion().addItem(modelRegister.getIdentificationTypes().get(i).getNameTypeIdentification());
+           viewRegister.getCmbTypeIdentification().addItem(modelRegister.getIdentificationTypes().get(i).getNameTypeIdentification());
         }
     }
     
     private void fillCountries(){
-        viewRegister.getCmbPais().removeAllItems();
+        viewRegister.getCmbCountry().removeAllItems();
         
-        viewRegister.getCmbProvincia().removeAllItems();
-        viewRegister.getCmbProvincia().setEnabled(false);
+        viewRegister.getCmbProvince().removeAllItems();
+        viewRegister.getCmbProvince().setEnabled(false);
         
         viewRegister.getCmbCanton().removeAllItems();
         viewRegister.getCmbCanton().setEnabled(false);
         
-        viewRegister.getCmbDistrito().removeAllItems();
-        viewRegister.getCmbDistrito().setEnabled(false);
+        viewRegister.getCmbDistrict().removeAllItems();
+        viewRegister.getCmbDistrict().setEnabled(false);
         
-        viewRegister.getCmbPais().addItem("Seleccione País");
+        viewRegister.getCmbCountry().addItem("Seleccione País");
         for(int i=0; i<modelRegister.getCountries().size();i++){
-            viewRegister.getCmbPais().addItem(modelRegister.getCountries().get(i).getNameCountry());
+            viewRegister.getCmbCountry().addItem(modelRegister.getCountries().get(i).getNameCountry());
         }
     }
     
     private void fillProvinces(int country){
-        viewRegister.getCmbProvincia().setEnabled(true);
-        viewRegister.getCmbProvincia().removeAllItems();
+        viewRegister.getCmbProvince().setEnabled(true);
+        viewRegister.getCmbProvince().removeAllItems();
        
-        viewRegister.getCmbProvincia().addItem("Seleccione Provincia");
+        viewRegister.getCmbProvince().addItem("Seleccione Provincia");
         for(int i=0; i<modelRegister.getProvinces().size();i++){
             if(country == modelRegister.getProvinces().get(i).getIdCountry()){
-                 viewRegister.getCmbProvincia().addItem(modelRegister.getProvinces().get(i).getNameProvince());
+                 viewRegister.getCmbProvince().addItem(modelRegister.getProvinces().get(i).getNameProvince());
             }  
         }
     }
@@ -183,12 +183,12 @@ public class OperationsController implements ActionListener, ItemListener{
     }
     
     private void fillDistricts(int canton){
-        viewRegister.getCmbDistrito().setEnabled(true);
-        viewRegister.getCmbDistrito().removeAllItems();
+        viewRegister.getCmbDistrict().setEnabled(true);
+        viewRegister.getCmbDistrict().removeAllItems();
  
         for(int i=0; i<modelRegister.getDistricts().size();i++){
             if(canton == modelRegister.getDistricts().get(i).getIdCanton()){
-                viewRegister.getCmbDistrito().addItem(modelRegister.getDistricts().get(i).getNameDistrict());  
+                viewRegister.getCmbDistrict().addItem(modelRegister.getDistricts().get(i).getNameDistrict());  
             }
         }
     }
@@ -198,7 +198,7 @@ public class OperationsController implements ActionListener, ItemListener{
     @Override
     public void itemStateChanged(ItemEvent e){
         //COUNTRY
-        if( e.getSource() == viewRegister.getCmbPais()){
+        if( e.getSource() == viewRegister.getCmbCountry()){
             if(e.getStateChange() == ItemEvent.SELECTED){
                 String choice = viewRegister.getSelectedCountry();
                 
@@ -214,15 +214,15 @@ public class OperationsController implements ActionListener, ItemListener{
                     }
                     
                 }else{
-                    viewRegister.getCmbProvincia().removeAllItems();
-                    viewRegister.getCmbProvincia().setEnabled(false);
+                    viewRegister.getCmbProvince().removeAllItems();
+                    viewRegister.getCmbProvince().setEnabled(false);
                 }
             }
         
         }
         
         //PROVINCE
-        if( e.getSource() == viewRegister.getCmbProvincia()){
+        if( e.getSource() == viewRegister.getCmbProvince()){
             if(e.getStateChange() == ItemEvent.SELECTED){
                 String choice = viewRegister.getSelectedProvince();
                 
@@ -262,15 +262,15 @@ public class OperationsController implements ActionListener, ItemListener{
                     }
                     
                 }else{
-                    viewRegister.getCmbDistrito().removeAllItems();
-                    viewRegister.getCmbDistrito().setEnabled(false);
+                    viewRegister.getCmbDistrict().removeAllItems();
+                    viewRegister.getCmbDistrict().setEnabled(false);
                 }
             }
         
         }
         
         //DISTRICT
-        if( e.getSource() == viewRegister.getCmbDistrito()){
+        if( e.getSource() == viewRegister.getCmbDistrict()){
             if(e.getStateChange() == ItemEvent.SELECTED){
                 String choice = viewRegister.getSelectedDistrict();
                 
@@ -284,7 +284,7 @@ public class OperationsController implements ActionListener, ItemListener{
         
        
         //TypeIdentification
-        if( e.getSource() == viewRegister.getCmbTipoIdentificacion()){
+        if( e.getSource() == viewRegister.getCmbTypeIdentification()){
             if(e.getStateChange() == ItemEvent.SELECTED){
                 String choice = viewRegister.getSelectedTypeIdentification();
                 
@@ -297,7 +297,7 @@ public class OperationsController implements ActionListener, ItemListener{
         }
         
         //Gender
-        if(e.getSource() == viewRegister.getCmbGenero()){
+        if(e.getSource() == viewRegister.getCmbGender()){
             if(e.getStateChange() == ItemEvent.SELECTED){
                 String choice = viewRegister.getSelectedGender();
                 
@@ -315,16 +315,14 @@ public class OperationsController implements ActionListener, ItemListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        //-------------- PANTALLA PRINCIPAL ----------------------
-        /*NOTA: FALTA EL BOTON DE 'MI CUENTA'*/
-        
-        if(e.getSource() == viewPrincipal.getBtnIniciarSesion()){    
+        //-------------- SCREEN PRINCIPAL ----------------------        
+        if(e.getSource() == viewPrincipal.getBtnLogin()){    
             viewLogin.setVisible(true);
             viewPrincipal.setVisible(false);
         }
         
                 
-        if(e.getSource() == viewPrincipal.getBtnRegistrar()){
+        if(e.getSource() == viewPrincipal.getBtnSignUp()){
             viewRegister.setVisible(true);
             viewPrincipal.setVisible(false);
         }
@@ -334,29 +332,29 @@ public class OperationsController implements ActionListener, ItemListener{
             viewPrincipal.setVisible(false);
         }
         
-        if(e.getSource() == viewPrincipal.getBtnConsultas()){
+        if(e.getSource() == viewPrincipal.getBtnRequests()){
             viewRequest.setVisible(true);
             viewPrincipal.setVisible(false); 
         }
         
-        if(e.getSource() == viewPrincipal.getBtnCuenta()){
+        if(e.getSource() == viewPrincipal.getBtnAccount()){
             viewMyAccount.setVisible(true);
             viewPrincipal.setVisible(false); 
         }
         
         
                
-        if(e.getSource() == viewPrincipal.getBtnSalir()){
+        if(e.getSource() == viewPrincipal.getBtnExit()){
             viewPrincipal.setVisible(false);
             
-            viewPrincipal.getLblBienvenido().setVisible(false);
-            viewPrincipal.getBtnConsultas().setVisible(false);
+            viewPrincipal.getLblWelcome().setVisible(false);
+            viewPrincipal.getBtnRequests().setVisible(false);
             viewPrincipal.getBtnOpAdm().setVisible(false);
-            viewPrincipal.getBtnCuenta().setVisible(false);
-            viewPrincipal.getBtnSalir().setVisible(false);
+            viewPrincipal.getBtnAccount().setVisible(false);
+            viewPrincipal.getBtnExit().setVisible(false);
             
-            viewPrincipal.getBtnIniciarSesion().setVisible(true);
-            viewPrincipal.getBtnRegistrar().setVisible(true);
+            viewPrincipal.getBtnLogin().setVisible(true);
+            viewPrincipal.getBtnSignUp().setVisible(true);
                         
             viewPrincipal.setVisible(true);
         }
@@ -379,15 +377,15 @@ public class OperationsController implements ActionListener, ItemListener{
                 if(modelLogin.userExists() == true){
                     viewLogin.setVisible(false);
                     
-                    viewPrincipal.getBtnIniciarSesion().setVisible(false);
-                    viewPrincipal.getBtnRegistrar().setVisible(false);
+                    viewPrincipal.getBtnLogin().setVisible(false);
+                    viewPrincipal.getBtnSignUp().setVisible(false);
                 
-                    viewPrincipal.getBtnConsultas().setVisible(true);
-                    viewPrincipal.getBtnCuenta().setVisible(true);
-                    viewPrincipal.getBtnSalir().setVisible(true);
+                    viewPrincipal.getBtnRequests().setVisible(true);
+                    viewPrincipal.getBtnAccount().setVisible(true);
+                    viewPrincipal.getBtnExit().setVisible(true);
                 
-                    viewPrincipal.setTxtLblBienvenido("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
-                    viewPrincipal.getLblBienvenido().setVisible(true);
+                    viewPrincipal.setTxtLblWelcome("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
+                    viewPrincipal.getLblWelcome().setVisible(true);
                     
                     if(modelLogin.validateUserType() == true){ //Es true -> Admin
                         //Frame de Admin                         
@@ -416,7 +414,7 @@ public class OperationsController implements ActionListener, ItemListener{
             viewRegister.setVisible(false);
         }
         
-        if(e.getSource() == viewRegister.getBtnCargarFoto()){
+        if(e.getSource() == viewRegister.getBtnUploadPhoto()){
             if(modelRegister.selectPhoto(viewRegister)){
                 viewRegister.setLocationRelativeTo(viewRegister);
                 modelRegister.setImageLabel(viewRegister.getLblAvatar());
@@ -424,20 +422,20 @@ public class OperationsController implements ActionListener, ItemListener{
             }
         }
         
-        if(e.getSource() == viewRegister.getBtnVerificarRegistro()){
-            modelRegister.setFirstName(viewRegister.getTxtNombre());
-            modelRegister.setSecondName(viewRegister.getTxtSegundoNombre());
-            modelRegister.setFirstLastName(viewRegister.getTxtPrimerApellido());
-            modelRegister.setSecondLastName(viewRegister.getTxtSegundoApellido());
+        if(e.getSource() == viewRegister.getBtnCheckRegister()){
+            modelRegister.setFirstName(viewRegister.getTxtName());
+            modelRegister.setSecondName(viewRegister.getTxtSecondName());
+            modelRegister.setFirstLastName(viewRegister.getTxtFirstLastName());
+            modelRegister.setSecondLastName(viewRegister.getTxtSecondLastName());
             
             modelRegister.setUsernameRegister(viewRegister.getTxtUsername());
             modelRegister.setPasswordRegister(viewRegister.getTxtPassword());
             
-            modelRegister.setIdentification(viewRegister.getTxtIdentificacion());
-            modelRegister.setPhone(viewRegister.getTxtTelefono());
+            modelRegister.setIdentification(viewRegister.getTxtIdentification());
+            modelRegister.setPhone(viewRegister.getTxtPhone());
             
-            modelRegister.setMail(viewRegister.getTxtCorreo());
-            modelRegister.setAddress(viewRegister.getTxtDireccionExacta());
+            modelRegister.setMail(viewRegister.getTxtMail());
+            modelRegister.setAddress(viewRegister.getTxtAddress());
                       
             flagRegister = true;
             if(modelRegister.validateEmptyFields(modelRegister.getFirstName(), modelRegister.getFirstLastName(),
@@ -456,11 +454,11 @@ public class OperationsController implements ActionListener, ItemListener{
                     
               
                     if(modelRegister.validateFormatString(modelRegister.getFirstName()) == false){
-                        viewRegister.cleanPrimerNombre();
+                        viewRegister.cleanFirstName();
                     }
                     
                     if(modelRegister.validateFormatString(modelRegister.getFirstName()) == false){
-                        viewRegister.cleanPrimerApellido();
+                        viewRegister.cleanFirstLastName();
                     }
                     
                                      
@@ -476,7 +474,7 @@ public class OperationsController implements ActionListener, ItemListener{
                             
                             JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Nombre", "Error", JOptionPane.WARNING_MESSAGE);
 
-                            viewRegister.cleanSegundoNombre();
+                            viewRegister.cleanSecondName();
                             flagRegister = false;
                         }
                     }
@@ -487,7 +485,7 @@ public class OperationsController implements ActionListener, ItemListener{
                             
                             JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Apellido", "Error", JOptionPane.WARNING_MESSAGE);
                             
-                            viewRegister.cleanSegundoApellido();
+                            viewRegister.cleanSecondLastName();
                             flagRegister = false;
                         }   
                     }
@@ -497,7 +495,7 @@ public class OperationsController implements ActionListener, ItemListener{
                 
                 if(modelRegister.validateFormatMail(modelRegister.getMail()) == false){ 
                     JOptionPane.showMessageDialog(null, "Formato de correo no válido", "Error", JOptionPane.WARNING_MESSAGE);
-                    viewRegister.cleanCorreo();
+                    viewRegister.cleanMail();
                     flagRegister = false;
                 }
                 
@@ -516,7 +514,7 @@ public class OperationsController implements ActionListener, ItemListener{
                 
                 if(modelRegister.validarFormatoDireccion(modelRegister.getAddress()) == false){
                     JOptionPane.showMessageDialog(null, "Dirección no válida.\nDebe contener un mínimo de 50 caracteres", "Error", JOptionPane.WARNING_MESSAGE);
-                    viewRegister.cleanDireccion();
+                    viewRegister.cleanAddress();
                     flagRegister = false;
                 }
                 
@@ -534,7 +532,7 @@ public class OperationsController implements ActionListener, ItemListener{
                 JOptionPane.showMessageDialog(null, "Felicidades, su cuenta se creó correctamte.\nInicie sesión para comenzar a disfrutar de nuestra aplicación" );
                 viewRegister.cleanAll();
                 viewRegister.setVisible(false);
-                viewPrincipal.getBtnRegistrar().setVisible(false);
+                viewPrincipal.getBtnSignUp().setVisible(false);
                 
                 viewPrincipal.setVisible(true);
             }
@@ -544,15 +542,15 @@ public class OperationsController implements ActionListener, ItemListener{
         //-------------- PANTALLA DE AdminOptions -----------------------
         if(e.getSource() == viewMenuAdmin.getBtnBack()){
             viewMenuAdmin.setVisible(false);
-            viewPrincipal.getBtnIniciarSesion().setVisible(false);
-            viewPrincipal.getBtnRegistrar().setVisible(false);
+            viewPrincipal.getBtnLogin().setVisible(false);
+            viewPrincipal.getBtnSignUp().setVisible(false);
                 
-            viewPrincipal.getBtnConsultas().setVisible(true);
-            viewPrincipal.getBtnCuenta().setVisible(true);
-            viewPrincipal.getBtnSalir().setVisible(true);
+            viewPrincipal.getBtnRequests().setVisible(true);
+            viewPrincipal.getBtnAccount().setVisible(true);
+            viewPrincipal.getBtnExit().setVisible(true);
             
-            viewPrincipal.setTxtLblBienvenido("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
-            viewPrincipal.getLblBienvenido().setVisible(true);
+            viewPrincipal.setTxtLblWelcome("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
+            viewPrincipal.getLblWelcome().setVisible(true);
             viewPrincipal.getBtnOpAdm().setVisible(true);
             
             viewPrincipal.setVisible(true);
@@ -561,15 +559,15 @@ public class OperationsController implements ActionListener, ItemListener{
         //----------- PANTALLA DE Request -------------------------
         if(e.getSource() == viewRequest.getBtnBackRequest()){
             viewRequest.setVisible(false);
-            viewPrincipal.getBtnIniciarSesion().setVisible(false);
-            viewPrincipal.getBtnRegistrar().setVisible(false);
+            viewPrincipal.getBtnLogin().setVisible(false);
+            viewPrincipal.getBtnSignUp().setVisible(false);
                 
-            viewPrincipal.getBtnConsultas().setVisible(true);
-            viewPrincipal.getBtnCuenta().setVisible(true);
-            viewPrincipal.getBtnSalir().setVisible(true);
+            viewPrincipal.getBtnRequests().setVisible(true);
+            viewPrincipal.getBtnAccount().setVisible(true);
+            viewPrincipal.getBtnExit().setVisible(true);
             
-            viewPrincipal.setTxtLblBienvenido("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
-            viewPrincipal.getLblBienvenido().setVisible(true);
+            viewPrincipal.setTxtLblWelcome("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
+            viewPrincipal.getLblWelcome().setVisible(true);
             
             if(modelLogin.getResultUserType() == 0){
                 viewPrincipal.getBtnOpAdm().setVisible(true);
@@ -581,15 +579,15 @@ public class OperationsController implements ActionListener, ItemListener{
         //----------- PANTALLA DE MyAccount -------------------------
         if(e.getSource() == viewMyAccount.getBtnBackMyAccount()){
             viewMyAccount.setVisible(false);
-            viewPrincipal.getBtnIniciarSesion().setVisible(false);
-            viewPrincipal.getBtnRegistrar().setVisible(false);
+            viewPrincipal.getBtnLogin().setVisible(false);
+            viewPrincipal.getBtnSignUp().setVisible(false);
                 
-            viewPrincipal.getBtnConsultas().setVisible(true);
-            viewPrincipal.getBtnCuenta().setVisible(true);
-            viewPrincipal.getBtnSalir().setVisible(true);
+            viewPrincipal.getBtnRequests().setVisible(true);
+            viewPrincipal.getBtnAccount().setVisible(true);
+            viewPrincipal.getBtnExit().setVisible(true);
             
-            viewPrincipal.setTxtLblBienvenido("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
-            viewPrincipal.getLblBienvenido().setVisible(true);
+            viewPrincipal.setTxtLblWelcome("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
+            viewPrincipal.getLblWelcome().setVisible(true);
             
             if(modelLogin.getResultUserType() == 0){
                 viewPrincipal.getBtnOpAdm().setVisible(true);
@@ -605,10 +603,10 @@ public class OperationsController implements ActionListener, ItemListener{
      { 
         
         viewPrincipal.getBtnOpAdm().setVisible(false);
-        viewPrincipal.getBtnConsultas().setVisible(false);
-        viewPrincipal.getBtnCuenta().setVisible(false);
-        viewPrincipal.getBtnSalir().setVisible(false);
-        viewPrincipal.getLblBienvenido().setVisible(false);
+        viewPrincipal.getBtnRequests().setVisible(false);
+        viewPrincipal.getBtnAccount().setVisible(false);
+        viewPrincipal.getBtnExit().setVisible(false);
+        viewPrincipal.getLblWelcome().setVisible(false);
         
         viewPrincipal.setVisible(true);
      }
