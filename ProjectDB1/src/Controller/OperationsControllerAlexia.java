@@ -11,15 +11,13 @@ import View.JF_AdminPerson;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
-
-
 /**
  *
  * @author Mariana
  */
 
 public class OperationsControllerAlexia implements ActionListener{
+    //private final 
     private final JF_AdminPerson viewAdminPerson;
     private final model_Register modelRegister;
     private boolean flagRegister;
@@ -53,6 +51,23 @@ public class OperationsControllerAlexia implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        if(e.getSource() == viewAdminPerson.getBtnAceptar()){
+            //Si el segundo nombre no esta vacío
+            if(modelRegister.validateSecondName(viewAdminPerson.getTxtSegNombre()) == false){
+                //Si no es vacio, verifica que sean solo caracteres
+                if(modelRegister.validateFormatString(viewAdminPerson.getTxtSegNombre()) == false){
+                
+                }
+            }
+        
+        
+        
+        }
+        
+        
+        
+
 
     }
     

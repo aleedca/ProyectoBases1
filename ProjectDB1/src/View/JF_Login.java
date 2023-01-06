@@ -66,7 +66,7 @@ public class JF_Login extends javax.swing.JFrame {
         txtUsernameLogin = new javax.swing.JTextField();
         txtPasswordLogin = new javax.swing.JPasswordField();
         lbWelcome = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -126,9 +126,9 @@ public class JF_Login extends javax.swing.JFrame {
         jPanel1.add(lbWelcome);
         lbWelcome.setBounds(150, 140, 140, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(120, 20, 200, 120);
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
+        jPanel1.add(lblLogo);
+        lblLogo.setBounds(120, 20, 200, 120);
 
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
@@ -178,11 +178,11 @@ public class JF_Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbPassword;
     private javax.swing.JLabel lbUsername;
     private javax.swing.JLabel lbWelcome;
+    private javax.swing.JLabel lblLogo;
     private javax.swing.JPanel pnlLogin;
     private javax.swing.JPasswordField txtPasswordLogin;
     private javax.swing.JTextField txtUsernameLogin;

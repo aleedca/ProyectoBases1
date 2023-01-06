@@ -4,9 +4,11 @@
  */
 package DataAccess;
 
+
+import java.math.BigDecimal;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import oracle.jdbc.OracleTypes;
 /**
@@ -44,6 +46,34 @@ public class DA_Person {
         System.out.println("Entro a la ejecucion");
         sql.execute();
         System.out.println("Termino la ejecucion");
+    }
+    
+    
+    public static int validateUserType(String username, String password) throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call  validateUser(?,?,?)}");
+        //Input parameters
+        sql.setString(1, username);
+        sql.setString(2, password);
+        
+        //Output parameter
+        sql.registerOutParameter(3, OracleTypes.NUMBER);
+        sql.execute();
+        
+        System.out.println(sql.getObject(3));
+        int result = ((BigDecimal) sql.getObject(3)).intValue();
+        return result;   
+        
+        /*Codigo para probar esta funcion
+            try {
+            int resultUserType = validateUserType("mario97_AK", "patitoW80");
+            System.out.println("\nEl resultado es: "+resultUserType);
+
+            }catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        */
     }
     
     
