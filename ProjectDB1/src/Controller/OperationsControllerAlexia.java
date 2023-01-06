@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
  */
 
 public class OperationsControllerAlexia implements ActionListener{
+    //private final 
     private final JF_AdminPerson viewAdminPerson;
     private final model_Register modelRegister;
     private boolean flagRegister;

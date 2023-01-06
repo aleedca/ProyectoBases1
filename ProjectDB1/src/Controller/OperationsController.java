@@ -6,9 +6,11 @@ package Controller;
 
 import Model.model_Login;
 import Model.model_Register;
+import View.JF_AdminOptions;
 import View.JF_Login;
 import View.JF_Principal;
 import View.JF_Register;
+import View.JF_Request;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -27,6 +29,8 @@ public class OperationsController implements ActionListener, ItemListener{
     private final JF_Principal viewPrincipal;
     private final JF_Login viewLogin;
     private final JF_Register viewRegister;
+    private final JF_AdminOptions viewMenuAdmin;
+    private final JF_Request viewRequest;
     
     private final model_Login modelLogin;
     private final model_Register modelRegister;
@@ -49,10 +53,19 @@ public class OperationsController implements ActionListener, ItemListener{
         JF_Register register = new JF_Register();
         this.viewRegister = register;
         
+        //View AdminOptions
+        JF_AdminOptions menuAdmin = new JF_AdminOptions();
+        this.viewMenuAdmin = menuAdmin;
+        
+        //View Request
+        JF_Request request = new JF_Request();
+        this.viewRequest = request;
+        
         //Modelo Login
         model_Login validateLogin = new model_Login();
         this.modelLogin = validateLogin;  
         
+       
         //Model Register
         model_Register validateRegister = new model_Register();
         this.modelRegister = validateRegister;
@@ -72,6 +85,7 @@ public class OperationsController implements ActionListener, ItemListener{
         viewPrincipal.getBtnIniciarSesion().addActionListener(this);
         viewPrincipal.getBtnRegistrar().addActionListener(this);
         viewPrincipal.getBtnOpAdm().addActionListener(this);
+        viewPrincipal.getBtnConsultas().addActionListener(this);
         viewPrincipal.getBtnCuenta().addActionListener(this);
         viewPrincipal.getBtnSalir().addActionListener(this);
         
@@ -91,6 +105,12 @@ public class OperationsController implements ActionListener, ItemListener{
         viewRegister.getCmbProvincia().addItemListener(this);
         viewRegister.getCmbCanton().addItemListener(this);
         viewRegister.getCmbDistrito().addItemListener(this);
+        
+        //AdminOptions
+        viewMenuAdmin.getBtnBack().addActionListener(this);
+        
+        
+         
     }
     
     
@@ -299,7 +319,17 @@ public class OperationsController implements ActionListener, ItemListener{
             viewPrincipal.setVisible(false);
         }
         
+        if(e.getSource() == viewPrincipal.getBtnOpAdm()){
+            viewMenuAdmin.setVisible(true);
+            viewPrincipal.setVisible(false);
+        }
         
+        if(e.getSource() == viewPrincipal.getBtnConsultas()){
+            viewRequest.setVisible(true);
+            viewPrincipal.setVisible(false); 
+        }
+        
+               
         if(e.getSource() == viewPrincipal.getBtnSalir()){
             viewPrincipal.setVisible(false);
             
@@ -330,8 +360,6 @@ public class OperationsController implements ActionListener, ItemListener{
                 viewLogin.cleanUsernameLogin();
                 viewLogin.cleanPasswordLogin();
                 
-                
-                //**NOTA: Validar username y password***
                 if(modelLogin.userExists() == true){
                     viewLogin.setVisible(false);
                     
@@ -354,12 +382,10 @@ public class OperationsController implements ActionListener, ItemListener{
                 
                 }else{
                     JOptionPane.showMessageDialog(null, "El usuario ingresado no existe. Intente nuevamente");
-                }
-                
-               
+                }      
             }
         }
-        
+                
         
         if(e.getSource() == viewLogin.getBtnBack()){
             viewPrincipal.setVisible(true); 
@@ -487,7 +513,6 @@ public class OperationsController implements ActionListener, ItemListener{
            
             
             if(flagRegister == true){
-                //Llamarse la función para ingresar los datos a la BD
                 modelRegister.inserUser();
                 
                 JOptionPane.showMessageDialog(null, "Felicidades, su cuenta se creó correctamte.\nInicie sesión para comenzar a disfrutar de nuestra aplicación" );
@@ -499,6 +524,24 @@ public class OperationsController implements ActionListener, ItemListener{
             }
                 
         }
+        
+        //-------------- PANTALLA DE AdminOptions -----------------------
+        if(e.getSource() == viewMenuAdmin.getBtnBack()){
+            viewMenuAdmin.setVisible(false);
+            viewPrincipal.getBtnIniciarSesion().setVisible(false);
+            viewPrincipal.getBtnRegistrar().setVisible(false);
+                
+            viewPrincipal.getBtnConsultas().setVisible(true);
+            viewPrincipal.getBtnCuenta().setVisible(true);
+            viewPrincipal.getBtnSalir().setVisible(true);
+            
+            viewPrincipal.setTxtLblBienvenido("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
+            viewPrincipal.getLblBienvenido().setVisible(true);
+            viewPrincipal.getBtnOpAdm().setVisible(true);
+            
+            viewPrincipal.setVisible(true);
+        }
+        
 
     }
     
