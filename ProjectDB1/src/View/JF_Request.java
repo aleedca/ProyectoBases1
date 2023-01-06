@@ -310,6 +310,12 @@ public class JF_Request extends javax.swing.JFrame {
 
         lblAuthorName.setText("Nombre del autor");
 
+        txtAuthorLastname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAuthorLastnameActionPerformed(evt);
+            }
+        });
+
         lblAuthorLastname.setText("Apellido del autor");
 
         lblNewsDate.setText("Fecha de publicacion");
@@ -515,8 +521,39 @@ public class JF_Request extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRequestTeamListActionPerformed
 
     private void btnRequestNewsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestNewsListActionPerformed
-        JF_RequestNewsList NewsList = new  JF_RequestNewsList();
-        NewsList.setVisible(true);
+        try {
+            JF_RequestNewsList newsList = new  JF_RequestNewsList();
+            
+            String author = txtAuthorName.getText();
+            String authorLastname =txtAuthorLastname.getText();
+            String newsDate = txtNewsDate.getText();
+            String newsEvent = txtNewsEvent.getText();
+            
+            String outAuthor = "";
+            String outAuthorLastname = "";
+            String outNewsDate = "";
+            String outNewsEvent = "";
+            
+            if(!author.isEmpty()){
+                outAuthor = author;
+            }
+            if(!authorLastname.isEmpty()){
+                outAuthorLastname = authorLastname;
+            }
+            if(!newsDate.isEmpty()){
+                outNewsDate = newsDate;
+            }
+            if(!newsEvent.isEmpty()){
+                outNewsEvent = newsEvent;
+            }
+            
+            newsList.showNewsList(outAuthor, outAuthorLastname, outNewsDate, outNewsEvent);
+            
+            newsList.setVisible(true);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JF_Request.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnRequestNewsListActionPerformed
 
     private void btnRequestGroupListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestGroupListActionPerformed
@@ -578,6 +615,10 @@ public class JF_Request extends javax.swing.JFrame {
     private void cbmTeamFlagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmTeamFlagActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbmTeamFlagActionPerformed
+
+    private void txtAuthorLastnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAuthorLastnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAuthorLastnameActionPerformed
 
     /**
      * @param args the command line arguments
