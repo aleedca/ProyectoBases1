@@ -20,13 +20,10 @@ public class RequestController {
     private final DA_NewsList admN = new DA_NewsList();
     private final Cargador cargador = new Cargador();
     
-    //private final JF_Request viewRequest = new JF_Request();
-    
+   
     private final model_Request modelRequest = new model_Request();
 
 
-
-    
     public DefaultTableModel showTeamList(String teamName, String playerFstName, String playerSndName, String playerFstLastName, String playerSndLastName, String position) throws SQLException{
         return cargador.showTeamList(admT.getTeamList(teamName,playerFstName,playerSndName,playerFstLastName,playerSndLastName,position));
     }
@@ -39,7 +36,7 @@ public class RequestController {
         return cargador.showNewsList(admN.getNewsList(author, authorLastname,  newsDate, newsEvent));
     }
      
-    //-------- COMBO BOX FILLING --------------------------
+    //-------- COMBO BOX FILLING --------
     public void fillPositions(JF_Request viewRequest){
         viewRequest.getCmbPosition().removeAllItems();
         
