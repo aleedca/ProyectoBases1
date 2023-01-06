@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Mariana
  */
 
-public class OperationsControllerAlexia implements ActionListener{
+public class AdminNewsController{
     //private final 
     /*private final JF_AdminPerson viewAdminPerson;
     private final model_Register modelRegister;*/
@@ -34,7 +34,7 @@ public class OperationsControllerAlexia implements ActionListener{
         
     
     //Constructor 2da version
-    public OperationsControllerAlexia() { 
+    public AdminNewsController() { 
         /*View AdminPerson
         JF_AdminPerson adminPerson = new JF_AdminPerson();
         this.viewAdminPerson = adminPerson;  
@@ -51,46 +51,28 @@ public class OperationsControllerAlexia implements ActionListener{
         model_News validateNews = new model_News();
         this.modelNews = validateNews;
         
-        _init_();
         fillAdminNews(); 
 
     }
-    
-    //Init de ActionListener
-    private void _init_(){
-        //viewAdminNews.getTblNoticias().addActionListener(this);
-        viewAdminNews.getRbtnAgregar().addActionListener(this);
-        viewAdminNews.getRbtnEditar().addActionListener(this);
-        viewAdminNews.getRbtnEliminar().addActionListener(this);
-        
-        viewAdminNews.getCmbEstado().addActionListener(this);
-        viewAdminNews.getCmbTipo().addActionListener(this);
-        viewAdminNews.getTxtTitulo().addActionListener(this);
-        //viewAdminNews.getTxtTexto().addActionListener(this);
-        //viewAdminNews.getLblImagen().addActionListener(this);
-        
-        viewAdminNews.getBtnAceptar().addActionListener(this);
+
+    public JF_AdminNews getViewAdminNews() {
+        return viewAdminNews;
     }
     
     public void fillAdminNews(){
         viewAdminNews.getTblNoticias().removeAll();
-        ArrayList<News> newsArr = new ArrayList<>();
+        ArrayList<News> newsArr = modelNews.getNewsArr();
         DefaultTableModel modelTable = (DefaultTableModel) viewAdminNews.getTblNoticias().getModel();
         
         for(int i = 0; i < newsArr.size(); i++){
             Vector row = new Vector();
-            row.add(newsArr.get(i).getIdNews());
+            row.add(newsArr.get(i).getNewsStatus());
             row.add(newsArr.get(i).getTitle());
             row.add(newsArr.get(i).getViews());
             row.add(newsArr.get(i).getPublicationDate());
+            row.add(newsArr.get(i).getNewsType());
+            row.add(newsArr.get(i).getRateNumber());
             modelTable.addRow(row);
-        }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == viewAdminNews.getBtnBack()){
-            System.out.println("juju");
         }
     }
     

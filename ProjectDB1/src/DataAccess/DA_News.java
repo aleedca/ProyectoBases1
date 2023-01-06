@@ -31,16 +31,14 @@ public class DA_News {
             News news = new News();
             
             news.setIdNews(rs.getInt("idNews"));
-            news.setIdNewsStatus(rs.getInt("idNewsStatus"));
-            news.setIdNewsType(rs.getInt("idNewsType"));
-            
+            news.setNewsType(rs.getString("descriptionNewsType"));
+            news.setNewsStatus(rs.getString("descriptionNewsStatus"));
+            news.setTitle(rs.getString("title"));
             news.setPublicationDate(rs.getString("publicationDate")); // date a string?
-            news.setViews(rs.getInt("views"));
-            news.setLink(rs.getString("link"));
+            news.setViews(rs.getInt("viewsNews"));
+            news.setLink(rs.getString("linkNews"));
             news.setPhoto(rs.getString("photo"));
-            news.setAuthor(rs.getString("author"));
-            news.setText(rs.getString("text"));
-            
+            news.setText(rs.getString("textNews"));
             newsArr.add(news);
             System.out.println(news.toString());
         }

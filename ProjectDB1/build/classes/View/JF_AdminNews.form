@@ -62,6 +62,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnBack">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="2c" green="4" red="56" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="14" style="1"/>
             </Property>
@@ -112,6 +115,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtnAgregar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="2c" green="4" red="56" type="rgb"/>
+            </Property>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="btnGroupAdmiNoticias"/>
             </Property>
@@ -137,6 +143,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtnEditar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="2c" green="4" red="56" type="rgb"/>
+            </Property>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="btnGroupAdmiNoticias"/>
             </Property>
@@ -159,6 +168,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtnEliminar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="2c" green="4" red="56" type="rgb"/>
+            </Property>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="btnGroupAdmiNoticias"/>
             </Property>
@@ -369,12 +381,17 @@
             <Component class="javax.swing.JTable" name="tblNoticias">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="0">
-                    <Column editable="true" title="Id" type="java.lang.Object"/>
-                    <Column editable="true" title="T&#xed;tulo" type="java.lang.String"/>
-                    <Column editable="true" title="Vistas" type="java.lang.Integer"/>
-                    <Column editable="true" title="Fecha Publicaci&#xf3;n" type="java.lang.String"/>
+                  <Table columnCount="6" rowCount="0">
+                    <Column editable="false" title="Estado" type="java.lang.String"/>
+                    <Column editable="false" title="T&#xed;tulo" type="java.lang.String"/>
+                    <Column editable="false" title="Vistas" type="java.lang.Integer"/>
+                    <Column editable="false" title="Fecha Publicaci&#xf3;n" type="java.lang.String"/>
+                    <Column editable="false" title="Tipo" type="java.lang.String"/>
+                    <Column editable="false" title="Rating" type="java.lang.Float"/>
                   </Table>
+                </Property>
+                <Property name="intercellSpacing" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[3, 3]"/>
                 </Property>
                 <Property name="showGrid" type="boolean" value="true"/>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">

@@ -13,9 +13,9 @@ import java.util.ArrayList;
  */
 public class News {
     private int idNews;
-    private int idNewsStatus;
-    private int idNewsType;
     
+    private String newsType;
+    private String newsStatus;
     private String title;
     private String author;
     private String publicationDate;
@@ -35,20 +35,20 @@ public class News {
         this.idNews = idNews;
     }
     
-    public int getIdNewsStatus() {
-        return idNewsStatus;
+    public String getNewsStatus() {
+        return newsStatus;
     }
 
-    public void setIdNewsStatus(int idNewsStatus) {
-        this.idNewsStatus = idNewsStatus;
+    public void setNewsStatus(String newsStatus) {
+        this.newsStatus = newsStatus;
     }
     
-    public int getIdNewsType() {
-        return idNewsType;
+    public String getNewsType() {
+        return newsType;
     }
 
-    public void setIdNewsType(int idNewsType) {
-        this.idNewsType = idNewsType;
+    public void setNewsType(String newsType) {
+        this.newsType = newsType;
     }
 
     public String getTitle() {
@@ -125,7 +125,7 @@ public class News {
 
     @Override
     public String toString() {
-        return "News{" + "idNews=" + idNews + ", idNewsStatus=" + idNewsStatus + ", idNewsType=" + idNewsType + ", title=" + title + ", author=" + author + ", publicationDate=" + publicationDate + ", link=" + link + ", photo=" + photo + ", text=" + text + ", views=" + views + ", rateNumber=" + rateNumber + ", comments=" + comments + '}';
+        return "News{" + "idNews=" + idNews + ", newsStatus=" + newsStatus + ", idNewsType=" + newsType + ", title=" + title + ", author=" + author + ", publicationDate=" + publicationDate + ", link=" + link + ", photo=" + photo + ", text=" + text + ", views=" + views + ", rateNumber=" + rateNumber + ", comments=" + comments + '}';
     }
     
     
