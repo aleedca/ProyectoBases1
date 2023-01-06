@@ -4,6 +4,11 @@
  */
 package View;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Nahomy
@@ -47,6 +52,7 @@ public class JF_Request extends javax.swing.JFrame {
         txtMatchDate = new javax.swing.JTextField();
         btnRequestGroupList = new javax.swing.JButton();
         lblMatchDateFormat = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         txtPlayer1Lastname = new javax.swing.JTextField();
         lblTeamName2 = new javax.swing.JLabel();
@@ -60,11 +66,10 @@ public class JF_Request extends javax.swing.JFrame {
         lblPlayer2Lastname = new javax.swing.JLabel();
         lblPlayer1Lastname = new javax.swing.JLabel();
         lblPosition = new javax.swing.JLabel();
-        btnRequestNewsList = new javax.swing.JButton();
+        btnRequestTeamList = new javax.swing.JButton();
         lblTeamList = new javax.swing.JLabel();
         lblNewsList = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        btnRequestTeamList = new javax.swing.JButton();
         txtAuthorName = new javax.swing.JTextField();
         lblAuthorName = new javax.swing.JLabel();
         txtAuthorLastname = new javax.swing.JTextField();
@@ -74,6 +79,7 @@ public class JF_Request extends javax.swing.JFrame {
         lblDateFormat = new javax.swing.JLabel();
         txtNewsDate = new javax.swing.JTextField();
         txtNewsEvent = new javax.swing.JTextField();
+        btnRequestNewsList = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
@@ -107,7 +113,7 @@ public class JF_Request extends javax.swing.JFrame {
 
         lblGroupList.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblGroupList.setForeground(new java.awt.Color(255, 255, 255));
-        lblGroupList.setText("Rifa de grupos");
+        lblGroupList.setText("Listado de la rifa de grupos");
 
         lblTeamName1.setText("Nombre del equipo");
 
@@ -127,6 +133,13 @@ public class JF_Request extends javax.swing.JFrame {
         });
 
         lblMatchDateFormat.setText("mm/dd/aaaa");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -148,7 +161,9 @@ public class JF_Request extends javax.swing.JFrame {
                         .addComponent(txtMatchDate, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txtStadium, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblMatchDate)
                         .addGap(60, 60, 60)
@@ -164,7 +179,8 @@ public class JF_Request extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTeamName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMatchDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtStadium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtStadium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTeamName)
@@ -183,6 +199,18 @@ public class JF_Request extends javax.swing.JFrame {
 
         lblTeamName2.setText("Nombre del equipo");
 
+        txtTeamName3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTeamName3ActionPerformed(evt);
+            }
+        });
+
+        txtPlayer1Name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPlayer1NameActionPerformed(evt);
+            }
+        });
+
         lblPlayer1Name.setText("Nombre del jugador");
 
         lblPlayer2Name.setText("Segundo nombre");
@@ -193,10 +221,10 @@ public class JF_Request extends javax.swing.JFrame {
 
         lblPosition.setText("Posicion");
 
-        btnRequestNewsList.setText("Consultar");
-        btnRequestNewsList.addActionListener(new java.awt.event.ActionListener() {
+        btnRequestTeamList.setText("Consultar");
+        btnRequestTeamList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRequestNewsListActionPerformed(evt);
+                btnRequestTeamListActionPerformed(evt);
             }
         });
 
@@ -242,7 +270,7 @@ public class JF_Request extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(lblPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRequestNewsList)))))
+                                .addComponent(btnRequestTeamList)))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -268,8 +296,8 @@ public class JF_Request extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPosition)
                     .addComponent(lblPlayer2Lastname)
-                    .addComponent(btnRequestNewsList))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnRequestTeamList))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         lblTeamList.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
@@ -280,13 +308,6 @@ public class JF_Request extends javax.swing.JFrame {
         lblNewsList.setForeground(new java.awt.Color(255, 255, 255));
         lblNewsList.setText("Listado de noticias");
 
-        btnRequestTeamList.setText("Consultar");
-        btnRequestTeamList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRequestTeamListActionPerformed(evt);
-            }
-        });
-
         lblAuthorName.setText("Nombre del autor");
 
         lblAuthorLastname.setText("Apellido del autor");
@@ -296,6 +317,13 @@ public class JF_Request extends javax.swing.JFrame {
         lblEvent.setText("Evento");
 
         lblDateFormat.setText("mm/dd/aaaa");
+
+        btnRequestNewsList.setText("Consultar");
+        btnRequestNewsList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRequestNewsListActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -315,7 +343,7 @@ public class JF_Request extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(lblDateFormat)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRequestTeamList)
+                        .addComponent(btnRequestNewsList)
                         .addContainerGap())
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,10 +374,10 @@ public class JF_Request extends javax.swing.JFrame {
                     .addComponent(lblEvent)
                     .addComponent(lblNewsDate))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDateFormat)
-                    .addComponent(btnRequestTeamList))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnRequestNewsList))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
@@ -368,12 +396,12 @@ public class JF_Request extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNewsList)
                                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblTeamList)
                                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblGroupList))
+                                    .addComponent(lblGroupList)
+                                    .addComponent(lblNewsList))
                                 .addGap(227, 227, 227)
                                 .addComponent(lblTeamName1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -421,7 +449,7 @@ public class JF_Request extends javax.swing.JFrame {
                         .addComponent(lblNewsList, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addComponent(btnBackRequest))))
         );
 
@@ -440,8 +468,49 @@ public class JF_Request extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRequestTeamListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestTeamListActionPerformed
-        JF_RequestTeamList TeamList = new JF_RequestTeamList();
-        TeamList.setVisible(true);
+        try {
+            JF_RequestTeamList teamList = new JF_RequestTeamList();
+            
+            String teamName = txtTeamName3.getText();
+            String playerFstName = txtPlayer1Name.getText();
+            String playerSndName = txtPlayer2Name.getText();
+            String playerFstLastName = txtPlayer1Lastname.getText();
+            String playerSndLastName = txtPlayer2Lastname.getText();
+            String position = txtPosition.getText();
+            
+            String outTeamName = "";
+            String outPlayerFstName = "";
+            String outPlayerSndName = "";
+            String outPlayerFstLastName = "";
+            String outPlayerSndLastName = "";
+            String outPosition = "";
+
+            if(!teamName.isEmpty()){
+                outTeamName = teamName;
+            }
+            
+            if(!playerFstName.isEmpty()){
+                outPlayerFstName = playerFstName;
+            }
+            if(!playerSndName.isEmpty()){
+                outPlayerSndName = playerSndName;
+            }
+            if(!playerFstLastName.isEmpty()){
+                outPlayerFstLastName = playerFstLastName;
+            }
+            if(!playerSndLastName.isEmpty()){
+                outPlayerSndLastName = playerSndLastName;
+            }
+            if(!position.isEmpty()){
+                outPosition = position;
+            }
+            teamList.showTeamList(outTeamName,outPlayerFstName,outPlayerSndName,outPlayerFstLastName,outPlayerSndLastName,outPosition);
+         
+            teamList.setVisible(true);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JF_Request.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnRequestTeamListActionPerformed
 
     private void btnRequestNewsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestNewsListActionPerformed
@@ -451,7 +520,31 @@ public class JF_Request extends javax.swing.JFrame {
 
     private void btnRequestGroupListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestGroupListActionPerformed
         JF_RequestGroupList groupList = new JF_RequestGroupList();
-        groupList.setVisible(true);
+            String teamName = txtTeamName1.getText();
+            String matchDate = txtMatchDate.getText();
+            String stadium = txtStadium.getText();
+            //TYPE teamFlag = OBTENER EL OBJETO DEL COMBOBOX get select aja 
+            
+            
+            String outTeamName = "";
+            String outMatchDate = "";
+            String outStadium = "";
+            String outTeamFlag = "";
+            
+            if(!teamName.isEmpty()){
+                outTeamName = teamName;
+            }
+            
+            if(!matchDate.isEmpty()){
+                outMatchDate = matchDate;
+            }
+            if(!stadium.isEmpty()){
+                outStadium = stadium;
+            }
+            
+            //AQUI VA LA FUNCION DEL SHOWGROUPLIST
+            groupList.setVisible(true);
+
 
     }//GEN-LAST:event_btnRequestGroupListActionPerformed
 
@@ -461,6 +554,18 @@ public class JF_Request extends javax.swing.JFrame {
 
         this.dispose();
     }//GEN-LAST:event_btnBackRequestActionPerformed
+
+    private void txtTeamName3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeamName3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTeamName3ActionPerformed
+
+    private void txtPlayer1NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlayer1NameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPlayer1NameActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -496,6 +601,35 @@ public class JF_Request extends javax.swing.JFrame {
             }
         });
     }
+    
+    //TeamList
+    public JTextField getTxtTeamName3() {
+        return txtTeamName3;
+    }
+
+    public JTextField getTxtPlayer1Name() {
+        return txtPlayer1Name;
+    }
+
+    public JTextField getTxtPlayer2Name() {
+        return txtPlayer2Name;
+    }
+
+    public JTextField getTxtPlayer1Lastname() {
+        return txtPlayer1Lastname;
+    }
+
+    public JTextField getTxtPlayer2Lastname() {
+        return txtPlayer2Lastname;
+    }
+
+    public JTextField getTxtPosition() {
+        return txtPosition;
+    }
+    
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackRequest;
@@ -505,6 +639,7 @@ public class JF_Request extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel3;

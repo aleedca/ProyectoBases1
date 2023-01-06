@@ -56,7 +56,7 @@ public class JF_RequestNewsList extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Autor", "Titulo", "Fecha de publicacion", "Tipo de articulo"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

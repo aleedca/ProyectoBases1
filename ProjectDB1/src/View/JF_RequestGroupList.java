@@ -4,11 +4,15 @@
  */
 package View;
 
+import Controller.RequestController;
+import java.sql.SQLException;
+
 /**
  *
  * @author Nahomy
  */
 public class JF_RequestGroupList extends javax.swing.JFrame {
+    private final RequestController controller = new RequestController();
 
     /**
      * Creates new form JF_RequestGroupList
@@ -16,7 +20,13 @@ public class JF_RequestGroupList extends javax.swing.JFrame {
     public JF_RequestGroupList() {
         initComponents();
     }
+    
+    public void showGroupList(String teamName, String matchDate, String stadium, String teamFlag) throws SQLException{
+        tblGroupList.setModel(controller.showGroupList(teamName,matchDate,stadium,teamFlag));
+    }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +40,7 @@ public class JF_RequestGroupList extends javax.swing.JFrame {
         lblGroupListTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblGroupList = new javax.swing.JTable();
         jScrollBar1 = new javax.swing.JScrollBar();
         btnClose = new javax.swing.JButton();
 
@@ -45,7 +55,7 @@ public class JF_RequestGroupList extends javax.swing.JFrame {
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblGroupList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,10 +63,18 @@ public class JF_RequestGroupList extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Equipo", "Fecha del partido", "Estadio ", "Bandera"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblGroupList);
 
         btnClose.setText("Cerrar");
         btnClose.addActionListener(new java.awt.event.ActionListener() {
@@ -161,7 +179,7 @@ public class JF_RequestGroupList extends javax.swing.JFrame {
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblGroupListTitle;
+    private javax.swing.JTable tblGroupList;
     // End of variables declaration//GEN-END:variables
 }
