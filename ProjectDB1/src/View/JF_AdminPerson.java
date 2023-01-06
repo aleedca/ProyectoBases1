@@ -5,6 +5,7 @@
 package View;
 
 import javax.swing.JButton;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -547,7 +548,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         return txtDireccion.getText();
     }
 
-    public void setTxtDireccion(JTextField txtDireccion) {
+    public void setTxtDireccion(JTextArea txtDireccion) {
         this.txtDireccion = txtDireccion;
     }
 
