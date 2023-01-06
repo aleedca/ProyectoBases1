@@ -4,6 +4,12 @@
  */
 package View;
 
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Alexia
@@ -43,12 +49,13 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         lblFoto = new javax.swing.JLabel();
         btnCargarImagen = new javax.swing.JButton();
         lblImagen = new javax.swing.JLabel();
-        txtTexto = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblNoticias = new javax.swing.JTable();
         lblEstado = new javax.swing.JLabel();
         txtareaEliminar = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtTexto = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -171,11 +178,6 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         jPanel1.add(lblImagen);
         lblImagen.setBounds(1010, 380, 180, 230);
 
-        txtTexto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtTexto.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel1.add(txtTexto);
-        txtTexto.setBounds(720, 380, 230, 230);
-
         btnAceptar.setBackground(new java.awt.Color(86, 4, 44));
         btnAceptar.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
         btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
@@ -228,6 +230,14 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
         txtareaEliminar.setEditable(false);
         txtareaEliminar.setVisible(false);
 
+        txtTexto.setColumns(20);
+        txtTexto.setLineWrap(true);
+        txtTexto.setRows(5);
+        jScrollPane2.setViewportView(txtTexto);
+
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(720, 380, 234, 230);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -241,6 +251,62 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public JComboBox<String> getCmbEstado() {
+        return cmbEstado;
+    }
+
+    public void setCmbEstado(JComboBox<String> cmbEstado) {
+        this.cmbEstado = cmbEstado;
+    }
+
+    public JComboBox<String> getCmbTipo() {
+        return cmbTipo;
+    }
+
+    public void setCmbTipo(JComboBox<String> cmbTipo) {
+        this.cmbTipo = cmbTipo;
+    }
+
+    public JLabel getLblImagen() {
+        return lblImagen;
+    }
+
+    public void setLblImagen(JLabel lblImagen) {
+        this.lblImagen = lblImagen;
+    }
+
+    public JTable getTblNoticias() {
+        return tblNoticias;
+    }
+
+    public void setTblNoticias(JTable tblNoticias) {
+        this.tblNoticias = tblNoticias;
+    }
+
+    public JTextArea getTxtTexto() {
+        return txtTexto;
+    }
+
+    public void setTxtTexto(JTextArea txtTexto) {
+        this.txtTexto = txtTexto;
+    }
+
+    public JTextField getTxtTitulo() {
+        return txtTitulo;
+    }
+
+    public void setTxtTitulo(JTextField txtTitulo) {
+        this.txtTitulo = txtTitulo;
+    }
+
+    public JTextArea getTxtareaEliminar() {
+        return txtareaEliminar;
+    }
+
+    public void setTxtareaEliminar(JTextArea txtareaEliminar) {
+        this.txtareaEliminar = txtareaEliminar;
+    }
 
     public void esconderMostrarTodo(boolean flag){
         lblEstado.setVisible(flag);
@@ -301,6 +367,7 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(JF_AdminNoticias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -319,6 +386,7 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAdminNoticias;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblFoto;
@@ -331,7 +399,7 @@ public class JF_AdminNoticias extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtnEditar;
     private javax.swing.JRadioButton rbtnEliminar;
     private javax.swing.JTable tblNoticias;
-    private javax.swing.JTextField txtTexto;
+    private javax.swing.JTextArea txtTexto;
     private javax.swing.JTextField txtTitulo;
     private javax.swing.JTextArea txtareaEliminar;
     // End of variables declaration//GEN-END:variables

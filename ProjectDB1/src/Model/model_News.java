@@ -40,5 +40,63 @@ public class model_News {
         if(photo == null){return true;}
         return false;
     }
+
+    // GETTERS AND SETTERS
+    public String getNewsStatus() {
+        return newsStatus;
+    }
+
+    public void setNewsStatus(String newsStatus) {
+        this.newsStatus = newsStatus;
+    }
+
+    public String getNewsType() {
+        return newsType;
+    }
+
+    public void setNewsType(String newsType) {
+        this.newsType = newsType;
+    }
+
+    public String getNewsTitle() {
+        return newsTitle;
+    }
+
+    public void setNewsTitle(String newsTitle) {
+        this.newsTitle = newsTitle;
+    }
+
+    public String getNewsText() {
+        return newsText;
+    }
+
+    public void setNewsText(String newsText) {
+        this.newsText = newsText;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getNewsStr() {
+        return newsStr;
+    }
+
+    public void setNewsStr(String newsStr) {
+        this.newsStr = newsStr;
+    }
+
+    public ArrayList<News> getNewsArr() {
+        return newsArr;
+    }
+
+    public void setNewsArr(ArrayList<News> newsArr) {
+        this.newsArr = newsArr;
+    }
+    
     
 }

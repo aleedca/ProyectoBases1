@@ -438,9 +438,7 @@
             </Property>
           </Properties>
           <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor" postCode="txtareaEliminar.setVisible(false);">
-              <ComponentRef name="default"/>
-            </Property>
+            <Property name="AccessibleContext.accessibleParent" postCode="txtareaEliminar.setVisible(false);"/>
           </AccessibilityProperties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtareaEliminar.setEditable(false);"/>
