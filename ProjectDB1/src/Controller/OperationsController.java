@@ -151,6 +151,7 @@ public class OperationsController implements ActionListener, ItemListener{
     //-------- COMBO BOX FILLING --------------------------
     private void fillGenders(){
         viewRegister.getCmbGender().removeAllItems();
+        
         for(int i=0; i<modelRegister.getGenders().size();i++){
            viewRegister.getCmbGender().addItem(modelRegister.getGenders().get(i).getDescriptionGender());
         }
