@@ -42,7 +42,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" min="-2" pref="671" max="-2" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="704" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -73,7 +73,6 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblTeamList" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -101,6 +100,7 @@
                                   </Group>
                                   <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jPanel5" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -234,14 +234,14 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="txtStadium" min="-2" pref="138" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="cbmTeamFlag" max="32767" attributes="0"/>
+                              <Component id="cbmTeamFlag" pref="119" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="lblMatchDate" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                               <Component id="lblStadium" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="119" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="lblFlag" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                           </Group>
@@ -565,7 +565,7 @@
                                   <Component id="lblEvent" min="-2" pref="133" max="-2" attributes="0"/>
                                   <Component id="cmbNewsEvent" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="33" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
