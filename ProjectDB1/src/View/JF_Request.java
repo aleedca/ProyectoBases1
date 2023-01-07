@@ -36,6 +36,7 @@ public class JF_Request extends javax.swing.JFrame {
         lblWelcome = new javax.swing.JLabel();
         lblRequests1 = new javax.swing.JLabel();
         lblGroupList = new javax.swing.JLabel();
+        lblTeamName1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblTeamName = new javax.swing.JLabel();
         lblMatchDate = new javax.swing.JLabel();
@@ -109,6 +110,8 @@ public class JF_Request extends javax.swing.JFrame {
         lblGroupList.setForeground(new java.awt.Color(255, 255, 255));
         lblGroupList.setText("Listado de la rifa de grupos");
 
+        lblTeamName1.setText("Nombre del equipo");
+
         lblTeamName.setText("Nombre del equipo");
 
         lblMatchDate.setText("Fecha del partido");
@@ -154,7 +157,7 @@ public class JF_Request extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtStadium, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cbmTeamFlag, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbmTeamFlag, 0, 119, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblMatchDate)
@@ -162,7 +165,7 @@ public class JF_Request extends javax.swing.JFrame {
                         .addComponent(lblStadium)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblFlag)
-                        .addGap(176, 176, 176))))
+                        .addGap(85, 85, 85))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,28 +243,31 @@ public class JF_Request extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(txtPlayer1Name, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPlayer2Name, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPlayer2Name, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(lblPlayer1Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 57, Short.MAX_VALUE))
-                            .addComponent(txtPlayer1Lastname))
-                        .addGap(18, 18, 18)
+                                .addGap(22, 22, 22)
+                                .addComponent(lblPlayer2Name, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 10, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtPlayer2Name, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPlayer2Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPlayer2Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtPlayer1Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPlayer1Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPlayer2Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPlayer2Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(104, 104, 104)
-                                .addComponent(lblPosition)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRequestTeamList)))
+                                .addComponent(lblPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnRequestTeamList))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(cmbPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -272,21 +278,22 @@ public class JF_Request extends javax.swing.JFrame {
                     .addComponent(txtTeamName3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPlayer1Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPlayer2Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPlayer1Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPlayer2Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPlayer1Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTeamName2)
                     .addComponent(lblPlayer1Name)
                     .addComponent(lblPlayer2Name)
-                    .addComponent(lblPlayer1Lastname)
-                    .addComponent(lblPlayer2Lastname))
-                .addGap(18, 18, 18)
-                .addComponent(cmbPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPlayer1Lastname))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPlayer2Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRequestTeamList)
-                    .addComponent(lblPosition))
+                    .addComponent(lblPosition)
+                    .addComponent(lblPlayer2Lastname)
+                    .addComponent(btnRequestTeamList))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
@@ -349,12 +356,9 @@ public class JF_Request extends javax.swing.JFrame {
                             .addComponent(lblNewsDate, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(lblEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(cmbNewsEvent, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())))))
+                            .addComponent(lblEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbNewsEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 33, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,7 +379,7 @@ public class JF_Request extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDateFormat)
                     .addComponent(btnRequestNewsList))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
@@ -385,31 +389,36 @@ public class JF_Request extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblTeamList)
-                    .addComponent(lblGroupList)
-                    .addComponent(lblNewsList)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1061, 1061, 1061)
-                        .addComponent(jLabel1))
+                        .addContainerGap()
+                        .addComponent(btnBackRequest))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnBackRequest)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblRequests1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(194, 194, 194))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lblWelcome)
-                                .addGap(249, 249, 249)))
-                        .addComponent(jLabel18)
-                        .addGap(179, 179, 179))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTeamList)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblGroupList)
+                                    .addComponent(lblNewsList))
+                                .addGap(227, 227, 227)
+                                .addComponent(lblTeamName1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(1061, 1061, 1061)
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(264, 264, 264)
+                                        .addComponent(lblWelcome)
+                                        .addGap(100, 100, 100))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblRequests1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(49, 49, 49)))
+                                .addComponent(jLabel18))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -418,81 +427,187 @@ public class JF_Request extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblRequests1)
-                            .addComponent(btnBackRequest))
+                        .addComponent(lblRequests1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblWelcome))
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblGroupList, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblTeamList, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblNewsList, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTeamName1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblTeamList, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblNewsList, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addComponent(btnBackRequest))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 907, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 704, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-//GEN-FIRST:event_btnRequestNewsListActionPerformed
- 
-//GEN-LAST:event_btnRequestNewsListActionPerformed
+    
+    //Send data to the TeamList query
+    private void btnRequestTeamListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestTeamListActionPerformed
+        try {
+            JF_RequestTeamList teamList = new JF_RequestTeamList();
+            
+            String teamName = txtTeamName3.getText();
+            String playerFstName = txtPlayer1Name.getText();
+            String playerSndName = txtPlayer2Name.getText();
+            String playerFstLastName = txtPlayer1Lastname.getText();
+            String playerSndLastName = txtPlayer2Lastname.getText();
+            String position = (String)cmbPosition.getSelectedItem(); 
+            
+            String outTeamName = "";
+            String outPlayerFstName = "";
+            String outPlayerSndName = "";
+            String outPlayerFstLastName = "";
+            String outPlayerSndLastName = "";
+            String outPosition = "";
 
-    private void txtAuthorLastnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAuthorLastnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAuthorLastnameActionPerformed
+            if(!teamName.isEmpty()){
+                outTeamName = teamName;
+            }
+            
+            if(!playerFstName.isEmpty()){
+                outPlayerFstName = playerFstName;
+            }
+            
+            if(!playerSndName.isEmpty()){
+                outPlayerSndName = playerSndName;
+            }
+            
+            if(!playerFstLastName.isEmpty()){
+                outPlayerFstLastName = playerFstLastName;
+            }
+            
+            if(!playerSndLastName.isEmpty()){
+                outPlayerSndLastName = playerSndLastName;
+            }
+            
+            if( !"Seleccione Posición".equals(position)){
+                outPosition = position;
+            }
 
-//GEN-FIRST:event_btnRequestTeamListActionPerformed
- 
-//GEN-LAST:event_btnRequestTeamListActionPerformed
+            teamList.showTeamList(outTeamName,outPlayerFstName,outPlayerSndName,outPlayerFstLastName,outPlayerSndLastName,outPosition);
+         
+            teamList.setVisible(true);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JF_Request.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnRequestTeamListActionPerformed
+    
+    //Send data to the NewsList query
+    private void btnRequestNewsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestNewsListActionPerformed
+        try {
+            JF_RequestNewsList newsList = new  JF_RequestNewsList();
+            
+            String author = txtAuthorName.getText();
+            String authorLastname =txtAuthorLastname.getText();
+            String newsDate = txtNewsDate.getText();
+            String newsEvent = (String)cmbNewsEvent.getSelectedItem(); 
+            
+            String outAuthor = "";
+            String outAuthorLastname = "";
+            String outNewsDate = "";
+            String outNewsEvent = "";
+            
+            if(!author.isEmpty()){
+                outAuthor = author;
+            }
+            
+            if(!authorLastname.isEmpty()){
+                outAuthorLastname = authorLastname;
+            }
+            
+            if(!newsDate.isEmpty()){
+                outNewsDate = newsDate;
+            }
+            
+            if(!newsEvent.isEmpty()){
+                outNewsEvent = newsEvent;
+            }
+        
+            newsList.showNewsList(outAuthor, outAuthorLastname, outNewsDate, outNewsEvent);
+            
+            newsList.setVisible(true);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JF_Request.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnRequestNewsListActionPerformed
+    
+    //Send data to the GroupList query
+    private void btnRequestGroupListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestGroupListActionPerformed
+        try {
+            JF_RequestGroupList groupList = new JF_RequestGroupList();
+            
+            String teamName = txtTeamName1.getText();
+            String matchDate = txtMatchDate.getText();
+            String stadium = txtStadium.getText();
+            String teamFlag = (String)cbmTeamFlag.getName(); //acá es otro get que agarre el icono y lo pase al string que ocupo
+            
+            String outTeamName = "";
+            String outMatchDate = "";
+            String outStadium = "";
+            String outTeamFlag = "";
+            
+            if(!teamName.isEmpty()){
+                outTeamName = teamName;
+            }
+            
+            if(!matchDate.isEmpty()){
+                outMatchDate = matchDate;
+            }
+            
+            if(!stadium.isEmpty()){
+                outStadium = stadium;
+            }
+            
+            /*if( teamFlag!='Seleccione la bandera')){
+            outTeamFlag = teamFlag;
+            }*/
+           
+            groupList.showGroupList(outTeamName, outMatchDate, outStadium, outTeamFlag);
+            
+            groupList.setVisible(true);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JF_Request.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-    private void txtPlayer1NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlayer1NameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPlayer1NameActionPerformed
 
-    private void txtTeamName3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeamName3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTeamName3ActionPerformed
-
-    private void cbmTeamFlagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmTeamFlagActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbmTeamFlagActionPerformed
-
-//GEN-FIRST:event_btnRequestGroupListActionPerformed
- 
-//GEN-LAST:event_btnRequestGroupListActionPerformed
+    }//GEN-LAST:event_btnRequestGroupListActionPerformed
 
     private void btnBackRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackRequestActionPerformed
-
+       
     }//GEN-LAST:event_btnBackRequestActionPerformed
-
     
-   
-   
-   
     //Getters
     
     public JComboBox<String> getCmbPosition() {
@@ -510,6 +625,22 @@ public class JF_Request extends javax.swing.JFrame {
     
     
     
+    private void txtTeamName3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeamName3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTeamName3ActionPerformed
+
+    private void txtPlayer1NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlayer1NameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPlayer1NameActionPerformed
+
+    private void cbmTeamFlagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmTeamFlagActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbmTeamFlagActionPerformed
+
+    private void txtAuthorLastnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAuthorLastnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAuthorLastnameActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -589,6 +720,7 @@ public class JF_Request extends javax.swing.JFrame {
     private javax.swing.JLabel lblStadium;
     private javax.swing.JLabel lblTeamList;
     private javax.swing.JLabel lblTeamName;
+    private javax.swing.JLabel lblTeamName1;
     private javax.swing.JLabel lblTeamName2;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JTextField txtAuthorLastname;
