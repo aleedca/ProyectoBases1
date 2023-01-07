@@ -4,9 +4,11 @@
  */
 package Controller;
 
+import Model.model_Account;
 import Model.model_Login;
 import Model.model_Register;
 import View.JF_AdminOptions;
+import View.JF_EditAccount;
 import View.JF_Login;
 import View.JF_MyAccount;
 import View.JF_Principal;
@@ -33,9 +35,11 @@ public class OperationsController implements ActionListener, ItemListener{
     private final JF_AdminOptions viewMenuAdmin;
     private final JF_Request viewRequest;
     private final JF_MyAccount viewMyAccount;
+    private final JF_EditAccount viewEditAccount;
     
     private final model_Login modelLogin;
     private final model_Register modelRegister;
+    private final model_Account accountModel;
     private boolean flagRegister;
     
     private final RequestController requestController;
@@ -66,10 +70,13 @@ public class OperationsController implements ActionListener, ItemListener{
         JF_Request request = new JF_Request();
         this.viewRequest = request;
         
-        //View Request
+        //View MyAccount
         JF_MyAccount myaccount = new JF_MyAccount();
         this.viewMyAccount = myaccount;
         
+        //View EditAccount 
+        this.viewEditAccount = new JF_EditAccount();
+               
         //Modelo Login
         model_Login validateLogin = new model_Login();
         this.modelLogin = validateLogin;  
@@ -79,6 +86,8 @@ public class OperationsController implements ActionListener, ItemListener{
         model_Register validateRegister = new model_Register();
         this.modelRegister = validateRegister;
         
+        //Model MyAccount
+        this.accountModel = new model_Account();
         
         //Request Controller
         RequestController controller = new RequestController();
@@ -144,6 +153,7 @@ public class OperationsController implements ActionListener, ItemListener{
         
         //MyAccount
         viewMyAccount.getBtnBackMyAccount().addActionListener(this);
+        viewMyAccount.getBtnEditProfile().addActionListener(this);
          
     }
     
@@ -364,6 +374,7 @@ public class OperationsController implements ActionListener, ItemListener{
         }
         
         if(e.getSource() == viewPrincipal.getBtnAccount()){
+            accountModel.setUsernameValidated(model_Login.getUsernameLogin());
             viewMyAccount.setVisible(true);
             viewPrincipal.setVisible(false); 
         }
@@ -614,7 +625,7 @@ public class OperationsController implements ActionListener, ItemListener{
             viewPrincipal.setVisible(true);
         }
         
-        //----------- PANTALLA DE MyAccount -------------------------
+        //----------- Screen MyAccount -------------------------
         if(e.getSource() == viewMyAccount.getBtnBackMyAccount()){
             viewMyAccount.setVisible(false);
             viewPrincipal.getBtnLogin().setVisible(false);
@@ -634,6 +645,10 @@ public class OperationsController implements ActionListener, ItemListener{
             viewPrincipal.setVisible(true);
         }
         
+        if(e.getSource() == viewMyAccount.getBtnEditProfile()){
+            viewMyAccount.setVisible(false);
+            viewEditAccount.setVisible(true);
+        }
     }
     
     

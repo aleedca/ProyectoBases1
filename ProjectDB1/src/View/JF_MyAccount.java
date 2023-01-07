@@ -24,9 +24,10 @@ public class JF_MyAccount extends javax.swing.JFrame {
     public JButton getBtnBackMyAccount() {
         return btnBackMyAccount;
     }
-    
-    
-    
+
+    public JButton getBtnEditProfile() {
+        return btnEditProfile;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

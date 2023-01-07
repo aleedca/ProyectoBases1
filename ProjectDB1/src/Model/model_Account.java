@@ -18,14 +18,16 @@ public class model_Account {
     private Account accountLogged;
 
     public model_Account() {
+    }
+    
+    
+    private void getInfo(){
         try {
             this.accountLogged = DA_MyAccount.getAccountInfo(this.usernameValidated);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        
     }
-      
 
     public String getUsernameValidated() {
         return usernameValidated;
@@ -33,6 +35,7 @@ public class model_Account {
 
     public void setUsernameValidated(String usernameValidated) {
         this.usernameValidated = usernameValidated;
+        this.getInfo();
     }
     
     

@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * @author Mariana
  */
 public class model_Login {
-    private String usernameLogin;
+    private static String usernameLogin;
     private String passwordLogin;
     private int resultUserType;
     
@@ -66,7 +66,7 @@ public class model_Login {
     
     //------------ GETTERS AND SETTERS ----------------------
 
-    public String getUsernameLogin() {
+    public static String getUsernameLogin() {
         return usernameLogin;
     }
 
