@@ -28,17 +28,31 @@ public class JF_AdminMatches extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnBack = new javax.swing.JButton();
-        lblAdminMatches = new javax.swing.JLabel();
+        lblAdminPartidos = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
+        btnCrearGrupos = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
+        lblNumCamisa = new javax.swing.JLabel();
+        lblPartido = new javax.swing.JLabel();
+        lblTeam1 = new javax.swing.JLabel();
+        cmbTeam2 = new javax.swing.JComboBox<>();
+        cmbPartido = new javax.swing.JComboBox<>();
+        cmbTeam1 = new javax.swing.JComboBox<>();
+        txtDateHour = new javax.swing.JFormattedTextField();
+        lblTeam2 = new javax.swing.JLabel();
+        lblNumCamisa1 = new javax.swing.JLabel();
+        cmbTeam3 = new javax.swing.JComboBox<>();
+        btnCrearGrupos1 = new javax.swing.JButton();
+        jSpinner1 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(86, 4, 44));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -51,27 +65,118 @@ public class JF_AdminMatches extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBack);
-        btnBack.setBounds(45, 50, 46, 40);
+        btnBack.setBounds(38, 50, 46, 40);
 
-        lblAdminMatches.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
-        lblAdminMatches.setForeground(new java.awt.Color(255, 255, 255));
-        lblAdminMatches.setText("Administrar Partidos");
-        jPanel1.add(lblAdminMatches);
-        lblAdminMatches.setBounds(109, 42, 521, 48);
+        lblAdminPartidos.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        lblAdminPartidos.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdminPartidos.setText("Administrar Partidos");
+        jPanel1.add(lblAdminPartidos);
+        lblAdminPartidos.setBounds(102, 42, 521, 48);
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
         jPanel1.add(lblLogo);
-        lblLogo.setBounds(1064, 6, 200, 125);
+        lblLogo.setBounds(1057, 6, 200, 125);
+
+        btnCrearGrupos.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnCrearGrupos.setText("Agregar estadística");
+        btnCrearGrupos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearGruposActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCrearGrupos);
+        btnCrearGrupos.setBounds(770, 610, 190, 40);
+
+        btnAceptar.setBackground(new java.awt.Color(0, 153, 0));
+        btnAceptar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAceptar);
+        btnAceptar.setBounds(530, 610, 200, 39);
+
+        lblNumCamisa.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblNumCamisa.setForeground(new java.awt.Color(255, 255, 255));
+        lblNumCamisa.setText("Estadio");
+        jPanel1.add(lblNumCamisa);
+        lblNumCamisa.setBounds(230, 290, 150, 40);
+
+        lblPartido.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblPartido.setForeground(new java.awt.Color(255, 255, 255));
+        lblPartido.setText("Partido");
+        jPanel1.add(lblPartido);
+        lblPartido.setBounds(230, 210, 150, 40);
+
+        lblTeam1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblTeam1.setForeground(new java.awt.Color(255, 255, 255));
+        lblTeam1.setText("Team 1");
+        jPanel1.add(lblTeam1);
+        lblTeam1.setBounds(660, 210, 150, 40);
+
+        cmbTeam2.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        cmbTeam2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cmbTeam2);
+        cmbTeam2.setBounds(790, 290, 240, 40);
+
+        cmbPartido.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        cmbPartido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cmbPartido);
+        cmbPartido.setBounds(350, 210, 240, 40);
+
+        cmbTeam1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        cmbTeam1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cmbTeam1);
+        cmbTeam1.setBounds(350, 290, 240, 40);
+
+        txtDateHour.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yy h:m aa"))));
+        txtDateHour.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        txtDateHour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDateHourActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtDateHour);
+        txtDateHour.setBounds(540, 420, 190, 40);
+
+        lblTeam2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblTeam2.setForeground(new java.awt.Color(255, 255, 255));
+        lblTeam2.setText("Team 2");
+        jPanel1.add(lblTeam2);
+        lblTeam2.setBounds(660, 290, 150, 40);
+
+        lblNumCamisa1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblNumCamisa1.setForeground(new java.awt.Color(255, 255, 255));
+        lblNumCamisa1.setText("Fecha y hora");
+        jPanel1.add(lblNumCamisa1);
+        lblNumCamisa1.setBounds(560, 370, 150, 40);
+
+        cmbTeam3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        cmbTeam3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cmbTeam3);
+        cmbTeam3.setBounds(790, 210, 240, 40);
+
+        btnCrearGrupos1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnCrearGrupos1.setText("Crear grupos");
+        jPanel1.add(btnCrearGrupos1);
+        btnCrearGrupos1.setBounds(290, 610, 190, 40);
+
+        jSpinner1.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1673028000000L), new java.util.Date(1673028000000L), null, java.util.Calendar.AM_PM));
+        jPanel1.add(jSpinner1);
+        jSpinner1.setBounds(830, 410, 174, 22);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -82,6 +187,18 @@ public class JF_AdminMatches extends javax.swing.JFrame {
         //        principal.setVisible(true);
         //        this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtDateHourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateHourActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDateHourActionPerformed
+
+    private void btnCrearGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearGruposActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCrearGruposActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        System.out.println(txtDateHour.getText());
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,9 +236,23 @@ public class JF_AdminMatches extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnCrearGrupos;
+    private javax.swing.JButton btnCrearGrupos1;
+    private javax.swing.JComboBox<String> cmbPartido;
+    private javax.swing.JComboBox<String> cmbTeam1;
+    private javax.swing.JComboBox<String> cmbTeam2;
+    private javax.swing.JComboBox<String> cmbTeam3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblAdminMatches;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JLabel lblAdminPartidos;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblNumCamisa;
+    private javax.swing.JLabel lblNumCamisa1;
+    private javax.swing.JLabel lblPartido;
+    private javax.swing.JLabel lblTeam1;
+    private javax.swing.JLabel lblTeam2;
+    private javax.swing.JFormattedTextField txtDateHour;
     // End of variables declaration//GEN-END:variables
 }
