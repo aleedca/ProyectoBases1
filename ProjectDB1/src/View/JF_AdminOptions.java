@@ -28,6 +28,13 @@ public class JF_AdminOptions extends javax.swing.JFrame {
     public JButton getBtnAdmiNoticias() {
         return btnAdmiNoticias;
     }
+
+    public JButton getBtnAdmiPersonas() {
+        return btnAdmiPersonas;
+    }
+    
+    
+    
     
 
     /**
@@ -204,17 +211,11 @@ public class JF_AdminOptions extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdmiCatalogosActionPerformed
 
     private void btnAdmiNoticiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmiNoticiasActionPerformed
-        /*JF_AdminNews adminNoticias = new JF_AdminNews();
-        adminNoticias.setVisible(true);
-        this.setVisible(false);
-        this.dispose();*/
+
     }//GEN-LAST:event_btnAdmiNoticiasActionPerformed
 
     private void btnAdmiPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmiPersonasActionPerformed
-        JF_AdminPerson adminPerson = new JF_AdminPerson();
-        adminPerson.setVisible(true);
-        this.setVisible(false);
-        //this.dispose();
+
     }//GEN-LAST:event_btnAdmiPersonasActionPerformed
 
     private void btnBitacoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBitacoraActionPerformed

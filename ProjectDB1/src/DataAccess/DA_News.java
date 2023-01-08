@@ -42,7 +42,6 @@ public class DA_News {
             news.setPhoto(rs.getString("photo"));
             news.setText(rs.getString("textNews"));
             newsArr.add(news);
-            System.out.println(news.toString());
         }
 
         return newsArr;
