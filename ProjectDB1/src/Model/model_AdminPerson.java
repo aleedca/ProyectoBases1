@@ -37,6 +37,7 @@ public class model_AdminPerson {
     private int district;
     private String photo;
     private String dateOfBirth;
+    private int numTShirt;
     
     private int position;
     private ArrayList<Position> positions;
@@ -44,7 +45,7 @@ public class model_AdminPerson {
     
       
 
-    private int numTShirt;
+    
     
     
     private final JFileChooser file = new JFileChooser();

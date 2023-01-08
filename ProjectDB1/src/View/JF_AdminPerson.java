@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -628,8 +629,12 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         }
     }
 
-    
-    
+
+    public int getSpnNumTShirt() {
+        String numberStr = spnNumCamisa.getValue().toString();
+        int number = Integer.parseInt(numberStr);
+        return number;
+    }
     
     
     

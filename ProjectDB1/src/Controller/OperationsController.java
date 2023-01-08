@@ -925,6 +925,9 @@ public class OperationsController implements ActionListener, ItemListener{
             
             modelAdminPerson.setIdentification(viewAdminPerson.getTxtIdentification());
             modelAdminPerson.setPhone(viewAdminPerson.getTxtPhone());
+            
+            modelAdminPerson.setDateOfBirth(viewAdminPerson.getTxtDateOfBirth());
+            modelAdminPerson.setNumTShirt(viewAdminPerson.getSpnNumTShirt());
 
             
             flagAdminPerson = true;
@@ -1037,7 +1040,7 @@ public class OperationsController implements ActionListener, ItemListener{
                         flagAdminPerson = false;
                     }
                     
-                   
+                    
                 }//VALIDATE EMPTY FIELDS
                 
                 if(flagAdminPerson == true){
