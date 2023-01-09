@@ -119,12 +119,12 @@ BEGIN
     EXCEPTION
     WHEN OTHERS THEN
         ROLLBACK;
-        codResult:= 5001;
+        codResult := SQLCODE;
     END;
 END insertPlayer;
 
 -- TeamWorker
-CREATE OR REPLACE PROCEDURE insertTeamWorker(pIdentification IN NUMBER,, pFirstName IN VARCHAR2, 
+CREATE OR REPLACE PROCEDURE insertTeamWorker(pIdentification IN NUMBER, pFirstName IN VARCHAR2, 
                 pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2,
                 pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER, pIdTypeIdentification IN NUMBER, 
                 pIdGender IN NUMBER, pIdTeam IN NUMBER,pPhoneNumber IN NUMBER, pIdDistrict IN NUMBER, 
@@ -150,7 +150,7 @@ BEGIN
     EXCEPTION
     WHEN OTHERS THEN
         ROLLBACK;
-        codResult:= 5002;
+        codResult := SQLCODE;
     END;
 END insertTeamWorker;
 

@@ -842,9 +842,20 @@ public class OperationsController implements ActionListener, ItemListener{
                 
                 JOptionPane.showMessageDialog(null, "Felicidades, su cuenta se creó correctamte.\nInicie sesión para comenzar a disfrutar de nuestra aplicación" );
                 viewRegister.cleanAll();
+                
+                fillGenders();
+                fillIdentificationTypes();     
+                fillCountries();
+
+                
+                modelRegister.setPhoto("src/Images/avatar.png");
+                viewRegister.setLocationRelativeTo(viewRegister);
+                modelRegister.setImageLabel(viewRegister.getLblAvatar());
+                viewRegister.repaint();  
+                
+                
                 viewRegister.setVisible(false);
                 viewPrincipal.getBtnSignUp().setVisible(false);
-                
                 viewPrincipal.setVisible(true);
             }
                 
@@ -965,7 +976,7 @@ public class OperationsController implements ActionListener, ItemListener{
             
             //Add
             if(viewAdminPerson.getRbtnAdd().isSelected()){
-                
+                                
                 if(modelAdminPerson.validateEmptyFieldsAdminPerson()){
                     JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);
                     flagAdminPerson = false;
@@ -1071,12 +1082,13 @@ public class OperationsController implements ActionListener, ItemListener{
                         flagAdminPerson = false;
                     }
                     
-                    if(viewAdminPerson.validateTxtDateOfBirth()){
-                        JOptionPane.showMessageDialog(null, "Debe ingresar una fecha de nacimiento", "Error", JOptionPane.WARNING_MESSAGE);
-                        flagAdminPerson = false;
+                    if("Jugador".equals(viewAdminPerson.getTxtCmbPerson())){
+                        if(viewAdminPerson.validateTxtDateOfBirth()){
+                            JOptionPane.showMessageDialog(null, "Debe ingresar una fecha de nacimiento", "Error", JOptionPane.WARNING_MESSAGE);
+                            flagAdminPerson = false;
+                        }
                     }
-                    
-                    
+     
                 }//VALIDATE EMPTY FIELDS
                 
                 if(flagAdminPerson == true){

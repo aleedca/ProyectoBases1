@@ -100,7 +100,6 @@ public class model_AdminPerson {
       
     public void inserPlayer(){
         try {   
-            System.out.println("Entro a llamar a la base");
             this.resultInsertPerson = DA_Person.insertPlayer(identification, firstName, secondName, firstLastName, secondLastName, photo, 
                     position, typeIdentification, gender, team, 
                     this.dateOfBirth, numTShirt, phone, mail, district, address);
@@ -112,7 +111,6 @@ public class model_AdminPerson {
     
     public void inserTeamWorker(){
         try {   
-            System.out.println("Entro a llamar a la base");
             this.resultInsertPerson = DA_Person.insertTeamWorker(identification, firstName, secondName, firstLastName, 
                     secondLastName, photo, position, typeIdentification, gender, 
                     team, phone, district, mail, address);
