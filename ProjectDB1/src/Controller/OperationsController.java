@@ -834,6 +834,12 @@ public class OperationsController implements ActionListener, ItemListener{
                     flagRegister = false;
                 }
                 
+                if(modelLogin.userAlreadyExists()){
+                    JOptionPane.showMessageDialog(null, "Username ya existente. Debe ingresar un username diferente", "Error", JOptionPane.WARNING_MESSAGE);
+                    viewRegister.cleanUsername();
+                    flagRegister = false;
+                }
+                
             }
            
             

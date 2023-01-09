@@ -27,6 +27,26 @@ public class model_Login {
         return false;
     }
     
+    public boolean userAlreadyExists(){
+        try {
+            this.resultUserType = DA_Person.validateUserAlreadyExists(usernameLogin);
+            
+            if(this.resultUserType != 0){
+                return false;
+            }else{
+                return true;
+            }
+                     
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return false; 
+    }
+   
+    
+    
+    
     public boolean userExists(){
         try {
             this.resultUserType = DA_Person.validateUserType(this.usernameLogin, this.passwordLogin);

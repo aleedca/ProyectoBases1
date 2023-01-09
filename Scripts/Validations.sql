@@ -22,4 +22,25 @@ EXCEPTION
         codResult := SQLCODE;        
 END validateUser;
 
+
+CREATE OR REPLACE PROCEDURE validateUserAlreadyExists(pUsername IN VARCHAR2,codResult OUT NUMBER) 
+IS
+vnUsername VARCHAR(32);
+BEGIN
+    SELECT   username
+    INTO vnUsername
+    FROM UserPerson 
+    WHERE username = pUsername;
+    
+    IF(vnUsername != NULL) THEN
+        codResult := 0;
+    END IF;
+    
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;        
+END validateUserAlreadyExists;
+
             

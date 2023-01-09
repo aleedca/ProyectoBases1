@@ -47,6 +47,21 @@ public class DA_Person {
     }
     
     
+    public static int validateUserAlreadyExists(String username) throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call  validateUserAlreadyExists(?,?)}");
+        //Input parameters
+        sql.setString(1, username);
+        
+        //Output parameter
+        sql.registerOutParameter(2, OracleTypes.NUMBER);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(2)).intValue();
+        return result;   
+    }
+
     public static int validateUserType(String username, String password) throws SQLException {
         Connection conn = sysConnection.getConexion();
         
