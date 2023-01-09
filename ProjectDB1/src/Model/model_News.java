@@ -3,11 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
-import DataAccess.DA_News;
-<<<<<<< HEAD
 import Objects.News;
-=======
->>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
+import DataAccess.DA_News;
 import Objects.NewsStatus;
 import Objects.NewsType;
 import java.sql.SQLException;
@@ -19,26 +16,17 @@ import java.util.ArrayList;
  */
 public class model_News {
     //atributos que aparecen el design de AdminNews
-<<<<<<< HEAD
-    private String newsTitle = getNewsTitle();
-    private String newsText = getNewsText();
-    private String photo = getPhoto();
-=======
     private String newsTitle;
     private String newsText;
     private String photo;
->>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
     
+    private String newsStr;
     private ArrayList<News> newsArr;
-<<<<<<< HEAD
-    private ArrayList<NewsStatus> newsStatusArr;
-=======
     
     private String newsType;
     private ArrayList<NewsStatus> newsStatusArr;
     
     private String newsStatus;
->>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
     private ArrayList<NewsType> newsTypeArr;
 
     public model_News(){
@@ -48,10 +36,7 @@ public class model_News {
             this.newsStatusArr = DA_News.getNewsStatus();
             
             this.newsTypeArr = DA_News.getNewsType();
-<<<<<<< HEAD
-=======
                       
->>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
             
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -59,16 +44,31 @@ public class model_News {
     }
     
     public boolean validateEmptyFields(String title, String text){
-        if(title.isEmpty() || text.isEmpty()){return false;}
-        return true;
+        if(title.isEmpty() || text.isEmpty()){return true;}
+        return false;
     }
     
     public boolean validatePhoto(String photo){
-        if(photo == null){return false;}
-        return true;
+        if(photo == null){return true;}
+        return false;
     }
 
     // GETTERS AND SETTERS
+    public String getNewsStatus() {
+        return newsStatus;
+    }
+
+    public void setNewsStatus(String newsStatus) {
+        this.newsStatus = newsStatus;
+    }
+
+    public String getNewsType() {
+        return newsType;
+    }
+
+    public void setNewsType(String newsType) {
+        this.newsType = newsType;
+    }
 
     public String getNewsTitle() {
         return newsTitle;
@@ -94,6 +94,14 @@ public class model_News {
         this.photo = photo;
     }
 
+    public String getNewsStr() {
+        return newsStr;
+    }
+
+    public void setNewsStr(String newsStr) {
+        this.newsStr = newsStr;
+    }
+
     public ArrayList<News> getNewsArr() {
         return newsArr;
     }
@@ -117,9 +125,6 @@ public class model_News {
     public void setNewsTypeArr(ArrayList<NewsType> newsTypeArr) {
         this.newsTypeArr = newsTypeArr;
     }
-<<<<<<< HEAD
-
-=======
     
     
 
@@ -127,5 +132,4 @@ public class model_News {
     
     
     
->>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
 }

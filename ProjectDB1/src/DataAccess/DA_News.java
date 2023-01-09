@@ -47,10 +47,7 @@ public class DA_News {
         return newsArr;
     }
     
-<<<<<<< HEAD
-=======
     
->>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
     public static ArrayList<NewsStatus> getNewsStatus() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -59,20 +56,6 @@ public class DA_News {
         sql.execute();
         
         ResultSet rs = (ResultSet) sql.getObject(1);
-<<<<<<< HEAD
-        ArrayList<NewsStatus> newsStatus = new ArrayList<>();
-        while(rs.next()){
-            NewsStatus status = new NewsStatus();
-            
-            status.setIdNewsStatus(rs.getInt("idNewsStatus"));
-            status.setDescriptionNewsStatus(rs.getString("descriptionNewsStatus"));
-            newsStatus.add(status);
-        }
-
-        return newsStatus;
-    }
-    
-=======
         ArrayList<NewsStatus> arrayNewsStatus = new ArrayList<>();
         while(rs.next()){
             NewsStatus newsStatus = new NewsStatus();
@@ -86,7 +69,6 @@ public class DA_News {
     }
     
     
->>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
     public static ArrayList<NewsType> getNewsType() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -95,19 +77,6 @@ public class DA_News {
         sql.execute();
         
         ResultSet rs = (ResultSet) sql.getObject(1);
-<<<<<<< HEAD
-        ArrayList<NewsType> newsType = new ArrayList<>();
-        while(rs.next()){
-            NewsType type = new NewsType();
-            
-            type.setIdNewsType(rs.getInt("idNewsType"));
-            type.setDescriptionNewsType(rs.getString("descriptionNewsType"));
-            newsType.add(type);
-        }
-
-        return newsType;
-    }
-=======
         ArrayList<NewsType> arrayNewsType = new ArrayList<>();
         while(rs.next()){
             NewsType newsType = new NewsType();
@@ -124,5 +93,4 @@ public class DA_News {
     
     
     
->>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
 }

@@ -6,21 +6,14 @@ package Objects;
 
 /**
  *
-<<<<<<< HEAD
- * @author Alexia
-=======
  * @author Mariana
->>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
  */
 public class NewsStatus {
     private int idNewsStatus;
     private String descriptionNewsStatus;
-<<<<<<< HEAD
-=======
     
     
     //GETTERS AND SETTERS
->>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
 
     public int getIdNewsStatus() {
         return idNewsStatus;
@@ -37,16 +30,8 @@ public class NewsStatus {
     public void setDescriptionNewsStatus(String descriptionNewsStatus) {
         this.descriptionNewsStatus = descriptionNewsStatus;
     }
-<<<<<<< HEAD
-
-    @Override
-    public String toString() {
-        return "NewsStatus{" + "idNewsStatus=" + idNewsStatus + ", descriptionNewsStatus=" + descriptionNewsStatus + '}';
-    }
-=======
     
     
     
->>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
     
 }

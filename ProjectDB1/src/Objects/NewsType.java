@@ -6,20 +6,13 @@ package Objects;
 
 /**
  *
-<<<<<<< HEAD
- * @author Alexia
-=======
  * @author Mariana
->>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
  */
 public class NewsType {
     private int idNewsType;
     private String descriptionNewsType;
-<<<<<<< HEAD
-=======
     
     //GETTERS AND SETTERS
->>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
 
     public int getIdNewsType() {
         return idNewsType;
@@ -36,15 +29,7 @@ public class NewsType {
     public void setDescriptionNewsType(String descriptionNewsType) {
         this.descriptionNewsType = descriptionNewsType;
     }
-<<<<<<< HEAD
-
-    @Override
-    public String toString() {
-        return "NewsType{" + "idNewsType=" + idNewsType + ", descriptionNewsType=" + descriptionNewsType + '}';
-    }
-=======
     
->>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
     
     
 }
