@@ -4,6 +4,8 @@
  */
 package View;
 
+import javax.swing.JFormattedTextField;
+
 /**
  *
  * @author Alexia
@@ -30,20 +32,19 @@ public class JF_AdminMatches extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         lblAdminPartidos = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
-        btnCrearGrupos = new javax.swing.JButton();
+        btnCrearPartidos = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
         lblNumCamisa = new javax.swing.JLabel();
         lblPartido = new javax.swing.JLabel();
         lblTeam1 = new javax.swing.JLabel();
-        cmbTeam2 = new javax.swing.JComboBox<>();
         cmbPartido = new javax.swing.JComboBox<>();
         cmbTeam1 = new javax.swing.JComboBox<>();
         txtDateHour = new javax.swing.JFormattedTextField();
         lblTeam2 = new javax.swing.JLabel();
         lblNumCamisa1 = new javax.swing.JLabel();
         cmbTeam3 = new javax.swing.JComboBox<>();
-        btnCrearGrupos1 = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
+        btnCrearGrupos = new javax.swing.JButton();
+        cmbTeam4 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -77,15 +78,15 @@ public class JF_AdminMatches extends javax.swing.JFrame {
         jPanel1.add(lblLogo);
         lblLogo.setBounds(1057, 6, 200, 125);
 
-        btnCrearGrupos.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        btnCrearGrupos.setText("Agregar estadística");
-        btnCrearGrupos.addActionListener(new java.awt.event.ActionListener() {
+        btnCrearPartidos.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnCrearPartidos.setText("Crear partidos");
+        btnCrearPartidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearGruposActionPerformed(evt);
+                btnCrearPartidosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCrearGrupos);
-        btnCrearGrupos.setBounds(770, 610, 190, 40);
+        jPanel1.add(btnCrearPartidos);
+        btnCrearPartidos.setBounds(770, 610, 190, 40);
 
         btnAceptar.setBackground(new java.awt.Color(0, 153, 0));
         btnAceptar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
@@ -116,11 +117,6 @@ public class JF_AdminMatches extends javax.swing.JFrame {
         lblTeam1.setText("Team 1");
         jPanel1.add(lblTeam1);
         lblTeam1.setBounds(660, 210, 150, 40);
-
-        cmbTeam2.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        cmbTeam2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cmbTeam2);
-        cmbTeam2.setBounds(790, 290, 240, 40);
 
         cmbPartido.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         cmbPartido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -159,14 +155,15 @@ public class JF_AdminMatches extends javax.swing.JFrame {
         jPanel1.add(cmbTeam3);
         cmbTeam3.setBounds(790, 210, 240, 40);
 
-        btnCrearGrupos1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        btnCrearGrupos1.setText("Crear grupos");
-        jPanel1.add(btnCrearGrupos1);
-        btnCrearGrupos1.setBounds(290, 610, 190, 40);
+        btnCrearGrupos.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        btnCrearGrupos.setText("Crear grupos");
+        jPanel1.add(btnCrearGrupos);
+        btnCrearGrupos.setBounds(290, 610, 190, 40);
 
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1673028000000L), new java.util.Date(1673028000000L), null, java.util.Calendar.AM_PM));
-        jPanel1.add(jSpinner1);
-        jSpinner1.setBounds(830, 410, 174, 22);
+        cmbTeam4.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        cmbTeam4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cmbTeam4);
+        cmbTeam4.setBounds(790, 290, 240, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,22 +179,25 @@ public class JF_AdminMatches extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JFormattedTextField getTxtDateHour() {
+        return txtDateHour;
+    }
+    
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        //        JF_Principal principal = new JF_Principal();
-        //        principal.setVisible(true);
-        //        this.dispose();
+        
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtDateHourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateHourActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDateHourActionPerformed
 
-    private void btnCrearGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearGruposActionPerformed
+    private void btnCrearPartidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPartidosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCrearGruposActionPerformed
+    }//GEN-LAST:event_btnCrearPartidosActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        System.out.println(txtDateHour.getText());
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
@@ -239,13 +239,12 @@ public class JF_AdminMatches extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCrearGrupos;
-    private javax.swing.JButton btnCrearGrupos1;
+    private javax.swing.JButton btnCrearPartidos;
     private javax.swing.JComboBox<String> cmbPartido;
     private javax.swing.JComboBox<String> cmbTeam1;
-    private javax.swing.JComboBox<String> cmbTeam2;
     private javax.swing.JComboBox<String> cmbTeam3;
+    private javax.swing.JComboBox<String> cmbTeam4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lblAdminPartidos;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNumCamisa;
