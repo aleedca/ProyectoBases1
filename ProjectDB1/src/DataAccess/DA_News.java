@@ -5,6 +5,8 @@
 package DataAccess;
 
 import Objects.News;
+import Objects.NewsStatus;
+import Objects.NewsType;
 import java.util.ArrayList;
 
 import java.sql.Connection;
@@ -40,9 +42,48 @@ public class DA_News {
             news.setPhoto(rs.getString("photo"));
             news.setText(rs.getString("textNews"));
             newsArr.add(news);
-            System.out.println(news.toString());
         }
 
         return newsArr;
+    }
+    
+    public static ArrayList<NewsStatus> getNewsStatus() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getNewsStatus(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<NewsStatus> newsStatus = new ArrayList<>();
+        while(rs.next()){
+            NewsStatus status = new NewsStatus();
+            
+            status.setIdNewsStatus(rs.getInt("idNewsStatus"));
+            status.setDescriptionNewsStatus(rs.getString("descriptionNewsStatus"));
+            newsStatus.add(status);
+        }
+
+        return newsStatus;
+    }
+    
+    public static ArrayList<NewsType> getNewsType() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getNewsType(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<NewsType> newsType = new ArrayList<>();
+        while(rs.next()){
+            NewsType type = new NewsType();
+            
+            type.setIdNewsType(rs.getInt("idNewsType"));
+            type.setDescriptionNewsType(rs.getString("descriptionNewsType"));
+            newsType.add(type);
+        }
+
+        return newsType;
     }
 }

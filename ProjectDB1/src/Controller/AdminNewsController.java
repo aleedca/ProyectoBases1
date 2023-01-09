@@ -4,10 +4,10 @@
  */
 package Controller;
 
-
-import Model.model_Register;
 import Model.model_News;
 import Objects.News;
+import Objects.NewsStatus;
+import Objects.NewsType;
 import View.JF_AdminNews;
 import View.JF_AdminPerson;
 
@@ -52,6 +52,8 @@ public class AdminNewsController{
         this.modelNews = validateNews;
         
         fillAdminNews(); 
+        fillAdminNewsStatus();
+        fillAdminNewsType();
 
     }
 
@@ -73,6 +75,24 @@ public class AdminNewsController{
             row.add(newsArr.get(i).getNewsType());
             row.add(newsArr.get(i).getRateNumber());
             modelTable.addRow(row);
+        }
+    }
+    
+    public void fillAdminNewsStatus(){
+        viewAdminNews.getCmbEstado().removeAllItems();
+        ArrayList<NewsStatus> newsStatusArr = modelNews.getNewsStatusArr();
+        
+        for(int i = 0; i < newsStatusArr.size(); i++){
+            viewAdminNews.getCmbEstado().addItem(newsStatusArr.get(i).getDescriptionNewsStatus());
+        }
+    }
+    
+    public void fillAdminNewsType(){
+        viewAdminNews.getCmbTipo().removeAllItems();
+        ArrayList<NewsType> newsTypeArr = modelNews.getNewsTypeArr();
+        
+        for(int i = 0; i < newsTypeArr.size(); i++){
+            viewAdminNews.getCmbEstado().addItem(newsTypeArr.get(i).getDescriptionNewsType());
         }
     }
     
