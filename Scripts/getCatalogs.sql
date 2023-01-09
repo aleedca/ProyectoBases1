@@ -72,5 +72,16 @@ BEGIN
     FROM NewsType;
 END getNewsType;
 
+CREATE OR REPLACE PROCEDURE getTeam(curTeam OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curTeam FOR
+    SELECT idTeam, nameTeam
+    FROM Team;
+END getTeam;
+
+
+
+
+
 
 

@@ -182,7 +182,7 @@ public class model_Register {
     }
     
     public boolean validatePhoto(String photo){
-        if(photo == null){
+        if(photo == null || "src/Images/avatar.png".equals(photo)){
             return true;
         }
         

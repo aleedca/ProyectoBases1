@@ -5,7 +5,9 @@
 package Model;
 
 import DataAccess.DA_Catalogs;
+import DataAccess.DA_Person;
 import Objects.Position;
+import Objects.Team;
 import View.JF_AdminPerson;
 import java.awt.Image;
 import java.sql.SQLException;
@@ -38,15 +40,14 @@ public class model_AdminPerson {
     private String photo;
     private String dateOfBirth;
     private int numTShirt;
+    private int resultInsertPerson;
     
     private int position;
     private ArrayList<Position> positions;
     
-    
-      
-
-    
-    
+    private int team;
+    private ArrayList<Team> teams;
+   
     
     private final JFileChooser file = new JFileChooser();
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");;
@@ -56,6 +57,9 @@ public class model_AdminPerson {
         
         try {
             this.positions = DA_Catalogs.getPosition();
+            
+            this.teams = DA_Catalogs.getTeam();
+            
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -91,6 +95,31 @@ public class model_AdminPerson {
         ImageIcon image = new ImageIcon(this.photo);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_SMOOTH));
         labelName.setIcon(icon);
+    }
+    
+      
+    public void inserPlayer(){
+        try {   
+            System.out.println("Entro a llamar a la base");
+            this.resultInsertPerson = DA_Person.insertPlayer(identification, firstName, secondName, firstLastName, secondLastName, photo, 
+                    position, typeIdentification, gender, team, 
+                    this.dateOfBirth, numTShirt, phone, mail, district, address);
+        
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void inserTeamWorker(){
+        try {   
+            System.out.println("Entro a llamar a la base");
+            this.resultInsertPerson = DA_Person.insertTeamWorker(identification, firstName, secondName, firstLastName, 
+                    secondLastName, photo, position, typeIdentification, gender, 
+                    team, phone, district, mail, address);
+        
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
     
     
@@ -253,6 +282,26 @@ public class model_AdminPerson {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public int getTeam() {
+        return team;
+    }
+
+    public void setTeam(int team) {
+        this.team = team;
+    }
+
+    public ArrayList<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(ArrayList<Team> teams) {
+        this.teams = teams;
+    }
+
+    public int getResultInsertPerson() {
+        return resultInsertPerson;
     }
     
     

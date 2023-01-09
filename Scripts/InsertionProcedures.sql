@@ -96,9 +96,9 @@ END insertPerson;
 CREATE OR REPLACE PROCEDURE insertPlayer (pIdentification IN NUMBER, pFirstName IN VARCHAR2, 
             pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2, 
             pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER, pIdTypeIdentification IN NUMBER, 
-            pIdGender IN NUMBER, pIdTeam IN NUMBER, pBirthdate DATE, 
+            pIdGender IN NUMBER, pIdTeam IN NUMBER, pBirthdate VARCHAR2, 
             pTShirtNum NUMBER, pPhoneNumber IN NUMBER,pMail IN VARCHAR2, pIdDistrict IN NUMBER,
-            pDescriptionAddress IN VARCHAR2)
+            pDescriptionAddress IN VARCHAR2, codResult OUT NUMBER)
 AS
 BEGIN
     BEGIN
@@ -108,22 +108,27 @@ BEGIN
                       pIdTypeIdentification, pIdGender);
             
         INSERT INTO Player(idPerson, idTeam, birthdate, tShirtNum, userCreation, lastUser, lastDate, dateCreation)
-        VALUES (s_person.currval, pIdTeam, pBirthdate, pTShirtNum, NULL, NULL, NULL, NULL); 
+        VALUES (s_person.currval, pIdTeam, TO_DATE(pBirthdate), pTShirtNum, NULL, NULL, NULL, NULL); 
             
         insertMail (s_person.currval, pMail);
         insertPhone (pPhoneNumber);
-        insertPersonXPhone (s_phone.currval,s_person.currval);
-            
+        insertPersonXPhone (s_person.currval, s_phone.currval);
+        
+        codResult:= 0;
         COMMIT;
+    EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult:= 5001;
     END;
 END insertPlayer;
 
 -- TeamWorker
-CREATE OR REPLACE PROCEDURE insertTeamWorker(pIdentification IN NUMBER, pIdTeam IN NUMBER, pFirstName IN VARCHAR2, 
+CREATE OR REPLACE PROCEDURE insertTeamWorker(pIdentification IN NUMBER,, pFirstName IN VARCHAR2, 
                 pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2,
                 pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER, pIdTypeIdentification IN NUMBER, 
-                pIdGender IN NUMBER, pPhoneNumber IN NUMBER, pIdDistrict IN NUMBER, 
-                pMail IN VARCHAR2, pDescriptionAddress IN VARCHAR2)
+                pIdGender IN NUMBER, pIdTeam IN NUMBER,pPhoneNumber IN NUMBER, pIdDistrict IN NUMBER, 
+                pMail IN VARCHAR2, pDescriptionAddress IN VARCHAR2, codResult OUT NUMBER)
 AS
 BEGIN
     BEGIN
@@ -138,9 +143,14 @@ BEGIN
         
         insertMail (s_person.currval, pMail);
         insertPhone (pPhoneNumber);
-        insertPersonXPhone (s_phone.currval,s_person.currval);
-
+        insertPersonXPhone (s_person.currval, s_phone.currval);
+        
+        codResult:= 0;   
         COMMIT;
+    EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult:= 5002;
     END;
 END insertTeamWorker;
 
@@ -166,7 +176,7 @@ BEGIN
             
         insertMail (s_person.currval, pMail);
         insertPhone (pPhoneNumber);
-        insertPersonXPhone (s_phone.currval,s_person.currval);
+        insertPersonXPhone (s_person.currval, s_phone.currval);
         
         COMMIT;
     END;

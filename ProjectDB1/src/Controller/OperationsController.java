@@ -44,6 +44,7 @@ public class OperationsController implements ActionListener, ItemListener{
     private final model_Register modelRegister;
     private final model_AdminPerson modelAdminPerson;
     private final model_Account accountModel;
+    
     private boolean flagRegister;
     private boolean flagAdminPerson;
     
@@ -113,6 +114,7 @@ public class OperationsController implements ActionListener, ItemListener{
         fillIdentificationTypes();     
         fillCountries();
         fillPositions();
+        fillTeams();
 
     }
     
@@ -175,6 +177,8 @@ public class OperationsController implements ActionListener, ItemListener{
         viewAdminPerson.getCmbGender().addItemListener(this);
         viewAdminPerson.getCmbTypeIdentification().addItemListener(this);
         viewAdminPerson.getCmbTypePosition().addItemListener(this);
+        viewAdminPerson.getCmbTeam().addItemListener(this);
+        
         
         viewAdminPerson.getCmbCountry().addItemListener(this);
         viewAdminPerson.getCmbProvince().addItemListener(this);
@@ -305,6 +309,17 @@ public class OperationsController implements ActionListener, ItemListener{
             viewAdminPerson.getCmbTypePosition().addItem(namePosition);
         }
     }
+    
+    private void fillTeams(){
+        viewAdminPerson.getCmbTeam().removeAllItems();
+        
+        viewAdminPerson.getCmbTeam().addItem("Seleccione Equipo");
+        for(int i=0; i<modelAdminPerson.getTeams().size();i++){
+            String nameTeam = modelAdminPerson.getTeams().get(i).getNameTeam();
+            viewAdminPerson.getCmbTeam().addItem(nameTeam);
+        }
+    }
+       
     
     //-------------------------------------------------------------------------------------------------------
     
@@ -577,6 +592,22 @@ public class OperationsController implements ActionListener, ItemListener{
             }
         }
         
+        //TEAM -> ADMINPERSON
+        if(e.getSource() == viewAdminPerson.getCmbTeam()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewAdminPerson.getSelectedTeam();    
+                if(!"Seleccione Equipo".equals(choice)){
+                                    
+                    for(int i=0; i<modelAdminPerson.getTeams().size();i++){
+                        if( choice.equals(modelAdminPerson.getTeams().get(i).getNameTeam())){
+                            int idTeam = modelAdminPerson.getTeams().get(i).getIdTeam();
+                            System.out.println("Id de Team: " + idTeam);
+                            modelAdminPerson.setTeam(idTeam);
+                        }    
+                    } 
+                } 
+            }
+        }
         
         
 
@@ -841,7 +872,7 @@ public class OperationsController implements ActionListener, ItemListener{
             this.adminNewsController.showView();
         }
         
-        if(e.getSource() == viewMenuAdmin.getBtnAdmiPersonas()){
+        if(e.getSource() == viewMenuAdmin.getBtnAdmiPersonas()){                    
             viewMenuAdmin.setVisible(false);
             viewAdminPerson.setVisible(true);
         }
@@ -1025,6 +1056,11 @@ public class OperationsController implements ActionListener, ItemListener{
                         flagAdminPerson = false;
                     }
                     
+                    if("Seleccione Equipo".equals(viewAdminPerson.getSelectedTeam())){
+                        JOptionPane.showMessageDialog(null, "Debe seleccionar un equipo", "Error", JOptionPane.WARNING_MESSAGE);
+                        flagAdminPerson = false;
+                    }
+                    
                     if(viewAdminPerson.validateTxtPhone()){
                         JOptionPane.showMessageDialog(null, "Debe ingresar un número de teléfono", "Error", JOptionPane.WARNING_MESSAGE);
                         flagAdminPerson = false;
@@ -1046,17 +1082,33 @@ public class OperationsController implements ActionListener, ItemListener{
                 if(flagAdminPerson == true){
                     
                     if("Jugador".equals(viewAdminPerson.getTxtCmbPerson())){
-                        //Llama a insertar player
+                        modelAdminPerson.inserPlayer();
+                        
                     }else{
-                        //Llama a insertar teamWorker
+                        modelAdminPerson.inserTeamWorker();
+                        System.out.println("Es TemWorker");
                     }
                     
-  
-                    JOptionPane.showMessageDialog(null, "Se ha creado la persona" );
+                    if(modelAdminPerson.getResultInsertPerson() == 0){
+                        JOptionPane.showMessageDialog(null, "Se ha creado la persona");
+                        viewAdminPerson.setVisible(false);
+                        viewMenuAdmin.setVisible(true);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Lo sentimos, no se logro crear la persona", "Error", JOptionPane.WARNING_MESSAGE);
+                    }
+                       
                     viewAdminPerson.cleanAll();
-                    
-                    viewAdminPerson.setVisible(false);
-                    viewMenuAdmin.setVisible(true);
+                        
+                    fillGenders();
+                    fillIdentificationTypes();     
+                    fillCountries();
+                    fillPositions();
+                    fillTeams();
+                        
+                    modelAdminPerson.setPhoto("src/Images/avatar.png");
+                    viewAdminPerson.setLocationRelativeTo(viewAdminPerson);
+                    modelAdminPerson.setImageAdminPerson(viewAdminPerson.getLblAvatar());
+                    viewAdminPerson.repaint();       
                 }
  
             }//SELECT BUTTON ADD

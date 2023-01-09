@@ -11,6 +11,7 @@ import Objects.Event;
 import Objects.Gender;
 import Objects.Position;
 import Objects.Province;
+import Objects.Team;
 import Objects.TypeIdentification;
 import java.util.ArrayList;
 
@@ -192,6 +193,27 @@ public class DA_Catalogs {
         }
 
         return positions;
+    }
+    
+        public static ArrayList<Team> getTeam() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getTeam(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<Team> teams = new ArrayList<>();
+        while(rs.next()){
+            Team team = new Team();
+            
+            team.setIdTeam(rs.getInt("idTeam"));
+            team.setNameTeam(rs.getString("nameTeam"));
+            
+            teams.add(team);
+        }
+
+        return teams;
     }
     
     
