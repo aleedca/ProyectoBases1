@@ -61,7 +61,16 @@ public class JF_Register extends javax.swing.JFrame {
     public JComboBox<String> getCmbTypeIdentification() {
         return cmbTypeIdentification;
     }
-
+    
+    public boolean validateTxtIdentification(){
+        String chain=  txtIdentification.getText();
+        if(chain.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+    
+    
     public int getTxtIdentification() {
         String chain=  txtIdentification.getText();
         String combination = chain.substring(0, 1) + chain.substring(2, 6)+ chain.substring(7);
@@ -77,7 +86,16 @@ public class JF_Register extends javax.swing.JFrame {
         String password = new String(txtPassword.getPassword());
         return password;
     }
- 
+    
+    public boolean validateTxtPhone(){
+        String chain =  txtPhone.getText();
+        if(chain.isEmpty()){
+            return true;
+        }
+        
+        return false;
+    }
+       
     public int getTxtPhone() {
         String chain =  txtPhone.getText();
         String combination = chain.substring(0, 4) + chain.substring(5);

@@ -38,7 +38,9 @@ public class model_Register {
     private String usernameRegister;
     private String passwordRegister;
     private int phone;
-    private String address;private int gender;
+    private String address;
+    
+    private int gender;
     private ArrayList<Gender> genders;
 
     private String photo;
@@ -88,13 +90,12 @@ public class model_Register {
     //--------- METHODS -------------------  
     
     //-------------- VALIDATIONS -------------------------------------
-    public boolean validateEmptyFields(String firstName, String firstLastName, 
-            String username, String password, String mail, String address){
+    public boolean validateEmptyFields(){
         
-        if(firstName.isEmpty() || firstLastName.isEmpty() || address.isEmpty()){
+        if(this.firstName.isEmpty() || this.firstLastName.isEmpty() || this.address.isEmpty()){
             return true;
         }else{
-            if(username.isEmpty() || password.isEmpty() || mail.isEmpty()){
+            if(this.usernameRegister.isEmpty() || this.passwordRegister.isEmpty() || this.mail.isEmpty()){
                 return true;
             }
         }
@@ -108,8 +109,8 @@ public class model_Register {
     
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
     
-    public boolean validateFormatPassword(String password){
-        if (PASSWORD_PATTERN.matcher( password).matches()) {
+    public boolean validateFormatPassword(){
+        if (PASSWORD_PATTERN.matcher( this.passwordRegister).matches()) {
             return true;
 	}
         
@@ -117,10 +118,10 @@ public class model_Register {
     }
     
     
-    public boolean validateFormatUsername(String username){
+    public boolean validateFormatUsername(){
         String regex = "^[A-Za-z0-9_]{5,15}$";
         Pattern pattern = Pattern.compile(regex);
-        Matcher mather = pattern.matcher(username);
+        Matcher mather = pattern.matcher(this.usernameRegister);
         
         if (mather.matches()) {
             return true;
@@ -168,7 +169,7 @@ public class model_Register {
         return false;
     }
     
-    public boolean validarFormatoDireccion(String address){
+    public boolean validateFormatAddress(String address){
         String regex = "^[A-Za-z\\s\\d\\#,.ÑñáéíóúÁÉÍÓÚ]{20,200}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher mather = pattern.matcher(address);
@@ -181,7 +182,7 @@ public class model_Register {
     }
     
     public boolean validatePhoto(String photo){
-        if(photo == null){
+        if(photo == null || "src/Images/avatar.png".equals(photo)){
             return true;
         }
         

@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * @author Mariana
  */
 public class model_Login {
-    private String usernameLogin;
+    private static String usernameLogin;
     private String passwordLogin;
     private int resultUserType;
     
@@ -26,6 +26,26 @@ public class model_Login {
        
         return false;
     }
+    
+    public boolean userAlreadyExists(){
+        try {
+            this.resultUserType = DA_Person.validateUserAlreadyExists(usernameLogin);
+            
+            if(this.resultUserType != 0){
+                return false;
+            }else{
+                return true;
+            }
+                     
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return false; 
+    }
+   
+    
+    
     
     public boolean userExists(){
         try {
@@ -66,7 +86,7 @@ public class model_Login {
     
     //------------ GETTERS AND SETTERS ----------------------
 
-    public String getUsernameLogin() {
+    public static String getUsernameLogin() {
         return usernameLogin;
     }
 

@@ -28,6 +28,33 @@ public class Person {
     private LocalDateTime dateCreation;
     private String lastUser;
     private LocalDateTime lastDate;
+
+    //------------- BUILDERS -----------------
+    public Person() {
+    }
+
+    public Person(int idPerson, int idPersonPosition, int idAddress, int idTypeIdentification, int idGender, int identification, String firstName, String secondName, String firstLastName, String secondLastName, String photo, String userCreation, LocalDateTime dateCreation, String lastUser, LocalDateTime lastDate) {
+        this.idPerson = idPerson;
+        this.idPersonPosition = idPersonPosition;
+        this.idAddress = idAddress;
+        this.idTypeIdentification = idTypeIdentification;
+        this.idGender = idGender;
+        this.identification = identification;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.firstLastName = firstLastName;
+        this.secondLastName = secondLastName;
+        this.photo = photo;
+        this.userCreation = userCreation;
+        this.dateCreation = dateCreation;
+        this.lastUser = lastUser;
+        this.lastDate = lastDate;
+    }
+    
+    
+
+
+    
     
     //GETTERS AND SETTERS
 

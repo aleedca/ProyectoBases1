@@ -1,3 +1,10 @@
+CREATE OR REPLACE PROCEDURE getEvent (curEvent OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curEvent FOR
+    SELECT idEvent, typeEvent
+    FROM Event;
+END getEvent;
+
 CREATE OR REPLACE PROCEDURE getGender(curGender OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curGender FOR
@@ -11,14 +18,6 @@ BEGIN
     SELECT idPersonPosition, descriptionPersonPosition
     FROM PersonPosition;
 END getPosition;
-
-CREATE OR REPLACE PROCEDURE getEvent (curEvent OUT SYS_REFCURSOR) IS
-BEGIN
-    OPEN curEvent FOR
-    SELECT idEvent, typeEvent
-    FROM Event;
-END getEvent;
-
 
 CREATE OR REPLACE PROCEDURE getTypeIdentification(curTypeIdentification OUT SYS_REFCURSOR) IS
 BEGIN
@@ -58,6 +57,30 @@ BEGIN
     SELECT idCanton, idDistrict, nameDistrict
     FROM District;
 END getDistrict;
+
+CREATE OR REPLACE PROCEDURE getNewsStatus(curNewsStatus OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curNewsStatus FOR
+    SELECT idNewsStatus, descriptionNewsStatus
+    FROM NewsStatus;
+END getNewsStatus;
+
+CREATE OR REPLACE PROCEDURE getNewsType(curNewsType OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curNewsType FOR
+    SELECT idNewsType, descriptionNewsType
+    FROM NewsType;
+END getNewsType;
+
+CREATE OR REPLACE PROCEDURE getTeam(curTeam OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curTeam FOR
+    SELECT idTeam, nameTeam
+    FROM Team;
+END getTeam;
+
+
+
 
 
 

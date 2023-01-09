@@ -5,6 +5,8 @@
 package DataAccess;
 
 import Objects.News;
+import Objects.NewsStatus;
+import Objects.NewsType;
 import java.util.ArrayList;
 
 import java.sql.Connection;
@@ -40,9 +42,55 @@ public class DA_News {
             news.setPhoto(rs.getString("photo"));
             news.setText(rs.getString("textNews"));
             newsArr.add(news);
-            System.out.println(news.toString());
         }
 
         return newsArr;
     }
+    
+    
+    public static ArrayList<NewsStatus> getNewsStatus() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getNewsStatus(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<NewsStatus> arrayNewsStatus = new ArrayList<>();
+        while(rs.next()){
+            NewsStatus newsStatus = new NewsStatus();
+            
+            newsStatus.setIdNewsStatus(rs.getInt("idNewsStatus"));
+            newsStatus.setDescriptionNewsStatus(rs.getString("descriptionNewsStatus"));
+            arrayNewsStatus.add(newsStatus);
+        }
+
+        return arrayNewsStatus;
+    }
+    
+    
+    public static ArrayList<NewsType> getNewsType() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getNewsType(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<NewsType> arrayNewsType = new ArrayList<>();
+        while(rs.next()){
+            NewsType newsType = new NewsType();
+            
+            newsType.setIdNewsType(rs.getInt("idNewsType"));
+            newsType.setDescriptionNewsType(rs.getString("descriptionNewsType"));
+            arrayNewsType.add(newsType);
+        }
+
+        return arrayNewsType;
+    }
+    
+    
+    
+    
+    
 }

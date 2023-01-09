@@ -47,6 +47,13 @@ public class JF_EditAccount extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
+        jTextField8 = new javax.swing.JTextField();
+        jTextField9 = new javax.swing.JTextField();
+        jTextField10 = new javax.swing.JTextField();
+        lblMyAccountName14 = new javax.swing.JLabel();
+        lblMyAccountName15 = new javax.swing.JLabel();
+        lblMyAccountName18 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1285, 752));
@@ -89,35 +96,35 @@ public class JF_EditAccount extends javax.swing.JFrame {
         panelMyAccount.add(lblMyAccountName6);
         lblMyAccountName6.setBounds(180, 230, 130, 32);
 
-        lblMyAccountName10.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblMyAccountName10.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         lblMyAccountName10.setForeground(new java.awt.Color(255, 255, 255));
-        lblMyAccountName10.setText("Nombre Completo:");
+        lblMyAccountName10.setText("Segundo Apellido:");
         panelMyAccount.add(lblMyAccountName10);
-        lblMyAccountName10.setBounds(180, 290, 220, 32);
+        lblMyAccountName10.setBounds(650, 290, 160, 30);
 
         lblMyAccountName11.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblMyAccountName11.setForeground(new java.awt.Color(255, 255, 255));
         lblMyAccountName11.setText("Género:");
         panelMyAccount.add(lblMyAccountName11);
-        lblMyAccountName11.setBounds(180, 430, 220, 32);
+        lblMyAccountName11.setBounds(180, 450, 220, 32);
 
         lblMyAccountName12.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblMyAccountName12.setForeground(new java.awt.Color(255, 255, 255));
         lblMyAccountName12.setText("Identificación:");
         panelMyAccount.add(lblMyAccountName12);
-        lblMyAccountName12.setBounds(180, 360, 220, 32);
+        lblMyAccountName12.setBounds(180, 380, 220, 32);
 
         lblMyAccountName16.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblMyAccountName16.setForeground(new java.awt.Color(255, 255, 255));
         lblMyAccountName16.setText("Email:");
         panelMyAccount.add(lblMyAccountName16);
-        lblMyAccountName16.setBounds(180, 500, 220, 32);
+        lblMyAccountName16.setBounds(180, 520, 220, 32);
 
         lblMyAccountName17.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblMyAccountName17.setForeground(new java.awt.Color(255, 255, 255));
         lblMyAccountName17.setText("Teléfono:");
         panelMyAccount.add(lblMyAccountName17);
-        lblMyAccountName17.setBounds(180, 570, 220, 32);
+        lblMyAccountName17.setBounds(180, 590, 220, 32);
 
         jButton2.setBackground(new java.awt.Color(86, 4, 44));
         jButton2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
@@ -143,7 +150,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
             }
         });
         panelMyAccount.add(jTextField1);
-        jTextField1.setBounds(520, 570, 280, 30);
+        jTextField1.setBounds(520, 590, 280, 30);
 
         jTextField2.setText("Isaac4918");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -163,14 +170,14 @@ public class JF_EditAccount extends javax.swing.JFrame {
         panelMyAccount.add(jTextField3);
         jTextField3.setBounds(520, 240, 280, 30);
 
-        jTextField4.setText("Isaac David Araya Solano");
+        jTextField4.setText("Solano");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
             }
         });
         panelMyAccount.add(jTextField4);
-        jTextField4.setBounds(520, 300, 280, 30);
+        jTextField4.setBounds(650, 320, 150, 30);
 
         jTextField5.setText("305170939");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +186,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
             }
         });
         panelMyAccount.add(jTextField5);
-        jTextField5.setBounds(520, 360, 280, 30);
+        jTextField5.setBounds(520, 380, 280, 30);
 
         jTextField6.setText("Masculino");
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -188,7 +195,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
             }
         });
         panelMyAccount.add(jTextField6);
-        jTextField6.setBounds(520, 430, 280, 30);
+        jTextField6.setBounds(520, 450, 280, 30);
 
         jTextField7.setText("isaac4918@gmail.com");
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
@@ -197,7 +204,61 @@ public class JF_EditAccount extends javax.swing.JFrame {
             }
         });
         panelMyAccount.add(jTextField7);
-        jTextField7.setBounds(520, 500, 280, 30);
+        jTextField7.setBounds(520, 520, 280, 30);
+
+        jTextField8.setText("Isaac");
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
+        panelMyAccount.add(jTextField8);
+        jTextField8.setBounds(180, 320, 140, 30);
+
+        jTextField9.setText("David");
+        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField9ActionPerformed(evt);
+            }
+        });
+        panelMyAccount.add(jTextField9);
+        jTextField9.setBounds(330, 320, 150, 30);
+
+        jTextField10.setText("Araya");
+        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField10ActionPerformed(evt);
+            }
+        });
+        panelMyAccount.add(jTextField10);
+        jTextField10.setBounds(490, 320, 150, 30);
+
+        lblMyAccountName14.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        lblMyAccountName14.setForeground(new java.awt.Color(255, 255, 255));
+        lblMyAccountName14.setText("Primer Apellido:");
+        panelMyAccount.add(lblMyAccountName14);
+        lblMyAccountName14.setBounds(500, 290, 140, 30);
+
+        lblMyAccountName15.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        lblMyAccountName15.setForeground(new java.awt.Color(255, 255, 255));
+        lblMyAccountName15.setText("Primer Nombre:");
+        panelMyAccount.add(lblMyAccountName15);
+        lblMyAccountName15.setBounds(180, 290, 140, 30);
+
+        lblMyAccountName18.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        lblMyAccountName18.setForeground(new java.awt.Color(255, 255, 255));
+        lblMyAccountName18.setText("Segundo Nombre:");
+        panelMyAccount.add(lblMyAccountName18);
+        lblMyAccountName18.setBounds(330, 290, 150, 30);
+
+        jButton3.setText("Cargar Foto");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        panelMyAccount.add(jButton3);
+        jButton3.setBounds(980, 500, 120, 23);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -229,10 +290,6 @@ public class JF_EditAccount extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
@@ -244,6 +301,26 @@ public class JF_EditAccount extends javax.swing.JFrame {
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
+
+    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField9ActionPerformed
+
+    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField10ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,21 +363,28 @@ public class JF_EditAccount extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel lblLogoMyAccount;
     private javax.swing.JLabel lblMyAccountName1;
     private javax.swing.JLabel lblMyAccountName10;
     private javax.swing.JLabel lblMyAccountName11;
     private javax.swing.JLabel lblMyAccountName12;
+    private javax.swing.JLabel lblMyAccountName14;
+    private javax.swing.JLabel lblMyAccountName15;
     private javax.swing.JLabel lblMyAccountName16;
     private javax.swing.JLabel lblMyAccountName17;
+    private javax.swing.JLabel lblMyAccountName18;
     private javax.swing.JLabel lblMyAccountName2;
     private javax.swing.JLabel lblMyAccountName4;
     private javax.swing.JLabel lblMyAccountName6;
