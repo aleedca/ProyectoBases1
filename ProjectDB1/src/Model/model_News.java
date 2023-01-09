@@ -4,7 +4,10 @@
  */
 package Model;
 import DataAccess.DA_News;
+<<<<<<< HEAD
 import Objects.News;
+=======
+>>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
 import Objects.NewsStatus;
 import Objects.NewsType;
 import java.sql.SQLException;
@@ -16,12 +19,26 @@ import java.util.ArrayList;
  */
 public class model_News {
     //atributos que aparecen el design de AdminNews
+<<<<<<< HEAD
     private String newsTitle = getNewsTitle();
     private String newsText = getNewsText();
     private String photo = getPhoto();
+=======
+    private String newsTitle;
+    private String newsText;
+    private String photo;
+>>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
     
     private ArrayList<News> newsArr;
+<<<<<<< HEAD
     private ArrayList<NewsStatus> newsStatusArr;
+=======
+    
+    private String newsType;
+    private ArrayList<NewsStatus> newsStatusArr;
+    
+    private String newsStatus;
+>>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
     private ArrayList<NewsType> newsTypeArr;
 
     public model_News(){
@@ -31,6 +48,10 @@ public class model_News {
             this.newsStatusArr = DA_News.getNewsStatus();
             
             this.newsTypeArr = DA_News.getNewsType();
+<<<<<<< HEAD
+=======
+                      
+>>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
             
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -96,5 +117,15 @@ public class model_News {
     public void setNewsTypeArr(ArrayList<NewsType> newsTypeArr) {
         this.newsTypeArr = newsTypeArr;
     }
+<<<<<<< HEAD
 
+=======
+    
+    
+
+
+    
+    
+    
+>>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
 }

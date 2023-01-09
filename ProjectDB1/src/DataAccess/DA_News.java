@@ -47,6 +47,10 @@ public class DA_News {
         return newsArr;
     }
     
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
     public static ArrayList<NewsStatus> getNewsStatus() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -55,6 +59,7 @@ public class DA_News {
         sql.execute();
         
         ResultSet rs = (ResultSet) sql.getObject(1);
+<<<<<<< HEAD
         ArrayList<NewsStatus> newsStatus = new ArrayList<>();
         while(rs.next()){
             NewsStatus status = new NewsStatus();
@@ -67,6 +72,21 @@ public class DA_News {
         return newsStatus;
     }
     
+=======
+        ArrayList<NewsStatus> arrayNewsStatus = new ArrayList<>();
+        while(rs.next()){
+            NewsStatus newsStatus = new NewsStatus();
+            
+            newsStatus.setIdNewsStatus(rs.getInt("idNewsStatus"));
+            newsStatus.setDescriptionNewsStatus(rs.getString("descriptionNewsStatus"));
+            arrayNewsStatus.add(newsStatus);
+        }
+
+        return arrayNewsStatus;
+    }
+    
+    
+>>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
     public static ArrayList<NewsType> getNewsType() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -75,6 +95,7 @@ public class DA_News {
         sql.execute();
         
         ResultSet rs = (ResultSet) sql.getObject(1);
+<<<<<<< HEAD
         ArrayList<NewsType> newsType = new ArrayList<>();
         while(rs.next()){
             NewsType type = new NewsType();
@@ -86,4 +107,22 @@ public class DA_News {
 
         return newsType;
     }
+=======
+        ArrayList<NewsType> arrayNewsType = new ArrayList<>();
+        while(rs.next()){
+            NewsType newsType = new NewsType();
+            
+            newsType.setIdNewsType(rs.getInt("idNewsType"));
+            newsType.setDescriptionNewsType(rs.getString("descriptionNewsType"));
+            arrayNewsType.add(newsType);
+        }
+
+        return arrayNewsType;
+    }
+    
+    
+    
+    
+    
+>>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
 }

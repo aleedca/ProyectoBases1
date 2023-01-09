@@ -42,13 +42,26 @@ public class DA_Person {
         sql.setInt(14, phoneNumber);
         sql.setInt(15, idDistrict);
         sql.setString(16, address);
-        
-        System.out.println("Entro a la ejecucion");
+
         sql.execute();
-        System.out.println("Termino la ejecucion");
     }
     
     
+    public static int validateUserAlreadyExists(String username) throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call  validateUserAlreadyExists(?,?)}");
+        //Input parameters
+        sql.setString(1, username);
+        
+        //Output parameter
+        sql.registerOutParameter(2, OracleTypes.NUMBER);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(2)).intValue();
+        return result;   
+    }
+
     public static int validateUserType(String username, String password) throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -75,6 +88,90 @@ public class DA_Person {
             }
         */
     }
+    
+
+    
+    public static int insertPlayer(int identification, String firstName, String secondName,
+            String firstLastName, String secondLastName, String photo, 
+            int idPosition, int idTypeIdentification, int idGender, int idTeam, String birthdate, 
+            int numTShirt, int phoneNumber, String mail, int idDistrict, String address) throws SQLException
+    {
+        Connection conn = sysConnection.getConexion();
+
+        CallableStatement sql = conn.prepareCall("{ call insertPlayer(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        //Input parameters
+        sql.setInt(1, identification);
+        sql.setString(2, firstName);
+        sql.setString(3, secondName);
+        sql.setString(4, firstLastName);
+        sql.setString(5, secondLastName);
+        sql.setString(6, photo);
+      
+        sql.setInt(7, idPosition);
+        sql.setInt(8, idTypeIdentification);
+        sql.setInt(9, idGender);
+        sql.setInt(10, idTeam);
+        
+        sql.setString(11, birthdate);
+        sql.setInt(12, numTShirt);
+        sql.setInt(13, phoneNumber);
+        
+        sql.setString(14, mail);
+        sql.setInt(15, idDistrict);
+        sql.setString(16, address);
+        
+        //Output parameter
+        sql.registerOutParameter(17, OracleTypes.NUMBER);
+        System.out.println("Entro a la ejecucion");
+        sql.execute();
+
+        int result = ((BigDecimal) sql.getObject(17)).intValue();
+        System.out.println("Termino la ejecucion");
+        return result;  
+    }
+    
+
+    public static int insertTeamWorker(int identification, String firstName, String secondName,
+            String firstLastName, String secondLastName, String photo, 
+            int idPosition, int idTypeIdentification, int idGender, int idTeam, int phoneNumber, 
+            int idDistrict, String mail, String address) throws SQLException
+    {
+        Connection conn = sysConnection.getConexion();
+
+        CallableStatement sql = conn.prepareCall("{ call insertTeamWorker(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        //Input parameters
+        sql.setInt(1, identification);
+        sql.setString(2, firstName);
+        sql.setString(3, secondName);
+        sql.setString(4, firstLastName);
+        sql.setString(5, secondLastName);
+        sql.setString(6, photo);
+      
+        sql.setInt(7, idPosition);
+        sql.setInt(8, idTypeIdentification);
+        sql.setInt(9, idGender);
+        sql.setInt(10, idTeam);
+        sql.setInt(11, phoneNumber);
+        sql.setInt(12, idDistrict);
+        sql.setString(13, mail);
+        sql.setString(14, address);
+        
+        //Output parameter
+        sql.registerOutParameter(15, OracleTypes.NUMBER);
+        System.out.println("Entro a la ejecucion");
+        sql.execute();
+
+        int result = ((BigDecimal) sql.getObject(15)).intValue();
+        System.out.println("Termino la ejecucion");
+        return result;  
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
 }

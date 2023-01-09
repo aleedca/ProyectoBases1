@@ -23,26 +23,12 @@ import javax.swing.table.DefaultTableModel;
  */
 
 public class AdminNewsController{
-    //private final 
-    /*private final JF_AdminPerson viewAdminPerson;
-    private final model_Register modelRegister;*/
     
     private final JF_AdminNews viewAdminNews;
     private final model_News modelNews;
     
-    private boolean flagRegister;
-        
-    
     //Constructor 2da version
     public AdminNewsController() { 
-        /*View AdminPerson
-        JF_AdminPerson adminPerson = new JF_AdminPerson();
-        this.viewAdminPerson = adminPerson;  
-
-        //Model Register
-        model_Register validateRegister = new model_Register();
-        this.modelRegister = validateRegister;*/
-        
         //View AdminNews
         JF_AdminNews adminNews = new JF_AdminNews();
         this.viewAdminNews = adminNews;  
@@ -52,8 +38,13 @@ public class AdminNewsController{
         this.modelNews = validateNews;
         
         fillAdminNews(); 
+<<<<<<< HEAD
         fillAdminNewsStatus();
         fillAdminNewsType();
+=======
+        fillStatus();
+        fillNewsType();
+>>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
 
     }
 
@@ -61,7 +52,27 @@ public class AdminNewsController{
         return viewAdminNews;
     }
     
-    public void fillAdminNews(){
+    private void fillStatus(){
+        viewAdminNews.getCmbEstado().removeAllItems();
+        
+        viewAdminNews.getCmbEstado().addItem("Seleccione Estado");
+        for(int i=0; i<modelNews.getNewsStatusArr().size();i++){
+           viewAdminNews.getCmbEstado().addItem(modelNews.getNewsStatusArr().get(i).getDescriptionNewsStatus());
+        }
+    }
+    
+    private void fillNewsType(){
+        viewAdminNews.getCmbTipo().removeAllItems();
+
+        viewAdminNews.getCmbTipo().addItem("Seleccione Tipo");        
+        for(int i=0; i<modelNews.getNewsTypeArr().size();i++){
+           viewAdminNews.getCmbTipo().addItem(modelNews.getNewsTypeArr().get(i).getDescriptionNewsType());
+        }
+    
+    }
+    
+    
+    private void fillAdminNews(){
         viewAdminNews.getTblNoticias().removeAll();
         ArrayList<News> newsArr = modelNews.getNewsArr();
         DefaultTableModel modelTable = (DefaultTableModel) viewAdminNews.getTblNoticias().getModel();
@@ -78,6 +89,7 @@ public class AdminNewsController{
         }
     }
     
+<<<<<<< HEAD
     public void fillAdminNewsStatus(){
         viewAdminNews.getCmbEstado().removeAllItems();
         ArrayList<NewsStatus> newsStatusArr = modelNews.getNewsStatusArr();
@@ -95,6 +107,11 @@ public class AdminNewsController{
             viewAdminNews.getCmbEstado().addItem(newsTypeArr.get(i).getDescriptionNewsType());
         }
     }
+=======
+    
+    
+    
+>>>>>>> 3a5143b3f9073c6da1340e25304080c5a997b539
     
     public void showView(){ 
         viewAdminNews.setVisible(true);
