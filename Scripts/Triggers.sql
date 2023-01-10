@@ -559,25 +559,6 @@ BEGIN
     :new.lastDate:=SYSDATE;
 END beforeUpdateTeamWorker;
 
---EventWorker
-CREATE OR REPLACE TRIGGER proyectoBD.beforeInsertEventWorker
-BEFORE INSERT
-ON proyectoBD.EventWorker
-FOR EACH ROW
-BEGIN
-    :new.userCreation:=USER;
-    :new.dateCreation:=SYSDATE;
-END beforeInsertEventWorker;
-
-CREATE OR REPLACE TRIGGER proyectoBD.beforeUpdateEventWorker
-BEFORE UPDATE
-ON proyectoBD.EventWorker
-FOR EACH ROW
-BEGIN
-    :new.lastUser:=USER;
-    :new.lastDate:=SYSDATE;
-END beforeUpdateEventWorker;
-
 --UserType
 CREATE OR REPLACE TRIGGER proyectoBD.beforeInsertUserType
 BEFORE INSERT
