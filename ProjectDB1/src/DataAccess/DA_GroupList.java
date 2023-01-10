@@ -25,27 +25,27 @@ public class DA_GroupList {
         
         //Input parameters
         if (teamName!=""){
-          sql.setString(1, teamName);  
+          sql.setString(2, teamName);  
         } else if (teamName==""){
-          sql.setString(1, null);  
+          sql.setString(2, null);  
         }
         
         if (matchDate!=""){
-          sql.setString(2, matchDate);  
+          sql.setString(3, matchDate);  
         } else if (matchDate==""){
-          sql.setString(2, null);  
+          sql.setString(3, null);  
         }
         
         if (stadium!=""){
-          sql.setString(1, stadium);  
+          sql.setString(4, stadium);  
         } else if (stadium==""){
-          sql.setString(1, null);  
+          sql.setString(4, null);  
         }
         
         if (teamFlag!=""){
-          sql.setString(2, teamFlag);  
+          sql.setString(5, teamFlag);  
         } else if (teamFlag==""){
-          sql.setString(2, null);  
+          sql.setString(5, null);  
         }
         
         //Output parameters
