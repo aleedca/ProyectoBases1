@@ -14,12 +14,12 @@ import javax.swing.JTextField;
  *
  * @author Alexia
  */
-public class JF_AdminCatalogos extends javax.swing.JFrame {
+public class JF_AdminCatalogs extends javax.swing.JFrame {
 
     /**
      * Creates new form JF_AdminCatalogos
      */
-    public JF_AdminCatalogos() {
+    public JF_AdminCatalogs() {
         initComponents();
     }
 
@@ -121,11 +121,6 @@ public class JF_AdminCatalogos extends javax.swing.JFrame {
         txtModificar.setBounds(180, 480, 260, 40);
 
         lstOpciones.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        lstOpciones.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         lstOpciones.setFixedCellHeight(30);
         lstOpciones.setFixedCellWidth(5);
         jScrollPane1.setViewportView(lstOpciones);
@@ -303,20 +298,21 @@ public class JF_AdminCatalogos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminCatalogos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminCatalogs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminCatalogos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminCatalogs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminCatalogos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminCatalogs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminCatalogos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminCatalogs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JF_AdminCatalogos().setVisible(true);
+                new JF_AdminCatalogs().setVisible(true);
             }
         });
     }

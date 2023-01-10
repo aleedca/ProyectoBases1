@@ -204,7 +204,7 @@ public class JF_AdminOptions extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEstadisticasActionPerformed
 
     private void btnAdmiCatalogosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmiCatalogosActionPerformed
-        JF_AdminCatalogos adminCatalogos = new JF_AdminCatalogos();
+        JF_AdminCatalogs adminCatalogos = new JF_AdminCatalogs();
         adminCatalogos.setVisible(true);
         this.setVisible(false);
         //this.dispose();
