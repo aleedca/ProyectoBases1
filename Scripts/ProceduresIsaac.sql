@@ -1,22 +1,13 @@
-CREATE OR REPLACE PROCEDURE getGroupStats(pIdGroup IN NUMBER, outGroupStats SYS_REFCURSOR)
+CREATE OR REPLACE PROCEDURE getGroupStats(pIdGroup IN NUMBER, outGroupStats OUT SYS_REFCURSOR)
 AS
 BEGIN
     OPEN outGroupStats FOR
     SELECT Team.nameTeam, GroupStats.wonMatches, GroupStats.tiedMatches, GroupStats.lostMatches, GroupStats.goalsScored,
     GroupStats.goalsReceived, GroupStats.fairPlayPoints FROM GroupEvent
     INNER JOIN Team ON Team.idGroupEvent = GroupEvent.idGroupEvent
-    INNER JOIN GroupStats ON GroupStats.idTeam = Team.idTeam;
+    INNER JOIN GroupStats ON GroupStats.idTeam = Team.idTeam
+    WHERE GroupEvent.idGroupEvent = pIdGroup;
 END;
-
-/*CREATE OR REPLACE PROCEDURE getMatchStats(pIdMatch IN NUMBER, pIdteam IN NUMBER, outMatchStats SYS_REFCURSOR)
-AS
-BEGIN
-    OPEN outMatchStats FOR
-    SELECT Team.idTeam, GroupStats.wonMatches, GroupStats.tiedMatches, GroupStats.lostMatches, GroupStats.goalsScored,
-    GroupStats.goalsReceived, GroupStats.fairPlayPoints FROM GroupEvent
-    INNER JOIN Team ON Team.idGroupEvent = GroupEvent.idGroupEvent
-    INNER JOIN GroupStats ON GroupStats.idTeam = Team.idTeam;
-END;*/
 
 CREATE OR REPLACE PROCEDURE getAccountInformation(pUsername IN VARCHAR2, outAccountCursor OUT SYS_REFCURSOR)
 AS
