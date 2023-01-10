@@ -229,7 +229,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
         panelMyAccount.add(jLabel1);
         jLabel1.setBounds(950, 250, 170, 230);
 
-        textFieldUsername.setText("Isaac4918");
+        textFieldUsername.setText("Prueba");
         textFieldUsername.setEnabled(false);
         textFieldUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,7 +239,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
         panelMyAccount.add(textFieldUsername);
         textFieldUsername.setBounds(520, 180, 280, 30);
 
-        textFieldPassword.setText("ContraPrueba");
+        textFieldPassword.setText("Prueba");
         textFieldPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldPasswordActionPerformed(evt);
@@ -248,7 +248,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
         panelMyAccount.add(textFieldPassword);
         textFieldPassword.setBounds(520, 240, 280, 30);
 
-        textFieldLastName2.setText("Solano");
+        textFieldLastName2.setText("Prueba");
         textFieldLastName2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldLastName2ActionPerformed(evt);
@@ -257,7 +257,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
         panelMyAccount.add(textFieldLastName2);
         textFieldLastName2.setBounds(650, 320, 150, 30);
 
-        textFieldGender.setText("Masculino");
+        textFieldGender.setText("Prueba");
         textFieldGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldGenderActionPerformed(evt);
@@ -266,7 +266,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
         panelMyAccount.add(textFieldGender);
         textFieldGender.setBounds(520, 450, 280, 30);
 
-        textFieldMail.setText("isaac4918@gmail.com");
+        textFieldMail.setText("Prueba");
         textFieldMail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldMailActionPerformed(evt);
@@ -275,7 +275,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
         panelMyAccount.add(textFieldMail);
         textFieldMail.setBounds(520, 520, 280, 30);
 
-        textFieldName1.setText("Isaac");
+        textFieldName1.setText("Prueba");
         textFieldName1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldName1ActionPerformed(evt);
@@ -284,7 +284,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
         panelMyAccount.add(textFieldName1);
         textFieldName1.setBounds(180, 320, 140, 30);
 
-        textFieldName2.setText("David");
+        textFieldName2.setText("Prueba");
         textFieldName2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldName2ActionPerformed(evt);
@@ -293,7 +293,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
         panelMyAccount.add(textFieldName2);
         textFieldName2.setBounds(330, 320, 150, 30);
 
-        textFieldLastName1.setText("Araya");
+        textFieldLastName1.setText("Prueba");
         textFieldLastName1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldLastName1ActionPerformed(evt);
@@ -334,7 +334,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        textFieldPhone.setText("86480933");
+        textFieldPhone.setText("0000-0000");
         textFieldPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldPhoneActionPerformed(evt);
@@ -348,7 +348,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        textFieldIdentification.setText("305170939");
+        textFieldIdentification.setText("0-0000-0000");
         textFieldIdentification.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldIdentificationActionPerformed(evt);

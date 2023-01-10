@@ -34,8 +34,6 @@ public class TeamGroupStats {
         this.points = (this.wonMatches * 3) + this.drawMatches;
     }
     
-    
-
     public TeamGroupStats(String teamName, int wonMatches, int drawMatches, int lostMatches, int goalsScored, int goalsReceived, int fairPlayPoints) {
         this.teamName = teamName;
         this.wonMatches = wonMatches;

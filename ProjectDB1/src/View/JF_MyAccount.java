@@ -17,9 +17,10 @@ public class JF_MyAccount extends javax.swing.JFrame {
      * Creates new form JF_Stats
      */
     
-    public Account information = new Account();
+    private Account information;
     
     public JF_MyAccount() {
+        this.information = new Account();
         initComponents();
         this.loadInfoFromAccount();
     }
@@ -41,8 +42,9 @@ public class JF_MyAccount extends javax.swing.JFrame {
     }
     
     public void loadInfoFromAccount(){
+        //System.out.println(this.information.getUsername());
         this.lblUsername.setText(this.information.getUsername());
-        this.lblPassword.setText(this.information.getPassword());
+        this.lblPassword.setText(this.stringToAsterisk(this.information.getPassword()));
         String name = this.information.getFirstName();
         String sndName = this.information.getSndName();
         String lastName = this.information.getFirstLastName();
@@ -52,11 +54,19 @@ public class JF_MyAccount extends javax.swing.JFrame {
         
         fullName += name;
         
-        fullName += sndName;
+        fullName += " ";
+        
+        if(sndName != null){
+            fullName += sndName;
+            fullName += " ";
+        }
         
         fullName += lastName;
         
-        fullName += sndLastName;
+        if(sndLastName != null){
+            fullName += " ";
+            fullName += sndLastName;
+        }
         
         this.lblFullName.setText(fullName);
         Integer ID = this.information.getIdentification();
@@ -68,7 +78,15 @@ public class JF_MyAccount extends javax.swing.JFrame {
     }
     
     
-    
+    public String stringToAsterisk(String pInput){
+        String result = "";
+        
+        for(int i = 0; i < pInput.length(); i++ ){
+            result += "*";
+        }     
+        
+        return result;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -120,7 +138,7 @@ public class JF_MyAccount extends javax.swing.JFrame {
 
         lblUsername.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsername.setText("Isaac4918");
+        lblUsername.setText("Prueba");
         panelMyAccount.add(lblUsername);
         lblUsername.setBounds(520, 170, 310, 32);
 
@@ -150,19 +168,19 @@ public class JF_MyAccount extends javax.swing.JFrame {
 
         lblPassword.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblPassword.setForeground(new java.awt.Color(255, 255, 255));
-        lblPassword.setText("ContraPrueba");
+        lblPassword.setText("Prueba");
         panelMyAccount.add(lblPassword);
         lblPassword.setBounds(520, 230, 310, 32);
 
         lblFullName.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblFullName.setForeground(new java.awt.Color(255, 255, 255));
-        lblFullName.setText("Isaac David Araya Solano");
+        lblFullName.setText("Prueba");
         panelMyAccount.add(lblFullName);
         lblFullName.setBounds(520, 290, 310, 32);
 
         lblID.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblID.setForeground(new java.awt.Color(255, 255, 255));
-        lblID.setText("305170939");
+        lblID.setText("0");
         panelMyAccount.add(lblID);
         lblID.setBounds(520, 360, 220, 32);
 
@@ -186,19 +204,19 @@ public class JF_MyAccount extends javax.swing.JFrame {
 
         lblGender.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblGender.setForeground(new java.awt.Color(255, 255, 255));
-        lblGender.setText("Masculino");
+        lblGender.setText("Prueba");
         panelMyAccount.add(lblGender);
         lblGender.setBounds(520, 430, 220, 32);
 
         lblPhone.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblPhone.setForeground(new java.awt.Color(255, 255, 255));
-        lblPhone.setText("86480933");
+        lblPhone.setText("0");
         panelMyAccount.add(lblPhone);
         lblPhone.setBounds(520, 580, 220, 32);
 
         lblEmail.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(255, 255, 255));
-        lblEmail.setText("isaac4918@gmail.com");
+        lblEmail.setText("Prueba");
         panelMyAccount.add(lblEmail);
         lblEmail.setBounds(520, 500, 260, 32);
 

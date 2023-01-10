@@ -178,6 +178,11 @@ public class OperationsController implements ActionListener, ItemListener{
         viewMyAccount.getBtnBackMyAccount().addActionListener(this);
         viewMyAccount.getBtnEditProfile().addActionListener(this);
         
+        //EditAccount
+        viewEditAccount.getBtnBack().addActionListener(this);
+        viewEditAccount.getBtnConfirm().addActionListener(this);
+        viewEditAccount.getBtnLoadPicture().addActionListener(this);
+        
         
         //AdminPerson
         viewAdminPerson.getBtnBackAdminPerson().addActionListener(this);
@@ -661,6 +666,7 @@ public class OperationsController implements ActionListener, ItemListener{
         
         if(e.getSource() == viewPrincipal.getBtnAccount()){
             accountModel.setUsernameValidated(model_Login.getUsernameLogin());
+            viewMyAccount.UpdateInfo(accountModel.getAccountLogged());
             viewMyAccount.setVisible(true);
             viewPrincipal.setVisible(false); 
         }
@@ -973,10 +979,24 @@ public class OperationsController implements ActionListener, ItemListener{
         }
         
         if(e.getSource() == viewMyAccount.getBtnEditProfile()){
+            viewEditAccount.UpdateInfo(accountModel.getAccountLogged());
             viewMyAccount.setVisible(false);
             viewEditAccount.setVisible(true);
         }
         
+        //----------- Screen EditAccount -------------------------
+        if(e.getSource() == viewEditAccount.getBtnBack()){
+            viewEditAccount.setVisible(false);
+            viewMyAccount.setVisible(true);
+        }
+        
+        if(e.getSource() == viewEditAccount.getBtnConfirm()){
+            //falta llamar el procedimiento de update
+            accountModel.setUsernameValidated(model_Login.getUsernameLogin());
+            viewMyAccount.UpdateInfo(accountModel.getAccountLogged());
+            viewEditAccount.setVisible(false);
+            viewMyAccount.setVisible(true);
+        }
                 
         //-------------- SCREEN AdminPerson -----------------------
         if(e.getSource() == viewAdminPerson.getBtnBackAdminPerson()){

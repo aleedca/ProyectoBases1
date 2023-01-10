@@ -35,16 +35,16 @@ public class DA_MyAccount {
         
         String name = rs.getString("firstName");
         String name2 = rs.getString("secondName");
-        String lastname1 = rs.getString("firstLastname");
-        String lastname2 = rs.getString("secondLastname");
+        String lastname1 = rs.getString("firstLastName");
+        String lastname2 = rs.getString("secondLastName");
         
         accountInformation.setUsername(pUsername);
         
-        accountInformation.setEmail(rs.getString("mail"));
+        accountInformation.setEmail(rs.getString("descriptionMail"));
         
         accountInformation.setPassword(rs.getString("passwordUser"));
         
-        accountInformation.setGender(rs.getString("gender"));
+        accountInformation.setGender(rs.getString("descriptionGender"));
         
         accountInformation.setIdentification(rs.getInt("identification"));
         
@@ -58,6 +58,29 @@ public class DA_MyAccount {
         
         accountInformation.setSndLastName(lastname2);
         
+        
+        //===============================
+        
+        /*System.out.println("=========================================");
+        System.out.println(accountInformation.getUsername());
+        
+        System.out.println(accountInformation.getEmail());
+        
+        System.out.println(accountInformation.getPassword());
+        
+        System.out.println(accountInformation.getGender());
+        
+        System.out.println(accountInformation.getIdentification());
+        
+        System.out.println(accountInformation.getPhoneNumber());
+                
+        System.out.println(accountInformation.getFirstName());
+        
+        System.out.println(accountInformation.getSndName());
+        
+        System.out.println(accountInformation.getFirstLastName());
+        
+        System.out.println(accountInformation.getSndLastName());*/
         
         return accountInformation;
     }

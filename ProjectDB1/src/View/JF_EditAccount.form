@@ -263,7 +263,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldUsername">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Isaac4918"/>
+            <Property name="text" type="java.lang.String" value="Prueba"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
@@ -277,7 +277,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldPassword">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ContraPrueba"/>
+            <Property name="text" type="java.lang.String" value="Prueba"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldPasswordActionPerformed"/>
@@ -290,7 +290,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldLastName2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Solano"/>
+            <Property name="text" type="java.lang.String" value="Prueba"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldLastName2ActionPerformed"/>
@@ -303,7 +303,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldGender">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Masculino"/>
+            <Property name="text" type="java.lang.String" value="Prueba"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldGenderActionPerformed"/>
@@ -316,7 +316,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldMail">
           <Properties>
-            <Property name="text" type="java.lang.String" value="isaac4918@gmail.com"/>
+            <Property name="text" type="java.lang.String" value="Prueba"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldMailActionPerformed"/>
@@ -329,7 +329,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldName1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Isaac"/>
+            <Property name="text" type="java.lang.String" value="Prueba"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldName1ActionPerformed"/>
@@ -342,7 +342,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldName2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="David"/>
+            <Property name="text" type="java.lang.String" value="Prueba"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldName2ActionPerformed"/>
@@ -355,7 +355,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textFieldLastName1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Araya"/>
+            <Property name="text" type="java.lang.String" value="Prueba"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldLastName1ActionPerformed"/>
@@ -432,7 +432,7 @@
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="####-####" subtype="-1" type="5"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="86480933"/>
+            <Property name="text" type="java.lang.String" value="0000-0000"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldPhoneActionPerformed"/>
@@ -448,7 +448,7 @@
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="#-####-####" subtype="-1" type="5"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="305170939"/>
+            <Property name="text" type="java.lang.String" value="0-0000-0000"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldIdentificationActionPerformed"/>

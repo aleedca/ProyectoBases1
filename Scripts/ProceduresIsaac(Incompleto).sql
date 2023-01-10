@@ -30,7 +30,8 @@ BEGIN
     INNER JOIN Gender ON Person.idGender = Gender.idGender
     INNER JOIN Mail ON Mail.idPerson = Person.idPerson
     INNER JOIN PersonXPhone ON PersonXPhone.idPerson = Person.idPerson
-    INNER JOIN Phone ON Phone.idPhone = PersonXPhone.idPhone;
+    INNER JOIN Phone ON Phone.idPhone = PersonXPhone.idPhone
+    WHERE UserPerson.username = pUsername;
 END;
 
 
