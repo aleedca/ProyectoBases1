@@ -32,8 +32,22 @@ public class JF_AdminOptions extends javax.swing.JFrame {
     public JButton getBtnAdmiPersonas() {
         return btnAdmiPersonas;
     }
-    
-    
+
+    public JButton getBtnAdmiCatalogos() {
+        return btnAdmiCatalogos;
+    }
+
+    public JButton getBtnBitacora() {
+        return btnBitacora;
+    }
+
+    public JButton getBtnEstadisticas() {
+        return btnEstadisticas;
+    }
+
+    public JButton getBtnParametros() {
+        return btnParametros;
+    }
     
     
 
@@ -204,10 +218,7 @@ public class JF_AdminOptions extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEstadisticasActionPerformed
 
     private void btnAdmiCatalogosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmiCatalogosActionPerformed
-        JF_AdminCatalogos adminCatalogos = new JF_AdminCatalogos();
-        adminCatalogos.setVisible(true);
-        this.setVisible(false);
-        //this.dispose();
+
     }//GEN-LAST:event_btnAdmiCatalogosActionPerformed
 
     private void btnAdmiNoticiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmiNoticiasActionPerformed
@@ -219,15 +230,11 @@ public class JF_AdminOptions extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdmiPersonasActionPerformed
 
     private void btnBitacoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBitacoraActionPerformed
-        JF_AdminBitacora adminBitacora = new JF_AdminBitacora();
-        adminBitacora.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_btnBitacoraActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-//        JF_Principal principal = new JF_Principal();
-//        principal.setVisible(true);
-//        this.dispose();
+
     }//GEN-LAST:event_btnBackActionPerformed
 
 

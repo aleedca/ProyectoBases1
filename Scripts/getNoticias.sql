@@ -17,3 +17,19 @@ BEGIN
         RETURN avgRating;
     END;
 END getNewsRating;
+
+--esto va en getCatalogs
+CREATE OR REPLACE PROCEDURE getNewsStatus(curNewsStatus OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curNewsStatus FOR
+    SELECT idNewsStatus, descriptionNewsStatus
+    FROM NewsStatus;
+END getNewsStatus;
+
+--esto va en getCatalogs
+CREATE OR REPLACE PROCEDURE getNewsType(curNewsType OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curNewsType FOR
+    SELECT idNewsType, descriptionNewsType
+    FROM NewsType;
+END getNewsType;
