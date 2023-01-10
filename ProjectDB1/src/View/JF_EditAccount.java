@@ -4,6 +4,11 @@
  */
 package View;
 
+import Objects.Account;
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Isaac
@@ -13,9 +18,90 @@ public class JF_EditAccount extends javax.swing.JFrame {
     /**
      * Creates new form JF_Stats
      */
+    
+    public Account information = new Account();
+    
     public JF_EditAccount() {
         initComponents();
+        loadInfoFromAccount();
     }
+    
+    public void UpdateInfo(Account infoToShow){
+        this.information = infoToShow;
+        this.loadInfoFromAccount();
+        this.repaint();
+    }
+    
+    public void loadInfoFromAccount(){
+        this.textFieldUsername.setText(this.information.getUsername());
+        this.textFieldPassword.setText(this.information.getPassword());
+        this.textFieldName1.setText(this.information.getFirstName());
+        this.textFieldName2.setText(this.information.getSndName());
+        this.textFieldLastName1.setText(this.information.getFirstLastName());
+        this.textFieldLastName2.setText(this.information.getSndLastName());
+        this.textFieldGender.setText(this.information.getGender());
+        this.textFieldMail.setText(this.information.getEmail());
+        Integer ID = this.information.getIdentification();
+        this.textFieldIdentification.setText(ID.toString());
+        Integer phoneNumber = this.information.getPhoneNumber();
+        this.textFieldPhone.setText(phoneNumber.toString());
+    }
+
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
+    public JButton getBtnConfirm() {
+        return btnConfirm;
+    }
+
+    public JButton getBtnLoadPicture() {
+        return btnLoadPicture;
+    }
+
+    public JTextField getTextFieldGender() {
+        return textFieldGender;
+    }
+
+    public JFormattedTextField getTextFieldIdentification() {
+        return textFieldIdentification;
+    }
+
+    public JTextField getTextFieldLastName1() {
+        return textFieldLastName1;
+    }
+
+    public JTextField getTextFieldLastName2() {
+        return textFieldLastName2;
+    }
+
+    public JTextField getTextFieldMail() {
+        return textFieldMail;
+    }
+
+    public JTextField getTextFieldName1() {
+        return textFieldName1;
+    }
+
+    public JTextField getTextFieldName2() {
+        return textFieldName2;
+    }
+
+    public JTextField getTextFieldPassword() {
+        return textFieldPassword;
+    }
+
+    public JFormattedTextField getTextFieldPhone() {
+        return textFieldPhone;
+    }
+
+    public JTextField getTextFieldUsername() {
+        return textFieldUsername;
+    }
+    
+    
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,7 +114,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
 
         panelMyAccount = new javax.swing.JPanel();
         lblLogoMyAccount = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         lblMyAccountName1 = new javax.swing.JLabel();
         lblMyAccountName2 = new javax.swing.JLabel();
         lblMyAccountName4 = new javax.swing.JLabel();
@@ -38,22 +124,22 @@ public class JF_EditAccount extends javax.swing.JFrame {
         lblMyAccountName12 = new javax.swing.JLabel();
         lblMyAccountName16 = new javax.swing.JLabel();
         lblMyAccountName17 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnConfirm = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
+        textFieldUsername = new javax.swing.JTextField();
+        textFieldPassword = new javax.swing.JTextField();
+        textFieldLastName2 = new javax.swing.JTextField();
+        textFieldGender = new javax.swing.JTextField();
+        textFieldMail = new javax.swing.JTextField();
+        textFieldName1 = new javax.swing.JTextField();
+        textFieldName2 = new javax.swing.JTextField();
+        textFieldLastName1 = new javax.swing.JTextField();
         lblMyAccountName14 = new javax.swing.JLabel();
         lblMyAccountName15 = new javax.swing.JLabel();
         lblMyAccountName18 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btnLoadPicture = new javax.swing.JButton();
+        textFieldPhone = new javax.swing.JFormattedTextField();
+        textFieldIdentification = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1285, 752));
@@ -65,12 +151,12 @@ public class JF_EditAccount extends javax.swing.JFrame {
         panelMyAccount.add(lblLogoMyAccount);
         lblLogoMyAccount.setBounds(1070, 10, 200, 130);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backPressed.png"))); // NOI18N
-        panelMyAccount.add(jButton1);
-        jButton1.setBounds(70, 80, 46, 40);
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
+        btnBack.setBorderPainted(false);
+        btnBack.setContentAreaFilled(false);
+        btnBack.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backPressed.png"))); // NOI18N
+        panelMyAccount.add(btnBack);
+        btnBack.setBounds(70, 80, 46, 40);
 
         lblMyAccountName1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 36)); // NOI18N
         lblMyAccountName1.setForeground(new java.awt.Color(255, 255, 255));
@@ -126,112 +212,95 @@ public class JF_EditAccount extends javax.swing.JFrame {
         panelMyAccount.add(lblMyAccountName17);
         lblMyAccountName17.setBounds(180, 590, 220, 32);
 
-        jButton2.setBackground(new java.awt.Color(86, 4, 44));
-        jButton2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Editar perfil");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnConfirm.setBackground(new java.awt.Color(86, 4, 44));
+        btnConfirm.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        btnConfirm.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfirm.setText("Confirmar");
+        btnConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnConfirmActionPerformed(evt);
             }
         });
-        panelMyAccount.add(jButton2);
-        jButton2.setBounds(960, 640, 150, 40);
+        panelMyAccount.add(btnConfirm);
+        btnConfirm.setBounds(960, 640, 150, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/avatar.png"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         panelMyAccount.add(jLabel1);
         jLabel1.setBounds(950, 250, 170, 230);
 
-        jTextField1.setText("86480933");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        textFieldUsername.setText("Prueba");
+        textFieldUsername.setEnabled(false);
+        textFieldUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                textFieldUsernameActionPerformed(evt);
             }
         });
-        panelMyAccount.add(jTextField1);
-        jTextField1.setBounds(520, 590, 280, 30);
+        panelMyAccount.add(textFieldUsername);
+        textFieldUsername.setBounds(520, 180, 280, 30);
 
-        jTextField2.setText("Isaac4918");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        textFieldPassword.setText("Prueba");
+        textFieldPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                textFieldPasswordActionPerformed(evt);
             }
         });
-        panelMyAccount.add(jTextField2);
-        jTextField2.setBounds(520, 180, 280, 30);
+        panelMyAccount.add(textFieldPassword);
+        textFieldPassword.setBounds(520, 240, 280, 30);
 
-        jTextField3.setText("ContraPrueba");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        textFieldLastName2.setText("Prueba");
+        textFieldLastName2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                textFieldLastName2ActionPerformed(evt);
             }
         });
-        panelMyAccount.add(jTextField3);
-        jTextField3.setBounds(520, 240, 280, 30);
+        panelMyAccount.add(textFieldLastName2);
+        textFieldLastName2.setBounds(650, 320, 150, 30);
 
-        jTextField4.setText("Solano");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        textFieldGender.setText("Prueba");
+        textFieldGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                textFieldGenderActionPerformed(evt);
             }
         });
-        panelMyAccount.add(jTextField4);
-        jTextField4.setBounds(650, 320, 150, 30);
+        panelMyAccount.add(textFieldGender);
+        textFieldGender.setBounds(520, 450, 280, 30);
 
-        jTextField5.setText("305170939");
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        textFieldMail.setText("Prueba");
+        textFieldMail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                textFieldMailActionPerformed(evt);
             }
         });
-        panelMyAccount.add(jTextField5);
-        jTextField5.setBounds(520, 380, 280, 30);
+        panelMyAccount.add(textFieldMail);
+        textFieldMail.setBounds(520, 520, 280, 30);
 
-        jTextField6.setText("Masculino");
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        textFieldName1.setText("Prueba");
+        textFieldName1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                textFieldName1ActionPerformed(evt);
             }
         });
-        panelMyAccount.add(jTextField6);
-        jTextField6.setBounds(520, 450, 280, 30);
+        panelMyAccount.add(textFieldName1);
+        textFieldName1.setBounds(180, 320, 140, 30);
 
-        jTextField7.setText("isaac4918@gmail.com");
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        textFieldName2.setText("Prueba");
+        textFieldName2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                textFieldName2ActionPerformed(evt);
             }
         });
-        panelMyAccount.add(jTextField7);
-        jTextField7.setBounds(520, 520, 280, 30);
+        panelMyAccount.add(textFieldName2);
+        textFieldName2.setBounds(330, 320, 150, 30);
 
-        jTextField8.setText("Isaac");
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        textFieldLastName1.setText("Prueba");
+        textFieldLastName1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                textFieldLastName1ActionPerformed(evt);
             }
         });
-        panelMyAccount.add(jTextField8);
-        jTextField8.setBounds(180, 320, 140, 30);
-
-        jTextField9.setText("David");
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
-            }
-        });
-        panelMyAccount.add(jTextField9);
-        jTextField9.setBounds(330, 320, 150, 30);
-
-        jTextField10.setText("Araya");
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
-            }
-        });
-        panelMyAccount.add(jTextField10);
-        jTextField10.setBounds(490, 320, 150, 30);
+        panelMyAccount.add(textFieldLastName1);
+        textFieldLastName1.setBounds(490, 320, 150, 30);
 
         lblMyAccountName14.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         lblMyAccountName14.setForeground(new java.awt.Color(255, 255, 255));
@@ -251,14 +320,42 @@ public class JF_EditAccount extends javax.swing.JFrame {
         panelMyAccount.add(lblMyAccountName18);
         lblMyAccountName18.setBounds(330, 290, 150, 30);
 
-        jButton3.setText("Cargar Foto");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnLoadPicture.setText("Cargar Foto");
+        btnLoadPicture.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnLoadPictureActionPerformed(evt);
             }
         });
-        panelMyAccount.add(jButton3);
-        jButton3.setBounds(980, 500, 120, 23);
+        panelMyAccount.add(btnLoadPicture);
+        btnLoadPicture.setBounds(980, 500, 120, 23);
+
+        try {
+            textFieldPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        textFieldPhone.setText("0000-0000");
+        textFieldPhone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldPhoneActionPerformed(evt);
+            }
+        });
+        panelMyAccount.add(textFieldPhone);
+        textFieldPhone.setBounds(520, 600, 280, 30);
+
+        try {
+            textFieldIdentification.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#-####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        textFieldIdentification.setText("0-0000-0000");
+        textFieldIdentification.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldIdentificationActionPerformed(evt);
+            }
+        });
+        panelMyAccount.add(textFieldIdentification);
+        textFieldIdentification.setBounds(520, 380, 280, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -274,53 +371,53 @@ public class JF_EditAccount extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnConfirmActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void textFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldUsernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_textFieldUsernameActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void textFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_textFieldPasswordActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void textFieldGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldGenderActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_textFieldGenderActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void textFieldMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldMailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_textFieldMailActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void textFieldLastName2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldLastName2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_textFieldLastName2ActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void textFieldName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldName1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_textFieldName1ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void textFieldName2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldName2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_textFieldName2ActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void textFieldLastName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldLastName1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_textFieldLastName1ActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void btnLoadPictureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadPictureActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_btnLoadPictureActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void textFieldPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPhoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_textFieldPhoneActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void textFieldIdentificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldIdentificationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_textFieldIdentificationActionPerformed
 
     /**
      * @param args the command line arguments
@@ -361,20 +458,10 @@ public class JF_EditAccount extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnConfirm;
+    private javax.swing.JButton btnLoadPicture;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel lblLogoMyAccount;
     private javax.swing.JLabel lblMyAccountName1;
     private javax.swing.JLabel lblMyAccountName10;
@@ -389,5 +476,15 @@ public class JF_EditAccount extends javax.swing.JFrame {
     private javax.swing.JLabel lblMyAccountName4;
     private javax.swing.JLabel lblMyAccountName6;
     private javax.swing.JPanel panelMyAccount;
+    private javax.swing.JTextField textFieldGender;
+    private javax.swing.JFormattedTextField textFieldIdentification;
+    private javax.swing.JTextField textFieldLastName1;
+    private javax.swing.JTextField textFieldLastName2;
+    private javax.swing.JTextField textFieldMail;
+    private javax.swing.JTextField textFieldName1;
+    private javax.swing.JTextField textFieldName2;
+    private javax.swing.JTextField textFieldPassword;
+    private javax.swing.JFormattedTextField textFieldPhone;
+    private javax.swing.JTextField textFieldUsername;
     // End of variables declaration//GEN-END:variables
 }
