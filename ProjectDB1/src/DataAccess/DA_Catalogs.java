@@ -6,6 +6,7 @@ package DataAccess;
 
 import Objects.Canton;
 import Objects.Country;
+import Objects.CountryTeam;
 import Objects.District;
 import Objects.Event;
 import Objects.Gender;
@@ -215,8 +216,29 @@ public class DA_Catalogs {
 
         return teams;
     }
-    
-    
-    
+        
+        
+        public static ArrayList<CountryTeam> getCountryTeam() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getCountryTeam(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<CountryTeam> countryTeams = new ArrayList<>();
+        while(rs.next()){
+            CountryTeam countryTeam = new CountryTeam();
+            
+            countryTeam.setIdCountryTeam(rs.getInt("idCountryTeam"));
+            countryTeam.setIdContinent(rs.getInt("idContinent"));
+            countryTeam.setNameCountryTeam(rs.getString("nameCountryTeam"));
+            countryTeam.setTeamFlag(rs.getString("flag"));
+            
+            countryTeams.add(countryTeam);
+        }
+
+        return countryTeams;
+    }
     
 }

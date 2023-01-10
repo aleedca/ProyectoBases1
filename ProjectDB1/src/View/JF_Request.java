@@ -618,6 +618,12 @@ public class JF_Request extends javax.swing.JFrame {
         return cmbNewsEvent;
     }
 
+    public JComboBox<String> getCbmTeamFlag() {
+        return cbmTeamFlag;
+    }
+    
+    
+
     public JButton getBtnBackRequest() {
         return btnBackRequest;
     }
