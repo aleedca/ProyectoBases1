@@ -4,6 +4,7 @@
  */
 package View;
 
+import Objects.Account;
 import javax.swing.JButton;
 
 /**
@@ -15,8 +16,12 @@ public class JF_MyAccount extends javax.swing.JFrame {
     /**
      * Creates new form JF_Stats
      */
+    
+    public Account information = new Account();
+    
     public JF_MyAccount() {
         initComponents();
+        this.loadInfoFromAccount();
     }
     
     //GETTERS
@@ -28,6 +33,42 @@ public class JF_MyAccount extends javax.swing.JFrame {
     public JButton getBtnEditProfile() {
         return btnEditProfile;
     }
+    
+    public void UpdateInfo(Account infoToShow){
+        this.information = infoToShow;
+        this.loadInfoFromAccount();
+        this.repaint();
+    }
+    
+    public void loadInfoFromAccount(){
+        this.lblUsername.setText(this.information.getUsername());
+        this.lblPassword.setText(this.information.getPassword());
+        String name = this.information.getFirstName();
+        String sndName = this.information.getSndName();
+        String lastName = this.information.getFirstLastName();
+        String sndLastName = this.information.getSndLastName();
+        
+        String fullName = "";
+        
+        fullName += name;
+        
+        fullName += sndName;
+        
+        fullName += lastName;
+        
+        fullName += sndLastName;
+        
+        this.lblFullName.setText(fullName);
+        Integer ID = this.information.getIdentification();
+        this.lblID.setText(ID.toString());
+        this.lblGender.setText(this.information.getGender());
+        this.lblEmail.setText(this.information.getEmail());
+        Integer phoneNumber = this.information.getPhoneNumber();
+        this.lblPhone.setText(phoneNumber.toString());
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

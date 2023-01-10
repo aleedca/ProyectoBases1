@@ -38,8 +38,6 @@ public class DA_MyAccount {
         String lastname1 = rs.getString("firstLastname");
         String lastname2 = rs.getString("secondLastname");
         
-        String fullName = name + " " + name2 + " " + lastname1 + " " + lastname2;
-        
         accountInformation.setUsername(pUsername);
         
         accountInformation.setEmail(rs.getString("mail"));
@@ -52,7 +50,14 @@ public class DA_MyAccount {
         
         accountInformation.setPhoneNumber(rs.getInt("phoneNumber"));
                 
-        accountInformation.setFullName(fullName);
+        accountInformation.setFirstName(name);
+        
+        accountInformation.setSndName(name2);
+        
+        accountInformation.setFirstLastName(lastname1);
+        
+        accountInformation.setSndLastName(lastname2);
+        
         
         return accountInformation;
     }

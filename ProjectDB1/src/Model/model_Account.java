@@ -37,8 +37,9 @@ public class model_Account {
         this.usernameValidated = usernameValidated;
         this.getInfo();
     }
-    
-    
-    
+
+    public Account getAccountLogged() {
+        return accountLogged;
+    }
     
 }

@@ -18,7 +18,7 @@ BEGIN
     INNER JOIN GroupStats ON GroupStats.idTeam = Team.idTeam;
 END;*/
 
-CREATE OR REPLACE PROCEDURE getAccountInformation(pUsername IN VARCHAR2, outAccountCursor SYS_REFCURSOR)
+CREATE OR REPLACE PROCEDURE getAccountInformation(pUsername IN VARCHAR2, outAccountCursor OUT SYS_REFCURSOR)
 AS
 BEGIN
     OPEN outAccountCursor FOR
