@@ -57,4 +57,14 @@ public class RequestController {
            viewRequest.getCmbEvent().addItem(modelRequest.getEvents().get(i).getTypeEvent());
         }
     }
+     
+     public void fillCountryTeams(JF_Request viewRequest){
+        viewRequest.getCbmTeamFlag().removeAllItems();
+        
+        viewRequest.getCbmTeamFlag().addItem("Seleccione la bandera");
+         for(int i=0; i<modelRequest.getCountryTeams().size();i++){
+           viewRequest.getCbmTeamFlag().addItem(modelRequest.getCountryTeams().get(i).getNameCountryTeam());
+           //aquí debería ir algo que me ayude a relacionar el get Flag con la imagen de parametros y la muestre 
+        }
+    }
 }

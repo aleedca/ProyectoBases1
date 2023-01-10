@@ -5,6 +5,7 @@
 package Model;
 
 import DataAccess.DA_Catalogs;
+import Objects.CountryTeam;
 import Objects.Event;
 import Objects.Position;
 import java.sql.SQLException;
@@ -21,12 +22,18 @@ public class model_Request {
     
     private int event;
     private ArrayList<Event> events;
+    
+    private int countryTeam;
+    private ArrayList<CountryTeam> countryTeams;
 
+    
     public model_Request() {
         try {
             this.positions = DA_Catalogs.getPosition();
             
             this.events = DA_Catalogs.getEvent();
+            
+            this.countryTeams = DA_Catalogs.getCountryTeam();
            
         } catch (SQLException ex) {
              System.out.println(ex);
@@ -52,6 +59,23 @@ public class model_Request {
         return events;
     }
 
+    public int getCountryTeam() {
+        return countryTeam;
+    }
+
+    public ArrayList<CountryTeam> getCountryTeams() {
+        return countryTeams;
+    }
+
+    public void setCountryTeam(int countryTeam) {
+        this.countryTeam = countryTeam;
+    }
+
+    public void setCountryTeams(ArrayList<CountryTeam> countryTeams) {
+        this.countryTeams = countryTeams;
+    }
+    
+
     public void setPosition(int position) {
         this.position = position;
     }
@@ -67,6 +91,8 @@ public class model_Request {
     public void setEvents(ArrayList<Event> events) {
         this.events = events;
     }
+    
+    
     
     
     
