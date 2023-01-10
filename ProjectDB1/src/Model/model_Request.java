@@ -11,10 +11,10 @@ import Objects.Position;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author Nahomy
- */
+
+
+
+
 public class model_Request {
     
     private int position;
@@ -26,7 +26,7 @@ public class model_Request {
     private int countryTeam;
     private ArrayList<CountryTeam> countryTeams;
 
-    
+    //----------------- BUILDER ----------------- 
     public model_Request() {
         try {
             this.positions = DA_Catalogs.getPosition();
@@ -39,9 +39,11 @@ public class model_Request {
              System.out.println(ex);
         }
     }
+    //--------------- VALIDATIONS ---------------
     
     
-    //getters and setters
+    
+    //------------GETTERS AND SETTERS------------
 
     public int getPosition() {
         return position;
@@ -75,7 +77,6 @@ public class model_Request {
         this.countryTeams = countryTeams;
     }
     
-
     public void setPosition(int position) {
         this.position = position;
     }
@@ -91,10 +92,5 @@ public class model_Request {
     public void setEvents(ArrayList<Event> events) {
         this.events = events;
     }
-    
-    
-    
-    
-    
-
+   
 }

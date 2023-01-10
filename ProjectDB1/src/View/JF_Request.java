@@ -600,7 +600,7 @@ public class JF_Request extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnBackRequestActionPerformed
     
-    //Getters
+    //--------------------- GETTERS ---------------------
     
     public JComboBox<String> getCmbPosition() {
         return cmbPosition;
@@ -613,9 +613,7 @@ public class JF_Request extends javax.swing.JFrame {
     public JComboBox<String> getCbmTeamFlag() {
         return cbmTeamFlag;
     }
-    
-    
-
+   
     public JButton getBtnBackRequest() {
         return btnBackRequest;
     }
