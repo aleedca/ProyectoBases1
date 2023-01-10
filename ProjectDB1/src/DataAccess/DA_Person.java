@@ -131,9 +131,9 @@ public class DA_Person {
     }
     
 
-    public static int insertTeamWorker(int identification, String firstName, String secondName,
+    public static int insertTeamWorker(int identification, int idTeam, String firstName, String secondName,
             String firstLastName, String secondLastName, String photo, 
-            int idPosition, int idTypeIdentification, int idGender, int idTeam, int phoneNumber, 
+            int idPosition, int idTypeIdentification, int idGender, int phoneNumber, 
             int idDistrict, String mail, String address) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
@@ -141,16 +141,17 @@ public class DA_Person {
         CallableStatement sql = conn.prepareCall("{ call insertTeamWorker(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
         //Input parameters
         sql.setInt(1, identification);
-        sql.setString(2, firstName);
-        sql.setString(3, secondName);
-        sql.setString(4, firstLastName);
-        sql.setString(5, secondLastName);
-        sql.setString(6, photo);
+        sql.setInt(2, idTeam);
+        sql.setString(3, firstName);
+        sql.setString(4, secondName);
+        sql.setString(5, firstLastName);
+        sql.setString(6, secondLastName);
+        sql.setString(7, photo);
       
-        sql.setInt(7, idPosition);
-        sql.setInt(8, idTypeIdentification);
-        sql.setInt(9, idGender);
-        sql.setInt(10, idTeam);
+        sql.setInt(8, idPosition);
+        sql.setInt(9, idTypeIdentification);
+        sql.setInt(10, idGender);
+
         sql.setInt(11, phoneNumber);
         sql.setInt(12, idDistrict);
         sql.setString(13, mail);
