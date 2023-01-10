@@ -7,7 +7,7 @@ package View;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JList;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -42,15 +42,15 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         txtAgregar = new javax.swing.JTextField();
         lblOpciones = new javax.swing.JLabel();
         txtModificar = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lstOpciones = new javax.swing.JList<>();
         btnBack = new javax.swing.JButton();
-        lblCatalogo1 = new javax.swing.JLabel();
+        lblCatalogo = new javax.swing.JLabel();
         lblAgregar = new javax.swing.JLabel();
-        btnAgregar1 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         cmbSeleccionar = new javax.swing.JComboBox<>();
         lblSeleccionar = new javax.swing.JLabel();
         lblModificar = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblOpciones = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1280, 720));
@@ -120,14 +120,6 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         jPanel1.add(txtModificar);
         txtModificar.setBounds(180, 480, 260, 40);
 
-        lstOpciones.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        lstOpciones.setFixedCellHeight(30);
-        lstOpciones.setFixedCellWidth(5);
-        jScrollPane1.setViewportView(lstOpciones);
-
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(806, 260, 367, 383);
-
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
         btnBack.setContentAreaFilled(false);
@@ -140,11 +132,11 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         jPanel1.add(btnBack);
         btnBack.setBounds(62, 74, 46, 40);
 
-        lblCatalogo1.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        lblCatalogo1.setForeground(new java.awt.Color(255, 255, 255));
-        lblCatalogo1.setText("Catálogo");
-        jPanel1.add(lblCatalogo1);
-        lblCatalogo1.setBounds(113, 217, 144, 32);
+        lblCatalogo.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        lblCatalogo.setForeground(new java.awt.Color(255, 255, 255));
+        lblCatalogo.setText("Catálogo");
+        jPanel1.add(lblCatalogo);
+        lblCatalogo.setBounds(113, 217, 144, 32);
 
         lblAgregar.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         lblAgregar.setForeground(new java.awt.Color(255, 255, 255));
@@ -152,15 +144,15 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         jPanel1.add(lblAgregar);
         lblAgregar.setBounds(180, 330, 260, 25);
 
-        btnAgregar1.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        btnAgregar1.setText("Agregar");
-        btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar1ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregar1);
-        btnAgregar1.setBounds(470, 360, 196, 39);
+        jPanel1.add(btnAgregar);
+        btnAgregar.setBounds(470, 360, 196, 39);
 
         cmbSeleccionar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cmbSeleccionar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -181,6 +173,30 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         jPanel1.add(lblModificar);
         lblModificar.setBounds(180, 450, 260, 25);
 
+        tblOpciones.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        tblOpciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tblOpciones.setRowHeight(40);
+        tblOpciones.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tblOpciones);
+
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(810, 250, 360, 390);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -195,8 +211,54 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public String getCmbCatalogo() {
-        return cmbCatalogo.getSelectedItem().toString();
+    public JButton getBtnAgregar() {
+        return btnAgregar;
+    }
+
+    public JButton getBtnEliminar() {
+        return btnEliminar;
+    }
+
+    public JButton getBtnModificar() {
+        return btnModificar;
+    }
+
+    
+    public JLabel getLblCatalogo() {
+        return lblCatalogo;
+    }
+
+    public void setLblCatalogoJLabel (JLabel lblCatalogo) {
+        this.lblCatalogo = lblCatalogo;
+    }
+
+    public JLabel getLblAgregar() {
+        return lblAgregar;
+    }
+
+    public void setLblAgregar(JLabel lblAgregar) {
+        this.lblAgregar = lblAgregar;
+    }
+
+    public JLabel getLblModificar() {
+        return lblModificar;
+    }
+
+    public void setLblModificar(JLabel lblModificar) {
+        this.lblModificar = lblModificar;
+    }
+
+    public JLabel getLblOpciones() {
+        return lblOpciones;
+    }
+
+    public void setLblOpciones(JLabel lblOpciones) {
+        this.lblOpciones = lblOpciones;
+    }
+
+    
+    public JComboBox<String> getCmbCatalogo() {
+        return cmbCatalogo;
     }
 
     public void setCmbCatalogo(JComboBox<String> cmbCatalogo) {
@@ -218,68 +280,55 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
     public void setjTextField3(String text) {
         this.txtModificar.setText(text);
     }
-
-    public JList<String> getLstOpciones() {
-        return lstOpciones;
+    
+    public JButton getBtnBack() {
+        return btnBack;
     }
 
-    public void setLstOpciones(JList<String> lstOpciones) {
-        this.lstOpciones = lstOpciones;
+    public void setBtnBack(JButton btnBack) {
+        this.btnBack = btnBack;
     }
+
+    public JTable getTblOpciones() {
+        return tblOpciones;
+    }
+
+    public void setTblOpciones(JTable tblOpciones) {
+        this.tblOpciones = tblOpciones;
+    }
+
+    public JComboBox<String> getCmbSeleccionar() {
+        return cmbSeleccionar;
+    }
+
+    public void setCmbSeleccionar(JComboBox<String> cmbSeleccionar) {
+        this.cmbSeleccionar = cmbSeleccionar;
+    }
+    
+    public JLabel getLblSeleccionar() {
+        return lblSeleccionar;
+    }
+
+    public JButton getBtnAceptar() {
+        return btnAceptar;
+    }
+    
     
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // validar si de verdad desea eliminar el item seleccionado de la lista
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        JF_AdminOptions adminOptions = new JF_AdminOptions();
-        adminOptions.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void dissapearOptions(boolean flag){
-        lblSeleccionar.setVisible(flag);
-        cmbSeleccionar.setVisible(flag);
-        btnAceptar.setVisible(flag);
-    }
-    
     private void cmbCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCatalogoActionPerformed
-        lblOpciones.setText("Catálogo ");
-        lblAgregar.setText("Agregar ");
-        lblModificar.setText("Modificar ");
-        String catalog = getCmbCatalogo();
         
-        
-        if(!"Seleccione un catálogo".equals(catalog)){
-            lblOpciones.setText(lblOpciones.getText() + "" + catalog);
-            lblAgregar.setText(lblAgregar.getText() + "" + catalog);
-            lblModificar.setText(lblModificar.getText() + "" + catalog);
-        }
-        
-        if("Provincia".equals(catalog)){
-            lblSeleccionar.setText("Selecione un Pais");
-            //cmb de seleccionar paises
-        }
-        
-        if("Cantón".equals(catalog)){
-            lblSeleccionar.setText("Selecione una Provincia");
-            //cmb de seleccionar provincias
-        }
-        
-        if("Distrito".equals(catalog)){
-            lblSeleccionar.setText("Selecione un Cantón");
-            //cmb de seleccionar cantones
-        }
-        
-        dissapearOptions(false);
     }//GEN-LAST:event_cmbCatalogoActionPerformed
 
-    private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
-        String catalog = getCmbCatalogo();
-        if (catalog == "Distrito" || catalog == "Provincia" || catalog == "Cantón"){
-            dissapearOptions(true);
-        }
-    }//GEN-LAST:event_btnAgregar1ActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,7 +368,7 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton btnAgregar1;
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
@@ -328,13 +377,13 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAgregar;
-    private javax.swing.JLabel lblCatalogo1;
+    private javax.swing.JLabel lblCatalogo;
     private javax.swing.JLabel lblModificar;
     private javax.swing.JLabel lblOpciones;
     private javax.swing.JLabel lblSeleccionar;
-    private javax.swing.JList<String> lstOpciones;
+    private javax.swing.JTable tblOpciones;
     private javax.swing.JTextField txtAgregar;
     private javax.swing.JTextField txtModificar;
     // End of variables declaration//GEN-END:variables
