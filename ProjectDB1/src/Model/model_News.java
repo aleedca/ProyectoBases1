@@ -17,6 +17,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Image;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -46,17 +48,15 @@ public class model_News {
     private final JFileChooser file = new JFileChooser();
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");;
 
-    public model_News(){
+    
+    public void loadNewsArr(){
         try {
             this.newsArr = DA_News.getNews();
-            
             this.newsStatusArr = DA_News.getNewsStatus();
-            
             this.newsTypeArr = DA_News.getNewsType();
-                      
             
         } catch (SQLException ex) {
-            System.out.println(ex);
+           System.out.println(ex);
         }
     }
     
@@ -66,14 +66,13 @@ public class model_News {
     }
     
     public boolean validatePhoto(){
-        if(this.photo == null){return true;}
-        return false;
+        if(this.photo == null){return false;}
+        return true;
     }
     
     public void insertNews(){
         try {   
-            System.out.println("Entro a llamar a la base");
-            DA_News.insertNews(this.idNewsStatus, this.idNewsType, this.newsTitle, this.publicationDate, "", "FotoNoticia", this.newsText);
+            DA_News.insertNews(this.idNewsStatus, this.idNewsType, this.newsTitle, this.publicationDate, "Unlink", "FotoNoticia", this.newsText);
         
         } catch (SQLException ex) {
             System.out.println(ex);

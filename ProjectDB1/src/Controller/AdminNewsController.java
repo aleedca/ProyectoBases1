@@ -38,7 +38,6 @@ public final class AdminNewsController{
         model_News validateNews = new model_News();
         this.modelNews = validateNews;
         
-        
         fillAdminNews(); 
         fillStatus();
         fillNewsType();
@@ -50,7 +49,8 @@ public final class AdminNewsController{
         return viewAdminNews;
     }
     
-    private void fillStatus(){
+    public void fillStatus(){
+        modelNews.loadNewsArr();
         viewAdminNews.getCmbEstado().removeAllItems();
         
         viewAdminNews.getCmbEstado().addItem("Seleccione Estado");
@@ -59,7 +59,8 @@ public final class AdminNewsController{
         }
     }
     
-    private void fillNewsType(){
+    public void fillNewsType(){
+        modelNews.loadNewsArr();
         viewAdminNews.getCmbTipo().removeAllItems();
 
         viewAdminNews.getCmbTipo().addItem("Seleccione Tipo");        
@@ -69,10 +70,11 @@ public final class AdminNewsController{
     
     }
     
-    private void fillAdminNews(){
-        viewAdminNews.getTblNoticias().removeAll();
+    public void fillAdminNews(){
+        modelNews.loadNewsArr();
         ArrayList<News> newsArr = modelNews.getNewsArr();
         DefaultTableModel modelTable = (DefaultTableModel) viewAdminNews.getTblNoticias().getModel();
+        modelTable.setRowCount(0); 
         
         for(int i = 0; i < newsArr.size(); i++){
             Vector row = new Vector();

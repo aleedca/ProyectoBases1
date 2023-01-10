@@ -8,6 +8,7 @@ import Model.model_Account;
 import Model.model_AdminCatalogs;
 import Model.model_AdminPerson;
 import Model.model_Login;
+import Model.model_News;
 import Model.model_Register;
 import View.JF_AdminCatalogs;
 import View.JF_AdminOptions;
@@ -45,6 +46,7 @@ public class OperationsController implements ActionListener, ItemListener{
     private final model_Login modelLogin;
     private final model_Register modelRegister;
     private final model_AdminPerson modelAdminPerson;
+    private final model_News modelNews;
     private final model_Account accountModel;
     
     private boolean flagRegister;
@@ -98,6 +100,10 @@ public class OperationsController implements ActionListener, ItemListener{
         //Model AdminPerson
         model_AdminPerson validateAdminPerson = new model_AdminPerson();
         this.modelAdminPerson = validateAdminPerson;
+        
+        //Model AdminNews
+        model_News validateAdminNews = new model_News();
+        this.modelNews = validateAdminNews;
         
         //Model MyAccount
         this.accountModel = new model_Account();
@@ -168,7 +174,9 @@ public class OperationsController implements ActionListener, ItemListener{
         
         adminNewsController.getViewAdminNews().getBtnAceptar().addActionListener(this);
         adminNewsController.getViewAdminNews().getBtnBack().addActionListener(this);
+        adminNewsController.getViewAdminNews().getBtnCargarImagen().addActionListener(this);
         
+        //AdminCatalogOption
         adminCatalogsController.getViewAdminCatalogs().getBtnBack().addActionListener(this);
                
         //Request
@@ -928,6 +936,45 @@ public class OperationsController implements ActionListener, ItemListener{
         if(e.getSource() == adminNewsController.getViewAdminNews().getBtnBack()){
             adminNewsController.getViewAdminNews().setVisible(false);
             this.viewMenuAdmin.setVisible(true);
+        }
+        
+        if(e.getSource() == adminNewsController.getViewAdminNews().getBtnAceptar()){
+            String choice1 = adminNewsController.getViewAdminNews().getCmbEstado().getSelectedItem().toString();
+            String choice2 = adminNewsController.getViewAdminNews().getCmbTipo().getSelectedItem().toString();
+            
+            modelNews.setIdNewsStatus(adminNewsController.getViewAdminNews().getCmbEstado().getSelectedIndex());
+            modelNews.setIdNewsType(adminNewsController.getViewAdminNews().getCmbTipo().getSelectedIndex());
+            modelNews.setNewsTitle(adminNewsController.getViewAdminNews().getTxtTitulo().getText());
+            modelNews.setPublicationDate(modelNews.getPublicationDate());
+            modelNews.setNewsText(adminNewsController.getViewAdminNews().getTxtTexto().getText());
+            
+            if(adminNewsController.getViewAdminNews().getRbtnAgregar().isSelected()){
+                if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
+                    modelNews.insertNews();
+                    adminNewsController.fillAdminNews();
+                    adminNewsController.fillNewsType();
+                    adminNewsController.fillStatus();
+                               
+                    adminNewsController.getViewAdminNews().clearAll();
+                    modelNews.setPhoto("src/Images/avatar.png");
+                    adminNewsController.getViewAdminNews().setLocationRelativeTo(adminNewsController.getViewAdminNews());
+                    modelNews.setImageLabel(adminNewsController.getViewAdminNews().getLblImagen());
+                    adminNewsController.getViewAdminNews().repaint();
+                    
+                     JOptionPane.showMessageDialog(null, "Noticia creada con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
+                }
+            }
+        }
+        
+        if(e.getSource() == adminNewsController.getViewAdminNews().getBtnCargarImagen()){
+            if(modelNews.selectPhoto(adminNewsController.getViewAdminNews())){
+                adminNewsController.getViewAdminNews().setLocationRelativeTo(adminNewsController.getViewAdminNews());
+                modelNews.setImageLabel(adminNewsController.getViewAdminNews().getLblImagen());
+                adminNewsController.getViewAdminNews().repaint();
+            }
         }
         
         
