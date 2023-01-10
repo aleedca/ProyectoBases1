@@ -7,8 +7,18 @@ import Objects.News;
 import DataAccess.DA_News;
 import Objects.NewsStatus;
 import Objects.NewsType;
+import View.JF_AdminNews;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import java.awt.Image;
+import java.util.Date;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -19,15 +29,22 @@ public class model_News {
     private String newsTitle;
     private String newsText;
     private String photo;
+    private Date publicationDate;
     
     private String newsStr;
+    private int idNews;
     private ArrayList<News> newsArr;
     
     private String newsType;
+    private int idNewsType;
     private ArrayList<NewsStatus> newsStatusArr;
     
     private String newsStatus;
+    private int idNewsStatus;
     private ArrayList<NewsType> newsTypeArr;
+    
+    private final JFileChooser file = new JFileChooser();
+    private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");;
 
     public model_News(){
         try {
@@ -43,17 +60,64 @@ public class model_News {
         }
     }
     
-    public boolean validateEmptyFields(String title, String text){
-        if(title.isEmpty() || text.isEmpty()){return true;}
+    public boolean validateEmptyFields(){
+        if(this.newsTitle.isEmpty() || this.newsText.isEmpty()){return false;}
+        return true;
+    }
+    
+    public boolean validatePhoto(){
+        if(this.photo == null){return true;}
         return false;
     }
     
-    public boolean validatePhoto(String photo){
-        if(photo == null){return true;}
-        return false;
+    public void insertNews(){
+        try {   
+            System.out.println("Entro a llamar a la base");
+            DA_News.insertNews(this.idNewsStatus, this.idNewsType, this.newsTitle, this.publicationDate, "", "FotoNoticia", this.newsText);
+        
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
 
+    public void updateNews(){
+    
+    }
+    
+    public void deleteNews(){
+    
+    }
+    
+    public boolean selectPhoto(JF_AdminNews adminNews){
+        file.setFileFilter(this.filter);
+        file.showOpenDialog(adminNews);
+        try{
+            photo = file.getSelectedFile().getPath();
+            return true;
+        }catch(NullPointerException e){
+            System.out.println("No se ha seleccionado ningún fichero");
+        } 
+        
+        return false;
+    }
+    
+    
+    public void setImageLabel(JLabel labelName){
+        ImageIcon image = new ImageIcon(this.photo);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_SMOOTH));
+        labelName.setIcon(icon);
+    }
+    
     // GETTERS AND SETTERS
+
+    public Date getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(Date publicationDate) {
+        this.publicationDate = publicationDate;
+    }
+    
     public String getNewsStatus() {
         return newsStatus;
     }
@@ -125,11 +189,29 @@ public class model_News {
     public void setNewsTypeArr(ArrayList<NewsType> newsTypeArr) {
         this.newsTypeArr = newsTypeArr;
     }
-    
-    
 
+    public int getIdNews() {
+        return idNews;
+    }
 
-    
-    
-    
+    public void setIdNews(int idNews) {
+        this.idNews = idNews;
+    }
+
+    public int getIdNewsType() {
+        return idNewsType;
+    }
+
+    public void setIdNewsType(int idNewsType) {
+        this.idNewsType = idNewsType;
+    }
+
+    public int getIdNewsStatus() {
+        return idNewsStatus;
+    }
+
+    public void setIdNewsStatus(int idNewsStatus) {
+        this.idNewsStatus = idNewsStatus;
+    }
+
 }

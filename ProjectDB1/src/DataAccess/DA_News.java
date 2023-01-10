@@ -11,8 +11,10 @@ import java.util.ArrayList;
 
 import java.sql.Connection;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import oracle.jdbc.OracleTypes;
 
 /**
@@ -89,7 +91,24 @@ public class DA_News {
         return arrayNewsType;
     }
     
-    
+    public static void insertNews(int idNewsStatus, int idNewsType, String title, Date publicationDate, String link, 
+        String photo, String text) throws SQLException {
+        
+        Connection conn = sysConnection.getConexion();
+        PreparedStatement sql = conn.prepareCall("{call insertNews(?,?,?,?,?,?,?)}");
+        publicationDate = new java.util.Date();
+        
+        //Input parameters
+        sql.setInt(1, idNewsStatus);
+        sql.setInt(2, idNewsType);
+        sql.setString(3, title);
+        sql.setDate(4, new java.sql.Date(publicationDate.getTime()));
+        sql.setString(5, link);
+        sql.setString(6, photo);
+        sql.setString(7, text);
+
+        sql.execute();
+    }
     
     
     

@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Mariana
  */
 
-public class AdminNewsController{
+public final class AdminNewsController{
     
     private final JF_AdminNews viewAdminNews;
     private final model_News modelNews;
@@ -37,11 +38,13 @@ public class AdminNewsController{
         model_News validateNews = new model_News();
         this.modelNews = validateNews;
         
+        
         fillAdminNews(); 
         fillStatus();
         fillNewsType();
 
     }
+
 
     public JF_AdminNews getViewAdminNews() {
         return viewAdminNews;
@@ -66,7 +69,6 @@ public class AdminNewsController{
     
     }
     
-    
     private void fillAdminNews(){
         viewAdminNews.getTblNoticias().removeAll();
         ArrayList<News> newsArr = modelNews.getNewsArr();
@@ -83,10 +85,6 @@ public class AdminNewsController{
             modelTable.addRow(row);
         }
     }
-    
-    
-    
-    
     
     public void showView(){ 
         viewAdminNews.setVisible(true);
