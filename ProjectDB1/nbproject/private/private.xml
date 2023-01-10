@@ -3,19 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Users/CPUw0113/Documents/ALEXIA/ProyectoBases1/ProjectDB1/src/Model/model_News.java</file>
             <file>file:/C:/Users/CPUw0113/Documents/ALEXIA/ProyectoBases1/ProjectDB1/src/Controller/OperationsController.java</file>
-            <file>file:/C:/Users/CPUw0113/Documents/ALEXIA/ProyectoBases1/ProjectDB1/src/DataAccess/DA_NewsList.java</file>
-            <file>file:/C:/Users/CPUw0113/Documents/ALEXIA/ProyectoBases1/ProjectDB1/src/Model/model_Register.java</file>
-            <file>file:/C:/Users/CPUw0113/Documents/ALEXIA/ProyectoBases1/ProjectDB1/src/View/JF_AdminNews.java</file>
             <file>file:/C:/Users/CPUw0113/Documents/ALEXIA/ProyectoBases1/ProjectDB1/src/Controller/AdminNewsController.java</file>
-=======
-            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/Objects/Group.java</file>
-            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/DataAccess/DA_GroupList.java</file>
-            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/Objects/TeamGroupStats.java</file>
-            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/DataAccess/DA_GroupStats.java</file>
->>>>>>> af7221c8eb64fbe3ce32fa112da420b79d015438
         </group>
     </open-files>
 </project-private>
