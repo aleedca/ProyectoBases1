@@ -1,5 +1,5 @@
 --
-CREATE OR REPLACE PROCEDURE getGroupList(pGroupList OUT SYS_REFCURSOR, pTeamName IN VARCHAR2, pMatchDate IN DATE, pStadium IN VARCHAR2, pTeamFlag IN VARCHAR2)
+CREATE OR REPLACE PROCEDURE getGroupList(pGroupList OUT SYS_REFCURSOR, pTeamName IN VARCHAR2, pMatchDate IN VARCHAR2, pStadium IN VARCHAR2, pTeamFlag IN VARCHAR2)
 IS 
 BEGIN
     OPEN pGroupList FOR 
@@ -9,7 +9,7 @@ BEGIN
     INNER JOIN PlayerXSoccerMatchXTeam ON SoccerMatch.idSoccerMatch = PlayerXSoccerMatchXTeam.idSoccerMatch
     INNER JOIN Team ON PlayerXSoccerMatchXTeam.idTeam = Team.idTeam
     INNER JOIN CountryTeam ON Team.idCountryTeam = CountryTeam.idCountryTeam 
-    WHERE Team.nameTeam = NVL (pTeamName, Team.nameTeam) AND SoccerMatch.dateHour = NVL (pMatchDate, SoccerMatch.dateHour) 
+    WHERE Team.nameTeam = NVL (pTeamName, Team.nameTeam) AND SoccerMatch.dateHour = NVL (TO_DATE(pMatchDate, 'DD-MM-YYYY HH24:MI'), SoccerMatch.dateHour) 
     AND Stadium.nameStadium = NVL (pStadium, Stadium.nameStadium) AND CountryTeam.flag = NVL (pTeamFlag, CountryTeam.flag);
 END getGroupList;
 

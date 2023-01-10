@@ -5,9 +5,11 @@
 package Controller;
 
 import Model.model_Account;
+import Model.model_AdminCatalogs;
 import Model.model_AdminPerson;
 import Model.model_Login;
 import Model.model_Register;
+import View.JF_AdminCatalogs;
 import View.JF_AdminOptions;
 import View.JF_AdminPerson;
 import View.JF_EditAccount;
@@ -50,6 +52,7 @@ public class OperationsController implements ActionListener, ItemListener{
     
     private final RequestController requestController;
     private final AdminNewsController adminNewsController;
+    private final AdminCatalogsController adminCatalogsController;
     
     
     //Constructor 2da version
@@ -107,6 +110,10 @@ public class OperationsController implements ActionListener, ItemListener{
         AdminNewsController adminNController = new AdminNewsController();
         this.adminNewsController = adminNController;
         
+        //AdminCatalogs Controller
+        AdminCatalogsController adminCatalogsController = new AdminCatalogsController();
+        this.adminCatalogsController = adminCatalogsController;
+        
         
         _init_(); 
         
@@ -149,6 +156,7 @@ public class OperationsController implements ActionListener, ItemListener{
         viewMenuAdmin.getBtnBack().addActionListener(this);
         viewMenuAdmin.getBtnAdmiNoticias().addActionListener(this);
         viewMenuAdmin.getBtnAdmiPersonas().addActionListener(this);
+        viewMenuAdmin.getBtnAdmiCatalogos().addActionListener(this);
         
         //AdminNewsOption
         adminNewsController.getViewAdminNews().getRbtnAgregar().addActionListener(this);
@@ -160,6 +168,8 @@ public class OperationsController implements ActionListener, ItemListener{
         
         adminNewsController.getViewAdminNews().getBtnAceptar().addActionListener(this);
         adminNewsController.getViewAdminNews().getBtnBack().addActionListener(this);
+        
+        adminCatalogsController.getViewAdminCatalogs().getBtnBack().addActionListener(this);
                
         //Request
         viewRequest.getBtnBackRequest().addActionListener(this);
@@ -184,6 +194,9 @@ public class OperationsController implements ActionListener, ItemListener{
         viewAdminPerson.getCmbProvince().addItemListener(this);
         viewAdminPerson.getCmbCanton().addItemListener(this);
         viewAdminPerson.getCmbDistrict().addItemListener(this);
+        
+        //AdminCatalogs
+        adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().addItemListener(this);
          
     }
     
@@ -609,7 +622,12 @@ public class OperationsController implements ActionListener, ItemListener{
             }
         }
         
-        
+        //XD LOL
+        if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                adminCatalogsController.fillCatalogs();
+            }
+        }
 
     }
     
@@ -895,9 +913,21 @@ public class OperationsController implements ActionListener, ItemListener{
             viewAdminPerson.setVisible(true);
         }
         
+        if(e.getSource() == viewMenuAdmin.getBtnAdmiCatalogos()){                    
+            viewMenuAdmin.setVisible(false);
+            adminCatalogsController.getViewAdminCatalogs().setVisible(true);
+        }
+        
         //-------------- SCREEN AdminNews -----------------------
         if(e.getSource() == adminNewsController.getViewAdminNews().getBtnBack()){
             adminNewsController.getViewAdminNews().setVisible(false);
+            this.viewMenuAdmin.setVisible(true);
+        }
+        
+        
+        //-------------- SCREEN AdminCatalogs -----------------------
+        if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getBtnBack()){
+            adminCatalogsController.getViewAdminCatalogs().setVisible(false);
             this.viewMenuAdmin.setVisible(true);
         }
         
