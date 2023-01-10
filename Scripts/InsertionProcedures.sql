@@ -124,10 +124,10 @@ BEGIN
 END insertPlayer;
 
 -- TeamWorker
-CREATE OR REPLACE PROCEDURE insertTeamWorker(pIdentification IN NUMBER, pFirstName IN VARCHAR2, 
+CREATE OR REPLACE PROCEDURE insertTeamWorker(pIdentification IN NUMBER, pIdTeam IN NUMBER, pFirstName IN VARCHAR2, 
                 pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2,
                 pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER, pIdTypeIdentification IN NUMBER, 
-                pIdGender IN NUMBER, pIdTeam IN NUMBER,pPhoneNumber IN NUMBER, pIdDistrict IN NUMBER, 
+                pIdGender IN NUMBER, pPhoneNumber IN NUMBER, pIdDistrict IN NUMBER, 
                 pMail IN VARCHAR2, pDescriptionAddress IN VARCHAR2, codResult OUT NUMBER)
 AS
 BEGIN

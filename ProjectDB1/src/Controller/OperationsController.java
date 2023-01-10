@@ -634,6 +634,7 @@ public class OperationsController implements ActionListener, ItemListener{
         }
         
         if(e.getSource() == viewPrincipal.getBtnRequests()){
+            requestController.fillCountryTeams(viewRequest);
             requestController.fillPositions(viewRequest);
             requestController.fillEvents(viewRequest);
             viewRequest.setVisible(true);

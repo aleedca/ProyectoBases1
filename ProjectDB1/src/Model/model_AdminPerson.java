@@ -111,9 +111,8 @@ public class model_AdminPerson {
     
     public void inserTeamWorker(){
         try {   
-            this.resultInsertPerson = DA_Person.insertTeamWorker(identification, firstName, secondName, firstLastName, 
-                    secondLastName, photo, position, typeIdentification, gender, 
-                    team, phone, district, mail, address);
+            this.resultInsertPerson = DA_Person.insertTeamWorker(identification, team, firstName, secondName, firstLastName, secondLastName, photo, 
+                    position, typeIdentification, gender, phone, district, mail, address);
         
         } catch (SQLException ex) {
             System.out.println(ex);
