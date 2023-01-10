@@ -4,6 +4,8 @@
  */
 package View;
 
+import Objects.MatchStats;
+
 /**
  *
  * @author Isaac
@@ -13,8 +15,17 @@ public class JF_MatchStats extends javax.swing.JFrame {
     /**
      * Creates new form JF_Stats
      */
+    
+    private MatchStats Team1 = new MatchStats();
+    private MatchStats Team2 = new MatchStats();
+    
+    
     public JF_MatchStats() {
         initComponents();
+    }
+    
+    
+    public void loadInfoFrom(){
     }
 
     /**

@@ -19,6 +19,14 @@ public class MatchStats {
     private int saves;
     
     public MatchStats(){
+        
+        this.teamName = "";
+        this.goals = 0;
+        this.corners = 0;
+        this.yellowCards = 0;
+        this.redCards = 0;
+        this.offsides = 0;
+        this.saves = 0;
     
     }
     
