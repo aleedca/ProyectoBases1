@@ -264,6 +264,11 @@ public class JF_AdminNews extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void clearAll(){
+        txtTitulo.setText("");
+        txtTexto.setText("");
+    }
+    
     public JComboBox<String> getCmbEstado() {
         return cmbEstado;
     }
