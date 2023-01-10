@@ -89,7 +89,7 @@ EXCEPTION
 END updateIdentification;
 
 --- MAIL
-CREATE OR REPLACE PROCEDURE updateMail(pidPerson IN NUMBER, pMail IN NUMBER, codResult OUT NUMBER) AS
+CREATE OR REPLACE PROCEDURE updateMail(pidPerson IN NUMBER, pMail IN VARCHAR2, codResult OUT NUMBER) AS
 BEGIN
     UPDATE Mail
     SET descriptionMail = pMail
