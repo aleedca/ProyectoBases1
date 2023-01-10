@@ -55,23 +55,27 @@ EXEC insertUserPerson('mario97_AK', 2,'patitoW80', 204560897, 'Mario', NULL, 'Ar
 EXEC insertUserPerson('admin01', 1,'Admin001', 305260877, 'Lucia', NULL, 'Rodriguez', NULL, 'Foto Perfil', 11, 1, 1, 'luchi@gmail.com', 77909041, 6, '200 metros al Este de la plaza Las Flores.');
 
 -- TeamWorker
-EXEC insertTeamWorker (10000001, 1, 'Sara','Maria', 'Corrales', 'Coto', 'fotoSaraMaria',8,1,1,23455787,13,'sarita09@hotmail.com', 'Panaderia Juan 175mts al oeste, casa amarilla');
-EXEC insertTeamWorker (20000002, 2, 'Mariana','Sofia','Smith',NULL, 'fotoMarianaSofia',7,1,1, 98765465, 4, 'marianasth@gmail.com', 'Centro educativo san juan, 200mts al norte y 100mts al sur');
-EXEC insertTeamWorker (30000003, 3, 'Daniela', NULL,'Arguedas', 'Garcia', 'fotoDanielaArguedas',8,1,1,  67678989, 5,'daniarguedas78@gmail.com', 'De las eólicas para abajito');
-EXEC insertTeamWorker (40000004, 4, 'Alana', NULL,'Ruiz', 'Fernandez', 'fotoAlanaRuiz',7,1,1, 22345019, 1,'alanaruiz67@gmail.com', 'De la iglesia jose mar, a la derecha hasta pegar con cerca, mano izquierda porton azul');
-EXEC insertTeamWorker (50000005, 5, 'Carlos', NULL ,'Cerdas', 'Rodriguez', 'fotoCarlosCerdas',8,1,2, 45679093, 10,'carlitoscr@gmail.com', 'Cerca de las ruinas, 600 mts al oeste');
-EXEC insertTeamWorker (60000006, 6, 'Jose', NULL ,'Williams', NULL, 'fotoJoseWilliams',7,1,2, 56783232, 7,'williamsj@hotmail.com', 'Del mall lincoln, cerca del cole de Moravia');
-EXEC insertTeamWorker (70000007, 7, 'Thomas', NULL ,'Miller', 'Jhonson', 'fotoThomasMiller',8,1,2, 90908989, 3,'thomeM@gmail.com', 'De la panaderia Calvito, 100 mts al sur');
-EXEC insertTeamWorker (80000008, 8, 'Mateo', NULL ,'Hernandez', NULL, 'fotoMateoHernandez',7,1,2, 26268787, 9, 'mateito17@gmail.com', 'De la entrada de disneyland, residencial las flores, casa CD9');
+DECLARE outputNumber NUMBER(10);
+BEGIN
+insertTeamWorker (10000001, 1, 'Sara','Maria', 'Corrales', 'Coto', 'fotoSaraMaria',8,1,1,23455787,13,'sarita09@hotmail.com', 'Panaderia Juan 175mts al oeste, casa amarilla',outputNumber);
+insertTeamWorker (20000002, 2, 'Mariana','Sofia','Smith',NULL, 'fotoMarianaSofia',7,1,1, 98765465, 4, 'marianasth@gmail.com', 'Centro educativo san juan, 200mts al norte y 100mts al sur',outputNumber);
+insertTeamWorker (30000003, 3, 'Daniela', NULL,'Arguedas', 'Garcia', 'fotoDanielaArguedas',8,1,1,  67678989, 5,'daniarguedas78@gmail.com', 'De las eólicas para abajito', outputNumber);
+insertTeamWorker (40000004, 4, 'Alana', NULL,'Ruiz', 'Fernandez', 'fotoAlanaRuiz',7,1,1, 22345019, 1,'alanaruiz67@gmail.com', 'De la iglesia jose mar, a la derecha hasta pegar con cerca, mano izquierda porton azul', outputNumber);
+insertTeamWorker (50000005, 5, 'Carlos', NULL ,'Cerdas', 'Rodriguez', 'fotoCarlosCerdas',8,1,2, 45679093, 10,'carlitoscr@gmail.com', 'Cerca de las ruinas, 600 mts al oeste', outputNumber);
+insertTeamWorker (60000006, 6, 'Jose', NULL ,'Williams', NULL, 'fotoJoseWilliams',7,1,2, 56783232, 7,'williamsj@hotmail.com', 'Del mall lincoln, cerca del cole de Moravia', outputNumber);
+insertTeamWorker (70000007, 7, 'Thomas', NULL ,'Miller', 'Jhonson', 'fotoThomasMiller',8,1,2, 90908989, 3,'thomeM@gmail.com', 'De la panaderia Calvito, 100 mts al sur', outputNumber);
+insertTeamWorker (80000008, 8, 'Mateo', NULL ,'Hernandez', NULL, 'fotoMateoHernandez',7,1,2, 26268787, 9, 'mateito17@gmail.com', 'De la entrada de disneyland, residencial las flores, casa CD9', outputNumber);
+END;
+--- Player    
+DECLARE numberOutput NUMBER(10);
 
---- Player     
-EXEC insertPlayer (105670888, 'Toni', NULL, 'Kroos', NULL, 'Foto Jugador', 3, 1, 2, 3, TO_DATE('04-01-1990'), 8, 67892345,'tonito@hotmail.com', 2,'De la calle#33 50 metros al Norte.');     
-EXEC insertPlayer (809910128, 'Luka', NULL, 'Modric', NULL, 'Foto Jugador', 3, 1, 2, 7, TO_DATE('09-09-1985'), 10, 78491355,'modric@yahoo.com', 2,'De la calle#45 100 metros al Sur.');
-EXEC insertPlayer (901440988, 'Vinicius', NULL, 'Junior', NULL, 'Foto Jugador', 4, 2, 2, 5, TO_DATE('12-07-2000'), 20, 83671123,'junior@gmail.com', 2,'De la calle#55 200 metros al Oeste.');  
-EXEC insertPlayer (704100224, 'Kylian', NULL, 'Mbappé', NULL, 'Foto Jugador', 4, 2, 2, 2, TO_DATE('20-12-1998'), 10, 87332385,'kMbappe@gmail.com', 2,'De la calle#33 500 metros al Este.'); 
-
-EXEC insertPlayer (804440333, 'Vinicius', 'Juan', 'Junior', 'De Oliviera', 'Foto Jugador', 4, 2, 2, 5, TO_DATE('12-07-2000'), 20, 83671123,'junior@gmail.com', 2,'De la calle#55 200 metros al Oeste.');  
-
+BEGIN
+insertPlayer (105670888, 'Toni', NULL, 'Kroos', NULL, 'Foto Jugador', 3, 1, 2, 3, '04-01-1990', 8, 67892345,'tonito@hotmail.com', 2,'De la calle#33 50 metros al Norte.', numberOutput);     
+insertPlayer (809910128, 'Luka', NULL, 'Modric', NULL, 'Foto Jugador', 3, 1, 2, 7, '09-09-1985', 10, 78491355,'modric@yahoo.com', 2,'De la calle#45 100 metros al Sur.', numberOutput);
+insertPlayer (901440988, 'Vinicius', NULL, 'Junior', NULL, 'Foto Jugador', 4, 2, 2, 5, '12-07-2000', 20, 83671123,'junior@gmail.com', 2,'De la calle#55 200 metros al Oeste.', numberOutput);  
+insertPlayer (704100224, 'Kylian', NULL, 'Mbappé', NULL, 'Foto Jugador', 4, 2, 2, 2, '20-12-1998', 10, 87332385,'kMbappe@gmail.com', 2,'De la calle#33 500 metros al Este.', numberOutput); 
+insertPlayer (804440333, 'Vinicius', 'Juan', 'Junior', 'De Oliviera', 'Foto Jugador', 4, 2, 2, 5, '12-07-2000', 20, 83671123,'junior@gmail.com', 2,'De la calle#55 200 metros al Oeste.', numberOutput);  
+END;
 ---EXEC insertPlayer (702210111, '', 'Juan', 'Junior', 'De Oliviera', 'Foto Jugador', 4, 2, 2, 5, TO_DATE('12-07-2000'), 20, 83671123,'junior@gmail.com', 2,'De la calle#55 200 metros al Oeste.');  
 
 --- PlayerXMatchXTeam
