@@ -15,6 +15,9 @@ public class Group {
     private TeamGroupStats Team3;
     private TeamGroupStats Team4;
 
+    public Group() {
+    }
+
     public Group(TeamGroupStats Team1, TeamGroupStats Team2, TeamGroupStats Team3, TeamGroupStats Team4) {
         this.Team1 = Team1;
         this.Team2 = Team2;
