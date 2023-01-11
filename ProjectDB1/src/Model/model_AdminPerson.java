@@ -6,12 +6,16 @@ package Model;
 
 import DataAccess.DA_Catalogs;
 import DataAccess.DA_Person;
+import Objects.Player;
 import Objects.Position;
 import Objects.Team;
+import Objects.TeamWorker;
 import View.JF_AdminPerson;
 import java.awt.Image;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -47,6 +51,14 @@ public class model_AdminPerson {
     
     private int team;
     private ArrayList<Team> teams;
+    
+    private ArrayList<Player> playersComboBox;
+    private ArrayList<TeamWorker> teamWorkersComboBox;
+    
+    private ArrayList<Player> playersInfo;
+    private ArrayList<TeamWorker> teamWorkersInfo;
+    
+    private int resultEditPerson;
    
     
     private final JFileChooser file = new JFileChooser();
@@ -119,6 +131,35 @@ public class model_AdminPerson {
         }
     }
     
+    
+    public void getPerson(){
+        try {
+            this.playersComboBox = DA_Person.getPlayer();
+            
+            this.teamWorkersComboBox = DA_Person.getTeamWorker();
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void getPersonInformation(int idPerson){
+        try {
+            this.resultEditPerson = DA_Person.getPersonInformation(idPerson);
+            if(resultEditPerson == 0){
+                DA_Person.getPlayerInformation();
+            }else{
+            
+                if(resultEditPerson == 1){
+                    DA_Person.getTeamWorkerInformation();
+                }
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+
     
     //GETTERS AND SETTERS
     public String getFirstName() {
@@ -300,6 +341,55 @@ public class model_AdminPerson {
     public int getResultInsertPerson() {
         return resultInsertPerson;
     }
+
+    public ArrayList<Player> getPlayersComboBox() {
+        return playersComboBox;
+    }
+
+    public void setPlayersComboBox(ArrayList<Player> playersComboBox) {
+        this.playersComboBox = playersComboBox;
+    }
+
+    public ArrayList<TeamWorker> getTeamWorkersComboBox() {
+        return teamWorkersComboBox;
+    }
+
+    public void setTeamWorkersComboBox(ArrayList<TeamWorker> teamWorkersComboBox) {
+        this.teamWorkersComboBox = teamWorkersComboBox;
+    }
+
+    public ArrayList<Player> getPlayersInfo() {
+        return playersInfo;
+    }
+
+    public void setPlayersInfo(ArrayList<Player> playersInfo) {
+        this.playersInfo = playersInfo;
+    }
+
+    public ArrayList<TeamWorker> getTeamWorkersInfo() {
+        return teamWorkersInfo;
+    }
+
+    public void setTeamWorkersInfo(ArrayList<TeamWorker> teamWorkersInfo) {
+        this.teamWorkersInfo = teamWorkersInfo;
+    }
+
+    public int getResultEditPerson() {
+        return resultEditPerson;
+    }
+
+    public void setResultEditPerson(int resultEditPerson) {
+        this.resultEditPerson = resultEditPerson;
+    }
+    
+    
+
+
+    
+    
+    
+
+
     
     
     
