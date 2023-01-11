@@ -4,6 +4,7 @@
  */
 package DataAccess;
 
+import Objects.MostViewedNews;
 import Objects.News;
 import Objects.NewsStatus;
 import Objects.NewsType;
@@ -108,6 +109,27 @@ public class DA_News {
         sql.setString(7, text);
 
         sql.execute();
+    }
+    
+    public static ArrayList<MostViewedNews> getMostViewedNews() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getMostViewedNews(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<MostViewedNews> MostViewedNews = new ArrayList<>();
+        while(rs.next()){
+            MostViewedNews news = new MostViewedNews();
+            
+            news.setTitle(rs.getString("title"));
+            news.setViews(rs.getInt("viewsNews"));
+           
+            MostViewedNews.add(news);
+        }
+
+        return MostViewedNews;
     }
     
     

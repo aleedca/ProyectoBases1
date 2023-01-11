@@ -5,6 +5,7 @@
 package Controller;
 
 import DataAccess.DA_GroupList;
+import DataAccess.DA_News;
 import DataAccess.DA_NewsList;
 import DataAccess.DA_TeamList;
 import Model.model_Request;
@@ -18,6 +19,9 @@ public class RequestController {
     private final DA_TeamList admT = new DA_TeamList();
     private final DA_GroupList admG = new DA_GroupList();
     private final DA_NewsList admN = new DA_NewsList();
+    
+    private final DA_News admMVN = new DA_News();
+    
     private final Cargador cargador = new Cargador();
     
     //private final JF_Request viewRequest = new JF_Request();
@@ -38,6 +42,11 @@ public class RequestController {
      public DefaultTableModel showNewsList(String author, String authorLastname, String newsDate, String newsEvent)throws SQLException{
         return cargador.showNewsList(admN.getNewsList(author, authorLastname,  newsDate, newsEvent));
     }
+     
+     public DefaultTableModel showMostViewedNews() throws SQLException{
+         return cargador.showMostViewedNews(admMVN.getMostViewedNews());
+     }
+     
      
     //-------- COMBO BOX FILLING --------------------------
     public void fillPositions(JF_Request viewRequest){

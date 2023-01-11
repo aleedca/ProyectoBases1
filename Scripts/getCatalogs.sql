@@ -97,6 +97,16 @@ BEGIN
 END getCountryTeam;
 
 
+CREATE OR REPLACE PROCEDURE getMostViewedNews(curMostViewedNews OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curMostViewedNews FOR
+    SELECT title, viewsNews
+    FROM News;
+END getMostViewedNews;
+
+
+
+
 
 
 

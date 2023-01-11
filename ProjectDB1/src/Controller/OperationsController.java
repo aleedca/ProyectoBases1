@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import DataAccess.DA_News;
 import Model.model_Account;
 import Model.model_AdminCatalogs;
 import Model.model_AdminPerson;
@@ -23,9 +24,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.SQLException;
 
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -34,6 +37,7 @@ import javax.swing.JOptionPane;
  */
 
 public class OperationsController implements ActionListener, ItemListener{
+    
     private final JF_Principal viewPrincipal;
     private final JF_Login viewLogin;
     private final JF_Register viewRegister;
@@ -58,7 +62,7 @@ public class OperationsController implements ActionListener, ItemListener{
     
     
     //Constructor 2da version
-    public OperationsController(JF_Principal principal) { 
+    public OperationsController(JF_Principal principal) throws SQLException { 
         //View Principal
         this.viewPrincipal = principal;
         
@@ -129,6 +133,9 @@ public class OperationsController implements ActionListener, ItemListener{
         fillPositions();
         fillTeams();
         fillTypePerson();
+        principal.showMostViewedNews();
+        
+       
 
     }
     
@@ -418,6 +425,9 @@ public class OperationsController implements ActionListener, ItemListener{
         }
 
     }
+    
+    //SHOW MORE VIEWED AND LAST NEWS 
+    
     
        
     
