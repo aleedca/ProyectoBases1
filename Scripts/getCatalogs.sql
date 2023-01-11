@@ -65,7 +65,7 @@ BEGIN
     FROM News 
     INNER JOIN NewsStatus ON News.idNewsStatus = NewsStatus.idNewsStatus
     INNER JOIN NewsType ON News.idNewsType = NewsType.idNewsType
-    WHERE idNews = pIdNews;
+    WHERE idNews = NVL(pIdNews, idNews);
 END getNews;
 
 CREATE OR REPLACE PROCEDURE getNewsStatus(curNewsStatus OUT SYS_REFCURSOR) IS
