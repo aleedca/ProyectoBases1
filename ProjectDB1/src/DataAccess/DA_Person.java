@@ -509,7 +509,7 @@ public class DA_Person {
     }
     
     //-------------------------------------------------------------------------------------------
-    public static ArrayList<Player> getPleyer() throws SQLException 
+    public static ArrayList<Player> getPlayer() throws SQLException 
     {
         Connection conn = sysConnection.getConexion();
         
@@ -529,6 +529,8 @@ public class DA_Person {
             player.setSecondLastName(rs.getString("secondLastName"));
             
             players.add(player);
+            
+            System.out.println(player.toString());
         }
 
         return players;

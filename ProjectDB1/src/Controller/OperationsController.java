@@ -128,6 +128,7 @@ public class OperationsController implements ActionListener, ItemListener{
         fillCountries();
         fillPositions();
         fillTeams();
+        fillTypePerson();
 
     }
     
@@ -197,10 +198,14 @@ public class OperationsController implements ActionListener, ItemListener{
         viewAdminPerson.getBtnAccept().addActionListener(this);
         viewAdminPerson.getBtnLoadPhoto().addActionListener(this);
         
+        viewAdminPerson.getRbtnAdd().addActionListener(this);
+        viewAdminPerson.getRbtnEdit().addActionListener(this);
+        
         viewAdminPerson.getCmbGender().addItemListener(this);
         viewAdminPerson.getCmbTypeIdentification().addItemListener(this);
         viewAdminPerson.getCmbTypePosition().addItemListener(this);
         viewAdminPerson.getCmbTeam().addItemListener(this);
+        viewAdminPerson.getCmbPerson().addActionListener(this);
         
         
         viewAdminPerson.getCmbCountry().addItemListener(this);
@@ -345,6 +350,75 @@ public class OperationsController implements ActionListener, ItemListener{
             viewAdminPerson.getCmbTeam().addItem(nameTeam);
         }
     }
+    
+    private void fillTypePerson(){ 
+        viewAdminPerson.getCmbPerson().removeAllItems();
+        viewAdminPerson.getCmbPerson().addItem("Jugador");
+        viewAdminPerson.getCmbPerson().addItem("Cuerpo Técnico");
+    }
+    
+    
+    private void fillPerson(){
+        viewAdminPerson.getCmbPerson().removeAllItems();
+        viewAdminPerson.getCmbPerson().addItem("Seleccione Persona"); 
+
+        for(int i=0; i<modelAdminPerson.getPlayers().size();i++){
+            
+            String firstName = modelAdminPerson.getPlayers().get(i).getFirstName();
+            String secondName = modelAdminPerson.getPlayers().get(i).getSecondName();
+            String firstLastName = modelAdminPerson.getPlayers().get(i).getFirstLastName();
+            String secondLastName = modelAdminPerson.getPlayers().get(i).getSecondLastName();
+            
+            String fullName;
+            
+            
+            if(!"N/A".equals(secondName) && !"N/A".equals(secondLastName)){
+                fullName = firstName+" "+secondName+" "+firstLastName+" "+secondLastName;
+            }else{
+                
+                if(!"N/A".equals(secondName)){
+                    fullName = firstName+" "+secondName+" "+firstLastName;              
+                }else{
+                    if(!"N/A".equals(secondLastName)){
+                        fullName = firstName+" "+firstLastName+" "+secondLastName;
+                    }else{
+                        fullName = firstName+" "+firstLastName;
+                    }
+                }
+            }
+            
+            viewAdminPerson.getCmbPerson().addItem(fullName); 
+        }
+        
+        
+        for(int i=0; i<modelAdminPerson.getTeamWorkers().size();i++){
+            String firstName = modelAdminPerson.getTeamWorkers().get(i).getFirstName();
+            String secondName = modelAdminPerson.getTeamWorkers().get(i).getSecondName();
+            String firstLastName = modelAdminPerson.getTeamWorkers().get(i).getFirstLastName();
+            String secondLastName = modelAdminPerson.getTeamWorkers().get(i).getSecondLastName();
+            
+            String fullName;
+            
+            if(!"N/A".equals(secondName) && !"N/A".equals(secondLastName)){
+                fullName = firstName+" "+secondName+" "+firstLastName+" "+secondLastName;
+            }else{
+                
+                if(!"N/A".equals(secondName)){
+                    fullName = firstName+" "+secondName+" "+firstLastName;              
+                }else{
+                    if(!"N/A".equals(secondLastName)){
+                        fullName = firstName+" "+firstLastName+" "+secondLastName;
+                    }else{
+                        fullName = firstName+" "+firstLastName;
+                    }
+                }
+            }
+            
+            viewAdminPerson.getCmbPerson().addItem(fullName); 
+        }
+
+    }
+    
        
     
     //-------------------------------------------------------------------------------------------------------
@@ -1061,7 +1135,23 @@ public class OperationsController implements ActionListener, ItemListener{
         }
         
         
-        if(e.getSource() == viewAdminPerson.getBtnAccept()){
+        if(e.getSource() == viewAdminPerson.getRbtnAdd()){
+            fillTypePerson();
+        }
+        
+        
+        if(e.getSource() == viewAdminPerson.getRbtnEdit()){
+            System.out.println("Entro");
+            modelAdminPerson.getPerson();
+            System.out.println("Salio de cargar");
+            fillPerson();
+            System.out.println("Salio de llenar combo box");
+        }
+        
+        
+        
+        
+        if(e.getSource() == viewAdminPerson.getBtnAccept()){ 
             modelAdminPerson.setFirstName(viewAdminPerson.getTxtName());
             modelAdminPerson.setSecondName(viewAdminPerson.getTxtSecondName());
             modelAdminPerson.setFirstLastName(viewAdminPerson.getTxtFirstLastName());
@@ -1069,17 +1159,20 @@ public class OperationsController implements ActionListener, ItemListener{
             modelAdminPerson.setMail(viewAdminPerson.getTxtMail());
             modelAdminPerson.setAddress(viewAdminPerson.getTxtAddress());
             
-            modelAdminPerson.setIdentification(viewAdminPerson.getTxtIdentification());
+            //modelAdminPerson.setIdentification(viewAdminPerson.getTxtIdentification());
             modelAdminPerson.setPhone(viewAdminPerson.getTxtPhone());
             
-            modelAdminPerson.setDateOfBirth(viewAdminPerson.getTxtDateOfBirth());
-            modelAdminPerson.setNumTShirt(viewAdminPerson.getSpnNumTShirt());
-
+            //modelAdminPerson.setDateOfBirth(viewAdminPerson.getTxtDateOfBirth());
+            //modelAdminPerson.setNumTShirt(viewAdminPerson.getSpnNumTShirt());
             
             flagAdminPerson = true;
             
             //Add
             if(viewAdminPerson.getRbtnAdd().isSelected()){
+                
+
+                
+
                                 
                 if(modelAdminPerson.validateEmptyFieldsAdminPerson()){
                     JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);
@@ -1228,6 +1321,15 @@ public class OperationsController implements ActionListener, ItemListener{
                 }
  
             }//SELECT BUTTON ADD
+            
+            if(viewAdminPerson.getRbtnEdit().isSelected()){
+                
+
+
+            } //SELECT BUTTON EDIT
+            
+            
+            
             
         }
         

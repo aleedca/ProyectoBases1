@@ -119,7 +119,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         lblLogo.setBounds(1070, 10, 200, 125);
 
         cmbPersona.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        cmbPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Jugador", "Cuerpo Técnico" }));
+        cmbPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Iteam1" }));
         cmbPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbPersonaActionPerformed(evt);
@@ -855,20 +855,20 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         esconderMostrarTodo(true);
         lblPersona.setText("Tipo Persona:");
         
-        String tipoPersona = cmbPersona.getSelectedItem().toString();
-        if("Cuerpo Técnico".equals(tipoPersona)){
-           deshabilitarOpciones(false);
-        }
+//        String tipoPersona = cmbPersona.getSelectedItem().toString();
+//        if("Cuerpo Técnico".equals(tipoPersona)){
+//           deshabilitarOpciones(false);
+//        }
     }//GEN-LAST:event_rbtnAddActionPerformed
 
     private void rbtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEditActionPerformed
         esconderMostrarTodo(true);
         lblPersona.setText("Persona:");
         
-        String tipoPersona = cmbPersona.getSelectedItem().toString();
-        if("Cuerpo Técnico".equals(tipoPersona)){
-           deshabilitarOpciones(false);
-        }
+//        String tipoPersona = cmbPersona.getSelectedItem().toString();
+//        if("Cuerpo Técnico".equals(tipoPersona)){
+//           deshabilitarOpciones(false);
+//        }
     }//GEN-LAST:event_rbtnEditActionPerformed
 
     private void cmbEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEquipoActionPerformed
@@ -900,14 +900,14 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void cmbPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPersonaActionPerformed
-       String tipoPersona = cmbPersona.getSelectedItem().toString();
-        
-       if((rbtnAdd.isSelected() || rbtnEdit.isSelected()) && "Cuerpo Técnico".equals(tipoPersona)){
-           deshabilitarOpciones(false);
-       }
-       if((rbtnAdd.isSelected() || rbtnEdit.isSelected()) && "Jugador".equals(tipoPersona)){
-           deshabilitarOpciones(true);
-       }
+//       String tipoPersona = cmbPersona.getSelectedItem().toString();
+//        
+//       if((rbtnAdd.isSelected() || rbtnEdit.isSelected()) && "Cuerpo Técnico".equals(tipoPersona)){
+//           deshabilitarOpciones(false);
+//       }
+//       if((rbtnAdd.isSelected() || rbtnEdit.isSelected()) && "Jugador".equals(tipoPersona)){
+//           deshabilitarOpciones(true);
+//       }
     }//GEN-LAST:event_cmbPersonaActionPerformed
 
     private void rbtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnDeleteActionPerformed

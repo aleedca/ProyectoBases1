@@ -178,6 +178,12 @@ public class Person {
     public void setLastDate(LocalDateTime lastDate) {
         this.lastDate = lastDate;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" + "firstName=" + firstName + ", secondName=" + secondName + ", firstLastName=" + firstLastName + ", secondLastName=" + secondLastName + '}';
+    }
+    
     
 
     

@@ -54,6 +54,8 @@ public class Player extends Person {
     public void setIdTeam(int idTeam) {
         this.idTeam = idTeam;
     }
+
+
     
     
 

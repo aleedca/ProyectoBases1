@@ -6,12 +6,16 @@ package Model;
 
 import DataAccess.DA_Catalogs;
 import DataAccess.DA_Person;
+import Objects.Player;
 import Objects.Position;
 import Objects.Team;
+import Objects.TeamWorker;
 import View.JF_AdminPerson;
 import java.awt.Image;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -47,6 +51,9 @@ public class model_AdminPerson {
     
     private int team;
     private ArrayList<Team> teams;
+    
+    private ArrayList<Player> players;
+    private ArrayList<TeamWorker> teamWorkers;
    
     
     private final JFileChooser file = new JFileChooser();
@@ -119,6 +126,18 @@ public class model_AdminPerson {
         }
     }
     
+    
+    public void getPerson(){
+        try {
+            this.players = DA_Person.getPlayer();
+            
+            this.teamWorkers = DA_Person.getTeamWorker();
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+
     
     //GETTERS AND SETTERS
     public String getFirstName() {
@@ -299,6 +318,22 @@ public class model_AdminPerson {
 
     public int getResultInsertPerson() {
         return resultInsertPerson;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
+    }
+
+    public ArrayList<TeamWorker> getTeamWorkers() {
+        return teamWorkers;
+    }
+
+    public void setTeamWorkers(ArrayList<TeamWorker> teamWorkers) {
+        this.teamWorkers = teamWorkers;
     }
     
     
