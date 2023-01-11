@@ -362,12 +362,12 @@ public class OperationsController implements ActionListener, ItemListener{
         viewAdminPerson.getCmbPerson().removeAllItems();
         viewAdminPerson.getCmbPerson().addItem("Seleccione Persona"); 
 
-        for(int i=0; i<modelAdminPerson.getPlayers().size();i++){
+        for(int i=0; i<modelAdminPerson.getPlayersComboBox().size();i++){
             
-            String firstName = modelAdminPerson.getPlayers().get(i).getFirstName();
-            String secondName = modelAdminPerson.getPlayers().get(i).getSecondName();
-            String firstLastName = modelAdminPerson.getPlayers().get(i).getFirstLastName();
-            String secondLastName = modelAdminPerson.getPlayers().get(i).getSecondLastName();
+            String firstName = modelAdminPerson.getPlayersComboBox().get(i).getFirstName();
+            String secondName = modelAdminPerson.getPlayersComboBox().get(i).getSecondName();
+            String firstLastName = modelAdminPerson.getPlayersComboBox().get(i).getFirstLastName();
+            String secondLastName = modelAdminPerson.getPlayersComboBox().get(i).getSecondLastName();
             
             String fullName;
             
@@ -391,11 +391,11 @@ public class OperationsController implements ActionListener, ItemListener{
         }
         
         
-        for(int i=0; i<modelAdminPerson.getTeamWorkers().size();i++){
-            String firstName = modelAdminPerson.getTeamWorkers().get(i).getFirstName();
-            String secondName = modelAdminPerson.getTeamWorkers().get(i).getSecondName();
-            String firstLastName = modelAdminPerson.getTeamWorkers().get(i).getFirstLastName();
-            String secondLastName = modelAdminPerson.getTeamWorkers().get(i).getSecondLastName();
+        for(int i=0; i<modelAdminPerson.getTeamWorkersComboBox().size();i++){
+            String firstName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstName();
+            String secondName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondName();
+            String firstLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstLastName();
+            String secondLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondLastName();
             
             String fullName;
             
@@ -708,6 +708,28 @@ public class OperationsController implements ActionListener, ItemListener{
                 } 
             }
         }
+        
+        //PERSON -> ADMINPERSON
+        if(e.getSource() == viewAdminPerson.getCmbPerson()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewAdminPerson.getSelectedPerson();
+                
+                if(viewAdminPerson.getRbtnEdit().isSelected()){
+                    if(!"Seleccione Persona".equals(choice)){
+                        
+                        
+                    
+                    }
+                 
+                }
+            
+                
+            
+            }
+        
+        }
+        
+        
         
         //XD LOL
         if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo()){

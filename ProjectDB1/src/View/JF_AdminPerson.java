@@ -659,6 +659,11 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         return cmbPersona;
     }
     
+    public String getSelectedPerson() {
+        String person = (String)cmbPersona.getSelectedItem();
+        return person;
+    }
+    
     public JComboBox<String> getCmbGender() {
         return cmbGenero;
     }

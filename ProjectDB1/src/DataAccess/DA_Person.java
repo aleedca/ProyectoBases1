@@ -4,7 +4,6 @@
  */
 package DataAccess;
 
-
 import Objects.Player;
 import Objects.TeamWorker;
 import java.math.BigDecimal;
@@ -20,6 +19,17 @@ import oracle.jdbc.OracleTypes;
  * @author Mariana
  */
 public class DA_Person {
+    private static ResultSet rsAdminPerson;
+            
+    //GETTER AND SETTER
+    public ResultSet getRsAdminPerson() {
+        return rsAdminPerson;
+    }
+
+    public static void setRsAdminPerson(ResultSet rs) {
+        rsAdminPerson = rs;
+    }
+    
     
     public static void insertUserPerson(String username, String password, int identification, 
             String firstName, String secondName,String firstLastName, String secondLastName, String photo, 
@@ -561,6 +571,93 @@ public class DA_Person {
 
         return teamWorkers;
     }
+    
+    
+    //------------------------------------------------------------------------------------
+    
+    
+    public static ArrayList<Player> getPlayerInformation() throws SQLException{
+            ArrayList<Player> players = new ArrayList<>();
+            while(rsAdminPerson.next()){
+                Player player = new Player();
+            
+                player.setFirstName(rsAdminPerson.getString("firstName"));
+                player.setSecondName(rsAdminPerson.getString("secondName"));
+                player.setFirstLastName(rsAdminPerson.getString("firstLastName"));
+                player.setSecondLastName(rsAdminPerson.getString("secondLastName"));
+                player.setIdentification(rsAdminPerson.getInt("identification"));
+                player.setIdTypeIdentification(rsAdminPerson.getInt("idTypeIdentification"));
+                player.setIdPersonPosition(rsAdminPerson.getInt("idPersonPosition"));
+                player.setPhoto(rsAdminPerson.getString("photo"));
+                player.setIdGender(rsAdminPerson.getInt("idGender"));
+                player.setIdCountry(rsAdminPerson.getInt("idCountry"));
+                player.setIdProvince(rsAdminPerson.getInt("idProvince"));
+                player.setIdCanton(rsAdminPerson.getInt("idCanton"));
+                player.setIdDistrict(rsAdminPerson.getInt("idDistrict"));
+                player.setIdAddress(rsAdminPerson.getInt("idAddress"));
+                player.setMail(rsAdminPerson.getString("descriptionMail"));
+                player.setIdTeam(rsAdminPerson.getInt("idTeam"));
+                player.setBirthdate(rsAdminPerson.getString("birthdate"));
+                player.setNumTShirt(rsAdminPerson.getInt("TshirtNum"));
+            
+                players.add(player);
+            }
+            return players;
+    }
+    
+    
+    public static ArrayList<TeamWorker> getTeamWorkerInformation() throws SQLException 
+    {
+        ArrayList<TeamWorker> teamWorkers = new ArrayList<>();
+        while(rsAdminPerson.next()){
+            TeamWorker teamWorker = new TeamWorker();
+            
+            teamWorker.setFirstName(rsAdminPerson.getString("firstName"));
+            teamWorker.setSecondName(rsAdminPerson.getString("secondName"));
+            teamWorker.setFirstLastName(rsAdminPerson.getString("firstLastName"));
+            teamWorker.setSecondLastName(rsAdminPerson.getString("secondLastName"));
+            teamWorker.setIdentification(rsAdminPerson.getInt("identification"));
+            teamWorker.setIdTypeIdentification(rsAdminPerson.getInt("idTypeIdentification"));
+            teamWorker.setIdPersonPosition(rsAdminPerson.getInt("idPersonPosition"));
+            teamWorker.setPhoto(rsAdminPerson.getString("photo"));
+            teamWorker.setIdGender(rsAdminPerson.getInt("idGender"));
+            teamWorker.setIdCountry(rsAdminPerson.getInt("idCountry"));
+            teamWorker.setIdProvince(rsAdminPerson.getInt("idProvince"));
+            teamWorker.setIdCanton(rsAdminPerson.getInt("idCanton"));
+            teamWorker.setIdDistrict(rsAdminPerson.getInt("idDistrict"));
+            teamWorker.setIdAddress(rsAdminPerson.getInt("idAddress"));
+            teamWorker.setMail(rsAdminPerson.getString("descriptionMail"));
+            teamWorker.setIdTeam(rsAdminPerson.getInt("idTeam"));  
+
+            teamWorkers.add(teamWorker);
+        }
+
+        return teamWorkers;
+    }
+ 
+    public static int getPersonInformation(int idPerson) throws SQLException 
+    {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getPersonInformation(?,?,?)}");
+        //INPUT
+        sql.setInt(1, idPerson);
+        
+        //OUTPUT
+        sql.registerOutParameter(2, OracleTypes.REF_CURSOR);
+        sql.registerOutParameter(3, OracleTypes.NUMBER);
+        
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(2);
+        setRsAdminPerson(rs);
+        int result = ((BigDecimal) sql.getObject(3)).intValue();
+        return result;
+    }
+    
+
+    
+    
     
     
 }

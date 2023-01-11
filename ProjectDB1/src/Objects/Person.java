@@ -24,6 +24,14 @@ public class Person {
     private String secondLastName;
     private String photo;
     
+    private String mail;
+    private int phoneNumber;
+    private int idCountry;
+    private int idProvince;
+    private int idCanton;
+    private int idDistrict;
+    
+    
     private String userCreation;
     private LocalDateTime dateCreation;
     private String lastUser;
@@ -33,7 +41,7 @@ public class Person {
     public Person() {
     }
 
-    public Person(int idPerson, int idPersonPosition, int idAddress, int idTypeIdentification, int idGender, int identification, String firstName, String secondName, String firstLastName, String secondLastName, String photo, String userCreation, LocalDateTime dateCreation, String lastUser, LocalDateTime lastDate) {
+    public Person(int idPerson, int idPersonPosition, int idAddress, int idTypeIdentification, int idGender, int identification, String firstName, String secondName, String firstLastName, String secondLastName, String photo, String mail, int phoneNumber, int idCountry, int idProvince, int idCanton, int idDistrict, String userCreation, LocalDateTime dateCreation, String lastUser, LocalDateTime lastDate) {
         this.idPerson = idPerson;
         this.idPersonPosition = idPersonPosition;
         this.idAddress = idAddress;
@@ -45,16 +53,22 @@ public class Person {
         this.firstLastName = firstLastName;
         this.secondLastName = secondLastName;
         this.photo = photo;
+        this.mail = mail;
+        this.phoneNumber = phoneNumber;
+        this.idCountry = idCountry;
+        this.idProvince = idProvince;
+        this.idCanton = idCanton;
+        this.idDistrict = idDistrict;
         this.userCreation = userCreation;
         this.dateCreation = dateCreation;
         this.lastUser = lastUser;
         this.lastDate = lastDate;
     }
-    
-    
-
 
     
+
+    
+      
     
     //GETTERS AND SETTERS
 
@@ -183,6 +197,57 @@ public class Person {
     public String toString() {
         return "Person{" + "firstName=" + firstName + ", secondName=" + secondName + ", firstLastName=" + firstLastName + ", secondLastName=" + secondLastName + '}';
     }
+
+    public int getIdCountry() {
+        return idCountry;
+    }
+
+    public void setIdCountry(int idCountry) {
+        this.idCountry = idCountry;
+    }
+
+    public int getIdCanton() {
+        return idCanton;
+    }
+
+    public void setIdCanton(int idCanton) {
+        this.idCanton = idCanton;
+    }
+
+    public int getIdDistrict() {
+        return idDistrict;
+    }
+
+    public void setIdDistrict(int idDistrict) {
+        this.idDistrict = idDistrict;
+    }
+
+    public int getIdProvince() {
+        return idProvince;
+    }
+
+    public void setIdProvince(int idProvince) {
+        this.idProvince = idProvince;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    
+    
+    
     
     
 
