@@ -46,7 +46,7 @@ public class model_News {
     private ArrayList<NewsType> newsTypeArr;
     
     private final JFileChooser file = new JFileChooser();
-    private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");;
+    private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");
 
     
     public void loadNewsArr(){
