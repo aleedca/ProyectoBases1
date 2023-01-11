@@ -21,17 +21,30 @@ public class TeamGroupStats {
     private int fairPlayPoints;
     private int points;
 
-    public TeamGroupStats(String teamName, int matchesPlayed, int wonMatches, int drawMatches, int lostMatches, int goalsScored, int goalsReceived, int goalDiff, int fairPlayPoints, int points) {
+    public TeamGroupStats() {
+        this.teamName = "Prueba";
+        this.wonMatches = 0;
+        this.drawMatches = 0;
+        this.lostMatches = 0;
+        this.matchesPlayed = this.wonMatches + this.lostMatches + this.drawMatches;
+        this.goalsScored = 0;
+        this.goalsReceived = 0;
+        this.goalDiff = this.goalsScored - this.goalsReceived;
+        this.fairPlayPoints = 0;
+        this.points = (this.wonMatches * 3) + this.drawMatches;
+    }
+    
+    public TeamGroupStats(String teamName, int wonMatches, int drawMatches, int lostMatches, int goalsScored, int goalsReceived, int fairPlayPoints) {
         this.teamName = teamName;
-        this.matchesPlayed = matchesPlayed;
         this.wonMatches = wonMatches;
         this.drawMatches = drawMatches;
         this.lostMatches = lostMatches;
+        this.matchesPlayed = this.wonMatches + this.lostMatches + this.drawMatches;
         this.goalsScored = goalsScored;
         this.goalsReceived = goalsReceived;
-        this.goalDiff = goalDiff;
+        this.goalDiff = this.goalsScored - this.goalsReceived;
         this.fairPlayPoints = fairPlayPoints;
-        this.points = points;
+        this.points = (this.wonMatches * 3) + this.drawMatches;
     }
 
     public String getTeamName() {
@@ -113,7 +126,5 @@ public class TeamGroupStats {
     public void setPoints(int points) {
         this.points = points;
     }
-    
-    
     
 }

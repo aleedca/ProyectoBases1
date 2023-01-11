@@ -8,6 +8,7 @@ import Model.model_Account;
 import Model.model_AdminCatalogs;
 import Model.model_AdminPerson;
 import Model.model_Login;
+import Model.model_News;
 import Model.model_Register;
 import View.JF_AdminCatalogs;
 import View.JF_AdminOptions;
@@ -45,6 +46,7 @@ public class OperationsController implements ActionListener, ItemListener{
     private final model_Login modelLogin;
     private final model_Register modelRegister;
     private final model_AdminPerson modelAdminPerson;
+    private final model_News modelNews;
     private final model_Account accountModel;
     
     private boolean flagRegister;
@@ -99,6 +101,10 @@ public class OperationsController implements ActionListener, ItemListener{
         model_AdminPerson validateAdminPerson = new model_AdminPerson();
         this.modelAdminPerson = validateAdminPerson;
         
+        //Model AdminNews
+        model_News validateAdminNews = new model_News();
+        this.modelNews = validateAdminNews;
+        
         //Model MyAccount
         this.accountModel = new model_Account();
         
@@ -122,6 +128,7 @@ public class OperationsController implements ActionListener, ItemListener{
         fillCountries();
         fillPositions();
         fillTeams();
+        fillTypePerson();
 
     }
     
@@ -168,7 +175,9 @@ public class OperationsController implements ActionListener, ItemListener{
         
         adminNewsController.getViewAdminNews().getBtnAceptar().addActionListener(this);
         adminNewsController.getViewAdminNews().getBtnBack().addActionListener(this);
+        adminNewsController.getViewAdminNews().getBtnCargarImagen().addActionListener(this);
         
+        //AdminCatalogOption
         adminCatalogsController.getViewAdminCatalogs().getBtnBack().addActionListener(this);
                
         //Request
@@ -178,16 +187,25 @@ public class OperationsController implements ActionListener, ItemListener{
         viewMyAccount.getBtnBackMyAccount().addActionListener(this);
         viewMyAccount.getBtnEditProfile().addActionListener(this);
         
+        //EditAccount
+        viewEditAccount.getBtnBack().addActionListener(this);
+        viewEditAccount.getBtnConfirm().addActionListener(this);
+        viewEditAccount.getBtnLoadPicture().addActionListener(this);
+        
         
         //AdminPerson
         viewAdminPerson.getBtnBackAdminPerson().addActionListener(this);
         viewAdminPerson.getBtnAccept().addActionListener(this);
         viewAdminPerson.getBtnLoadPhoto().addActionListener(this);
         
+        viewAdminPerson.getRbtnAdd().addActionListener(this);
+        viewAdminPerson.getRbtnEdit().addActionListener(this);
+        
         viewAdminPerson.getCmbGender().addItemListener(this);
         viewAdminPerson.getCmbTypeIdentification().addItemListener(this);
         viewAdminPerson.getCmbTypePosition().addItemListener(this);
         viewAdminPerson.getCmbTeam().addItemListener(this);
+        viewAdminPerson.getCmbPerson().addActionListener(this);
         
         
         viewAdminPerson.getCmbCountry().addItemListener(this);
@@ -332,6 +350,75 @@ public class OperationsController implements ActionListener, ItemListener{
             viewAdminPerson.getCmbTeam().addItem(nameTeam);
         }
     }
+    
+    private void fillTypePerson(){ 
+        viewAdminPerson.getCmbPerson().removeAllItems();
+        viewAdminPerson.getCmbPerson().addItem("Jugador");
+        viewAdminPerson.getCmbPerson().addItem("Cuerpo Técnico");
+    }
+    
+    
+    private void fillPerson(){
+        viewAdminPerson.getCmbPerson().removeAllItems();
+        viewAdminPerson.getCmbPerson().addItem("Seleccione Persona"); 
+
+        for(int i=0; i<modelAdminPerson.getPlayersComboBox().size();i++){
+            
+            String firstName = modelAdminPerson.getPlayersComboBox().get(i).getFirstName();
+            String secondName = modelAdminPerson.getPlayersComboBox().get(i).getSecondName();
+            String firstLastName = modelAdminPerson.getPlayersComboBox().get(i).getFirstLastName();
+            String secondLastName = modelAdminPerson.getPlayersComboBox().get(i).getSecondLastName();
+            
+            String fullName;
+            
+            
+            if(!"N/A".equals(secondName) && !"N/A".equals(secondLastName)){
+                fullName = firstName+" "+secondName+" "+firstLastName+" "+secondLastName;
+            }else{
+                
+                if(!"N/A".equals(secondName)){
+                    fullName = firstName+" "+secondName+" "+firstLastName;              
+                }else{
+                    if(!"N/A".equals(secondLastName)){
+                        fullName = firstName+" "+firstLastName+" "+secondLastName;
+                    }else{
+                        fullName = firstName+" "+firstLastName;
+                    }
+                }
+            }
+            
+            viewAdminPerson.getCmbPerson().addItem(fullName); 
+        }
+        
+        
+        for(int i=0; i<modelAdminPerson.getTeamWorkersComboBox().size();i++){
+            String firstName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstName();
+            String secondName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondName();
+            String firstLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstLastName();
+            String secondLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondLastName();
+            
+            String fullName;
+            
+            if(!"N/A".equals(secondName) && !"N/A".equals(secondLastName)){
+                fullName = firstName+" "+secondName+" "+firstLastName+" "+secondLastName;
+            }else{
+                
+                if(!"N/A".equals(secondName)){
+                    fullName = firstName+" "+secondName+" "+firstLastName;              
+                }else{
+                    if(!"N/A".equals(secondLastName)){
+                        fullName = firstName+" "+firstLastName+" "+secondLastName;
+                    }else{
+                        fullName = firstName+" "+firstLastName;
+                    }
+                }
+            }
+            
+            viewAdminPerson.getCmbPerson().addItem(fullName); 
+        }
+
+    }
+    
        
     
     //-------------------------------------------------------------------------------------------------------
@@ -622,6 +709,28 @@ public class OperationsController implements ActionListener, ItemListener{
             }
         }
         
+        //PERSON -> ADMINPERSON
+        if(e.getSource() == viewAdminPerson.getCmbPerson()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewAdminPerson.getSelectedPerson();
+                
+                if(viewAdminPerson.getRbtnEdit().isSelected()){
+                    if(!"Seleccione Persona".equals(choice)){
+                        
+                        
+                    
+                    }
+                 
+                }
+            
+                
+            
+            }
+        
+        }
+        
+        
+        
         //XD LOL
         if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo()){
             if(e.getStateChange() == ItemEvent.SELECTED){
@@ -661,6 +770,7 @@ public class OperationsController implements ActionListener, ItemListener{
         
         if(e.getSource() == viewPrincipal.getBtnAccount()){
             accountModel.setUsernameValidated(model_Login.getUsernameLogin());
+            viewMyAccount.UpdateInfo(accountModel.getAccountLogged());
             viewMyAccount.setVisible(true);
             viewPrincipal.setVisible(false); 
         }
@@ -924,6 +1034,45 @@ public class OperationsController implements ActionListener, ItemListener{
             this.viewMenuAdmin.setVisible(true);
         }
         
+        if(e.getSource() == adminNewsController.getViewAdminNews().getBtnAceptar()){
+            String choice1 = adminNewsController.getViewAdminNews().getCmbEstado().getSelectedItem().toString();
+            String choice2 = adminNewsController.getViewAdminNews().getCmbTipo().getSelectedItem().toString();
+            
+            modelNews.setIdNewsStatus(adminNewsController.getViewAdminNews().getCmbEstado().getSelectedIndex());
+            modelNews.setIdNewsType(adminNewsController.getViewAdminNews().getCmbTipo().getSelectedIndex());
+            modelNews.setNewsTitle(adminNewsController.getViewAdminNews().getTxtTitulo().getText());
+            modelNews.setPublicationDate(modelNews.getPublicationDate());
+            modelNews.setNewsText(adminNewsController.getViewAdminNews().getTxtTexto().getText());
+            
+            if(adminNewsController.getViewAdminNews().getRbtnAgregar().isSelected()){
+                if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
+                    modelNews.insertNews();
+                    adminNewsController.fillAdminNews();
+                    adminNewsController.fillNewsType();
+                    adminNewsController.fillStatus();
+                               
+                    adminNewsController.getViewAdminNews().clearAll();
+                    modelNews.setPhoto("src/Images/avatar.png");
+                    adminNewsController.getViewAdminNews().setLocationRelativeTo(adminNewsController.getViewAdminNews());
+                    modelNews.setImageLabel(adminNewsController.getViewAdminNews().getLblImagen());
+                    adminNewsController.getViewAdminNews().repaint();
+                    
+                     JOptionPane.showMessageDialog(null, "Noticia creada con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
+                }
+            }
+        }
+        
+        if(e.getSource() == adminNewsController.getViewAdminNews().getBtnCargarImagen()){
+            if(modelNews.selectPhoto(adminNewsController.getViewAdminNews())){
+                adminNewsController.getViewAdminNews().setLocationRelativeTo(adminNewsController.getViewAdminNews());
+                modelNews.setImageLabel(adminNewsController.getViewAdminNews().getLblImagen());
+                adminNewsController.getViewAdminNews().repaint();
+            }
+        }
+        
         
         //-------------- SCREEN AdminCatalogs -----------------------
         if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getBtnBack()){
@@ -973,10 +1122,24 @@ public class OperationsController implements ActionListener, ItemListener{
         }
         
         if(e.getSource() == viewMyAccount.getBtnEditProfile()){
+            viewEditAccount.UpdateInfo(accountModel.getAccountLogged());
             viewMyAccount.setVisible(false);
             viewEditAccount.setVisible(true);
         }
         
+        //----------- Screen EditAccount -------------------------
+        if(e.getSource() == viewEditAccount.getBtnBack()){
+            viewEditAccount.setVisible(false);
+            viewMyAccount.setVisible(true);
+        }
+        
+        if(e.getSource() == viewEditAccount.getBtnConfirm()){
+            //falta llamar el procedimiento de update
+            accountModel.setUsernameValidated(model_Login.getUsernameLogin());
+            viewMyAccount.UpdateInfo(accountModel.getAccountLogged());
+            viewEditAccount.setVisible(false);
+            viewMyAccount.setVisible(true);
+        }
                 
         //-------------- SCREEN AdminPerson -----------------------
         if(e.getSource() == viewAdminPerson.getBtnBackAdminPerson()){
@@ -994,7 +1157,23 @@ public class OperationsController implements ActionListener, ItemListener{
         }
         
         
-        if(e.getSource() == viewAdminPerson.getBtnAccept()){
+        if(e.getSource() == viewAdminPerson.getRbtnAdd()){
+            fillTypePerson();
+        }
+        
+        
+        if(e.getSource() == viewAdminPerson.getRbtnEdit()){
+            System.out.println("Entro");
+            modelAdminPerson.getPerson();
+            System.out.println("Salio de cargar");
+            fillPerson();
+            System.out.println("Salio de llenar combo box");
+        }
+        
+        
+        
+        
+        if(e.getSource() == viewAdminPerson.getBtnAccept()){ 
             modelAdminPerson.setFirstName(viewAdminPerson.getTxtName());
             modelAdminPerson.setSecondName(viewAdminPerson.getTxtSecondName());
             modelAdminPerson.setFirstLastName(viewAdminPerson.getTxtFirstLastName());
@@ -1002,17 +1181,20 @@ public class OperationsController implements ActionListener, ItemListener{
             modelAdminPerson.setMail(viewAdminPerson.getTxtMail());
             modelAdminPerson.setAddress(viewAdminPerson.getTxtAddress());
             
-            modelAdminPerson.setIdentification(viewAdminPerson.getTxtIdentification());
+            //modelAdminPerson.setIdentification(viewAdminPerson.getTxtIdentification());
             modelAdminPerson.setPhone(viewAdminPerson.getTxtPhone());
             
-            modelAdminPerson.setDateOfBirth(viewAdminPerson.getTxtDateOfBirth());
-            modelAdminPerson.setNumTShirt(viewAdminPerson.getSpnNumTShirt());
-
+            //modelAdminPerson.setDateOfBirth(viewAdminPerson.getTxtDateOfBirth());
+            //modelAdminPerson.setNumTShirt(viewAdminPerson.getSpnNumTShirt());
             
             flagAdminPerson = true;
             
             //Add
             if(viewAdminPerson.getRbtnAdd().isSelected()){
+                
+
+                
+
                                 
                 if(modelAdminPerson.validateEmptyFieldsAdminPerson()){
                     JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);
@@ -1161,6 +1343,15 @@ public class OperationsController implements ActionListener, ItemListener{
                 }
  
             }//SELECT BUTTON ADD
+            
+            if(viewAdminPerson.getRbtnEdit().isSelected()){
+                
+
+
+            } //SELECT BUTTON EDIT
+            
+            
+            
             
         }
         
