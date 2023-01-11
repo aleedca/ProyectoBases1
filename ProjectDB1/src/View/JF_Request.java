@@ -42,11 +42,12 @@ public class JF_Request extends javax.swing.JFrame {
         lblFlag = new javax.swing.JLabel();
         txtTeamName1 = new javax.swing.JTextField();
         txtStadium = new javax.swing.JTextField();
-        txtMatchHour = new javax.swing.JTextField();
         btnRequestGroupList = new javax.swing.JButton();
         cbmTeamFlag = new javax.swing.JComboBox<>();
         lblMatchDate1 = new javax.swing.JLabel();
-        txtMatchDate1 = new javax.swing.JTextField();
+        txtMatchHour = new javax.swing.JFormattedTextField();
+        txtMatchDate1 = new javax.swing.JFormattedTextField();
+        cbmStadium = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         txtPlayer1Lastname = new javax.swing.JTextField();
         lblTeamName2 = new javax.swing.JLabel();
@@ -106,6 +107,12 @@ public class JF_Request extends javax.swing.JFrame {
 
         lblFlag.setText("Bandera");
 
+        txtStadium.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStadiumActionPerformed(evt);
+            }
+        });
+
         btnRequestGroupList.setText("Consultar");
         btnRequestGroupList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +129,30 @@ public class JF_Request extends javax.swing.JFrame {
 
         lblMatchDate1.setText("Hora del partido");
 
+        try {
+            txtMatchHour.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtMatchHour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMatchHourActionPerformed(evt);
+            }
+        });
+
+        try {
+            txtMatchDate1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtMatchDate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMatchDate1ActionPerformed(evt);
+            }
+        });
+
+        cbmStadium.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -134,29 +165,31 @@ public class JF_Request extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblMatchDate1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRequestGroupList))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(txtMatchHour, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtMatchDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtStadium, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbmStadium, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(cbmTeamFlag, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbmTeamFlag, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblMatchDate)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMatchDate)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblMatchDate1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtMatchHour)))
                         .addGap(60, 60, 60)
-                        .addComponent(lblStadium)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblFlag)
-                        .addGap(85, 85, 85))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(97, 97, 97)
+                                .addComponent(txtStadium, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                                .addComponent(btnRequestGroupList)
+                                .addContainerGap())
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblStadium)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblFlag)
+                                .addGap(85, 85, 85))))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,9 +197,9 @@ public class JF_Request extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTeamName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtStadium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbmTeamFlag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMatchDate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMatchDate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbmStadium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -174,8 +207,10 @@ public class JF_Request extends javax.swing.JFrame {
                             .addComponent(lblMatchDate)
                             .addComponent(lblStadium)
                             .addComponent(lblFlag))
-                        .addGap(18, 22, Short.MAX_VALUE)
-                        .addComponent(txtMatchHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMatchHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtStadium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblMatchDate1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -246,7 +281,7 @@ public class JF_Request extends javax.swing.JFrame {
                                 .addComponent(txtPlayer2Name, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtPlayer1Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(82, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPlayer2Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -444,7 +479,7 @@ public class JF_Request extends javax.swing.JFrame {
                 .addComponent(lblNewsList, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -501,13 +536,15 @@ public class JF_Request extends javax.swing.JFrame {
                 outPlayerSndLastName = playerSndLastName;
             }
             
-            if( !"Seleccione Posición".equals(position)){
+            if( !"Seleccione la posición".equals(position)){
                 outPosition = position;
             }
 
             teamList.showTeamList(outTeamName,outPlayerFstName,outPlayerSndName,outPlayerFstLastName,outPlayerSndLastName,outPosition);
          
             teamList.setVisible(true);
+            
+            this.cleanTeamList();
             
         } catch (SQLException ex) {
             Logger.getLogger(JF_Request.class.getName()).log(Level.SEVERE, null, ex);
@@ -541,13 +578,15 @@ public class JF_Request extends javax.swing.JFrame {
                 outNewsDate = newsDate;
             }
             
-            if(!newsEvent.isEmpty()){
+            if(!"Seleccione el evento".equals(newsEvent)){
                 outNewsEvent = newsEvent;
             }
         
             newsList.showNewsList(outAuthor, outAuthorLastname, outNewsDate, outNewsEvent);
             
             newsList.setVisible(true);
+            
+            this.cleanNewsList();
             
         } catch (SQLException ex) {
             Logger.getLogger(JF_Request.class.getName()).log(Level.SEVERE, null, ex);
@@ -557,12 +596,14 @@ public class JF_Request extends javax.swing.JFrame {
     //Send data to the GroupList query
     private void btnRequestGroupListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestGroupListActionPerformed
         try {
+            
             JF_RequestGroupList groupList = new JF_RequestGroupList();
             
             String teamName = txtTeamName1.getText();
             String matchDate = txtMatchDate1.getText()+" "+txtMatchHour.getText();
-            String stadium = txtStadium.getText();
-            String teamFlag = (String)cbmTeamFlag.getName(); //acá es otro get que agarre el icono y lo pase al string que ocupo
+            System.out.println(matchDate);
+            String stadium = (String) cbmStadium.getSelectedItem(); 
+            String teamFlag = (String)cbmTeamFlag.getSelectedItem();  //acá es otro get que agarre el icono y lo pase al string que ocupo
             
             String outTeamName = "";
             String outMatchDate = "";
@@ -573,21 +614,24 @@ public class JF_Request extends javax.swing.JFrame {
                 outTeamName = teamName;
             }
             
-            if(!matchDate.isEmpty() && !" ".equals(matchDate)){
+            if(!matchDate.isEmpty() && !( "  -  -       :  " ).equals(matchDate)){
                 outMatchDate = matchDate;
             }
             
-            if(!stadium.isEmpty()){
+            
+            if(!"Seleccione el estadio".equals(stadium)){
                 outStadium = stadium;
             }
             
-            /*if( teamFlag!='Seleccione la bandera')){
+            if(!"Seleccione la bandera".equals(teamFlag)){
             outTeamFlag = teamFlag;
-            }*/
+            }
             
             groupList.showGroupList(outTeamName, outMatchDate, outStadium, outTeamFlag);
             
             groupList.setVisible(true);
+            
+            this.cleanGroupList();
             
         } catch (SQLException ex) {
             Logger.getLogger(JF_Request.class.getName()).log(Level.SEVERE, null, ex);
@@ -599,6 +643,32 @@ public class JF_Request extends javax.swing.JFrame {
     private void btnBackRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackRequestActionPerformed
        
     }//GEN-LAST:event_btnBackRequestActionPerformed
+    
+    //---------------------CLEAN---------------------
+    public void cleanGroupList() {
+        this.txtTeamName1.setText("");
+        this.txtMatchDate1.setText("");
+        this.txtMatchHour.setText("");
+        this.cbmStadium.setSelectedItem("Seleccione el estadio");
+        this.cbmTeamFlag.setSelectedItem("Seleccione la bandera");
+    }
+    
+    public void cleanTeamList() {
+        this.txtTeamName3.setText("");
+        this.txtPlayer1Name.setText("");
+        this.txtPlayer2Name.setText("");
+        this.txtPlayer1Lastname.setText("");
+        this.txtPlayer2Lastname.setText("");
+        this.cmbPosition.setSelectedItem("Seleccione la Posición");
+    
+    }
+    
+    public void cleanNewsList() {
+        this.txtAuthorName.setText("");
+        this.txtAuthorLastname.setText("");
+        this.txtNewsDate.setText("");
+        this.cmbNewsEvent.setSelectedItem("Seleccione el evento");
+    }
     
     //--------------------- GETTERS ---------------------
     
@@ -613,12 +683,14 @@ public class JF_Request extends javax.swing.JFrame {
     public JComboBox<String> getCbmTeamFlag() {
         return cbmTeamFlag;
     }
-   
+
+    public JComboBox<String> getCbmStadium() {
+        return cbmStadium;
+    }
+
     public JButton getBtnBackRequest() {
         return btnBackRequest;
     }
-    
-    
     
     
     private void txtTeamName3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeamName3ActionPerformed
@@ -636,6 +708,18 @@ public class JF_Request extends javax.swing.JFrame {
     private void txtAuthorLastnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAuthorLastnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAuthorLastnameActionPerformed
+
+    private void txtMatchHourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatchHourActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMatchHourActionPerformed
+
+    private void txtMatchDate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatchDate1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMatchDate1ActionPerformed
+
+    private void txtStadiumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStadiumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStadiumActionPerformed
 
     /**
      * @param args the command line arguments
@@ -687,6 +771,7 @@ public class JF_Request extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.JComboBox<String> cbmStadium;
     private javax.swing.JComboBox<String> cbmTeamFlag;
     private javax.swing.JComboBox<String> cmbNewsEvent;
     private javax.swing.JComboBox<String> cmbPosition;
@@ -719,8 +804,8 @@ public class JF_Request extends javax.swing.JFrame {
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JTextField txtAuthorLastname;
     private javax.swing.JTextField txtAuthorName;
-    private javax.swing.JTextField txtMatchDate1;
-    private javax.swing.JTextField txtMatchHour;
+    private javax.swing.JFormattedTextField txtMatchDate1;
+    private javax.swing.JFormattedTextField txtMatchHour;
     private javax.swing.JTextField txtNewsDate;
     private javax.swing.JTextField txtPlayer1Lastname;
     private javax.swing.JTextField txtPlayer1Name;

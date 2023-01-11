@@ -43,7 +43,7 @@ public class RequestController {
     public void fillPositions(JF_Request viewRequest){
         viewRequest.getCmbPosition().removeAllItems();
         
-        viewRequest.getCmbPosition().addItem("Seleccione Posición");
+        viewRequest.getCmbPosition().addItem("Seleccione la posición");
         for(int i=0; i<modelRequest.getPositions().size();i++){
            viewRequest.getCmbPosition().addItem(modelRequest.getPositions().get(i).getDescriptionPersonPosition());
         }
@@ -52,7 +52,7 @@ public class RequestController {
      public void fillEvents(JF_Request viewRequest){
         viewRequest.getCmbEvent().removeAllItems();
         
-        viewRequest.getCmbEvent().addItem("Seleccione Evento");
+        viewRequest.getCmbEvent().addItem("Seleccione el evento");
          for(int i=0; i<modelRequest.getEvents().size();i++){
            viewRequest.getCmbEvent().addItem(modelRequest.getEvents().get(i).getTypeEvent());
         }
