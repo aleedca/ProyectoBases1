@@ -28,6 +28,8 @@ public class Country {
     public void setNameCountry(String nameCountry) {
         this.nameCountry = nameCountry;
     }
+    
+    //TO STRING
 
     @Override
     public String toString() {
