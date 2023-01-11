@@ -12,6 +12,7 @@ import Objects.Event;
 import Objects.Gender;
 import Objects.Position;
 import Objects.Province;
+import Objects.Stadium;
 import Objects.Team;
 import Objects.TypeIdentification;
 import java.util.ArrayList;
@@ -240,5 +241,29 @@ public class DA_Catalogs {
 
         return countryTeams;
     }
+        
+     public static ArrayList<Stadium> getStadium() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getStadium(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<Stadium> stadiums = new ArrayList<>();
+        while(rs.next()){
+            Stadium stadium = new Stadium();
+            
+            stadium.setIdStadium(rs.getInt("idStadium"));
+            stadium.setIdCountry(rs.getInt("idCountry"));
+            stadium.setNameStadium(rs.getString("nameStadium"));
+            
+            
+            stadiums.add(stadium);
+        }
+
+        return stadiums;
+    }   
+    
     
 }

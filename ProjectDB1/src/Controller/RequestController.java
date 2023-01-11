@@ -68,4 +68,13 @@ public class RequestController {
            //aquí debería ir algo que me ayude a relacionar el get Flag con la imagen de parametros y la muestre 
         }
     }
+     
+    public void fillStadiums(JF_Request viewRequest){
+        viewRequest.getCbmStadium().removeAllItems();
+        
+        viewRequest.getCbmStadium().addItem("Seleccione el estadio");
+         for(int i=0; i<modelRequest.getStadiums().size();i++){
+           viewRequest.getCbmStadium().addItem(modelRequest.getStadiums().get(i).getNameStadium());
+        }
+    }
 }
