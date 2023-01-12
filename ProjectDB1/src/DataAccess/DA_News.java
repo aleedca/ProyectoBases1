@@ -39,9 +39,34 @@ public class DA_News {
             news.setNewsType(rs.getString("descriptionNewsType"));
             news.setNewsStatus(rs.getString("descriptionNewsStatus"));
             news.setTitle(rs.getString("title"));
-            news.setPublicationDate(rs.getString("publicationDate")); // date a string?
+            news.setPublicationDate(rs.getString("publicationDate"));
             news.setViews(rs.getInt("viewsNews"));
             news.setLink(rs.getString("linkNews"));
+            news.setPhoto(rs.getString("photo"));
+            news.setText(rs.getString("textNews"));
+            newsArr.add(news);
+        }
+
+        return newsArr;
+    }
+    
+    public static ArrayList<News> getInfoNews(int idNews) throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getNews(?)}");
+        sql.setInt(1, idNews);
+        sql.registerOutParameter(2, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<News> newsArr = new ArrayList<>();
+        while(rs.next()){
+            News news = new News();
+            
+            news.setIdNews(rs.getInt("idNews"));
+            news.setIdNewsType(rs.getInt("idNewsType"));
+            news.setIdNewsStatus(rs.getInt("idNewsStatus"));
+            news.setTitle(rs.getString("title"));
             news.setPhoto(rs.getString("photo"));
             news.setText(rs.getString("textNews"));
             newsArr.add(news);

@@ -269,6 +269,11 @@ public class JF_AdminNews extends javax.swing.JFrame {
         txtTexto.setText("");
     }
     
+    public boolean validateSelectedRow(){
+        if(tblNoticias.getSelectionModel().isSelectionEmpty()){return false;}
+        return true;
+    }
+    
     public JComboBox<String> getCmbEstado() {
         return cmbEstado;
     }

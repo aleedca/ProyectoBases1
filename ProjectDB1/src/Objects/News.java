@@ -13,6 +13,8 @@ import java.util.ArrayList;
  */
 public class News {
     private int idNews;
+    private int idNewsStatus;
+    private int idNewsType;
     
     private String newsType;
     private String newsStatus;
@@ -33,6 +35,22 @@ public class News {
 
     public void setIdNews(int idNews) {
         this.idNews = idNews;
+    }
+
+    public int getIdNewsStatus() {
+        return idNewsStatus;
+    }
+
+    public void setIdNewsStatus(int idStatus) {
+        this.idNewsStatus = idStatus;
+    }
+
+    public int getIdNewsType() {
+        return idNewsType;
+    }
+
+    public void setIdNewsType(int idNewsType) {
+        this.idNewsType = idNewsType;
     }
     
     public String getNewsStatus() {

@@ -1074,6 +1074,11 @@ public class OperationsController implements ActionListener, ItemListener{
                     JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
                 }
             }
+             if(adminNewsController.getViewAdminNews().getRbtnEditar().isSelected()){
+                 if(adminNewsController.getViewAdminNews().validateSelectedRow()){
+                     //modelNews.updateNews();
+                 }
+             }
         }
         
         if(e.getSource() == adminNewsController.getViewAdminNews().getBtnCargarImagen()){

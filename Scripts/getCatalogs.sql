@@ -58,14 +58,23 @@ BEGIN
     FROM District;
 END getDistrict;
 
-CREATE OR REPLACE PROCEDURE getNews(pIdNews IN NUMBER, curNews OUT SYS_REFCURSOR) IS
+CREATE OR REPLACE PROCEDURE getNews(curNews OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curNews FOR
     SELECT idNews, NewsType.descriptionNewsType, NewsStatus.descriptionNewsStatus, title, publicationDate, viewsNews, linkNews, photo, textNews
     FROM News 
     INNER JOIN NewsStatus ON News.idNewsStatus = NewsStatus.idNewsStatus
+    INNER JOIN NewsType ON News.idNewsType = NewsType.idNewsType;
+END getNews;
+
+CREATE OR REPLACE PROCEDURE getInfoNews(pIdNews IN NUMBER, curNews OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curNews FOR
+    SELECT idNews, NewsType.idNewsType, NewsStatus.idNewsStatus, title, publicationDate, viewsNews, linkNews, photo, textNews
+    FROM News 
+    INNER JOIN NewsStatus ON News.idNewsStatus = NewsStatus.idNewsStatus
     INNER JOIN NewsType ON News.idNewsType = NewsType.idNewsType
-    WHERE idNews = NVL(pIdNews, idNews);
+    WHERE News.idNews = pIdNews;
 END getNews;
 
 CREATE OR REPLACE PROCEDURE getNewsStatus(curNewsStatus OUT SYS_REFCURSOR) IS
