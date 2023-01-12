@@ -14,22 +14,32 @@ BEGIN
     WHERE p.idPerson = tw.idPerson;
 END getTeamWorker;
 
+/*
+
+*/
+
 
 CREATE OR REPLACE PROCEDURE getPersonInformation(pidPerson IN NUMBER, curPersonInformation  OUT SYS_REFCURSOR, codResult OUT NUMBER)
 AS
 vnIdPlayer NUMBER(10);
-BEGIN
-    SELECT p.idPerson
-    INTO vnIdPlayer
-    FROM Person P, Player PL
-    WHERE pl.idPerson = pidPerson;
-    
-    IF(vnIdPlayer != NULL)
+BEGIN 
+    BEGIN
+        SELECT pl.idPerson
+        INTO vnIdPlayer 
+        FROM Player Pl
+        WHERE pl.idPerson = pidPerson;
+    EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        vnIdPlayer:=-1; 
+    END;
+
+    IF(vnIdPlayer != -1)
     THEN
         OPEN curPersonInformation FOR
         SELECT Person.firstName, Person.secondName, Person.firstLastName, Person.secondLastName, 
         Person.identification, Person.idTypeIdentification, Person.idPersonPosition, Person.photo,
-        Person.idGender, Province.idCountry ,Canton.idProvince ,District.idCanton , Address.idDistrict ,Person.idAddress, 
+        Person.idGender, Province.idCountry ,Canton.idProvince ,District.idCanton , Address.idDistrict , Address.descriptionAddress, 
         Mail.descriptionMail, Phone.phoneNumber, Player.idTeam, Player.birthdate, Player.TshirtNum
         FROM Person
         INNER JOIN PersonXPhone ON PersonXPhone.idPerson = Person.idPerson
@@ -47,7 +57,7 @@ BEGIN
         OPEN curPersonInformation FOR
         SELECT Person.firstName, Person.secondName, Person.firstLastName, Person.secondLastName, 
         Person.identification, Person.idTypeIdentification, Person.idPersonPosition, Person.photo,
-        Person.idGender, Province.idCountry ,Canton.idProvince ,District.idCanton ,Address.idDistrict ,Person.idAddress, 
+        Person.idGender, Province.idCountry ,Canton.idProvince ,District.idCanton ,Address.idDistrict ,Address.descriptionAddress, 
         Mail.descriptionMail, Phone.phoneNumber, TeamWorker.idTeam
         FROM Person
         INNER JOIN PersonXPhone ON PersonXPhone.idPerson = Person.idPerson
