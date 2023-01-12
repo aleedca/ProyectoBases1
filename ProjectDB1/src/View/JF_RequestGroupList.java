@@ -50,6 +50,7 @@ public class JF_RequestGroupList extends javax.swing.JFrame {
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
 
+        tblGroupList.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         tblGroupList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -71,6 +72,7 @@ public class JF_RequestGroupList extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblGroupList);
 
+        btnClose.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         btnClose.setText("Cerrar");
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -98,14 +98,21 @@ public class JF_Request extends javax.swing.JFrame {
         lblGroupList.setForeground(new java.awt.Color(255, 255, 255));
         lblGroupList.setText("Listado de la rifa de grupos");
 
+        lblTeamName.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblTeamName.setText("Nombre del equipo");
 
+        lblMatchDate.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblMatchDate.setText("Fecha del partido");
 
+        lblStadium.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblStadium.setText("Estadio");
 
+        lblFlag.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblFlag.setText("Bandera");
 
+        txtTeamName1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 12)); // NOI18N
+
+        btnRequestGroupList.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         btnRequestGroupList.setText("Consultar");
         btnRequestGroupList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +120,7 @@ public class JF_Request extends javax.swing.JFrame {
             }
         });
 
+        cbmTeamFlag.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         cbmTeamFlag.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbmTeamFlag.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +128,7 @@ public class JF_Request extends javax.swing.JFrame {
             }
         });
 
+        lblMatchDate1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblMatchDate1.setText("Hora del partido");
 
         try {
@@ -127,6 +136,7 @@ public class JF_Request extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtMatchHour.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 12)); // NOI18N
         txtMatchHour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMatchHourActionPerformed(evt);
@@ -138,12 +148,14 @@ public class JF_Request extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtMatchDate1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 12)); // NOI18N
         txtMatchDate1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMatchDate1ActionPerformed(evt);
             }
         });
 
+        cbmStadium.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         cbmStadium.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -158,29 +170,27 @@ public class JF_Request extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblMatchDate)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtMatchDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cbmStadium, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbmStadium, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblStadium))
                         .addGap(18, 18, 18)
-                        .addComponent(cbmTeamFlag, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMatchDate)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblMatchDate1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtMatchHour)))
-                        .addGap(60, 60, 60)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRequestGroupList)
-                                .addContainerGap())
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblStadium)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblFlag)
-                                .addGap(85, 85, 85))))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(cbmTeamFlag, 0, 252, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblMatchDate1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtMatchHour))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRequestGroupList)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,30 +218,43 @@ public class JF_Request extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        lblTeamName2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblTeamName2.setText("Nombre del equipo");
 
+        txtTeamName3.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 12)); // NOI18N
         txtTeamName3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTeamName3ActionPerformed(evt);
             }
         });
 
+        txtPlayer1Name.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 12)); // NOI18N
         txtPlayer1Name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPlayer1NameActionPerformed(evt);
             }
         });
 
+        txtPlayer2Name.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 12)); // NOI18N
+
+        txtPlayer2Lastname.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 12)); // NOI18N
+
+        lblPlayer1Name.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblPlayer1Name.setText("Nombre del jugador");
 
+        lblPlayer2Name.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblPlayer2Name.setText("Segundo nombre");
 
+        lblPlayer2Lastname.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblPlayer2Lastname.setText("Segundo Apellido");
 
+        lblPlayer1Lastname.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblPlayer1Lastname.setText("Primer Apellido");
 
+        lblPosition.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblPosition.setText("Posicion");
 
+        btnRequestTeamList.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         btnRequestTeamList.setText("Consultar");
         btnRequestTeamList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,6 +262,7 @@ public class JF_Request extends javax.swing.JFrame {
             }
         });
 
+        cmbPosition.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         cmbPosition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -252,8 +276,7 @@ public class JF_Request extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(lblPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRequestTeamList)
-                        .addGap(29, 29, 29))
+                        .addComponent(btnRequestTeamList))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(cmbPosition, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -283,7 +306,8 @@ public class JF_Request extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPlayer2Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtPlayer2Lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(92, Short.MAX_VALUE))))
+                        .addGap(0, 86, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,10 +329,12 @@ public class JF_Request extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(cmbPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRequestTeamList)
-                    .addComponent(lblPosition))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addComponent(lblPosition)
+                .addContainerGap(18, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRequestTeamList)
+                .addContainerGap())
         );
 
         lblTeamList.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
@@ -319,20 +345,30 @@ public class JF_Request extends javax.swing.JFrame {
         lblNewsList.setForeground(new java.awt.Color(255, 255, 255));
         lblNewsList.setText("Listado de noticias");
 
+        txtAuthorName.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 12)); // NOI18N
+
+        lblAuthorName.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblAuthorName.setText("Nombre del autor");
 
+        txtAuthorLastname.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 12)); // NOI18N
         txtAuthorLastname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAuthorLastnameActionPerformed(evt);
             }
         });
 
+        lblAuthorLastname.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblAuthorLastname.setText("Apellido del autor");
 
+        lblNewsDate.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblNewsDate.setText("Fecha de publicacion");
 
+        lblEvent.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         lblEvent.setText("Evento");
 
+        txtNewsDate.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 12)); // NOI18N
+
+        btnRequestNewsList.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         btnRequestNewsList.setText("Consultar");
         btnRequestNewsList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -340,6 +376,7 @@ public class JF_Request extends javax.swing.JFrame {
             }
         });
 
+        cmbNewsEvent.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         cmbNewsEvent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -370,7 +407,7 @@ public class JF_Request extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRequestNewsList)
-                .addGap(16, 16, 16))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,9 +424,9 @@ public class JF_Request extends javax.swing.JFrame {
                     .addComponent(lblAuthorLastname)
                     .addComponent(lblEvent)
                     .addComponent(lblNewsDate))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(btnRequestNewsList)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
