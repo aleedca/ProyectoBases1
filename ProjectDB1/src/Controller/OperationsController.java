@@ -212,7 +212,7 @@ public class OperationsController implements ActionListener, ItemListener{
         viewAdminPerson.getCmbTypeIdentification().addItemListener(this);
         viewAdminPerson.getCmbTypePosition().addItemListener(this);
         viewAdminPerson.getCmbTeam().addItemListener(this);
-        viewAdminPerson.getCmbPerson().addActionListener(this);
+        viewAdminPerson.getCmbPerson().addItemListener(this);
         
         
         viewAdminPerson.getCmbCountry().addItemListener(this);
@@ -366,18 +366,21 @@ public class OperationsController implements ActionListener, ItemListener{
     
     
     private void fillPerson(){
+        String firstName;
+        String secondName;
+        String firstLastName;
+        String secondLastName;
+        String fullName;
+        
         viewAdminPerson.getCmbPerson().removeAllItems();
         viewAdminPerson.getCmbPerson().addItem("Seleccione Persona"); 
 
         for(int i=0; i<modelAdminPerson.getPlayersComboBox().size();i++){
             
-            String firstName = modelAdminPerson.getPlayersComboBox().get(i).getFirstName();
-            String secondName = modelAdminPerson.getPlayersComboBox().get(i).getSecondName();
-            String firstLastName = modelAdminPerson.getPlayersComboBox().get(i).getFirstLastName();
-            String secondLastName = modelAdminPerson.getPlayersComboBox().get(i).getSecondLastName();
-            
-            String fullName;
-            
+            firstName = modelAdminPerson.getPlayersComboBox().get(i).getFirstName();
+            secondName = modelAdminPerson.getPlayersComboBox().get(i).getSecondName();
+            firstLastName = modelAdminPerson.getPlayersComboBox().get(i).getFirstLastName();
+            secondLastName = modelAdminPerson.getPlayersComboBox().get(i).getSecondLastName();
             
             if(!"N/A".equals(secondName) && !"N/A".equals(secondLastName)){
                 fullName = firstName+" "+secondName+" "+firstLastName+" "+secondLastName;
@@ -399,13 +402,11 @@ public class OperationsController implements ActionListener, ItemListener{
         
         
         for(int i=0; i<modelAdminPerson.getTeamWorkersComboBox().size();i++){
-            String firstName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstName();
-            String secondName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondName();
-            String firstLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstLastName();
-            String secondLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondLastName();
-            
-            String fullName;
-            
+            firstName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstName();
+            secondName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondName();
+            firstLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstLastName();
+            secondLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondLastName();
+
             if(!"N/A".equals(secondName) && !"N/A".equals(secondLastName)){
                 fullName = firstName+" "+secondName+" "+firstLastName+" "+secondLastName;
             }else{
@@ -426,10 +427,277 @@ public class OperationsController implements ActionListener, ItemListener{
 
     }
     
+    
+    private void fillPlayerInformation(){
+        String name;
+        String secondName;
+        String firstLastName;
+        String secondLastName;
+        String typeIdentification;
+        int idTypeIdentification;
+        int identification;
+        String gender;
+        int idGender;
+        String team;
+        int idTeam;
+        String position;
+        int idPosition;
+        int numTShirt;
+        String mail;
+        String address;
+        int phoneNumber;
+        String birthdate;
+        String country;
+        int idCountry;
+        String province;
+        int idProvince;
+        String canton;
+        int idCanton;
+        String district;
+        int idDistrict;
+        
+    
+        for(int i=0; i<modelAdminPerson.getPlayersInfo().size();i++){
+            name = modelAdminPerson.getPlayersInfo().get(i).getFirstName();
+            viewAdminPerson.setTxtName(name);
+            
+            secondName = modelAdminPerson.getPlayersInfo().get(i).getSecondName();
+            if(!"N/A".equals(secondName) && secondName != null){
+                viewAdminPerson.setTxtSecondName(secondName);
+            }else{
+                viewAdminPerson.cleanSecondName();
+            }
+   
+            firstLastName = modelAdminPerson.getPlayersInfo().get(i).getFirstLastName();
+            viewAdminPerson.setTxtFirstLastName(firstLastName);
+            
+            secondLastName = modelAdminPerson.getPlayersInfo().get(i).getSecondLastName();
+            if(!"N/A".equals(secondLastName) && secondLastName != null){
+                viewAdminPerson.setTxtSecondLastName(secondLastName);
+            }else{
+                viewAdminPerson.cleanSecondLastName();
+            }
+
+            idTypeIdentification = modelAdminPerson.getPlayersInfo().get(i).getIdTypeIdentification();
+            for(int j=0; j< modelRegister.getIdentificationTypes().size();j++){
+                if(idTypeIdentification == modelRegister.getIdentificationTypes().get(j).getIdTypeIdentification()){
+                    typeIdentification = modelRegister.getIdentificationTypes().get(j).getNameTypeIdentification();
+                    viewAdminPerson.setTypeIdentification(typeIdentification);
+                }
+            }
+
+            identification = modelAdminPerson.getPlayersInfo().get(i).getIdentification();
+            viewAdminPerson.setTxtIdentification(identification);
+           
+            numTShirt = modelAdminPerson.getPlayersInfo().get(i).getNumTShirt();
+            viewAdminPerson.setSpnNumCamisa(numTShirt);
+            
+            mail = modelAdminPerson.getPlayersInfo().get(i).getMail();
+            viewAdminPerson.setTxtMail(mail);
+            
+            address = modelAdminPerson.getPlayersInfo().get(i).getDescriptonAddress();
+            viewAdminPerson.setTxtAddress(address);
+            
+            phoneNumber = modelAdminPerson.getPlayersInfo().get(i).getPhoneNumber();
+            viewAdminPerson.setTxtPhone(phoneNumber);
+            
+            birthdate = modelAdminPerson.getPlayersInfo().get(i).getBirthdate();
+            viewAdminPerson.setTxtBirthDate(birthdate);
+            
+            idGender = modelAdminPerson.getPlayersInfo().get(i).getIdGender();
+            for(int g=0; g<modelRegister.getGenders().size();g++){
+                if(idGender == modelRegister.getGenders().get(g).getIdGender()){
+                    gender = modelRegister.getGenders().get(g).getDescriptionGender();
+                    viewAdminPerson.setGender(gender);
+                }
+            }
+            
+            idTeam = modelAdminPerson.getPlayersInfo().get(i).getIdTeam();
+            for(int k=0; k<modelAdminPerson.getTeams().size();k++){
+                if(idTeam == modelAdminPerson.getTeams().get(k).getIdTeam()){
+                    team = modelAdminPerson.getTeams().get(k).getNameTeam();
+                    viewAdminPerson.setTeam(team);
+                }
+            }
+            
+            idPosition = modelAdminPerson.getPlayersInfo().get(i).getIdPersonPosition();
+            for(int h=0; h<modelAdminPerson.getPositions().size();h++){
+                if(idPosition == modelAdminPerson.getPositions().get(h).getIdPersonPosition()){
+                    position = modelAdminPerson.getPositions().get(h).getDescriptionPersonPosition();
+                    viewAdminPerson.setPosition(position);
+                }
+            }
+            
+            
+            idCountry = modelAdminPerson.getPlayersInfo().get(i).getIdCountry();
+            for(int l=0; l<modelRegister.getCountries().size();l++){
+                if(idCountry == modelRegister.getCountries().get(l).getIdCountry()){
+                    country = modelRegister.getCountries().get(l).getNameCountry();
+                    viewAdminPerson.setCountry(country);
+                }
+            }
+            
+            idProvince =  modelAdminPerson.getPlayersInfo().get(i).getIdProvince();
+            for(int p=0; p<modelRegister.getProvinces().size();p++){
+                if(idProvince == modelRegister.getProvinces().get(p).getIdProvince()){
+                    province = modelRegister.getProvinces().get(p).getNameProvince();
+                    viewAdminPerson.setProvince(province);
+                }
+            }
+            
+            idCanton = modelAdminPerson.getPlayersInfo().get(i).getIdCanton();
+            for(int m=0; m<modelRegister.getCantons().size();m++){
+                if(idCanton == modelRegister.getCantons().get(m).getIdCanton()){
+                    canton = modelRegister.getCantons().get(m).getNameCanton();
+                    viewAdminPerson.setCmbCanton(canton);
+                }
+            }
+            
+            idDistrict = modelAdminPerson.getPlayersInfo().get(i).getIdDistrict();
+            for(int n=0; n<modelRegister.getDistricts().size();n++){
+                if(idDistrict == modelRegister.getDistricts().get(n).getIdDistrict()){
+                    district = modelRegister.getDistricts().get(n).getNameDistrict();
+                    viewAdminPerson.setCmbDistrict(district);
+                }
+            }
+            
+        }
+    }
+    
+   
+    private void fillTeamWorkerInformation(){
+        String name;
+        String secondName;
+        String firstLastName;
+        String secondLastName;        
+        String typeIdentification;
+        int idTypeIdentification;
+        int identification;
+        String gender;
+        int idGender;        
+        String team;
+        int idTeam;
+        String position;
+        int idPosition;
+        String mail;
+        String address;
+        int phoneNumber;
+        String country;
+        int idCountry;
+        String province;
+        int idProvince;
+        String canton;
+        int idCanton;
+        String district;
+        int idDistrict;
+        
+    
+        for(int i=0; i<modelAdminPerson.getTeamWorkersInfo().size();i++){
+            name = modelAdminPerson.getTeamWorkersInfo().get(i).getFirstName();
+            viewAdminPerson.setTxtName(name);
+            
+            secondName = modelAdminPerson.getTeamWorkersInfo().get(i).getSecondName();
+            if(!"N/A".equals(secondName) && secondName != null){
+                viewAdminPerson.setTxtSecondName(secondName);
+            }else{
+                viewAdminPerson.cleanSecondName();
+            }
+   
+            firstLastName = modelAdminPerson.getTeamWorkersInfo().get(i).getFirstLastName();
+            viewAdminPerson.setTxtFirstLastName(firstLastName);
+            
+            secondLastName = modelAdminPerson.getTeamWorkersInfo().get(i).getSecondLastName();
+            if(!"N/A".equals(secondLastName) && secondLastName != null){
+                viewAdminPerson.setTxtSecondLastName(secondLastName);
+            }else{
+                viewAdminPerson.cleanSecondLastName();
+            }
+
+            idTypeIdentification = modelAdminPerson.getTeamWorkersInfo().get(i).getIdTypeIdentification();
+            for(int j=0; j< modelRegister.getIdentificationTypes().size();j++){
+                if(idTypeIdentification == modelRegister.getIdentificationTypes().get(j).getIdTypeIdentification()){
+                    typeIdentification = modelRegister.getIdentificationTypes().get(j).getNameTypeIdentification();
+                    viewAdminPerson.setTypeIdentification(typeIdentification);
+                }
+            }
+
+            identification = modelAdminPerson.getTeamWorkersInfo().get(i).getIdentification();
+            viewAdminPerson.setTxtIdentification(identification);
+           
+            
+            mail = modelAdminPerson.getTeamWorkersInfo().get(i).getMail();
+            viewAdminPerson.setTxtMail(mail);
+            
+            address = modelAdminPerson.getTeamWorkersInfo().get(i).getDescriptonAddress();
+            viewAdminPerson.setTxtAddress(address);
+            
+            phoneNumber = modelAdminPerson.getTeamWorkersInfo().get(i).getPhoneNumber();
+            viewAdminPerson.setTxtPhone(phoneNumber);
+            
+            
+            idGender = modelAdminPerson.getTeamWorkersInfo().get(i).getIdGender();
+            for(int g=0; g<modelRegister.getGenders().size();g++){
+                if(idGender == modelRegister.getGenders().get(g).getIdGender()){
+                    gender = modelRegister.getGenders().get(g).getDescriptionGender();
+                    viewAdminPerson.setGender(gender);
+                }
+            }
+            
+            idTeam = modelAdminPerson.getTeamWorkersInfo().get(i).getIdTeam();
+            for(int k=0; k<modelAdminPerson.getTeams().size();k++){
+                if(idTeam == modelAdminPerson.getTeams().get(k).getIdTeam()){
+                    team = modelAdminPerson.getTeams().get(k).getNameTeam();
+                    viewAdminPerson.setTeam(team);
+                }
+            }
+            
+            idPosition = modelAdminPerson.getTeamWorkersInfo().get(i).getIdPersonPosition();
+            for(int h=0; h<modelAdminPerson.getPositions().size();h++){
+                if(idPosition == modelAdminPerson.getPositions().get(h).getIdPersonPosition()){
+                    position = modelAdminPerson.getPositions().get(h).getDescriptionPersonPosition();
+                    viewAdminPerson.setPosition(position);
+                }
+            }
+            
+            
+            idCountry = modelAdminPerson.getTeamWorkersInfo().get(i).getIdCountry();
+            for(int l=0; l<modelRegister.getCountries().size();l++){
+                if(idCountry == modelRegister.getCountries().get(l).getIdCountry()){
+                    country = modelRegister.getCountries().get(l).getNameCountry();
+                    viewAdminPerson.setCountry(country);
+                }
+            }
+            
+            idProvince =  modelAdminPerson.getTeamWorkersInfo().get(i).getIdProvince();
+            for(int p=0; p<modelRegister.getProvinces().size();p++){
+                if(idProvince == modelRegister.getProvinces().get(p).getIdProvince()){
+                    province = modelRegister.getProvinces().get(p).getNameProvince();
+                    viewAdminPerson.setProvince(province);
+                }
+            }
+            
+            idCanton = modelAdminPerson.getTeamWorkersInfo().get(i).getIdCanton();
+            for(int m=0; m<modelRegister.getCantons().size();m++){
+                if(idCanton == modelRegister.getCantons().get(m).getIdCanton()){
+                    canton = modelRegister.getCantons().get(m).getNameCanton();
+                    viewAdminPerson.setCmbCanton(canton);
+                }
+            }
+            
+            idDistrict = modelAdminPerson.getTeamWorkersInfo().get(i).getIdDistrict();
+            for(int n=0; n<modelRegister.getDistricts().size();n++){
+                if(idDistrict == modelRegister.getDistricts().get(n).getIdDistrict()){
+                    district = modelRegister.getDistricts().get(n).getNameDistrict();
+                    viewAdminPerson.setCmbDistrict(district);
+                }
+            }
+            
+        }
+    }
+    
+    
     //SHOW MORE VIEWED AND LAST NEWS 
     
-    
-       
     
     //-------------------------------------------------------------------------------------------------------
     
@@ -714,7 +982,8 @@ public class OperationsController implements ActionListener, ItemListener{
                             System.out.println("Id de Team: " + idTeam);
                             modelAdminPerson.setTeam(idTeam);
                         }    
-                    } 
+                    }
+                    
                 } 
             }
         }
@@ -724,11 +993,82 @@ public class OperationsController implements ActionListener, ItemListener{
             if(e.getStateChange() == ItemEvent.SELECTED){
                 String choice = viewAdminPerson.getSelectedPerson();
                 
+                System.out.println("ENTRO AL ITEMLISTENER");
+                System.out.println("Usted seleccionó"+choice);
                 if(viewAdminPerson.getRbtnEdit().isSelected()){
                     if(!"Seleccione Persona".equals(choice)){
                         
+                        //PLAYERS
+                        for(int i=0; i<modelAdminPerson.getPlayersComboBox().size();i++){
+                            String firstName = modelAdminPerson.getPlayersComboBox().get(i).getFirstName();
+                            String secondName = modelAdminPerson.getPlayersComboBox().get(i).getSecondName();
+                            String firstLastName = modelAdminPerson.getPlayersComboBox().get(i).getFirstLastName();
+                            String secondLastName = modelAdminPerson.getPlayersComboBox().get(i).getSecondLastName();
+            
+                            String fullName;
+                            
+                            if(!"N/A".equals(secondName) && !"N/A".equals(secondLastName)){
+                                fullName = firstName+" "+secondName+" "+firstLastName+" "+secondLastName;
+                            }else{
+                                if(!"N/A".equals(secondName)){
+                                    fullName = firstName+" "+secondName+" "+firstLastName;              
+                                }else{
+                                    if(!"N/A".equals(secondLastName)){
+                                        fullName = firstName+" "+firstLastName+" "+secondLastName;
+                                    }else{
+                                        fullName = firstName+" "+firstLastName;
+                                    }
+                                }
+                            }
+                            
+                            
+                            if(choice.equals(fullName)){
+                                int idPerson = modelAdminPerson.getPlayersComboBox().get(i).getIdPerson();
+                                modelAdminPerson.getPersonInformation(idPerson);
+                                viewAdminPerson.deshabilitarOpciones(true);
+                                fillPlayerInformation();
+                            }
+                        }
                         
-                    
+                        //TEAMWORKER
+                        for(int i=0; i<modelAdminPerson.getTeamWorkersComboBox().size();i++){
+                            String firstName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstName();
+                            String secondName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondName();
+                            String firstLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstLastName();
+                            String secondLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondLastName();
+            
+                            String fullName;
+                            
+                            if(!"N/A".equals(secondName) && !"N/A".equals(secondLastName)){
+                                fullName = firstName+" "+secondName+" "+firstLastName+" "+secondLastName;
+                            }else{
+                                if(!"N/A".equals(secondName)){
+                                    fullName = firstName+" "+secondName+" "+firstLastName;              
+                                }else{
+                                    if(!"N/A".equals(secondLastName)){
+                                        fullName = firstName+" "+firstLastName+" "+secondLastName;
+                                    }else{
+                                        fullName = firstName+" "+firstLastName;
+                                    }
+                                }
+                            }
+                            
+                            
+                            if(choice.equals(fullName)){
+                                int idPerson = modelAdminPerson.getTeamWorkersComboBox().get(i).getIdPerson();
+                                modelAdminPerson.getPersonInformation(idPerson);
+                                viewAdminPerson.deshabilitarOpciones(false);
+                                fillTeamWorkerInformation();
+                            }
+                        }
+                         
+                    }else{
+                        viewAdminPerson.cleanAll();
+                        
+                        viewAdminPerson.setTypeIdentification("Seleccione Tipo");
+                        viewAdminPerson.setTeam("Seleccione Equipo");
+                        viewAdminPerson.setPosition("Seleccione Posición");
+                        viewAdminPerson.setGender("Seleccione Género");
                     }
                  
                 }
@@ -1179,11 +1519,11 @@ public class OperationsController implements ActionListener, ItemListener{
         
         
         if(e.getSource() == viewAdminPerson.getRbtnEdit()){
-            System.out.println("Entro");
+            viewAdminPerson.esconderMostrarTodo(true);
+            viewAdminPerson.setTxtLblPerson("Persona:");
+            viewAdminPerson.deshabilitarOpciones(false);
             modelAdminPerson.getPerson();
-            System.out.println("Salio de cargar");
             fillPerson();
-            System.out.println("Salio de llenar combo box");
         }
         
         

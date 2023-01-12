@@ -146,12 +146,16 @@ public class model_AdminPerson {
     public void getPersonInformation(int idPerson){
         try {
             this.resultEditPerson = DA_Person.getPersonInformation(idPerson);
+            System.out.println("El resultado es: " + this.resultEditPerson);
+            
             if(resultEditPerson == 0){
-                DA_Person.getPlayerInformation();
+                System.out.println("Entro a cargar Player");
+                this.playersInfo = DA_Person.getPlayerInformation();
             }else{
             
                 if(resultEditPerson == 1){
-                    DA_Person.getTeamWorkerInformation();
+                    System.out.println("Entro a cargar TeamWorker");
+                    this.teamWorkersInfo = DA_Person.getTeamWorkerInformation();
                 }
                 
             }
