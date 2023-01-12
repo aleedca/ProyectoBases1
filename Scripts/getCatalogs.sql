@@ -113,6 +113,12 @@ BEGIN
     FROM News;
 END getMostViewedNews;
 
+CREATE OR REPLACE PROCEDURE getStadium(curStadium OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curStadium FOR
+    SELECT  idStadium, idCountry, nameStadium
+    FROM Stadium;
+END getStadium;
 
 
 
