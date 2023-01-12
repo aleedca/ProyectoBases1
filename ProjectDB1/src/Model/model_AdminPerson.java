@@ -164,6 +164,92 @@ public class model_AdminPerson {
         }
     }
 
+    public void updateFirstName(int idPerson, String name){
+        try {
+            System.out.println("Llama al DA");
+            DA_Person.updateFirstName(idPerson, name);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    
+    public void updateSecondName(int idPerson, String name){
+        try {
+            DA_Person.updateSecondName(idPerson, name);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    
+    public void updateFirstLastName(int idPerson, String name){
+        try {
+            DA_Person.updateFirstLastName(idPerson, name);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    
+    public void updateSecondLastName(int idPerson, String name){
+        try {
+            DA_Person.updateSecondLastName(idPerson, name);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateIdentification(int idPerson, int ident){
+        try {
+            DA_Person.updateIdentification(idPerson, ident);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    
+    public void updateMail(int idPerson, String mail){
+        try {
+            DA_Person.updateMail(idPerson, mail);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    
+    public void updatePhone(int idPerson, int phone){
+        try {
+            DA_Person.updatePhone(idPerson, phone);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateAddress(int idPerson, String address){
+        try {
+            DA_Person.updateAddress(idPerson, address);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateNumTShirt(int idPerson, int num){
+        try {
+            DA_Person.updateTShirtNum(idPerson, num);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateBirthDate(int idPerson, String birthdate){
+        try {
+            DA_Person.updateBirthDate(idPerson, birthdate);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
     
     //GETTERS AND SETTERS
     public String getFirstName() {

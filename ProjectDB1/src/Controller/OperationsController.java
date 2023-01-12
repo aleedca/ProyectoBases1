@@ -364,6 +364,25 @@ public class OperationsController implements ActionListener, ItemListener{
         viewAdminPerson.getCmbPerson().addItem("Cuerpo Técnico");
     }
     
+    private String fillFullName(String firstName, String firstLastName , String secondName, String secondLastName){
+        String full;
+        if(!"N/A".equals(secondName) && !"N/A".equals(secondLastName)){
+            full = firstName+" "+secondName+" "+firstLastName+" "+secondLastName;
+        }else{
+
+            if(!"N/A".equals(secondName)){
+                full = firstName+" "+secondName+" "+firstLastName;              
+            }else{
+                if(!"N/A".equals(secondLastName)){
+                    full = firstName+" "+firstLastName+" "+secondLastName;
+                }else{
+                    full = firstName+" "+firstLastName;
+                }
+            }
+        }
+        return full;
+    } 
+    
     
     private void fillPerson(){
         String firstName;
@@ -375,56 +394,28 @@ public class OperationsController implements ActionListener, ItemListener{
         viewAdminPerson.getCmbPerson().removeAllItems();
         viewAdminPerson.getCmbPerson().addItem("Seleccione Persona"); 
 
-        for(int i=0; i<modelAdminPerson.getPlayersComboBox().size();i++){
-            
+        //PLAYER
+        for(int i=0; i<modelAdminPerson.getPlayersComboBox().size();i++){      
             firstName = modelAdminPerson.getPlayersComboBox().get(i).getFirstName();
             secondName = modelAdminPerson.getPlayersComboBox().get(i).getSecondName();
             firstLastName = modelAdminPerson.getPlayersComboBox().get(i).getFirstLastName();
             secondLastName = modelAdminPerson.getPlayersComboBox().get(i).getSecondLastName();
             
-            if(!"N/A".equals(secondName) && !"N/A".equals(secondLastName)){
-                fullName = firstName+" "+secondName+" "+firstLastName+" "+secondLastName;
-            }else{
-                
-                if(!"N/A".equals(secondName)){
-                    fullName = firstName+" "+secondName+" "+firstLastName;              
-                }else{
-                    if(!"N/A".equals(secondLastName)){
-                        fullName = firstName+" "+firstLastName+" "+secondLastName;
-                    }else{
-                        fullName = firstName+" "+firstLastName;
-                    }
-                }
-            }
-            
+            fullName = fillFullName(firstName, firstLastName, secondName, secondLastName);
             viewAdminPerson.getCmbPerson().addItem(fullName); 
         }
         
-        
+        //TEAMWORKER
         for(int i=0; i<modelAdminPerson.getTeamWorkersComboBox().size();i++){
             firstName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstName();
             secondName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondName();
             firstLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstLastName();
             secondLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondLastName();
-
-            if(!"N/A".equals(secondName) && !"N/A".equals(secondLastName)){
-                fullName = firstName+" "+secondName+" "+firstLastName+" "+secondLastName;
-            }else{
-                
-                if(!"N/A".equals(secondName)){
-                    fullName = firstName+" "+secondName+" "+firstLastName;              
-                }else{
-                    if(!"N/A".equals(secondLastName)){
-                        fullName = firstName+" "+firstLastName+" "+secondLastName;
-                    }else{
-                        fullName = firstName+" "+firstLastName;
-                    }
-                }
-            }
             
+            fullName = fillFullName(firstName, firstLastName, secondName, secondLastName);
             viewAdminPerson.getCmbPerson().addItem(fullName); 
         }
-
+        
     }
     
     
@@ -693,6 +684,292 @@ public class OperationsController implements ActionListener, ItemListener{
             }
             
         }
+    }
+    
+    
+    //-------------------------------------------------------------------------------
+    
+    //------------ VALIDATIONS ADMIN PERSON ---------------------------
+    private void adminPersonValidations(){
+        if(modelAdminPerson.validateEmptyFieldsAdminPerson()){
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);
+            flagAdminPerson = false;
+        }else{
+            if(modelRegister.validateFormatString(modelAdminPerson.getFirstName()) == false ||  modelRegister.validateFormatString(modelAdminPerson.getFirstLastName())== false)
+            {
+                JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Nombre y Primer Apellido", "Error", JOptionPane.WARNING_MESSAGE);
+
+
+                if(modelRegister.validateFormatString(modelAdminPerson.getFirstName()) == false){
+                    viewAdminPerson.cleanFirstName();
+                }
+
+                if(modelRegister.validateFormatString(modelAdminPerson.getFirstLastName()) == false){
+                    viewAdminPerson.cleanFirstLastName();
+                }
+
+
+                flagAdminPerson = false;
+            }
+
+
+            if(modelRegister.validateSecondName(modelAdminPerson.getSecondName()) || modelRegister.validateSecondLastName(modelAdminPerson.getSecondLastName())){
+
+                if(modelRegister.validateSecondName(modelAdminPerson.getSecondName())){
+                    if(modelRegister.validateFormatString(modelAdminPerson.getSecondName()) == false){
+
+                        JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Nombre", "Error", JOptionPane.WARNING_MESSAGE);
+
+                        viewAdminPerson.cleanSecondName();
+                        flagAdminPerson = false;
+                    }    
+                }
+
+                if(modelRegister.validateSecondLastName(modelAdminPerson.getSecondLastName())){
+
+                    if(modelRegister.validateFormatString(modelAdminPerson.getSecondLastName()) == false){
+
+                        JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Apellido", "Error", JOptionPane.WARNING_MESSAGE);
+
+                        viewAdminPerson.cleanSecondLastName();
+                        flagAdminPerson = false;
+                    }   
+                }
+            }
+
+            if(modelRegister.validateFormatMail(modelAdminPerson.getMail()) == false){ 
+                JOptionPane.showMessageDialog(null, "Formato de correo no válido", "Error", JOptionPane.WARNING_MESSAGE);
+                viewAdminPerson.cleanMail();
+                flagAdminPerson = false;
+            }
+
+
+            if(modelRegister.validateFormatAddress(modelAdminPerson.getAddress()) == false){
+                JOptionPane.showMessageDialog(null, "Dirección no válida.\nDebe contener un mínimo de 50 caracteres", "Error", JOptionPane.WARNING_MESSAGE);
+                viewAdminPerson.cleanAddress();
+                flagAdminPerson = false;
+            }
+
+
+            if(modelRegister.validatePhoto(modelAdminPerson.getPhoto())){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar una foto", "Error", JOptionPane.WARNING_MESSAGE);
+                flagAdminPerson = false;
+            }
+
+
+            if("Seleccione Distrito".equals(viewAdminPerson.getSelectedDistrict()))
+            {
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un distrito", "Error", JOptionPane.WARNING_MESSAGE);
+                flagAdminPerson = false;
+            }
+
+            if("Seleccione Género".equals(viewAdminPerson.getSelectedGender())){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un género", "Error", JOptionPane.WARNING_MESSAGE);
+                flagAdminPerson = false;
+            }
+
+            if("Seleccione Tipo".equals(viewAdminPerson.getSelectedTypeIdentification())){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de identificación", "Error", JOptionPane.WARNING_MESSAGE);
+                flagAdminPerson = false;
+            }
+
+            if("Seleccione Posición".equals(viewAdminPerson.getSelectedPosition())){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de posición", "Error", JOptionPane.WARNING_MESSAGE);
+                flagAdminPerson = false;
+            }
+
+            if("Seleccione Equipo".equals(viewAdminPerson.getSelectedTeam())){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar un equipo", "Error", JOptionPane.WARNING_MESSAGE);
+                flagAdminPerson = false;
+            }
+
+            if(viewAdminPerson.validateTxtPhone()){
+                JOptionPane.showMessageDialog(null, "Debe ingresar un número de teléfono", "Error", JOptionPane.WARNING_MESSAGE);
+                flagAdminPerson = false;
+            }
+
+            if(viewAdminPerson.validateTxtIdentification()){
+                JOptionPane.showMessageDialog(null, "Debe ingresar una identificación", "Error", JOptionPane.WARNING_MESSAGE);
+                flagAdminPerson = false;
+            }
+
+            if("Jugador".equals(viewAdminPerson.getTxtCmbPerson())){
+                if(viewAdminPerson.validateTxtDateOfBirth()){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar una fecha de nacimiento", "Error", JOptionPane.WARNING_MESSAGE);
+                    flagAdminPerson = false;
+                }
+            }
+        }//VALIDATE EMPTY FIELDS
+    }
+    
+    
+    private void createPerson(){
+        if("Jugador".equals(viewAdminPerson.getTxtCmbPerson())){
+            modelAdminPerson.inserPlayer();
+        }else{
+            modelAdminPerson.inserTeamWorker();
+        }
+
+        if(modelAdminPerson.getResultInsertPerson() == 0){
+            JOptionPane.showMessageDialog(null, "Se ha creado la persona");
+            viewAdminPerson.setVisible(false);
+            viewMenuAdmin.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Lo sentimos, no se logro crear la persona", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+
+        viewAdminPerson.cleanAll();
+
+        fillGenders();
+        fillIdentificationTypes();     
+        fillCountries();
+        fillPositions();
+        fillTeams();
+
+        modelAdminPerson.setPhoto("src/Images/avatar.png");
+        viewAdminPerson.setLocationRelativeTo(viewAdminPerson);
+        modelAdminPerson.setImageAdminPerson(viewAdminPerson.getLblAvatar());
+        viewAdminPerson.repaint();
+    }
+    
+    
+    private void updatesTeamWorker(int idPerson, int i){
+        String secondName, secondLastName;
+        
+        if(!viewAdminPerson.getTxtName().equals(modelAdminPerson.getTeamWorkersInfo().get(i).getFirstName())){
+            System.out.println("Si actualiza primer nombre");
+            modelAdminPerson.updateFirstName(idPerson, viewAdminPerson.getTxtName());
+            flagAdminPerson = false;
+        }
+
+        if(viewAdminPerson.getTxtSecondName().isEmpty()){
+            secondName = "N/A";
+        }else{
+            secondName = viewAdminPerson.getTxtSecondName();
+        }
+
+        if(!secondName.equals(modelAdminPerson.getTeamWorkersInfo().get(i).getSecondName())){
+            System.out.println("Si actualiza second nombre");
+            modelAdminPerson.updateSecondName(idPerson, secondName);
+            flagAdminPerson = false;
+        }
+
+
+        if(!viewAdminPerson.getTxtFirstLastName().equals(modelAdminPerson.getTeamWorkersInfo().get(i).getFirstLastName())){
+            System.out.println("Si actualiza primer apellido");
+            modelAdminPerson.updateFirstLastName(idPerson, viewAdminPerson.getTxtFirstLastName());
+            flagAdminPerson = false;
+        }
+
+
+        if(viewAdminPerson.getTxtSecondLastName().isEmpty()){
+            secondLastName = "N/A";
+        }else{
+            secondLastName = viewAdminPerson.getTxtSecondLastName();
+        }
+
+        if(!secondLastName.equals(modelAdminPerson.getTeamWorkersInfo().get(i).getSecondLastName())){
+            modelAdminPerson.updateSecondLastName(idPerson, secondLastName);
+            flagAdminPerson = false;
+        }
+        
+        if(viewAdminPerson.getTxtIdentification() != modelAdminPerson.getTeamWorkersInfo().get(i).getIdentification()){
+            modelAdminPerson.updateIdentification(idPerson, viewAdminPerson.getTxtIdentification());
+            flagAdminPerson = false;
+        }
+        
+        if(!viewAdminPerson.getTxtMail().equals(modelAdminPerson.getTeamWorkersInfo().get(i).getMail())){
+            modelAdminPerson.updateMail(idPerson, viewAdminPerson.getTxtMail());
+            flagAdminPerson = false;
+        }
+        
+        if(viewAdminPerson.getTxtPhone() != modelAdminPerson.getTeamWorkersInfo().get(i).getPhoneNumber()){
+            modelAdminPerson.updatePhone(idPerson, viewAdminPerson.getTxtPhone());
+            flagAdminPerson = false;
+        }
+        
+        
+        if(!viewAdminPerson.getTxtAddress().equals(modelAdminPerson.getTeamWorkersInfo().get(i).getDescriptonAddress())){
+            modelAdminPerson.updateAddress(idPerson, viewAdminPerson.getTxtAddress());
+            flagAdminPerson = false;
+        }
+
+    }
+    
+    
+    private void updatesPlayer(int idPerson, int i){
+        String secondName, secondLastName;
+        if(!viewAdminPerson.getTxtName().equals(modelAdminPerson.getPlayersInfo().get(i).getFirstName())){
+            System.out.println("Si actualiza primer nombre");
+            modelAdminPerson.updateFirstName(idPerson, viewAdminPerson.getTxtName());
+            flagAdminPerson = false;
+        }
+
+        if(viewAdminPerson.getTxtSecondName().isEmpty()){
+            secondName = "N/A";
+        }else{
+            secondName = viewAdminPerson.getTxtSecondName();
+        }
+
+        if(!secondName.equals(modelAdminPerson.getPlayersInfo().get(i).getSecondName())){
+            System.out.println("Si actualiza second nombre");
+            modelAdminPerson.updateSecondName(idPerson, secondName);
+            flagAdminPerson = false;
+        }
+
+
+        if(!viewAdminPerson.getTxtFirstLastName().equals(modelAdminPerson.getPlayersInfo().get(i).getFirstLastName())){
+            System.out.println("Si actualiza primer apellido");
+            modelAdminPerson.updateFirstLastName(idPerson, viewAdminPerson.getTxtFirstLastName());
+            flagAdminPerson = false;
+        }
+
+
+        if(viewAdminPerson.getTxtSecondLastName().isEmpty()){
+            secondLastName = "N/A";
+        }else{
+            secondLastName = viewAdminPerson.getTxtSecondLastName();
+        }
+
+        if(!secondLastName.equals(modelAdminPerson.getPlayersInfo().get(i).getSecondLastName())){
+            modelAdminPerson.updateSecondLastName(idPerson, secondLastName);
+            flagAdminPerson = false;
+        }
+        
+        if(viewAdminPerson.getTxtIdentification() != modelAdminPerson.getPlayersInfo().get(i).getIdentification()){
+            modelAdminPerson.updateIdentification(idPerson, viewAdminPerson.getTxtIdentification());
+            flagAdminPerson = false;
+        }
+        
+        if(!viewAdminPerson.getTxtMail().equals(modelAdminPerson.getPlayersInfo().get(i).getMail())){
+            modelAdminPerson.updateMail(idPerson, viewAdminPerson.getTxtMail());
+            flagAdminPerson = false;
+        }
+        
+        if(viewAdminPerson.getTxtPhone() != modelAdminPerson.getPlayersInfo().get(i).getPhoneNumber()){
+            modelAdminPerson.updatePhone(idPerson, viewAdminPerson.getTxtPhone());
+            flagAdminPerson = false;
+        }
+        
+        
+        if(!viewAdminPerson.getTxtAddress().equals(modelAdminPerson.getPlayersInfo().get(i).getDescriptonAddress())){
+            modelAdminPerson.updateAddress(idPerson, viewAdminPerson.getTxtAddress());
+            flagAdminPerson = false;
+        }
+        
+        if(viewAdminPerson.getSpnNumTShirt() != modelAdminPerson.getPlayersInfo().get(i).getNumTShirt()){
+            modelAdminPerson.updateNumTShirt(idPerson, viewAdminPerson.getSpnNumTShirt());
+            flagAdminPerson = false;
+        }
+        
+        
+        if(!viewAdminPerson.getTxtDateOfBirth().equals(modelAdminPerson.getPlayersInfo().get(i).getBirthdate())){
+            modelAdminPerson.updateBirthDate(idPerson, viewAdminPerson.getTxtDateOfBirth());
+            flagAdminPerson = false;
+        }
+        
+        
+    
     }
     
     
@@ -991,36 +1268,24 @@ public class OperationsController implements ActionListener, ItemListener{
         //PERSON -> ADMINPERSON
         if(e.getSource() == viewAdminPerson.getCmbPerson()){
             if(e.getStateChange() == ItemEvent.SELECTED){
+                String firstName;
+                String secondName;
+                String firstLastName;
+                String secondLastName;
+                String fullName;
                 String choice = viewAdminPerson.getSelectedPerson();
                 
-                System.out.println("ENTRO AL ITEMLISTENER");
-                System.out.println("Usted seleccionó"+choice);
                 if(viewAdminPerson.getRbtnEdit().isSelected()){
                     if(!"Seleccione Persona".equals(choice)){
                         
                         //PLAYERS
                         for(int i=0; i<modelAdminPerson.getPlayersComboBox().size();i++){
-                            String firstName = modelAdminPerson.getPlayersComboBox().get(i).getFirstName();
-                            String secondName = modelAdminPerson.getPlayersComboBox().get(i).getSecondName();
-                            String firstLastName = modelAdminPerson.getPlayersComboBox().get(i).getFirstLastName();
-                            String secondLastName = modelAdminPerson.getPlayersComboBox().get(i).getSecondLastName();
-            
-                            String fullName;
+                            firstName = modelAdminPerson.getPlayersComboBox().get(i).getFirstName();
+                            secondName = modelAdminPerson.getPlayersComboBox().get(i).getSecondName();
+                            firstLastName = modelAdminPerson.getPlayersComboBox().get(i).getFirstLastName();
+                            secondLastName = modelAdminPerson.getPlayersComboBox().get(i).getSecondLastName();
                             
-                            if(!"N/A".equals(secondName) && !"N/A".equals(secondLastName)){
-                                fullName = firstName+" "+secondName+" "+firstLastName+" "+secondLastName;
-                            }else{
-                                if(!"N/A".equals(secondName)){
-                                    fullName = firstName+" "+secondName+" "+firstLastName;              
-                                }else{
-                                    if(!"N/A".equals(secondLastName)){
-                                        fullName = firstName+" "+firstLastName+" "+secondLastName;
-                                    }else{
-                                        fullName = firstName+" "+firstLastName;
-                                    }
-                                }
-                            }
-                            
+                            fullName = fillFullName(firstName, firstLastName, secondName, secondLastName);
                             
                             if(choice.equals(fullName)){
                                 int idPerson = modelAdminPerson.getPlayersComboBox().get(i).getIdPerson();
@@ -1032,27 +1297,12 @@ public class OperationsController implements ActionListener, ItemListener{
                         
                         //TEAMWORKER
                         for(int i=0; i<modelAdminPerson.getTeamWorkersComboBox().size();i++){
-                            String firstName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstName();
-                            String secondName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondName();
-                            String firstLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstLastName();
-                            String secondLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondLastName();
-            
-                            String fullName;
-                            
-                            if(!"N/A".equals(secondName) && !"N/A".equals(secondLastName)){
-                                fullName = firstName+" "+secondName+" "+firstLastName+" "+secondLastName;
-                            }else{
-                                if(!"N/A".equals(secondName)){
-                                    fullName = firstName+" "+secondName+" "+firstLastName;              
-                                }else{
-                                    if(!"N/A".equals(secondLastName)){
-                                        fullName = firstName+" "+firstLastName+" "+secondLastName;
-                                    }else{
-                                        fullName = firstName+" "+firstLastName;
-                                    }
-                                }
-                            }
-                            
+                            firstName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstName();
+                            secondName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondName();
+                            firstLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getFirstLastName();
+                            secondLastName = modelAdminPerson.getTeamWorkersComboBox().get(i).getSecondLastName();
+
+                            fullName = fillFullName(firstName, firstLastName, secondName, secondLastName);
                             
                             if(choice.equals(fullName)){
                                 int idPerson = modelAdminPerson.getTeamWorkersComboBox().get(i).getIdPerson();
@@ -1537,180 +1787,90 @@ public class OperationsController implements ActionListener, ItemListener{
             modelAdminPerson.setMail(viewAdminPerson.getTxtMail());
             modelAdminPerson.setAddress(viewAdminPerson.getTxtAddress());
             
-            //modelAdminPerson.setIdentification(viewAdminPerson.getTxtIdentification());
+            modelAdminPerson.setIdentification(viewAdminPerson.getTxtIdentification());
             modelAdminPerson.setPhone(viewAdminPerson.getTxtPhone());
             
             //modelAdminPerson.setDateOfBirth(viewAdminPerson.getTxtDateOfBirth());
             //modelAdminPerson.setNumTShirt(viewAdminPerson.getSpnNumTShirt());
             
             flagAdminPerson = true;
-            
             //Add
             if(viewAdminPerson.getRbtnAdd().isSelected()){
-                
-
-                
-
-                                
-                if(modelAdminPerson.validateEmptyFieldsAdminPerson()){
-                    JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);
-                    flagAdminPerson = false;
-                }
-                else{
-                    if(modelRegister.validateFormatString(modelAdminPerson.getFirstName()) == false ||  modelRegister.validateFormatString(modelAdminPerson.getFirstLastName())== false)
-                    {
-                    
-                        JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Nombre y Primer Apellido", "Error", JOptionPane.WARNING_MESSAGE);
-                    
-              
-                        if(modelRegister.validateFormatString(modelAdminPerson.getFirstName()) == false){
-                            viewAdminPerson.cleanFirstName();
-                        }
-                    
-                        if(modelRegister.validateFormatString(modelAdminPerson.getFirstLastName()) == false){
-                            viewAdminPerson.cleanFirstLastName();
-                        }
-                    
-                                     
-                        flagAdminPerson = false;
-                    }
-                    
-                                    
-                    if(modelRegister.validateSecondName(modelAdminPerson.getSecondName()) || modelRegister.validateSecondLastName(modelAdminPerson.getSecondLastName())){
-                    
-                        if(modelRegister.validateSecondName(modelAdminPerson.getSecondName())){
-                        
-                            if(modelRegister.validateFormatString(modelAdminPerson.getSecondName()) == false){
-                            
-                                JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Nombre", "Error", JOptionPane.WARNING_MESSAGE);
-
-                                viewAdminPerson.cleanSecondName();
-                                flagRegister = false;
-                            }
-                        }
-                    
-                        if(modelRegister.validateSecondLastName(modelAdminPerson.getSecondLastName())){
-                        
-                            if(modelRegister.validateFormatString(modelAdminPerson.getSecondLastName()) == false){
-                            
-                                JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Apellido", "Error", JOptionPane.WARNING_MESSAGE);
-                            
-                                viewAdminPerson.cleanSecondLastName();
-                                flagAdminPerson = false;
-                            }   
-                        }
-                    }
-                    
-                    if(modelRegister.validateFormatMail(modelAdminPerson.getMail()) == false){ 
-                        JOptionPane.showMessageDialog(null, "Formato de correo no válido", "Error", JOptionPane.WARNING_MESSAGE);
-                        viewAdminPerson.cleanMail();
-                        flagAdminPerson = false;
-                    }
-                    
-                                    
-                    if(modelRegister.validateFormatAddress(modelAdminPerson.getAddress()) == false){
-                        JOptionPane.showMessageDialog(null, "Dirección no válida.\nDebe contener un mínimo de 50 caracteres", "Error", JOptionPane.WARNING_MESSAGE);
-                        viewAdminPerson.cleanAddress();
-                        flagAdminPerson = false;
-                    }
-                    
-                                    
-                    if(modelRegister.validatePhoto(modelAdminPerson.getPhoto())){
-                        JOptionPane.showMessageDialog(null, "Debe seleccionar una foto", "Error", JOptionPane.WARNING_MESSAGE);
-                        flagAdminPerson = false;
-                    }
-
-                    
-                    if("Seleccione Distrito".equals(viewAdminPerson.getSelectedDistrict()))
-                    {
-                        JOptionPane.showMessageDialog(null, "Debe seleccionar un distrito", "Error", JOptionPane.WARNING_MESSAGE);
-                        flagAdminPerson = false;
-                    }
-                    
-                    if("Seleccione Género".equals(viewAdminPerson.getSelectedGender())){
-                        JOptionPane.showMessageDialog(null, "Debe seleccionar un género", "Error", JOptionPane.WARNING_MESSAGE);
-                        flagAdminPerson = false;
-                    }
-                    
-                    if("Seleccione Tipo".equals(viewAdminPerson.getSelectedTypeIdentification())){
-                        JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de identificación", "Error", JOptionPane.WARNING_MESSAGE);
-                        flagAdminPerson = false;
-                    }
-                    
-                    if("Seleccione Posición".equals(viewAdminPerson.getSelectedPosition())){
-                        JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de posición", "Error", JOptionPane.WARNING_MESSAGE);
-                        flagAdminPerson = false;
-                    }
-                    
-                    if("Seleccione Equipo".equals(viewAdminPerson.getSelectedTeam())){
-                        JOptionPane.showMessageDialog(null, "Debe seleccionar un equipo", "Error", JOptionPane.WARNING_MESSAGE);
-                        flagAdminPerson = false;
-                    }
-                    
-                    if(viewAdminPerson.validateTxtPhone()){
-                        JOptionPane.showMessageDialog(null, "Debe ingresar un número de teléfono", "Error", JOptionPane.WARNING_MESSAGE);
-                        flagAdminPerson = false;
-                    }
-                
-                    if(viewAdminPerson.validateTxtIdentification()){
-                        JOptionPane.showMessageDialog(null, "Debe ingresar una identificación", "Error", JOptionPane.WARNING_MESSAGE);
-                        flagAdminPerson = false;
-                    }
-                    
-                    if("Jugador".equals(viewAdminPerson.getTxtCmbPerson())){
-                        if(viewAdminPerson.validateTxtDateOfBirth()){
-                            JOptionPane.showMessageDialog(null, "Debe ingresar una fecha de nacimiento", "Error", JOptionPane.WARNING_MESSAGE);
-                            flagAdminPerson = false;
-                        }
-                    }
-     
-                }//VALIDATE EMPTY FIELDS
-                
+                adminPersonValidations(); //Is going to validate
                 if(flagAdminPerson == true){
-                    
-                    if("Jugador".equals(viewAdminPerson.getTxtCmbPerson())){
-                        modelAdminPerson.inserPlayer();
-                        
-                    }else{
-                        modelAdminPerson.inserTeamWorker();
-                        System.out.println("Es TemWorker");
-                    }
-                    
-                    if(modelAdminPerson.getResultInsertPerson() == 0){
-                        JOptionPane.showMessageDialog(null, "Se ha creado la persona");
-                        viewAdminPerson.setVisible(false);
-                        viewMenuAdmin.setVisible(true);
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Lo sentimos, no se logro crear la persona", "Error", JOptionPane.WARNING_MESSAGE);
-                    }
-                       
-                    viewAdminPerson.cleanAll();
-                        
-                    fillGenders();
-                    fillIdentificationTypes();     
-                    fillCountries();
-                    fillPositions();
-                    fillTeams();
-                        
-                    modelAdminPerson.setPhoto("src/Images/avatar.png");
-                    viewAdminPerson.setLocationRelativeTo(viewAdminPerson);
-                    modelAdminPerson.setImageAdminPerson(viewAdminPerson.getLblAvatar());
-                    viewAdminPerson.repaint();       
+                    createPerson();
                 }
- 
             }//SELECT BUTTON ADD
             
             if(viewAdminPerson.getRbtnEdit().isSelected()){
+                String firstName;
+                String secondName;
+                String firstLastName;
+                String secondLastName;
+                String fullName; 
+                int idPerson = -1;
+                String choice = viewAdminPerson.getSelectedPerson();
                 
+                
+                //PLAYER
+                for(int j=0; j<modelAdminPerson.getPlayersComboBox().size();j++){
+                    firstName = modelAdminPerson.getPlayersComboBox().get(j).getFirstName();
+                    secondName = modelAdminPerson.getPlayersComboBox().get(j).getSecondName();
+                    firstLastName = modelAdminPerson.getPlayersComboBox().get(j).getFirstLastName();
+                    secondLastName = modelAdminPerson.getPlayersComboBox().get(j).getSecondLastName();
+                    
+                    fullName = fillFullName(firstName, firstLastName, secondName, secondLastName);
 
+                    if(choice.equals(fullName)){
+                        idPerson = modelAdminPerson.getPlayersComboBox().get(j).getIdPerson();
+                    }
+                }
+                
+                if(idPerson != -1){
+                    for(int i=0; i<modelAdminPerson.getPlayersInfo().size();i++){
+                        adminPersonValidations(); //Is going to validate
+                        
+                        if(flagAdminPerson == true){                            
+                            updatesPlayer(idPerson, i);
+                            if(flagAdminPerson == false){
+                                JOptionPane.showMessageDialog(null, "La actualización se realizó con éxito", "Actualización", JOptionPane.INFORMATION_MESSAGE);                       
+                            }else{
+                                JOptionPane.showMessageDialog(null, "No se realizó ninguna actualización", "Actualización", JOptionPane.INFORMATION_MESSAGE);                      
+                            }    
+                        }                        
+                    }
+                }else{
+                    //TEAMWORKER
+                    for(int m=0; m<modelAdminPerson.getTeamWorkersComboBox().size();m++){
+                        firstName = modelAdminPerson.getTeamWorkersComboBox().get(m).getFirstName();
+                        secondName = modelAdminPerson.getTeamWorkersComboBox().get(m).getSecondName();
+                        firstLastName = modelAdminPerson.getTeamWorkersComboBox().get(m).getFirstLastName();
+                        secondLastName = modelAdminPerson.getTeamWorkersComboBox().get(m).getSecondLastName();
+                    
+                        fullName = fillFullName(firstName, firstLastName, secondName, secondLastName);
 
+                        if(choice.equals(fullName)){
+                            idPerson = modelAdminPerson.getTeamWorkersComboBox().get(m).getIdPerson();
+                        }
+                    }
+                    
+                    for(int p=0; p<modelAdminPerson.getTeamWorkersInfo().size();p++){
+                        adminPersonValidations(); //Is going to validate
+                        if(flagAdminPerson == true){                            
+                            updatesTeamWorker(idPerson, p);
+                            if(flagAdminPerson == false){
+                                JOptionPane.showMessageDialog(null, "La actualización se realizó con éxito", "Actualización", JOptionPane.INFORMATION_MESSAGE);                       
+                            }else{
+                                JOptionPane.showMessageDialog(null, "No se realizó ninguna actualización", "Actualización", JOptionPane.INFORMATION_MESSAGE);                      
+                            }    
+                        }                      
+                    }
+                          
+                }
+  
             } //SELECT BUTTON EDIT
             
-            
-            
-            
         }
-        
     }
         
     

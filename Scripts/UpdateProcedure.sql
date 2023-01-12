@@ -150,12 +150,18 @@ END updatePersonPosition;
 CREATE OR REPLACE PROCEDURE updatePhone(pidPerson IN NUMBER, pPhoneNumber IN NUMBER, codResult OUT NUMBER) AS
 vnIdPhone NUMBER(10);
 BEGIN
-    SELECT idPhone
-    INTO vnIdPhone
-    FROM PersonXPhone
-    WHERE idPerson = pidPerson;
-    
-    IF(vnIdPhone != NULL)
+    BEGIN
+        SELECT idPhone
+        INTO vnIdPhone
+        FROM PersonXPhone
+        WHERE idPerson = pidPerson;
+    EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        vnIdPhone:=-1; 
+    END;
+
+    IF(vnIdPhone != -1)
     THEN
         UPDATE Phone
         SET phoneNumber = pPhoneNumber

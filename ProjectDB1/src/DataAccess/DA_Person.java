@@ -183,7 +183,7 @@ public class DA_Person {
     
     //----------------- EDIT ADMINPERSON --------------------------------------
    
-    public static int updateFirstName(int idPerson, String firstName) throws SQLException
+    public static void updateFirstName(int idPerson, String firstName) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -197,11 +197,11 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        System.out.println("UpdateFirstName: "+result);
     }
     
    
-    public static int updateSecondName(int idPerson, String secondName) throws SQLException
+    public static void updateSecondName(int idPerson, String secondName) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -215,10 +215,10 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        System.out.println("UpdateSecondtName: "+result);
     }
     
-    public static int updateFirstLastName(int idPerson, String firstLastName) throws SQLException
+    public static void updateFirstLastName(int idPerson, String firstLastName) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -232,10 +232,10 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        System.out.println("UpdateFirsLasttName: "+result);
     }
     
-    public static int updateSecondLastName(int idPerson, String secondLastName) throws SQLException
+    public static void updateSecondLastName(int idPerson, String secondLastName) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -249,7 +249,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        System.out.println("UpdateSecondLasttName: "+result);
     }
     
     
@@ -271,7 +271,7 @@ public class DA_Person {
     }
     
     
-    public static int updateIdentification(int idPerson, int identification) throws SQLException
+    public static void updateIdentification(int idPerson, int identification) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -285,10 +285,10 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        System.out.println("UpdateIdentification: "+result); 
     }
     
-    public static int updateMail(int idPerson, String mail) throws SQLException
+    public static void updateMail(int idPerson, String mail) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -302,7 +302,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        System.out.println("UpdateMail: "+result); 
     }
     
     
@@ -342,7 +342,7 @@ public class DA_Person {
     }
     
     
-    public static int updatePhone(int idPerson, int phoneNumber) throws SQLException
+    public static void updatePhone(int idPerson, int phoneNumber) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -356,7 +356,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        System.out.println("UpdatePhone: "+result); 
     }
     
     
@@ -377,7 +377,7 @@ public class DA_Person {
         return result;  
     }
     
-    public static int updateAddress(int idPerson, String address) throws SQLException
+    public static void updateAddress(int idPerson, String address) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -391,7 +391,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        System.out.println("UpdateAddress: "+result); 
     }
     
     
@@ -484,7 +484,7 @@ public class DA_Person {
         return result;  
     }
     
-    public static int updateBirthDate(int idPerson, String birthdate) throws SQLException
+    public static void updateBirthDate(int idPerson, String birthdate) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -498,10 +498,10 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        System.out.println("UpdateBirthdate: "+result);
     }
     
-    public static int updateTShirtNum(int idPerson, int tShirtNum) throws SQLException
+    public static void updateTShirtNum(int idPerson, int tShirtNum) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -515,7 +515,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        System.out.println("UpdateNumTShirt: "+result);   
     }
     
     //-------------------------------------------------------------------------------------------
