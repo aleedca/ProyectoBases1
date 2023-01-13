@@ -683,7 +683,191 @@ public class OperationsController implements ActionListener, ItemListener{
     
     //-------------------------------------------------------------------------------
     
-    //------------ VALIDATIONS ADMIN PERSON ---------------------------
+    //------------ VALIDATIONS AND CREATE REGISTER ---------------------------
+    private void registerValidations(){
+        if(modelRegister.validateEmptyFields() == true)
+        {
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);
+            flagRegister = false;
+        }else{
+
+            if(modelRegister.validateFormatString(modelRegister.getFirstName()) == false ||  modelRegister.validateFormatString(modelRegister.getFirstLastName())== false)
+            {
+
+                JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Nombre y Primer Apellido", "Error", JOptionPane.WARNING_MESSAGE);
+
+
+                if(modelRegister.validateFormatString(modelRegister.getFirstName()) == false){
+                    viewRegister.cleanFirstName();
+                }
+
+                if(modelRegister.validateFormatString(modelRegister.getFirstName()) == false){
+                    viewRegister.cleanFirstLastName();
+                }
+
+
+                flagRegister = false;
+            }
+
+
+            if(modelRegister.validateSecondName(modelRegister.getSecondName()) || modelRegister.validateSecondLastName(modelRegister.getSecondLastName())){
+
+                if(modelRegister.validateSecondName(modelRegister.getSecondName())){
+
+                    if(modelRegister.validateFormatString(modelRegister.getSecondName()) == false){
+
+                        JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Nombre", "Error", JOptionPane.WARNING_MESSAGE);
+
+                        viewRegister.cleanSecondName();
+                        flagRegister = false;
+                    }
+                }
+
+                if(modelRegister.validateSecondLastName(modelRegister.getSecondLastName())){
+
+                    if(modelRegister.validateFormatString(modelRegister.getSecondLastName()) == false){
+
+                        JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Apellido", "Error", JOptionPane.WARNING_MESSAGE);
+
+                        viewRegister.cleanSecondLastName();
+                        flagRegister = false;
+                    }   
+                }
+
+            }
+
+
+            if(modelRegister.validateFormatMail(modelRegister.getMail()) == false){ 
+                JOptionPane.showMessageDialog(null, "Formato de correo no válido", "Error", JOptionPane.WARNING_MESSAGE);
+                viewRegister.cleanMail();
+                flagRegister = false;
+            }
+
+
+            if(modelRegister.validateFormatUsername() == false){
+                JOptionPane.showMessageDialog(null, "Por favor, ingrese únicamente letras, números o el caracter _ para crear su username.\nDebe tener al menos 5 caracteres y sin espacios.", "Error", JOptionPane.WARNING_MESSAGE);
+                viewRegister.cleanUsername();
+                flagRegister = false;
+            }
+
+            if(modelRegister.validateFormatPassword() == false){
+                JOptionPane.showMessageDialog(null, "Formato de contraseña incorrecta.\nDebe contener entre 4 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.", "Error", JOptionPane.WARNING_MESSAGE);
+                viewRegister.cleanPassword();
+                flagRegister = false;
+            }
+
+            if(modelRegister.validateFormatAddress(modelRegister.getAddress()) == false){
+                JOptionPane.showMessageDialog(null, "Dirección no válida.\nDebe contener un mínimo de 50 caracteres", "Error", JOptionPane.WARNING_MESSAGE);
+                viewRegister.cleanAddress();
+                flagRegister = false;
+            }
+
+            if(modelRegister.validatePhoto(modelRegister.getPhoto())){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar una foto", "Error", JOptionPane.WARNING_MESSAGE);
+                flagRegister = false;
+            }
+
+            if(viewRegister.validateTxtPhone()){
+                JOptionPane.showMessageDialog(null, "Debe ingresar un número de teléfono", "Error", JOptionPane.WARNING_MESSAGE);
+                flagRegister = false;
+            }
+
+            if(viewRegister.validateTxtIdentification()){
+                JOptionPane.showMessageDialog(null, "Debe ingresar una identificación", "Error", JOptionPane.WARNING_MESSAGE);
+                flagRegister = false;
+            }
+
+            if(modelLogin.userAlreadyExists()){
+                JOptionPane.showMessageDialog(null, "Username ya existente. Debe ingresar un username diferente", "Error", JOptionPane.WARNING_MESSAGE);
+                viewRegister.cleanUsername();
+                flagRegister = false;
+            }
+
+        }
+    }//END REGISTERVALIDATONS
+    
+    private void createUser(){
+        modelRegister.inserUser();
+
+        JOptionPane.showMessageDialog(null, "Felicidades, su cuenta se creó correctamte.\nInicie sesión para comenzar a disfrutar de nuestra aplicación" );
+        viewRegister.cleanAll();
+
+        fillGenders();
+        fillIdentificationTypes();     
+        fillCountries();
+
+
+        modelRegister.setPhoto("src/Images/avatar.png");
+        viewRegister.setLocationRelativeTo(viewRegister);
+        modelRegister.setImageLabel(viewRegister.getLblAvatar());
+        viewRegister.repaint();  
+
+
+        viewRegister.setVisible(false);
+        viewPrincipal.getBtnSignUp().setVisible(false);
+        viewPrincipal.setVisible(true);
+    }
+    
+    //------------ VALIDATIONS LOGIN ---------------------------
+    private void loginValidations(){
+        if(modelLogin.validarCampos()){
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos solicitados", "Error", JOptionPane.WARNING_MESSAGE);
+
+            viewLogin.cleanUsernameLogin();
+            viewLogin.cleanPasswordLogin();
+        }else{            
+            viewLogin.cleanUsernameLogin();
+            viewLogin.cleanPasswordLogin();
+
+            if(modelLogin.userExists() == true){
+                viewLogin.setVisible(false);
+
+                viewPrincipal.getBtnLogin().setVisible(false);
+                viewPrincipal.getBtnSignUp().setVisible(false);
+
+                viewPrincipal.getBtnRequests().setVisible(true);
+                viewPrincipal.getBtnAccount().setVisible(true);
+                viewPrincipal.getBtnExit().setVisible(true);
+
+                viewPrincipal.setTxtLblWelcome("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
+                viewPrincipal.getLblWelcome().setVisible(true);
+
+                if(modelLogin.validateUserType() == true){ //Es true -> Admin
+                    //Frame de Admin                         
+                    viewPrincipal.getBtnOpAdm().setVisible(true);
+                }
+
+                viewPrincipal.setVisible(true);   
+
+            }else{
+                JOptionPane.showMessageDialog(null, "El usuario ingresado no existe. Intente nuevamente");
+            }      
+        }
+    }//END LOGINVALIDATIONS
+    
+    
+    //------------ VALIDATIONS ADMINNEWS ---------------------------
+    private void adminNewsValidations(String choice1, String choice2){
+      if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
+            modelNews.insertNews();
+            adminNewsController.fillAdminNews();
+            adminNewsController.fillNewsType();
+            adminNewsController.fillStatus();
+
+            adminNewsController.getViewAdminNews().clearAll();
+            modelNews.setPhoto("src/Images/avatar.png");
+            adminNewsController.getViewAdminNews().setLocationRelativeTo(adminNewsController.getViewAdminNews());
+            modelNews.setImageLabel(adminNewsController.getViewAdminNews().getLblImagen());
+            adminNewsController.getViewAdminNews().repaint();
+
+             JOptionPane.showMessageDialog(null, "Noticia creada con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
+        }
+    }
+    
+    //------------ VALIDATIONS AND CREATE ADMIN PERSON ---------------------------
     private void adminPersonValidations(){
         if(modelAdminPerson.validateEmptyFieldsAdminPerson()){
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);
@@ -826,7 +1010,8 @@ public class OperationsController implements ActionListener, ItemListener{
         viewAdminPerson.repaint();
     }
     
-    
+
+    //------------- UPDATES ADMIN PERSON ---------------------------
     private void updatesTeamWorker(int idPerson, int i){
         String secondName, secondLastName;
         String country, province, canton, district,typeIdentification,gender, team, position;
@@ -889,7 +1074,165 @@ public class OperationsController implements ActionListener, ItemListener{
             modelAdminPerson.updateAddress(idPerson, viewAdminPerson.getTxtAddress());
             flagAdminPerson = false;
         }
+        
+        //TYPE IDENTIFICATION
+        idTypeIdentification = modelAdminPerson.getTeamWorkersInfo().get(i).getIdTypeIdentification();
+        typeIdentification = "";
+        for(int j=0; j< modelRegister.getIdentificationTypes().size();j++){
+            if(idTypeIdentification == modelRegister.getIdentificationTypes().get(j).getIdTypeIdentification())
+            {
+                typeIdentification = modelRegister.getIdentificationTypes().get(j).getNameTypeIdentification();
+            }
+        }
 
+        if(!typeIdentification.equals(viewAdminPerson.getSelectedTypeIdentification())){
+            for(int j=0; j< modelRegister.getIdentificationTypes().size();j++){
+                if(viewAdminPerson.getSelectedTypeIdentification().equals(modelRegister.getIdentificationTypes().get(j).getNameTypeIdentification())){         
+                    idTypeIdentification = modelRegister.getIdentificationTypes().get(j).getIdTypeIdentification();
+                    modelAdminPerson.updateTypeIdentification(idPerson, idTypeIdentification);
+                    flagAdminPerson = false;
+                }
+            }
+        }        
+        
+        //GENDER
+        idGender = modelAdminPerson.getTeamWorkersInfo().get(i).getIdGender();
+        gender = "";
+        for(int n=0; n< modelRegister.getGenders().size();n++){
+            if(idGender == modelRegister.getGenders().get(n).getIdGender())
+            {
+                gender = modelRegister.getGenders().get(n).getDescriptionGender();
+            }
+        }
+        
+        if(!gender.equals(viewAdminPerson.getSelectedGender())){
+            for(int j=0; j< modelRegister.getGenders().size();j++){
+                if(viewAdminPerson.getSelectedGender().equals(modelRegister.getGenders().get(j).getDescriptionGender())){         
+                    idGender = modelRegister.getGenders().get(j).getIdGender();
+                    modelAdminPerson.updateGender(idPerson, idGender);
+                    flagAdminPerson = false;
+                }
+            }
+        }  
+        
+        //TEAM
+        idTeam = modelAdminPerson.getTeamWorkersInfo().get(i).getIdTeam();
+        team = "";
+        for(int k=0; k<modelAdminPerson.getTeams().size();k++){
+            if(idTeam == modelAdminPerson.getTeams().get(k).getIdTeam()){
+                team = modelAdminPerson.getTeams().get(k).getNameTeam();
+            }            
+        }
+  
+        if(!team.equals(viewAdminPerson.getSelectedTeam())){
+            for(int f=0; f< modelAdminPerson.getTeams().size();f++){
+                if(viewAdminPerson.getSelectedTeam().equals(modelAdminPerson.getTeams().get(f).getNameTeam())){         
+                    idTeam = modelAdminPerson.getTeams().get(f).getIdTeam();
+                    modelAdminPerson.updateTeam(idPerson, idTeam);
+                    flagAdminPerson = false;
+                }
+            }
+        }      
+        
+        //POSITION
+        idPosition = modelAdminPerson.getTeamWorkersInfo().get(i).getIdPersonPosition();
+        position = "";
+        for(int k=0; k<modelAdminPerson.getPositions().size();k++){
+            if(idPosition == modelAdminPerson.getPositions().get(k).getIdPersonPosition()){
+                position = modelAdminPerson.getPositions().get(k).getDescriptionPersonPosition();
+            }            
+        }
+
+        if(!position.equals(viewAdminPerson.getSelectedPosition())){
+            for(int f=0; f< modelAdminPerson.getPositions().size();f++){
+                if(viewAdminPerson.getSelectedPosition().equals(modelAdminPerson.getPositions().get(f).getDescriptionPersonPosition())){         
+                    idPosition = modelAdminPerson.getPositions().get(f).getIdPersonPosition();
+                    modelAdminPerson.updatePosition(idPerson, idPosition);
+                    flagAdminPerson = false;
+                }
+            }
+        }
+        
+        //DISTRICT
+        idDistrict = modelAdminPerson.getTeamWorkersInfo().get(i).getIdDistrict();
+        district = "";
+        for(int j=0; j< modelRegister.getDistricts().size();j++){
+            if(idDistrict == modelRegister.getDistricts().get(j).getIdDistrict())
+            {
+                district = modelRegister.getDistricts().get(j).getNameDistrict();
+            }
+        }
+
+        if(!district.equals(viewAdminPerson.getSelectedDistrict())){
+            for(int j=0; j< modelRegister.getDistricts().size();j++){
+                if(viewAdminPerson.getSelectedDistrict().equals(modelRegister.getDistricts().get(j).getNameDistrict())){         
+                    idDistrict = modelRegister.getDistricts().get(j).getIdDistrict();
+                    modelAdminPerson.updateDistrict(idPerson, idDistrict);
+                    flagAdminPerson = false;
+                }
+            }
+        }  
+        
+        //CANTON
+        idCanton = modelAdminPerson.getTeamWorkersInfo().get(i).getIdCanton();
+        canton = "";
+        for(int j=0; j< modelRegister.getCantons().size();j++){
+            if(idCanton == modelRegister.getCantons().get(j).getIdCanton())
+            {
+                canton = modelRegister.getCantons().get(j).getNameCanton();
+            }
+        }
+
+        if(!canton.equals(viewAdminPerson.getSelectedCanton())){
+            for(int j=0; j< modelRegister.getCantons().size();j++){
+                if(viewAdminPerson.getSelectedCanton().equals(modelRegister.getCantons().get(j).getNameCanton())){         
+                    idCanton = modelRegister.getCantons().get(j).getIdCanton();
+                    modelAdminPerson.updateCanton(idPerson, idCanton);
+                    flagAdminPerson = false;
+                }
+            }
+        }
+        
+        //PROVINCE
+        idProvince = modelAdminPerson.getTeamWorkersInfo().get(i).getIdProvince();
+        province = "";
+        for(int j=0; j< modelRegister.getProvinces().size();j++){
+            if(idProvince == modelRegister.getProvinces().get(j).getIdProvince())
+            {
+                province = modelRegister.getProvinces().get(j).getNameProvince();
+            }
+        }
+
+        if(!province.equals(viewAdminPerson.getSelectedProvince())){
+            for(int j=0; j< modelRegister.getProvinces().size();j++){
+                if(viewAdminPerson.getSelectedProvince().equals(modelRegister.getProvinces().get(j).getNameProvince())){         
+                    idProvince = modelRegister.getProvinces().get(j).getIdProvince();
+                    modelAdminPerson.updateProvince(idPerson, idProvince);
+                    flagAdminPerson = false;
+                }
+            }
+        }
+ 
+        //COUNTRY
+        idCountry = modelAdminPerson.getTeamWorkersInfo().get(i).getIdCountry();
+        country = "";
+        for(int j=0; j< modelRegister.getCountries().size();j++){
+            if(idCountry == modelRegister.getCountries().get(j).getIdCountry())
+            {
+                country = modelRegister.getCountries().get(j).getNameCountry();
+            }
+        }
+
+        if(!country.equals(viewAdminPerson.getSelectedCountry())){
+            for(int j=0; j< modelRegister.getCountries().size();j++){
+                if(viewAdminPerson.getSelectedCountry().equals(modelRegister.getCountries().get(j).getNameCountry())){         
+                    idCountry = modelRegister.getCountries().get(j).getIdCountry();
+                    modelAdminPerson.updateCountry(idPerson, idCountry);
+                    flagAdminPerson = false;
+                }
+            }
+        }  
+        
     }
     
     
@@ -1118,12 +1461,6 @@ public class OperationsController implements ActionListener, ItemListener{
             }
         }  
         
-        
-
-
-        
-        
-        
         //NUMTSHIRT
         if(viewAdminPerson.getSpnNumTShirt() != modelAdminPerson.getPlayersInfo().get(i).getNumTShirt()){
             modelAdminPerson.updateNumTShirt(idPerson, viewAdminPerson.getSpnNumTShirt());
@@ -1138,12 +1475,31 @@ public class OperationsController implements ActionListener, ItemListener{
             flagAdminPerson = false;
         }
         
-        
-    
-    
 }//END UPDATEPLAYER   
     
-    //SHOW MORE VIEWED AND LAST NEWS 
+    
+    private boolean updateSuccessful(){
+        
+        if(modelAdminPerson.getResultUpdateFirstName() == 0 && modelAdminPerson.getResultUpdateSecondName() == 0 &&  modelAdminPerson.getResultUpdateDistrict()==0){
+            if( modelAdminPerson.getResultUpdateFirstLastName() == 0 && modelAdminPerson.getResultUpdateSecondLastName() == 0 && modelAdminPerson.getResultUpdateCanton()==0){
+                if( modelAdminPerson.getResultUpdateTypeIdentification() == 0 && modelAdminPerson.getResultUpdateIdentification() ==0 &&  modelAdminPerson.getResultUpdateProvince()==0){
+                    if(modelAdminPerson.getResultUpdateMail()==0 && modelAdminPerson.getResultUpdatePhone() == 0 &&  modelAdminPerson.getResultUpdateCountry()==0){
+                        if( modelAdminPerson.getResultUpdateTeam()==0 && modelAdminPerson.getResultUpdatePosition()==0){
+                            if(modelAdminPerson.getResultUpdateGender()==0 &&  modelAdminPerson.getResultUpdateAddress()==0){
+                                if(modelAdminPerson.getResultUpdateBirthdate()==0 && modelAdminPerson.getResultUpdateNumTShirt()==0){
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    
+        return false;
+    }
+    
+    //----------------SHOW MORE VIEWED AND LAST NEWS ----------------------------------
     
     
     //-------------------------------------------------------------------------------------------------------
@@ -1563,48 +1919,13 @@ public class OperationsController implements ActionListener, ItemListener{
             viewPrincipal.setVisible(true);
         }
         
-        //-------------- SCREEN LOGIN ----------------------
-        
+        //-------------- SCREEN LOGIN ----------------------  
         if(e.getSource() == viewLogin.getBtnLogin()){
             modelLogin.setUsernameLogin(viewLogin.getTxtUsernameLogin());
             modelLogin.setPasswordLogin(viewLogin.getTxtPasswordLogin());
-            
-            if(modelLogin.validarCampos()){
-                JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos solicitados", "Error", JOptionPane.WARNING_MESSAGE);
-                            
-                viewLogin.cleanUsernameLogin();
-                viewLogin.cleanPasswordLogin();
-            }else{            
-                viewLogin.cleanUsernameLogin();
-                viewLogin.cleanPasswordLogin();
-                
-                if(modelLogin.userExists() == true){
-                    viewLogin.setVisible(false);
-                    
-                    viewPrincipal.getBtnLogin().setVisible(false);
-                    viewPrincipal.getBtnSignUp().setVisible(false);
-                
-                    viewPrincipal.getBtnRequests().setVisible(true);
-                    viewPrincipal.getBtnAccount().setVisible(true);
-                    viewPrincipal.getBtnExit().setVisible(true);
-                
-                    viewPrincipal.setTxtLblWelcome("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
-                    viewPrincipal.getLblWelcome().setVisible(true);
-                    
-                    if(modelLogin.validateUserType() == true){ //Es true -> Admin
-                        //Frame de Admin                         
-                        viewPrincipal.getBtnOpAdm().setVisible(true);
-                    }
-  
-                    viewPrincipal.setVisible(true);   
-                
-                }else{
-                    JOptionPane.showMessageDialog(null, "El usuario ingresado no existe. Intente nuevamente");
-                }      
-            }
+            loginValidations();
         }
                 
-        
         if(e.getSource() == viewLogin.getBtnBack()){
             viewPrincipal.setVisible(true); 
             viewLogin.setVisible(false);
@@ -1642,129 +1963,10 @@ public class OperationsController implements ActionListener, ItemListener{
             modelRegister.setAddress(viewRegister.getTxtAddress());
                       
             flagRegister = true;
-            if(modelRegister.validateEmptyFields() == true)
-            {
-                JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);
-                flagRegister = false;
-            }else{
-                              
-                if(modelRegister.validateFormatString(modelRegister.getFirstName()) == false ||  modelRegister.validateFormatString(modelRegister.getFirstLastName())== false)
-                {
-                    
-                    JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Nombre y Primer Apellido", "Error", JOptionPane.WARNING_MESSAGE);
-                    
-              
-                    if(modelRegister.validateFormatString(modelRegister.getFirstName()) == false){
-                        viewRegister.cleanFirstName();
-                    }
-                    
-                    if(modelRegister.validateFormatString(modelRegister.getFirstName()) == false){
-                        viewRegister.cleanFirstLastName();
-                    }
-                    
-                                     
-                    flagRegister = false;
-                }
-                
-                
-                if(modelRegister.validateSecondName(modelRegister.getSecondName()) || modelRegister.validateSecondLastName(modelRegister.getSecondLastName())){
-                    
-                    if(modelRegister.validateSecondName(modelRegister.getSecondName())){
-                        
-                        if(modelRegister.validateFormatString(modelRegister.getSecondName()) == false){
-                            
-                            JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Nombre", "Error", JOptionPane.WARNING_MESSAGE);
-
-                            viewRegister.cleanSecondName();
-                            flagRegister = false;
-                        }
-                    }
-                    
-                    if(modelRegister.validateSecondLastName(modelRegister.getSecondLastName())){
-                        
-                        if(modelRegister.validateFormatString(modelRegister.getSecondLastName()) == false){
-                            
-                            JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el Segundo Apellido", "Error", JOptionPane.WARNING_MESSAGE);
-                            
-                            viewRegister.cleanSecondLastName();
-                            flagRegister = false;
-                        }   
-                    }
-                    
-                }
-                
-                
-                if(modelRegister.validateFormatMail(modelRegister.getMail()) == false){ 
-                    JOptionPane.showMessageDialog(null, "Formato de correo no válido", "Error", JOptionPane.WARNING_MESSAGE);
-                    viewRegister.cleanMail();
-                    flagRegister = false;
-                }
-                
-                
-                if(modelRegister.validateFormatUsername() == false){
-                    JOptionPane.showMessageDialog(null, "Por favor, ingrese únicamente letras, números o el caracter _ para crear su username.\nDebe tener al menos 5 caracteres y sin espacios.", "Error", JOptionPane.WARNING_MESSAGE);
-                    viewRegister.cleanUsername();
-                    flagRegister = false;
-                }
-                
-                if(modelRegister.validateFormatPassword() == false){
-                    JOptionPane.showMessageDialog(null, "Formato de contraseña incorrecta.\nDebe contener entre 4 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.", "Error", JOptionPane.WARNING_MESSAGE);
-                    viewRegister.cleanPassword();
-                    flagRegister = false;
-                }
-                
-                if(modelRegister.validateFormatAddress(modelRegister.getAddress()) == false){
-                    JOptionPane.showMessageDialog(null, "Dirección no válida.\nDebe contener un mínimo de 50 caracteres", "Error", JOptionPane.WARNING_MESSAGE);
-                    viewRegister.cleanAddress();
-                    flagRegister = false;
-                }
-                
-                if(modelRegister.validatePhoto(modelRegister.getPhoto())){
-                    JOptionPane.showMessageDialog(null, "Debe seleccionar una foto", "Error", JOptionPane.WARNING_MESSAGE);
-                    flagRegister = false;
-                }
-                
-                if(viewRegister.validateTxtPhone()){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar un número de teléfono", "Error", JOptionPane.WARNING_MESSAGE);
-                    flagRegister = false;
-                }
-                
-                if(viewRegister.validateTxtIdentification()){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una identificación", "Error", JOptionPane.WARNING_MESSAGE);
-                    flagRegister = false;
-                }
-                
-                if(modelLogin.userAlreadyExists()){
-                    JOptionPane.showMessageDialog(null, "Username ya existente. Debe ingresar un username diferente", "Error", JOptionPane.WARNING_MESSAGE);
-                    viewRegister.cleanUsername();
-                    flagRegister = false;
-                }
-                
-            }
-           
-            
+            registerValidations(); //VALIDATIONS           
             if(flagRegister == true){
-                modelRegister.inserUser();
-                
-                JOptionPane.showMessageDialog(null, "Felicidades, su cuenta se creó correctamte.\nInicie sesión para comenzar a disfrutar de nuestra aplicación" );
-                viewRegister.cleanAll();
-                
-                fillGenders();
-                fillIdentificationTypes();     
-                fillCountries();
-
-                
-                modelRegister.setPhoto("src/Images/avatar.png");
-                viewRegister.setLocationRelativeTo(viewRegister);
-                modelRegister.setImageLabel(viewRegister.getLblAvatar());
-                viewRegister.repaint();  
-                
-                
-                viewRegister.setVisible(false);
-                viewPrincipal.getBtnSignUp().setVisible(false);
-                viewPrincipal.setVisible(true);
+                createUser();
             }
-                
         }
         
         //-------------- SCREEN AdminOptions -----------------------
@@ -1816,23 +2018,7 @@ public class OperationsController implements ActionListener, ItemListener{
             modelNews.setNewsText(adminNewsController.getViewAdminNews().getTxtTexto().getText());
             
             if(adminNewsController.getViewAdminNews().getRbtnAgregar().isSelected()){
-                if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
-                    modelNews.insertNews();
-                    adminNewsController.fillAdminNews();
-                    adminNewsController.fillNewsType();
-                    adminNewsController.fillStatus();
-                               
-                    adminNewsController.getViewAdminNews().clearAll();
-                    modelNews.setPhoto("src/Images/avatar.png");
-                    adminNewsController.getViewAdminNews().setLocationRelativeTo(adminNewsController.getViewAdminNews());
-                    modelNews.setImageLabel(adminNewsController.getViewAdminNews().getLblImagen());
-                    adminNewsController.getViewAdminNews().repaint();
-                    
-                     JOptionPane.showMessageDialog(null, "Noticia creada con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
-                }
+                adminNewsValidations(choice1, choice2);
             }
              if(adminNewsController.getViewAdminNews().getRbtnEditar().isSelected()){
                  if(adminNewsController.getViewAdminNews().validateSelectedRow()){
@@ -1959,9 +2145,8 @@ public class OperationsController implements ActionListener, ItemListener{
             
             modelAdminPerson.setIdentification(viewAdminPerson.getTxtIdentification());
             modelAdminPerson.setPhone(viewAdminPerson.getTxtPhone());
-            
-            //modelAdminPerson.setDateOfBirth(viewAdminPerson.getTxtDateOfBirth());
-            //modelAdminPerson.setNumTShirt(viewAdminPerson.getSpnNumTShirt());
+            modelAdminPerson.setDateOfBirth(viewAdminPerson.getTxtDateOfBirth());
+            modelAdminPerson.setNumTShirt(viewAdminPerson.getSpnNumTShirt());
             
             flagAdminPerson = true;
             //Add
@@ -2003,7 +2188,13 @@ public class OperationsController implements ActionListener, ItemListener{
                         if(flagAdminPerson == true){                            
                             updatesPlayer(idPerson, i);
                             if(flagAdminPerson == false){
-                                JOptionPane.showMessageDialog(null, "La actualización se realizó con éxito", "Actualización", JOptionPane.INFORMATION_MESSAGE);                       
+                                
+                                if(updateSuccessful()){
+                                    JOptionPane.showMessageDialog(null, "La actualización se realizó con éxito", "Actualización", JOptionPane.INFORMATION_MESSAGE);                       
+                                }else{
+                                    JOptionPane.showMessageDialog(null, "Lo sentimos, no se logró realizar la actualización", "Error", JOptionPane.WARNING_MESSAGE);                       
+                                }
+                                                               
                             }else{
                                 JOptionPane.showMessageDialog(null, "No se realizó ninguna actualización", "Actualización", JOptionPane.INFORMATION_MESSAGE);                      
                             }    
@@ -2029,7 +2220,13 @@ public class OperationsController implements ActionListener, ItemListener{
                         if(flagAdminPerson == true){                            
                             updatesTeamWorker(idPerson, p);
                             if(flagAdminPerson == false){
-                                JOptionPane.showMessageDialog(null, "La actualización se realizó con éxito", "Actualización", JOptionPane.INFORMATION_MESSAGE);                       
+                                
+                                if(updateSuccessful()){
+                                    JOptionPane.showMessageDialog(null, "La actualización se realizó con éxito", "Actualización", JOptionPane.INFORMATION_MESSAGE);                       
+                                }else{
+                                    JOptionPane.showMessageDialog(null, "Lo sentimos, no se logró realizar la actualización", "Error", JOptionPane.WARNING_MESSAGE);                       
+                                }
+         
                             }else{
                                 JOptionPane.showMessageDialog(null, "No se realizó ninguna actualización", "Actualización", JOptionPane.INFORMATION_MESSAGE);                      
                             }    
