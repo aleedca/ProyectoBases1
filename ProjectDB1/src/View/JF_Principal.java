@@ -4,19 +4,38 @@
  */
 package View;
 
+
+import Controller.RequestController;
+import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.RowSorter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author Nahomy
  */
 public class JF_Principal extends javax.swing.JFrame {
+    private final RequestController controller = new RequestController();
 
-    public JF_Principal() {
+    public JF_Principal() throws SQLException {
         initComponents();
+        
 
     }
+    
+    public void showMostViewedNews() throws SQLException{
+        tblMostViewedNews.setModel(controller.showMostViewedNews());
+        
+        /*DefaultTableModel mostViewedNews = (DefaultTableModel) this.tblMostViewedNews.getModel();
+        RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(mostViewedNews);
+        tblMostViewedNews.setRowSorter(sorter);
+        tblMostViewedNews.getRowSorter().toggleSortOrder(1);*/
+    }
+    
 
     //GETTERS
 
@@ -74,13 +93,17 @@ public class JF_Principal extends javax.swing.JFrame {
         lblWelcome = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
         btnExit = new javax.swing.JButton();
         btnSignUp = new javax.swing.JButton();
         btnAccount = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         btnOpAdm = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblMostViewedNews = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1285, 752));
@@ -116,15 +139,17 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Partidos de hoy");
         pnlBackground.add(jLabel3);
-        jLabel3.setBounds(220, 160, 180, 40);
+        jLabel3.setBounds(40, 170, 440, 40);
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Últimas Noticias");
         pnlBackground.add(jLabel4);
-        jLabel4.setBounds(890, 440, 171, 32);
+        jLabel4.setBounds(691, 440, 550, 32);
 
         lblWelcome.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblWelcome.setForeground(new java.awt.Color(255, 255, 255));
@@ -149,7 +174,7 @@ public class JF_Principal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 360, Short.MAX_VALUE)
+            .addGap(0, 440, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,31 +182,30 @@ public class JF_Principal extends javax.swing.JFrame {
         );
 
         pnlBackground.add(jPanel1);
-        jPanel1.setBounds(130, 210, 360, 420);
+        jPanel1.setBounds(40, 220, 440, 420);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 170, Short.MAX_VALUE)
-        );
-
-        pnlBackground.add(jPanel2);
-        jPanel2.setBounds(690, 230, 540, 170);
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList2);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 190, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pnlBackground.add(jPanel3);
@@ -228,9 +252,10 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Noticias más vistas");
         pnlBackground.add(jLabel6);
-        jLabel6.setBounds(780, 170, 220, 50);
+        jLabel6.setBounds(550, 170, 680, 50);
 
         btnOpAdm.setBackground(new java.awt.Color(86, 4, 44));
         btnOpAdm.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -244,6 +269,65 @@ public class JF_Principal extends javax.swing.JFrame {
         });
         pnlBackground.add(btnOpAdm);
         btnOpAdm.setBounds(520, 70, 120, 30);
+
+        jPanel4.setBackground(new java.awt.Color(254, 195, 16));
+        jPanel4.setForeground(new java.awt.Color(254, 195, 16));
+
+        tblMostViewedNews.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        tblMostViewedNews.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Noticia ", "Visualizaciones"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblMostViewedNews.setRowHeight(30);
+        tblMostViewedNews.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(tblMostViewedNews);
+        if (tblMostViewedNews.getColumnModel().getColumnCount() > 0) {
+            tblMostViewedNews.getColumnModel().getColumn(0).setResizable(false);
+            tblMostViewedNews.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        pnlBackground.add(jPanel4);
+        jPanel4.setBounds(550, 230, 690, 190);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -300,10 +384,14 @@ public class JF_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JPanel pnlBackground;
+    private javax.swing.JTable tblMostViewedNews;
     // End of variables declaration//GEN-END:variables
 }

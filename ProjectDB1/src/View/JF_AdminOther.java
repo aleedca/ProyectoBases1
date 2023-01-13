@@ -8,12 +8,12 @@ package View;
  *
  * @author Alexia
  */
-public class JF_AdminMatchStats extends javax.swing.JFrame {
+public class JF_AdminOther extends javax.swing.JFrame {
 
     /**
-     * Creates new form JF_AdminMatchStats
+     * Creates new form JF_AdminEvents
      */
-    public JF_AdminMatchStats() {
+    public JF_AdminOther() {
         initComponents();
     }
 
@@ -28,19 +28,17 @@ public class JF_AdminMatchStats extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnBack = new javax.swing.JButton();
-        lblAdminPartidos = new javax.swing.JLabel();
+        lblAdminOther = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
-        cmbPartido = new javax.swing.JComboBox<>();
-        txtAmarillas = new javax.swing.JTextField();
-        lblPartido1 = new javax.swing.JLabel();
-        lblPartido2 = new javax.swing.JLabel();
-        txtAmarillas1 = new javax.swing.JTextField();
-        lblPartido3 = new javax.swing.JLabel();
-        txtAmarillas2 = new javax.swing.JTextField();
-        lblPartido4 = new javax.swing.JLabel();
+        btnEquipos = new javax.swing.JButton();
+        btnEventos = new javax.swing.JButton();
+        btnEstadios = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(86, 4, 44));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -58,58 +56,45 @@ public class JF_AdminMatchStats extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBack);
-        btnBack.setBounds(38, 50, 46, 40);
+        btnBack.setBounds(46, 50, 46, 40);
 
-        lblAdminPartidos.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
-        lblAdminPartidos.setForeground(new java.awt.Color(255, 255, 255));
-        lblAdminPartidos.setText("Administrar Estadísticas Partido");
-        jPanel1.add(lblAdminPartidos);
-        lblAdminPartidos.setBounds(102, 42, 521, 48);
+        lblAdminOther.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        lblAdminOther.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdminOther.setText("Administrar Eventos, Estadios y Equipos");
+        jPanel1.add(lblAdminOther);
+        lblAdminOther.setBounds(110, 42, 690, 48);
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
         jPanel1.add(lblLogo);
-        lblLogo.setBounds(1057, 6, 200, 125);
+        lblLogo.setBounds(1065, 6, 200, 125);
 
-        cmbPartido.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        cmbPartido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cmbPartido);
-        cmbPartido.setBounds(320, 160, 240, 40);
+        btnEquipos.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        btnEquipos.setText("Equipos");
+        jPanel1.add(btnEquipos);
+        btnEquipos.setBounds(780, 180, 180, 40);
 
-        txtAmarillas.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jPanel1.add(txtAmarillas);
-        txtAmarillas.setBounds(360, 420, 120, 40);
+        btnEventos.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        btnEventos.setText("Eventos");
+        jPanel1.add(btnEventos);
+        btnEventos.setBounds(300, 180, 180, 40);
 
-        lblPartido1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        lblPartido1.setForeground(new java.awt.Color(255, 255, 255));
-        lblPartido1.setText("Elija un partido:");
-        jPanel1.add(lblPartido1);
-        lblPartido1.setBounds(120, 160, 190, 40);
+        btnEstadios.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        btnEstadios.setText("Estadios");
+        jPanel1.add(btnEstadios);
+        btnEstadios.setBounds(540, 180, 180, 40);
 
-        lblPartido2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        lblPartido2.setForeground(new java.awt.Color(255, 255, 255));
-        lblPartido2.setText("Tarjetas Amarillas");
-        jPanel1.add(lblPartido2);
-        lblPartido2.setBounds(150, 280, 190, 40);
+        jList1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(jList1);
 
-        txtAmarillas1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jPanel1.add(txtAmarillas1);
-        txtAmarillas1.setBounds(360, 280, 120, 40);
-
-        lblPartido3.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        lblPartido3.setForeground(new java.awt.Color(255, 255, 255));
-        lblPartido3.setText("Tarjetas Rojas");
-        jPanel1.add(lblPartido3);
-        lblPartido3.setBounds(150, 350, 190, 40);
-
-        txtAmarillas2.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jPanel1.add(txtAmarillas2);
-        txtAmarillas2.setBounds(360, 350, 120, 40);
-
-        lblPartido4.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        lblPartido4.setForeground(new java.awt.Color(255, 255, 255));
-        lblPartido4.setText("Tiros de esquina");
-        jPanel1.add(lblPartido4);
-        lblPartido4.setBounds(150, 420, 190, 40);
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(100, 280, 310, 400);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,36 +135,34 @@ public class JF_AdminMatchStats extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminMatchStats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminOther.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminMatchStats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminOther.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminMatchStats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminOther.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminMatchStats.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminOther.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JF_AdminMatchStats().setVisible(true);
+                new JF_AdminOther().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JComboBox<String> cmbPartido;
+    private javax.swing.JButton btnEquipos;
+    private javax.swing.JButton btnEstadios;
+    private javax.swing.JButton btnEventos;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblAdminPartidos;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAdminOther;
     private javax.swing.JLabel lblLogo;
-    private javax.swing.JLabel lblPartido1;
-    private javax.swing.JLabel lblPartido2;
-    private javax.swing.JLabel lblPartido3;
-    private javax.swing.JLabel lblPartido4;
-    private javax.swing.JTextField txtAmarillas;
-    private javax.swing.JTextField txtAmarillas1;
-    private javax.swing.JTextField txtAmarillas2;
     // End of variables declaration//GEN-END:variables
 }

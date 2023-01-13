@@ -8,6 +8,7 @@ import DataAccess.DA_Catalogs;
 import Objects.CountryTeam;
 import Objects.Event;
 import Objects.Position;
+import Objects.Stadium;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -16,6 +17,9 @@ import java.util.ArrayList;
 
 
 public class model_Request {
+    
+    private int stadium;
+    private ArrayList<Stadium> stadiums;
     
     private int position;
     private ArrayList<Position> positions;
@@ -34,6 +38,8 @@ public class model_Request {
             this.events = DA_Catalogs.getEvent();
             
             this.countryTeams = DA_Catalogs.getCountryTeam();
+            
+            this.stadiums = DA_Catalogs.getStadium();
            
         } catch (SQLException ex) {
              System.out.println(ex);
@@ -67,6 +73,22 @@ public class model_Request {
 
     public ArrayList<CountryTeam> getCountryTeams() {
         return countryTeams;
+    }
+
+    public int getStadium() {
+        return stadium;
+    }
+
+    public ArrayList<Stadium> getStadiums() {
+        return stadiums;
+    }
+
+    public void setStadium(int stadium) {
+        this.stadium = stadium;
+    }
+
+    public void setStadiums(ArrayList<Stadium> stadiums) {
+        this.stadiums = stadiums;
     }
 
     public void setCountryTeam(int countryTeam) {

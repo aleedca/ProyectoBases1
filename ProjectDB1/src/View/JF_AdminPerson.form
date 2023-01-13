@@ -119,9 +119,8 @@
               <Font name="Yu Gothic UI" size="18" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="Jugador"/>
-                <StringItem index="1" value="Cuerpo T&#xe9;cnico"/>
+              <StringArray count="1">
+                <StringItem index="0" value="Iteam1"/>
               </StringArray>
             </Property>
           </Properties>

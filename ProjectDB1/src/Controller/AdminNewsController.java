@@ -5,6 +5,7 @@
 package Controller;
 
 
+import DataAccess.DA_News;
 import Model.model_Register;
 import Model.model_News;
 import Objects.News;
@@ -13,8 +14,14 @@ import View.JF_AdminPerson;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Mariana
  */
 
-public class AdminNewsController{
+public final class AdminNewsController implements MouseListener{
     
     private final JF_AdminNews viewAdminNews;
     private final model_News modelNews;
@@ -43,11 +50,13 @@ public class AdminNewsController{
 
     }
 
+
     public JF_AdminNews getViewAdminNews() {
         return viewAdminNews;
     }
     
-    private void fillStatus(){
+    public void fillStatus(){
+        modelNews.loadNewsArr();
         viewAdminNews.getCmbEstado().removeAllItems();
         
         viewAdminNews.getCmbEstado().addItem("Seleccione Estado");
@@ -56,7 +65,8 @@ public class AdminNewsController{
         }
     }
     
-    private void fillNewsType(){
+    public void fillNewsType(){
+        modelNews.loadNewsArr();
         viewAdminNews.getCmbTipo().removeAllItems();
 
         viewAdminNews.getCmbTipo().addItem("Seleccione Tipo");        
@@ -66,11 +76,11 @@ public class AdminNewsController{
     
     }
     
-    
-    private void fillAdminNews(){
-        viewAdminNews.getTblNoticias().removeAll();
+    public void fillAdminNews(){
+        modelNews.loadNewsArr();
         ArrayList<News> newsArr = modelNews.getNewsArr();
         DefaultTableModel modelTable = (DefaultTableModel) viewAdminNews.getTblNoticias().getModel();
+        modelTable.setRowCount(0); 
         
         for(int i = 0; i < newsArr.size(); i++){
             Vector row = new Vector();
@@ -84,11 +94,49 @@ public class AdminNewsController{
         }
     }
     
-    
-    
-    
+    public void fillUpdateAdminNews(int index){
+        ArrayList<News> newsArr;
+        
+        try {
+            newsArr = DA_News.getInfoNews(index);
+            viewAdminNews.getCmbEstado().setSelectedIndex(newsArr.get(0).getIdNewsStatus());
+            viewAdminNews.getCmbTipo().setSelectedIndex(newsArr.get(0).getIdNewsType());
+            viewAdminNews.getTxtTitulo().setText(newsArr.get(0).getTitle());
+            viewAdminNews.getTxtTexto().setText(newsArr.get(0).getText());
+            //settear la foto
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminNewsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public void showView(){ 
         viewAdminNews.setVisible(true);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        int selectedRowIndex = viewAdminNews.getTblNoticias().getSelectedRow();
+        fillUpdateAdminNews(selectedRowIndex);
+        
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

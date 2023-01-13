@@ -5,6 +5,7 @@
 package Controller;
 
 import DataAccess.DA_GroupList;
+import DataAccess.DA_News;
 import DataAccess.DA_NewsList;
 import DataAccess.DA_TeamList;
 import Model.model_Request;
@@ -18,6 +19,9 @@ public class RequestController {
     private final DA_TeamList admT = new DA_TeamList();
     private final DA_GroupList admG = new DA_GroupList();
     private final DA_NewsList admN = new DA_NewsList();
+    
+    private final DA_News admMVN = new DA_News();
+    
     private final Cargador cargador = new Cargador();
     
     //private final JF_Request viewRequest = new JF_Request();
@@ -39,11 +43,16 @@ public class RequestController {
         return cargador.showNewsList(admN.getNewsList(author, authorLastname,  newsDate, newsEvent));
     }
      
+     public DefaultTableModel showMostViewedNews() throws SQLException{
+         return cargador.showMostViewedNews(admMVN.getMostViewedNews());
+     }
+     
+     
     //-------- COMBO BOX FILLING --------------------------
     public void fillPositions(JF_Request viewRequest){
         viewRequest.getCmbPosition().removeAllItems();
         
-        viewRequest.getCmbPosition().addItem("Seleccione Posición");
+        viewRequest.getCmbPosition().addItem("Seleccione la posición");
         for(int i=0; i<modelRequest.getPositions().size();i++){
            viewRequest.getCmbPosition().addItem(modelRequest.getPositions().get(i).getDescriptionPersonPosition());
         }
@@ -52,7 +61,7 @@ public class RequestController {
      public void fillEvents(JF_Request viewRequest){
         viewRequest.getCmbEvent().removeAllItems();
         
-        viewRequest.getCmbEvent().addItem("Seleccione Evento");
+        viewRequest.getCmbEvent().addItem("Seleccione el evento");
          for(int i=0; i<modelRequest.getEvents().size();i++){
            viewRequest.getCmbEvent().addItem(modelRequest.getEvents().get(i).getTypeEvent());
         }
@@ -66,6 +75,15 @@ public class RequestController {
            viewRequest.getCbmTeamFlag().addItem(modelRequest.getCountryTeams().get(i).getNameCountryTeam());
            System.out.println(modelRequest.getCountryTeams().get(i).getNameCountryTeam());
            //aquí debería ir algo que me ayude a relacionar el get Flag con la imagen de parametros y la muestre 
+        }
+    }
+     
+    public void fillStadiums(JF_Request viewRequest){
+        viewRequest.getCbmStadium().removeAllItems();
+        
+        viewRequest.getCbmStadium().addItem("Seleccione el estadio");
+         for(int i=0; i<modelRequest.getStadiums().size();i++){
+           viewRequest.getCbmStadium().addItem(modelRequest.getStadiums().get(i).getNameStadium());
         }
     }
 }

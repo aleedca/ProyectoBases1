@@ -4,6 +4,7 @@
  */
 package View;
 
+import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 
 /**
@@ -32,22 +33,13 @@ public class JF_AdminMatches extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         lblAdminPartidos = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
-        btnCrearPartidos = new javax.swing.JButton();
-        btnAceptar = new javax.swing.JButton();
-        lblNumCamisa = new javax.swing.JLabel();
-        lblPartido = new javax.swing.JLabel();
-        lblTeam1 = new javax.swing.JLabel();
-        cmbPartido = new javax.swing.JComboBox<>();
-        cmbTeam1 = new javax.swing.JComboBox<>();
-        txtDateHour = new javax.swing.JFormattedTextField();
-        lblTeam2 = new javax.swing.JLabel();
-        lblNumCamisa1 = new javax.swing.JLabel();
-        cmbTeam3 = new javax.swing.JComboBox<>();
-        btnCrearGrupos = new javax.swing.JButton();
-        cmbTeam4 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        btnAdminScheduledMatch = new javax.swing.JButton();
+        btnScheduleMatch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(800, 552));
+        setPreferredSize(new java.awt.Dimension(800, 536));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(86, 4, 44));
@@ -66,140 +58,96 @@ public class JF_AdminMatches extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBack);
-        btnBack.setBounds(38, 50, 46, 40);
+        btnBack.setBounds(20, 20, 52, 40);
 
         lblAdminPartidos.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
         lblAdminPartidos.setForeground(new java.awt.Color(255, 255, 255));
         lblAdminPartidos.setText("Administrar Partidos");
         jPanel1.add(lblAdminPartidos);
-        lblAdminPartidos.setBounds(102, 42, 521, 48);
+        lblAdminPartidos.setBounds(90, 30, 340, 48);
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
         jPanel1.add(lblLogo);
-        lblLogo.setBounds(1057, 6, 200, 125);
+        lblLogo.setBounds(590, 10, 200, 125);
 
-        btnCrearPartidos.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        btnCrearPartidos.setText("Crear partidos");
-        btnCrearPartidos.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(102, 0, 51));
+        jButton1.setText("Rifar grupos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearPartidosActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCrearPartidos);
-        btnCrearPartidos.setBounds(770, 610, 190, 40);
+        jPanel1.add(jButton1);
+        jButton1.setBounds(210, 160, 350, 40);
 
-        btnAceptar.setBackground(new java.awt.Color(0, 153, 0));
-        btnAceptar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAceptar.setText("Aceptar");
-        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+        btnAdminScheduledMatch.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
+        btnAdminScheduledMatch.setText("Administrar partido programado");
+        btnAdminScheduledMatch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarActionPerformed(evt);
+                btnAdminScheduledMatchActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAceptar);
-        btnAceptar.setBounds(530, 610, 200, 39);
+        jPanel1.add(btnAdminScheduledMatch);
+        btnAdminScheduledMatch.setBounds(210, 380, 350, 90);
 
-        lblNumCamisa.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        lblNumCamisa.setForeground(new java.awt.Color(255, 255, 255));
-        lblNumCamisa.setText("Estadio");
-        jPanel1.add(lblNumCamisa);
-        lblNumCamisa.setBounds(230, 290, 150, 40);
-
-        lblPartido.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        lblPartido.setForeground(new java.awt.Color(255, 255, 255));
-        lblPartido.setText("Partido");
-        jPanel1.add(lblPartido);
-        lblPartido.setBounds(230, 210, 150, 40);
-
-        lblTeam1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        lblTeam1.setForeground(new java.awt.Color(255, 255, 255));
-        lblTeam1.setText("Team 1");
-        jPanel1.add(lblTeam1);
-        lblTeam1.setBounds(660, 210, 150, 40);
-
-        cmbPartido.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        cmbPartido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cmbPartido);
-        cmbPartido.setBounds(350, 210, 240, 40);
-
-        cmbTeam1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        cmbTeam1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cmbTeam1);
-        cmbTeam1.setBounds(350, 290, 240, 40);
-
-        txtDateHour.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yy h:m aa"))));
-        txtDateHour.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        txtDateHour.addActionListener(new java.awt.event.ActionListener() {
+        btnScheduleMatch.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
+        btnScheduleMatch.setText("Programar partido");
+        btnScheduleMatch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDateHourActionPerformed(evt);
+                btnScheduleMatchActionPerformed(evt);
             }
         });
-        jPanel1.add(txtDateHour);
-        txtDateHour.setBounds(540, 420, 190, 40);
-
-        lblTeam2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        lblTeam2.setForeground(new java.awt.Color(255, 255, 255));
-        lblTeam2.setText("Team 2");
-        jPanel1.add(lblTeam2);
-        lblTeam2.setBounds(660, 290, 150, 40);
-
-        lblNumCamisa1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        lblNumCamisa1.setForeground(new java.awt.Color(255, 255, 255));
-        lblNumCamisa1.setText("Fecha y hora");
-        jPanel1.add(lblNumCamisa1);
-        lblNumCamisa1.setBounds(560, 370, 150, 40);
-
-        cmbTeam3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        cmbTeam3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cmbTeam3);
-        cmbTeam3.setBounds(790, 210, 240, 40);
-
-        btnCrearGrupos.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        btnCrearGrupos.setText("Crear grupos");
-        jPanel1.add(btnCrearGrupos);
-        btnCrearGrupos.setBounds(290, 610, 190, 40);
-
-        cmbTeam4.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        cmbTeam4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cmbTeam4);
-        cmbTeam4.setBounds(790, 290, 240, 40);
+        jPanel1.add(btnScheduleMatch);
+        btnScheduleMatch.setBounds(210, 240, 350, 90);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 815, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 564, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public JFormattedTextField getTxtDateHour() {
-        return txtDateHour;
-    }
+    
     
     
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void txtDateHourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateHourActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDateHourActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnCrearPartidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPartidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCrearPartidosActionPerformed
-
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+    private void btnScheduleMatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScheduleMatchActionPerformed
         
-    }//GEN-LAST:event_btnAceptarActionPerformed
+    }//GEN-LAST:event_btnScheduleMatchActionPerformed
 
+    private void btnAdminScheduledMatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminScheduledMatchActionPerformed
+       
+    }//GEN-LAST:event_btnAdminScheduledMatchActionPerformed
+
+    public JButton getBtnAdminScheduledMatch() {
+        return btnAdminScheduledMatch;
+    }
+
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
+    public JButton getBtnScheduleMatch() {
+        return btnScheduleMatch;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -236,22 +184,12 @@ public class JF_AdminMatches extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnAdminScheduledMatch;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnCrearGrupos;
-    private javax.swing.JButton btnCrearPartidos;
-    private javax.swing.JComboBox<String> cmbPartido;
-    private javax.swing.JComboBox<String> cmbTeam1;
-    private javax.swing.JComboBox<String> cmbTeam3;
-    private javax.swing.JComboBox<String> cmbTeam4;
+    private javax.swing.JButton btnScheduleMatch;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAdminPartidos;
     private javax.swing.JLabel lblLogo;
-    private javax.swing.JLabel lblNumCamisa;
-    private javax.swing.JLabel lblNumCamisa1;
-    private javax.swing.JLabel lblPartido;
-    private javax.swing.JLabel lblTeam1;
-    private javax.swing.JLabel lblTeam2;
-    private javax.swing.JFormattedTextField txtDateHour;
     // End of variables declaration//GEN-END:variables
 }

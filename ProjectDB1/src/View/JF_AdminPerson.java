@@ -119,7 +119,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         lblLogo.setBounds(1070, 10, 200, 125);
 
         cmbPersona.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        cmbPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Jugador", "Cuerpo Técnico" }));
+        cmbPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Iteam1" }));
         cmbPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbPersonaActionPerformed(evt);
@@ -540,7 +540,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
    
    //GETTERS AND SETTERS
    
-   //---- BUTTONS -------------------
+   //---- GETTERS BUTTONS -------------------
 
     public JButton getBtnAccept() {
         return btnAccept;
@@ -566,8 +566,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         return rbtnEdit;
     }
 
-    //----- OTHERS --------------------------
-
+    //----- VALIDATIONS --------------------------
     public boolean validateTxtIdentification(){
         String chain=  txtIden.getText();
         if(" -    -    ".equals(chain)){
@@ -577,18 +576,6 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         return false;
     }
     
-    public int getTxtIdentification() {
-        String chain = txtIden.getText();
-        if(" -    -    ".equals(chain)){
-            return 0;
-        }else{
-            String combination = chain.substring(0, 1) + chain.substring(2, 6)+ chain.substring(7);
-            int identification = Integer.parseInt(combination);
-            return identification;
-        }
-
-    }
-
     public boolean validateTxtPhone(){
         String chain =  txtTelef.getText();
         if("    -    ".equals(chain)){
@@ -598,19 +585,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
             
         return false;
     }
-    
-    public int getTxtPhone() {
-        String chain =  txtTelef.getText();
-        if("    -    ".equals(chain)){
-            return 0;
-        }else{
-            String combination = chain.substring(0, 4) + chain.substring(5);
-            int phone = Integer.parseInt(combination);
-            return phone;
-        }
-    }
-
-    
+        
     public boolean validateTxtDateOfBirth(){
         if("  -  -    ".equals(txtDateOfBirth.getText())){
             return true;
@@ -619,36 +594,20 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         return false;
     }
     
-    public String getTxtDateOfBirth() {
-        if("  -  -    ".equals(txtDateOfBirth.getText())){
-            return "N/A";      
-        }else{
-            return txtDateOfBirth.getText();
-        }
-    }
-
-
-    public int getSpnNumTShirt() {
-        String numberStr = spnNumCamisa.getValue().toString();
-        int number = Integer.parseInt(numberStr);
-        return number;
-    }
-    
+    //----- GETTER COMBO BOX AND LBL_AVATAR --------------------------
+       
     public JLabel getLblAvatar() {
         return lblAvatar;
-    }
-
-    public void setLblAvatar(JLabel lblAvatar) {
-        this.lblAvatar = lblAvatar;
     }
 
     public String getTxtLblPersona() {
         return lblPersona.getText();
     }
 
-    public void setTxtLblPerson(String lblPersona) {
-        this.lblPersona.setText(lblPersona);
-    }
+
+    
+
+
 
     public String getTxtCmbPerson() {
         String typePerson = (String)cmbPersona.getSelectedItem();
@@ -657,6 +616,11 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     
     public JComboBox<String> getCmbPerson() {
         return cmbPersona;
+    }
+    
+    public String getSelectedPerson() {
+        String person = (String)cmbPersona.getSelectedItem();
+        return person;
     }
     
     public JComboBox<String> getCmbGender() {
@@ -724,6 +688,43 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         return txtDireccion.getText();
     }
     
+    public int getTxtIdentification() {
+        String chain = txtIden.getText();
+        if(" -    -    ".equals(chain)){
+            return 0;
+        }else{
+            String combination = chain.substring(0, 1) + chain.substring(2, 6)+ chain.substring(7);
+            int identification = Integer.parseInt(combination);
+            return identification;
+        }
+    }
+    
+    public int getTxtPhone() {
+        String chain =  txtTelef.getText();
+        if("    -    ".equals(chain)){
+            return 0;
+        }else{
+            String combination = chain.substring(0, 4) + chain.substring(5);
+            int phone = Integer.parseInt(combination);
+            return phone;
+        }
+    }
+    
+    public String getTxtDateOfBirth() {
+        if("  -  -    ".equals(txtDateOfBirth.getText())){
+            return "N/A";      
+        }else{
+            return txtDateOfBirth.getText();
+        }
+    }
+    
+    
+    public int getSpnNumTShirt() {
+        String numberStr = spnNumCamisa.getValue().toString();
+        int number = Integer.parseInt(numberStr);
+        return number;
+    }
+    
     public String getSelectedTypeIdentification() {
         String typeIdentification = (String)cmbTipoIden.getSelectedItem();
         return typeIdentification;
@@ -749,11 +750,104 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         return team;
     }
     
+    //-------------------- SETTERS TEXT ---------------------------------------
+
+    public void setTxtName(String txtNombre) {
+        this.txtNombre.setText(txtNombre);
+    }
+    
+    public void setTxtSecondName(String txtSegNombre) {
+        this.txtSegNombre.setText(txtSegNombre);
+    }
+    
+    public void setTxtFirstLastName(String txtPrimerAp) {
+        this.txtPrimerAp.setText(txtPrimerAp);
+    }
+    
+    public void setTxtSecondLastName(String txtSegAp) {
+        this.txtSegAp.setText(txtSegAp);
+    }
+    
+    
+    public void setTxtIdentification(int identification) {
+        String numString = String.valueOf(identification);
+        String combination = numString.substring(0, 1)+"-"+numString.substring(1, 5)+"-"+numString.substring(5);
+        this.txtIden.setText(combination);
+    }
+
+    public void setSpnNumCamisa(int spnNumCamisa) {
+        this.spnNumCamisa.setValue(spnNumCamisa);
+    }
+    
+    public void setTxtMail(String mail) {
+        txtCorreo.setText(mail);
+    }
+    
+    public void setTxtAddress(String address) {
+        txtDireccion.setText(address);
+    }
+    
+    public void setTxtPhone(int phoneNumber) {
+        String numString = String.valueOf(phoneNumber);
+        String combination = numString.substring(0, 4)+"-"+numString.substring(4);
+        this.txtTelef.setText(combination);
+    }
+    
+    public void setTxtBirthDate(String birthdate) {
+        String combination = birthdate.substring(8, 10)+"-"+birthdate.substring(5, 7)+"-"+birthdate.substring(0,4);
+        this.txtDateOfBirth.setText(combination);
+    }
+    
+    public void setTxtLblPerson(String lblPersona) {
+        this.lblPersona.setText(lblPersona);
+    }
+    
+    
+    public void setTypeIdentification(String type) {
+        cmbTipoIden.setSelectedItem(type);
+    }
+    
+    
+    public void setTeam(String team) {
+        cmbEquipo.setSelectedItem(team);
+    }
+
+    public void setCountry(String pais) {
+        this.cmbPais.setSelectedItem(pais);
+    }
+
+    public void setProvince(String cmbProvin) {
+        this.cmbProvin.setSelectedItem(cmbProvin);
+    }
+
+    public void setCmbCanton(String cmbCanton) {
+        this.cmbCanton.setSelectedItem(cmbCanton);
+    }
+
+    public void setCmbDistrict(String cmbDistrito) {
+        this.cmbDistrito.setSelectedItem(cmbDistrito);
+    }
+
+    public void setGender(String cmbGenero) {
+        this.cmbGenero.setSelectedItem(cmbGenero);
+    }
+
+    public void setPosition(String cmbTipoPosicion) {
+        this.cmbTipoPosicion.setSelectedItem(cmbTipoPosicion);
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
 
-    //-----------------------------------------------------------
-
+        
+    //------------------------------------------------------------------------------------------------
+    
 
     public JComboBox<String> getCmbTypeIdentification() {
         return cmbTipoIden;
@@ -763,32 +857,8 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         return cmbTipoPosicion;
     }
 
-    public void setTxtCorreo(JTextField txtCorreo) {
-        this.txtCorreo = txtCorreo;
-    }
-
-    public void setTxtDireccion(JTextArea txtDireccion) {
-        this.txtDireccion = txtDireccion;
-    }
-
-    public void setTxtNombre(JTextField txtNombre) {
-        this.txtNombre = txtNombre;
-    }
-
-    public void setTxtPrimerAp(JTextField txtPrimerAp) {
-        this.txtPrimerAp = txtPrimerAp;
-    }
-
-    public void setTxtSegAp(JTextField txtSegAp) {
-        this.txtSegAp = txtSegAp;
-    }
 
 
-
-    public void setTxtSegNombre(JTextField txtSegNombre) {
-        this.txtSegNombre = txtSegNombre;
-    }
-    
     //------ CLEAN --------------
     public void cleanAll() {
        cleanFirstName();
@@ -855,20 +925,20 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         esconderMostrarTodo(true);
         lblPersona.setText("Tipo Persona:");
         
-        String tipoPersona = cmbPersona.getSelectedItem().toString();
-        if("Cuerpo Técnico".equals(tipoPersona)){
-           deshabilitarOpciones(false);
-        }
+//        String tipoPersona = cmbPersona.getSelectedItem().toString();
+//        if("Cuerpo Técnico".equals(tipoPersona)){
+//           deshabilitarOpciones(false);
+//        }
     }//GEN-LAST:event_rbtnAddActionPerformed
 
     private void rbtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEditActionPerformed
-        esconderMostrarTodo(true);
-        lblPersona.setText("Persona:");
-        
-        String tipoPersona = cmbPersona.getSelectedItem().toString();
-        if("Cuerpo Técnico".equals(tipoPersona)){
-           deshabilitarOpciones(false);
-        }
+//        esconderMostrarTodo(true);
+//        lblPersona.setText("Persona:");
+//        
+//        String tipoPersona = cmbPersona.getSelectedItem().toString();
+//        if("Cuerpo Técnico".equals(tipoPersona)){
+//           deshabilitarOpciones(false);
+//        }
     }//GEN-LAST:event_rbtnEditActionPerformed
 
     private void cmbEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEquipoActionPerformed
@@ -900,14 +970,14 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void cmbPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPersonaActionPerformed
-       String tipoPersona = cmbPersona.getSelectedItem().toString();
-        
-       if((rbtnAdd.isSelected() || rbtnEdit.isSelected()) && "Cuerpo Técnico".equals(tipoPersona)){
-           deshabilitarOpciones(false);
-       }
-       if((rbtnAdd.isSelected() || rbtnEdit.isSelected()) && "Jugador".equals(tipoPersona)){
-           deshabilitarOpciones(true);
-       }
+//       String tipoPersona = cmbPersona.getSelectedItem().toString();
+//        
+//       if((rbtnAdd.isSelected() || rbtnEdit.isSelected()) && "Cuerpo Técnico".equals(tipoPersona)){
+//           deshabilitarOpciones(false);
+//       }
+//       if((rbtnAdd.isSelected() || rbtnEdit.isSelected()) && "Jugador".equals(tipoPersona)){
+//           deshabilitarOpciones(true);
+//       }
     }//GEN-LAST:event_cmbPersonaActionPerformed
 
     private void rbtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnDeleteActionPerformed
