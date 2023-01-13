@@ -153,6 +153,10 @@ public class DA_News {
            
             MostViewedNews.add(news);
         }
+        
+        
+        
+       
 
         return MostViewedNews;
     }

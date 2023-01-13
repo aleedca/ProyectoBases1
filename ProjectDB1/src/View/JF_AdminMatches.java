@@ -4,6 +4,7 @@
  */
 package View;
 
+import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 
 /**
@@ -37,12 +38,13 @@ public class JF_AdminMatches extends javax.swing.JFrame {
         btnScheduleMatch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(800, 720));
+        setMinimumSize(new java.awt.Dimension(800, 552));
+        setPreferredSize(new java.awt.Dimension(800, 536));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(86, 4, 44));
-        jPanel1.setMaximumSize(new java.awt.Dimension(1000, 720));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1000, 720));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
@@ -56,17 +58,17 @@ public class JF_AdminMatches extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBack);
-        btnBack.setBounds(20, 10, 52, 40);
+        btnBack.setBounds(20, 20, 52, 40);
 
         lblAdminPartidos.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
         lblAdminPartidos.setForeground(new java.awt.Color(255, 255, 255));
         lblAdminPartidos.setText("Administrar Partidos");
         jPanel1.add(lblAdminPartidos);
-        lblAdminPartidos.setBounds(80, 60, 521, 48);
+        lblAdminPartidos.setBounds(90, 30, 340, 48);
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
         jPanel1.add(lblLogo);
-        lblLogo.setBounds(600, 0, 200, 125);
+        lblLogo.setBounds(590, 10, 200, 125);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
@@ -78,7 +80,7 @@ public class JF_AdminMatches extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(340, 170, 120, 80);
+        jButton1.setBounds(210, 160, 350, 40);
 
         btnAdminScheduledMatch.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
         btnAdminScheduledMatch.setText("Administrar partido programado");
@@ -88,7 +90,7 @@ public class JF_AdminMatches extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnAdminScheduledMatch);
-        btnAdminScheduledMatch.setBounds(220, 430, 350, 90);
+        btnAdminScheduledMatch.setBounds(210, 380, 350, 90);
 
         btnScheduleMatch.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
         btnScheduleMatch.setText("Programar partido");
@@ -98,17 +100,17 @@ public class JF_AdminMatches extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnScheduleMatch);
-        btnScheduleMatch.setBounds(220, 290, 350, 90);
+        btnScheduleMatch.setBounds(210, 240, 350, 90);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 815, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 564, Short.MAX_VALUE)
         );
 
         pack();
@@ -126,17 +128,26 @@ public class JF_AdminMatches extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnScheduleMatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScheduleMatchActionPerformed
-        JF_ScheduleMatch scheduleMatch = new  JF_ScheduleMatch();
         
-        scheduleMatch.setVisible(true);
     }//GEN-LAST:event_btnScheduleMatchActionPerformed
 
     private void btnAdminScheduledMatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminScheduledMatchActionPerformed
-        JF_AdminScheduledMatch adminScheduledMatch = new  JF_AdminScheduledMatch();
-        
-        adminScheduledMatch.setVisible(true);
+       
     }//GEN-LAST:event_btnAdminScheduledMatchActionPerformed
 
+    public JButton getBtnAdminScheduledMatch() {
+        return btnAdminScheduledMatch;
+    }
+
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
+    public JButton getBtnScheduleMatch() {
+        return btnScheduleMatch;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
