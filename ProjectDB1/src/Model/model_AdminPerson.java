@@ -46,6 +46,30 @@ public class model_AdminPerson {
     private int numTShirt;
     private int resultInsertPerson;
     
+    private int resultUpdateFirstName = 0;
+    private int resultUpdateSecondName = 0;
+    private int resultUpdateFirstLastName = 0;
+    private int resultUpdateSecondLastName = 0;
+    private int resultUpdateTypeIdentification = 0;
+    private int resultUpdateIdentification = 0;
+    
+    private int resultUpdatePhone = 0;
+    private int resultUpdateMail = 0;
+    private int resultUpdateAddress = 0;
+    
+    private int resultUpdateGender = 0;
+        private int resultUpdateTeam = 0;
+    private int resultUpdatePosition = 0;
+    
+    private int resultUpdateCountry = 0;
+    private int resultUpdateProvince = 0;
+    private int resultUpdateCanton= 0;
+     private int resultUpdateDistrict = 0;
+    
+    
+    private int resultUpdateNumTShirt = 0;
+    private int resultUpdateBirthdate= 0;
+    
     private int position;
     private ArrayList<Position> positions;
     
@@ -164,6 +188,154 @@ public class model_AdminPerson {
         }
     }
 
+    
+    //----------------- UPDATES -----------------------------------
+    public void updateFirstName(int idPerson, String name){
+        try {
+            System.out.println("Llama al DA");
+            this.resultUpdateFirstName = DA_Person.updateFirstName(idPerson, name);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+   
+    public void updateSecondName(int idPerson, String name){
+        try {
+            this.resultUpdateSecondName = DA_Person.updateSecondName(idPerson, name);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateFirstLastName(int idPerson, String name){
+        try {
+            this.resultUpdateFirstLastName = DA_Person.updateFirstLastName(idPerson, name);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateSecondLastName(int idPerson, String name){
+        try {
+            this.resultUpdateSecondLastName = DA_Person.updateSecondLastName(idPerson, name);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateIdentification(int idPerson, int ident){
+        try {
+            this.resultUpdateIdentification = DA_Person.updateIdentification(idPerson, ident);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateMail(int idPerson, String mail){
+        try {
+            this.resultUpdateMail = DA_Person.updateMail(idPerson, mail);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updatePhone(int idPerson, int phone){
+        try {
+            this.resultUpdatePhone = DA_Person.updatePhone(idPerson, phone);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateAddress(int idPerson, String address){
+        try {
+            this.resultUpdateAddress = DA_Person.updateAddress(idPerson, address);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateNumTShirt(int idPerson, int num){
+        try {
+            this.resultUpdateNumTShirt = DA_Person.updateTShirtNum(idPerson, num);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateBirthDate(int idPerson, String birthdate){
+        try {
+            this.resultUpdateBirthdate = DA_Person.updateBirthDate(idPerson, birthdate);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateTypeIdentification(int idPerson, int type){
+        try {
+            this.resultUpdateTypeIdentification = DA_Person.updateTypeIdentification(idPerson, type);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateGender(int idPerson, int gender){
+        try {
+            this.resultUpdateGender = DA_Person.updateGender(idPerson, gender);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateTeam(int idPerson, int team){
+        try {
+            this.resultUpdateTeam = DA_Person.updateTeam(idPerson, team);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updatePosition(int idPerson, int position){
+        try {
+            this.resultUpdatePosition = DA_Person.updatePosition(idPerson, position);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateCountry(int idPerson, int country){
+        try {
+            this.resultUpdateCountry = DA_Person.updateCountry(idPerson, country);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateProvince(int idPerson, int province){
+        try {
+            this.resultUpdateProvince = DA_Person.updateProvince(idPerson, province);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateCanton(int idPerson, int canton){
+        try {
+            this.resultUpdateCanton = DA_Person.updateCanton(idPerson, canton);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateDistrict(int idPerson, int district){
+        try {
+            this.resultUpdateDistrict = DA_Person.updateDistrict(idPerson, district);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    
     
     //GETTERS AND SETTERS
     public String getFirstName() {
@@ -385,21 +557,150 @@ public class model_AdminPerson {
     public void setResultEditPerson(int resultEditPerson) {
         this.resultEditPerson = resultEditPerson;
     }
-    
+
+    public int getResultUpdateFirstName() {
+        return resultUpdateFirstName;
+    }
+
+    public void setResultUpdateFirstName(int resultUpdateFirstName) {
+        this.resultUpdateFirstName = resultUpdateFirstName;
+    }
+
+    public int getResultUpdateSecondName() {
+        return resultUpdateSecondName;
+    }
+
+    public void setResultUpdateSecondName(int resultUpdateSecondName) {
+        this.resultUpdateSecondName = resultUpdateSecondName;
+    }
+
+    public int getResultUpdateFirstLastName() {
+        return resultUpdateFirstLastName;
+    }
+
+    public void setResultUpdateFirstLastName(int resultUpdateFirstLastName) {
+        this.resultUpdateFirstLastName = resultUpdateFirstLastName;
+    }
+
+    public int getResultUpdateSecondLastName() {
+        return resultUpdateSecondLastName;
+    }
+
+    public void setResultUpdateSecondLastName(int resultUpdateSecondLastName) {
+        this.resultUpdateSecondLastName = resultUpdateSecondLastName;
+    }
+
+    public int getResultUpdateTypeIdentification() {
+        return resultUpdateTypeIdentification;
+    }
+
+    public void setResultUpdateTypeIdentification(int resultUpdateTypeIdentification) {
+        this.resultUpdateTypeIdentification = resultUpdateTypeIdentification;
+    }
+
+    public int getResultUpdateIdentification() {
+        return resultUpdateIdentification;
+    }
+
+    public void setResultUpdateIdentification(int resultUpdateIdentification) {
+        this.resultUpdateIdentification = resultUpdateIdentification;
+    }
+
+    public int getResultUpdateGender() {
+        return resultUpdateGender;
+    }
+
+    public void setResultUpdateGender(int resultUpdateGender) {
+        this.resultUpdateGender = resultUpdateGender;
+    }
+
+    public int getResultUpdatePosition() {
+        return resultUpdatePosition;
+    }
+
+    public void setResultUpdatePosition(int resultUpdatePosition) {
+        this.resultUpdatePosition = resultUpdatePosition;
+    }
+
+    public int getResultUpdateCountry() {
+        return resultUpdateCountry;
+    }
+
+    public void setResultUpdateCountry(int resultUpdateCountry) {
+        this.resultUpdateCountry = resultUpdateCountry;
+    }
+
+    public int getResultUpdatePhone() {
+        return resultUpdatePhone;
+    }
+
+    public void setResultUpdatePhone(int resultUpdatePhone) {
+        this.resultUpdatePhone = resultUpdatePhone;
+    }
+
+    public int getResultUpdateMail() {
+        return resultUpdateMail;
+    }
+
+    public void setResultUpdateMail(int resultUpdateMail) {
+        this.resultUpdateMail = resultUpdateMail;
+    }
+
+    public int getResultUpdateAddress() {
+        return resultUpdateAddress;
+    }
+
+    public void setResultUpdateAddress(int resultUpdateAddress) {
+        this.resultUpdateAddress = resultUpdateAddress;
+    }
+
+    public int getResultUpdateTeam() {
+        return resultUpdateTeam;
+    }
+
+    public void setResultUpdateTeam(int resultUpdateTeam) {
+        this.resultUpdateTeam = resultUpdateTeam;
+    }
+
+    public int getResultUpdateNumTShirt() {
+        return resultUpdateNumTShirt;
+    }
+
+    public void setResultUpdateNumTShirt(int resultUpdateNumTShirt) {
+        this.resultUpdateNumTShirt = resultUpdateNumTShirt;
+    }
+
+    public int getResultUpdateBirthdate() {
+        return resultUpdateBirthdate;
+    }
+
+    public void setResultUpdateBirthdate(int resultUpdateBirthdate) {
+        this.resultUpdateBirthdate = resultUpdateBirthdate;
+    }
+
+    public int getResultUpdateProvince() {
+        return resultUpdateProvince;
+    }
+
+    public void setResultUpdateProvince(int resultUpdateProvince) {
+        this.resultUpdateProvince = resultUpdateProvince;
+    }
+
+    public int getResultUpdateCanton() {
+        return resultUpdateCanton;
+    }
+
+    public void setResultUpdateCanton(int resultUpdateCanton) {
+        this.resultUpdateCanton = resultUpdateCanton;
+    }
+
+    public int getResultUpdateDistrict() {
+        return resultUpdateDistrict;
+    }
+
+    public void setResultUpdateDistrict(int resultUpdateDistrict) {
+        this.resultUpdateDistrict = resultUpdateDistrict;
+    }
     
 
-
-    
-    
-    
-
-
-    
-    
-    
-
-    
-    
-    
-    
 }

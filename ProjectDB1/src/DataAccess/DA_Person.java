@@ -197,7 +197,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;
     }
     
    
@@ -215,7 +215,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;
     }
     
     public static int updateFirstLastName(int idPerson, String firstLastName) throws SQLException
@@ -232,7 +232,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;
     }
     
     public static int updateSecondLastName(int idPerson, String secondLastName) throws SQLException
@@ -249,7 +249,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;
     }
     
     
@@ -267,7 +267,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;
     }
     
     
@@ -285,7 +285,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result; 
     }
     
     public static int updateMail(int idPerson, String mail) throws SQLException
@@ -302,7 +302,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;
     }
     
     
@@ -320,7 +320,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;
     }
     
     
@@ -338,7 +338,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;
     }
     
     
@@ -356,7 +356,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;
     }
     
     
@@ -374,7 +374,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;
     }
     
     public static int updateAddress(int idPerson, String address) throws SQLException
@@ -391,7 +391,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;
     }
     
     
@@ -498,7 +498,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;
     }
     
     public static int updateTShirtNum(int idPerson, int tShirtNum) throws SQLException
@@ -515,7 +515,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;   
     }
     
     //-------------------------------------------------------------------------------------------
