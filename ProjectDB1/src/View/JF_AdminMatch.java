@@ -4,16 +4,18 @@
  */
 package View;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author Nahomy
  */
-public class JF_AdminScheduledMatch extends javax.swing.JFrame {
+public class JF_AdminMatch extends javax.swing.JFrame {
 
     /**
      * Creates new form JF_AdminScheduledMatch
      */
-    public JF_AdminScheduledMatch() {
+    public JF_AdminMatch() {
         initComponents();
     }
 
@@ -67,6 +69,7 @@ public class JF_AdminScheduledMatch extends javax.swing.JFrame {
         txtSavers = new javax.swing.JFormattedTextField();
         txtGoals = new javax.swing.JFormattedTextField();
         btnSaveInfo = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         jLabel5.setText("xxxxxxxxxx");
 
@@ -205,6 +208,16 @@ public class JF_AdminScheduledMatch extends javax.swing.JFrame {
         btnSaveInfo.setForeground(new java.awt.Color(0, 0, 0));
         btnSaveInfo.setText("Guardar");
 
+        btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
+        btnBack.setContentAreaFilled(false);
+        btnBack.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backPressed.png"))); // NOI18N
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -213,6 +226,8 @@ public class JF_AdminScheduledMatch extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(btnBack)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
@@ -296,11 +311,13 @@ public class JF_AdminScheduledMatch extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTitle)
+                    .addComponent(btnBack))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(lblTitle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -317,7 +334,7 @@ public class JF_AdminScheduledMatch extends javax.swing.JFrame {
                             .addComponent(lblTeam1Info))
                         .addGap(11, 11, 11))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(47, 47, 47)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,7 +383,7 @@ public class JF_AdminScheduledMatch extends javax.swing.JFrame {
                             .addComponent(lblGoals)
                             .addComponent(txtGoals, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSaveInfo))))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -383,12 +400,25 @@ public class JF_AdminScheduledMatch extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+
+    }//GEN-LAST:event_btnBackActionPerformed
+   
+    
     /**
      * @param args the command line arguments
      */
     
+    
+    //-----------GETTERS-------------
+    
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSaveInfo;
     private javax.swing.JButton btnSelectPlayer;
     private javax.swing.JComboBox<String> jComboBox1;

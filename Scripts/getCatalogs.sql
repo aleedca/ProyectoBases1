@@ -110,7 +110,9 @@ CREATE OR REPLACE PROCEDURE getMostViewedNews(curMostViewedNews OUT SYS_REFCURSO
 BEGIN
     OPEN curMostViewedNews FOR
     SELECT title, viewsNews
-    FROM News;
+    FROM News
+    ORDER BY viewsNews DESC;
+    
 END getMostViewedNews;
 
 CREATE OR REPLACE PROCEDURE getStadium(curStadium OUT SYS_REFCURSOR) IS
