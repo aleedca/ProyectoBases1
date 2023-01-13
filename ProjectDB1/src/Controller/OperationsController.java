@@ -7,11 +7,13 @@ package Controller;
 import DataAccess.DA_News;
 import Model.model_Account;
 import Model.model_AdminCatalogs;
+
 import Model.model_AdminPerson;
 import Model.model_Login;
 import Model.model_News;
 import Model.model_Register;
 import View.JF_AdminCatalogs;
+
 import View.JF_AdminOptions;
 import View.JF_AdminPerson;
 import View.JF_EditAccount;
@@ -20,6 +22,7 @@ import View.JF_MyAccount;
 import View.JF_Principal;
 import View.JF_Register;
 import View.JF_Request;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -47,11 +50,14 @@ public class OperationsController implements ActionListener, ItemListener{
     private final JF_MyAccount viewMyAccount;
     private final JF_EditAccount viewEditAccount;
     
+    
     private final model_Login modelLogin;
     private final model_Register modelRegister;
     private final model_AdminPerson modelAdminPerson;
     private final model_News modelNews;
     private final model_Account accountModel;
+    
+    
     
     private boolean flagRegister;
     private boolean flagAdminPerson;
@@ -92,8 +98,12 @@ public class OperationsController implements ActionListener, ItemListener{
         
         //View EditAccount 
         this.viewEditAccount = new JF_EditAccount();
+        
+        
+        
+        
                
-        //Modelo Login
+        //Model Login
         model_Login validateLogin = new model_Login();
         this.modelLogin = validateLogin;  
          
@@ -111,6 +121,10 @@ public class OperationsController implements ActionListener, ItemListener{
         
         //Model MyAccount
         this.accountModel = new model_Account();
+        
+        
+        
+   
         
         //Request Controller
         RequestController controller = new RequestController();
@@ -226,7 +240,7 @@ public class OperationsController implements ActionListener, ItemListener{
     }
     
     
-    //-------- COMBO BOX FILLING --------------------------
+    //--------------------------COMBO BOX FILLING --------------------------
     private void fillGenders(){
         viewRegister.getCmbGender().removeAllItems();
         viewAdminPerson.getCmbGender().removeAllItems();
@@ -239,6 +253,8 @@ public class OperationsController implements ActionListener, ItemListener{
             viewAdminPerson.getCmbGender().addItem(nameGender );
         }
     }
+    
+   
     
     private void fillIdentificationTypes(){
         viewRegister.getCmbTypeIdentification().removeAllItems();

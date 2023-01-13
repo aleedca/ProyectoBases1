@@ -4,6 +4,8 @@
  */
 package View;
 
+import javax.swing.JComboBox;
+
 /**
  *
  * @author Nahomy
@@ -16,6 +18,14 @@ public class JF_AdminNewMatch extends javax.swing.JFrame {
     public JF_AdminNewMatch() {
         initComponents();
     }
+    
+    //--------------------------GETTERS--------------------------
+
+    public JComboBox<String> getCbmStadium() {
+        return cbmStadium;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

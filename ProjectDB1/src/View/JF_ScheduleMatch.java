@@ -4,6 +4,8 @@
  */
 package View;
 
+import javax.swing.JComboBox;
+
 /**
  *
  * @author Nahomy
@@ -16,6 +18,13 @@ public class JF_ScheduleMatch extends javax.swing.JFrame {
     public JF_ScheduleMatch() {
         initComponents();
     }
+    
+    //--------------------------GETTERS--------------------------
+
+    public JComboBox<String> getCbmStadium() {
+        return cbmStadium;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
