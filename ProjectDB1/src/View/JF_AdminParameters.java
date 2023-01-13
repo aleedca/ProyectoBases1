@@ -8,12 +8,12 @@ package View;
  *
  * @author Alexia
  */
-public class JF_AdminBitacora extends javax.swing.JFrame {
+public class JF_AdminParameters extends javax.swing.JFrame {
 
     /**
-     * Creates new form JF_AdminBitacora
+     * Creates new form JF_AdminParameters
      */
-    public JF_AdminBitacora() {
+    public JF_AdminParameters() {
         initComponents();
     }
 
@@ -28,15 +28,20 @@ public class JF_AdminBitacora extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnBack = new javax.swing.JButton();
-        lblAdminBitacora = new javax.swing.JLabel();
+        lblAdminOther = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(86, 4, 44));
-        jPanel1.setMaximumSize(new java.awt.Dimension(1280, 70));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1280, 70));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1280, 70));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
+        jPanel1.setLayout(null);
 
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
@@ -47,59 +52,39 @@ public class JF_AdminBitacora extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
+        jPanel1.add(btnBack);
+        btnBack.setBounds(46, 50, 46, 40);
 
-        lblAdminBitacora.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
-        lblAdminBitacora.setForeground(new java.awt.Color(255, 255, 255));
-        lblAdminBitacora.setText("Bitácora");
+        lblAdminOther.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        lblAdminOther.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdminOther.setText("Administrar Parámetros");
+        jPanel1.add(lblAdminOther);
+        lblAdminOther.setBounds(110, 42, 690, 48);
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(btnBack)
-                .addGap(18, 18, 18)
-                .addComponent(lblAdminBitacora, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 418, Short.MAX_VALUE)
-                .addComponent(lblLogo)
-                .addGap(30, 30, 30))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(lblLogo))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAdminBitacora))))
-                .addContainerGap(579, Short.MAX_VALUE))
-        );
+        jPanel1.add(lblLogo);
+        lblLogo.setBounds(1065, 6, 200, 125);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        JF_AdminOptions adminOptions = new JF_AdminOptions();
-        adminOptions.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**
@@ -119,20 +104,20 @@ public class JF_AdminBitacora extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminBitacora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminParameters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminBitacora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminParameters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminBitacora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminParameters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminBitacora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JF_AdminParameters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JF_AdminBitacora().setVisible(true);
+                new JF_AdminParameters().setVisible(true);
             }
         });
     }
@@ -140,7 +125,7 @@ public class JF_AdminBitacora extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblAdminBitacora;
+    private javax.swing.JLabel lblAdminOther;
     private javax.swing.JLabel lblLogo;
     // End of variables declaration//GEN-END:variables
 }
