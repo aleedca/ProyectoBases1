@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class Person {
     private int idPerson;
     private int idPersonPosition;
-    private int idAddress;
+    private String descriptonAddress;
     private int idTypeIdentification;
     private int idGender;
     
@@ -41,10 +41,10 @@ public class Person {
     public Person() {
     }
 
-    public Person(int idPerson, int idPersonPosition, int idAddress, int idTypeIdentification, int idGender, int identification, String firstName, String secondName, String firstLastName, String secondLastName, String photo, String mail, int phoneNumber, int idCountry, int idProvince, int idCanton, int idDistrict, String userCreation, LocalDateTime dateCreation, String lastUser, LocalDateTime lastDate) {
+    public Person(int idPerson, int idPersonPosition, String descriptonAddress, int idTypeIdentification, int idGender, int identification, String firstName, String secondName, String firstLastName, String secondLastName, String photo, String mail, int phoneNumber, int idCountry, int idProvince, int idCanton, int idDistrict, String userCreation, LocalDateTime dateCreation, String lastUser, LocalDateTime lastDate) {
         this.idPerson = idPerson;
         this.idPersonPosition = idPersonPosition;
-        this.idAddress = idAddress;
+        this.descriptonAddress = descriptonAddress;
         this.idTypeIdentification = idTypeIdentification;
         this.idGender = idGender;
         this.identification = identification;
@@ -64,6 +64,10 @@ public class Person {
         this.lastUser = lastUser;
         this.lastDate = lastDate;
     }
+    
+    
+
+
 
     
 
@@ -87,15 +91,6 @@ public class Person {
     public void setIdPersonPosition(int idPersonPosition) {
         this.idPersonPosition = idPersonPosition;
     }
-
-    public int getIdAddress() {
-        return idAddress;
-    }
-
-    public void setIdAddress(int idAddress) {
-        this.idAddress = idAddress;
-    }
-    
 
     public int getIdTypeIdentification() {
         return idTypeIdentification;
@@ -193,11 +188,6 @@ public class Person {
         this.lastDate = lastDate;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" + "firstName=" + firstName + ", secondName=" + secondName + ", firstLastName=" + firstLastName + ", secondLastName=" + secondLastName + '}';
-    }
-
     public int getIdCountry() {
         return idCountry;
     }
@@ -245,10 +235,18 @@ public class Person {
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String getDescriptonAddress() {
+        return descriptonAddress;
+    }
+
+    public void setDescriptonAddress(String descriptonAddress) {
+        this.descriptonAddress = descriptonAddress;
+    }
     
     
-    
-    
+
+
     
 
     

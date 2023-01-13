@@ -539,8 +539,6 @@ public class DA_Person {
             player.setSecondLastName(rs.getString("secondLastName"));
             
             players.add(player);
-            
-            System.out.println(player.toString());
         }
 
         return players;
@@ -594,13 +592,15 @@ public class DA_Person {
                 player.setIdProvince(rsAdminPerson.getInt("idProvince"));
                 player.setIdCanton(rsAdminPerson.getInt("idCanton"));
                 player.setIdDistrict(rsAdminPerson.getInt("idDistrict"));
-                player.setIdAddress(rsAdminPerson.getInt("idAddress"));
+                player.setDescriptonAddress(rsAdminPerson.getString("descriptionAddress"));
                 player.setMail(rsAdminPerson.getString("descriptionMail"));
+                player.setPhoneNumber(rsAdminPerson.getInt("phoneNumber"));
                 player.setIdTeam(rsAdminPerson.getInt("idTeam"));
                 player.setBirthdate(rsAdminPerson.getString("birthdate"));
                 player.setNumTShirt(rsAdminPerson.getInt("TshirtNum"));
             
                 players.add(player);
+                System.out.println(player.toString());
             }
             return players;
     }
@@ -625,11 +625,13 @@ public class DA_Person {
             teamWorker.setIdProvince(rsAdminPerson.getInt("idProvince"));
             teamWorker.setIdCanton(rsAdminPerson.getInt("idCanton"));
             teamWorker.setIdDistrict(rsAdminPerson.getInt("idDistrict"));
-            teamWorker.setIdAddress(rsAdminPerson.getInt("idAddress"));
+            teamWorker.setDescriptonAddress(rsAdminPerson.getString("descriptionAddress"));
             teamWorker.setMail(rsAdminPerson.getString("descriptionMail"));
+            teamWorker.setPhoneNumber(rsAdminPerson.getInt("phoneNumber"));
             teamWorker.setIdTeam(rsAdminPerson.getInt("idTeam"));  
 
             teamWorkers.add(teamWorker);
+            System.out.println(teamWorker.toString());
         }
 
         return teamWorkers;
@@ -641,6 +643,7 @@ public class DA_Person {
         
         CallableStatement sql = conn.prepareCall("{call getPersonInformation(?,?,?)}");
         //INPUT
+        System.out.println("Parametro: "+idPerson);
         sql.setInt(1, idPerson);
         
         //OUTPUT

@@ -18,11 +18,10 @@ public class TeamWorker extends Person{
     public TeamWorker() {
     }
 
-    public TeamWorker(int idTeam, int idPerson, int idPersonPosition, int idAddress, int idTypeIdentification, int idGender, int identification, String firstName, String secondName, String firstLastName, String secondLastName, String photo, String mail, int phoneNumber, int idCountry, int idProvince, int idCanton, int idDistrict, String userCreation, LocalDateTime dateCreation, String lastUser, LocalDateTime lastDate) {
-        super(idPerson, idPersonPosition, idAddress, idTypeIdentification, idGender, identification, firstName, secondName, firstLastName, secondLastName, photo, mail, phoneNumber, idCountry, idProvince, idCanton, idDistrict, userCreation, dateCreation, lastUser, lastDate);
+    public TeamWorker(int idTeam, int idPerson, int idPersonPosition, String descriptonAddress, int idTypeIdentification, int idGender, int identification, String firstName, String secondName, String firstLastName, String secondLastName, String photo, String mail, int phoneNumber, int idCountry, int idProvince, int idCanton, int idDistrict, String userCreation, LocalDateTime dateCreation, String lastUser, LocalDateTime lastDate) {
+        super(idPerson, idPersonPosition, descriptonAddress, idTypeIdentification, idGender, identification, firstName, secondName, firstLastName, secondLastName, photo, mail, phoneNumber, idCountry, idProvince, idCanton, idDistrict, userCreation, dateCreation, lastUser, lastDate);
         this.idTeam = idTeam;
     }
-    
     
     
     //GETTER AND SETTER
