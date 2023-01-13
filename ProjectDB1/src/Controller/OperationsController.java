@@ -829,6 +829,8 @@ public class OperationsController implements ActionListener, ItemListener{
     
     private void updatesTeamWorker(int idPerson, int i){
         String secondName, secondLastName;
+        String country, province, canton, district,typeIdentification,gender, team, position;
+        int idTypeIdentification, idGender, idTeam, idPosition, idCountry, idProvince, idCanton, idDistrict;
         
         if(!viewAdminPerson.getTxtName().equals(modelAdminPerson.getTeamWorkersInfo().get(i).getFirstName())){
             System.out.println("Si actualiza primer nombre");
@@ -892,8 +894,10 @@ public class OperationsController implements ActionListener, ItemListener{
     
     
     private void updatesPlayer(int idPerson, int i){
-        String secondName, secondLastName, typeIdentification,gender, team, position, birthdate, combination;
-        int idTypeIdentification, idGender, idTeam, idPosition;
+        String secondName, secondLastName, birthdate, combination ;
+        String country, province, canton, district,typeIdentification,gender, team, position;
+        int idTypeIdentification, idGender, idTeam, idPosition, idCountry, idProvince, idCanton, idDistrict;
+
 
         if(!viewAdminPerson.getTxtName().equals(modelAdminPerson.getPlayersInfo().get(i).getFirstName())){
             System.out.println("Si actualiza primer nombre");
@@ -1034,12 +1038,93 @@ public class OperationsController implements ActionListener, ItemListener{
             }
         }
         
+        //DISTRICT
+        idDistrict = modelAdminPerson.getPlayersInfo().get(i).getIdDistrict();
+        district = "";
+        for(int j=0; j< modelRegister.getDistricts().size();j++){
+            if(idDistrict == modelRegister.getDistricts().get(j).getIdDistrict())
+            {
+                district = modelRegister.getDistricts().get(j).getNameDistrict();
+            }
+        }
+
+        if(!district.equals(viewAdminPerson.getSelectedDistrict())){
+            for(int j=0; j< modelRegister.getDistricts().size();j++){
+                if(viewAdminPerson.getSelectedDistrict().equals(modelRegister.getDistricts().get(j).getNameDistrict())){         
+                    idDistrict = modelRegister.getDistricts().get(j).getIdDistrict();
+                    modelAdminPerson.updateDistrict(idPerson, idDistrict);
+                    flagAdminPerson = false;
+                }
+            }
+        }  
+        
+        //CANTON
+        idCanton = modelAdminPerson.getPlayersInfo().get(i).getIdCanton();
+        canton = "";
+        for(int j=0; j< modelRegister.getCantons().size();j++){
+            if(idCanton == modelRegister.getCantons().get(j).getIdCanton())
+            {
+                canton = modelRegister.getCantons().get(j).getNameCanton();
+            }
+        }
+
+        if(!canton.equals(viewAdminPerson.getSelectedCanton())){
+            for(int j=0; j< modelRegister.getCantons().size();j++){
+                if(viewAdminPerson.getSelectedCanton().equals(modelRegister.getCantons().get(j).getNameCanton())){         
+                    idCanton = modelRegister.getCantons().get(j).getIdCanton();
+                    modelAdminPerson.updateCanton(idPerson, idCanton);
+                    flagAdminPerson = false;
+                }
+            }
+        }
+        
+        //PROVINCE
+        idProvince = modelAdminPerson.getPlayersInfo().get(i).getIdProvince();
+        province = "";
+        for(int j=0; j< modelRegister.getProvinces().size();j++){
+            if(idProvince == modelRegister.getProvinces().get(j).getIdProvince())
+            {
+                province = modelRegister.getProvinces().get(j).getNameProvince();
+            }
+        }
+
+        if(!province.equals(viewAdminPerson.getSelectedProvince())){
+            for(int j=0; j< modelRegister.getProvinces().size();j++){
+                if(viewAdminPerson.getSelectedProvince().equals(modelRegister.getProvinces().get(j).getNameProvince())){         
+                    idProvince = modelRegister.getProvinces().get(j).getIdProvince();
+                    modelAdminPerson.updateProvince(idPerson, idProvince);
+                    flagAdminPerson = false;
+                }
+            }
+        }
+ 
+        //COUNTRY
+        idCountry = modelAdminPerson.getPlayersInfo().get(i).getIdCountry();
+        country = "";
+        for(int j=0; j< modelRegister.getCountries().size();j++){
+            if(idCountry == modelRegister.getCountries().get(j).getIdCountry())
+            {
+                country = modelRegister.getCountries().get(j).getNameCountry();
+            }
+        }
+
+        if(!country.equals(viewAdminPerson.getSelectedCountry())){
+            for(int j=0; j< modelRegister.getCountries().size();j++){
+                if(viewAdminPerson.getSelectedCountry().equals(modelRegister.getCountries().get(j).getNameCountry())){         
+                    idCountry = modelRegister.getCountries().get(j).getIdCountry();
+                    modelAdminPerson.updateCountry(idPerson, idCountry);
+                    flagAdminPerson = false;
+                }
+            }
+        }  
+        
+        
 
 
         
         
         
-        
+        //NUMTSHIRT
         if(viewAdminPerson.getSpnNumTShirt() != modelAdminPerson.getPlayersInfo().get(i).getNumTShirt()){
             modelAdminPerson.updateNumTShirt(idPerson, viewAdminPerson.getSpnNumTShirt());
             flagAdminPerson = false;

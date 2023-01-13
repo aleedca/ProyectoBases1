@@ -214,11 +214,17 @@ EXCEPTION
 END updateAddress;
 
 --- DISTRICT
-CREATE OR REPLACE PROCEDURE updateDistrict(pidAddres IN NUMBER, pidDistrict IN NUMBER, codResult OUT NUMBER) AS
+CREATE OR REPLACE PROCEDURE updateDistrict(pidPerson IN NUMBER, pidDistrict IN NUMBER, codResult OUT NUMBER) AS
+vnIdAddress NUMBER(10);
 BEGIN
+    SELECT idAddress
+    INTO vnIdAddress
+    FROM Person
+    WHERE idPerson = pidPerson;
+
     UPDATE Address
     SET idDistrict = pidDistrict
-    WHERE idAddress = pidAddres;
+    WHERE idAddress = vnIdAddress;
     
     codResult:= 0;
     COMMIT;
@@ -229,11 +235,19 @@ EXCEPTION
 END updateDistrict;
 
 --- CANTON
-CREATE OR REPLACE PROCEDURE updateCanton(pidDistrict IN NUMBER, pidCanton IN NUMBER, codResult OUT NUMBER) AS
+CREATE OR REPLACE PROCEDURE updateCanton(pidPerson IN NUMBER, pidCanton IN NUMBER, codResult OUT NUMBER) AS
+vnIdDistrict NUMBER(10);
 BEGIN
+    SELECT d.idDistrict
+    INTO vnIdDistrict
+    FROM Person P
+    INNER JOIN Address A ON p.idAddress = a.idAddress
+    INNER JOIN District D ON a.idDistrict = d.idDistrict
+    WHERE p.idPerson = pidPerson;
+
     UPDATE District
     SET idCanton = pidCanton
-    WHERE idDistrict = pidDistrict;
+    WHERE idDistrict = vnIdDistrict;
     
     codResult:= 0;
     COMMIT;
@@ -244,11 +258,20 @@ EXCEPTION
 END updateCanton;
 
 --- PROVINCE
-CREATE OR REPLACE PROCEDURE updateProvince(pidCanton IN NUMBER, pidProvince IN NUMBER, codResult OUT NUMBER) AS
+CREATE OR REPLACE PROCEDURE updateProvince(pidPerson IN NUMBER, pidProvince IN NUMBER, codResult OUT NUMBER) AS
+vnIdCanton NUMBER(10);
 BEGIN
+    SELECT c.idCanton
+    INTO vnIdCanton
+    FROM Person P
+    INNER JOIN Address A ON p.idAddress = a.idAddress
+    INNER JOIN District D ON a.idDistrict = d.idDistrict
+    INNER JOIN Canton C ON d.idCanton = c.idCanton
+    WHERE p.idPerson = pidPerson;
+
     UPDATE Canton
     SET idProvince = pidProvince
-    WHERE idCanton = pidCanton;
+    WHERE idCanton = vnIdCanton;
     
     codResult:= 0;
     COMMIT;
@@ -260,11 +283,21 @@ END updateProvince;
 
 
 --- COUNTRY
-CREATE OR REPLACE PROCEDURE updateCountry(pidProvince IN NUMBER, pidCountry IN NUMBER, codResult OUT NUMBER) AS
+CREATE OR REPLACE PROCEDURE updateCountry(pidPerson IN NUMBER, pidCountry IN NUMBER, codResult OUT NUMBER) AS
+vnIdProvince NUMBER(10);
 BEGIN
+    SELECT pv.idProvince
+    INTO vnIdProvince
+    FROM Person P
+    INNER JOIN Address A ON p.idAddress = a.idAddress
+    INNER JOIN District D ON a.idDistrict = d.idDistrict
+    INNER JOIN Canton C ON d.idCanton = c.idCanton
+    INNER JOIN Province PV ON c.idProvince = pv.idProvince
+    WHERE p.idPerson = pidPerson;
+    
     UPDATE Province
     SET idCountry = pidCountry
-    WHERE idProvince = pidProvince;
+    WHERE idProvince = vnIdProvince;
     
     codResult:= 0;
     COMMIT;

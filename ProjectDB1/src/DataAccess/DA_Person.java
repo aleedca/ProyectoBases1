@@ -253,7 +253,7 @@ public class DA_Person {
     }
     
     
-    public static void updateTypeIdentification(int idPerson, int typeIdentification) throws SQLException
+    public static int updateTypeIdentification(int idPerson, int typeIdentification) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -267,7 +267,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        System.out.println("UpdateTypeIdentiification: "+result);
+        return result;
     }
     
     
