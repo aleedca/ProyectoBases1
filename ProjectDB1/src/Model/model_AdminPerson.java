@@ -44,7 +44,24 @@ public class model_AdminPerson {
     private String photo;
     private String dateOfBirth;
     private int numTShirt;
+    
+    
     private int resultInsertPerson;
+    
+    private int resultUpdateFirstName = 0;
+    private int resultUpdateSecondName = 0;
+    private int resultUpdateFirstLastName = 0;
+    private int resultUpdateSecondLastName = 0;
+    private int resultUpdateTypeIdentification = 0;
+    private int resultUpdateIdentification = 0;
+    
+    private int resultUpdatePhone = 0;
+    private int resultUpdateMail = 0;
+    private int resultUpdateAddress = 0;
+    private int resultUpdateNumTShirt = 0;
+    private int resultUpdateGender = 0;
+    private int resultUpdatePosition = 0;
+    private int resultUpdateCountry = 0;
     
     private int position;
     private ArrayList<Position> positions;
@@ -167,7 +184,7 @@ public class model_AdminPerson {
     public void updateFirstName(int idPerson, String name){
         try {
             System.out.println("Llama al DA");
-            DA_Person.updateFirstName(idPerson, name);
+            this.resultUpdateFirstName = DA_Person.updateFirstName(idPerson, name);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -176,7 +193,7 @@ public class model_AdminPerson {
     
     public void updateSecondName(int idPerson, String name){
         try {
-            DA_Person.updateSecondName(idPerson, name);
+            this.resultUpdateSecondName = DA_Person.updateSecondName(idPerson, name);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -185,7 +202,7 @@ public class model_AdminPerson {
     
     public void updateFirstLastName(int idPerson, String name){
         try {
-            DA_Person.updateFirstLastName(idPerson, name);
+            this.resultUpdateFirstLastName = DA_Person.updateFirstLastName(idPerson, name);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -194,7 +211,7 @@ public class model_AdminPerson {
     
     public void updateSecondLastName(int idPerson, String name){
         try {
-            DA_Person.updateSecondLastName(idPerson, name);
+            this.resultUpdateSecondLastName = DA_Person.updateSecondLastName(idPerson, name);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -202,7 +219,7 @@ public class model_AdminPerson {
     
     public void updateIdentification(int idPerson, int ident){
         try {
-            DA_Person.updateIdentification(idPerson, ident);
+            this.resultUpdateIdentification = DA_Person.updateIdentification(idPerson, ident);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -211,7 +228,7 @@ public class model_AdminPerson {
     
     public void updateMail(int idPerson, String mail){
         try {
-            DA_Person.updateMail(idPerson, mail);
+            this.resultUpdateMail = DA_Person.updateMail(idPerson, mail);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -220,7 +237,7 @@ public class model_AdminPerson {
     
     public void updatePhone(int idPerson, int phone){
         try {
-            DA_Person.updatePhone(idPerson, phone);
+            this.resultUpdatePhone = DA_Person.updatePhone(idPerson, phone);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -228,7 +245,7 @@ public class model_AdminPerson {
     
     public void updateAddress(int idPerson, String address){
         try {
-            DA_Person.updateAddress(idPerson, address);
+            this.resultUpdateAddress = DA_Person.updateAddress(idPerson, address);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -236,7 +253,7 @@ public class model_AdminPerson {
     
     public void updateNumTShirt(int idPerson, int num){
         try {
-            DA_Person.updateTShirtNum(idPerson, num);
+            this.resultUpdateNumTShirt = DA_Person.updateTShirtNum(idPerson, num);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -245,6 +262,39 @@ public class model_AdminPerson {
     public void updateBirthDate(int idPerson, String birthdate){
         try {
             DA_Person.updateBirthDate(idPerson, birthdate);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateTypeIdentification(int idPerson, int type){
+        try {
+            DA_Person.updateTypeIdentification(idPerson, type);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateGender(int idPerson, int gender){
+        try {
+            DA_Person.updateGender(idPerson, gender);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateTeam(int idPerson, int team){
+        try {
+            DA_Person.updateTeam(idPerson, team);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    
+    public void updatePosition(int idPerson, int position){
+        try {
+            DA_Person.updatePosition(idPerson, position);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -471,6 +521,79 @@ public class model_AdminPerson {
     public void setResultEditPerson(int resultEditPerson) {
         this.resultEditPerson = resultEditPerson;
     }
+
+    public int getResultUpdateFirstName() {
+        return resultUpdateFirstName;
+    }
+
+    public void setResultUpdateFirstName(int resultUpdateFirstName) {
+        this.resultUpdateFirstName = resultUpdateFirstName;
+    }
+
+    public int getResultUpdateSecondName() {
+        return resultUpdateSecondName;
+    }
+
+    public void setResultUpdateSecondName(int resultUpdateSecondName) {
+        this.resultUpdateSecondName = resultUpdateSecondName;
+    }
+
+    public int getResultUpdateFirstLastName() {
+        return resultUpdateFirstLastName;
+    }
+
+    public void setResultUpdateFirstLastName(int resultUpdateFirstLastName) {
+        this.resultUpdateFirstLastName = resultUpdateFirstLastName;
+    }
+
+    public int getResultUpdateSecondLastName() {
+        return resultUpdateSecondLastName;
+    }
+
+    public void setResultUpdateSecondLastName(int resultUpdateSecondLastName) {
+        this.resultUpdateSecondLastName = resultUpdateSecondLastName;
+    }
+
+    public int getResultUpdateTypeIdentification() {
+        return resultUpdateTypeIdentification;
+    }
+
+    public void setResultUpdateTypeIdentification(int resultUpdateTypeIdentification) {
+        this.resultUpdateTypeIdentification = resultUpdateTypeIdentification;
+    }
+
+    public int getResultUpdateIdentification() {
+        return resultUpdateIdentification;
+    }
+
+    public void setResultUpdateIdentification(int resultUpdateIdentification) {
+        this.resultUpdateIdentification = resultUpdateIdentification;
+    }
+
+    public int getResultUpdateGender() {
+        return resultUpdateGender;
+    }
+
+    public void setResultUpdateGender(int resultUpdateGender) {
+        this.resultUpdateGender = resultUpdateGender;
+    }
+
+    public int getResultUpdatePosition() {
+        return resultUpdatePosition;
+    }
+
+    public void setResultUpdatePosition(int resultUpdatePosition) {
+        this.resultUpdatePosition = resultUpdatePosition;
+    }
+
+    public int getResultUpdateCountry() {
+        return resultUpdateCountry;
+    }
+
+    public void setResultUpdateCountry(int resultUpdateCountry) {
+        this.resultUpdateCountry = resultUpdateCountry;
+    }
+    
     
     
 

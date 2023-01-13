@@ -420,15 +420,9 @@ public class OperationsController implements ActionListener, ItemListener{
     
     
     private void fillPlayerInformation(){
-        String name;
-        String secondName;
-        String firstLastName;
-        String secondLastName;
-        String typeIdentification;
-        int idTypeIdentification;
-        int identification;
+        String name, secondName, firstLastName, secondLastName,typeIdentification ;
+        int idTypeIdentification, identification, idGender;
         String gender;
-        int idGender;
         String team;
         int idTeam;
         String position;
@@ -898,7 +892,9 @@ public class OperationsController implements ActionListener, ItemListener{
     
     
     private void updatesPlayer(int idPerson, int i){
-        String secondName, secondLastName;
+        String secondName, secondLastName, typeIdentification,gender, team, position, birthdate, combination;
+        int idTypeIdentification, idGender, idTeam, idPosition;
+
         if(!viewAdminPerson.getTxtName().equals(modelAdminPerson.getPlayersInfo().get(i).getFirstName())){
             System.out.println("Si actualiza primer nombre");
             modelAdminPerson.updateFirstName(idPerson, viewAdminPerson.getTxtName());
@@ -957,21 +953,110 @@ public class OperationsController implements ActionListener, ItemListener{
             flagAdminPerson = false;
         }
         
+        
+        //TYPE IDENTIFICATION
+        idTypeIdentification = modelAdminPerson.getPlayersInfo().get(i).getIdTypeIdentification();
+        typeIdentification = "";
+        for(int j=0; j< modelRegister.getIdentificationTypes().size();j++){
+            if(idTypeIdentification == modelRegister.getIdentificationTypes().get(j).getIdTypeIdentification())
+            {
+                typeIdentification = modelRegister.getIdentificationTypes().get(j).getNameTypeIdentification();
+            }
+        }
+
+        if(!typeIdentification.equals(viewAdminPerson.getSelectedTypeIdentification())){
+            for(int j=0; j< modelRegister.getIdentificationTypes().size();j++){
+                if(viewAdminPerson.getSelectedTypeIdentification().equals(modelRegister.getIdentificationTypes().get(j).getNameTypeIdentification())){         
+                    idTypeIdentification = modelRegister.getIdentificationTypes().get(j).getIdTypeIdentification();
+                    modelAdminPerson.updateTypeIdentification(idPerson, idTypeIdentification);
+                    flagAdminPerson = false;
+                }
+            }
+        }        
+        
+        //GENDER
+        idGender = modelAdminPerson.getPlayersInfo().get(i).getIdGender();
+        gender = "";
+        for(int n=0; n< modelRegister.getGenders().size();n++){
+            if(idGender == modelRegister.getGenders().get(n).getIdGender())
+            {
+                gender = modelRegister.getGenders().get(n).getDescriptionGender();
+            }
+        }
+        
+        if(!gender.equals(viewAdminPerson.getSelectedGender())){
+            for(int j=0; j< modelRegister.getGenders().size();j++){
+                if(viewAdminPerson.getSelectedGender().equals(modelRegister.getGenders().get(j).getDescriptionGender())){         
+                    idGender = modelRegister.getGenders().get(j).getIdGender();
+                    modelAdminPerson.updateGender(idPerson, idGender);
+                    flagAdminPerson = false;
+                }
+            }
+        }  
+        
+        //TEAM
+        idTeam = modelAdminPerson.getPlayersInfo().get(i).getIdTeam();
+        team = "";
+        for(int k=0; k<modelAdminPerson.getTeams().size();k++){
+            if(idTeam == modelAdminPerson.getTeams().get(k).getIdTeam()){
+                team = modelAdminPerson.getTeams().get(k).getNameTeam();
+            }            
+        }
+            
+        System.out.println("Seleccionado:" +viewAdminPerson.getSelectedTeam());
+        if(!team.equals(viewAdminPerson.getSelectedTeam())){
+            for(int f=0; f< modelAdminPerson.getTeams().size();f++){
+                if(viewAdminPerson.getSelectedTeam().equals(modelAdminPerson.getTeams().get(f).getNameTeam())){         
+                    idTeam = modelAdminPerson.getTeams().get(f).getIdTeam();
+                    modelAdminPerson.updateTeam(idPerson, idTeam);
+                    flagAdminPerson = false;
+                }
+            }
+        }      
+        
+        //POSITION
+        idPosition = modelAdminPerson.getPlayersInfo().get(i).getIdPersonPosition();
+        position = "";
+        for(int k=0; k<modelAdminPerson.getPositions().size();k++){
+            if(idPosition == modelAdminPerson.getPositions().get(k).getIdPersonPosition()){
+                position = modelAdminPerson.getPositions().get(k).getDescriptionPersonPosition();
+            }            
+        }
+            
+        System.out.println("Seleccionado:" +viewAdminPerson.getSelectedPosition());
+        if(!position.equals(viewAdminPerson.getSelectedPosition())){
+            for(int f=0; f< modelAdminPerson.getPositions().size();f++){
+                if(viewAdminPerson.getSelectedPosition().equals(modelAdminPerson.getPositions().get(f).getDescriptionPersonPosition())){         
+                    idPosition = modelAdminPerson.getPositions().get(f).getIdPersonPosition();
+                    modelAdminPerson.updatePosition(idPerson, idPosition);
+                    flagAdminPerson = false;
+                }
+            }
+        }
+        
+
+
+        
+        
+        
+        
         if(viewAdminPerson.getSpnNumTShirt() != modelAdminPerson.getPlayersInfo().get(i).getNumTShirt()){
             modelAdminPerson.updateNumTShirt(idPerson, viewAdminPerson.getSpnNumTShirt());
             flagAdminPerson = false;
         }
-        
-        
-        if(!viewAdminPerson.getTxtDateOfBirth().equals(modelAdminPerson.getPlayersInfo().get(i).getBirthdate())){
+
+        //BIRTHDATE
+        birthdate = modelAdminPerson.getPlayersInfo().get(i).getBirthdate();
+        combination = birthdate.substring(8, 10)+"-"+birthdate.substring(5, 7)+"-"+birthdate.substring(0,4);
+        if(!viewAdminPerson.getTxtDateOfBirth().equals(combination)){
             modelAdminPerson.updateBirthDate(idPerson, viewAdminPerson.getTxtDateOfBirth());
             flagAdminPerson = false;
         }
         
         
     
-    }
     
+}//END UPDATEPLAYER   
     
     //SHOW MORE VIEWED AND LAST NEWS 
     

@@ -107,12 +107,18 @@ END updateMail;
 CREATE OR REPLACE PROCEDURE updateTeam(pidPerson IN NUMBER, pidTeam IN NUMBER, codResult OUT NUMBER) AS
 vnIdPerson NUMBER(10);
 BEGIN
-    SELECT idPerson
-    INTO vnIdPerson
-    FROM Player 
-    WHERE idPerson = pidPerson;
-    
-    IF(vnIdPerson != NULL)
+    BEGIN
+        SELECT idPerson
+        INTO vnIdPerson
+        FROM Player 
+        WHERE idPerson = pidPerson;
+    EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        vnIdPerson:=-1; 
+    END;
+
+    IF(vnIdPerson != -1)
     THEN
         UPDATE Player
         SET idTeam = pidTeam
@@ -120,7 +126,7 @@ BEGIN
     ELSE
         UPDATE TeamWorker
         SET idTeam = pidTeam
-        WHERE idPerson = vnIdPerson;
+        WHERE idPerson = pidPerson;
     END IF;
     
     codResult:= 0;

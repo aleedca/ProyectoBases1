@@ -183,7 +183,7 @@ public class DA_Person {
     
     //----------------- EDIT ADMINPERSON --------------------------------------
    
-    public static void updateFirstName(int idPerson, String firstName) throws SQLException
+    public static int updateFirstName(int idPerson, String firstName) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -197,11 +197,11 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        System.out.println("UpdateFirstName: "+result);
+        return result;
     }
     
    
-    public static void updateSecondName(int idPerson, String secondName) throws SQLException
+    public static int updateSecondName(int idPerson, String secondName) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -215,10 +215,10 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        System.out.println("UpdateSecondtName: "+result);
+        return result;
     }
     
-    public static void updateFirstLastName(int idPerson, String firstLastName) throws SQLException
+    public static int updateFirstLastName(int idPerson, String firstLastName) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -232,10 +232,10 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        System.out.println("UpdateFirsLasttName: "+result);
+        return result;
     }
     
-    public static void updateSecondLastName(int idPerson, String secondLastName) throws SQLException
+    public static int updateSecondLastName(int idPerson, String secondLastName) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -249,11 +249,11 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        System.out.println("UpdateSecondLasttName: "+result);
+        return result;
     }
     
     
-    public static int updateTypeIdentification(int idPerson, int typeIdentification) throws SQLException
+    public static void updateTypeIdentification(int idPerson, int typeIdentification) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -267,11 +267,11 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        System.out.println("UpdateTypeIdentiification: "+result);
     }
     
     
-    public static void updateIdentification(int idPerson, int identification) throws SQLException
+    public static int updateIdentification(int idPerson, int identification) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -285,10 +285,10 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        System.out.println("UpdateIdentification: "+result); 
+        return result; 
     }
     
-    public static void updateMail(int idPerson, String mail) throws SQLException
+    public static int updateMail(int idPerson, String mail) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -302,7 +302,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        System.out.println("UpdateMail: "+result); 
+        return result;
     }
     
     
@@ -320,7 +320,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;
     }
     
     
@@ -338,11 +338,11 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;
     }
     
     
-    public static void updatePhone(int idPerson, int phoneNumber) throws SQLException
+    public static int updatePhone(int idPerson, int phoneNumber) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -356,7 +356,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        System.out.println("UpdatePhone: "+result); 
+        return result;
     }
     
     
@@ -374,10 +374,10 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        return result;  
+        return result;
     }
     
-    public static void updateAddress(int idPerson, String address) throws SQLException
+    public static int updateAddress(int idPerson, String address) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -391,7 +391,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        System.out.println("UpdateAddress: "+result); 
+        return result;
     }
     
     
@@ -484,7 +484,7 @@ public class DA_Person {
         return result;  
     }
     
-    public static void updateBirthDate(int idPerson, String birthdate) throws SQLException
+    public static int updateBirthDate(int idPerson, String birthdate) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -498,10 +498,10 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        System.out.println("UpdateBirthdate: "+result);
+        return result;
     }
     
-    public static void updateTShirtNum(int idPerson, int tShirtNum) throws SQLException
+    public static int updateTShirtNum(int idPerson, int tShirtNum) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
 
@@ -515,7 +515,7 @@ public class DA_Person {
         sql.execute();
 
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        System.out.println("UpdateNumTShirt: "+result);   
+        return result;   
     }
     
     //-------------------------------------------------------------------------------------------
