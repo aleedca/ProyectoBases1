@@ -525,7 +525,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     public boolean validateTxtPhone(){
         String chain =  txtTelef.getText();
         if("    -    ".equals(chain)){
-            System.out.println("retorna vacio");
+            //System.out.println("retorna vacio");
             return true;
         }
             
