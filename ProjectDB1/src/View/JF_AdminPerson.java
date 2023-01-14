@@ -42,7 +42,6 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         lblPersona = new javax.swing.JLabel();
         rbtnEdit = new javax.swing.JRadioButton();
         rbtnAdd = new javax.swing.JRadioButton();
-        rbtnDelete = new javax.swing.JRadioButton();
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtSegNombre = new javax.swing.JTextField();
@@ -79,9 +78,6 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         lblDireccion = new javax.swing.JLabel();
         txtIden = new javax.swing.JFormattedTextField();
         txtTelef = new javax.swing.JFormattedTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblPersonas = new javax.swing.JTable();
-        txtareaEliminar = new javax.swing.JTextArea();
         txtDireccion = new javax.swing.JTextArea();
         cmbTipoPosicion = new javax.swing.JComboBox<>();
         lblTelef = new javax.swing.JLabel();
@@ -144,7 +140,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
             }
         });
         pnlAdminPersonas.add(rbtnEdit);
-        rbtnEdit.setBounds(770, 110, 100, 37);
+        rbtnEdit.setBounds(760, 100, 100, 37);
 
         btnGroupAdmiPersonas.add(rbtnAdd);
         rbtnAdd.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
@@ -156,20 +152,8 @@ public class JF_AdminPerson extends javax.swing.JFrame {
             }
         });
         pnlAdminPersonas.add(rbtnAdd);
-        rbtnAdd.setBounds(610, 110, 150, 37);
+        rbtnAdd.setBounds(630, 100, 150, 37);
         rbtnAdd.setSelected(true);
-
-        btnGroupAdmiPersonas.add(rbtnDelete);
-        rbtnDelete.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        rbtnDelete.setForeground(new java.awt.Color(255, 255, 255));
-        rbtnDelete.setText("Eliminar");
-        rbtnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnDeleteActionPerformed(evt);
-            }
-        });
-        pnlAdminPersonas.add(rbtnDelete);
-        rbtnDelete.setBounds(890, 110, 150, 37);
 
         lblNombre.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -402,37 +386,6 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         pnlAdminPersonas.add(txtTelef);
         txtTelef.setBounds(770, 240, 180, 22);
 
-        tblPersonas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tblPersonas);
-        jScrollPane1.setVisible(false);
-
-        pnlAdminPersonas.add(jScrollPane1);
-        jScrollPane1.setBounds(80, 180, 580, 480);
-
-        txtareaEliminar.setBackground(new java.awt.Color(86, 4, 44));
-        txtareaEliminar.setColumns(20);
-        txtareaEliminar.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        txtareaEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        txtareaEliminar.setRows(3);
-        txtareaEliminar.setText("Seleccione una persona de la tabla de \nla izquierda para eliminarla. Presione  \n     aceptar para concluir la acción.");
-        txtareaEliminar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(82, 4, 44)));
-        txtareaEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        txtareaEliminar.setDisabledTextColor(new java.awt.Color(82, 4, 44));
-        pnlAdminPersonas.add(txtareaEliminar);
-        txtareaEliminar.setBounds(740, 310, 510, 150);
-        txtareaEliminar.setEditable(false);
-        txtareaEliminar.setVisible(false);
-
         txtDireccion.setColumns(20);
         txtDireccion.setLineWrap(true);
         txtDireccion.setRows(4);
@@ -526,9 +479,6 @@ public class JF_AdminPerson extends javax.swing.JFrame {
        lblAvatar.setVisible(flag);
        lblSelecFoto.setVisible(flag);
        btnLoadPhoto.setVisible(flag);
-       
-       jScrollPane1.setVisible(!flag); //table
-       txtareaEliminar.setVisible(!flag);
    }
    
    public void deshabilitarOpciones(boolean flag){
@@ -556,10 +506,6 @@ public class JF_AdminPerson extends javax.swing.JFrame {
 
     public JRadioButton getRbtnAdd() {
         return rbtnAdd;
-    }
-
-    public JRadioButton getRbtnDelete() {
-        return rbtnDelete;
     }
 
     public JRadioButton getRbtnEdit() {
@@ -980,10 +926,6 @@ public class JF_AdminPerson extends javax.swing.JFrame {
 //       }
     }//GEN-LAST:event_cmbPersonaActionPerformed
 
-    private void rbtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnDeleteActionPerformed
-       esconderMostrarTodo(false);
-    }//GEN-LAST:event_rbtnDeleteActionPerformed
-
     private void cmbTipoPosicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoPosicionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbTipoPosicionActionPerformed
@@ -1003,7 +945,6 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbProvin;
     private javax.swing.JComboBox<String> cmbTipoIden;
     private javax.swing.JComboBox<String> cmbTipoPosicion;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdmiPersonas;
     private javax.swing.JLabel lblAvatar;
     private javax.swing.JLabel lblCanton;
@@ -1029,10 +970,8 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private javax.swing.JLabel lblTipoPosicion;
     private javax.swing.JPanel pnlAdminPersonas;
     private javax.swing.JRadioButton rbtnAdd;
-    private javax.swing.JRadioButton rbtnDelete;
     private javax.swing.JRadioButton rbtnEdit;
     private javax.swing.JSpinner spnNumCamisa;
-    private javax.swing.JTable tblPersonas;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JFormattedTextField txtDateOfBirth;
     private javax.swing.JTextArea txtDireccion;
@@ -1042,6 +981,5 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private javax.swing.JTextField txtSegAp;
     private javax.swing.JTextField txtSegNombre;
     private javax.swing.JFormattedTextField txtTelef;
-    private javax.swing.JTextArea txtareaEliminar;
     // End of variables declaration//GEN-END:variables
 }
