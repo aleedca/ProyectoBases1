@@ -85,13 +85,13 @@ public class model_News {
         }
     }
 
-    public void updateNews(int idNews, int idNewsStatus, int idNewsType, String title, String text, String photo){
+    public void updateNews(){
         try {
-            this.resultUpdateStatus = DA_News.updateStatus(idNews, idNewsStatus);
-            this.resultUpdateType = DA_News.updateType(idNews, idNewsType);
-            this.resultUpdateStatus = DA_News.updateTitle(idNews, title);
-            this.resultUpdateStatus = DA_News.updateText(idNews, text);
-            this.resultUpdateStatus = DA_News.updatePhoto(idNews, photo);
+            this.resultUpdateStatus = DA_News.updateStatus(this.idNews, this.idNewsStatus);
+            this.resultUpdateType = DA_News.updateType(this.idNews, this.idNewsType);
+            this.resultUpdateStatus = DA_News.updateTitle(this.idNews, this.newsTitle);
+            this.resultUpdateStatus = DA_News.updateText(this.idNews, this.newsText);
+            this.resultUpdateStatus = DA_News.updatePhoto(this.idNews, this.photo);
         } catch (SQLException ex) {
             System.out.println(ex);
         }

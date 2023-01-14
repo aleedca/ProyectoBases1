@@ -918,10 +918,14 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
         }
     }
+    
     private void adminNewsValidationsUpdate(String choice1, String choice2){
-      if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
-            //modelNews.updateNews();
+        if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
+            System.out.println("antes");
+            modelNews.updateNews();
+            
             adminNewsController.fillAdminNews();
+            System.out.println("despues");
             adminNewsController.fillNewsType();
             adminNewsController.fillStatus();
 
@@ -1572,7 +1576,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
     //------------- UPDATES ADMIN NEWS ---------------------------   
     
-    private void updateNews(int idNews, int idNewsStatus, int idNewsType, String title, String text, String photo){
+    private void updateNews(){
         //actualizar news correctamente
     }
     
@@ -2107,12 +2111,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             if(adminNewsController.getViewAdminNews().getRbtnEditar().isSelected()){
                 adminNewsValidationsUpdate(choice1, choice2);
             }
-            //adminNewsController.getViewAdminNews().getTblNoticias().clearSelection();
             flagEditNews = false;
         }
         
         if(e.getSource() == adminNewsController.getViewAdminNews().getRbtnAgregar()){
-            System.out.println("chao");
             flagEditNews = false;
         }
 
@@ -2372,9 +2374,14 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if(e.getSource() == adminNewsController.getViewAdminNews().getTblNoticias().getSelectionModel() && flagEditNews){
-            int index = (int) adminNewsController.getViewAdminNews().getTblNoticias().getValueAt(adminNewsController.getViewAdminNews().getTblNoticias().getSelectedRow(),0);
-            adminNewsController.fillUpdateAdminNews(index);
-            System.out.println("hi");
+            if(!adminNewsController.getViewAdminNews().getRbtnAgregar().isSelected()){
+                int index = (int) adminNewsController.getViewAdminNews().getTblNoticias().getValueAt(adminNewsController.getViewAdminNews().getTblNoticias().getSelectedRow(),0);
+                adminNewsController.fillUpdateAdminNews(index);
+            }
+        }
+        else{
+            //adminNewsController.getViewAdminNews().clearAll();
+            modelNews.setIdNews(0);
         }
     }
   
