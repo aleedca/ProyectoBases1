@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE encryptionPassword (text IN VARCHAR2, encrypted text OUT VARCHAR2) AS  
+CREATE OR REPLACE PROCEDURE encryptionPassword (text IN VARCHAR2, encrypted_text OUT VARCHAR2) AS  
 raw_set RAW(100);  
 raw_password RAW(100);  
 encryption_result RAW(100);  

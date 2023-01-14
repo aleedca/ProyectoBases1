@@ -33,6 +33,12 @@ public class model_News {
     private String photo;
     private Date publicationDate;
     
+    private int resultUpdateStatus= 0;
+    private int resultUpdateType = 0;
+    private int resultUpdateTitle = 0;
+    private int resultUpdateText= 0;
+    private int resultUpdatePhoto = 0;
+    
     private String newsStr;
     private int idNews;
     private ArrayList<News> newsArr;
@@ -79,12 +85,16 @@ public class model_News {
         }
     }
 
-    public void updateNews(){
-    
-    }
-    
-    public void deleteNews(){
-    
+    public void updateNews(int idNews, int idNewsStatus, int idNewsType, String title, String text, String photo){
+        try {
+            this.resultUpdateStatus = DA_News.updateStatus(idNews, idNewsStatus);
+            this.resultUpdateType = DA_News.updateType(idNews, idNewsType);
+            this.resultUpdateStatus = DA_News.updateTitle(idNews, title);
+            this.resultUpdateStatus = DA_News.updateText(idNews, text);
+            this.resultUpdateStatus = DA_News.updatePhoto(idNews, photo);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
     
     public boolean selectPhoto(JF_AdminNews adminNews){
@@ -109,6 +119,46 @@ public class model_News {
     
     // GETTERS AND SETTERS
 
+    public int getResultUpdateStatus() {
+        return resultUpdateStatus;
+    }
+
+    public void setResultUpdateStatus(int resultUpdateStatus) {
+        this.resultUpdateStatus = resultUpdateStatus;
+    }
+
+    public int getResultUpdateType() {
+        return resultUpdateType;
+    }
+
+    public void setResultUpdateType(int resultUpdateType) {
+        this.resultUpdateType = resultUpdateType;
+    }
+
+    public int getResultUpdateTitle() {
+        return resultUpdateTitle;
+    }
+
+    public void setResultUpdateTitle(int resultUpdateTitle) {
+        this.resultUpdateTitle = resultUpdateTitle;
+    }
+
+    public int getResultUpdateText() {
+        return resultUpdateText;
+    }
+
+    public void setResultUpdateText(int resultUpdateText) {
+        this.resultUpdateText = resultUpdateText;
+    }
+
+    public int getResultUpdatePhoto() {
+        return resultUpdatePhoto;
+    }
+
+    public void setResultUpdatePhoto(int resultUpdatePhoto) {
+        this.resultUpdatePhoto = resultUpdatePhoto;
+    }
+    
     public Date getPublicationDate() {
         return publicationDate;
     }

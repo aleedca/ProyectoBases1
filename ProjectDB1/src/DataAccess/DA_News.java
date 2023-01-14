@@ -8,6 +8,7 @@ import Objects.MostViewedNews;
 import Objects.News;
 import Objects.NewsStatus;
 import Objects.NewsType;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import java.sql.Connection;
@@ -53,12 +54,12 @@ public class DA_News {
     public static ArrayList<News> getInfoNews(int idNews) throws SQLException {
         Connection conn = sysConnection.getConexion();
         
-        CallableStatement sql = conn.prepareCall("{call getNews(?)}");
+        CallableStatement sql = conn.prepareCall("{call getInfoNews(?,?)}");
         sql.setInt(1, idNews);
         sql.registerOutParameter(2, OracleTypes.REF_CURSOR);
         sql.execute();
         
-        ResultSet rs = (ResultSet) sql.getObject(1);
+        ResultSet rs = (ResultSet) sql.getObject(2);
         ArrayList<News> newsArr = new ArrayList<>();
         while(rs.next()){
             News news = new News();
@@ -136,6 +137,86 @@ public class DA_News {
         sql.execute();
     }
     
+    public static int updateStatus(int idNews, int idNewsStatus) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+
+        CallableStatement sql = conn.prepareCall("{ call updateStatus(?,?,?)}");
+        //Input parameters
+        sql.setInt(1, idNews);
+        sql.setInt(2, idNewsStatus);
+
+        //Output parameter
+        sql.registerOutParameter(3, OracleTypes.NUMBER);
+        sql.execute();
+
+        int result = ((BigDecimal) sql.getObject(3)).intValue();
+        return result;
+    }
+    
+    public static int updateType(int idNews, int idNewsType) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+
+        CallableStatement sql = conn.prepareCall("{ call updateType(?,?,?)}");
+        //Input parameters
+        sql.setInt(1, idNews);
+        sql.setInt(2, idNewsType);
+
+        //Output parameter
+        sql.registerOutParameter(3, OracleTypes.NUMBER);
+        sql.execute();
+
+        int result = ((BigDecimal) sql.getObject(3)).intValue();
+        return result;
+    }
+    
+    public static int updateTitle(int idNews, String title) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+
+        CallableStatement sql = conn.prepareCall("{ call updateTitle(?,?,?)}");
+        //Input parameters
+        sql.setInt(1, idNews);
+        sql.setString(2, title);
+
+        //Output parameter
+        sql.registerOutParameter(3, OracleTypes.NUMBER);
+        sql.execute();
+
+        int result = ((BigDecimal) sql.getObject(3)).intValue();
+        return result;
+    }
+    
+    public static int updateText(int idNews, String text) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+
+        CallableStatement sql = conn.prepareCall("{ call updateText(?,?,?)}");
+        //Input parameters
+        sql.setInt(1, idNews);
+        sql.setString(2, text);
+
+        //Output parameter
+        sql.registerOutParameter(3, OracleTypes.NUMBER);
+        sql.execute();
+
+        int result = ((BigDecimal) sql.getObject(3)).intValue();
+        return result;
+    }
+    
+    public static int updatePhoto(int idNews, String photo) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+
+        CallableStatement sql = conn.prepareCall("{ call updatePhoto(?,?,?)}");
+        //Input parameters
+        sql.setInt(1, idNews);
+        sql.setString(2, photo);
+
+        //Output parameter
+        sql.registerOutParameter(3, OracleTypes.NUMBER);
+        sql.execute();
+
+        int result = ((BigDecimal) sql.getObject(3)).intValue();
+        return result;
+    }
+    
     public static ArrayList<MostViewedNews> getMostViewedNews() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -154,10 +235,6 @@ public class DA_News {
             MostViewedNews.add(news);
         }
         
-        
-        
-       
-
         return MostViewedNews;
     }
     
