@@ -48,6 +48,11 @@ public class JF_AdminOptions extends javax.swing.JFrame {
     public JButton getBtnParametros() {
         return btnParametros;
     }
+
+    public JButton getBtnPartidos() {
+        return btnPartidos;
+    }
+    
     
     
 
@@ -230,7 +235,7 @@ public class JF_AdminOptions extends javax.swing.JFrame {
     }//GEN-LAST:event_btnParametrosActionPerformed
 
     private void btnPartidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPartidosActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnPartidosActionPerformed
 
     private void btnAdmiCatalogosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmiCatalogosActionPerformed

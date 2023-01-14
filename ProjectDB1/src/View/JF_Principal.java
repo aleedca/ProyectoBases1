@@ -9,6 +9,10 @@ import Controller.RequestController;
 import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.RowSorter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -25,6 +29,11 @@ public class JF_Principal extends javax.swing.JFrame {
     
     public void showMostViewedNews() throws SQLException{
         tblMostViewedNews.setModel(controller.showMostViewedNews());
+        
+        /*DefaultTableModel mostViewedNews = (DefaultTableModel) this.tblMostViewedNews.getModel();
+        RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(mostViewedNews);
+        tblMostViewedNews.setRowSorter(sorter);
+        tblMostViewedNews.getRowSorter().toggleSortOrder(1);*/
     }
     
 
@@ -278,16 +287,27 @@ public class JF_Principal extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         tblMostViewedNews.setRowHeight(30);
         tblMostViewedNews.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(tblMostViewedNews);
+        if (tblMostViewedNews.getColumnModel().getColumnCount() > 0) {
+            tblMostViewedNews.getColumnModel().getColumn(0).setResizable(false);
+            tblMostViewedNews.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
