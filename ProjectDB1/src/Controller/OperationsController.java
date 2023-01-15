@@ -916,7 +916,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             modelNews.updateNews();
             adminNewsController.fillAdminNews();
             adminNewsRestore();
-            JOptionPane.showMessageDialog(null, "Noticia editada con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            updateNewsSuccessful();
         }
         else{
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
@@ -1568,8 +1568,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
     //------------- UPDATES ADMIN NEWS ---------------------------   
     
-    private void updateNews(){
+    private boolean updateNewsSuccessful(){
         //actualizar news correctamente
+        if(modelNews.getResultUpdateStatus() == 0 && modelNews.getResultUpdateType() == 0 && modelNews.getResultUpdateTitle() == 0 && modelNews.getResultUpdateText() == 0 && modelNews.getResultUpdatePhoto() == 0){
+            return true;
+        }
+        return false;
     }
     
     //----------------SHOW MORE VIEWED AND LAST NEWS ----------------------------------
