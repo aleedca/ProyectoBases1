@@ -302,18 +302,17 @@ public class JF_Principal extends javax.swing.JFrame {
             }
         });
         tblMostViewedNews.setRowHeight(30);
+        tblMostViewedNews.setShowGrid(false);
+        tblMostViewedNews.setShowHorizontalLines(false);
+        tblMostViewedNews.setShowVerticalLines(false);
         tblMostViewedNews.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(tblMostViewedNews);
-        if (tblMostViewedNews.getColumnModel().getColumnCount() > 0) {
-            tblMostViewedNews.getColumnModel().getColumn(0).setResizable(false);
-            tblMostViewedNews.getColumnModel().getColumn(1).setResizable(false);
-        }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
                 .addContainerGap())
@@ -322,8 +321,8 @@ public class JF_Principal extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         pnlBackground.add(jPanel4);

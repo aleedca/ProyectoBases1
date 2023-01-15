@@ -59,7 +59,6 @@ public class JF_AdminMatch extends javax.swing.JFrame {
         lblPlayersTeam1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
-        btnSelectPlayer = new javax.swing.JButton();
         lblPlayer = new javax.swing.JLabel();
         lblPlayerInfo = new javax.swing.JLabel();
         txtYellowCards = new javax.swing.JFormattedTextField();
@@ -180,10 +179,6 @@ public class JF_AdminMatch extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jList2);
 
-        btnSelectPlayer.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        btnSelectPlayer.setForeground(new java.awt.Color(0, 0, 0));
-        btnSelectPlayer.setText("Seleccionar");
-
         lblPlayer.setBackground(new java.awt.Color(255, 255, 255));
         lblPlayer.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblPlayer.setForeground(new java.awt.Color(255, 255, 255));
@@ -303,10 +298,6 @@ public class JF_AdminMatch extends javax.swing.JFrame {
                                                 .addComponent(btnSaveInfo)))))))
                         .addGap(0, 30, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(btnSelectPlayer)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,9 +345,7 @@ public class JF_AdminMatch extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addComponent(btnSelectPlayer))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -383,7 +372,7 @@ public class JF_AdminMatch extends javax.swing.JFrame {
                             .addComponent(lblGoals)
                             .addComponent(txtGoals, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSaveInfo))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -420,7 +409,6 @@ public class JF_AdminMatch extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSaveInfo;
-    private javax.swing.JButton btnSelectPlayer;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JList<String> jList1;
