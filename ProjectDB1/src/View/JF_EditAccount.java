@@ -145,6 +145,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1285, 752));
 
         panelMyAccount.setBackground(new java.awt.Color(86, 4, 44));
+        panelMyAccount.setPreferredSize(new java.awt.Dimension(1285, 752));
         panelMyAccount.setLayout(null);
 
         lblLogoMyAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
@@ -361,11 +362,11 @@ public class JF_EditAccount extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMyAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 1285, Short.MAX_VALUE)
+            .addComponent(panelMyAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMyAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)
+            .addComponent(panelMyAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
