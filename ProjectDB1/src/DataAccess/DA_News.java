@@ -4,6 +4,7 @@
  */
 package DataAccess;
 
+import Objects.LastNews;
 import Objects.MostViewedNews;
 import Objects.News;
 import Objects.NewsStatus;
@@ -24,6 +25,8 @@ import oracle.jdbc.OracleTypes;
  * @author Alexia
  */
 public class DA_News {
+    
+    //-----------------------GET FUNCTIONS-----------------------
     public static ArrayList<News> getNews() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -118,6 +121,50 @@ public class DA_News {
         return arrayNewsType;
     }
     
+    public static ArrayList<MostViewedNews> getMostViewedNews() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getMostViewedNews(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<MostViewedNews> MostViewedNews = new ArrayList<>();
+        while(rs.next()){
+            MostViewedNews news = new MostViewedNews();
+            
+            news.setTitle(rs.getString("title"));
+            news.setViews(rs.getInt("viewsNews"));
+           
+            MostViewedNews.add(news);
+        }
+        
+        return MostViewedNews;
+    }
+    
+    public static ArrayList<LastNews> getLastNews() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getLastNews(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<LastNews> LastNews = new ArrayList<>();
+        while(rs.next()){
+            LastNews news = new LastNews();
+            
+            news.setTitle(rs.getString("title"));
+            news.setPublicationDate(rs.getString("publicationDate"));
+           
+            LastNews.add(news);
+        }
+        
+        return LastNews;
+    }
+    
+    //-------------INSERTS----------------------
+    
     public static void insertNews(int idNewsStatus, int idNewsType, String title, Date publicationDate, String link, 
         String photo, String text) throws SQLException {
         
@@ -136,6 +183,8 @@ public class DA_News {
 
         sql.execute();
     }
+    
+    //-------------------UPDATES----------------
     
     public static int updateStatus(int idNews, int idNewsStatus) throws SQLException{
         Connection conn = sysConnection.getConexion();
@@ -216,28 +265,5 @@ public class DA_News {
         int result = ((BigDecimal) sql.getObject(3)).intValue();
         return result;
     }
-    
-    public static ArrayList<MostViewedNews> getMostViewedNews() throws SQLException {
-        Connection conn = sysConnection.getConexion();
-        
-        CallableStatement sql = conn.prepareCall("{call getMostViewedNews(?)}");
-        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
-        sql.execute();
-        
-        ResultSet rs = (ResultSet) sql.getObject(1);
-        ArrayList<MostViewedNews> MostViewedNews = new ArrayList<>();
-        while(rs.next()){
-            MostViewedNews news = new MostViewedNews();
-            
-            news.setTitle(rs.getString("title"));
-            news.setViews(rs.getInt("viewsNews"));
-           
-            MostViewedNews.add(news);
-        }
-        
-        return MostViewedNews;
-    }
-    
-    
-    
+   
 }

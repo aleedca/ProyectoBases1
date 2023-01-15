@@ -60,10 +60,8 @@
                           <Component id="lblTotal" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jScrollBar1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="499" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnClose" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -92,10 +90,6 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jScrollBar1" min="-2" pref="421" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -173,8 +167,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JScrollBar" name="jScrollBar1">
-        </Component>
         <Component class="javax.swing.JButton" name="btnClose">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

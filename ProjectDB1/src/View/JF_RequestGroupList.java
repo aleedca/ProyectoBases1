@@ -36,7 +36,6 @@ public class JF_RequestGroupList extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblGroupList = new javax.swing.JTable();
-        jScrollBar1 = new javax.swing.JScrollBar();
         btnClose = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
@@ -113,10 +112,8 @@ public class JF_RequestGroupList extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(lblTotal))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnClose)))
                 .addGap(21, 21, 21))
         );
@@ -138,10 +135,7 @@ public class JF_RequestGroupList extends javax.swing.JFrame {
                         .addGap(17, 17, 17))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(28, 28, 28))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -201,7 +195,6 @@ public class JF_RequestGroupList extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblGroupListTitle;
