@@ -58,13 +58,30 @@ public class model_News {
     public void loadNewsArr(){
         try {
             this.newsArr = DA_News.getNews();
+            
+        } catch (SQLException ex) {
+           System.out.println(ex);
+        }
+    }
+    
+    public void loadNewsStatusArr(){
+        try {
             this.newsStatusArr = DA_News.getNewsStatus();
+            
+        } catch (SQLException ex) {
+           System.out.println(ex);
+        }
+    }
+    
+    public void loadNewsTypeArr(){
+        try {
             this.newsTypeArr = DA_News.getNewsType();
             
         } catch (SQLException ex) {
            System.out.println(ex);
         }
     }
+   
     
     public boolean validateEmptyFields(){
         if(this.newsTitle.isEmpty() || this.newsText.isEmpty()){return false;}

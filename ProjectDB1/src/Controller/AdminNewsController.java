@@ -36,7 +36,7 @@ public final class AdminNewsController {
         //Model News
         model_News validateNews = new model_News();
         this.modelNews = validateNews;
-        
+
         fillAdminNews(); 
         fillStatus();
         fillNewsType();
@@ -49,7 +49,7 @@ public final class AdminNewsController {
     }
     
     public void fillStatus(){
-        modelNews.loadNewsArr();
+        modelNews.loadNewsStatusArr();
         viewAdminNews.getCmbEstado().removeAllItems();
         
         viewAdminNews.getCmbEstado().addItem("Seleccione Estado");
@@ -59,7 +59,7 @@ public final class AdminNewsController {
     }
     
     public void fillNewsType(){
-        modelNews.loadNewsArr();
+        modelNews.loadNewsTypeArr();
         viewAdminNews.getCmbTipo().removeAllItems();
 
         viewAdminNews.getCmbTipo().addItem("Seleccione Tipo");        
@@ -71,9 +71,13 @@ public final class AdminNewsController {
     
     public void fillAdminNews(){
         modelNews.loadNewsArr();
+        
         ArrayList<News> newsArr = modelNews.getNewsArr();
+        
         DefaultTableModel modelTable = (DefaultTableModel) viewAdminNews.getTblNoticias().getModel();
-        modelTable.setRowCount(0); 
+        modelTable.setRowCount(0);
+        
+        System.out.println("supuestamente elimina los rows para agregarlos nuevamente");
         
         for(int i = 0; i < newsArr.size(); i++){
             Vector row = new Vector();
@@ -93,14 +97,13 @@ public final class AdminNewsController {
         
         try {
             newsArr = DA_News.getInfoNews(index);
-            modelNews.setIdNews(index);
-            for(int i = 0; i < newsArr.size(); i++){
-                viewAdminNews.getCmbEstado().setSelectedIndex(newsArr.get(i).getIdNewsStatus());
-                viewAdminNews.getCmbTipo().setSelectedIndex(newsArr.get(i).getIdNewsType());
-                viewAdminNews.getTxtTitulo().setText(newsArr.get(i).getTitle());
-                viewAdminNews.getTxtTexto().setText(newsArr.get(i).getText());
+            //modelNews.setIdNews(index);
+                viewAdminNews.getCmbEstado().setSelectedIndex(newsArr.get(0).getIdNewsStatus());
+                viewAdminNews.getCmbTipo().setSelectedIndex(newsArr.get(0).getIdNewsType());
+                viewAdminNews.getTxtTitulo().setText(newsArr.get(0).getTitle());
+                viewAdminNews.getTxtTexto().setText(newsArr.get(0).getText());
                 //settear la foto
-            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(AdminNewsController.class.getName()).log(Level.SEVERE, null, ex);
         }
