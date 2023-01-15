@@ -345,32 +345,16 @@ public class JF_AdminNews extends javax.swing.JFrame {
     }
     
     
-
-    public void esconderMostrarTodo(boolean flag){
-        lblEstado.setVisible(flag);
-        cmbTipo.setVisible(flag);
-        lblTipo.setVisible(flag);
-        cmbEstado.setVisible(flag);
-        lblTitulo.setVisible(flag);
-        txtTitulo.setVisible(flag);
-        lblTexto.setVisible(flag);
-        txtTexto.setVisible(flag);
-        lblFoto.setVisible(flag);
-        lblImagen.setVisible(flag);
-        btnCargarImagen.setVisible(flag);
-    }
-    
-    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void rbtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnAgregarActionPerformed
-        esconderMostrarTodo(true);
+        
     }//GEN-LAST:event_rbtnAgregarActionPerformed
 
     private void rbtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEditarActionPerformed
-        esconderMostrarTodo(true);
+        
     }//GEN-LAST:event_rbtnEditarActionPerformed
 
 

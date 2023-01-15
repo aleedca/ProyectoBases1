@@ -903,16 +903,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
       if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
             modelNews.insertNews();
             adminNewsController.fillAdminNews();
-            adminNewsController.fillNewsType();
-            adminNewsController.fillStatus();
-
-            adminNewsController.getViewAdminNews().clearAll();
-            modelNews.setPhoto("src/Images/avatar.png");
-            adminNewsController.getViewAdminNews().setLocationRelativeTo(adminNewsController.getViewAdminNews());
-            modelNews.setImageLabel(adminNewsController.getViewAdminNews().getLblImagen());
-            adminNewsController.getViewAdminNews().repaint();
-
-             JOptionPane.showMessageDialog(null, "Noticia creada con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            adminNewsRestore();
+            JOptionPane.showMessageDialog(null, "Noticia creada con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
@@ -921,25 +913,25 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
     private void adminNewsValidationsUpdate(String choice1, String choice2){
         if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
-            System.out.println("antes");
             modelNews.updateNews();
-            
             adminNewsController.fillAdminNews();
-            System.out.println("despues");
-            adminNewsController.fillNewsType();
-            adminNewsController.fillStatus();
-
-            adminNewsController.getViewAdminNews().clearAll();
-            modelNews.setPhoto("src/Images/avatar.png");
-            adminNewsController.getViewAdminNews().setLocationRelativeTo(adminNewsController.getViewAdminNews());
-            modelNews.setImageLabel(adminNewsController.getViewAdminNews().getLblImagen());
-            adminNewsController.getViewAdminNews().repaint();
-
-             JOptionPane.showMessageDialog(null, "Noticia editada con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            adminNewsRestore();
+            updateNewsSuccessful();
         }
         else{
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
         }
+    }
+    
+    private void adminNewsRestore(){
+        adminNewsController.fillNewsType();
+        adminNewsController.fillStatus();
+
+        adminNewsController.getViewAdminNews().clearAll();
+        modelNews.setPhoto("src/Images/avatar.png");
+        adminNewsController.getViewAdminNews().setLocationRelativeTo(adminNewsController.getViewAdminNews());
+        modelNews.setImageLabel(adminNewsController.getViewAdminNews().getLblImagen());
+        adminNewsController.getViewAdminNews().repaint();
     }
     
     //------------ VALIDATIONS AND CREATE ADMIN PERSON ---------------------------
@@ -1576,8 +1568,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
     //------------- UPDATES ADMIN NEWS ---------------------------   
     
-    private void updateNews(){
+    private boolean updateNewsSuccessful(){
         //actualizar news correctamente
+        if(modelNews.getResultUpdateStatus() == 0 && modelNews.getResultUpdateType() == 0 && modelNews.getResultUpdateTitle() == 0 && modelNews.getResultUpdateText() == 0 && modelNews.getResultUpdatePhoto() == 0){
+            return true;
+        }
+        return false;
     }
     
     //----------------SHOW MORE VIEWED AND LAST NEWS ----------------------------------
@@ -2112,9 +2108,11 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 adminNewsValidationsUpdate(choice1, choice2);
             }
             flagEditNews = false;
+            adminNewsController.getViewAdminNews().getRbtnAgregar().setSelected(true);
         }
         
         if(e.getSource() == adminNewsController.getViewAdminNews().getRbtnAgregar()){
+            adminNewsRestore();
             flagEditNews = false;
         }
 
@@ -2374,14 +2372,16 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if(e.getSource() == adminNewsController.getViewAdminNews().getTblNoticias().getSelectionModel() && flagEditNews){
-            if(!adminNewsController.getViewAdminNews().getRbtnAgregar().isSelected()){
+            if(adminNewsController.getViewAdminNews().getTblNoticias().getRowCount() > 0){
+                System.out.println("antes");
                 int index = (int) adminNewsController.getViewAdminNews().getTblNoticias().getValueAt(adminNewsController.getViewAdminNews().getTblNoticias().getSelectedRow(),0);
+                System.out.println("despues");
                 adminNewsController.fillUpdateAdminNews(index);
             }
         }
         else{
-            //adminNewsController.getViewAdminNews().clearAll();
-            modelNews.setIdNews(0);
+            //modelNews.setIdNews(0);
+            //adminNewsController.getViewAdminNews().getTblNoticias().clearSelection();
         }
     }
   
