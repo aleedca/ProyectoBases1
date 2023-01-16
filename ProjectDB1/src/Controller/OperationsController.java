@@ -4,7 +4,6 @@
  */
 package Controller;
 
-import DataAccess.DA_News;
 import Model.model_Account;
 import Model.model_AdminCatalogs;
 import Model.model_AdminMatches;
@@ -23,7 +22,7 @@ import View.JF_MyAccount;
 import View.JF_Principal;
 import View.JF_Register;
 import View.JF_Request;
-import View.JF_ScheduleMatch;
+import View.JF_AdminScheduleMatch;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -34,7 +33,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -53,7 +51,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private final JF_MyAccount viewMyAccount;
     private final JF_EditAccount viewEditAccount;
     private final JF_AdminMatches viewAdminMatches;
-    private final JF_ScheduleMatch viewScheduleMatch;
+    private final JF_AdminScheduleMatch viewScheduleMatch;
     private final JF_AdminMatch viewAdminMatch; 
     
     
@@ -110,7 +108,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         this.viewAdminMatches = adminMatches;
         
         //View Admin Matches
-        JF_ScheduleMatch scheduleMatch = new JF_ScheduleMatch();
+        JF_AdminScheduleMatch scheduleMatch = new JF_AdminScheduleMatch();
         this.viewScheduleMatch = scheduleMatch;
         
         

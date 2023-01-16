@@ -48,8 +48,7 @@ public class DA_Catalogs {
 
         return genders;
     }
-    
-    
+      
     public static ArrayList<TypeIdentification> getTypeIdentification() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -69,7 +68,6 @@ public class DA_Catalogs {
 
         return identificationTypes;
     }
-    
     
     public static ArrayList<Country> getCountry() throws SQLException {
         Connection conn = sysConnection.getConexion();
@@ -111,8 +109,7 @@ public class DA_Catalogs {
 
         return provinces;
     }
-    
-    
+      
     public static ArrayList<Canton> getCanton() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -153,6 +150,27 @@ public class DA_Catalogs {
 
         return districts;
     }
+     
+    public static ArrayList<Position> getPosition() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getPosition(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<Position> positions = new ArrayList<>();
+        while(rs.next()){
+            Position position = new Position();
+            
+            position.setIdPersonPosition(rs.getInt("idPersonPosition"));
+            position.setDescriptionPersonPosition(rs.getString("descriptionPersonPosition"));
+            
+            positions.add(position);
+        }
+
+        return positions;
+    }
     
     public static ArrayList<Event> getEvent() throws SQLException {
         Connection conn = sysConnection.getConexion();
@@ -175,74 +193,51 @@ public class DA_Catalogs {
         return events;
     }
     
-    
-    public static ArrayList<Position> getPosition() throws SQLException {
+    public static ArrayList<Team> getTeam() throws SQLException {
         Connection conn = sysConnection.getConexion();
-        
-        CallableStatement sql = conn.prepareCall("{call getPosition(?)}");
-        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
-        sql.execute();
-        
-        ResultSet rs = (ResultSet) sql.getObject(1);
-        ArrayList<Position> positions = new ArrayList<>();
-        while(rs.next()){
-            Position position = new Position();
-            
-            position.setIdPersonPosition(rs.getInt("idPersonPosition"));
-            position.setDescriptionPersonPosition(rs.getString("descriptionPersonPosition"));
-            
-            positions.add(position);
-        }
 
-        return positions;
-    }
-    
-        public static ArrayList<Team> getTeam() throws SQLException {
-        Connection conn = sysConnection.getConexion();
-        
         CallableStatement sql = conn.prepareCall("{call getTeam(?)}");
         sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
         sql.execute();
-        
+
         ResultSet rs = (ResultSet) sql.getObject(1);
         ArrayList<Team> teams = new ArrayList<>();
         while(rs.next()){
             Team team = new Team();
-            
+
             team.setIdTeam(rs.getInt("idTeam"));
             team.setNameTeam(rs.getString("nameTeam"));
-            
+
             teams.add(team);
         }
 
         return teams;
     }
-        
-        
-        public static ArrayList<CountryTeam> getCountryTeam() throws SQLException {
+           
+    public static ArrayList<CountryTeam> getCountryTeam() throws SQLException {
         Connection conn = sysConnection.getConexion();
-        
+
         CallableStatement sql = conn.prepareCall("{call getCountryTeam(?)}");
         sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
         sql.execute();
-        
+
         ResultSet rs = (ResultSet) sql.getObject(1);
         ArrayList<CountryTeam> countryTeams = new ArrayList<>();
         while(rs.next()){
             CountryTeam countryTeam = new CountryTeam();
-            
+
             countryTeam.setIdCountryTeam(rs.getInt("idCountryTeam"));
             countryTeam.setIdContinent(rs.getInt("idContinent"));
             countryTeam.setNameCountryTeam(rs.getString("nameCountryTeam"));
             countryTeam.setTeamFlag(rs.getString("flag"));
-            
+
             countryTeams.add(countryTeam);
         }
 
         return countryTeams;
     }
         
-     public static ArrayList<Stadium> getStadium() throws SQLException {
+    public static ArrayList<Stadium> getStadium() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
         CallableStatement sql = conn.prepareCall("{call getStadium(?)}");
@@ -264,6 +259,5 @@ public class DA_Catalogs {
 
         return stadiums;
     }   
-    
-    
+       
 }
