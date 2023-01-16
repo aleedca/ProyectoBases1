@@ -58,30 +58,6 @@ public class DA_MyAccount {
         
         accountInformation.setSndLastName(lastname2);
         
-        
-        //===============================
-        
-        /*System.out.println("=========================================");
-        System.out.println(accountInformation.getUsername());
-        
-        System.out.println(accountInformation.getEmail());
-        
-        System.out.println(accountInformation.getPassword());
-        
-        System.out.println(accountInformation.getGender());
-        
-        System.out.println(accountInformation.getIdentification());
-        
-        System.out.println(accountInformation.getPhoneNumber());
-                
-        System.out.println(accountInformation.getFirstName());
-        
-        System.out.println(accountInformation.getSndName());
-        
-        System.out.println(accountInformation.getFirstLastName());
-        
-        System.out.println(accountInformation.getSndLastName());*/
-        
         return accountInformation;
     }
     

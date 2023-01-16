@@ -1550,7 +1550,6 @@ NOCYCLE;
 CREATE TABLE Team(
     idTeam NUMBER(10) PRIMARY KEY,
     idCountryTeam NUMBER(10) CONSTRAINT team_idCountryTeam_nn NOT NULL,
-    idGroupEvent NUMBER(10),
     nameTeam VARCHAR2(32) CONSTRAINT team_name_nn NOT NULL,
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
@@ -1568,9 +1567,6 @@ IS 'Unique identifier of the Team Table.';
 
 COMMENT ON COLUMN Team.idCountryTeam
 IS 'Reference to CountryTeam Table.';
-
-COMMENT ON COLUMN Team.idGroupEvent
-IS 'Reference to GroupEvent Table.';
 
 COMMENT ON COLUMN Team.nameTeam
 IS 'Name of the team.';
@@ -1889,10 +1885,6 @@ ALTER TABLE CountryTeam
 -- FK Team-CountryTeam
 ALTER TABLE Team
     ADD CONSTRAINT fk_team_countryTeam FOREIGN KEY (idCountryTeam) REFERENCES CountryTeam(idCountryTeam);
-
--- FK Team-GroupEvent
-ALTER TABLE Team 
-    ADD CONSTRAINT fk_team_group FOREIGN KEY (idGroupEvent) REFERENCES GroupEvent(idGroupEvent);
 
 -- FK GroupStats-Team
 ALTER TABLE GroupStats 

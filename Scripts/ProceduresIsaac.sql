@@ -25,4 +25,13 @@ BEGIN
     WHERE UserPerson.username = pUsername;
 END;
 
+CREATE OR REPLACE PROCEDURE getTotalPublishedNews(outPublishedNews OUT NUMBER)
+AS
+resultTotal NUMBER;
+BEGIN
+    SELECT COUNT(1) INTO resultTotal FROM News
+    WHERE News.idNewsStatus = 1;
+    
+    outPublishedNews := resultTotal;
+END;
 
