@@ -59,6 +59,8 @@ public class JF_AdminOther extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jComboBox5 = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jComboBox6 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -80,7 +82,7 @@ public class JF_AdminOther extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBack);
-        btnBack.setBounds(46, 50, 46, 40);
+        btnBack.setBounds(46, 50, 52, 40);
 
         lblAdminOther.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
         lblAdminOther.setForeground(new java.awt.Color(255, 255, 255));
@@ -126,7 +128,7 @@ public class JF_AdminOther extends javax.swing.JFrame {
             }
         });
         jPanel1.add(rbtnEquipo);
-        rbtnEquipo.setBounds(1060, 170, 120, 37);
+        rbtnEquipo.setBounds(1060, 170, 120, 40);
 
         rbtnEstadio.setBackground(new java.awt.Color(86, 4, 44));
         rbtnEstadio.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
@@ -138,7 +140,7 @@ public class JF_AdminOther extends javax.swing.JFrame {
             }
         });
         jPanel1.add(rbtnEstadio);
-        rbtnEstadio.setBounds(750, 170, 120, 37);
+        rbtnEstadio.setBounds(750, 170, 120, 40);
 
         rbtnEvento.setBackground(new java.awt.Color(86, 4, 44));
         rbtnEvento.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
@@ -150,7 +152,7 @@ public class JF_AdminOther extends javax.swing.JFrame {
             }
         });
         jPanel1.add(rbtnEvento);
-        rbtnEvento.setBounds(430, 170, 130, 37);
+        rbtnEvento.setBounds(430, 170, 130, 40);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator1);
@@ -244,7 +246,7 @@ public class JF_AdminOther extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Nombre:");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(1010, 230, 100, 30);
+        jLabel8.setBounds(1000, 230, 100, 30);
 
         jTextField4.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         jPanel1.add(jTextField4);
@@ -254,11 +256,21 @@ public class JF_AdminOther extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("País:");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(1010, 290, 80, 30);
+        jLabel9.setBounds(1000, 360, 80, 30);
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBox5);
-        jComboBox5.setBounds(1100, 290, 160, 30);
+        jComboBox5.setBounds(1100, 360, 160, 30);
+
+        jLabel10.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Continente:");
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(1000, 290, 100, 30);
+
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox6);
+        jComboBox6.setBounds(1100, 290, 160, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -345,7 +357,9 @@ public class JF_AdminOther extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
