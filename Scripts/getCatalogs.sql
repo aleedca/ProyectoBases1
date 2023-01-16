@@ -114,6 +114,15 @@ BEGIN
     ORDER BY viewsNews DESC;
 END getMostViewedNews;
 
+
+CREATE OR REPLACE PROCEDURE getLastNews(curLastNews OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curLastNews FOR
+    SELECT title, publicationDate
+    FROM News
+    ORDER BY publicationDate DESC;
+END getLastNews;
+
 CREATE OR REPLACE PROCEDURE getStadium(curStadium OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curStadium FOR
