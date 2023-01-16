@@ -46,7 +46,6 @@ AS
 BEGIN
     INSERT INTO PersonXPhone(idPersonXPhone, idPerson ,idPhone, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_personxphone.NEXTVAL, pIdPerson, pIdPhone, NULL, NULL, NULL, NULL);
-    COMMIT;
 END insertPersonXPhone;
 
 -- Phone
@@ -55,7 +54,6 @@ BEGIN
     BEGIN
         INSERT INTO Phone (idPhone, phoneNumber, userCreation, lastUser, lastDate, dateCreation)
         VALUES (s_phone.nextval, pPhoneNumber, NULL, NULL, NULL, NULL);
-        COMMIT;
     END;
 END insertPhone;
 
@@ -64,7 +62,6 @@ CREATE OR REPLACE PROCEDURE insertMail (pIdPerson IN NUMBER, pDescription IN VAR
 BEGIN
     INSERT INTO Mail (idMail, idPerson, descriptionMail, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_mail.nextval, pidPerson, pDescription, NULL, NULL, NULL, NULL);
-    COMMIT;
 END insertMail;
 
 -- Address
@@ -72,7 +69,6 @@ CREATE OR REPLACE PROCEDURE insertAddress (pIdDistrict IN NUMBER, pDescriptionAd
 BEGIN
     INSERT INTO Address (idAddress, idDistrict, descriptionAddress, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_address.nextval, pIdDistrict, pDescriptionAddress, NULL, NULL, NULL, NULL);
-    COMMIT;
 END insertAddress;
 
 -- Person
@@ -87,8 +83,6 @@ BEGIN
                 idTypeIdentification, idGender, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_person.nextval, pIdentification, pFirstName, pSecondName, pFirstLastName, pSecondLastName, 
             pPhoto, pIdPersonPosition, pIdAddress, pIdTypeIdentification, pIdGender, NULL, NULL, NULL, NULL);
-    
-    COMMIT;
 END insertPerson;
 
 ----------------------------------------------------------------------------------------------------------
@@ -155,14 +149,22 @@ BEGIN
 END insertTeamWorker;
 
 -- UserPerson
-CREATE OR REPLACE PROCEDURE insertUserPerson(pUsername IN VARCHAR2, pIdUserType IN NUMBER, pPassword IN VARCHAR2, 
+CREATE OR REPLACE PROCEDURE insertUserPerson(pUsername IN VARCHAR2, pUserType IN VARCHAR2, pPassword IN VARCHAR2, 
             pIdentification IN NUMBER, pFirstName IN VARCHAR2, 
             pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2, 
             pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER,
             pIdTypeIdentification IN NUMBER, pIdGender IN NUMBER, pMail IN VARCHAR2, pPhoneNumber IN NUMBER,
             pIdDistrict IN NUMBER, pDescriptionAddress IN VARCHAR2)
 AS 
+vnIdUserType NUMBER(10);
 BEGIN
+    BEGIN
+        SELECT ut.idUserType
+        INTO vnIdUserType
+        FROM UserType UT
+        WHERE ut.descriptionUserType = pUserType;
+    END;
+
     BEGIN 
         insertAddress (pIdDistrict, pDescriptionAddress); 
         
@@ -172,7 +174,7 @@ BEGIN
 
         INSERT INTO UserPerson(username, idUserType, idPerson, passwordUser, 
                                userCreation, lastUser, lastDate, dateCreation)
-        VALUES(pUsername, pIdUserType,s_person.currval, pPassword, NULL, NULL, NULL, NULL);
+        VALUES(pUsername, vnIdUserType,s_person.currval, pPassword, NULL, NULL, NULL, NULL);
             
         insertMail (s_person.currval, pMail);
         insertPhone (pPhoneNumber);

@@ -62,17 +62,31 @@ public class JF_Register extends javax.swing.JFrame {
         return cmbTypeIdentification;
     }
     
+    //----- VALIDATIONS --------------------------
     public boolean validateTxtIdentification(){
         String chain=  txtIdentification.getText();
-        if(chain.isEmpty()){
+        if(" -    -    ".equals(chain)){
             return true;
         }
+            
         return false;
     }
     
-    
+    public boolean validateTxtPhone(){
+        String chain =  txtPhone.getText();
+        if("    -    ".equals(chain)){
+            return true;
+        }
+            
+        return false;
+    }
+      
     public int getTxtIdentification() {
         String chain=  txtIdentification.getText();
+        if(validateTxtIdentification()){
+            return 0;
+        }
+        
         String combination = chain.substring(0, 1) + chain.substring(2, 6)+ chain.substring(7);
         int identification = Integer.parseInt(combination);
         return identification;
@@ -87,17 +101,12 @@ public class JF_Register extends javax.swing.JFrame {
         return password;
     }
     
-    public boolean validateTxtPhone(){
-        String chain =  txtPhone.getText();
-        if(chain.isEmpty()){
-            return true;
-        }
-        
-        return false;
-    }
-       
+ 
     public int getTxtPhone() {
         String chain =  txtPhone.getText();
+        if(validateTxtPhone()){
+            return 0;
+        }
         String combination = chain.substring(0, 4) + chain.substring(5);
         int phone = Integer.parseInt(combination);
         return phone;

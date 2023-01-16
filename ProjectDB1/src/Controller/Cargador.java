@@ -5,8 +5,7 @@
 package Controller;
 
 import Objects.GroupList;
-import Objects.LastNews;
-import Objects.MostViewedNews;
+import Objects.News;
 import Objects.NewsList;
 import Objects.TeamList;
 import java.util.ArrayList;
@@ -74,14 +73,14 @@ public class Cargador {
     }
     
     
-    DefaultTableModel showMostViewedNews(ArrayList<MostViewedNews> mostViewedNews ){
+    DefaultTableModel showMostViewedNews(ArrayList<News> mostViewedNews ){
         
         Object [] header = {"Noticia", "Visualizaciones"};
         
         DefaultTableModel dtm = new DefaultTableModel(header,mostViewedNews.size());
         
         for (int i = 0; i<dtm.getRowCount(); i++){
-            MostViewedNews news = mostViewedNews.get(i);
+            News news = mostViewedNews.get(i);
             
             dtm.setValueAt(news.getTitle(), i, 0);
             dtm.setValueAt(news.getViews(), i, 1);
@@ -89,14 +88,14 @@ public class Cargador {
         return dtm;
     }
     
-    DefaultTableModel showLastNews(ArrayList<LastNews> lastNews ){
+    DefaultTableModel showLastNews(ArrayList<News> lastNews ){
         
         Object [] header = {"Noticia", "Publicación"};
         
         DefaultTableModel dtm = new DefaultTableModel(header,lastNews.size());
         
         for (int i = 0; i<dtm.getRowCount(); i++){
-            LastNews news = lastNews.get(i);
+            News news = lastNews.get(i);
             
             dtm.setValueAt(news.getTitle(), i, 0);
             dtm.setValueAt(news.getPublicationDate(), i, 1);
