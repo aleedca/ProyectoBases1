@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
@@ -42,7 +43,6 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         lblPersona = new javax.swing.JLabel();
         rbtnEdit = new javax.swing.JRadioButton();
         rbtnAdd = new javax.swing.JRadioButton();
-        rbtnDelete = new javax.swing.JRadioButton();
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtSegNombre = new javax.swing.JTextField();
@@ -79,13 +79,15 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         lblDireccion = new javax.swing.JLabel();
         txtIden = new javax.swing.JFormattedTextField();
         txtTelef = new javax.swing.JFormattedTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblPersonas = new javax.swing.JTable();
-        txtareaEliminar = new javax.swing.JTextArea();
         txtDireccion = new javax.swing.JTextArea();
         cmbTipoPosicion = new javax.swing.JComboBox<>();
         lblTelef = new javax.swing.JLabel();
         txtDateOfBirth = new javax.swing.JFormattedTextField();
+        lblCreateUsernamePassword = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
+        lblPassword = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -134,6 +136,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         pnlAdminPersonas.add(lblPersona);
         lblPersona.setBounds(60, 110, 165, 32);
 
+        rbtnEdit.setBackground(new java.awt.Color(86, 4, 44));
         btnGroupAdmiPersonas.add(rbtnEdit);
         rbtnEdit.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         rbtnEdit.setForeground(new java.awt.Color(255, 255, 255));
@@ -144,8 +147,9 @@ public class JF_AdminPerson extends javax.swing.JFrame {
             }
         });
         pnlAdminPersonas.add(rbtnEdit);
-        rbtnEdit.setBounds(770, 110, 100, 37);
+        rbtnEdit.setBounds(790, 100, 100, 37);
 
+        rbtnAdd.setBackground(new java.awt.Color(86, 4, 44));
         btnGroupAdmiPersonas.add(rbtnAdd);
         rbtnAdd.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         rbtnAdd.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,20 +160,8 @@ public class JF_AdminPerson extends javax.swing.JFrame {
             }
         });
         pnlAdminPersonas.add(rbtnAdd);
-        rbtnAdd.setBounds(610, 110, 150, 37);
+        rbtnAdd.setBounds(630, 100, 150, 37);
         rbtnAdd.setSelected(true);
-
-        btnGroupAdmiPersonas.add(rbtnDelete);
-        rbtnDelete.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        rbtnDelete.setForeground(new java.awt.Color(255, 255, 255));
-        rbtnDelete.setText("Eliminar");
-        rbtnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnDeleteActionPerformed(evt);
-            }
-        });
-        pnlAdminPersonas.add(rbtnDelete);
-        rbtnDelete.setBounds(890, 110, 150, 37);
 
         lblNombre.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -252,7 +244,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
 
         lblGenero.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblGenero.setForeground(new java.awt.Color(255, 255, 255));
-        lblGenero.setText("Género");
+        lblGenero.setText("Género*");
         pnlAdminPersonas.add(lblGenero);
         lblGenero.setBounds(590, 290, 110, 30);
 
@@ -267,7 +259,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
 
         lblPais.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblPais.setForeground(new java.awt.Color(255, 255, 255));
-        lblPais.setText("País ");
+        lblPais.setText("País* ");
         pnlAdminPersonas.add(lblPais);
         lblPais.setBounds(590, 350, 100, 30);
 
@@ -277,7 +269,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
 
         lblProvin.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblProvin.setForeground(new java.awt.Color(255, 255, 255));
-        lblProvin.setText("Provincia");
+        lblProvin.setText("Provincia*");
         pnlAdminPersonas.add(lblProvin);
         lblProvin.setBounds(590, 410, 120, 30);
 
@@ -287,7 +279,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
 
         lblCanton.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblCanton.setForeground(new java.awt.Color(255, 255, 255));
-        lblCanton.setText("Cantón");
+        lblCanton.setText("Cantón*");
         pnlAdminPersonas.add(lblCanton);
         lblCanton.setBounds(590, 470, 110, 30);
 
@@ -297,9 +289,9 @@ public class JF_AdminPerson extends javax.swing.JFrame {
 
         lblFechaNac.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblFechaNac.setForeground(new java.awt.Color(255, 255, 255));
-        lblFechaNac.setText("Fecha Nacimiento");
+        lblFechaNac.setText("Fecha Nacimiento*");
         pnlAdminPersonas.add(lblFechaNac);
-        lblFechaNac.setBounds(60, 650, 200, 30);
+        lblFechaNac.setBounds(60, 650, 250, 30);
 
         cmbDistrito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         pnlAdminPersonas.add(cmbDistrito);
@@ -352,7 +344,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
 
         lblDistrito.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblDistrito.setForeground(new java.awt.Color(255, 255, 255));
-        lblDistrito.setText("Distrito");
+        lblDistrito.setText("Distrito*");
         pnlAdminPersonas.add(lblDistrito);
         lblDistrito.setBounds(590, 530, 110, 30);
 
@@ -369,7 +361,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
 
         lblEquipo.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblEquipo.setForeground(new java.awt.Color(255, 255, 255));
-        lblEquipo.setText("Equipo");
+        lblEquipo.setText("Equipo*");
         pnlAdminPersonas.add(lblEquipo);
         lblEquipo.setBounds(60, 590, 110, 30);
         pnlAdminPersonas.add(txtCorreo);
@@ -382,9 +374,9 @@ public class JF_AdminPerson extends javax.swing.JFrame {
 
         lblDireccion.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblDireccion.setForeground(new java.awt.Color(255, 255, 255));
-        lblDireccion.setText("Dirección exacta:");
+        lblDireccion.setText("Dirección exacta*:");
         pnlAdminPersonas.add(lblDireccion);
-        lblDireccion.setBounds(590, 580, 190, 40);
+        lblDireccion.setBounds(590, 580, 230, 40);
 
         try {
             txtIden.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#-####-####")));
@@ -401,37 +393,6 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         }
         pnlAdminPersonas.add(txtTelef);
         txtTelef.setBounds(770, 240, 180, 22);
-
-        tblPersonas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tblPersonas);
-        jScrollPane1.setVisible(false);
-
-        pnlAdminPersonas.add(jScrollPane1);
-        jScrollPane1.setBounds(80, 180, 580, 480);
-
-        txtareaEliminar.setBackground(new java.awt.Color(86, 4, 44));
-        txtareaEliminar.setColumns(20);
-        txtareaEliminar.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        txtareaEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        txtareaEliminar.setRows(3);
-        txtareaEliminar.setText("Seleccione una persona de la tabla de \nla izquierda para eliminarla. Presione  \n     aceptar para concluir la acción.");
-        txtareaEliminar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(82, 4, 44)));
-        txtareaEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        txtareaEliminar.setDisabledTextColor(new java.awt.Color(82, 4, 44));
-        pnlAdminPersonas.add(txtareaEliminar);
-        txtareaEliminar.setBounds(740, 310, 510, 150);
-        txtareaEliminar.setEditable(false);
-        txtareaEliminar.setVisible(false);
 
         txtDireccion.setColumns(20);
         txtDireccion.setLineWrap(true);
@@ -463,12 +424,51 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         pnlAdminPersonas.add(txtDateOfBirth);
         txtDateOfBirth.setBounds(290, 660, 230, 22);
 
+        lblCreateUsernamePassword.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 18)); // NOI18N
+        lblCreateUsernamePassword.setForeground(new java.awt.Color(255, 255, 255));
+        lblCreateUsernamePassword.setText("Crear un nombre de usuario y una contraseña: ");
+        pnlAdminPersonas.add(lblCreateUsernamePassword);
+        lblCreateUsernamePassword.setBounds(60, 580, 360, 25);
+
+        lblUsername.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsername.setText("Username*");
+        pnlAdminPersonas.add(lblUsername);
+        lblUsername.setBounds(60, 620, 130, 32);
+
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyTyped(evt);
+            }
+        });
+        pnlAdminPersonas.add(txtUsername);
+        txtUsername.setBounds(290, 630, 230, 22);
+
+        lblPassword.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lblPassword.setForeground(new java.awt.Color(255, 255, 255));
+        lblPassword.setText("Password*");
+        pnlAdminPersonas.add(lblPassword);
+        lblPassword.setBounds(590, 180, 120, 30);
+
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyTyped(evt);
+            }
+        });
+        pnlAdminPersonas.add(txtPassword);
+        txtPassword.setBounds(770, 180, 180, 22);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlAdminPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 1288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlAdminPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 1296, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -483,7 +483,8 @@ public class JF_AdminPerson extends javax.swing.JFrame {
        return text.getText().equals("");
    }
    
-   public void esconderMostrarTodo(boolean flag){
+   
+   public void showPlayerOptions(boolean flag){
        lblNombre.setVisible(flag);
        txtNombre.setVisible(flag);
        lblSegNombre.setVisible(flag);
@@ -526,17 +527,119 @@ public class JF_AdminPerson extends javax.swing.JFrame {
        lblAvatar.setVisible(flag);
        lblSelecFoto.setVisible(flag);
        btnLoadPhoto.setVisible(flag);
-       
-       jScrollPane1.setVisible(!flag); //table
-       txtareaEliminar.setVisible(!flag);
    }
    
-   public void deshabilitarOpciones(boolean flag){
+    public void disablePlayerOptions(boolean flag){
        lblFechaNac.setVisible(flag);
        this.txtDateOfBirth.setVisible(flag);
        lblNumCamisa.setVisible(flag);
        spnNumCamisa.setVisible(flag);
    }
+   
+   
+   public void showTechnicalStaffOptions(boolean flag){
+       lblNombre.setVisible(flag);
+       txtNombre.setVisible(flag);
+       lblSegNombre.setVisible(flag);
+       txtSegNombre.setVisible(flag);
+       lblPrimerAp.setVisible(flag);
+       txtPrimerAp.setVisible(flag);
+       lblSegAp.setVisible(flag);
+       txtSegAp.setVisible(flag);
+       lblTipoIden.setVisible(flag);
+       cmbTipoIden.setVisible(flag);
+       lblIden.setVisible(flag);
+       txtIden.setVisible(flag);
+       lblCorreo.setVisible(flag);
+       txtCorreo.setVisible(flag);
+       
+       lblEquipo.setVisible(flag);
+       cmbEquipo.setVisible(flag);
+       
+       lblTipoPosicion.setVisible(flag);
+       cmbTipoPosicion.setVisible(flag);
+       lblTelef.setVisible(flag);
+       txtTelef.setVisible(flag);
+       lblGenero.setVisible(flag);
+       cmbGenero.setVisible(flag);
+       lblPais.setVisible(flag);
+       cmbPais.setVisible(flag);
+       lblProvin.setVisible(flag);
+       cmbProvin.setVisible(flag);
+       lblCanton.setVisible(flag);
+       cmbCanton.setVisible(flag);
+       lblDistrito.setVisible(flag);
+       cmbDistrito.setVisible(flag);
+       lblDireccion.setVisible(flag);
+       txtDireccion.setVisible(flag);
+       
+       lblAvatar.setVisible(flag);
+       lblSelecFoto.setVisible(flag);
+       btnLoadPhoto.setVisible(flag);
+   }
+   
+   
+   public void disableTechnicalStaffOptions(boolean flag){
+       lblEquipo.setVisible(flag);
+       cmbEquipo.setVisible(flag);
+       lblTipoPosicion.setVisible(flag);
+       cmbTipoPosicion.setVisible(flag);
+   }
+
+   
+   
+    public void showManagerOptions(boolean flag){
+       lblNombre.setVisible(flag);
+       txtNombre.setVisible(flag);
+       lblSegNombre.setVisible(flag);
+       txtSegNombre.setVisible(flag);
+       lblPrimerAp.setVisible(flag);
+       txtPrimerAp.setVisible(flag);
+       lblSegAp.setVisible(flag);
+       txtSegAp.setVisible(flag);
+       lblTipoIden.setVisible(flag);
+       cmbTipoIden.setVisible(flag);
+       lblIden.setVisible(flag);
+       txtIden.setVisible(flag);
+       lblCorreo.setVisible(flag);
+       txtCorreo.setVisible(flag);
+       
+       this.lblCreateUsernamePassword.setVisible(flag);
+       this.lblPassword.setVisible(flag);
+       this.lblUsername.setVisible(flag);
+       this.txtPassword.setVisible(flag);
+       this.txtUsername.setVisible(flag);
+
+       lblTelef.setVisible(flag);
+       txtTelef.setVisible(flag);
+       lblGenero.setVisible(flag);
+       cmbGenero.setVisible(flag);
+       lblPais.setVisible(flag);
+       cmbPais.setVisible(flag);
+       lblProvin.setVisible(flag);
+       cmbProvin.setVisible(flag);
+       lblCanton.setVisible(flag);
+       cmbCanton.setVisible(flag);
+       lblDistrito.setVisible(flag);
+       cmbDistrito.setVisible(flag);
+       lblDireccion.setVisible(flag);
+       txtDireccion.setVisible(flag);
+       
+       lblAvatar.setVisible(flag);
+       lblSelecFoto.setVisible(flag);
+       btnLoadPhoto.setVisible(flag);
+   }
+   
+    
+   public void disableManagerOptions(boolean flag){
+       this.lblCreateUsernamePassword.setVisible(flag);
+       this.lblPassword.setVisible(flag);
+       this.lblUsername.setVisible(flag);
+       this.txtPassword.setVisible(flag);
+       this.txtUsername.setVisible(flag);
+   }
+    
+   
    
    //GETTERS AND SETTERS
    
@@ -558,13 +661,19 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         return rbtnAdd;
     }
 
-    public JRadioButton getRbtnDelete() {
-        return rbtnDelete;
-    }
-
     public JRadioButton getRbtnEdit() {
         return rbtnEdit;
     }
+
+    public void setRbtnAddSelected() {
+        this.rbtnAdd.setSelected(true);
+    }
+
+    public void setRbtnEditSelected() {
+        this.rbtnEdit.setSelected(false);
+    }
+    
+    
 
     //----- VALIDATIONS --------------------------
     public boolean validateTxtIdentification(){
@@ -579,7 +688,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     public boolean validateTxtPhone(){
         String chain =  txtTelef.getText();
         if("    -    ".equals(chain)){
-            System.out.println("retorna vacio");
+            //System.out.println("retorna vacio");
             return true;
         }
             
@@ -836,6 +945,10 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         this.cmbTipoPosicion.setSelectedItem(cmbTipoPosicion);
     }
     
+    public void setCmbPersona(String cmbPersona) {
+        this.cmbPersona.setSelectedItem(cmbPersona);
+    }
+    
     
     
     
@@ -856,6 +969,19 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     public JComboBox<String> getCmbTypePosition() {
         return cmbTipoPosicion;
     }
+
+    public String getTxtPassword() {
+        String password = new String(txtPassword.getPassword());
+        return password;
+    }
+
+    public String getTxtUsername() {
+        return txtUsername.getText();
+    }
+
+
+    
+    
 
 
 
@@ -922,7 +1048,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackAdminPersonActionPerformed
 
     private void rbtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnAddActionPerformed
-        esconderMostrarTodo(true);
+        //esconderMostrarTodo(true);
         lblPersona.setText("Tipo Persona:");
         
 //        String tipoPersona = cmbPersona.getSelectedItem().toString();
@@ -980,13 +1106,25 @@ public class JF_AdminPerson extends javax.swing.JFrame {
 //       }
     }//GEN-LAST:event_cmbPersonaActionPerformed
 
-    private void rbtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnDeleteActionPerformed
-       esconderMostrarTodo(false);
-    }//GEN-LAST:event_rbtnDeleteActionPerformed
-
     private void cmbTipoPosicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoPosicionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbTipoPosicionActionPerformed
+
+    private void txtUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyTyped
+        if(this.getTxtUsername().length() >= 15){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtUsernameKeyTyped
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
+        if(this.getTxtPassword().length() >= 16){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPasswordKeyTyped
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1003,11 +1141,11 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbProvin;
     private javax.swing.JComboBox<String> cmbTipoIden;
     private javax.swing.JComboBox<String> cmbTipoPosicion;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdmiPersonas;
     private javax.swing.JLabel lblAvatar;
     private javax.swing.JLabel lblCanton;
     private javax.swing.JLabel lblCorreo;
+    private javax.swing.JLabel lblCreateUsernamePassword;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblDistrito;
     private javax.swing.JLabel lblEquipo;
@@ -1018,6 +1156,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNumCamisa;
     private javax.swing.JLabel lblPais;
+    private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblPersona;
     private javax.swing.JLabel lblPrimerAp;
     private javax.swing.JLabel lblProvin;
@@ -1027,21 +1166,21 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelef;
     private javax.swing.JLabel lblTipoIden;
     private javax.swing.JLabel lblTipoPosicion;
+    private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel pnlAdminPersonas;
     private javax.swing.JRadioButton rbtnAdd;
-    private javax.swing.JRadioButton rbtnDelete;
     private javax.swing.JRadioButton rbtnEdit;
     private javax.swing.JSpinner spnNumCamisa;
-    private javax.swing.JTable tblPersonas;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JFormattedTextField txtDateOfBirth;
     private javax.swing.JTextArea txtDireccion;
     private javax.swing.JFormattedTextField txtIden;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtPrimerAp;
     private javax.swing.JTextField txtSegAp;
     private javax.swing.JTextField txtSegNombre;
     private javax.swing.JFormattedTextField txtTelef;
-    private javax.swing.JTextArea txtareaEliminar;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
