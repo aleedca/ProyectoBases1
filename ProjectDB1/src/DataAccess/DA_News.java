@@ -4,10 +4,12 @@
  */
 package DataAccess;
 
+import Objects.LastNews;
 import Objects.MostViewedNews;
 import Objects.News;
 import Objects.NewsStatus;
 import Objects.NewsType;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import java.sql.Connection;
@@ -23,6 +25,8 @@ import oracle.jdbc.OracleTypes;
  * @author Alexia
  */
 public class DA_News {
+    
+    //-----------------------GET FUNCTIONS-----------------------
     public static ArrayList<News> getNews() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -53,12 +57,12 @@ public class DA_News {
     public static ArrayList<News> getInfoNews(int idNews) throws SQLException {
         Connection conn = sysConnection.getConexion();
         
-        CallableStatement sql = conn.prepareCall("{call getNews(?)}");
+        CallableStatement sql = conn.prepareCall("{call getInfoNews(?,?)}");
         sql.setInt(1, idNews);
         sql.registerOutParameter(2, OracleTypes.REF_CURSOR);
         sql.execute();
         
-        ResultSet rs = (ResultSet) sql.getObject(1);
+        ResultSet rs = (ResultSet) sql.getObject(2);
         ArrayList<News> newsArr = new ArrayList<>();
         while(rs.next()){
             News news = new News();
@@ -117,6 +121,50 @@ public class DA_News {
         return arrayNewsType;
     }
     
+    public static ArrayList<MostViewedNews> getMostViewedNews() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getMostViewedNews(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<MostViewedNews> MostViewedNews = new ArrayList<>();
+        while(rs.next()){
+            MostViewedNews news = new MostViewedNews();
+            
+            news.setTitle(rs.getString("title"));
+            news.setViews(rs.getInt("viewsNews"));
+           
+            MostViewedNews.add(news);
+        }
+        
+        return MostViewedNews;
+    }
+    
+    public static ArrayList<LastNews> getLastNews() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getLastNews(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<LastNews> LastNews = new ArrayList<>();
+        while(rs.next()){
+            LastNews news = new LastNews();
+            
+            news.setTitle(rs.getString("title"));
+            news.setPublicationDate(rs.getString("publicationDate"));
+           
+            LastNews.add(news);
+        }
+        
+        return LastNews;
+    }
+    
+    //-------------INSERTS----------------------
+    
     public static void insertNews(int idNewsStatus, int idNewsType, String title, Date publicationDate, String link, 
         String photo, String text) throws SQLException {
         
@@ -136,31 +184,86 @@ public class DA_News {
         sql.execute();
     }
     
-    public static ArrayList<MostViewedNews> getMostViewedNews() throws SQLException {
+    //-------------------UPDATES----------------
+    
+    public static int updateStatus(int idNews, int idNewsStatus) throws SQLException{
         Connection conn = sysConnection.getConexion();
-        
-        CallableStatement sql = conn.prepareCall("{call getMostViewedNews(?)}");
-        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
-        sql.execute();
-        
-        ResultSet rs = (ResultSet) sql.getObject(1);
-        ArrayList<MostViewedNews> MostViewedNews = new ArrayList<>();
-        while(rs.next()){
-            MostViewedNews news = new MostViewedNews();
-            
-            news.setTitle(rs.getString("title"));
-            news.setViews(rs.getInt("viewsNews"));
-           
-            MostViewedNews.add(news);
-        }
-        
-        
-        
-       
 
-        return MostViewedNews;
+        CallableStatement sql = conn.prepareCall("{ call updateStatus(?,?,?)}");
+        //Input parameters
+        sql.setInt(1, idNews);
+        sql.setInt(2, idNewsStatus);
+
+        //Output parameter
+        sql.registerOutParameter(3, OracleTypes.NUMBER);
+        sql.execute();
+
+        int result = ((BigDecimal) sql.getObject(3)).intValue();
+        return result;
     }
     
+    public static int updateType(int idNews, int idNewsType) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+
+        CallableStatement sql = conn.prepareCall("{ call updateType(?,?,?)}");
+        //Input parameters
+        sql.setInt(1, idNews);
+        sql.setInt(2, idNewsType);
+
+        //Output parameter
+        sql.registerOutParameter(3, OracleTypes.NUMBER);
+        sql.execute();
+
+        int result = ((BigDecimal) sql.getObject(3)).intValue();
+        return result;
+    }
     
+    public static int updateTitle(int idNews, String title) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+
+        CallableStatement sql = conn.prepareCall("{ call updateTitle(?,?,?)}");
+        //Input parameters
+        sql.setInt(1, idNews);
+        sql.setString(2, title);
+
+        //Output parameter
+        sql.registerOutParameter(3, OracleTypes.NUMBER);
+        sql.execute();
+
+        int result = ((BigDecimal) sql.getObject(3)).intValue();
+        return result;
+    }
     
+    public static int updateText(int idNews, String text) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+
+        CallableStatement sql = conn.prepareCall("{ call updateText(?,?,?)}");
+        //Input parameters
+        sql.setInt(1, idNews);
+        sql.setString(2, text);
+
+        //Output parameter
+        sql.registerOutParameter(3, OracleTypes.NUMBER);
+        sql.execute();
+
+        int result = ((BigDecimal) sql.getObject(3)).intValue();
+        return result;
+    }
+    
+    public static int updatePhoto(int idNews, String photo) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+
+        CallableStatement sql = conn.prepareCall("{ call updatePhoto(?,?,?)}");
+        //Input parameters
+        sql.setInt(1, idNews);
+        sql.setString(2, photo);
+
+        //Output parameter
+        sql.registerOutParameter(3, OracleTypes.NUMBER);
+        sql.execute();
+
+        int result = ((BigDecimal) sql.getObject(3)).intValue();
+        return result;
+    }
+   
 }

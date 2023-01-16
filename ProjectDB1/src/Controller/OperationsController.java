@@ -4,7 +4,6 @@
  */
 package Controller;
 
-import DataAccess.DA_News;
 import Model.model_Account;
 import Model.model_AdminCatalogs;
 import Model.model_AdminMatches;
@@ -23,7 +22,7 @@ import View.JF_MyAccount;
 import View.JF_Principal;
 import View.JF_Register;
 import View.JF_Request;
-import View.JF_ScheduleMatch;
+import View.JF_AdminScheduleMatch;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -32,7 +31,8 @@ import java.sql.SQLException;
 
 
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 
 /**
@@ -40,7 +40,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Mariana
  */
 
-public class OperationsController implements ActionListener, ItemListener{
+public class OperationsController implements ActionListener, ItemListener, ListSelectionListener{
     
     private final JF_Principal viewPrincipal;
     private final JF_Login viewLogin;
@@ -51,7 +51,7 @@ public class OperationsController implements ActionListener, ItemListener{
     private final JF_MyAccount viewMyAccount;
     private final JF_EditAccount viewEditAccount;
     private final JF_AdminMatches viewAdminMatches;
-    private final JF_ScheduleMatch viewScheduleMatch;
+    private final JF_AdminScheduleMatch viewScheduleMatch;
     private final JF_AdminMatch viewAdminMatch; 
     
     
@@ -64,6 +64,7 @@ public class OperationsController implements ActionListener, ItemListener{
     
     private boolean flagRegister;
     private boolean flagAdminPerson;
+    private boolean flagEditNews = false;
     
     private final RequestController requestController;
     private final AdminNewsController adminNewsController;
@@ -107,7 +108,7 @@ public class OperationsController implements ActionListener, ItemListener{
         this.viewAdminMatches = adminMatches;
         
         //View Admin Matches
-        JF_ScheduleMatch scheduleMatch = new JF_ScheduleMatch();
+        JF_AdminScheduleMatch scheduleMatch = new JF_AdminScheduleMatch();
         this.viewScheduleMatch = scheduleMatch;
         
         
@@ -159,8 +160,9 @@ public class OperationsController implements ActionListener, ItemListener{
         fillPositions();
         fillTeams();
         fillTypePerson();
-        principal.showMostViewedNews();
         fillStadiums();
+        principal.showMostViewedNews();
+        principal.showLastNews();
         
        
 
@@ -205,17 +207,16 @@ public class OperationsController implements ActionListener, ItemListener{
         viewAdminMatches.getBtnAdminScheduledMatch().addActionListener(this);
         viewAdminMatches.getBtnBack().addActionListener(this);
         
-        //Schedule Match
+        //AdminScheduleMatch
         viewScheduleMatch.getBtnBack().addActionListener(this);
     
         
-        //Admin Match
+        //AdminMatch
         viewAdminMatch.getBtnBack().addActionListener(this);
         
-        //AdminNewsOption
+        //AdminNews
         adminNewsController.getViewAdminNews().getRbtnAgregar().addActionListener(this);
         adminNewsController.getViewAdminNews().getRbtnEditar().addActionListener(this);
-        adminNewsController.getViewAdminNews().getRbtnEliminar().addActionListener(this);
         
         adminNewsController.getViewAdminNews().getCmbEstado().addActionListener(this);
         adminNewsController.getViewAdminNews().getCmbTipo().addActionListener(this);
@@ -223,6 +224,7 @@ public class OperationsController implements ActionListener, ItemListener{
         adminNewsController.getViewAdminNews().getBtnAceptar().addActionListener(this);
         adminNewsController.getViewAdminNews().getBtnBack().addActionListener(this);
         adminNewsController.getViewAdminNews().getBtnCargarImagen().addActionListener(this);
+        adminNewsController.getViewAdminNews().getTblNoticias().getSelectionModel().addListSelectionListener(this);
         
         //AdminCatalogOption
         adminCatalogsController.getViewAdminCatalogs().getBtnBack().addActionListener(this);
@@ -896,24 +898,39 @@ public class OperationsController implements ActionListener, ItemListener{
     
     
     //------------ VALIDATIONS ADMINNEWS ---------------------------
-    private void adminNewsValidations(String choice1, String choice2){
+    private void adminNewsValidationsInsert(String choice1, String choice2){
       if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
             modelNews.insertNews();
             adminNewsController.fillAdminNews();
-            adminNewsController.fillNewsType();
-            adminNewsController.fillStatus();
-
-            adminNewsController.getViewAdminNews().clearAll();
-            modelNews.setPhoto("src/Images/avatar.png");
-            adminNewsController.getViewAdminNews().setLocationRelativeTo(adminNewsController.getViewAdminNews());
-            modelNews.setImageLabel(adminNewsController.getViewAdminNews().getLblImagen());
-            adminNewsController.getViewAdminNews().repaint();
-
-             JOptionPane.showMessageDialog(null, "Noticia creada con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            adminNewsRestore();
+            JOptionPane.showMessageDialog(null, "Noticia creada con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
         }
+    }
+    
+    private void adminNewsValidationsUpdate(String choice1, String choice2){
+        if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
+            modelNews.updateNews();
+            adminNewsController.fillAdminNews();
+            adminNewsRestore();
+            updateNewsSuccessful();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
+        }
+    }
+    
+    private void adminNewsRestore(){
+        adminNewsController.fillNewsType();
+        adminNewsController.fillStatus();
+
+        adminNewsController.getViewAdminNews().clearAll();
+        modelNews.setPhoto("src/Images/avatar.png");
+        adminNewsController.getViewAdminNews().setLocationRelativeTo(adminNewsController.getViewAdminNews());
+        modelNews.setImageLabel(adminNewsController.getViewAdminNews().getLblImagen());
+        adminNewsController.getViewAdminNews().repaint();
     }
     
     //------------ VALIDATIONS AND CREATE ADMIN PERSON ---------------------------
@@ -1548,6 +1565,16 @@ public class OperationsController implements ActionListener, ItemListener{
         return false;
     }
     
+    //------------- UPDATES ADMIN NEWS ---------------------------   
+    
+    private boolean updateNewsSuccessful(){
+        //actualizar news correctamente
+        if(modelNews.getResultUpdateStatus() == 0 && modelNews.getResultUpdateType() == 0 && modelNews.getResultUpdateTitle() == 0 && modelNews.getResultUpdateText() == 0 && modelNews.getResultUpdatePhoto() == 0){
+            return true;
+        }
+        return false;
+    }
+    
     //----------------SHOW MORE VIEWED AND LAST NEWS ----------------------------------
     
     
@@ -2073,15 +2100,25 @@ public class OperationsController implements ActionListener, ItemListener{
             modelNews.setNewsText(adminNewsController.getViewAdminNews().getTxtTexto().getText());
             
             if(adminNewsController.getViewAdminNews().getRbtnAgregar().isSelected()){
-                adminNewsValidations(choice1, choice2);
+                adminNewsValidationsInsert(choice1, choice2);
             }
-             if(adminNewsController.getViewAdminNews().getRbtnEditar().isSelected()){
-                 if(adminNewsController.getViewAdminNews().validateSelectedRow()){
-                     //modelNews.updateNews();
-                 }
-             }
+            
+            if(adminNewsController.getViewAdminNews().getRbtnEditar().isSelected()){
+                adminNewsValidationsUpdate(choice1, choice2);
+            }
+            flagEditNews = false;
+            adminNewsController.getViewAdminNews().getRbtnAgregar().setSelected(true);
         }
         
+        if(e.getSource() == adminNewsController.getViewAdminNews().getRbtnAgregar()){
+            adminNewsRestore();
+            flagEditNews = false;
+        }
+
+        if(e.getSource() == adminNewsController.getViewAdminNews().getRbtnEditar()){
+            flagEditNews = true;
+        }
+
         if(e.getSource() == adminNewsController.getViewAdminNews().getBtnCargarImagen()){
             if(modelNews.selectPhoto(adminNewsController.getViewAdminNews())){
                 adminNewsController.getViewAdminNews().setLocationRelativeTo(adminNewsController.getViewAdminNews());
@@ -2330,5 +2367,21 @@ public class OperationsController implements ActionListener, ItemListener{
         
         viewPrincipal.setVisible(true);
      }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        if(e.getSource() == adminNewsController.getViewAdminNews().getTblNoticias().getSelectionModel() && flagEditNews){
+            if(adminNewsController.getViewAdminNews().getTblNoticias().getRowCount() > 0){
+                System.out.println("antes");
+                int index = (int) adminNewsController.getViewAdminNews().getTblNoticias().getValueAt(adminNewsController.getViewAdminNews().getTblNoticias().getSelectedRow(),0);
+                System.out.println("despues");
+                adminNewsController.fillUpdateAdminNews(index);
+            }
+        }
+        else{
+            //modelNews.setIdNews(0);
+            //adminNewsController.getViewAdminNews().getTblNoticias().clearSelection();
+        }
+    }
   
 }

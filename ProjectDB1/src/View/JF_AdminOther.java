@@ -26,15 +26,39 @@ public class JF_AdminOther extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGroupAdminOther = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         btnBack = new javax.swing.JButton();
         lblAdminOther = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
-        btnEquipos = new javax.swing.JButton();
-        btnEventos = new javax.swing.JButton();
-        btnEstadios = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        rbtnEquipo = new javax.swing.JRadioButton();
+        rbtnEstadio = new javax.swing.JRadioButton();
+        rbtnEvento = new javax.swing.JRadioButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        btnEditar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jComboBox5 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -68,21 +92,17 @@ public class JF_AdminOther extends javax.swing.JFrame {
         jPanel1.add(lblLogo);
         lblLogo.setBounds(1065, 6, 200, 125);
 
-        btnEquipos.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        btnEquipos.setText("Equipos");
-        jPanel1.add(btnEquipos);
-        btnEquipos.setBounds(780, 180, 180, 40);
+        btnEliminar.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        jPanel1.add(btnEliminar);
+        btnEliminar.setBounds(920, 660, 180, 40);
 
-        btnEventos.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        btnEventos.setText("Eventos");
-        jPanel1.add(btnEventos);
-        btnEventos.setBounds(300, 180, 180, 40);
+        btnAgregar.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        btnAgregar.setText("Agregar");
+        jPanel1.add(btnAgregar);
+        btnAgregar.setBounds(480, 660, 180, 40);
 
-        btnEstadios.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        btnEstadios.setText("Estadios");
-        jPanel1.add(btnEstadios);
-        btnEstadios.setBounds(540, 180, 180, 40);
-
+        jList1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 204, 0), 3));
         jList1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -94,7 +114,151 @@ public class JF_AdminOther extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(100, 280, 310, 400);
+        jScrollPane1.setBounds(40, 170, 280, 530);
+
+        rbtnEquipo.setBackground(new java.awt.Color(86, 4, 44));
+        rbtnEquipo.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        rbtnEquipo.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnEquipo.setText("Equipo");
+        rbtnEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnEquipoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbtnEquipo);
+        rbtnEquipo.setBounds(1060, 170, 120, 37);
+
+        rbtnEstadio.setBackground(new java.awt.Color(86, 4, 44));
+        rbtnEstadio.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        rbtnEstadio.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnEstadio.setText("Estadio");
+        rbtnEstadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnEstadioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbtnEstadio);
+        rbtnEstadio.setBounds(750, 170, 120, 37);
+
+        rbtnEvento.setBackground(new java.awt.Color(86, 4, 44));
+        rbtnEvento.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        rbtnEvento.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnEvento.setText("Evento");
+        rbtnEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnEventoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbtnEvento);
+        rbtnEvento.setBounds(430, 170, 130, 37);
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel1.add(jSeparator1);
+        jSeparator1.setBounds(980, 170, 10, 450);
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel1.add(jSeparator2);
+        jSeparator2.setBounds(640, 170, 10, 450);
+
+        btnEditar.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        btnEditar.setText("Editar");
+        jPanel1.add(btnEditar);
+        btnEditar.setBounds(700, 660, 180, 40);
+
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Número de grupos:");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(360, 290, 170, 30);
+
+        jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Nombre:");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(360, 230, 100, 30);
+
+        jTextField1.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        jPanel1.add(jTextField1);
+        jTextField1.setBounds(450, 230, 160, 30);
+
+        jTextField2.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextField2);
+        jTextField2.setBounds(530, 290, 80, 30);
+
+        jTextField3.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        jPanel1.add(jTextField3);
+        jTextField3.setBounds(780, 230, 160, 30);
+
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Distrito:");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(680, 470, 100, 30);
+
+        jLabel4.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Nombre:");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(680, 230, 100, 30);
+
+        jLabel5.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("País:");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(680, 290, 80, 30);
+
+        jLabel6.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Provincia:");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(680, 350, 100, 30);
+
+        jLabel7.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Cantón:");
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(680, 410, 100, 30);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox1);
+        jComboBox1.setBounds(780, 470, 160, 30);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox2);
+        jComboBox2.setBounds(780, 290, 160, 30);
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox3);
+        jComboBox3.setBounds(780, 350, 160, 30);
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox4);
+        jComboBox4.setBounds(780, 410, 160, 30);
+
+        jLabel8.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Nombre:");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(1010, 230, 100, 30);
+
+        jTextField4.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        jPanel1.add(jTextField4);
+        jTextField4.setBounds(1100, 230, 160, 30);
+
+        jLabel9.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("País:");
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(1010, 290, 80, 30);
+
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox5);
+        jComboBox5.setBounds(1100, 290, 160, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,6 +281,22 @@ public class JF_AdminOther extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void rbtnEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEquipoActionPerformed
+        
+    }//GEN-LAST:event_rbtnEquipoActionPerformed
+
+    private void rbtnEstadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEstadioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnEstadioActionPerformed
+
+    private void rbtnEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEventoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnEventoActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,14 +335,38 @@ public class JF_AdminOther extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnEquipos;
-    private javax.swing.JButton btnEstadios;
-    private javax.swing.JButton btnEventos;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.ButtonGroup btnGroupAdminOther;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel lblAdminOther;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JRadioButton rbtnEquipo;
+    private javax.swing.JRadioButton rbtnEstadio;
+    private javax.swing.JRadioButton rbtnEvento;
     // End of variables declaration//GEN-END:variables
 }

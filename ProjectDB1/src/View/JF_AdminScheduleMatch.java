@@ -11,12 +11,12 @@ import javax.swing.JComboBox;
  *
  * @author Nahomy
  */
-public class JF_ScheduleMatch extends javax.swing.JFrame {
+public class JF_AdminScheduleMatch extends javax.swing.JFrame {
 
     /**
      * Creates new form JF_ScheduleMatch
      */
-    public JF_ScheduleMatch() {
+    public JF_AdminScheduleMatch() {
         initComponents();
     }
     

@@ -21,10 +21,11 @@ public class RequestController {
     private final DA_NewsList admN = new DA_NewsList();
     
     private final DA_News admMVN = new DA_News();
+    private final DA_News admLN = new DA_News();
     
     private final Cargador cargador = new Cargador();
     
-    //private final JF_Request viewRequest = new JF_Request();
+    
     
     private final model_Request modelRequest = new model_Request();
 
@@ -47,6 +48,9 @@ public class RequestController {
          return cargador.showMostViewedNews(admMVN.getMostViewedNews());
      }
      
+     public DefaultTableModel showLastNews() throws SQLException{
+         return cargador.showLastNews(admLN.getLastNews());
+     }
      
     //-------- COMBO BOX FILLING --------------------------
     public void fillPositions(JF_Request viewRequest){
