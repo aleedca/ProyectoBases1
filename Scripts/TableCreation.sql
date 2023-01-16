@@ -1550,7 +1550,6 @@ NOCYCLE;
 CREATE TABLE Team(
     idTeam NUMBER(10) PRIMARY KEY,
     idCountryTeam NUMBER(10) CONSTRAINT team_idCountryTeam_nn NOT NULL,
-    idGroupEvent NUMBER(10),
     nameTeam VARCHAR2(32) CONSTRAINT team_name_nn NOT NULL,
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
@@ -1568,9 +1567,6 @@ IS 'Unique identifier of the Team Table.';
 
 COMMENT ON COLUMN Team.idCountryTeam
 IS 'Reference to CountryTeam Table.';
-
-COMMENT ON COLUMN Team.idGroupEvent
-IS 'Reference to GroupEvent Table.';
 
 COMMENT ON COLUMN Team.nameTeam
 IS 'Name of the team.';
@@ -1644,6 +1640,56 @@ MINVALUE 0
 MAXVALUE 10000000
 NOCACHE
 NOCYCLE;
+
+-------------------------------------------------------------------------------------------
+-- TeamXGroup
+CREATE TABLE TeamXGroup(
+    idTeamXGroup NUMBER(10) PRIMARY KEY,
+    idTeam NUMBER(10),
+    idGroupEvent NUMBER(10),
+    userCreation VARCHAR2(16),
+    lastUser VARCHAR2(16),
+    lastDate DATE,
+    dateCreation DATE
+);
+
+-- Table Comment
+COMMENT ON TABLE TeamXGroup
+IS 'Repository for storing the relation between team and group.';
+
+--------------- Comment on Attributes -------------------------------------
+COMMENT ON COLUMN TeamXGroup.idTeamXGroup
+IS 'Unique identifier of the Team Table.';
+
+COMMENT ON COLUMN TeamXGroup.idTeam
+IS 'Reference to Team Table.';
+
+COMMENT ON COLUMN TeamXGroup.idGroupEvent
+IS 'Reference to GroupEvent Table.';
+
+-- Audit Fields 
+COMMENT ON COLUMN TeamXGroup.userCreation
+IS 'User who creates the Team Table record.';
+
+COMMENT ON COLUMN TeamXGroup.dateCreation
+IS 'Date of creation of the Team Table record.';
+
+COMMENT ON COLUMN TeamXGroup.lastUser
+IS 'Last user to modify a record in the Team Table.';
+
+COMMENT ON COLUMN TeamXGroup.lastDate
+IS 'Last modification date of the record in the Team Table.';
+
+-- Team Sequence
+CREATE SEQUENCE s_teamxgroup
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 10000000
+NOCACHE
+NOCYCLE;
+
+
 
 -------------------------------------------------------------------------------------------
 -- CountryTeam
@@ -1890,9 +1936,13 @@ ALTER TABLE CountryTeam
 ALTER TABLE Team
     ADD CONSTRAINT fk_team_countryTeam FOREIGN KEY (idCountryTeam) REFERENCES CountryTeam(idCountryTeam);
 
--- FK Team-GroupEvent
-ALTER TABLE Team 
-    ADD CONSTRAINT fk_team_group FOREIGN KEY (idGroupEvent) REFERENCES GroupEvent(idGroupEvent);
+-- FK TeamXGroup-Team
+ALTER TABLE TeamXGroup 
+    ADD CONSTRAINT fk_teamgroup_team FOREIGN KEY (idTeam) REFERENCES Team(idTeam);
+
+-- FK TeamXGroup-Group
+ALTER TABLE TeamXGroup 
+    ADD CONSTRAINT fk_teamgroup_group FOREIGN KEY (idGroupEvent) REFERENCES GroupEvent(idGroupEvent);
 
 -- FK GroupStats-Team
 ALTER TABLE GroupStats 
