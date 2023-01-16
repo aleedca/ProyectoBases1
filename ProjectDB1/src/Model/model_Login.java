@@ -27,14 +27,15 @@ public class model_Login {
         return false;
     }
     
-    public boolean userAlreadyExists(){
+    public boolean userAlreadyExists(String username){
         try {
-            this.resultUserType = DA_Person.validateUserAlreadyExists(usernameLogin);
+            this.resultUserType = DA_Person.validateUserAlreadyExists(username);
+            System.out.println("Lo que le dio la base: "+ this.resultUserType);
             
-            if(this.resultUserType != 0){
-                return false;
+            if(this.resultUserType != 0){ //Si es diferente de 0, quiere decir, que no existe
+                return false;// Si el username no existe en la base -> return false
             }else{
-                return true;
+                return true; //Si ya existe return true
             }
                      
         } catch (SQLException ex) {

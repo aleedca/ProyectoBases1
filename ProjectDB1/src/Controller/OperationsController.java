@@ -162,7 +162,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         fillTypePerson();
         fillStadiums();
         principal.showMostViewedNews();
-        principal.showLastNews();
+        //principal.showLastNews();
         
        
 
@@ -404,6 +404,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         viewAdminPerson.getCmbPerson().removeAllItems();
         viewAdminPerson.getCmbPerson().addItem("Jugador");
         viewAdminPerson.getCmbPerson().addItem("Cuerpo Técnico");
+        viewAdminPerson.getCmbPerson().addItem("Administrador");
     }
     
     private String fillFullName(String firstName, String firstLastName , String secondName, String secondLastName){
@@ -462,27 +463,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
     
     private void fillPlayerInformation(){
-        String name, secondName, firstLastName, secondLastName,typeIdentification ;
-        int idTypeIdentification, identification, idGender;
-        String gender;
-        String team;
-        int idTeam;
-        String position;
-        int idPosition;
-        int numTShirt;
-        String mail;
-        String address;
-        int phoneNumber;
-        String birthdate;
-        String country;
-        int idCountry;
-        String province;
-        int idProvince;
-        String canton;
-        int idCanton;
-        String district;
-        int idDistrict;
-        
+        String name, province, canton,secondName, firstLastName, secondLastName,typeIdentification;
+        String country, district,gender, team, position,  mail, address,  birthdate;
+        int  idTypeIdentification, identification, idGender, idTeam, idPosition, numTShirt, phoneNumber;  
+        int idCountry,idProvince, idCanton, idDistrict;
     
         for(int i=0; i<modelAdminPerson.getPlayersInfo().size();i++){
             name = modelAdminPerson.getPlayersInfo().get(i).getFirstName();
@@ -795,13 +779,13 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             }
 
 
-            if(modelRegister.validateFormatUsername() == false){
+            if(modelRegister.validateFormatUsername(viewRegister.getTxtUsername()) == false){
                 JOptionPane.showMessageDialog(null, "Por favor, ingrese únicamente letras, números o el caracter _ para crear su username.\nDebe tener al menos 5 caracteres y sin espacios.", "Error", JOptionPane.WARNING_MESSAGE);
                 viewRegister.cleanUsername();
                 flagRegister = false;
             }
 
-            if(modelRegister.validateFormatPassword() == false){
+            if(modelRegister.validateFormatPassword(viewRegister.getTxtPassword()) == false){
                 JOptionPane.showMessageDialog(null, "Formato de contraseña incorrecta.\nDebe contener entre 4 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.", "Error", JOptionPane.WARNING_MESSAGE);
                 viewRegister.cleanPassword();
                 flagRegister = false;
@@ -828,7 +812,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 flagRegister = false;
             }
 
-            if(modelLogin.userAlreadyExists()){
+            if(modelLogin.userAlreadyExists(viewAdminPerson.getTxtUsername())){
                 JOptionPane.showMessageDialog(null, "Username ya existente. Debe ingresar un username diferente", "Error", JOptionPane.WARNING_MESSAGE);
                 viewRegister.cleanUsername();
                 flagRegister = false;
@@ -1017,16 +1001,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 flagAdminPerson = false;
             }
 
-            if("Seleccione Posición".equals(viewAdminPerson.getSelectedPosition())){
-                JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de posición", "Error", JOptionPane.WARNING_MESSAGE);
-                flagAdminPerson = false;
-            }
-
-            if("Seleccione Equipo".equals(viewAdminPerson.getSelectedTeam())){
-                JOptionPane.showMessageDialog(null, "Debe seleccionar un equipo", "Error", JOptionPane.WARNING_MESSAGE);
-                flagAdminPerson = false;
-            }
-
             if(viewAdminPerson.validateTxtPhone()){
                 JOptionPane.showMessageDialog(null, "Debe ingresar un número de teléfono", "Error", JOptionPane.WARNING_MESSAGE);
                 flagAdminPerson = false;
@@ -1036,22 +1010,74 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 JOptionPane.showMessageDialog(null, "Debe ingresar una identificación", "Error", JOptionPane.WARNING_MESSAGE);
                 flagAdminPerson = false;
             }
-
-            if("Jugador".equals(viewAdminPerson.getTxtCmbPerson())){
-                if(viewAdminPerson.validateTxtDateOfBirth()){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar una fecha de nacimiento", "Error", JOptionPane.WARNING_MESSAGE);
-                    flagAdminPerson = false;
-                }
-            }
         }//VALIDATE EMPTY FIELDS
     }
     
+    private void validationsAdmin(){
+        if(modelAdminPerson.validateAdminFields()){
+            JOptionPane.showMessageDialog(null, "Por favor, complete el username y/o password solicitado.", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+
+        if(modelRegister.validateFormatUsername(modelAdminPerson.getUsernameAdminPerson())== false){
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese únicamente letras, números o el caracter _ para crear su username.\nDebe tener al menos 5 caracteres y sin espacios.", "Error", JOptionPane.WARNING_MESSAGE);
+            //FALTA CLEAN Username
+            flagAdminPerson = false;
+        }
+
+        if(modelRegister.validateFormatPassword(modelAdminPerson.getPasswordAdminPerson())== false){
+            JOptionPane.showMessageDialog(null, "Formato de contraseña incorrecta.\nDebe contener entre 4 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.", "Error", JOptionPane.WARNING_MESSAGE);
+            //FALTA CLEAN Password
+            flagAdminPerson = false;
+        }
+
+
+        if(modelLogin.userAlreadyExists(modelAdminPerson.getUsernameAdminPerson())){
+            JOptionPane.showMessageDialog(null, "Username ya existente. Debe ingresar un username diferente", "Error", JOptionPane.WARNING_MESSAGE);
+            //FALTA CLEAN Username
+            flagAdminPerson = false;
+        }  
+    
+    
+    }
+    
+    private void validationsPlayer(){
+        if("Seleccione Posición".equals(viewAdminPerson.getSelectedPosition())){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de posición", "Error", JOptionPane.WARNING_MESSAGE);
+            flagAdminPerson = false;
+        }
+
+        if("Seleccione Equipo".equals(viewAdminPerson.getSelectedTeam())){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un equipo", "Error", JOptionPane.WARNING_MESSAGE);
+            flagAdminPerson = false;
+        }
+        
+        if(viewAdminPerson.validateTxtDateOfBirth()){
+            JOptionPane.showMessageDialog(null, "Debe ingresar una fecha de nacimiento", "Error", JOptionPane.WARNING_MESSAGE);
+            flagAdminPerson = false;
+        }
+    }
+    
+    private void validationStaff(){
+        if("Seleccione Posición".equals(viewAdminPerson.getSelectedPosition())){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de posición", "Error", JOptionPane.WARNING_MESSAGE);
+            flagAdminPerson = false;
+        }
+
+        if("Seleccione Equipo".equals(viewAdminPerson.getSelectedTeam())){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un equipo", "Error", JOptionPane.WARNING_MESSAGE);
+            flagAdminPerson = false;
+        }
+    }
     
     private void createPerson(){
         if("Jugador".equals(viewAdminPerson.getTxtCmbPerson())){
             modelAdminPerson.inserPlayer();
         }else{
-            modelAdminPerson.inserTeamWorker();
+            if("Cuerpo Técnico".equals(viewAdminPerson.getTxtCmbPerson())){
+                 modelAdminPerson.inserTeamWorker();
+            }else{
+                modelAdminPerson.inserUser();
+            } 
         }
 
         if(modelAdminPerson.getResultInsertPerson() == 0){
@@ -1063,6 +1089,29 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
 
         viewAdminPerson.cleanAll();
+        
+        fillGenders();
+        fillIdentificationTypes();     
+        fillCountries();
+        fillPositions();
+        fillTeams();
+
+        modelAdminPerson.setPhoto("src/Images/avatar.png");
+        viewAdminPerson.setLocationRelativeTo(viewAdminPerson);
+        modelAdminPerson.setImageAdminPerson(viewAdminPerson.getLblAvatar());
+        viewAdminPerson.repaint();
+    }
+    
+    private void editPerson(){
+        if(updateSuccessful()){
+            JOptionPane.showMessageDialog(null, "La actualización se realizó con éxito", "Actualización", JOptionPane.INFORMATION_MESSAGE);                           
+        }else{
+            JOptionPane.showMessageDialog(null, "Lo sentimos, no se logró realizar la actualización", "Error", JOptionPane.WARNING_MESSAGE);                       
+        }
+        
+        viewAdminPerson.cleanAll();
+        viewAdminPerson.setCmbPersona("Seleccione Persona");
+        viewAdminPerson.setSpnNumCamisa(1);
 
         fillGenders();
         fillIdentificationTypes();     
@@ -1877,6 +1926,33 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 String fullName;
                 String choice = viewAdminPerson.getSelectedPerson();
                 
+                
+                if(viewAdminPerson.getRbtnAdd().isSelected()){
+                    if("Jugador".equals(choice)){
+                        viewAdminPerson.showPlayerOptions(true);
+                        viewAdminPerson.disableManagerOptions(false);
+                    }
+                    
+                    
+                    if("Cuerpo Técnico".equals(choice)){
+                       viewAdminPerson.showTechnicalStaffOptions(true);
+                       viewAdminPerson.disablePlayerOptions(false);
+                       viewAdminPerson.disableManagerOptions(false);
+                    }
+                    
+                    if("Administrador".equals(choice)){
+                        viewAdminPerson.showManagerOptions(true);
+                        viewAdminPerson.disablePlayerOptions(false);
+                        viewAdminPerson.disableTechnicalStaffOptions(false);
+                    }
+                
+                }
+                
+                
+                
+                
+                
+                
                 if(viewAdminPerson.getRbtnEdit().isSelected()){
                     if(!"Seleccione Persona".equals(choice)){
                         
@@ -1892,7 +1968,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                             if(choice.equals(fullName)){
                                 int idPerson = modelAdminPerson.getPlayersComboBox().get(i).getIdPerson();
                                 modelAdminPerson.getPersonInformation(idPerson);
-                                viewAdminPerson.deshabilitarOpciones(true);
+                                viewAdminPerson.disableManagerOptions(false);
                                 fillPlayerInformation();
                             }
                         }
@@ -1909,7 +1985,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                             if(choice.equals(fullName)){
                                 int idPerson = modelAdminPerson.getTeamWorkersComboBox().get(i).getIdPerson();
                                 modelAdminPerson.getPersonInformation(idPerson);
-                                viewAdminPerson.deshabilitarOpciones(false);
+                                viewAdminPerson.disablePlayerOptions(false);
+                                viewAdminPerson.disableManagerOptions(false);
                                 fillTeamWorkerInformation();
                             }
                         }
@@ -2215,9 +2292,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         if(e.getSource() == viewAdminPerson.getRbtnEdit()){
-            viewAdminPerson.esconderMostrarTodo(true);
+            viewAdminPerson.showPlayerOptions(true);
             viewAdminPerson.setTxtLblPerson("Persona:");
-            viewAdminPerson.deshabilitarOpciones(false);
+            viewAdminPerson.disableManagerOptions(false);
             modelAdminPerson.getPerson();
             fillPerson();
         }
@@ -2235,24 +2312,35 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             modelAdminPerson.setDateOfBirth(viewAdminPerson.getTxtDateOfBirth());
             modelAdminPerson.setNumTShirt(viewAdminPerson.getSpnNumTShirt());
             
+            modelAdminPerson.setUsernameAdminPerson(viewAdminPerson.getTxtUsername());
+            modelAdminPerson.setPasswordAdminPerson(viewAdminPerson.getTxtPassword());
+            String choice = viewAdminPerson.getSelectedPerson();
+            
             flagAdminPerson = true;
             //Add
             if(viewAdminPerson.getRbtnAdd().isSelected()){
                 adminPersonValidations(); //Is going to validate
+                
+                if("Administrador".equals(choice)){
+                    validationsAdmin();
+                }
+                
+                if("Jugador".equals(choice)){
+                    validationsPlayer();
+                }
+                
+                if("Cuerpo Técnico".equals(choice)){
+                    validationStaff();
+                }
+                
                 if(flagAdminPerson == true){
                     createPerson();
                 }
             }//SELECT BUTTON ADD
             
             if(viewAdminPerson.getRbtnEdit().isSelected()){
-                String firstName;
-                String secondName;
-                String firstLastName;
-                String secondLastName;
-                String fullName; 
+                String firstName, secondName, firstLastName, secondLastName, fullName;
                 int idPerson = -1;
-                String choice = viewAdminPerson.getSelectedPerson();
-                
                 
                 //PLAYER
                 for(int j=0; j<modelAdminPerson.getPlayersComboBox().size();j++){
@@ -2271,17 +2359,13 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 if(idPerson != -1){
                     for(int i=0; i<modelAdminPerson.getPlayersInfo().size();i++){
                         adminPersonValidations(); //Is going to validate
+                        validationsPlayer();
                         
                         if(flagAdminPerson == true){                            
                             updatesPlayer(idPerson, i);
-                            if(flagAdminPerson == false){
-                                
-                                if(updateSuccessful()){
-                                    JOptionPane.showMessageDialog(null, "La actualización se realizó con éxito", "Actualización", JOptionPane.INFORMATION_MESSAGE);                       
-                                }else{
-                                    JOptionPane.showMessageDialog(null, "Lo sentimos, no se logró realizar la actualización", "Error", JOptionPane.WARNING_MESSAGE);                       
-                                }
-                                                               
+                            if(flagAdminPerson == false)
+                            {
+                                editPerson();                                   
                             }else{
                                 JOptionPane.showMessageDialog(null, "No se realizó ninguna actualización", "Actualización", JOptionPane.INFORMATION_MESSAGE);                      
                             }    
@@ -2304,16 +2388,11 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     
                     for(int p=0; p<modelAdminPerson.getTeamWorkersInfo().size();p++){
                         adminPersonValidations(); //Is going to validate
+                        validationStaff();
                         if(flagAdminPerson == true){                            
                             updatesTeamWorker(idPerson, p);
                             if(flagAdminPerson == false){
-                                
-                                if(updateSuccessful()){
-                                    JOptionPane.showMessageDialog(null, "La actualización se realizó con éxito", "Actualización", JOptionPane.INFORMATION_MESSAGE);                       
-                                }else{
-                                    JOptionPane.showMessageDialog(null, "Lo sentimos, no se logró realizar la actualización", "Error", JOptionPane.WARNING_MESSAGE);                       
-                                }
-         
+                                 editPerson();       
                             }else{
                                 JOptionPane.showMessageDialog(null, "No se realizó ninguna actualización", "Actualización", JOptionPane.INFORMATION_MESSAGE);                      
                             }    

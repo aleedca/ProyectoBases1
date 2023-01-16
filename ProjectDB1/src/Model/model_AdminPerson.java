@@ -14,8 +14,6 @@ import View.JF_AdminPerson;
 import java.awt.Image;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -44,6 +42,8 @@ public class model_AdminPerson {
     private String photo;
     private String dateOfBirth;
     private int numTShirt;
+    private String usernameAdminPerson;
+    private String passwordAdminPerson;
     private int resultInsertPerson;
     
     private int resultUpdateFirstName = 0;
@@ -113,6 +113,14 @@ public class model_AdminPerson {
        
         return false;
     }
+    
+    public boolean validateAdminFields(){
+        if(this.usernameAdminPerson.isEmpty() || this.passwordAdminPerson.isEmpty()){
+            return true;
+        }
+        
+        return false;
+    }
      
     public boolean selectPhotoAdminPerson(JF_AdminPerson adminPerson){
         file.setFileFilter(this.filter);
@@ -149,6 +157,20 @@ public class model_AdminPerson {
         try {   
             this.resultInsertPerson = DA_Person.insertTeamWorker(identification, team, firstName, secondName, firstLastName, secondLastName, photo, 
                     position, typeIdentification, gender, phone, district, mail, address);
+        
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    
+    public void inserUser(){
+        try {   
+            System.out.println("Entro a llamar a la base");
+            DA_Person.insertUserPerson(this.usernameAdminPerson, "Administrador",this.passwordAdminPerson, this.identification, this.firstName,
+                    this.secondName, this.firstLastName, this.secondLastName, 
+                    this.photo, this.typeIdentification, this.gender, this.mail, this.phone, 
+                    this.district, this.address);
         
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -701,6 +723,24 @@ public class model_AdminPerson {
     public void setResultUpdateDistrict(int resultUpdateDistrict) {
         this.resultUpdateDistrict = resultUpdateDistrict;
     }
+
+    public String getUsernameAdminPerson() {
+        return usernameAdminPerson;
+    }
+
+    public void setUsernameAdminPerson(String usernameAdminPerson) {
+        this.usernameAdminPerson = usernameAdminPerson;
+    }
+
+    public String getPasswordAdminPerson() {
+        return passwordAdminPerson;
+    }
+
+    public void setPasswordAdminPerson(String passwordAdminPerson) {
+        this.passwordAdminPerson = passwordAdminPerson;
+    }
+    
+    
     
 
 }

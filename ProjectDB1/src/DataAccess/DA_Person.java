@@ -31,7 +31,7 @@ public class DA_Person {
     }
     
     
-    public static void insertUserPerson(String username, String password, int identification, 
+    public static void insertUserPerson(String username, String userType,String password, int identification, 
             String firstName, String secondName,String firstLastName, String secondLastName, String photo, 
             int idTypeIdentification, int idGender, String mail, 
             int phoneNumber, int idDistrict, String address) throws SQLException
@@ -41,7 +41,7 @@ public class DA_Person {
         PreparedStatement sql = conn.prepareStatement("{ call insertUserPerson(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
         //Input parameters
         sql.setString(1,username);
-        sql.setInt(2, 2);
+        sql.setString(2, userType);
         sql.setString(3, password);
         sql.setInt(4, identification);
         sql.setString(5, firstName);
@@ -73,6 +73,7 @@ public class DA_Person {
         sql.execute();
         
         int result = ((BigDecimal) sql.getObject(2)).intValue();
+        System.out.println("El resultado de la validacion es: "+ result);
         return result;   
     }
 
