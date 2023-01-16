@@ -5,7 +5,6 @@
 package Controller;
 
 import Objects.GroupList;
-import Objects.MostViewedNews;
 import Objects.News;
 import Objects.NewsList;
 import Objects.TeamList;
@@ -74,14 +73,14 @@ public class Cargador {
     }
     
     
-    DefaultTableModel showMostViewedNews(ArrayList<MostViewedNews> mostViewedNews ){
+    DefaultTableModel showMostViewedNews(ArrayList<News> mostViewedNews ){
         
         Object [] header = {"Noticia", "Visualizaciones"};
         
         DefaultTableModel dtm = new DefaultTableModel(header,mostViewedNews.size());
         
         for (int i = 0; i<dtm.getRowCount(); i++){
-            MostViewedNews news = mostViewedNews.get(i);
+            News news = mostViewedNews.get(i);
             
             dtm.setValueAt(news.getTitle(), i, 0);
             dtm.setValueAt(news.getViews(), i, 1);

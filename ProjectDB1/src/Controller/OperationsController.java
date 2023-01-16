@@ -162,7 +162,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         fillTypePerson();
         fillStadiums();
         principal.showMostViewedNews();
-        //principal.showLastNews();
+        principal.showLastNews();
         
        
 
