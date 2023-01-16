@@ -468,7 +468,7 @@ public class JF_AdminPerson extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlAdminPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 1288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlAdminPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 1296, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -664,6 +664,16 @@ public class JF_AdminPerson extends javax.swing.JFrame {
     public JRadioButton getRbtnEdit() {
         return rbtnEdit;
     }
+
+    public void setRbtnAddSelected() {
+        this.rbtnAdd.setSelected(true);
+    }
+
+    public void setRbtnEditSelected() {
+        this.rbtnEdit.setSelected(false);
+    }
+    
+    
 
     //----- VALIDATIONS --------------------------
     public boolean validateTxtIdentification(){

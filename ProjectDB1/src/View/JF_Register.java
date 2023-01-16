@@ -74,10 +74,10 @@ public class JF_Register extends javax.swing.JFrame {
     
     public boolean validateTxtPhone(){
         String chain =  txtPhone.getText();
-        if(chain.isEmpty()){
+        if("    -    ".equals(chain)){
             return true;
         }
-        
+            
         return false;
     }
       

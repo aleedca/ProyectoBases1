@@ -401,7 +401,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     }
     
     private void fillTypePerson(){ 
+        viewAdminPerson.showPlayerOptions(true);
+        viewAdminPerson.disableManagerOptions(false);
         viewAdminPerson.getCmbPerson().removeAllItems();
+        viewAdminPerson.getCmbPerson().addItem("Seleccione Tipo Persona");
         viewAdminPerson.getCmbPerson().addItem("Jugador");
         viewAdminPerson.getCmbPerson().addItem("Cuerpo Técnico");
         viewAdminPerson.getCmbPerson().addItem("Administrador");
@@ -1082,13 +1085,13 @@ public class OperationsController implements ActionListener, ItemListener, ListS
 
         if(modelAdminPerson.getResultInsertPerson() == 0){
             JOptionPane.showMessageDialog(null, "Se ha creado la persona");
-            viewAdminPerson.setVisible(false);
-            viewMenuAdmin.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Lo sentimos, no se logro crear la persona", "Error", JOptionPane.WARNING_MESSAGE);
         }
 
         viewAdminPerson.cleanAll();
+        viewAdminPerson.setCmbPersona("Seleccione Tipo Persona");
+        viewAdminPerson.setSpnNumCamisa(1);
         
         fillGenders();
         fillIdentificationTypes();     
@@ -2275,6 +2278,24 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         //-------------- SCREEN AdminPerson -----------------------
         if(e.getSource() == viewAdminPerson.getBtnBackAdminPerson()){
             viewAdminPerson.cleanAll();
+            fillTypePerson();
+            //viewAdminPerson.setCmbPersona("Seleccione Tipo Persona");
+            viewAdminPerson.setSpnNumCamisa(1);
+            viewAdminPerson.setRbtnAddSelected();
+            viewAdminPerson.setRbtnEditSelected();
+        
+            fillGenders();
+            fillIdentificationTypes();     
+            fillCountries();
+            fillPositions();
+            fillTeams();
+
+            modelAdminPerson.setPhoto("src/Images/avatar.png");
+            viewAdminPerson.setLocationRelativeTo(viewAdminPerson);
+            modelAdminPerson.setImageAdminPerson(viewAdminPerson.getLblAvatar());
+            viewAdminPerson.repaint();
+            
+            
             viewAdminPerson.setVisible(false);
             viewMenuAdmin.setVisible(true);
         }
