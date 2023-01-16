@@ -4,7 +4,7 @@
  */
 package DataAccess;
 
-import Objects.LastNews;
+
 import Objects.MostViewedNews;
 import Objects.News;
 import Objects.NewsStatus;
@@ -142,7 +142,7 @@ public class DA_News {
         return MostViewedNews;
     }
     
-    public static ArrayList<LastNews> getLastNews() throws SQLException {
+    public static ArrayList<News> getLastNews() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
         CallableStatement sql = conn.prepareCall("{call getLastNews(?)}");
@@ -150,17 +150,17 @@ public class DA_News {
         sql.execute();
         
         ResultSet rs = (ResultSet) sql.getObject(1);
-        ArrayList<LastNews> LastNews = new ArrayList<>();
+        ArrayList<News> lastNews = new ArrayList<>();
         while(rs.next()){
-            LastNews news = new LastNews();
+            News news = new News();
             
             news.setTitle(rs.getString("title"));
             news.setPublicationDate(rs.getString("publicationDate"));
            
-            LastNews.add(news);
+            lastNews.add(news);
         }
         
-        return LastNews;
+        return lastNews;
     }
     
     //-------------INSERTS----------------------
