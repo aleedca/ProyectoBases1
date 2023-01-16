@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DataAccess;
-
-import Objects.Team;
 import Objects.TeamList;
 
 import java.sql.CallableStatement;
