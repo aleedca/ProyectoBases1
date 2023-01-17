@@ -157,6 +157,7 @@ CREATE OR REPLACE PROCEDURE insertUserPerson(pUsername IN VARCHAR2, pUserType IN
             pIdDistrict IN NUMBER, pDescriptionAddress IN VARCHAR2)
 AS 
 vnIdUserType NUMBER(10);
+vnPassword VARCHAR2(200);
 BEGIN
     BEGIN
         SELECT ut.idUserType
@@ -171,10 +172,12 @@ BEGIN
         insertPerson (pIdentification, pFirstName, pSecondName, pFirstLastName, 
                       pSecondLastName, pPhoto, pIdPersonPosition, s_address.currval, 
                       pIdTypeIdentification, pIdGender);
+                      
+        encryptionPassword (pPassword,  vnPassword);
 
         INSERT INTO UserPerson(username, idUserType, idPerson, passwordUser, 
                                userCreation, lastUser, lastDate, dateCreation)
-        VALUES(pUsername, vnIdUserType,s_person.currval, pPassword, NULL, NULL, NULL, NULL);
+        VALUES(pUsername, vnIdUserType,s_person.currval, vnPassword, NULL, NULL, NULL, NULL);
             
         insertMail (s_person.currval, pMail);
         insertPhone (pPhoneNumber);
