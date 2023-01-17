@@ -31,6 +31,7 @@ public class model_News {
     private String newsTitle;
     private String newsText;
     private String photo;
+    private String author;
     private Date publicationDate;
     
     private int resultUpdateStatus= 0;
@@ -95,8 +96,8 @@ public class model_News {
     
     public void insertNews(){
         try {   
-            DA_News.insertNews(this.idNewsStatus, this.idNewsType, this.newsTitle, this.publicationDate, "Unlink", "FotoNoticia", this.newsText);
-        
+            this.idNews = DA_News.insertNews(this.idNewsStatus, this.idNewsType, this.newsTitle, this.publicationDate, "Unlink", "FotoNoticia", this.newsText);
+            DA_News.insertUserXNews(this.idNews, this.author);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -135,6 +136,14 @@ public class model_News {
     }
     
     // GETTERS AND SETTERS
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
     public int getResultUpdateStatus() {
         return resultUpdateStatus;
