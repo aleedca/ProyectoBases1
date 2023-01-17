@@ -25,22 +25,25 @@ END validateUser;
 
 CREATE OR REPLACE PROCEDURE validateUserAlreadyExists(pUsername IN VARCHAR2,codResult OUT NUMBER) 
 IS
-vnUsername VARCHAR(32);
+vnIdPerson NUMBER(10);
 BEGIN
-    SELECT   username
-    INTO vnUsername
-    FROM UserPerson 
-    WHERE username = pUsername;
-    
-    IF(vnUsername != NULL) THEN
-        codResult := 0;
-    END IF;
-    
-    COMMIT;
-EXCEPTION
+    BEGIN
+        SELECT userPerson.idPerson
+        INTO vnIdPerson
+        FROM UserPerson
+        WHERE userPerson.username = pUsername;
+    EXCEPTION
     WHEN OTHERS THEN
         ROLLBACK;
-        codResult := SQLCODE;        
+        vnIdPerson:=-1; 
+    END;
+
+    IF(vnIdPerson != -1) 
+    THEN
+        codResult := 0;
+    ELSE
+         codResult := 1;
+    END IF; 
 END validateUserAlreadyExists;
 
             

@@ -1,6 +1,6 @@
 ----------------------------------------- NEWS -----------------------------------------
 -- Status
-CREATE OR REPLACE PROCEDURE updateStatus(pIdNews IN NUMBER, pIdNewsStatus) AS
+CREATE OR REPLACE PROCEDURE updateStatus(pIdNews IN NUMBER, pIdNewsStatus IN NUMBER, codResult OUT NUMBER) AS
 BEGIN
     UPDATE News
     SET idNewsStatus = pIdNewsStatus
@@ -13,10 +13,10 @@ EXCEPTION
     WHEN OTHERS THEN
         ROLLBACK;
         codResult := SQLCODE;   
-END updateEstado;
+END updateStatus ;
 
 -- Type
-CREATE OR REPLACE PROCEDURE updateType(pIdNews IN NUMBER, pIdNewsType IN NUMBER) AS
+CREATE OR REPLACE PROCEDURE updateType(pIdNews IN NUMBER, pIdNewsType IN NUMBER, codResult OUT NUMBER) AS
 BEGIN
     UPDATE News
     SET idNewsType = pIdNewsType
@@ -32,10 +32,10 @@ EXCEPTION
 END updateType;
 
 -- Title
-CREATE OR REPLACE PROCEDURE updateTitle(pIdNews IN NUMBER, pTitle IN VARCHAR2) AS
+CREATE OR REPLACE PROCEDURE updateTitle(pIdNews IN NUMBER, pTitle IN VARCHAR2, codResult OUT NUMBER) AS
 BEGIN
     UPDATE News
-    SET title = pTitle;
+    SET title = pTitle
     WHERE idNews = pIdNews;
     
     codResult:= 0;
@@ -48,10 +48,10 @@ EXCEPTION
 END updateTitle;
 
 -- Text
-CREATE OR REPLACE PROCEDURE updateText(pIdNews IN NUMBER, pText IN VARCHAR2) AS
+CREATE OR REPLACE PROCEDURE updateText(pIdNews IN NUMBER, pText IN VARCHAR2, codResult OUT NUMBER) AS
 BEGIN
     UPDATE News
-    SET textNews = pText;
+    SET textNews = pText
     WHERE idNews = pIdNews;
     
     codResult:= 0;
@@ -64,10 +64,10 @@ EXCEPTION
 END updateText;
 
 -- Photo
-CREATE OR REPLACE PROCEDURE updatePhoto(pIdNews IN NUMBER, pPhoto IN VARCHAR2) AS
+CREATE OR REPLACE PROCEDURE updatePhoto(pIdNews IN NUMBER, pPhoto IN VARCHAR2, codResult OUT NUMBER) AS
 BEGIN
     UPDATE News
-    SET photo = pPhoto;
+    SET photo = pPhoto
     WHERE idNews = pIdNews;
     
     codResult:= 0;

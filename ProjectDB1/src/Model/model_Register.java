@@ -109,8 +109,8 @@ public class model_Register {
     
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
     
-    public boolean validateFormatPassword(){
-        if (PASSWORD_PATTERN.matcher( this.passwordRegister).matches()) {
+    public boolean validateFormatPassword(String password){
+        if (PASSWORD_PATTERN.matcher( password).matches()) {
             return true;
 	}
         
@@ -118,10 +118,10 @@ public class model_Register {
     }
     
     
-    public boolean validateFormatUsername(){
+    public boolean validateFormatUsername(String username){
         String regex = "^[A-Za-z0-9_]{5,15}$";
         Pattern pattern = Pattern.compile(regex);
-        Matcher mather = pattern.matcher(this.usernameRegister);
+        Matcher mather = pattern.matcher(username);
         
         if (mather.matches()) {
             return true;
@@ -194,7 +194,7 @@ public class model_Register {
     public void inserUser(){
         try {   
             System.out.println("Entro a llamar a la base");
-            DA_Person.insertUserPerson(this.usernameRegister, this.passwordRegister, this.identification, this.firstName,
+            DA_Person.insertUserPerson(this.usernameRegister, "Usuario",this.passwordRegister, this.identification, this.firstName,
                     this.secondName, this.firstLastName, this.secondLastName, 
                     this.photo, this.typeIdentification, this.gender, this.mail, this.phone, 
                     this.district, this.address);

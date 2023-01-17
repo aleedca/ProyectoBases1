@@ -70,12 +70,12 @@ END getNews;
 CREATE OR REPLACE PROCEDURE getInfoNews(pIdNews IN NUMBER, curNews OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curNews FOR
-    SELECT idNews, NewsType.idNewsType, NewsStatus.idNewsStatus, title, publicationDate, viewsNews, linkNews, photo, textNews
+    SELECT idNews, NewsType.idNewsType, NewsStatus.idNewsStatus, title, photo, textNews
     FROM News 
     INNER JOIN NewsStatus ON News.idNewsStatus = NewsStatus.idNewsStatus
     INNER JOIN NewsType ON News.idNewsType = NewsType.idNewsType
     WHERE News.idNews = pIdNews;
-END getNews;
+END getInfoNews;
 
 CREATE OR REPLACE PROCEDURE getNewsStatus(curNewsStatus OUT SYS_REFCURSOR) IS
 BEGIN
@@ -112,8 +112,16 @@ BEGIN
     SELECT title, viewsNews
     FROM News
     ORDER BY viewsNews DESC;
-    
 END getMostViewedNews;
+
+
+CREATE OR REPLACE PROCEDURE getLastNews(curLastNews OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curLastNews FOR
+    SELECT title, publicationDate
+    FROM News
+    ORDER BY publicationDate DESC;
+END getLastNews;
 
 CREATE OR REPLACE PROCEDURE getStadium(curStadium OUT SYS_REFCURSOR) IS
 BEGIN

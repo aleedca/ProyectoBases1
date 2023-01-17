@@ -33,6 +33,12 @@ public class model_News {
     private String photo;
     private Date publicationDate;
     
+    private int resultUpdateStatus= 0;
+    private int resultUpdateType = 0;
+    private int resultUpdateTitle = 0;
+    private int resultUpdateText= 0;
+    private int resultUpdatePhoto = 0;
+    
     private String newsStr;
     private int idNews;
     private ArrayList<News> newsArr;
@@ -52,13 +58,30 @@ public class model_News {
     public void loadNewsArr(){
         try {
             this.newsArr = DA_News.getNews();
+            
+        } catch (SQLException ex) {
+           System.out.println(ex);
+        }
+    }
+    
+    public void loadNewsStatusArr(){
+        try {
             this.newsStatusArr = DA_News.getNewsStatus();
+            
+        } catch (SQLException ex) {
+           System.out.println(ex);
+        }
+    }
+    
+    public void loadNewsTypeArr(){
+        try {
             this.newsTypeArr = DA_News.getNewsType();
             
         } catch (SQLException ex) {
            System.out.println(ex);
         }
     }
+   
     
     public boolean validateEmptyFields(){
         if(this.newsTitle.isEmpty() || this.newsText.isEmpty()){return false;}
@@ -80,11 +103,15 @@ public class model_News {
     }
 
     public void updateNews(){
-    
-    }
-    
-    public void deleteNews(){
-    
+        try {
+            this.resultUpdateStatus = DA_News.updateStatus(this.idNews, this.idNewsStatus);
+            this.resultUpdateType = DA_News.updateType(this.idNews, this.idNewsType);
+            this.resultUpdateStatus = DA_News.updateTitle(this.idNews, this.newsTitle);
+            this.resultUpdateStatus = DA_News.updateText(this.idNews, this.newsText);
+            this.resultUpdateStatus = DA_News.updatePhoto(this.idNews, this.photo);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
     
     public boolean selectPhoto(JF_AdminNews adminNews){
@@ -109,6 +136,46 @@ public class model_News {
     
     // GETTERS AND SETTERS
 
+    public int getResultUpdateStatus() {
+        return resultUpdateStatus;
+    }
+
+    public void setResultUpdateStatus(int resultUpdateStatus) {
+        this.resultUpdateStatus = resultUpdateStatus;
+    }
+
+    public int getResultUpdateType() {
+        return resultUpdateType;
+    }
+
+    public void setResultUpdateType(int resultUpdateType) {
+        this.resultUpdateType = resultUpdateType;
+    }
+
+    public int getResultUpdateTitle() {
+        return resultUpdateTitle;
+    }
+
+    public void setResultUpdateTitle(int resultUpdateTitle) {
+        this.resultUpdateTitle = resultUpdateTitle;
+    }
+
+    public int getResultUpdateText() {
+        return resultUpdateText;
+    }
+
+    public void setResultUpdateText(int resultUpdateText) {
+        this.resultUpdateText = resultUpdateText;
+    }
+
+    public int getResultUpdatePhoto() {
+        return resultUpdatePhoto;
+    }
+
+    public void setResultUpdatePhoto(int resultUpdatePhoto) {
+        this.resultUpdatePhoto = resultUpdatePhoto;
+    }
+    
     public Date getPublicationDate() {
         return publicationDate;
     }

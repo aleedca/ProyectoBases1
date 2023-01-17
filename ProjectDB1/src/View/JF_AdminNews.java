@@ -42,7 +42,6 @@ public class JF_AdminNews extends javax.swing.JFrame {
         lblLogo = new javax.swing.JLabel();
         rbtnAgregar = new javax.swing.JRadioButton();
         rbtnEditar = new javax.swing.JRadioButton();
-        rbtnEliminar = new javax.swing.JRadioButton();
         cmbEstado = new javax.swing.JComboBox<>();
         lblTipo = new javax.swing.JLabel();
         cmbTipo = new javax.swing.JComboBox<>();
@@ -56,7 +55,6 @@ public class JF_AdminNews extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblNoticias = new javax.swing.JTable();
         lblEstado = new javax.swing.JLabel();
-        txtareaEliminar = new javax.swing.JTextArea();
         txtTexto = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -102,7 +100,7 @@ public class JF_AdminNews extends javax.swing.JFrame {
             }
         });
         jPanel1.add(rbtnAgregar);
-        rbtnAgregar.setBounds(720, 160, 150, 37);
+        rbtnAgregar.setBounds(810, 160, 150, 37);
         rbtnAgregar.setSelected(true);
 
         rbtnEditar.setBackground(new java.awt.Color(86, 4, 44));
@@ -116,20 +114,7 @@ public class JF_AdminNews extends javax.swing.JFrame {
             }
         });
         jPanel1.add(rbtnEditar);
-        rbtnEditar.setBounds(910, 160, 100, 37);
-
-        rbtnEliminar.setBackground(new java.awt.Color(86, 4, 44));
-        btnGroupAdmiNoticias.add(rbtnEliminar);
-        rbtnEliminar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        rbtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        rbtnEliminar.setText("Eliminar");
-        rbtnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnEliminarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(rbtnEliminar);
-        rbtnEliminar.setBounds(1060, 160, 150, 37);
+        rbtnEditar.setBounds(1050, 160, 100, 37);
 
         cmbEstado.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
@@ -197,14 +182,14 @@ public class JF_AdminNews extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Estado", "Título", "Vistas", "Fecha Publicación", "Tipo", "Rating"
+                "ID", "Título", "Estado", "Vistas", "Fecha Publicación", "Tipo", "Rating"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -220,29 +205,26 @@ public class JF_AdminNews extends javax.swing.JFrame {
         tblNoticias.getTableHeader().setResizingAllowed(false);
         tblNoticias.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblNoticias);
+        if (tblNoticias.getColumnModel().getColumnCount() > 0) {
+            tblNoticias.getColumnModel().getColumn(0).setMinWidth(40);
+            tblNoticias.getColumnModel().getColumn(0).setMaxWidth(55);
+            tblNoticias.getColumnModel().getColumn(1).setMinWidth(200);
+            tblNoticias.getColumnModel().getColumn(2).setPreferredWidth(85);
+            tblNoticias.getColumnModel().getColumn(3).setMinWidth(40);
+            tblNoticias.getColumnModel().getColumn(3).setMaxWidth(55);
+            tblNoticias.getColumnModel().getColumn(4).setMinWidth(100);
+            tblNoticias.getColumnModel().getColumn(6).setMinWidth(40);
+            tblNoticias.getColumnModel().getColumn(6).setMaxWidth(55);
+        }
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(40, 160, 616, 480);
+        jScrollPane1.setBounds(20, 160, 670, 480);
 
         lblEstado.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         lblEstado.setForeground(new java.awt.Color(255, 255, 255));
         lblEstado.setText("Estado:");
         jPanel1.add(lblEstado);
         lblEstado.setBounds(720, 220, 120, 40);
-
-        txtareaEliminar.setBackground(new java.awt.Color(86, 4, 44));
-        txtareaEliminar.setColumns(20);
-        txtareaEliminar.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        txtareaEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        txtareaEliminar.setRows(3);
-        txtareaEliminar.setText("Seleccione una noticia de la tabla de \nla izquierda para eliminarla. Presione  \n     aceptar para concluir la acción.");
-        txtareaEliminar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(82, 4, 44)));
-        txtareaEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        txtareaEliminar.setDisabledTextColor(new java.awt.Color(82, 4, 44));
-        jPanel1.add(txtareaEliminar);
-        txtareaEliminar.setBounds(720, 330, 500, 150);
-        txtareaEliminar.setEditable(false);
-        txtareaEliminar.setVisible(false);
 
         txtTexto.setColumns(20);
         txtTexto.setLineWrap(true);
@@ -322,14 +304,6 @@ public class JF_AdminNews extends javax.swing.JFrame {
         this.txtTitulo = txtTitulo;
     }
 
-    public JTextArea getTxtareaEliminar() {
-        return txtareaEliminar;
-    }
-
-    public void setTxtareaEliminar(JTextArea txtareaEliminar) {
-        this.txtareaEliminar = txtareaEliminar;
-    }
-
     public JButton getBtnAceptar() {
         return btnAceptar;
     }
@@ -369,31 +343,6 @@ public class JF_AdminNews extends javax.swing.JFrame {
     public void setRbtnEditar(JRadioButton rbtnEditar) {
         this.rbtnEditar = rbtnEditar;
     }
-
-    public JRadioButton getRbtnEliminar() {
-        return rbtnEliminar;
-    }
-
-    public void setRbtnEliminar(JRadioButton rbtnEliminar) {
-        this.rbtnEliminar = rbtnEliminar;
-    }
-    
-    
-
-    public void esconderMostrarTodo(boolean flag){
-        lblEstado.setVisible(flag);
-        cmbTipo.setVisible(flag);
-        lblTipo.setVisible(flag);
-        cmbEstado.setVisible(flag);
-        lblTitulo.setVisible(flag);
-        txtTitulo.setVisible(flag);
-        lblTexto.setVisible(flag);
-        txtTexto.setVisible(flag);
-        lblFoto.setVisible(flag);
-        lblImagen.setVisible(flag);
-        btnCargarImagen.setVisible(flag);
-        txtareaEliminar.setVisible(!flag);
-    }
     
     
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -401,16 +350,12 @@ public class JF_AdminNews extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void rbtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnAgregarActionPerformed
-        esconderMostrarTodo(true);
+        
     }//GEN-LAST:event_rbtnAgregarActionPerformed
 
     private void rbtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEditarActionPerformed
-        esconderMostrarTodo(true);
+        
     }//GEN-LAST:event_rbtnEditarActionPerformed
-
-    private void rbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEliminarActionPerformed
-        esconderMostrarTodo(false);
-    }//GEN-LAST:event_rbtnEliminarActionPerformed
 
 
 
@@ -433,10 +378,8 @@ public class JF_AdminNews extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JRadioButton rbtnAgregar;
     private javax.swing.JRadioButton rbtnEditar;
-    private javax.swing.JRadioButton rbtnEliminar;
     private javax.swing.JTable tblNoticias;
     private javax.swing.JTextArea txtTexto;
     private javax.swing.JTextField txtTitulo;
-    private javax.swing.JTextArea txtareaEliminar;
     // End of variables declaration//GEN-END:variables
 }
