@@ -5,7 +5,7 @@
 package DataAccess;
 
 
-import Objects.MostViewedNews;
+
 import Objects.News;
 import Objects.NewsStatus;
 import Objects.NewsType;
@@ -121,7 +121,7 @@ public class DA_News {
         return arrayNewsType;
     }
     
-    public static ArrayList<MostViewedNews> getMostViewedNews() throws SQLException {
+    public static ArrayList<News> getMostViewedNews() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
         CallableStatement sql = conn.prepareCall("{call getMostViewedNews(?)}");
@@ -129,17 +129,17 @@ public class DA_News {
         sql.execute();
         
         ResultSet rs = (ResultSet) sql.getObject(1);
-        ArrayList<MostViewedNews> MostViewedNews = new ArrayList<>();
+        ArrayList<News> mostViewedNews = new ArrayList<>();
         while(rs.next()){
-            MostViewedNews news = new MostViewedNews();
+            News news = new News();
             
             news.setTitle(rs.getString("title"));
             news.setViews(rs.getInt("viewsNews"));
            
-            MostViewedNews.add(news);
+            mostViewedNews.add(news);
         }
         
-        return MostViewedNews;
+        return mostViewedNews;
     }
     
     public static ArrayList<News> getLastNews() throws SQLException {
@@ -165,14 +165,13 @@ public class DA_News {
     
     //-------------INSERTS----------------------
     
-    public static void insertNews(int idNewsStatus, int idNewsType, String title, Date publicationDate, String link, 
+    public static int insertNews(int idNewsStatus, int idNewsType, String title, Date publicationDate, String link, 
         String photo, String text) throws SQLException {
         
         Connection conn = sysConnection.getConexion();
-        PreparedStatement sql = conn.prepareCall("{call insertNews(?,?,?,?,?,?,?)}");
+        CallableStatement sql = conn.prepareCall("{call insertNews(?,?,?,?,?,?,?,?)}");
         publicationDate = new java.util.Date();
         
-        //Input parameters
         sql.setInt(1, idNewsStatus);
         sql.setInt(2, idNewsType);
         sql.setString(3, title);
@@ -180,6 +179,20 @@ public class DA_News {
         sql.setString(5, link);
         sql.setString(6, photo);
         sql.setString(7, text);
+        sql.registerOutParameter(8, OracleTypes.NUMBER);
+        sql.execute();
+        
+        int idNews = ((BigDecimal) sql.getObject(8)).intValue();
+        return idNews; 
+    }
+    
+    public static void insertUserXNews(int idNews, String username) throws SQLException {
+        
+        Connection conn = sysConnection.getConexion();
+        PreparedStatement sql = conn.prepareCall("{call insertUserXNews(?,?)}");
+        
+        sql.setString(1, username);
+        sql.setInt(2, idNews);
 
         sql.execute();
     }

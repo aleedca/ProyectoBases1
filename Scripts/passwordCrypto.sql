@@ -1,3 +1,6 @@
+---Run with sys
+GRANT EXECUTE  ON dbms_crypto TO proyectoBD;
+
 CREATE OR REPLACE PROCEDURE encryptionPassword (text IN VARCHAR2, encrypted_text OUT VARCHAR2) AS  
 raw_set RAW(100);  
 raw_password RAW(100);  
@@ -10,8 +13,8 @@ BEGIN
     operation_mode:=DBMS_CRYPTO.ENCRYPT_DES + DBMS_CRYPTO.PAD_ZERO + DBMS_CRYPTO.CHAIN_ECB;        
     encryption_result:=DBMS_CRYPTO.ENCRYPT(raw_set,operation_mode,raw_password);           
     dbms_output.put_line(encryption_result);    
-    encryptedtext := RAWTOHEX (encryption_result);  
-END; 
+    encrypted_text := RAWTOHEX (encryption_result);  
+END encryptionPassword; 
 
 
 CREATE OR REPLACE PROCEDURE decryptionPassword (encrypted_text IN VARCHAR2, decrypted_text OUT VARCHAR2) AS   
@@ -27,4 +30,4 @@ BEGIN
     decryption_result:=DBMS_CRYPTO.DECRYPT(raw_set,operation_mode,raw_password);   
     dbms_output.put_line(decryption_result);   
     decrypted_text := utl_i18n.raw_to_char (decryption_result,'AL32UTF8'); 
-END;  
+END decryptionPassword;  

@@ -6,6 +6,8 @@ Alexia Cerdas Aguilar - 2019026961
 Nahomi Bolaños Valverde - 2022089165
 Mariana Fernández Martínez - 2021104026
 */
+-- Permission
+GRANT CREATE ANY TRIGGER TO proyectoBD;
 
 -- Gender
 CREATE OR REPLACE TRIGGER proyectoBD.beforeInsertGender
@@ -332,23 +334,23 @@ BEGIN
 END beforeUpdatePersonXPhone;
 
 -- PlayerXSoccerMatchXTeam
-CREATE OR REPLACE TRIGGER proyectoBD.beforeInsertPlayerXSoccerMatchXTeam
+CREATE OR REPLACE TRIGGER proyectoBD.beforeInsertPlayerXMatchXTeam
 BEFORE INSERT
 ON proyectoBD.PlayerXSoccerMatchXTeam
 FOR EACH ROW
 BEGIN
     :new.userCreation:=USER;
     :new.dateCreation:=SYSDATE;
-END beforeInsertPlayerXSoccerMatchXTeam;
+END beforeInsertPlayerXMatchXTeam;
 
-CREATE OR REPLACE TRIGGER proyectoBD.beforeUpdatePlayerXSoccerMatchXTeam
+CREATE OR REPLACE TRIGGER proyectoBD.beforeUpdatePlayerXMatchXTeam
 BEFORE UPDATE
 ON proyectoBD.PlayerXSoccerMatchXTeam
 FOR EACH ROW
 BEGIN
     :new.lastUser:=USER;
     :new.lastDate:=SYSDATE;
-END beforeUpdatePlayerXSoccerMatchXTeam;
+END beforeUpdatePlayerXMatchXTeam;
 
 -- News
 CREATE OR REPLACE TRIGGER proyectoBD.beforeInsertNews

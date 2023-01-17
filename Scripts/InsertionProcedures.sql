@@ -157,6 +157,7 @@ CREATE OR REPLACE PROCEDURE insertUserPerson(pUsername IN VARCHAR2, pUserType IN
             pIdDistrict IN NUMBER, pDescriptionAddress IN VARCHAR2)
 AS 
 vnIdUserType NUMBER(10);
+vnPassword VARCHAR2(200);
 BEGIN
     BEGIN
         SELECT ut.idUserType
@@ -171,10 +172,12 @@ BEGIN
         insertPerson (pIdentification, pFirstName, pSecondName, pFirstLastName, 
                       pSecondLastName, pPhoto, pIdPersonPosition, s_address.currval, 
                       pIdTypeIdentification, pIdGender);
+                      
+        encryptionPassword (pPassword,  vnPassword);
 
         INSERT INTO UserPerson(username, idUserType, idPerson, passwordUser, 
                                userCreation, lastUser, lastDate, dateCreation)
-        VALUES(pUsername, vnIdUserType,s_person.currval, pPassword, NULL, NULL, NULL, NULL);
+        VALUES(pUsername, vnIdUserType,s_person.currval, vnPassword, NULL, NULL, NULL, NULL);
             
         insertMail (s_person.currval, pMail);
         insertPhone (pPhoneNumber);
@@ -244,11 +247,14 @@ END insertPlayerXMatchXTeam;
 
 --------------------------------------------------------------------------------------------------
 -- News
-CREATE OR REPLACE PROCEDURE insertNews (pIdNewsStatus IN NUMBER, pIdNewsType IN NUMBER, pTitle IN VARCHAR2, pPublicationDate IN DATE, pLinkNews IN VARCHAR2, pPhoto IN VARCHAR2, pTextNews IN VARCHAR2) AS
+CREATE OR REPLACE PROCEDURE insertNews (pIdNewsStatus IN NUMBER, pIdNewsType IN NUMBER, pTitle IN VARCHAR2, pPublicationDate IN DATE, pLinkNews IN VARCHAR2, pPhoto IN VARCHAR2, pTextNews IN VARCHAR2, idNews OUT NUMBER) AS
 BEGIN
     INSERT INTO News (idNews, idNewsStatus, idNewsType, title, publicationDate, viewsNews, linkNews, photo, textNews, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_news.nextval, pIdNewsStatus, pIdNewsType, pTitle, pPublicationDate, 0, pLinkNews, pPhoto, pTextNews, NULL, NULL, NULL, NULL);
+
+    idNews:= s_news.currval;
     COMMIT;
+    
 END insertNews;
 
 --FavoriteNews
