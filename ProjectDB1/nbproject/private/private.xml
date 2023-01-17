@@ -5,8 +5,7 @@
         <group>
             <file>file:/C:/Users/CPUw0113/Documents/ALEXIA/ProyectoBases1/ProjectDB1/src/DataAccess/DA_News.java</file>
             <file>file:/C:/Users/CPUw0113/Documents/ALEXIA/ProyectoBases1/ProjectDB1/src/Model/model_News.java</file>
-            <file>file:/C:/Users/CPUw0113/Documents/ALEXIA/ProyectoBases1/ProjectDB1/src/Controller/OperationsController.java</file>
-            <file>file:/C:/Users/CPUw0113/Documents/ALEXIA/ProyectoBases1/ProjectDB1/src/View/JF_AdminNews.java</file>
+            <file>file:/C:/Users/CPUw0113/Documents/ALEXIA/ProyectoBases1/ProjectDB1/src/DataAccess/sysConnection.java</file>
             <file>file:/C:/Users/CPUw0113/Documents/ALEXIA/ProyectoBases1/ProjectDB1/src/Controller/AdminNewsController.java</file>
         </group>
     </open-files>

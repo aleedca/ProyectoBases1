@@ -244,11 +244,14 @@ END insertPlayerXMatchXTeam;
 
 --------------------------------------------------------------------------------------------------
 -- News
-CREATE OR REPLACE PROCEDURE insertNews (pIdNewsStatus IN NUMBER, pIdNewsType IN NUMBER, pTitle IN VARCHAR2, pPublicationDate IN DATE, pLinkNews IN VARCHAR2, pPhoto IN VARCHAR2, pTextNews IN VARCHAR2) AS
+CREATE OR REPLACE PROCEDURE insertNews (pIdNewsStatus IN NUMBER, pIdNewsType IN NUMBER, pTitle IN VARCHAR2, pPublicationDate IN DATE, pLinkNews IN VARCHAR2, pPhoto IN VARCHAR2, pTextNews IN VARCHAR2, idNews OUT NUMBER) AS
 BEGIN
     INSERT INTO News (idNews, idNewsStatus, idNewsType, title, publicationDate, viewsNews, linkNews, photo, textNews, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_news.nextval, pIdNewsStatus, pIdNewsType, pTitle, pPublicationDate, 0, pLinkNews, pPhoto, pTextNews, NULL, NULL, NULL, NULL);
+
+    idNews:= s_news.currval;
     COMMIT;
+    
 END insertNews;
 
 --FavoriteNews
