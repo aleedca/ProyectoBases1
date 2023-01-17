@@ -2178,6 +2178,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             modelNews.setNewsTitle(adminNewsController.getViewAdminNews().getTxtTitulo().getText());
             modelNews.setPublicationDate(modelNews.getPublicationDate());
             modelNews.setNewsText(adminNewsController.getViewAdminNews().getTxtTexto().getText());
+            modelNews.setAuthor(model_Login.getUsernameLogin());
             
             if(adminNewsController.getViewAdminNews().getRbtnAgregar().isSelected()){
                 adminNewsValidationsInsert(choice1, choice2);
@@ -2449,7 +2450,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             viewAdminMatches.setVisible(true);
         }
         
-        //-------------- SCREEN AdminMatche -----------------------
+        //-------------- SCREEN AdminMatches -----------------------
         if(e.getSource() == viewAdminMatch.getBtnBack()){
             viewAdminMatch.setVisible(false);
             viewAdminMatches.setVisible(true);
