@@ -55,4 +55,30 @@ BEGIN
     END IF; 
 END validateUserAlreadyExists;
 
+
+
+
+CREATE OR REPLACE PROCEDURE validateIdentification(pidentification IN NUMBER,codResult OUT NUMBER) 
+IS
+vnIdentification NUMBER(10);
+BEGIN
+    BEGIN
+        SELECT Person.identification
+        INTO vnIdentification
+        FROM Person
+        WHERE Person.idPerson = ;
+    EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        vnIdentification:=-1; 
+    END;
+
+    IF(vnIdentification != -1) 
+    THEN
+        codResult := 0;
+    ELSE
+         codResult := 1;
+    END IF; 
+END validateIdentification;
+
             
