@@ -5,6 +5,13 @@ BEGIN
     FROM Event;
 END getEvent;
 
+CREATE OR REPLACE PROCEDURE getGroupEvent (curGroupEvent OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curGroupEvent FOR
+    SELECT idGroupEvent, descriptionGroupEvent
+    FROM GroupEvent;
+END getGroupEvent;
+
 CREATE OR REPLACE PROCEDURE getGender(curGender OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curGender FOR

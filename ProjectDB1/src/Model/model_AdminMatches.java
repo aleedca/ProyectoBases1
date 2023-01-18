@@ -35,20 +35,28 @@ public class model_AdminMatches {
 
     public model_AdminMatches() {
         
+    }
+    
+    public void fillScheduleMatch(){
         try {
-            
             this.genders = DA_Catalogs.getGender();
-            
+
             this.teams = DA_Catalogs.getTeam();
-            
+
             this.stadiums = DA_Catalogs.getStadium();
-            
+
             this.groups = DA_Catalogs.getGroup();
-        
+
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
+    
+    public void fillMatch(){
+    
+    
+    }
+    
     
     //--------------GETTERS AND SETTERS--------------
 
