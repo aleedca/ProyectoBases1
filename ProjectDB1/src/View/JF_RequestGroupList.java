@@ -21,6 +21,9 @@ public class JF_RequestGroupList extends javax.swing.JFrame {
     
     public void showGroupList(String teamName, String matchDate, String stadium, String teamFlag) throws SQLException{
         tblGroupList.setModel(controller.showGroupList(teamName,matchDate,stadium,teamFlag));
+        for(int i=0; i<=tblGroupList.getRowCount();i++){
+            lblTotal.setText(""+i);
+        }
     }
 
     
