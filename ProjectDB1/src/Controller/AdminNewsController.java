@@ -84,10 +84,9 @@ public final class AdminNewsController {
             row.add(newsArr.get(i).getIdNews());
             row.add(newsArr.get(i).getTitle());
             row.add(newsArr.get(i).getNewsStatus());
-            row.add(newsArr.get(i).getViews());
             row.add(newsArr.get(i).getPublicationDate());
             row.add(newsArr.get(i).getNewsType());
-            row.add(newsArr.get(i).getRateNumber());
+            row.add(newsArr.get(i).getViews());
             modelTable.addRow(row);
         }
     }

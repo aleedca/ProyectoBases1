@@ -44,10 +44,10 @@ public class DA_News {
             news.setNewsStatus(rs.getString("descriptionNewsStatus"));
             news.setTitle(rs.getString("title"));
             news.setPublicationDate(rs.getString("publicationDate"));
-            news.setViews(rs.getInt("viewsNews"));
             news.setLink(rs.getString("linkNews"));
             news.setPhoto(rs.getString("photo"));
             news.setText(rs.getString("textNews"));
+            news.setViews(rs.getInt("viewsNews"));
             newsArr.add(news);
         }
 
@@ -165,14 +165,13 @@ public class DA_News {
     
     //-------------INSERTS----------------------
     
-    public static void insertNews(int idNewsStatus, int idNewsType, String title, Date publicationDate, String link, 
+    public static int insertNews(int idNewsStatus, int idNewsType, String title, Date publicationDate, String link, 
         String photo, String text) throws SQLException {
         
         Connection conn = sysConnection.getConexion();
-        PreparedStatement sql = conn.prepareCall("{call insertNews(?,?,?,?,?,?,?)}");
+        CallableStatement sql = conn.prepareCall("{call insertNews(?,?,?,?,?,?,?,?)}");
         publicationDate = new java.util.Date();
         
-        //Input parameters
         sql.setInt(1, idNewsStatus);
         sql.setInt(2, idNewsType);
         sql.setString(3, title);
@@ -180,6 +179,20 @@ public class DA_News {
         sql.setString(5, link);
         sql.setString(6, photo);
         sql.setString(7, text);
+        sql.registerOutParameter(8, OracleTypes.NUMBER);
+        sql.execute();
+        
+        int idNews = ((BigDecimal) sql.getObject(8)).intValue();
+        return idNews; 
+    }
+    
+    public static void insertUserXNews(int idNews, String username) throws SQLException {
+        
+        Connection conn = sysConnection.getConexion();
+        PreparedStatement sql = conn.prepareCall("{call insertUserXNews(?,?)}");
+        
+        sql.setString(1, username);
+        sql.setInt(2, idNews);
 
         sql.execute();
     }

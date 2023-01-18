@@ -76,6 +76,22 @@ public class DA_Person {
         System.out.println("El resultado de la validacion es: "+ result);
         return result;   
     }
+    
+    public static int validateIdentification(int identification) throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call  validateIdentAlreadyExists(?,?)}");
+        //Input parameters
+        sql.setInt(1, identification);
+        
+        //Output parameter
+        sql.registerOutParameter(2, OracleTypes.NUMBER);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(2)).intValue();
+        System.out.println("El resultado de la validacion es: "+ result);
+        return result;   
+    }
 
     public static int validateUserType(String username, String password) throws SQLException {
         Connection conn = sysConnection.getConexion();
