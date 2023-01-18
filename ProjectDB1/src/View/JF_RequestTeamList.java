@@ -21,8 +21,10 @@ public class JF_RequestTeamList extends javax.swing.JFrame {
     
     
     void showTeamList(String teamName, String playerFstName, String playerSndName, String playerFstLastName, String playerSndLastName, String position) throws SQLException{
-        System.out.println("Llamando controller...");
         tblTeamList.setModel(controller.showTeamList(teamName, playerFstName,  playerSndName, playerFstLastName, playerSndLastName, position));
+        for(int i=0; i<=tblTeamList.getRowCount();i++){
+            lblTotal.setText(""+i);
+        }
     }
 
 
@@ -108,10 +110,14 @@ public class JF_RequestTeamList extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblTeamList);
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Total de registros consultados:");
 
+        lblTotal.setBackground(new java.awt.Color(255, 255, 255));
         lblTotal.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(255, 255, 255));
         lblTotal.setText("xxxxxxxxxxxx");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
