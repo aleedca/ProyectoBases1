@@ -14,6 +14,9 @@ public class Group {
     private TeamGroupStats Team2;
     private TeamGroupStats Team3;
     private TeamGroupStats Team4;
+    
+    private int idGroup;
+    private String descriptionGroup;
 
     public Group() {
     }
@@ -56,5 +59,24 @@ public class Group {
     public void setTeam4(TeamGroupStats Team4) {
         this.Team4 = Team4;
     }
+
+    public int getIdGroup() {
+        return idGroup;
+    }
+
+    public void setIdGroup(int idGroup) {
+        this.idGroup = idGroup;
+    }
+
+    public String getDescriptionGroup() {
+        return descriptionGroup;
+    }
+
+    public void setDescriptionGroup(String descriptionGroup) {
+        this.descriptionGroup = descriptionGroup;
+    }
+    
+    
+    
     
 }

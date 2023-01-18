@@ -10,6 +10,7 @@ import Objects.CountryTeam;
 import Objects.District;
 import Objects.Event;
 import Objects.Gender;
+import Objects.Group;
 import Objects.Position;
 import Objects.Province;
 import Objects.Stadium;
@@ -192,6 +193,30 @@ public class DA_Catalogs {
 
         return events;
     }
+    
+    
+    public static ArrayList<Group> getGroup() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getGroupEvent(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<Group> groups = new ArrayList<>();
+        
+        while(rs.next()){
+            Group group = new Group();    
+            group.setIdGroup(rs.getInt("idGroupEvent"));
+            group.setDescriptionGroup(rs.getString("descriptionGroupEvent"));
+            groups.add(group);
+        }
+
+        return groups;
+    }
+    
+    
+    
     
     public static ArrayList<Team> getTeam() throws SQLException {
         Connection conn = sysConnection.getConexion();
