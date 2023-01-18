@@ -39,6 +39,7 @@ public class model_Register {
     private String passwordRegister;
     private int phone;
     private String address;
+    private int resultIdentification;
     
     private int gender;
     private ArrayList<Gender> genders;
@@ -188,6 +189,28 @@ public class model_Register {
         
        return false;
     }
+    
+    
+    
+    public boolean identificationAlreadyExists(int identification){
+        try {
+            this.resultIdentification = DA_Person.validateIdentification(identification);
+            System.out.println("Lo que le dio la base: "+ this.resultIdentification);
+            
+            if(this.resultIdentification != 0){ //Si es diferente de 0, quiere decir, que no existe
+                return false;// Si la identification no existe en la base -> return false
+            }else{
+                return true; //Si ya existe return true
+            }
+                     
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return false; 
+    }
+    
+    
     
     //----------------------------------------------------------------------------------------------------------
   

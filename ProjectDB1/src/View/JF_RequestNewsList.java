@@ -21,6 +21,9 @@ public class JF_RequestNewsList extends javax.swing.JFrame {
     
     void showNewsList(String author, String authorLastname, String newsDate, String newsEvent) throws SQLException{
         tblNewsList.setModel(controller.showNewsList(author, authorLastname,  newsDate, newsEvent));
+        for(int i=0; i<=tblNewsList.getRowCount();i++){
+            lblTotal.setText(""+i);
+        }
     }
     
     
@@ -76,10 +79,14 @@ public class JF_RequestNewsList extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Total de registros consultados:");
 
+        lblTotal.setBackground(new java.awt.Color(255, 255, 255));
         lblTotal.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 14)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(255, 255, 255));
         lblTotal.setText("xxxxxxxxxxxx");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
