@@ -189,12 +189,18 @@ END insertUserPerson;
 
 ----------------------------------------------------------------------------------------------------------------
 -- SoccerMatch
-CREATE OR REPLACE PROCEDURE insertSoccerMatch(pIdStadium IN NUMBER, pDateHour IN DATE)
+CREATE OR REPLACE PROCEDURE insertSoccerMatch(pIdStadium IN NUMBER, pDateHour IN VARCHAR2, codResult OUT NUMBER)
 AS
 BEGIN
     INSERT INTO SoccerMatch(idSoccerMatch, idStadium, dateHour, userCreation, lastUser, lastDate, dateCreation)
-    VALUES(s_soccerMatch.NEXTVAL, pIdStadium, pDateHour, NULL, NULL, NULL, NULL);
+    VALUES(s_soccerMatch.NEXTVAL, pIdStadium, TO_DATE(pDateHour, 'DD-MM-YYYY HH24:MI'), NULL, NULL, NULL, NULL);
+    
+    codResult:=0;
     COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE; 
 END insertSoccerMatch;
 
 ------------------------Insertion PlayerXSoccerMatchXTeam ---------------------

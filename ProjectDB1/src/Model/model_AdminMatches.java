@@ -5,6 +5,7 @@
 package Model;
 
 import DataAccess.DA_Catalogs;
+import DataAccess.DA_SoccerMatch;
 import Objects.Gender;
 import Objects.Group;
 import Objects.Stadium;
@@ -12,12 +13,14 @@ import Objects.Team;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author Nahomy
  */
 public class model_AdminMatches {
-    
+    private String date;
+    private String hour; 
     private int stadium;
     private ArrayList<Stadium> stadiums;
     
@@ -30,6 +33,7 @@ public class model_AdminMatches {
     private int group;
     private ArrayList<Group> groups;
     
+    private int resultInsertMatch;
     
     //BUILDER 
 
@@ -57,6 +61,21 @@ public class model_AdminMatches {
     
     }
     
+    public boolean insertMatch(){
+        try {
+            
+            this.resultInsertMatch = DA_SoccerMatch.insertSoccerMatch(stadium, date, hour);
+            
+            if(this.resultInsertMatch == 0){
+                return true;
+            }
+                        
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return false;
+    }
     
     //--------------GETTERS AND SETTERS--------------
 
