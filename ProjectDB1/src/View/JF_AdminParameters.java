@@ -43,7 +43,7 @@ public class JF_AdminParameters extends javax.swing.JFrame {
         lblEntradaParametro = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
-        txtEntrada = new javax.swing.JTextField();
+        txtValor = new javax.swing.JTextField();
         lblNombreParametro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -161,9 +161,9 @@ public class JF_AdminParameters extends javax.swing.JFrame {
         jPanel1.add(btnAceptar);
         btnAceptar.setBounds(920, 630, 130, 40);
 
-        txtEntrada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(txtEntrada);
-        txtEntrada.setBounds(960, 420, 250, 30);
+        txtValor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel1.add(txtValor);
+        txtValor.setBounds(960, 420, 250, 30);
 
         lblNombreParametro.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         lblNombreParametro.setForeground(new java.awt.Color(255, 255, 255));
@@ -226,12 +226,12 @@ public class JF_AdminParameters extends javax.swing.JFrame {
         this.tblParametros = tblParametros;
     }
 
-    public JTextField getTxtEntrada() {
-        return txtEntrada;
+    public JTextField getTxtValor() {
+        return txtValor;
     }
 
-    public void setTxtEntrada(JTextField txtEntrada) {
-        this.txtEntrada = txtEntrada;
+    public void setTxtValor(JTextField txtValor) {
+        this.txtValor = txtValor;
     }
 
     public JTextField getTxtNombre() {
@@ -307,7 +307,7 @@ public class JF_AdminParameters extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtnAgregar;
     private javax.swing.JRadioButton rbtnEditar;
     private javax.swing.JTable tblParametros;
-    private javax.swing.JTextField txtEntrada;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

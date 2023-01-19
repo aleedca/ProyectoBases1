@@ -9,12 +9,14 @@ BEGIN
     FROM ParameterTable;
 END getParameters;
 
-CREATE OR REPLACE PROCEDURE getInfoParameters(pNameParameter IN VARCHAR, curParameter OUT SYS_REFCURSOR) IS
+CREATE OR REPLACE PROCEDURE getInfoParameters(pNameParameter IN VARCHAR, idParameter OUT NUMBER, curParameter OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curParameter FOR
     SELECT nameParameter, valueParameter
     FROM ParameterTable
     WHERE nameParameter = pNameParameter;
+    
+    idParameter:= idParameterTable;
 END getInfoParameters;
 
 CREATE OR REPLACE PROCEDURE updateParameter(pIdParameter IN NUMBER, pNameParameter IN VARCHAR, pValueParameter IN NUMBER, codResult OUT NUMBER) AS
@@ -35,3 +37,5 @@ EXCEPTION
         ROLLBACK;
         codResult := SQLCODE;   
 END updateParameter;
+
+--procedimiento que valide si el nombre ya existe
