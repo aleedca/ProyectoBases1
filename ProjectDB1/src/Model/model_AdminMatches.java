@@ -22,13 +22,11 @@ import java.util.logging.Logger;
 public class model_AdminMatches {
     private String date;
     private String hour;
-    private int team;
+    private int team1;
+    private int team2;
     
     private int stadium;
     private ArrayList<Stadium> stadiums;
-    
-    
-    
     private int group;
     private ArrayList<Group> groups;
     
@@ -139,13 +137,6 @@ public class model_AdminMatches {
         this.stadiums = stadiums;
     }
 
-    public int getTeam() {
-        return team;
-    }
-
-    public void setTeam(int team) {
-        this.team = team;
-    }
 
     public int getGroup() {
         return group;
@@ -162,5 +153,73 @@ public class model_AdminMatches {
     public void setGroups(ArrayList<Group> groups) {
         this.groups = groups;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getHour() {
+        return hour;
+    }
+
+    public void setHour(String hour) {
+        this.hour = hour;
+    }
+
+    public int getTeam1() {
+        return team1;
+    }
+
+    public void setTeam1(int team1) {
+        this.team1 = team1;
+    }
+
+    public int getTeam2() {
+        return team2;
+    }
+
+    public void setTeam2(int team2) {
+        this.team2 = team2;
+    }
+
+    public int getResultInsertMatch() {
+        return resultInsertMatch;
+    }
+
+    public void setResultInsertMatch(int resultInsertMatch) {
+        this.resultInsertMatch = resultInsertMatch;
+    }
+
+    public int getResultGroupExist() {
+        return resultGroupExist;
+    }
+
+    public void setResultGroupExist(int resultGroupExist) {
+        this.resultGroupExist = resultGroupExist;
+    }
+
+    public int getResultTeamExist() {
+        return resultTeamExist;
+    }
+
+    public void setResultTeamExist(int resultTeamExist) {
+        this.resultTeamExist = resultTeamExist;
+    }
+
+    public int getResultSoccerMatchExist() {
+        return resultSoccerMatchExist;
+    }
+
+    public void setResultSoccerMatchExist(int resultSoccerMatchExist) {
+        this.resultSoccerMatchExist = resultSoccerMatchExist;
+    }
+    
+    
+    
+    
 
 }

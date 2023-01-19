@@ -168,7 +168,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         fillIdentificationTypes();     
         fillCountries();
         fillPositions();
-        fillTeams(false);
+        fillTeams();
         fillTypePerson();
         principal.showMostViewedNews();
         principal.showLastNews();
@@ -414,16 +414,13 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
     }
     
-    private void fillTeams(boolean flag){
-        viewAdminPerson.getCmbTeam().removeAllItems();
+    private void fillTeamsAdMatches(int idGroup, boolean flag){
         viewScheduleMatch.getCbmTeam1().removeAllItems();
         viewScheduleMatch.getCbmTeam2().removeAllItems();
         
         viewScheduleMatch.getCbmTeam2().setEnabled(flag);
         
-        viewAdminPerson.getCmbTeam().addItem("Seleccione Equipo");
         viewScheduleMatch.getCbmTeam1().addItem("Seleccione Equipo");
-        
         if(viewScheduleMatch.getCbmTeam2().isEnabled()){
             viewScheduleMatch.getCbmTeam2().addItem("Seleccione Equipo");
         }
@@ -438,6 +435,20 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                      viewScheduleMatch.getCbmTeam2().addItem(nameTeam);
                 }  
             } 
+        }
+        
+    
+    
+    }
+    
+    
+    private void fillTeams(){
+        viewAdminPerson.getCmbTeam().removeAllItems();
+        
+        viewAdminPerson.getCmbTeam().addItem("Seleccione Equipo");
+        for(int i=0; i<modelAdminPerson.getTeams().size();i++){
+            String nameTeam = modelAdminPerson.getTeams().get(i).getNameTeam();
+            viewAdminPerson.getCmbTeam().addItem(nameTeam);
         }
     }
     
@@ -1150,7 +1161,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         fillIdentificationTypes();     
         fillCountries();
         fillPositions();
-        fillTeams(false);
+        fillTeams();
 
         modelAdminPerson.setPhoto("src/Images/avatar.png");
         viewAdminPerson.setLocationRelativeTo(viewAdminPerson);
@@ -1173,7 +1184,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         fillIdentificationTypes();     
         fillCountries();
         fillPositions();
-        fillTeams(false);
+        fillTeams();
 
         modelAdminPerson.setPhoto("src/Images/avatar.png");
         viewAdminPerson.setLocationRelativeTo(viewAdminPerson);
@@ -1691,7 +1702,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     }
     
     private boolean validateSoccerMatchExist(){
-        if(this.modelAdminMatches.validateSoccerMatchExist()){
+        if(this.modelAdminMatches.validateSoccerMatchExist() == false){
              JOptionPane.showMessageDialog(null, "Por el momento no se puede administrador un partido ya que aún no hay partidos programados.", "Error", JOptionPane.WARNING_MESSAGE);
              return false;
         }
@@ -2095,7 +2106,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 }else{
                     viewScheduleMatch.getCbmTeam1().removeAllItems();
                     viewScheduleMatch.getCbmTeam1().setEnabled(false);
-                    fillTeams(false);             
+                    fillTeams();             
                 }
             
             }     
@@ -2414,7 +2425,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             fillIdentificationTypes();     
             fillCountries();
             fillPositions();
-            fillTeams(false);
+            fillTeams();
 
             modelAdminPerson.setPhoto("src/Images/avatar.png");
             viewAdminPerson.setLocationRelativeTo(viewAdminPerson);
