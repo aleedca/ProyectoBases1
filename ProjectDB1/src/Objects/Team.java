@@ -11,6 +11,7 @@ package Objects;
 public class Team {
     private int idTeam;
     private String nameTeam;
+    private String teamFlag;
     
     
     //GETTERS AND SETTERS
@@ -29,6 +30,15 @@ public class Team {
     public void setNameTeam(String nameTeam) {
         this.nameTeam = nameTeam;
     }
+
+    public String getTeamFlag() {
+        return teamFlag;
+    }
+
+    public void setTeamFlag(String teamFlag) {
+        this.teamFlag = teamFlag;
+    }
+    
     
     
 }

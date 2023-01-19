@@ -1033,7 +1033,7 @@ END getTeam;
 CREATE OR REPLACE PROCEDURE getCountryTeam(curCountryTeam OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curCountryTeam FOR
-    SELECT  idCountryTeam, idContinent, nameCountryTeam, flag
+    SELECT  idCountryTeam, idContinent, nameCountryTeam
     FROM CountryTeam;
 END getCountryTeam;
 

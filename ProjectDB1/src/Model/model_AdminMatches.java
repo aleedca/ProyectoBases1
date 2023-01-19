@@ -7,6 +7,7 @@ package Model;
 import DataAccess.DA_Catalogs;
 import DataAccess.DA_SoccerMatch;
 import Objects.Continent;
+import Objects.CountryTeam;
 import Objects.Group;
 import Objects.Stadium;
 import Objects.Team;
@@ -41,6 +42,7 @@ public class model_AdminMatches {
     
     private ArrayList<TeamXGroup> teamxgroup;
     private ArrayList<Continent> continents;
+    private ArrayList<CountryTeam> countryTeams;
     
     private int resultInsertMatch;
     private int resultGroupExist;
@@ -60,6 +62,8 @@ public class model_AdminMatches {
             this.teamxgroup = DA_SoccerMatch.getTeamXGroup();
             
             this.continents = DA_SoccerMatch.getContinet();
+            
+            this.countryTeams = DA_Catalogs.getCountryTeam();
 
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -300,6 +304,14 @@ public class model_AdminMatches {
 
     public void setContinents(ArrayList<Continent> continents) {
         this.continents = continents;
+    }
+
+    public ArrayList<CountryTeam> getCountryTeams() {
+        return countryTeams;
+    }
+
+    public void setCountryTeams(ArrayList<CountryTeam> countryTeams) {
+        this.countryTeams = countryTeams;
     }
     
     

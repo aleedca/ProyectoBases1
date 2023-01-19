@@ -252,7 +252,6 @@ public class DA_Catalogs {
             countryTeam.setIdCountryTeam(rs.getInt("idCountryTeam"));
             countryTeam.setIdContinent(rs.getInt("idContinent"));
             countryTeam.setNameCountryTeam(rs.getString("nameCountryTeam"));
-            countryTeam.setTeamFlag(rs.getString("flag"));
 
             countryTeams.add(countryTeam);
         }

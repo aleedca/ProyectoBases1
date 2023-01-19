@@ -357,12 +357,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         viewRegister.getCmbCountry().addItem("Seleccione País");
         viewAdminPerson.getCmbCountry().addItem("Seleccione País");
-        viewAdminOther.getCmbCountry().addItem("Seleccione País");
         for(int i=0; i<modelRegister.getCountries().size();i++){
             String nameCountry = modelRegister.getCountries().get(i).getNameCountry();
             viewRegister.getCmbCountry().addItem(nameCountry);
             viewAdminPerson.getCmbCountry().addItem(nameCountry);
-            viewAdminOther.getCmbCountry().addItem(nameCountry);
         }
     }
     
@@ -434,9 +432,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         viewScheduleMatch.getCbmTeam1().removeAllItems();
         viewScheduleMatch.getCbmTeam2().removeAllItems();
         
-        int idGroupArr;
-        int idTeamArr;
-        int idTeam;
+        int idGroupArr, idTeamArr, idTeam;
         String nameTeam;
         
         viewScheduleMatch.getCbmTeam1().setEnabled(flag1);
@@ -535,11 +531,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
     
     private void fillPerson(){
-        String firstName;
-        String secondName;
-        String firstLastName;
-        String secondLastName;
-        String fullName;
+        String firstName, secondName, firstLastName, secondLastName, fullName;
         
         viewAdminPerson.getCmbPerson().removeAllItems();
         viewAdminPerson.getCmbPerson().addItem("Seleccione Persona"); 
@@ -570,10 +562,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
     
     private void fillPlayerInformation(){
-        String name, province, canton,secondName, firstLastName, secondLastName,typeIdentification;
-        String country, district,gender, team, position,  mail, address,  birthdate;
-        int  idTypeIdentification, identification, idGender, idTeam, idPosition, numTShirt, phoneNumber;  
-        int idCountry,idProvince, idCanton, idDistrict;
+        String name, province, canton,secondName, firstLastName, secondLastName,typeIdentification, country, district,gender, team, position,  mail, address,  birthdate;
+        int  idTypeIdentification, identification, idGender, idTeam, idPosition, numTShirt, phoneNumber, idCountry,idProvince, idCanton, idDistrict;  
+
     
         for(int i=0; i<modelAdminPerson.getPlayersInfo().size();i++){
             name = modelAdminPerson.getPlayersInfo().get(i).getFirstName();
@@ -684,32 +675,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
    
     private void fillTeamWorkerInformation(){
-        String name;
-        String secondName;
-        String firstLastName;
-        String secondLastName;        
-        String typeIdentification;
-        int idTypeIdentification;
-        int identification;
-        String gender;
-        int idGender;        
-        String team;
-        int idTeam;
-        String position;
-        int idPosition;
-        String mail;
-        String address;
-        int phoneNumber;
-        String country;
-        int idCountry;
-        String province;
-        int idProvince;
-        String canton;
-        int idCanton;
-        String district;
-        int idDistrict;
-        
-    
+        String name, secondName, firstLastName, secondLastName,typeIdentification, gender, team, position,  mail, address, country, province, canton, district;
+        int idTypeIdentification, identification, idGender, idTeam, idPosition, phoneNumber, idCountry, idProvince, idCanton, idDistrict;
+
         for(int i=0; i<modelAdminPerson.getTeamWorkersInfo().size();i++){
             name = modelAdminPerson.getTeamWorkersInfo().get(i).getFirstName();
             viewAdminPerson.setTxtName(name);
@@ -830,6 +798,20 @@ public class OperationsController implements ActionListener, ItemListener, ListS
          for(int i=0; i<modelAdminMatches.getGroups().size();i++){
            viewScheduleMatch.getCbmGroup().addItem(modelAdminMatches.getGroups().get(i).getDescriptionGroup());
         }
+    }
+    
+    
+    private void fillCountryTeam(){
+        viewAdminOther.getCmbCountry().setEnabled(true);
+        viewAdminOther.getCmbCountry().removeAllItems();
+        String nameCountry;
+        
+        viewAdminOther.getCmbCountry().addItem("Seleccione País");
+        for(int i=0; i<modelAdminMatches.getCountryTeams().size();i++){
+            nameCountry = modelAdminMatches.getCountryTeams().get(i).getNameCountryTeam();
+            viewAdminOther.getCmbCountry().addItem(nameCountry);
+        }
+    
     }
     
     
@@ -2232,7 +2214,31 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     viewScheduleMatch.getCbmTeam2().setEnabled(false);         
                 }            
             }     
-        }       
+        }
+        
+        
+        //ADMIN OTHER
+        if(e.getSource() == viewAdminOther.getCmbContinent()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewAdminOther.getCmbContinent().getSelectedItem().toString();
+                
+                if(!"Seleccione Continente".equals(choice)){
+                    fillCountryTeam();
+                
+                }else{
+                    viewAdminOther.getCmbCountry().setEnabled(false);
+                
+                }
+                
+            }
+            
+        }
+            
+                
+        
+        
+        
+        
 
     }
     

@@ -12,7 +12,7 @@ public class CountryTeam {
     private int idCountryTeam;
     private int idContinent;
     private String nameCountryTeam;
-    private String teamFlag;
+    
 
     public int getIdCountryTeam() {
         return idCountryTeam;
@@ -26,9 +26,6 @@ public class CountryTeam {
         return nameCountryTeam;
     }
 
-    public String getTeamFlag() {
-        return teamFlag;
-    }
 
     public void setIdCountryTeam(int idCountryTeam) {
         this.idCountryTeam = idCountryTeam;
@@ -42,10 +39,7 @@ public class CountryTeam {
         this.nameCountryTeam = nameCountryTeam;
     }
 
-    public void setTeamFlag(String teamFlag) {
-        this.teamFlag = teamFlag;
-    }
-    
+
    
     
    
