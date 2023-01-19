@@ -5,7 +5,12 @@
 package View;
 
 import Objects.Account;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 
@@ -23,6 +28,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
     
     public JF_EditAccount() {
         initComponents();
+        this.setLocationRelativeTo(this);
         loadInfoFromAccount();
     }
     
@@ -32,19 +38,47 @@ public class JF_EditAccount extends javax.swing.JFrame {
         this.repaint();
     }
     
+    public void setImageLabel(String photoUrl){
+        String imageToShow = "src/Images/avatar.png";
+        
+        File source = new File(photoUrl);
+        
+        if(source.exists()){
+            imageToShow = photoUrl;
+        }
+        
+        ImageIcon image = new ImageIcon(imageToShow);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(this.lblPicture.getWidth(), this.lblPicture.getHeight(), Image.SCALE_SMOOTH));
+        this.lblPicture.setIcon(icon);
+    }
+    
     public void loadInfoFromAccount(){
+        this.lblEditAccountName.setText(this.information.getFirstName());
         this.textFieldUsername.setText(this.information.getUsername());
         this.textFieldPassword.setText(this.information.getPassword());
         this.textFieldName1.setText(this.information.getFirstName());
-        this.textFieldName2.setText(this.information.getSndName());
+        
+        if("N/A".equals(this.information.getSndName())){
+            this.textFieldName2.setText("");
+        }else if(!"N/A".equals(this.information.getSndName())){
+            this.textFieldName2.setText(this.information.getSndName());
+        }
+
         this.textFieldLastName1.setText(this.information.getFirstLastName());
-        this.textFieldLastName2.setText(this.information.getSndLastName());
-        this.textFieldGender.setText(this.information.getGender());
+        
+        if("N/A".equals(this.information.getSndLastName())){
+            this.textFieldLastName2.setText("");
+        }else if(!"N/A".equals(this.information.getSndLastName())){
+            this.textFieldLastName2.setText(this.information.getSndLastName());
+        }
+                
+        this.cmbGender.setSelectedItem(this.information.getGender());
         this.textFieldMail.setText(this.information.getEmail());
         Integer ID = this.information.getIdentification();
         this.textFieldIdentification.setText(ID.toString());
         Integer phoneNumber = this.information.getPhoneNumber();
         this.textFieldPhone.setText(phoneNumber.toString());
+        this.setImageLabel(this.information.getPhotoUrl());
     }
 
     public JButton getBtnBack() {
@@ -57,10 +91,6 @@ public class JF_EditAccount extends javax.swing.JFrame {
 
     public JButton getBtnLoadPicture() {
         return btnLoadPicture;
-    }
-
-    public JTextField getTextFieldGender() {
-        return textFieldGender;
     }
 
     public JFormattedTextField getTextFieldIdentification() {
@@ -98,9 +128,10 @@ public class JF_EditAccount extends javax.swing.JFrame {
     public JTextField getTextFieldUsername() {
         return textFieldUsername;
     }
-    
-    
-    
+
+    public JComboBox<String> getCmbGender() {
+        return cmbGender;
+    }
 
 
     /**
@@ -116,7 +147,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
         lblLogoMyAccount = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         lblMyAccountName1 = new javax.swing.JLabel();
-        lblMyAccountName2 = new javax.swing.JLabel();
+        lblEditAccountName = new javax.swing.JLabel();
         lblMyAccountName4 = new javax.swing.JLabel();
         lblMyAccountName6 = new javax.swing.JLabel();
         lblMyAccountName10 = new javax.swing.JLabel();
@@ -125,11 +156,10 @@ public class JF_EditAccount extends javax.swing.JFrame {
         lblMyAccountName16 = new javax.swing.JLabel();
         lblMyAccountName17 = new javax.swing.JLabel();
         btnConfirm = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblPicture = new javax.swing.JLabel();
         textFieldUsername = new javax.swing.JTextField();
         textFieldPassword = new javax.swing.JTextField();
         textFieldLastName2 = new javax.swing.JTextField();
-        textFieldGender = new javax.swing.JTextField();
         textFieldMail = new javax.swing.JTextField();
         textFieldName1 = new javax.swing.JTextField();
         textFieldName2 = new javax.swing.JTextField();
@@ -140,6 +170,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
         btnLoadPicture = new javax.swing.JButton();
         textFieldPhone = new javax.swing.JFormattedTextField();
         textFieldIdentification = new javax.swing.JFormattedTextField();
+        cmbGender = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1285, 752));
@@ -165,11 +196,11 @@ public class JF_EditAccount extends javax.swing.JFrame {
         panelMyAccount.add(lblMyAccountName1);
         lblMyAccountName1.setBounds(180, 80, 210, 48);
 
-        lblMyAccountName2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 36)); // NOI18N
-        lblMyAccountName2.setForeground(new java.awt.Color(255, 255, 255));
-        lblMyAccountName2.setText("Isaac");
-        panelMyAccount.add(lblMyAccountName2);
-        lblMyAccountName2.setBounds(400, 80, 250, 50);
+        lblEditAccountName.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 36)); // NOI18N
+        lblEditAccountName.setForeground(new java.awt.Color(255, 255, 255));
+        lblEditAccountName.setText("Isaac");
+        panelMyAccount.add(lblEditAccountName);
+        lblEditAccountName.setBounds(400, 80, 250, 50);
 
         lblMyAccountName4.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblMyAccountName4.setForeground(new java.awt.Color(255, 255, 255));
@@ -223,12 +254,12 @@ public class JF_EditAccount extends javax.swing.JFrame {
             }
         });
         panelMyAccount.add(btnConfirm);
-        btnConfirm.setBounds(960, 640, 150, 40);
+        btnConfirm.setBounds(960, 640, 160, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/avatar.png"))); // NOI18N
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        panelMyAccount.add(jLabel1);
-        jLabel1.setBounds(950, 250, 170, 230);
+        lblPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/avatar.png"))); // NOI18N
+        lblPicture.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        panelMyAccount.add(lblPicture);
+        lblPicture.setBounds(950, 250, 170, 230);
 
         textFieldUsername.setText("Prueba");
         textFieldUsername.setEnabled(false);
@@ -257,15 +288,6 @@ public class JF_EditAccount extends javax.swing.JFrame {
         });
         panelMyAccount.add(textFieldLastName2);
         textFieldLastName2.setBounds(650, 320, 150, 30);
-
-        textFieldGender.setText("Prueba");
-        textFieldGender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldGenderActionPerformed(evt);
-            }
-        });
-        panelMyAccount.add(textFieldGender);
-        textFieldGender.setBounds(520, 450, 280, 30);
 
         textFieldMail.setText("Prueba");
         textFieldMail.addActionListener(new java.awt.event.ActionListener() {
@@ -328,7 +350,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
             }
         });
         panelMyAccount.add(btnLoadPicture);
-        btnLoadPicture.setBounds(980, 500, 120, 23);
+        btnLoadPicture.setBounds(970, 500, 130, 23);
 
         try {
             textFieldPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
@@ -350,6 +372,7 @@ public class JF_EditAccount extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         textFieldIdentification.setText("0-0000-0000");
+        textFieldIdentification.setEnabled(false);
         textFieldIdentification.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldIdentificationActionPerformed(evt);
@@ -357,6 +380,10 @@ public class JF_EditAccount extends javax.swing.JFrame {
         });
         panelMyAccount.add(textFieldIdentification);
         textFieldIdentification.setBounds(520, 380, 280, 30);
+
+        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        panelMyAccount.add(cmbGender);
+        cmbGender.setBounds(520, 452, 280, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -383,10 +410,6 @@ public class JF_EditAccount extends javax.swing.JFrame {
     private void textFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldPasswordActionPerformed
-
-    private void textFieldGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldGenderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldGenderActionPerformed
 
     private void textFieldMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldMailActionPerformed
         // TODO add your handling code here:
@@ -462,7 +485,8 @@ public class JF_EditAccount extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnConfirm;
     private javax.swing.JButton btnLoadPicture;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> cmbGender;
+    private javax.swing.JLabel lblEditAccountName;
     private javax.swing.JLabel lblLogoMyAccount;
     private javax.swing.JLabel lblMyAccountName1;
     private javax.swing.JLabel lblMyAccountName10;
@@ -473,11 +497,10 @@ public class JF_EditAccount extends javax.swing.JFrame {
     private javax.swing.JLabel lblMyAccountName16;
     private javax.swing.JLabel lblMyAccountName17;
     private javax.swing.JLabel lblMyAccountName18;
-    private javax.swing.JLabel lblMyAccountName2;
     private javax.swing.JLabel lblMyAccountName4;
     private javax.swing.JLabel lblMyAccountName6;
+    private javax.swing.JLabel lblPicture;
     private javax.swing.JPanel panelMyAccount;
-    private javax.swing.JTextField textFieldGender;
     private javax.swing.JFormattedTextField textFieldIdentification;
     private javax.swing.JTextField textFieldLastName1;
     private javax.swing.JTextField textFieldLastName2;

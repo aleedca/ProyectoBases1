@@ -2088,7 +2088,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         
-        //------ SCREEN REGISTRO ---------------------
+        //------ SCREEN REGISTER---------------------
         
         if(e.getSource() == viewRegister.getBtnBack()){
             viewPrincipal.setVisible(true);
@@ -2257,6 +2257,11 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         if(e.getSource() == viewMyAccount.getBtnEditProfile()){
+            viewEditAccount.getCmbGender().removeAllItems();
+            for(int i = 0; i < accountModel.getGenders().size(); i++){
+                String tmp = accountModel.getGenders().get(i).getDescriptionGender();
+                viewEditAccount.getCmbGender().addItem(tmp);
+            }
             viewEditAccount.UpdateInfo(accountModel.getAccountLogged());
             viewMyAccount.setVisible(false);
             viewEditAccount.setVisible(true);
@@ -2268,10 +2273,37 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             viewMyAccount.setVisible(true);
         }
         
+        if(e.getSource() == viewEditAccount.getBtnLoadPicture()){
+            if(accountModel.selectPhoto(viewEditAccount)){
+                viewEditAccount.setImageLabel(accountModel.getPhoto());
+            }
+        }
+        
         if(e.getSource() == viewEditAccount.getBtnConfirm()){
+            String username = accountModel.getUsernameValidated();
+            String password = viewEditAccount.getTextFieldPassword().getText();
+            String firstName = viewEditAccount.getTextFieldName1().getText();
+            String secondName = viewEditAccount.getTextFieldName2().getText();
+            String firstLastName = viewEditAccount.getTextFieldLastName1().getText();
+            String secondLastName = viewEditAccount.getTextFieldLastName2().getText();
+            int genderIndex = viewEditAccount.getCmbGender().getSelectedIndex() + 1;
+            String email = viewEditAccount.getTextFieldMail().getText();
+            String tmpNumber = viewEditAccount.getTextFieldPhone().getText();
+            String finalNumber = tmpNumber.substring(0,4) + tmpNumber.substring(5);
+            int number = Integer.parseInt(finalNumber);
+            String photoUrl = "";
+            if("".equals(accountModel.getPhoto())){
+                photoUrl = accountModel.getAccountLogged().getPhotoUrl();
+            }
+            else if(!"".equals(accountModel.getPhoto())) {
+                photoUrl = accountModel.getPhoto();
+            }
+            
+            accountModel.updateProfileInformation(username, password, firstName, secondName, firstLastName, secondLastName, genderIndex, email, number, photoUrl);
             //falta llamar el procedimiento de update
             accountModel.setUsernameValidated(model_Login.getUsernameLogin());
             viewMyAccount.UpdateInfo(accountModel.getAccountLogged());
+            JOptionPane.showMessageDialog(viewEditAccount, "Actualización confirmada.");
             viewEditAccount.setVisible(false);
             viewMyAccount.setVisible(true);
         }
