@@ -2536,9 +2536,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     public void valueChanged(ListSelectionEvent e) {
         if(e.getSource() == adminNewsController.getViewAdminNews().getTblNoticias().getSelectionModel() && flagEditNews){
             if(adminNewsController.getViewAdminNews().getTblNoticias().getRowCount() > 0){
-                System.out.println("antes");
                 int index = (int) adminNewsController.getViewAdminNews().getTblNoticias().getValueAt(adminNewsController.getViewAdminNews().getTblNoticias().getSelectedRow(),0);
-                System.out.println("despues");
                 modelNews.setIdNews(index);
                 adminNewsController.fillUpdateAdminNews(index);
             }

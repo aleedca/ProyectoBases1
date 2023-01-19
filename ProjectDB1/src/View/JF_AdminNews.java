@@ -4,6 +4,10 @@
  */
 package View;
 
+import java.awt.Image;
+import java.io.File;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -24,8 +28,22 @@ public class JF_AdminNews extends javax.swing.JFrame {
      */
     public JF_AdminNews() {
         initComponents();
+        this.setLocationRelativeTo(this);
     }
-
+    
+    public void setImageLabel(String photoUrl){
+        String imageToShow = "src/Images/avatar.png";
+        
+        File source = new File(photoUrl);
+        
+        if(source.exists()){
+            imageToShow = photoUrl;
+        }
+        
+        ImageIcon image = new ImageIcon(imageToShow);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(this.lblImagen.getWidth(), this.lblImagen.getHeight(), Image.SCALE_SMOOTH));
+        this.lblImagen.setIcon(icon);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
