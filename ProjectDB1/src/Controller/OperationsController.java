@@ -7,6 +7,7 @@ package Controller;
 import Model.model_Account;
 import Model.model_AdminCatalogs;
 import Model.model_AdminMatches;
+import Model.model_AdminParameters;
 import Model.model_AdminPerson;
 import Model.model_Login;
 import Model.model_News;
@@ -15,6 +16,7 @@ import View.JF_AdminCatalogs;
 import View.JF_AdminMatch;
 import View.JF_AdminMatches;
 import View.JF_AdminOptions;
+import View.JF_AdminParameters;
 import View.JF_AdminPerson;
 import View.JF_EditAccount;
 import View.JF_Login;
@@ -53,6 +55,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private final JF_AdminMatches viewAdminMatches;
     private final JF_AdminScheduleMatch viewScheduleMatch;
     private final JF_AdminMatch viewAdminMatch; 
+    private final JF_AdminParameters viewAdminParameters;
     
     
     private final model_Login modelLogin;
@@ -61,6 +64,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private final model_News modelNews;
     private final model_Account accountModel;
     private final model_AdminMatches modelAdminMatches;
+    private final model_AdminParameters modelAdminParameters;
     
     private boolean flagRegister;
     private boolean flagAdminPerson;
@@ -111,10 +115,13 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         JF_AdminScheduleMatch scheduleMatch = new JF_AdminScheduleMatch();
         this.viewScheduleMatch = scheduleMatch;
         
-        
         //View Admin Match
         JF_AdminMatch adminMatch = new JF_AdminMatch();
         this.viewAdminMatch = adminMatch;
+        
+        //View Admin Parameters
+        JF_AdminParameters adminParameters = new JF_AdminParameters();
+        this.viewAdminParameters = adminParameters;
                
         //Model Login
         model_Login validateLogin = new model_Login();
@@ -137,6 +144,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         //Model Admin Matches
         this.modelAdminMatches = new model_AdminMatches();
+        
+        //Model Admin Parameters
+        this.modelAdminParameters = new model_AdminParameters();
         
         //Request Controller
         RequestController controller = new RequestController();
@@ -201,6 +211,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         viewMenuAdmin.getBtnAdmiPersonas().addActionListener(this);
         viewMenuAdmin.getBtnAdmiCatalogos().addActionListener(this);
         viewMenuAdmin.getBtnPartidos().addActionListener(this);
+        viewMenuAdmin.getBtnAdmiParametros().addActionListener(this);
+        //viewMenuAdmin.getBtnAdmiBitacora().addActionListener(this);
+        //viewMenuAdmin.getBtnAdmiOther().addActionListener(this);
         
         //AdminMatches
         viewAdminMatches.getBtnScheduleMatch().addActionListener(this);
@@ -229,6 +242,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         //AdminCatalogOption
         adminCatalogsController.getViewAdminCatalogs().getBtnBack().addActionListener(this);
                
+        //AdminParameters
+        viewAdminParameters.getBtnBack().addActionListener(this);
+        viewAdminParameters.getBtnAceptar().addActionListener(this);
+        viewAdminParameters.getRbtnAgregar().addActionListener(this);
+        viewAdminParameters.getRbtnEditar().addActionListener(this);
+        
         //Request
         viewRequest.getBtnBackRequest().addActionListener(this);
         
@@ -2163,6 +2182,11 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             adminCatalogsController.getViewAdminCatalogs().setVisible(true);
         }
         
+        if(e.getSource() == viewMenuAdmin.getBtnAdmiParametros()){                    
+            viewMenuAdmin.setVisible(false);
+            viewAdminParameters.setVisible(true);
+        }
+        
         //-------------- SCREEN AdminNews -----------------------
         if(e.getSource() == adminNewsController.getViewAdminNews().getBtnBack()){
             adminNewsController.getViewAdminNews().setVisible(false);
@@ -2215,6 +2239,11 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             this.viewMenuAdmin.setVisible(true);
         }
         
+        //-------------- SCREEN AdminParameters -----------------------
+        if(e.getSource() == viewAdminParameters.getBtnBack()){
+            viewAdminParameters.setVisible(false);
+            this.viewMenuAdmin.setVisible(true);
+        }
         
         //----------- SCREEN Request -------------------------
         if(e.getSource() == viewRequest.getBtnBackRequest()){

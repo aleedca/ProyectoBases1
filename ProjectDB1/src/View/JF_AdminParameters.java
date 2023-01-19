@@ -4,6 +4,11 @@
  */
 package View;
 
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Alexia
@@ -96,11 +101,16 @@ public class JF_AdminParameters extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblParametros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblParametros.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblParametros);
         if (tblParametros.getColumnModel().getColumnCount() > 0) {
-            tblParametros.getColumnModel().getColumn(0).setMinWidth(10);
-            tblParametros.getColumnModel().getColumn(1).setMinWidth(350);
-            tblParametros.getColumnModel().getColumn(2).setMinWidth(100);
+            tblParametros.getColumnModel().getColumn(0).setMinWidth(70);
+            tblParametros.getColumnModel().getColumn(0).setPreferredWidth(70);
+            tblParametros.getColumnModel().getColumn(1).setMinWidth(400);
+            tblParametros.getColumnModel().getColumn(1).setPreferredWidth(400);
+            tblParametros.getColumnModel().getColumn(2).setMinWidth(70);
+            tblParametros.getColumnModel().getColumn(2).setPreferredWidth(70);
         }
 
         jPanel1.add(jScrollPane1);
@@ -191,6 +201,64 @@ public class JF_AdminParameters extends javax.swing.JFrame {
 
     }//GEN-LAST:event_rbtnEditarActionPerformed
 
+    
+    public JRadioButton getRbtnAgregar() {
+        return rbtnAgregar;
+    }
+
+    public void setRbtnAgregar(JRadioButton rbtnAgregar) {
+        this.rbtnAgregar = rbtnAgregar;
+    }
+
+    public JRadioButton getRbtnEditar() {
+        return rbtnEditar;
+    }
+
+    public void setRbtnEditar(JRadioButton rbtnEditar) {
+        this.rbtnEditar = rbtnEditar;
+    }
+
+    public JTable getTblParametros() {
+        return tblParametros;
+    }
+
+    public void setTblParametros(JTable tblParametros) {
+        this.tblParametros = tblParametros;
+    }
+
+    public JTextField getTxtEntrada() {
+        return txtEntrada;
+    }
+
+    public void setTxtEntrada(JTextField txtEntrada) {
+        this.txtEntrada = txtEntrada;
+    }
+
+    public JTextField getTxtNombre() {
+        return txtNombre;
+    }
+
+    public void setTxtNombre(JTextField txtNombre) {
+        this.txtNombre = txtNombre;
+    }
+
+    public JButton getBtnAceptar() {
+        return btnAceptar;
+    }
+
+    public void setBtnAceptar(JButton btnAceptar) {
+        this.btnAceptar = btnAceptar;
+    }
+
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
+    public void setBtnBack(JButton btnBack) {
+        this.btnBack = btnBack;
+    }
+
+    
     /**
      * @param args the command line arguments
      */
