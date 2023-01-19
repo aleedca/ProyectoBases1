@@ -247,6 +247,7 @@ public class DA_Catalogs {
         ResultSet rs = (ResultSet) sql.getObject(1);
         ArrayList<CountryTeam> countryTeams = new ArrayList<>();
         while(rs.next()){
+            System.out.println("Entro");
             CountryTeam countryTeam = new CountryTeam();
 
             countryTeam.setIdCountryTeam(rs.getInt("idCountryTeam"));

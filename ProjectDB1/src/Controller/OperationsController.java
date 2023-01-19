@@ -801,15 +801,28 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     }
     
     
-    private void fillCountryTeam(){
+    private void fillCountryTeam(int idContinent){
+        System.out.println("Entra al fill");
         viewAdminOther.getCmbCountry().setEnabled(true);
         viewAdminOther.getCmbCountry().removeAllItems();
         String nameCountry;
+        int idContinentArr;
         
         viewAdminOther.getCmbCountry().addItem("Seleccione País");
+        
         for(int i=0; i<modelAdminMatches.getCountryTeams().size();i++){
             nameCountry = modelAdminMatches.getCountryTeams().get(i).getNameCountryTeam();
             viewAdminOther.getCmbCountry().addItem(nameCountry);
+            
+            System.out.println("Cantidad CountryTeam: "+i);
+            
+            
+//            System.out.println(nameCountry);
+//            idContinentArr = modelAdminMatches.getCountryTeams().get(i).getIdContinent();
+//            
+//            if(idContinent == idContinentArr){
+//                
+//            }     
         }
     
     }
@@ -2219,12 +2232,26 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         //ADMIN OTHER
         if(e.getSource() == viewAdminOther.getCmbContinent()){
+            System.out.println("Escucha combo box");
             if(e.getStateChange() == ItemEvent.SELECTED){
                 String choice = viewAdminOther.getCmbContinent().getSelectedItem().toString();
+                String nameContinent;
+                int idContinent;
                 
                 if(!"Seleccione Continente".equals(choice)){
-                    fillCountryTeam();
-                
+                    
+                    System.out.println("Seleccionado el continente");
+                    
+                    for(int i=0; i<modelAdminMatches.getContinents().size();i++){
+                        nameContinent = modelAdminMatches.getContinents().get(i).getNameContinent();
+                        if(choice.equals(nameContinent)){
+                            System.out.println("Mismo continente");
+                            idContinent = modelAdminMatches.getContinents().get(i).getIdContinent();
+                            System.out.println(idContinent);
+                            fillCountryTeam(idContinent);
+                        }
+                    }
+                    
                 }else{
                     viewAdminOther.getCmbCountry().setEnabled(false);
                 

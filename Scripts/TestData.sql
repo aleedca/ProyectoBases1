@@ -6,14 +6,14 @@ EXEC insertGroupEvent (1, 'Grupo A');
 EXEC insertGroupEvent (1, 'Grupo B');
 
 -- CountryTeam
-EXEC insertCountryTeam (3, 'Espana', 'banderaEspana');
-EXEC insertCountryTeam (3, 'Francia', 'banderaFrancia');
-EXEC insertCountryTeam (3, 'Alemania', 'banderaAlemania');
-EXEC insertCountryTeam (3, 'Portugal', 'banderaPortugal');
-EXEC insertCountryTeam (2, 'Brasil', 'banderaBrasil');
-EXEC insertCountryTeam (2, 'Argentina', 'banderaArgentina');
-EXEC insertCountryTeam (2, 'Uruguay', 'banderaUruguay');
-EXEC insertCountryTeam (2, 'Costa Rica', 'banderaCostaRica');
+EXEC insertCountryTeam (8, 'España');
+EXEC insertCountryTeam (8, 'Francia');
+EXEC insertCountryTeam (8, 'Alemania');
+EXEC insertCountryTeam (8, 'Portugal');
+EXEC insertCountryTeam (7, 'Brasil');
+EXEC insertCountryTeam (7, 'Argentina');
+EXEC insertCountryTeam (7, 'Uruguay');
+EXEC insertCountryTeam (7, 'Costa Rica');
 
 -- Team
 EXEC insertTeam(1, 1, 'Espana');
