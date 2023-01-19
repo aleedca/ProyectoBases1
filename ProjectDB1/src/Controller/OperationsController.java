@@ -176,10 +176,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         fillPositions();
         fillTeams();
         fillTypePerson();
+        fillContinent();
         principal.showMostViewedNews();
         principal.showLastNews();
-        
-       
 
     }
     
@@ -835,7 +834,14 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
     
     private void fillContinent(){
-    
+        viewAdminOther.getCmbContinent().removeAllItems();
+        String nameContinent;
+        
+        viewAdminOther.getCmbContinent().addItem("Seleccione Continente");
+        for(int i=0; i<modelAdminMatches.getContinents().size();i++){
+            nameContinent = modelAdminMatches.getContinents().get(i).getNameContinent();
+            viewAdminOther.getCmbContinent().addItem(nameContinent);
+        }
     }
     
     

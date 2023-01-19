@@ -6,6 +6,7 @@ package Model;
 
 import DataAccess.DA_Catalogs;
 import DataAccess.DA_SoccerMatch;
+import Objects.Continent;
 import Objects.Group;
 import Objects.Stadium;
 import Objects.Team;
@@ -39,6 +40,7 @@ public class model_AdminMatches {
     private ArrayList<Group> groups;
     
     private ArrayList<TeamXGroup> teamxgroup;
+    private ArrayList<Continent> continents;
     
     private int resultInsertMatch;
     private int resultGroupExist;
@@ -56,6 +58,8 @@ public class model_AdminMatches {
             this.groups = DA_Catalogs.getGroup();
             
             this.teamxgroup = DA_SoccerMatch.getTeamXGroup();
+            
+            this.continents = DA_SoccerMatch.getContinet();
 
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -256,6 +260,46 @@ public class model_AdminMatches {
 
     public void setResultinsertTeam(int resultinsertTeam) {
         this.resultinsertTeam = resultinsertTeam;
+    }
+
+    public int getIdContinent() {
+        return idContinent;
+    }
+
+    public void setIdContinent(int idContinent) {
+        this.idContinent = idContinent;
+    }
+
+    public String getNameCountry() {
+        return nameCountry;
+    }
+
+    public void setNameCountry(String nameCountry) {
+        this.nameCountry = nameCountry;
+    }
+
+    public String getNameTeam() {
+        return nameTeam;
+    }
+
+    public void setNameTeam(String nameTeam) {
+        this.nameTeam = nameTeam;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
+
+    public ArrayList<Continent> getContinents() {
+        return continents;
+    }
+
+    public void setContinents(ArrayList<Continent> continents) {
+        this.continents = continents;
     }
     
     

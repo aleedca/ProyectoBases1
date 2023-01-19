@@ -4,6 +4,7 @@
  */
 package DataAccess;
 
+import Objects.Continent;
 import Objects.Gender;
 import Objects.Team;
 import Objects.TeamXGroup;
@@ -39,6 +40,29 @@ public class DA_SoccerMatch {
         System.out.println("El resultado del insertSoccerMatch es: "+ result);
         return result;   
     }
+    
+    
+    public static ArrayList<Continent> getContinet() throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getContinent(?)}");
+        
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<Continent> continents = new ArrayList<>();
+        while(rs.next()){
+            Continent continent = new Continent();
+            
+            continent.setIdContinent(rs.getInt("idContinent"));
+            continent.setNameContinent(rs.getString("nameContinent"));
+            continents.add(continent);
+        }
+
+        return continents;
+    }
+    
     
     
     public static ArrayList<TeamXGroup> getTeamXGroup() throws SQLException {
