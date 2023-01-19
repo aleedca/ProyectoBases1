@@ -2142,7 +2142,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 }else{
                     viewScheduleMatch.getCbmTeam1().removeAllItems();
                     viewScheduleMatch.getCbmTeam1().setEnabled(false);
-                    fillTeams();             
+                    //fillTeamsAdMatches(int idGroup, boolean flag1, boolean flag2);         
                 }
             
             }     
