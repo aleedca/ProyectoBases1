@@ -5,7 +5,13 @@
 package View;
 
 import Objects.Account;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +28,7 @@ public class JF_MyAccount extends javax.swing.JFrame {
     public JF_MyAccount() {
         this.information = new Account();
         initComponents();
+        this.setLocationRelativeTo(this);
         this.loadInfoFromAccount();
     }
     
@@ -35,6 +42,20 @@ public class JF_MyAccount extends javax.swing.JFrame {
         return btnEditProfile;
     }
     
+    public void setImageLabel(String photoUrl){
+        String imageToShow = "src/Images/avatar.png";
+        
+        File source = new File(photoUrl);
+        
+        if(source.exists()){
+            imageToShow = photoUrl;
+        }
+        
+        ImageIcon image = new ImageIcon(imageToShow);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(this.lblPicture.getWidth(), this.lblPicture.getHeight(), Image.SCALE_SMOOTH));
+        this.lblPicture.setIcon(icon);
+    }
+    
     public void UpdateInfo(Account infoToShow){
         this.information = infoToShow;
         this.loadInfoFromAccount();
@@ -43,12 +64,15 @@ public class JF_MyAccount extends javax.swing.JFrame {
     
     public void loadInfoFromAccount(){
         //System.out.println(this.information.getUsername());
+        this.lblMyAccountName.setText(this.information.getFirstName());
         this.lblUsername.setText(this.information.getUsername());
         this.lblPassword.setText(this.stringToAsterisk(this.information.getPassword()));
         String name = this.information.getFirstName();
         String sndName = this.information.getSndName();
         String lastName = this.information.getFirstLastName();
         String sndLastName = this.information.getSndLastName();
+        this.setImageLabel(this.information.getPhotoUrl());
+        
         
         String fullName = "";
         
@@ -56,14 +80,14 @@ public class JF_MyAccount extends javax.swing.JFrame {
         
         fullName += " ";
         
-        if(sndName != null){
+        if(!"N/A".equals(sndName)){
             fullName += sndName;
             fullName += " ";
         }
         
         fullName += lastName;
         
-        if(sndLastName != null){
+        if(!"N/A".equals(sndLastName)){
             fullName += " ";
             fullName += sndLastName;
         }

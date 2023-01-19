@@ -63,7 +63,7 @@ public class model_Register {
     private ArrayList<District> districts;
     
     private final JFileChooser file = new JFileChooser();
-    private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");;
+    private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");
     
     
     //------------ Builder ----------------------

@@ -182,14 +182,14 @@ public class JF_AdminNews extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Título", "Estado", "Vistas", "Fecha Publicación", "Tipo", "Rating"
+                "ID", "Título", "Estado", "Fecha Publicación", "Tipo", "Vistas"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -210,11 +210,9 @@ public class JF_AdminNews extends javax.swing.JFrame {
             tblNoticias.getColumnModel().getColumn(0).setMaxWidth(55);
             tblNoticias.getColumnModel().getColumn(1).setMinWidth(200);
             tblNoticias.getColumnModel().getColumn(2).setPreferredWidth(85);
-            tblNoticias.getColumnModel().getColumn(3).setMinWidth(40);
-            tblNoticias.getColumnModel().getColumn(3).setMaxWidth(55);
-            tblNoticias.getColumnModel().getColumn(4).setMinWidth(100);
-            tblNoticias.getColumnModel().getColumn(6).setMinWidth(40);
-            tblNoticias.getColumnModel().getColumn(6).setMaxWidth(55);
+            tblNoticias.getColumnModel().getColumn(3).setMinWidth(100);
+            tblNoticias.getColumnModel().getColumn(5).setMinWidth(40);
+            tblNoticias.getColumnModel().getColumn(5).setMaxWidth(55);
         }
 
         jPanel1.add(jScrollPane1);
