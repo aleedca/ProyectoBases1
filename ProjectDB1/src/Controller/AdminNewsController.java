@@ -100,12 +100,10 @@ public final class AdminNewsController {
             viewAdminNews.getTxtTitulo().setText(newsArr.get(0).getTitle());
             viewAdminNews.getTxtTexto().setText(newsArr.get(0).getText());
             modelNews.setPhoto(newsArr.get(0).getPhoto());
-            System.out.println("HOLAAAAAAA=*=*=*=*=*=*===");
-            System.out.println(modelNews.getPhoto());
             viewAdminNews.setImageLabel(modelNews.getPhoto());
             
         } catch (SQLException ex) {
-            Logger.getLogger(AdminNewsController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }
     
