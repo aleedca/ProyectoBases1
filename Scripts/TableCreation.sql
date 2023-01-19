@@ -1332,6 +1332,9 @@ IS 'Repository for storing the information of the SoccerMatch';
 COMMENT ON COLUMN SoccerMatch.idSoccerMatch
 IS 'Unique identifier of the SoccerMatch Table.';
 
+COMMENT ON COLUMN SoccerMatch.idStadium
+IS 'Reference to Stadium Table.';
+
 COMMENT ON COLUMN SoccerMatch.dateHour
 IS 'Date and hour of the Soccer Match.';
 
