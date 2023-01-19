@@ -71,6 +71,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private boolean flagRegister;
     private boolean flagAdminPerson;
     private boolean flagEditNews = false;
+    private boolean flagAdminOther;
     
     private final RequestController requestController;
     private final AdminNewsController adminNewsController;
@@ -297,6 +298,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         //AdminOther
         viewAdminOther.getBtnBack().addActionListener(this);
+        viewAdminOther.getBtnAdd().addActionListener(this);
+        viewAdminOther.getBtnUploadFlag().addActionListener(this);
         viewAdminOther.getCmbContinent().addItemListener(this);
         viewAdminOther.getCmbCountry().addItemListener(this);
         
@@ -802,27 +805,19 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
     
     private void fillCountryTeam(int idContinent){
-        System.out.println("Entra al fill");
         viewAdminOther.getCmbCountry().setEnabled(true);
         viewAdminOther.getCmbCountry().removeAllItems();
         String nameCountry;
         int idContinentArr;
         
         viewAdminOther.getCmbCountry().addItem("Seleccione País");
-        
-        for(int i=0; i<modelAdminMatches.getCountryTeams().size();i++){
-            nameCountry = modelAdminMatches.getCountryTeams().get(i).getNameCountryTeam();
-            viewAdminOther.getCmbCountry().addItem(nameCountry);
+        for(int k=0; k<modelAdminMatches.getCountryTeams().size();k++){    
+            nameCountry = modelAdminMatches.getCountryTeams().get(k).getNameCountryTeam();
+            idContinentArr = modelAdminMatches.getCountryTeams().get(k).getIdContinent();   
             
-            System.out.println("Cantidad CountryTeam: "+i);
-            
-            
-//            System.out.println(nameCountry);
-//            idContinentArr = modelAdminMatches.getCountryTeams().get(i).getIdContinent();
-//            
-//            if(idContinent == idContinentArr){
-//                
-//            }     
+            if(idContinent == idContinentArr){
+                viewAdminOther.getCmbCountry().addItem(nameCountry);
+            }     
         }
     
     }
@@ -2113,12 +2108,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     }
                 
                 }
-                
-                
-                
-                
-                
-                
+
+                //EDIT
                 if(viewAdminPerson.getRbtnEdit().isSelected()){
                     if(!"Seleccione Persona".equals(choice)){
                         
@@ -2230,35 +2221,45 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         
-        //ADMIN OTHER
+        //CONTINENT -> ADMIN OTHER
         if(e.getSource() == viewAdminOther.getCmbContinent()){
-            System.out.println("Escucha combo box");
             if(e.getStateChange() == ItemEvent.SELECTED){
                 String choice = viewAdminOther.getCmbContinent().getSelectedItem().toString();
                 String nameContinent;
                 int idContinent;
                 
                 if(!"Seleccione Continente".equals(choice)){
-                    
-                    System.out.println("Seleccionado el continente");
-                    
                     for(int i=0; i<modelAdminMatches.getContinents().size();i++){
                         nameContinent = modelAdminMatches.getContinents().get(i).getNameContinent();
                         if(choice.equals(nameContinent)){
-                            System.out.println("Mismo continente");
                             idContinent = modelAdminMatches.getContinents().get(i).getIdContinent();
                             System.out.println(idContinent);
                             fillCountryTeam(idContinent);
                         }
                     }
-                    
                 }else{
                     viewAdminOther.getCmbCountry().setEnabled(false);
+                }     
+            }   
+        }
+        
+        //COUNTRYTEAM -> ADMIN OTHER
+        if(e.getSource() == viewAdminOther.getCmbCountry()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewAdminOther.getCmbCountry().getSelectedItem().toString();
+                String nameCountryTeam;
+                int idCountryTeam;
                 
-                }
-                
-            }
-            
+                if(!"Seleccione País".equals(choice)){
+                    for(int i=0; i<modelAdminMatches.getCountryTeams().size();i++){
+                        nameCountryTeam = modelAdminMatches.getCountryTeams().get(i).getNameCountryTeam();
+                        if(choice.equals(nameCountryTeam)){
+                            idCountryTeam = modelAdminMatches.getCountryTeams().get(i).getIdCountryTeam();
+                            modelAdminMatches.setIdCountryTeam(idCountryTeam);
+                        }
+                    }
+                }    
+            }   
         }
             
                 
@@ -2428,6 +2429,53 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         if(e.getSource() == viewAdminOther.getBtnBack()){
             viewAdminOther.setVisible(false);
             viewMenuAdmin.setVisible(true);
+        }
+        
+        if(e.getSource() == viewAdminOther.getBtnUploadFlag()){
+            if(modelAdminMatches.selectPhoto(viewAdminOther)){
+                viewAdminOther.setLocationRelativeTo(viewAdminOther);
+                modelAdminMatches.setImageLabel(viewAdminOther.getLblFlag());
+                viewRegister.repaint();
+            }
+        }
+        
+        if(e.getSource() == viewAdminOther.getBtnAdd()){
+            flagAdminOther = true;
+            modelAdminMatches.setNameTeam(viewAdminOther.getTxtNameTeam().getText());
+        
+            if(modelAdminMatches.getNameTeam().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Por favor, ingrese el nombre del equipo", "Error", JOptionPane.WARNING_MESSAGE);
+            }else{
+            
+                if(modelRegister.validateFormatString(modelAdminMatches.getNameTeam()) == false){
+                     JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el nombre del equipo", "Error", JOptionPane.WARNING_MESSAGE);
+                     flagAdminOther = false;
+                }
+                
+                if(modelRegister.validatePhoto(modelAdminMatches.getFlag())){
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar una foto", "Error", JOptionPane.WARNING_MESSAGE);
+                    flagAdminOther = false;
+                }
+                
+                
+                 if("Seleccione Continente".equals(viewAdminOther.getCmbContinent().getSelectedItem().toString())){
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar un continente", "Error", JOptionPane.WARNING_MESSAGE);
+                    flagAdminOther = false;
+                }
+                
+                
+            }
+            
+            if(flagAdminOther == true){
+                modelAdminMatches.insertTeam();
+                
+                JOptionPane.showMessageDialog(null, "Se ha insertado el equipo con éxito");
+                
+                
+                viewAdminOther.getTxtNameTeam().setText("");
+                viewAdminOther.getCmbContinent().setSelectedItem("Seleccione Continente");
+            }
+
         }
         
         

@@ -25,16 +25,15 @@ CREATE OR REPLACE PROCEDURE insertCountryTeam (pIdContinent IN NUMBER, pNameCoun
 BEGIN
     INSERT INTO CountryTeam (idCountryTeam, idContinent, nameCountryTeam, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_countryTeam.nextval, pIdContinent, pNameCountryTeam, NULL, NULL, NULL, NULL);
+    COMMIT;
 END insertCountryTeam;
 
 -- Team
-CREATE OR REPLACE PROCEDURE insertTeam(pIdContinent IN NUMBER, pNameCountryTeam IN VARCHAR2, pNameTeam IN VARCHAR2, pFlag IN VARCHAR2)
+CREATE OR REPLACE PROCEDURE insertTeam(pIdCountryTeam IN NUMBER, pNameTeam IN VARCHAR2, pFlag IN VARCHAR2)
 AS
 BEGIN
-    insertCountryTeam (pIdContinent, pNameCountryTeam);
-
     INSERT INTO Team(idTeam, idCountryTeam, nameTeam, flag,userCreation, lastUser, lastDate, dateCreation)
-    VALUES(s_team.NEXTVAL, s_countryTeam.currval, pNameTeam, pFlag, NULL, NULL, NULL, NULL);
+    VALUES(s_team.NEXTVAL, pIdCountryTeam, pNameTeam, pFlag, NULL, NULL, NULL, NULL);
     COMMIT;
 END insertTeam;
 

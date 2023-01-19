@@ -239,7 +239,7 @@ public class DA_Catalogs {
            
     public static ArrayList<CountryTeam> getCountryTeam() throws SQLException {
         Connection conn = sysConnection.getConexion();
-
+        
         CallableStatement sql = conn.prepareCall("{call getCountryTeam(?)}");
         sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
         sql.execute();
@@ -247,7 +247,6 @@ public class DA_Catalogs {
         ResultSet rs = (ResultSet) sql.getObject(1);
         ArrayList<CountryTeam> countryTeams = new ArrayList<>();
         while(rs.next()){
-            System.out.println("Entro");
             CountryTeam countryTeam = new CountryTeam();
 
             countryTeam.setIdCountryTeam(rs.getInt("idCountryTeam"));
