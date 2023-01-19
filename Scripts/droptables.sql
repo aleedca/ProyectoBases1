@@ -18,7 +18,10 @@ DROP TABLE NewsStatus;
 DROP TABLE UserPerson;
 DROP TABLE UserType;
 
+DROP TABLE EventWorkerXSoccerMatch;
+DROP TABLE EventWorker;
 
+DROP TABLE TeamXGroup;
 
 DROP TABLE Mail;
 DROP TABLE Person;
@@ -79,6 +82,7 @@ DROP SEQUENCE s_personxphone;
 DROP SEQUENCE s_newsType;
 DROP SEQUENCE s_newsComment;
 DROP SEQUENCE s_personPosition;
+DROP SEQUENCE s_teamxgroup;
 DROP SEQUENCE s_player_soccermatch_team;
 
 --------------------------------------------------------------------------------
@@ -91,7 +95,6 @@ DROP PROCEDURE getTypeIdentification;
 DROP PROCEDURE getCountryTeam;
 DROP PROCEDURE getTeamList;
 DROP PROCEDURE getGroupList;
-
 
 DROP PROCEDURE insertCountryTeam;
 DROP PROCEDURE insertTeam;
@@ -131,6 +134,63 @@ DROP PROCEDURE insertNewsComment;
 DROP PROCEDURE insertRating;
 DROP PROCEDURE insertUserxNews;
 DROP PROCEDURE insertNews;
+DROP PROCEDURE insertNewsChange;
+DROP PROCEDURE insertParameterTable;
 
----DROP PROCEDURE verifyUser;
+DROP PROCEDURE decryptionPassword;
+DROP PROCEDURE encryptionPassword;
+
+DROP PROCEDURE getAccountInformation;
+DROP PROCEDURE getEvent;
+DROP PROCEDURE getGroupEvent;
+DROP PROCEDURE getGroupStats;
+DROP PROCEDURE getInfoNews;
+
+DROP PROCEDURE getLastNews;
+DROP PROCEDURE getMostViewedNews;
+DROP PROCEDURE getNews;
+DROP PROCEDURE getNewsStatus;
+DROP PROCEDURE getNewsType;
+DROP PROCEDURE getPersonInformation;
+DROP PROCEDURE getPlayer;
+DROP PROCEDURE getPosition;
+DROP PROCEDURE getStadium;
+DROP PROCEDURE getTeam;
+DROP PROCEDURE getTeamWorker;
+DROP PROCEDURE getTeamXGroup;
+
+DROP PROCEDURE updateAddress;
+DROP PROCEDURE updateBirthdate;
+DROP PROCEDURE updateCanton;
+DROP PROCEDURE updateCountry;
+DROP PROCEDURE updateDistrict;
+DROP PROCEDURE updateFirstName;
+DROP PROCEDURE updateFirstLastName;
+DROP PROCEDURE updateGender;
+DROP PROCEDURE updateIdentification;
+DROP PROCEDURE updateMail;
+DROP PROCEDURE updatePersonPosition;
+DROP PROCEDURE updatePhone;
+DROP PROCEDURE updateProvince;
+DROP PROCEDURE updateSecondLastName;
+DROP PROCEDURE updateSecondName;
+DROP PROCEDURE updatePhoto;
+DROP PROCEDURE updateStatus;
+DROP PROCEDURE updateTeam;
+DROP PROCEDURE updateText;
+DROP PROCEDURE updateTitle;
+DROP PROCEDURE updateTShirtNum;
+DROP PROCEDURE updateType;
+DROP PROCEDURE updateTypeIdentification;
+
+DROP PROCEDURE validateGroupExist;
+DROP PROCEDURE validateTeamExist;
+DROP PROCEDURE validateIdentAlreadyExists;
+DROP PROCEDURE validateIdentification;
+DROP PROCEDURE validateSoccerMatchExist;
+DROP PROCEDURE validateUser;
+DROP PROCEDURE validateUserAlreadyExists;
+
+
+
 

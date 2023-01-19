@@ -23,8 +23,15 @@ import java.util.logging.Logger;
 public class model_AdminMatches {
     private String date;
     private String hour;
+    
     private int team1;
     private int team2;
+    
+    private int idContinent;
+    private String nameCountry;
+    private String nameTeam;
+    private String flag;
+    
     
     private int stadium;
     private ArrayList<Stadium> stadiums;
@@ -37,6 +44,7 @@ public class model_AdminMatches {
     private int resultGroupExist;
     private int resultTeamExist;
     private int resultSoccerMatchExist;
+    private int resultinsertTeam;
     
     //BUILDER 
 
@@ -74,6 +82,17 @@ public class model_AdminMatches {
         
         return false;
     }
+    
+    public void insertTeam(){   
+        try {
+            DA_SoccerMatch.insertTeam(idContinent, nameCountry, nameTeam, flag);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    
+    
     
     public boolean validateGroupExist(){
         try {
@@ -229,6 +248,14 @@ public class model_AdminMatches {
 
     public void setTeamxgroup(ArrayList<TeamXGroup> teamxgroup) {
         this.teamxgroup = teamxgroup;
+    }
+
+    public int getResultinsertTeam() {
+        return resultinsertTeam;
+    }
+
+    public void setResultinsertTeam(int resultinsertTeam) {
+        this.resultinsertTeam = resultinsertTeam;
     }
     
     

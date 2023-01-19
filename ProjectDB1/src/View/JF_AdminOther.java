@@ -4,6 +4,10 @@
  */
 package View;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Alexia
@@ -56,11 +60,13 @@ public class JF_AdminOther extends javax.swing.JFrame {
         jComboBox3 = new javax.swing.JComboBox<>();
         jComboBox4 = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtNameTeam = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        cmbCountry = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        cmbContinent = new javax.swing.JComboBox<>();
+        lblFlag = new javax.swing.JLabel();
+        btnUploadFlag = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -82,7 +88,7 @@ public class JF_AdminOther extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBack);
-        btnBack.setBounds(46, 50, 52, 40);
+        btnBack.setBounds(46, 50, 46, 40);
 
         lblAdminOther.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
         lblAdminOther.setForeground(new java.awt.Color(255, 255, 255));
@@ -128,7 +134,7 @@ public class JF_AdminOther extends javax.swing.JFrame {
             }
         });
         jPanel1.add(rbtnEquipo);
-        rbtnEquipo.setBounds(1060, 170, 120, 40);
+        rbtnEquipo.setBounds(1060, 170, 120, 37);
 
         rbtnEstadio.setBackground(new java.awt.Color(86, 4, 44));
         rbtnEstadio.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
@@ -140,7 +146,7 @@ public class JF_AdminOther extends javax.swing.JFrame {
             }
         });
         jPanel1.add(rbtnEstadio);
-        rbtnEstadio.setBounds(750, 170, 120, 40);
+        rbtnEstadio.setBounds(750, 170, 120, 37);
 
         rbtnEvento.setBackground(new java.awt.Color(86, 4, 44));
         rbtnEvento.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
@@ -152,7 +158,7 @@ public class JF_AdminOther extends javax.swing.JFrame {
             }
         });
         jPanel1.add(rbtnEvento);
-        rbtnEvento.setBounds(430, 170, 130, 40);
+        rbtnEvento.setBounds(430, 170, 130, 37);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator1);
@@ -248,9 +254,9 @@ public class JF_AdminOther extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(1000, 230, 100, 30);
 
-        jTextField4.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        jPanel1.add(jTextField4);
-        jTextField4.setBounds(1100, 230, 160, 30);
+        txtNameTeam.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        jPanel1.add(txtNameTeam);
+        txtNameTeam.setBounds(1100, 230, 160, 30);
 
         jLabel9.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -258,9 +264,9 @@ public class JF_AdminOther extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(1000, 360, 80, 30);
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox5);
-        jComboBox5.setBounds(1100, 360, 160, 30);
+        cmbCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cmbCountry);
+        cmbCountry.setBounds(1100, 360, 160, 30);
 
         jLabel10.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -268,9 +274,29 @@ public class JF_AdminOther extends javax.swing.JFrame {
         jPanel1.add(jLabel10);
         jLabel10.setBounds(1000, 290, 100, 30);
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox6);
-        jComboBox6.setBounds(1100, 290, 160, 30);
+        cmbContinent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cmbContinent);
+        cmbContinent.setBounds(1100, 290, 160, 30);
+
+        lblFlag.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFlag.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/flags.jpg"))); // NOI18N
+        lblFlag.setAlignmentX(0.5F);
+        lblFlag.setMaximumSize(new java.awt.Dimension(180, 230));
+        lblFlag.setMinimumSize(new java.awt.Dimension(180, 230));
+        lblFlag.setPreferredSize(new java.awt.Dimension(180, 230));
+        jPanel1.add(lblFlag);
+        lblFlag.setBounds(1040, 410, 180, 110);
+
+        btnUploadFlag.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnUploadFlag.setText("Cargar foto");
+        btnUploadFlag.setAlignmentY(0.0F);
+        btnUploadFlag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUploadFlagActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnUploadFlag);
+        btnUploadFlag.setBounds(1070, 530, 120, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -310,41 +336,77 @@ public class JF_AdminOther extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminOther.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminOther.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminOther.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminOther.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void btnUploadFlagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadFlagActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUploadFlagActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JF_AdminOther().setVisible(true);
-            }
-        });
+    public JButton getBtnAgregar() {
+        return btnAgregar;
     }
+
+    public void setBtnAgregar(JButton btnAgregar) {
+        this.btnAgregar = btnAgregar;
+    }
+
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
+    public void setBtnBack(JButton btnBack) {
+        this.btnBack = btnBack;
+    }
+
+    public JButton getBtnEditar() {
+        return btnEditar;
+    }
+
+    public void setBtnEditar(JButton btnEditar) {
+        this.btnEditar = btnEditar;
+    }
+
+    public JButton getBtnEliminar() {
+        return btnEliminar;
+    }
+
+    public void setBtnEliminar(JButton btnEliminar) {
+        this.btnEliminar = btnEliminar;
+    }
+
+    public JButton getBtnUploadFlag() {
+        return btnUploadFlag;
+    }
+
+    public void setBtnUploadFlag(JButton btnUploadFlag) {
+        this.btnUploadFlag = btnUploadFlag;
+    }
+
+    public JComboBox<String> getCmbContinent() {
+        return cmbContinent;
+    }
+
+    public void setCmbContinent(JComboBox<String> cmbContinent) {
+        this.cmbContinent = cmbContinent;
+    }
+
+    public JComboBox<String> getCmbCountry() {
+        return cmbCountry;
+    }
+
+    public void setCmbCountry(JComboBox<String> cmbCountry) {
+        this.cmbCountry = cmbCountry;
+    }
+
+    public JTextField getTxtNameTeam() {
+        return txtNameTeam;
+    }
+
+    public void setTxtNameTeam(JTextField txtNameTeam) {
+        this.txtNameTeam = txtNameTeam;
+    }
+    
+    
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
@@ -352,12 +414,13 @@ public class JF_AdminOther extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.ButtonGroup btnGroupAdminOther;
+    private javax.swing.JButton btnUploadFlag;
+    private javax.swing.JComboBox<String> cmbContinent;
+    private javax.swing.JComboBox<String> cmbCountry;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -376,11 +439,12 @@ public class JF_AdminOther extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel lblAdminOther;
+    private javax.swing.JLabel lblFlag;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JRadioButton rbtnEquipo;
     private javax.swing.JRadioButton rbtnEstadio;
     private javax.swing.JRadioButton rbtnEvento;
+    private javax.swing.JTextField txtNameTeam;
     // End of variables declaration//GEN-END:variables
 }

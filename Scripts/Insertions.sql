@@ -59,10 +59,6 @@ BEGIN
     INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
     VALUES (s_personPosition.NEXTVAL, 'Espectador', NULL, NULL, NULL, NULL);
     
-    INSERT INTO PersonPosition (idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation) 
-    VALUES (s_personPosition.NEXTVAL, 'Trabajador de Evento', NULL, NULL, NULL, NULL);
-    
-    
     COMMIT;
 END insertPersonPosition;
 
