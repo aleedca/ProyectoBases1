@@ -77,8 +77,6 @@ public final class AdminNewsController {
         DefaultTableModel modelTable = (DefaultTableModel) viewAdminNews.getTblNoticias().getModel();
         modelTable.setRowCount(0);
         
-        System.out.println("supuestamente elimina los rows para agregarlos nuevamente");
-        
         for(int i = 0; i < newsArr.size(); i++){
             Vector row = new Vector();
             row.add(newsArr.get(i).getIdNews());
@@ -97,11 +95,11 @@ public final class AdminNewsController {
         try {
             newsArr = DA_News.getInfoNews(index);
             //modelNews.setIdNews(index);
-                viewAdminNews.getCmbEstado().setSelectedIndex(newsArr.get(0).getIdNewsStatus());
-                viewAdminNews.getCmbTipo().setSelectedIndex(newsArr.get(0).getIdNewsType());
-                viewAdminNews.getTxtTitulo().setText(newsArr.get(0).getTitle());
-                viewAdminNews.getTxtTexto().setText(newsArr.get(0).getText());
-                //settear la foto
+            viewAdminNews.getCmbEstado().setSelectedIndex(newsArr.get(0).getIdNewsStatus());
+            viewAdminNews.getCmbTipo().setSelectedIndex(newsArr.get(0).getIdNewsType());
+            viewAdminNews.getTxtTitulo().setText(newsArr.get(0).getTitle());
+            viewAdminNews.getTxtTexto().setText(newsArr.get(0).getText());
+            //settear la foto
             
         } catch (SQLException ex) {
             Logger.getLogger(AdminNewsController.class.getName()).log(Level.SEVERE, null, ex);
