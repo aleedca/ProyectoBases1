@@ -5,10 +5,12 @@
 package DataAccess;
 
 import Objects.Gender;
+import Objects.Team;
 import Objects.TeamXGroup;
 import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -59,6 +61,24 @@ public class DA_SoccerMatch {
 
         return teamsxgroups;
     }
+    
+    
+    public static void insertTeam(int idContinent, String nameCountry, String nameTeam, String flag) throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        PreparedStatement sql = conn.prepareStatement("{call insertTeam(?,?,?,?)}");
+        //INPUT
+        sql.setInt(1, idContinent);
+        sql.setString(2, nameCountry);
+        sql.setString(3, nameTeam);
+        sql.setString(4, flag);
+
+        sql.execute();
+    }
+    
+    
+    
+    
     
     
     

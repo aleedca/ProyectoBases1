@@ -298,6 +298,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         //AdminOther
         viewAdminOther.getBtnBack().addActionListener(this);
+        viewAdminOther.getCmbContinent().addItemListener(this);
+        viewAdminOther.getCmbCountry().addItemListener(this);
         
     }
     
@@ -306,6 +308,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private void fillGenders(){
         viewRegister.getCmbGender().removeAllItems();
         viewAdminPerson.getCmbGender().removeAllItems();
+
         
         
         viewRegister.getCmbGender().addItem("Seleccione Género");
@@ -333,6 +336,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private void fillCountries(){
         viewRegister.getCmbCountry().removeAllItems();
         viewAdminPerson.getCmbCountry().removeAllItems();
+        viewAdminOther.getCmbCountry().removeAllItems();
         
         viewRegister.getCmbProvince().removeAllItems();
         viewRegister.getCmbProvince().setEnabled(false);
@@ -354,10 +358,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         viewRegister.getCmbCountry().addItem("Seleccione País");
         viewAdminPerson.getCmbCountry().addItem("Seleccione País");
+        viewAdminOther.getCmbCountry().addItem("Seleccione País");
         for(int i=0; i<modelRegister.getCountries().size();i++){
             String nameCountry = modelRegister.getCountries().get(i).getNameCountry();
             viewRegister.getCmbCountry().addItem(nameCountry);
             viewAdminPerson.getCmbCountry().addItem(nameCountry);
+            viewAdminOther.getCmbCountry().addItem(nameCountry);
         }
     }
     
@@ -2209,19 +2215,13 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                                 fillTeamsAdMatches(idGroup, true, true);
                             }  
                         }                        
-                    }
-                    
+                    }           
                 }else{
                     viewScheduleMatch.getCbmTeam2().removeAllItems();
                     viewScheduleMatch.getCbmTeam2().setEnabled(false);         
-                }
-                
+                }            
             }     
-        }
-        
-        
-        
-        
+        }       
 
     }
     
