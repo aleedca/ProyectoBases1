@@ -138,6 +138,13 @@ BEGIN
 END getStadium;
 
 
+CREATE OR REPLACE PROCEDURE getTeamXGroup (curTeamXGroup OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curTeamXGroup FOR
+    SELECT idTeamXGroup, idTeam,idGroupEvent
+    FROM TeamXGroup;
+END getTeamXGroup;
+
 
 
 

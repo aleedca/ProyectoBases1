@@ -215,9 +215,7 @@ public class DA_Catalogs {
         return groups;
     }
     
-    
-    
-    
+
     public static ArrayList<Team> getTeam() throws SQLException {
         Connection conn = sysConnection.getConexion();
 

@@ -9,6 +9,7 @@ import DataAccess.DA_SoccerMatch;
 import Objects.Group;
 import Objects.Stadium;
 import Objects.Team;
+import Objects.TeamXGroup;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -30,6 +31,8 @@ public class model_AdminMatches {
     private int group;
     private ArrayList<Group> groups;
     
+    private ArrayList<TeamXGroup> teamxgroup;
+    
     private int resultInsertMatch;
     private int resultGroupExist;
     private int resultTeamExist;
@@ -43,6 +46,8 @@ public class model_AdminMatches {
             this.stadiums = DA_Catalogs.getStadium();
             
             this.groups = DA_Catalogs.getGroup();
+            
+            this.teamxgroup = DA_SoccerMatch.getTeamXGroup();
 
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -216,6 +221,14 @@ public class model_AdminMatches {
 
     public void setResultSoccerMatchExist(int resultSoccerMatchExist) {
         this.resultSoccerMatchExist = resultSoccerMatchExist;
+    }
+
+    public ArrayList<TeamXGroup> getTeamxgroup() {
+        return teamxgroup;
+    }
+
+    public void setTeamxgroup(ArrayList<TeamXGroup> teamxgroup) {
+        this.teamxgroup = teamxgroup;
     }
     
     

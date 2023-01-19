@@ -4,10 +4,14 @@
  */
 package DataAccess;
 
+import Objects.Gender;
+import Objects.TeamXGroup;
 import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import oracle.jdbc.OracleTypes;
 
 /**
@@ -33,6 +37,33 @@ public class DA_SoccerMatch {
         System.out.println("El resultado del insertSoccerMatch es: "+ result);
         return result;   
     }
+    
+    
+    public static ArrayList<TeamXGroup> getTeamXGroup() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getTeamXGroup(?)}");
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<TeamXGroup> teamsxgroups = new ArrayList<>();
+        while(rs.next()){
+            TeamXGroup teamXgroup = new TeamXGroup();
+            
+            teamXgroup.setIdTeamXGroup(rs.getInt("idTeamXGroup"));
+            teamXgroup.setIdTeam(rs.getInt("idTeam"));
+            teamXgroup.setIdGroup(rs.getInt("idGroupEvent"));
+            teamsxgroups.add(teamXgroup);
+        }
+
+        return teamsxgroups;
+    }
+    
+    
+    
+    
+    //------------------ VALIDATIONS ---------------------------------------
     
     public static int validateGroupExist() throws SQLException {
         Connection conn = sysConnection.getConexion();

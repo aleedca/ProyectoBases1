@@ -414,31 +414,67 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
     }
     
-    private void fillTeamsAdMatches(int idGroup, boolean flag){
+    private void fillTeamsAdMatches(int idGroup, boolean flag1, boolean flag2){
         viewScheduleMatch.getCbmTeam1().removeAllItems();
         viewScheduleMatch.getCbmTeam2().removeAllItems();
         
-        viewScheduleMatch.getCbmTeam2().setEnabled(flag);
+        int idGroupArr;
+        int idTeamArr;
+        int idTeam;
+        String nameTeam;
         
-        viewScheduleMatch.getCbmTeam1().addItem("Seleccione Equipo");
+        viewScheduleMatch.getCbmTeam1().setEnabled(flag1);
+        viewScheduleMatch.getCbmTeam2().setEnabled(flag2);
+        
+        if(viewScheduleMatch.getCbmTeam1().isEnabled()){
+            viewScheduleMatch.getCbmTeam1().addItem("Seleccione Equipo");
+            
+            for(int i=0; i<modelAdminMatches.getTeamxgroup().size();i++){
+                
+                idGroupArr = modelAdminMatches.getTeamxgroup().get(i).getIdGroup();
+                
+                if(idGroupArr == idGroup){
+                    
+                    idTeamArr = modelAdminMatches.getTeamxgroup().get(i).getIdTeam();
+                    
+                    for(int j=0; j<modelAdminPerson.getTeams().size();j++){
+                        nameTeam = modelAdminPerson.getTeams().get(j).getNameTeam();
+                        idTeam = modelAdminPerson.getTeams().get(j).getIdTeam();
+                        
+                        if(idTeamArr == idTeam){
+                            viewScheduleMatch.getCbmTeam1().addItem(nameTeam);
+                        }  
+                    }
+                }
+            }
+            
+        }
+        
+        String nameTeamSelected = viewScheduleMatch.getCbmTeam1().getSelectedItem().toString();
         if(viewScheduleMatch.getCbmTeam2().isEnabled()){
             viewScheduleMatch.getCbmTeam2().addItem("Seleccione Equipo");
-        }
-        
-        for(int i=0; i<modelAdminPerson.getTeams().size();i++){
-            String nameTeam = modelAdminPerson.getTeams().get(i).getNameTeam();
-            viewAdminPerson.getCmbTeam().addItem(nameTeam);
-            viewScheduleMatch.getCbmTeam1().addItem(nameTeam);
             
-            if(viewScheduleMatch.getCbmTeam2().isEnabled()){
-                if(!nameTeam.equals(viewScheduleMatch.getCbmTeam1().getSelectedItem().toString())){
-                     viewScheduleMatch.getCbmTeam2().addItem(nameTeam);
-                }  
-            } 
+            for(int i=0; i<modelAdminMatches.getTeamxgroup().size();i++){
+                
+                idGroupArr = modelAdminMatches.getTeamxgroup().get(i).getIdGroup();
+                
+                if(idGroupArr == idGroup){
+                    
+                    idTeamArr = modelAdminMatches.getTeamxgroup().get(i).getIdTeam();
+                    
+                    for(int j=0; j<modelAdminPerson.getTeams().size();j++){
+                        nameTeam = modelAdminPerson.getTeams().get(j).getNameTeam();
+                        idTeam = modelAdminPerson.getTeams().get(j).getIdTeam();
+                        
+                        if(idTeamArr == idTeam && !nameTeam.equals(nameTeamSelected)){
+                            viewScheduleMatch.getCbmTeam2().addItem(nameTeam);
+                        }  
+                    }
+                }
+            }
+            
         }
-        
-    
-    
+         
     }
     
     
