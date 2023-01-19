@@ -11,11 +11,17 @@ END;
 
 CREATE OR REPLACE PROCEDURE getAccountInformation(pUsername IN VARCHAR2, outAccountCursor OUT SYS_REFCURSOR)
 AS
+encryptedPassword VARCHAR(200);
+normalPassword VARCHAR2(200);
 BEGIN
+    
+    SELECT passwordUser INTO encryptedPassword FROM UserPerson WHERE username = pUsername;
+    decryptionPassword(encryptedPassword, normalPassword);
+
     OPEN outAccountCursor FOR
-    SELECT UserPerson.username, UserPerson.passwordUser, Person.firstName, Person.secondName,
+    SELECT UserPerson.username, normalPassword passwordUser, Person.firstName, Person.secondName,
     Person.firstLastName, Person.secondLastName, Person.identification, Gender.descriptionGender,
-    Mail.descriptionMail, Phone.phoneNumber
+    Mail.descriptionMail, Phone.phoneNumber, Person.photo
     FROM UserPerson
     INNER JOIN Person ON Person.idPerson = UserPerson.idPerson
     INNER JOIN Gender ON Person.idGender = Gender.idGender
@@ -123,8 +129,50 @@ BEGIN
 END;
 
 
+CREATE OR REPLACE PROCEDURE updateProfile(pUsername IN VARCHAR2, pPassword IN VARCHAR2, pFirstName IN VARCHAR2,
+                                        pSndName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSndLastName IN VARCHAR2,
+                                        pGender IN NUMBER, pEmail IN VARCHAR2, pPhone IN NUMBER, pPhoto IN VARCHAR2)
+AS
+tmpIdPerson NUMBER;
+tmpIdPhone NUMBER;
+encryptedPassword VARCHAR2(200);
+BEGIN
+    SELECT idPerson INTO tmpIdPerson FROM UserPerson WHERE username = pUsername;
+    SELECT idPhone INTO tmpIdPhone FROM PersonXPhone WHERE idPerson = tmpIdPerson;
+    
+    encryptionPassword(pPassword, encryptedPassword);
+    
+    UPDATE UserPerson
+    SET passwordUser = encryptedPassword
+    WHERE username = pUsername;
+    
+    UPDATE Person
+    SET firstName = pFirstName,
+        secondName = pSndName,
+        firstlastname = pFirstLastName,
+        secondlastname = pSndLastName,
+        idgender = pGender, 
+        photo = pPhoto
+    WHERE idPerson = tmpIdPerson;
+    
+    UPDATE Mail
+    SET descriptionMail = pEmail
+    WHERE idPerson = tmpIdPerson;
+    
+    UPDATE Phone
+    SET phonenumber = pPhone
+    WHERE idPhone = tmpIdPhone;
+    
+    COMMIT;
+END updateProfile;
 
 
+
+
+/*VARIABLE encryptedPassword VARCHAR2(200);
+BEGIN
+encryptionPassword('Admin001', :encryptedPassword);
+END;*/
 
 
 

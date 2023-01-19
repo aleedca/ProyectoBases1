@@ -58,7 +58,36 @@ public class DA_MyAccount {
         
         accountInformation.setSndLastName(lastname2);
         
+        accountInformation.setPhotoUrl(rs.getString("photo"));
+        
         return accountInformation;
     }
     
+    public static void updateAccount(String pUsername, String pPassword, String pName, String pName2, String pLastName, String pLastName2, int pGender, String pEmail, int pPhone, String pPhoto) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call updateProfile(?,?,?,?,?,?,?,?,?,?)}");
+        
+        sql.setString(1, pUsername); 
+        sql.setString(2, pPassword); 
+        sql.setString(3, pName); 
+        
+        if (!"".equals(pName2)){
+          sql.setString(4, pName2);  
+        } else if ("".equals(pName2)){
+          sql.setString(4, "N/A");  
+        }
+        sql.setString(5, pLastName); 
+        
+        if (!"".equals(pLastName2)){
+          sql.setString(6, pLastName2);  
+        } else if ("".equals(pLastName2)){
+          sql.setString(6, "N/A");  
+        }
+        sql.setInt(7, pGender); 
+        sql.setString(8, pEmail); 
+        sql.setInt(9, pPhone); 
+        sql.setString(10, pPhoto); 
+        sql.execute();
+    }
 }

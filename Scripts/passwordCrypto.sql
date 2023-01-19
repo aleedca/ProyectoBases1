@@ -1,5 +1,5 @@
 ---Run with sys
-GRANT EXECUTE  ON dbms_crypto TO proyectoBD;
+GRANT EXECUTE ON dbms_crypto TO proyectoBD;
 
 CREATE OR REPLACE PROCEDURE encryptionPassword (text IN VARCHAR2, encrypted_text OUT VARCHAR2) AS  
 raw_set RAW(100);  

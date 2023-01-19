@@ -20,6 +20,7 @@ public class Account {
     private String gender;
     private String email;
     private int phoneNumber;
+    private String photoUrl;
     
     public Account(){
         this.username = "";
@@ -32,9 +33,10 @@ public class Account {
         this.gender = "";
         this.email = "";
         this.phoneNumber = 0;
+        this.photoUrl = "";
     }
 
-    public Account(String username, String password, String firstName, String sndName, String firstLastName, String sndLastName, int identification, String gender, String email, int phoneNumber) {
+    public Account(String username, String password, String firstName, String sndName, String firstLastName, String sndLastName, int identification, String gender, String email, int phoneNumber, String pPhotoUrl) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -45,6 +47,7 @@ public class Account {
         this.gender = gender;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.photoUrl = pPhotoUrl;
     }
 
     public String getUsername() {
@@ -126,7 +129,13 @@ public class Account {
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    
-    
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
     
 }
