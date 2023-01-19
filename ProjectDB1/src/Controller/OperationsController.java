@@ -2681,7 +2681,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         if(e.getSource() == viewAdminMatches.getBtnAdminScheduledMatch()){
-            if(validateGroupExist()== true && validateTeamExist()==true && validateSoccerMatchExist()==true){
+            if(validateSoccerMatchExist()){
                 viewAdminMatches.setVisible(false);
                 viewAdminMatch.setVisible(true);
             } 
