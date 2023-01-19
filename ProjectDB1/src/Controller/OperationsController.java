@@ -913,12 +913,18 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 flagRegister = false;
             }
 
-            if(modelLogin.userAlreadyExists(viewAdminPerson.getTxtUsername())){
+            if(modelLogin.userAlreadyExists(viewRegister.getTxtUsername())){
                 JOptionPane.showMessageDialog(null, "Username ya existente. Debe ingresar un username diferente", "Error", JOptionPane.WARNING_MESSAGE);
                 viewRegister.cleanUsername();
                 flagRegister = false;
             }
-
+            
+            
+            if(modelRegister.identificationAlreadyExists(viewRegister.getTxtIdentification())== true){
+                JOptionPane.showMessageDialog(null, "Identificación ya existente. Debe ingresar una identificación diferente", "Error", JOptionPane.WARNING_MESSAGE);
+                flagRegister = false;
+            }
+            
         }
     }//END REGISTERVALIDATONS
     
@@ -1113,6 +1119,13 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 JOptionPane.showMessageDialog(null, "Debe ingresar una identificación", "Error", JOptionPane.WARNING_MESSAGE);
                 flagAdminPerson = false;
             }
+            
+            if(modelRegister.identificationAlreadyExists(viewAdminPerson.getTxtIdentification())== true){
+                JOptionPane.showMessageDialog(null, "Identificación ya existente. Debe ingresar una identificación diferente", "Error", JOptionPane.WARNING_MESSAGE);
+                flagAdminPerson = false;
+            }
+            
+            
         }//VALIDATE EMPTY FIELDS
     }
     
@@ -1728,9 +1741,18 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     }
     
     // ---------------- VALIDATIONS ADMIN MATCHES ----------------
-    private boolean validateGroupTeamExist(){
-        if(modelAdminMatches.validateGroupExist() == false || modelAdminMatches.validateTeamExist() == false){
-            JOptionPane.showMessageDialog(null, "Debe crear grupos y/o equipos antes de realizar alguna de estas acciones", "Error", JOptionPane.WARNING_MESSAGE);
+    private boolean validateTeamExist(){
+        if(modelAdminMatches.validateTeamExist() == false){
+             JOptionPane.showMessageDialog(null, "Debe crear equipos antes de realizar alguna de estas acciones", "Error", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+    
+    
+    private boolean validateGroupExist(){
+        if(modelAdminMatches.validateGroupExist() == false){
+            JOptionPane.showMessageDialog(null, "Debe crear grupos antes de realizar alguna de estas acciones", "Error", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         
@@ -2138,15 +2160,55 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             if(e.getStateChange() == ItemEvent.SELECTED){
                 String choice = viewScheduleMatch.getCbmGroup().getSelectedItem().toString();
                 if(!"Seleccione Grupo".equals(choice)){
-                
+                    
+                    for(int i=0; i<modelAdminMatches.getGroups().size();i++){
+                        String nameGroup = modelAdminMatches.getGroups().get(i).getDescriptionGroup();
+                        
+                        if(choice.equals(nameGroup)){
+                            int idGroup = modelAdminMatches.getGroups().get(i).getIdGroup();
+                            fillTeamsAdMatches(idGroup, true, false);  
+                        }                        
+                    }
+                    
                 }else{
                     viewScheduleMatch.getCbmTeam1().removeAllItems();
                     viewScheduleMatch.getCbmTeam1().setEnabled(false);
-                    //fillTeamsAdMatches(int idGroup, boolean flag1, boolean flag2);         
+                    
+                    viewScheduleMatch.getCbmTeam2().removeAllItems();
+                    viewScheduleMatch.getCbmTeam2().setEnabled(false);         
                 }
-            
             }     
         }
+        
+        
+        //TEAM 1 -> ADMIN SCHEDULE MATCH
+        if(e.getSource() == viewScheduleMatch.getCbmTeam1()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choiceGroup = viewScheduleMatch.getCbmGroup().getSelectedItem().toString();
+                String choice = viewScheduleMatch.getCbmTeam1().getSelectedItem().toString();
+                
+                if(!"Seleccione Grupo".equals(choiceGroup)){                    
+                    for(int i=0; i<modelAdminMatches.getGroups().size();i++){
+                        String nameGroup = modelAdminMatches.getGroups().get(i).getDescriptionGroup();
+                        
+                        if(choiceGroup.equals(nameGroup)){
+                            int idGroup = modelAdminMatches.getGroups().get(i).getIdGroup();
+                            
+                            if(!"Seleccione Equipo".equals(choice)){
+                                fillTeamsAdMatches(idGroup, true, true);
+                            }  
+                        }                        
+                    }
+                    
+                }else{
+                    viewScheduleMatch.getCbmTeam2().removeAllItems();
+                    viewScheduleMatch.getCbmTeam2().setEnabled(false);         
+                }
+                
+            }     
+        }
+        
+        
         
         
 
@@ -2601,14 +2663,14 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         //-------------- SCREEN AdminMatches -----------------------
         if(e.getSource() == viewAdminMatches.getBtnGroupRaffle()){
-            if(validateGroupTeamExist()){
-                //Llamar al procedmiento de rifar grupos
+            if(validateTeamExist()){
+                //Llamar al procedimiento de rifar grupos
             }  
         }
         
         
         if(e.getSource() == viewAdminMatches.getBtnScheduleMatch()){
-            if(validateGroupTeamExist()){
+            if(validateGroupExist()== true && validateTeamExist()==true){
                 viewAdminMatches.setVisible(false);
                 
                 fillGroup();
@@ -2619,7 +2681,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         if(e.getSource() == viewAdminMatches.getBtnAdminScheduledMatch()){
-            if(validateGroupTeamExist() && validateSoccerMatchExist()){
+            if(validateGroupExist()== true && validateTeamExist()==true && validateSoccerMatchExist()==true){
                 viewAdminMatches.setVisible(false);
                 viewAdminMatch.setVisible(true);
             } 
