@@ -24,8 +24,8 @@ public class JF_News extends javax.swing.JFrame {
     public JF_News() {
         initComponents();
         this.setLocationRelativeTo(this);
-        setRatingIcons(3.5);
-        //this.setImageLabel(lblStar1, "src/Images/emptyStar.png");
+        setRatingIcons(3);
+        this.setImageLabel(this.lblPhoto, "src/Images/prueba.jpg");
     }
     
     private void setImageLabel(JLabel labelName, String imageDirectory){
@@ -35,7 +35,7 @@ public class JF_News extends javax.swing.JFrame {
         this.repaint();
     }
     
-    private void setRatingIcons(double pRating){
+    private void setRatingIcons(int pRating){
         
         if(pRating == 0){
             this.setImageLabel(lblStar1, "src/Images/emptyStar.png");
@@ -45,14 +45,6 @@ public class JF_News extends javax.swing.JFrame {
             this.setImageLabel(lblStar5, "src/Images/emptyStar.png");
             this.lblRating.setText("0.0");
         }
-        else if(pRating == 0.5){
-            this.setImageLabel(lblStar1, "src/Images/halfStar.png");
-            this.setImageLabel(lblStar2, "src/Images/emptyStar.png");
-            this.setImageLabel(lblStar3, "src/Images/emptyStar.png");
-            this.setImageLabel(lblStar4, "src/Images/emptyStar.png");
-            this.setImageLabel(lblStar5, "src/Images/emptyStar.png");
-            this.lblRating.setText("0.5");
-        }
         else if(pRating == 1){
             this.setImageLabel(lblStar1, "src/Images/fullStar.png");
             this.setImageLabel(lblStar2, "src/Images/emptyStar.png");
@@ -60,14 +52,6 @@ public class JF_News extends javax.swing.JFrame {
             this.setImageLabel(lblStar4, "src/Images/emptyStar.png");
             this.setImageLabel(lblStar5, "src/Images/emptyStar.png");
             this.lblRating.setText("1.0");
-        }
-        else if(pRating == 1.5){
-            this.setImageLabel(lblStar1, "src/Images/fullStar.png");
-            this.setImageLabel(lblStar2, "src/Images/halfStar.png");
-            this.setImageLabel(lblStar3, "src/Images/emptyStar.png");
-            this.setImageLabel(lblStar4, "src/Images/emptyStar.png");
-            this.setImageLabel(lblStar5, "src/Images/emptyStar.png");
-            this.lblRating.setText("1.5");
         }
         else if(pRating == 2){
             this.setImageLabel(lblStar1, "src/Images/fullStar.png");
@@ -77,14 +61,6 @@ public class JF_News extends javax.swing.JFrame {
             this.setImageLabel(lblStar5, "src/Images/emptyStar.png");
             this.lblRating.setText("2.0");
         }
-        else if(pRating == 2.5){
-            this.setImageLabel(lblStar1, "src/Images/fullStar.png");
-            this.setImageLabel(lblStar2, "src/Images/fullStar.png");
-            this.setImageLabel(lblStar3, "src/Images/halfStar.png");
-            this.setImageLabel(lblStar4, "src/Images/emptyStar.png");
-            this.setImageLabel(lblStar5, "src/Images/emptyStar.png");
-            this.lblRating.setText("2.5");
-        }
         else if(pRating == 3){
             this.setImageLabel(lblStar1, "src/Images/fullStar.png");
             this.setImageLabel(lblStar2, "src/Images/fullStar.png");
@@ -93,14 +69,6 @@ public class JF_News extends javax.swing.JFrame {
             this.setImageLabel(lblStar5, "src/Images/emptyStar.png");
             this.lblRating.setText("3.0");
         }
-        else if(pRating == 3.5){
-            this.setImageLabel(lblStar1, "src/Images/fullStar.png");
-            this.setImageLabel(lblStar2, "src/Images/fullStar.png");
-            this.setImageLabel(lblStar3, "src/Images/fullStar.png");
-            this.setImageLabel(lblStar4, "src/Images/halfStar.png");
-            this.setImageLabel(lblStar5, "src/Images/emptyStar.png");
-            this.lblRating.setText("3.5");
-        }
         else if(pRating == 4){
             this.setImageLabel(lblStar1, "src/Images/fullStar.png");
             this.setImageLabel(lblStar2, "src/Images/fullStar.png");
@@ -108,14 +76,6 @@ public class JF_News extends javax.swing.JFrame {
             this.setImageLabel(lblStar4, "src/Images/fullStar.png");
             this.setImageLabel(lblStar5, "src/Images/emptyStar.png");
             this.lblRating.setText("4.0");
-        }
-        else if(pRating == 4.5){
-            this.setImageLabel(lblStar1, "src/Images/fullStar.png");
-            this.setImageLabel(lblStar2, "src/Images/fullStar.png");
-            this.setImageLabel(lblStar3, "src/Images/fullStar.png");
-            this.setImageLabel(lblStar4, "src/Images/fullStar.png");
-            this.setImageLabel(lblStar5, "src/Images/halfStar.png");
-            this.lblRating.setText("4.5");
         }
         else if(pRating == 5){
             this.setImageLabel(lblStar1, "src/Images/fullStar.png");
@@ -148,9 +108,13 @@ public class JF_News extends javax.swing.JFrame {
         lblStar3 = new javax.swing.JLabel();
         lblStar4 = new javax.swing.JLabel();
         lblStar5 = new javax.swing.JLabel();
-        lblComments = new javax.swing.JLabel();
         btnComment = new javax.swing.JButton();
-        fieldComment = new javax.swing.JTextField();
+        btnRating = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textAreaComment = new javax.swing.JTextArea();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1292, 746));
@@ -158,68 +122,116 @@ public class JF_News extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(86, 4, 44));
         jPanel1.setLayout(null);
 
-        lblTitle.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 30)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setText("TITLE");
         jPanel1.add(lblTitle);
-        lblTitle.setBounds(50, 50, 150, 60);
+        lblTitle.setBounds(110, 70, 150, 60);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
         jPanel1.add(jLabel2);
         jLabel2.setBounds(1090, 10, 190, 120);
 
-        lblPhoto.setText("photo");
         lblPhoto.setOpaque(true);
         jPanel1.add(lblPhoto);
-        lblPhoto.setBounds(50, 120, 420, 240);
+        lblPhoto.setBounds(100, 140, 420, 240);
 
+        lblNewsBody.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 14)); // NOI18N
+        lblNewsBody.setForeground(new java.awt.Color(255, 255, 255));
         lblNewsBody.setText("jLabel4");
+        lblNewsBody.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lblNewsBody.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel1.add(lblNewsBody);
-        lblNewsBody.setBounds(50, 380, 700, 340);
+        lblNewsBody.setBounds(100, 400, 650, 320);
 
         lblRating.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 36)); // NOI18N
         lblRating.setForeground(new java.awt.Color(255, 255, 255));
         lblRating.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRating.setText("1.5");
+        lblRating.setText("3");
         lblRating.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel1.add(lblRating);
-        lblRating.setBounds(490, 180, 60, 40);
+        lblRating.setBounds(540, 190, 60, 40);
 
         lblStar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/emptyStar.png"))); // NOI18N
         jPanel1.add(lblStar1);
-        lblStar1.setBounds(490, 120, 40, 40);
+        lblStar1.setBounds(530, 130, 40, 40);
 
         lblStar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/emptyStar.png"))); // NOI18N
         jPanel1.add(lblStar2);
-        lblStar2.setBounds(540, 120, 40, 40);
+        lblStar2.setBounds(580, 130, 40, 40);
 
         lblStar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/emptyStar.png"))); // NOI18N
         jPanel1.add(lblStar3);
-        lblStar3.setBounds(590, 120, 40, 40);
+        lblStar3.setBounds(630, 130, 40, 40);
 
         lblStar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/emptyStar.png"))); // NOI18N
         jPanel1.add(lblStar4);
-        lblStar4.setBounds(640, 120, 40, 40);
+        lblStar4.setBounds(680, 130, 40, 40);
 
         lblStar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/emptyStar.png"))); // NOI18N
         jPanel1.add(lblStar5);
-        lblStar5.setBounds(690, 120, 40, 40);
+        lblStar5.setBounds(730, 130, 40, 40);
 
-        lblComments.setBackground(new java.awt.Color(255, 255, 255));
-        lblComments.setText("jLabel1");
-        lblComments.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        lblComments.setOpaque(true);
-        jPanel1.add(lblComments);
-        lblComments.setBounds(870, 160, 350, 460);
-
-        btnComment.setText("jButton1");
+        btnComment.setBackground(new java.awt.Color(255, 204, 102));
+        btnComment.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 12)); // NOI18N
+        btnComment.setText("Comentar");
         jPanel1.add(btnComment);
-        btnComment.setBounds(1140, 630, 75, 60);
+        btnComment.setBounds(1147, 630, 83, 90);
 
-        fieldComment.setText("jTextField1");
-        jPanel1.add(fieldComment);
-        fieldComment.setBounds(870, 630, 260, 60);
+        btnRating.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        btnRating.setText("Calificar");
+        btnRating.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRatingActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRating);
+        btnRating.setBounds(620, 190, 100, 40);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Usuario", "Comentario"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(870, 152, 360, 460);
+
+        textAreaComment.setColumns(20);
+        textAreaComment.setRows(5);
+        textAreaComment.setMinimumSize(new java.awt.Dimension(232, 84));
+        jScrollPane2.setViewportView(textAreaComment);
+
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(870, 630, 270, 90);
+
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
+        btnBack.setBorderPainted(false);
+        btnBack.setContentAreaFilled(false);
+        btnBack.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backPressed.png"))); // NOI18N
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBack);
+        btnBack.setBounds(50, 80, 46, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,6 +246,14 @@ public class JF_News extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRatingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRatingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRatingActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,11 +292,14 @@ public class JF_News extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnComment;
-    private javax.swing.JTextField fieldComment;
+    private javax.swing.JButton btnRating;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblComments;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblNewsBody;
     private javax.swing.JLabel lblPhoto;
     private javax.swing.JLabel lblRating;
@@ -286,5 +309,6 @@ public class JF_News extends javax.swing.JFrame {
     private javax.swing.JLabel lblStar4;
     private javax.swing.JLabel lblStar5;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTextArea textAreaComment;
     // End of variables declaration//GEN-END:variables
 }
