@@ -3,8 +3,8 @@ Description: This file contains the triggers for each table created.
 Authors:
 Isaac Araya Solano - 2018151703
 Alexia Cerdas Aguilar - 2019026961
-Nahomi Bolaños Valverde - 2022089165
-Mariana Fernández Martínez - 2021104026
+Nahomi Bolanos Valverde - 2022089165
+Mariana Fernandez Martinez - 2021104026
 */
 -- Permission
 GRANT CREATE ANY TRIGGER TO proyectoBD;
@@ -674,3 +674,22 @@ BEGIN
     :new.lastUser:=USER;
     :new.lastDate:=SYSDATE;
 END beforeUpdateBlog;
+
+-- TeamXGroup
+CREATE OR REPLACE TRIGGER proyectoBD.beforeInsertTeamXGroup
+BEFORE INSERT
+ON proyectoBD.TeamXGroup
+FOR EACH ROW
+BEGIN
+    :new.userCreation:=USER;
+    :new.dateCreation:=SYSDATE;
+END beforeInsertTeamXGroup;
+
+CREATE OR REPLACE TRIGGER proyectoBD.beforeUpdateTeamXGroup
+BEFORE UPDATE
+ON proyectoBD.TeamXGroup
+FOR EACH ROW
+BEGIN
+    :new.lastUser:=USER;
+    :new.lastDate:=SYSDATE;
+END beforeUpdateTeamXGroup;

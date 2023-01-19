@@ -35,3 +35,6 @@ GRANT create view to proyectoBD;
 GRANT create sequence to proyectoBD;
 --------------------------------------------------
 GRANT create procedure to proyectoBD;
+--------------------------------------------------
+---Run with sys
+GRANT EXECUTE ON dbms_crypto TO proyectoBD;
