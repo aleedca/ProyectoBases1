@@ -168,9 +168,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         fillIdentificationTypes();     
         fillCountries();
         fillPositions();
-        fillTeams();
+        fillTeams(false);
         fillTypePerson();
-        fillStadiums();
         principal.showMostViewedNews();
         principal.showLastNews();
         
@@ -222,6 +221,11 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         //AdminScheduleMatch
         viewScheduleMatch.getBtnBack().addActionListener(this);
+        
+        viewScheduleMatch.getCbmTeam1().addItemListener(this);
+        viewScheduleMatch.getCbmTeam2().addItemListener(this);
+        viewScheduleMatch.getCbmStadium().addItemListener(this);
+        viewScheduleMatch.getCbmGroup().addItemListener(this);
     
         
         //AdminMatch
@@ -291,6 +295,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private void fillGenders(){
         viewRegister.getCmbGender().removeAllItems();
         viewAdminPerson.getCmbGender().removeAllItems();
+        
         
         viewRegister.getCmbGender().addItem("Seleccione Género");
         viewAdminPerson.getCmbGender().addItem("Seleccione Género");
@@ -409,13 +414,30 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
     }
     
-    private void fillTeams(){
+    private void fillTeams(boolean flag){
         viewAdminPerson.getCmbTeam().removeAllItems();
+        viewScheduleMatch.getCbmTeam1().removeAllItems();
+        viewScheduleMatch.getCbmTeam2().removeAllItems();
+        
+        viewScheduleMatch.getCbmTeam2().setEnabled(flag);
         
         viewAdminPerson.getCmbTeam().addItem("Seleccione Equipo");
+        viewScheduleMatch.getCbmTeam1().addItem("Seleccione Equipo");
+        
+        if(viewScheduleMatch.getCbmTeam2().isEnabled()){
+            viewScheduleMatch.getCbmTeam2().addItem("Seleccione Equipo");
+        }
+        
         for(int i=0; i<modelAdminPerson.getTeams().size();i++){
             String nameTeam = modelAdminPerson.getTeams().get(i).getNameTeam();
             viewAdminPerson.getCmbTeam().addItem(nameTeam);
+            viewScheduleMatch.getCbmTeam1().addItem(nameTeam);
+            
+            if(viewScheduleMatch.getCbmTeam2().isEnabled()){
+                if(!nameTeam.equals(viewScheduleMatch.getCbmTeam1().getSelectedItem().toString())){
+                     viewScheduleMatch.getCbmTeam2().addItem(nameTeam);
+                }  
+            } 
         }
     }
     
@@ -728,12 +750,22 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
     }
     
-    public void fillStadiums(){
+    private void fillStadiums(){
         viewScheduleMatch.getCbmStadium().removeAllItems();
         
-        viewScheduleMatch.getCbmStadium().addItem("Seleccione el estadio");
+        viewScheduleMatch.getCbmStadium().addItem("Seleccione Estadio");
          for(int i=0; i<modelAdminMatches.getStadiums().size();i++){
            viewScheduleMatch.getCbmStadium().addItem(modelAdminMatches.getStadiums().get(i).getNameStadium());
+        }
+    }
+    
+    
+    private void fillGroup(){
+        viewScheduleMatch.getCbmGroup().removeAllItems();
+        
+        viewScheduleMatch.getCbmGroup().addItem("Seleccione Grupo");
+         for(int i=0; i<modelAdminMatches.getGroups().size();i++){
+           viewScheduleMatch.getCbmGroup().addItem(modelAdminMatches.getGroups().get(i).getDescriptionGroup());
         }
     }
     
@@ -1118,7 +1150,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         fillIdentificationTypes();     
         fillCountries();
         fillPositions();
-        fillTeams();
+        fillTeams(false);
 
         modelAdminPerson.setPhoto("src/Images/avatar.png");
         viewAdminPerson.setLocationRelativeTo(viewAdminPerson);
@@ -1141,7 +1173,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         fillIdentificationTypes();     
         fillCountries();
         fillPositions();
-        fillTeams();
+        fillTeams(false);
 
         modelAdminPerson.setPhoto("src/Images/avatar.png");
         viewAdminPerson.setLocationRelativeTo(viewAdminPerson);
@@ -1648,6 +1680,24 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         return false;
     }
     
+    // ---------------- VALIDATIONS ADMIN MATCHES ----------------
+    private boolean validateGroupTeamExist(){
+        if(modelAdminMatches.validateGroupExist() == false || modelAdminMatches.validateTeamExist() == false){
+            JOptionPane.showMessageDialog(null, "Debe crear grupos y/o equipos antes de realizar alguna de estas acciones", "Error", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    private boolean validateSoccerMatchExist(){
+        if(this.modelAdminMatches.validateSoccerMatchExist()){
+             JOptionPane.showMessageDialog(null, "Por el momento no se puede administrador un partido ya que aún no hay partidos programados.", "Error", JOptionPane.WARNING_MESSAGE);
+             return false;
+        }
+        return true;
+    }
+    
     //----------------SHOW MORE VIEWED AND LAST NEWS ----------------------------------
     
     
@@ -2022,16 +2072,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                         viewAdminPerson.setTeam("Seleccione Equipo");
                         viewAdminPerson.setPosition("Seleccione Posición");
                         viewAdminPerson.setGender("Seleccione Género");
-                    }
-                 
+                    }    
                 }
-            
-                
-            
-            }
-        
+            } 
         }
-        
         
         
         //XD LOL
@@ -2040,6 +2084,24 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 adminCatalogsController.fillCatalogs();
             }
         }
+        
+        
+        //ADMIN SCHEDULE MATCH
+        if(e.getSource() == viewScheduleMatch.getCbmGroup()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewScheduleMatch.getCbmGroup().getSelectedItem().toString();
+                if(!"Seleccione Grupo".equals(choice)){
+                
+                }else{
+                    viewScheduleMatch.getCbmTeam1().removeAllItems();
+                    viewScheduleMatch.getCbmTeam1().setEnabled(false);
+                    fillTeams(false);             
+                }
+            
+            }     
+        }
+        
+        
 
     }
     
@@ -2352,7 +2414,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             fillIdentificationTypes();     
             fillCountries();
             fillPositions();
-            fillTeams();
+            fillTeams(false);
 
             modelAdminPerson.setPhoto("src/Images/avatar.png");
             viewAdminPerson.setLocationRelativeTo(viewAdminPerson);
@@ -2491,14 +2553,29 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         //-------------- SCREEN AdminMatches -----------------------
+        if(e.getSource() == viewAdminMatches.getBtnGroupRaffle()){
+            if(validateGroupTeamExist()){
+                //Llamar al procedmiento de rifar grupos
+            }  
+        }
+        
+        
         if(e.getSource() == viewAdminMatches.getBtnScheduleMatch()){
-            viewAdminMatches.setVisible(false);
-            viewScheduleMatch.setVisible(true);
+            if(validateGroupTeamExist()){
+                viewAdminMatches.setVisible(false);
+                
+                fillGroup();
+                fillStadiums();
+        
+                viewScheduleMatch.setVisible(true);
+            }
         }
         
         if(e.getSource() == viewAdminMatches.getBtnAdminScheduledMatch()){
-            viewAdminMatches.setVisible(false);
-            viewAdminMatch.setVisible(true);
+            if(validateGroupTeamExist() && validateSoccerMatchExist()){
+                viewAdminMatches.setVisible(false);
+                viewAdminMatch.setVisible(true);
+            } 
         }
         
         if(e.getSource() == viewAdminMatches.getBtnBack()){

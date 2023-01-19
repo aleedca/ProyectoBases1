@@ -6,7 +6,6 @@ package Model;
 
 import DataAccess.DA_Catalogs;
 import DataAccess.DA_SoccerMatch;
-import Objects.Gender;
 import Objects.Group;
 import Objects.Stadium;
 import Objects.Team;
@@ -22,44 +21,36 @@ import java.util.logging.Logger;
  */
 public class model_AdminMatches {
     private String date;
-    private String hour; 
+    private String hour;
+    private int team;
+    
     private int stadium;
     private ArrayList<Stadium> stadiums;
     
-    private int gender;
-    private ArrayList<Gender> genders;
     
-    private int team;
-    private ArrayList<Team> teams;
     
     private int group;
     private ArrayList<Group> groups;
     
     private int resultInsertMatch;
+    private int resultGroupExist;
+    private int resultTeamExist;
+    private int resultSoccerMatchExist;
     
     //BUILDER 
 
     public model_AdminMatches() {
         try {
+            
             this.stadiums = DA_Catalogs.getStadium();
-        } catch (SQLException ex) {
-            Logger.getLogger(model_AdminMatches.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void fillScheduleMatch(){
-        try {
-            this.genders = DA_Catalogs.getGender();
-
-            this.teams = DA_Catalogs.getTeam();
-
+            
             this.groups = DA_Catalogs.getGroup();
 
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
-    
+
     public void fillMatch(){
     
     
@@ -81,6 +72,55 @@ public class model_AdminMatches {
         return false;
     }
     
+    public boolean validateGroupExist(){
+        try {
+            this.resultGroupExist = DA_SoccerMatch.validateGroupExist();
+            
+            if(this.resultGroupExist == 0){
+                return true;
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return false;
+    }
+    
+    public boolean validateTeamExist(){
+        try {
+            this.resultTeamExist = DA_SoccerMatch.validateTeamExist();
+            
+            if(this.resultTeamExist == 0){
+                return true;
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return false;
+    }
+    
+    
+    public boolean validateSoccerMatchExist(){
+        try {
+            this.resultSoccerMatchExist = DA_SoccerMatch.validateSoccerMatchExist();
+            
+            if(this.resultSoccerMatchExist == 0){
+                return true;
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return false;
+    }
+    
+    
+    
+    
     //--------------GETTERS AND SETTERS--------------
 
     public int getStadium() {
@@ -99,36 +139,12 @@ public class model_AdminMatches {
         this.stadiums = stadiums;
     }
 
-    public int getGender() {
-        return gender;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
-
-    public ArrayList<Gender> getGenders() {
-        return genders;
-    }
-
-    public void setGenders(ArrayList<Gender> genders) {
-        this.genders = genders;
-    }
-
     public int getTeam() {
         return team;
     }
 
     public void setTeam(int team) {
         this.team = team;
-    }
-
-    public ArrayList<Team> getTeams() {
-        return teams;
-    }
-
-    public void setTeams(ArrayList<Team> teams) {
-        this.teams = teams;
     }
 
     public int getGroup() {

@@ -30,9 +30,55 @@ public class DA_SoccerMatch {
         sql.execute();
         
         int result = ((BigDecimal) sql.getObject(3)).intValue();
-        System.out.println("El resultado de la validacion es: "+ result);
+        System.out.println("El resultado del insertSoccerMatch es: "+ result);
         return result;   
     }
+    
+    public static int validateGroupExist() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call validateGroupExist(?)}");
+        
+        //Output parameter
+        sql.registerOutParameter(1, OracleTypes.NUMBER);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(1)).intValue();
+        System.out.println("El resultado de la validacion de GRUPOS es: "+ result);
+        return result;   
+    }
+    
+    public static int validateTeamExist() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call validateTeamExist(?)}");
+        
+        //Output parameter
+        sql.registerOutParameter(1, OracleTypes.NUMBER);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(1)).intValue();
+        System.out.println("El resultado de la validacion de EQUIPOS es: "+ result);
+        return result;   
+    }
+    
+    
+    public static int validateSoccerMatchExist() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call validateSoccerMatchExist(?)}");
+        
+        //Output parameter
+        sql.registerOutParameter(1, OracleTypes.NUMBER);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(1)).intValue();
+        System.out.println("El resultado de la validacion de PARTIDOS es: "+ result);
+        return result;   
+    }
+    
+    
+    
     
     
     
