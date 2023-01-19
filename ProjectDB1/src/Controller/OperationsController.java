@@ -16,6 +16,7 @@ import View.JF_AdminCatalogs;
 import View.JF_AdminMatch;
 import View.JF_AdminMatches;
 import View.JF_AdminOptions;
+import View.JF_AdminOther;
 import View.JF_AdminParameters;
 import View.JF_AdminPerson;
 import View.JF_EditAccount;
@@ -56,6 +57,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private final JF_AdminScheduleMatch viewScheduleMatch;
     private final JF_AdminMatch viewAdminMatch; 
     private final JF_AdminParameters viewAdminParameters;
+    private final JF_AdminOther viewAdminOther;
     
     
     private final model_Login modelLogin;
@@ -96,6 +98,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         JF_AdminPerson adminPerson = new JF_AdminPerson();
         this.viewAdminPerson = adminPerson;
         
+        //View AdminOther
+        JF_AdminOther adminOther = new JF_AdminOther();
+        this.viewAdminOther = adminOther;
+
         //View Request
         JF_Request request = new JF_Request();
         this.viewRequest = request;
@@ -211,10 +217,11 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         viewMenuAdmin.getBtnAdmiCatalogos().addActionListener(this);
         viewMenuAdmin.getBtnPartidos().addActionListener(this);
         viewMenuAdmin.getBtnAdmiParametros().addActionListener(this);
-        //viewMenuAdmin.getBtnAdmiBitacora().addActionListener(this);
-        //viewMenuAdmin.getBtnAdmiOther().addActionListener(this);
+        viewMenuAdmin.getBtnBitacora().addActionListener(this);
+        viewMenuAdmin.getBtnAdmiOther().addActionListener(this);
         
         //AdminMatches
+        viewAdminMatches.getBtnGroupRaffle().addActionListener(this);
         viewAdminMatches.getBtnScheduleMatch().addActionListener(this);
         viewAdminMatches.getBtnAdminScheduledMatch().addActionListener(this);
         viewAdminMatches.getBtnBack().addActionListener(this);
@@ -288,6 +295,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         //AdminCatalogs
         adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().addItemListener(this);
          
+        
+        //AdminOther
+        viewAdminOther.getBtnBack().addActionListener(this);
+        
     }
     
     
@@ -2318,6 +2329,15 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         //-------------- SCREEN AdminOptions -----------------------
+        if(e.getSource() == viewMenuAdmin.getBtnAdmiOther()){
+             viewMenuAdmin.setVisible(false);
+             viewAdminOther.setVisible(true);
+        }
+        
+        if(e.getSource() == viewMenuAdmin.getBtnBitacora()){
+            JOptionPane.showMessageDialog(null, "Lo sentimos, esta opción no se encuentra implementada", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
         if(e.getSource() == viewMenuAdmin.getBtnBack()){
             viewMenuAdmin.setVisible(false);
             viewPrincipal.getBtnLogin().setVisible(false);
@@ -2359,6 +2379,14 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             viewMenuAdmin.setVisible(false);
             viewAdminParameters.setVisible(true);
         }
+        
+        //------------- SCREEN ADMIN OTHER ------------------
+        if(e.getSource() == viewAdminOther.getBtnBack()){
+            viewAdminOther.setVisible(false);
+            viewMenuAdmin.setVisible(true);
+        }
+        
+        
         
         //-------------- SCREEN AdminNews -----------------------
         if(e.getSource() == adminNewsController.getViewAdminNews().getBtnBack()){
@@ -2663,8 +2691,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         //-------------- SCREEN AdminMatches -----------------------
         if(e.getSource() == viewAdminMatches.getBtnGroupRaffle()){
-            if(validateTeamExist()){
+            if(validateTeamExist() == true){
                 //Llamar al procedimiento de rifar grupos
+                System.out.println("Hacer rifa");
             }  
         }
         

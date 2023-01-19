@@ -50,9 +50,9 @@ EXEC insertSoccerMatch(6, TO_DATE('19-03-2023 12:30', 'DD-MM-YYYY HH24:MI'));
 EXEC insertSoccerMatch(6, TO_DATE('17-09-2023 13:00', 'DD-MM-YYYY HH24:MI'));
 
 --- UserPerson
-EXEC insertUserPerson('admin02', 1,'Admin002', 408920922, 'Pedro', NULL, 'Rivera', NULL, 'Foto Perfil', 11, 2, 3, 'pedro@gmail.com', 63921230, 2, '100 metros al Oeste de la Municipalidad de San Antonio.');
-EXEC insertUserPerson('mario97_AK', 2,'patitoW80', 204560897, 'Mario', NULL, 'Arias', NULL, 'Foto Perfil', 11, 1, 2, 'mario@gmail.com', 87659043, 13, '300 metros al Norte de la iglesia del Carmen.');
-EXEC insertUserPerson('admin01', 1,'Admin001', 305260877, 'Lucia', NULL, 'Rodriguez', NULL, 'Foto Perfil', 11, 1, 1, 'luchi@gmail.com', 77909041, 6, '200 metros al Este de la plaza Las Flores.');
+EXEC insertUserPerson('admin02', 1,'Admin002', 408920922, 'Pedro', 'N/A', 'Rivera', 'N/A', 'Foto Perfil', 11, 2, 3, 'pedro@gmail.com', 63921230, 2, '100 metros al Oeste de la Municipalidad de San Antonio.');
+
+EXEC insertUserPerson('admin01', 'Administrador','Admin001', 305260877, 'Lucia', 'N/A', 'Rodriguez', 'N/A', 'FotoPerfil', 11, 1, 1, 'luchi@gmail.com', 77909041, 6, '200 metros al Este de la plaza Las Flores.');
 
 -- TeamWorker
 DECLARE outputNumber NUMBER(10);
