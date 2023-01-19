@@ -4,6 +4,11 @@
  */
 package View;
 
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Alexia
@@ -26,15 +31,23 @@ public class JF_AdminParameters extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGroupParametros = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         btnBack = new javax.swing.JButton();
         lblAdminOther = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblParametros = new javax.swing.JTable();
+        rbtnAgregar = new javax.swing.JRadioButton();
+        rbtnEditar = new javax.swing.JRadioButton();
+        lblEntradaParametro = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        btnAceptar = new javax.swing.JButton();
+        txtEntrada = new javax.swing.JTextField();
+        lblNombreParametro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(86, 4, 44));
@@ -65,6 +78,99 @@ public class JF_AdminParameters extends javax.swing.JFrame {
         jPanel1.add(lblLogo);
         lblLogo.setBounds(1065, 6, 200, 125);
 
+        tblParametros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nombre", "Entrada"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblParametros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblParametros.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblParametros);
+        if (tblParametros.getColumnModel().getColumnCount() > 0) {
+            tblParametros.getColumnModel().getColumn(0).setMinWidth(70);
+            tblParametros.getColumnModel().getColumn(0).setPreferredWidth(70);
+            tblParametros.getColumnModel().getColumn(1).setMinWidth(400);
+            tblParametros.getColumnModel().getColumn(1).setPreferredWidth(400);
+            tblParametros.getColumnModel().getColumn(2).setMinWidth(70);
+            tblParametros.getColumnModel().getColumn(2).setPreferredWidth(70);
+        }
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(50, 180, 610, 480);
+
+        rbtnAgregar.setBackground(new java.awt.Color(86, 4, 44));
+        btnGroupParametros.add(rbtnAgregar);
+        rbtnAgregar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        rbtnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnAgregar.setText("Agregar");
+        rbtnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnAgregarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbtnAgregar);
+        rbtnAgregar.setBounds(810, 180, 150, 37);
+        rbtnAgregar.setSelected(true);
+
+        rbtnEditar.setBackground(new java.awt.Color(86, 4, 44));
+        btnGroupParametros.add(rbtnEditar);
+        rbtnEditar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        rbtnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnEditar.setText("Editar");
+        rbtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnEditarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbtnEditar);
+        rbtnEditar.setBounds(1040, 180, 100, 37);
+
+        lblEntradaParametro.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        lblEntradaParametro.setForeground(new java.awt.Color(255, 255, 255));
+        lblEntradaParametro.setText("Entrada del parámetro:");
+        jPanel1.add(lblEntradaParametro);
+        lblEntradaParametro.setBounds(730, 420, 220, 30);
+
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel1.add(txtNombre);
+        txtNombre.setBounds(960, 360, 250, 30);
+
+        btnAceptar.setBackground(new java.awt.Color(86, 4, 44));
+        btnAceptar.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAceptar.setText("Aceptar");
+        btnAceptar.setBorderPainted(false);
+        jPanel1.add(btnAceptar);
+        btnAceptar.setBounds(920, 630, 130, 40);
+
+        txtEntrada.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel1.add(txtEntrada);
+        txtEntrada.setBounds(960, 420, 250, 30);
+
+        lblNombreParametro.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        lblNombreParametro.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreParametro.setText("Nombre del parámetro:");
+        jPanel1.add(lblNombreParametro);
+        lblNombreParametro.setBounds(730, 360, 220, 30);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,6 +193,72 @@ public class JF_AdminParameters extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void rbtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnAgregarActionPerformed
+
+    }//GEN-LAST:event_rbtnAgregarActionPerformed
+
+    private void rbtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEditarActionPerformed
+
+    }//GEN-LAST:event_rbtnEditarActionPerformed
+
+    
+    public JRadioButton getRbtnAgregar() {
+        return rbtnAgregar;
+    }
+
+    public void setRbtnAgregar(JRadioButton rbtnAgregar) {
+        this.rbtnAgregar = rbtnAgregar;
+    }
+
+    public JRadioButton getRbtnEditar() {
+        return rbtnEditar;
+    }
+
+    public void setRbtnEditar(JRadioButton rbtnEditar) {
+        this.rbtnEditar = rbtnEditar;
+    }
+
+    public JTable getTblParametros() {
+        return tblParametros;
+    }
+
+    public void setTblParametros(JTable tblParametros) {
+        this.tblParametros = tblParametros;
+    }
+
+    public JTextField getTxtEntrada() {
+        return txtEntrada;
+    }
+
+    public void setTxtEntrada(JTextField txtEntrada) {
+        this.txtEntrada = txtEntrada;
+    }
+
+    public JTextField getTxtNombre() {
+        return txtNombre;
+    }
+
+    public void setTxtNombre(JTextField txtNombre) {
+        this.txtNombre = txtNombre;
+    }
+
+    public JButton getBtnAceptar() {
+        return btnAceptar;
+    }
+
+    public void setBtnAceptar(JButton btnAceptar) {
+        this.btnAceptar = btnAceptar;
+    }
+
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
+    public void setBtnBack(JButton btnBack) {
+        this.btnBack = btnBack;
+    }
+
+    
     /**
      * @param args the command line arguments
      */
@@ -123,9 +295,19 @@ public class JF_AdminParameters extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBack;
+    private javax.swing.ButtonGroup btnGroupParametros;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdminOther;
+    private javax.swing.JLabel lblEntradaParametro;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblNombreParametro;
+    private javax.swing.JRadioButton rbtnAgregar;
+    private javax.swing.JRadioButton rbtnEditar;
+    private javax.swing.JTable tblParametros;
+    private javax.swing.JTextField txtEntrada;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,19 +15,20 @@ BEGIN
 END insertGroupEvent;
 
 -- CountryTeam
-CREATE OR REPLACE PROCEDURE insertCountryTeam (pIdContinent IN NUMBER, pNameCountryTeam IN VARCHAR2, pFlag IN VARCHAR2) AS
+CREATE OR REPLACE PROCEDURE insertCountryTeam (pIdContinent IN NUMBER, pNameCountryTeam IN VARCHAR2) AS
 BEGIN
-    INSERT INTO CountryTeam (idCountryTeam, idContinent, nameCountryTeam, flag, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_countryTeam.nextval, pIdContinent, pNameCountryTeam, pFlag, NULL, NULL, NULL, NULL);
-    COMMIT;
+    INSERT INTO CountryTeam (idCountryTeam, idContinent, nameCountryTeam, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_countryTeam.nextval, pIdContinent, pNameCountryTeam, NULL, NULL, NULL, NULL);
 END insertCountryTeam;
 
 -- Team
-CREATE OR REPLACE PROCEDURE insertTeam(pIdCountryTeam IN NUMBER, pIdGroupEvent IN NUMBER, pNameTeam IN VARCHAR2)
+CREATE OR REPLACE PROCEDURE insertTeam(pIdContinent IN NUMBER, pNameCountryTeam IN VARCHAR2, pNameTeam IN VARCHAR2, pFlag IN VARCHAR2)
 AS
 BEGIN
-    INSERT INTO Team(idTeam, idCountryTeam, idGroupEvent, nameTeam, userCreation, lastUser, lastDate, dateCreation)
-    VALUES(s_team.NEXTVAL, pIdCountryTeam, pIdGroupEvent, pNameTeam, NULL, NULL, NULL, NULL);
+    insertCountryTeam (pIdContinent, pNameCountryTeam);
+
+    INSERT INTO Team(idTeam, idCountryTeam, nameTeam, flag,userCreation, lastUser, lastDate, dateCreation)
+    VALUES(s_team.NEXTVAL, s_countryTeam.currval, pNameTeam, pFlag, NULL, NULL, NULL, NULL);
     COMMIT;
 END insertTeam;
 
@@ -189,12 +190,18 @@ END insertUserPerson;
 
 ----------------------------------------------------------------------------------------------------------------
 -- SoccerMatch
-CREATE OR REPLACE PROCEDURE insertSoccerMatch(pIdStadium IN NUMBER, pDateHour IN DATE)
+CREATE OR REPLACE PROCEDURE insertSoccerMatch(pIdStadium IN NUMBER, pDateHour IN VARCHAR2, codResult OUT NUMBER)
 AS
 BEGIN
     INSERT INTO SoccerMatch(idSoccerMatch, idStadium, dateHour, userCreation, lastUser, lastDate, dateCreation)
-    VALUES(s_soccerMatch.NEXTVAL, pIdStadium, pDateHour, NULL, NULL, NULL, NULL);
+    VALUES(s_soccerMatch.NEXTVAL, pIdStadium, TO_DATE(pDateHour, 'DD-MM-YYYY HH24:MI'), NULL, NULL, NULL, NULL);
+    
+    codResult:=0;
     COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE; 
 END insertSoccerMatch;
 
 ------------------------Insertion PlayerXSoccerMatchXTeam ---------------------

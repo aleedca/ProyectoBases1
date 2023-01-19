@@ -1554,6 +1554,7 @@ CREATE TABLE Team(
     idTeam NUMBER(10) PRIMARY KEY,
     idCountryTeam NUMBER(10) CONSTRAINT team_idCountryTeam_nn NOT NULL,
     nameTeam VARCHAR2(32) CONSTRAINT team_name_nn NOT NULL,
+    flag VARCHAR2(128) CONSTRAINT team_flag_nn NOT NULL,
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
     lastDate DATE,
@@ -1573,6 +1574,9 @@ IS 'Reference to CountryTeam Table.';
 
 COMMENT ON COLUMN Team.nameTeam
 IS 'Name of the team.';
+
+COMMENT ON COLUMN Team.flag
+IS 'Photo of the flag of the team.';
 
 -- Audit Fields 
 COMMENT ON COLUMN Team.userCreation
@@ -1700,7 +1704,6 @@ CREATE TABLE CountryTeam(
     idCountryTeam NUMBER(10) PRIMARY KEY,
     idContinent NUMBER(10) CONSTRAINT countryTeam_idContinent_nn NOT NULL,
     nameCountryTeam VARCHAR2(32) CONSTRAINT countryTeam_name_nn NOT NULL,
-    flag VARCHAR2(128) CONSTRAINT countryTeam_flag_nn NOT NULL,
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
     lastDate DATE,
@@ -1720,9 +1723,6 @@ IS 'Reference to Continent Table.';
 
 COMMENT ON COLUMN CountryTeam.nameCountryTeam
 IS 'Name of the country of the team.';
-
-COMMENT ON COLUMN CountryTeam.flag
-IS 'Photo of the flag of the country of the team.';
 
 -- Audit Fields 
 COMMENT ON COLUMN CountryTeam.userCreation

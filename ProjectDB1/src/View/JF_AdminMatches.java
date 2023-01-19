@@ -33,13 +33,12 @@ public class JF_AdminMatches extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         lblAdminPartidos = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnGroupRaffle = new javax.swing.JButton();
         btnAdminScheduledMatch = new javax.swing.JButton();
         btnScheduleMatch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 552));
-        setPreferredSize(new java.awt.Dimension(800, 536));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(86, 4, 44));
@@ -58,7 +57,7 @@ public class JF_AdminMatches extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBack);
-        btnBack.setBounds(20, 20, 52, 40);
+        btnBack.setBounds(20, 20, 46, 40);
 
         lblAdminPartidos.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
         lblAdminPartidos.setForeground(new java.awt.Color(255, 255, 255));
@@ -70,17 +69,16 @@ public class JF_AdminMatches extends javax.swing.JFrame {
         jPanel1.add(lblLogo);
         lblLogo.setBounds(590, 10, 200, 125);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(102, 0, 51));
-        jButton1.setText("Rifar grupos");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGroupRaffle.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
+        btnGroupRaffle.setForeground(new java.awt.Color(102, 0, 51));
+        btnGroupRaffle.setText("Rifar grupos");
+        btnGroupRaffle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGroupRaffleActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(210, 160, 350, 40);
+        jPanel1.add(btnGroupRaffle);
+        btnGroupRaffle.setBounds(210, 160, 350, 40);
 
         btnAdminScheduledMatch.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
         btnAdminScheduledMatch.setText("Administrar partido programado");
@@ -123,9 +121,9 @@ public class JF_AdminMatches extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnGroupRaffleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGroupRaffleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnGroupRaffleActionPerformed
 
     private void btnScheduleMatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScheduleMatchActionPerformed
         
@@ -146,48 +144,18 @@ public class JF_AdminMatches extends javax.swing.JFrame {
     public JButton getBtnScheduleMatch() {
         return btnScheduleMatch;
     }
-    
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminMatches.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminMatches.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminMatches.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JF_AdminMatches.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JF_AdminMatches().setVisible(true);
-            }
-        });
+    public JButton getBtnGroupRaffle() {
+        return btnGroupRaffle;
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdminScheduledMatch;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnGroupRaffle;
     private javax.swing.JButton btnScheduleMatch;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAdminPartidos;
     private javax.swing.JLabel lblLogo;

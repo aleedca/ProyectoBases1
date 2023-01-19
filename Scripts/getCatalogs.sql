@@ -5,6 +5,13 @@ BEGIN
     FROM Event;
 END getEvent;
 
+CREATE OR REPLACE PROCEDURE getGroupEvent (curGroupEvent OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curGroupEvent FOR
+    SELECT idGroupEvent, descriptionGroupEvent
+    FROM GroupEvent;
+END getGroupEvent;
+
 CREATE OR REPLACE PROCEDURE getGender(curGender OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curGender FOR
@@ -61,7 +68,7 @@ END getDistrict;
 CREATE OR REPLACE PROCEDURE getNews(curNews OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curNews FOR
-    SELECT idNews, NewsType.descriptionNewsType, NewsStatus.descriptionNewsStatus, title, publicationDate, viewsNews, linkNews, photo, textNews
+    SELECT idNews, NewsType.descriptionNewsType, NewsStatus.descriptionNewsStatus, title, publicationDate, linkNews, photo, textNews, viewsNews
     FROM News 
     INNER JOIN NewsStatus ON News.idNewsStatus = NewsStatus.idNewsStatus
     INNER JOIN NewsType ON News.idNewsType = NewsType.idNewsType;
@@ -130,6 +137,13 @@ BEGIN
     FROM Stadium;
 END getStadium;
 
+
+CREATE OR REPLACE PROCEDURE getTeamXGroup (curTeamXGroup OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curTeamXGroup FOR
+    SELECT idTeamXGroup, idTeam,idGroupEvent
+    FROM TeamXGroup;
+END getTeamXGroup;
 
 
 

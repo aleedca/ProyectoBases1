@@ -81,4 +81,54 @@ BEGIN
     END IF; 
 END validateIdentAlreadyExists;
 
+
+CREATE OR REPLACE PROCEDURE validateGroupExist(codResult OUT NUMBER) IS
+vnTotalGroup NUMBER(10);
+BEGIN
+    SELECT COUNT(*)
+    INTO vnTotalGroup
+    FROM GroupEvent;
+    
+    IF(vnTotalGroup > 0)
+    THEN
+        codResult := 0;
+    ELSE
+        codResult := 1;
+    END IF;
+END validateGroupExist;
+
+CREATE OR REPLACE PROCEDURE validateTeamExist(codResult OUT NUMBER) IS
+vnTotalTeam NUMBER(10);
+BEGIN
+    SELECT COUNT(*)
+    INTO vnTotalTeam
+    FROM Team;
+    
+    IF(vnTotalTeam > 0)
+    THEN
+        codResult := 0;
+    ELSE
+        codResult := 1;
+    END IF;
+END validateTeamExist;
+
+CREATE OR REPLACE PROCEDURE validateSoccerMatchExist(codResult OUT NUMBER) IS
+vnTotalMatch NUMBER(10);
+BEGIN
+    SELECT COUNT(*)
+    INTO vnTotalMatch
+    FROM soccermatch;
+    
+    IF(vnTotalMatch > 0)
+    THEN
+        codResult := 0;
+    ELSE
+        codResult := 1;
+    END IF;
+END validateSoccerMatchExist;
+
+
+
+
+
             

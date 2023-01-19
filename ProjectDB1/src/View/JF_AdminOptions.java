@@ -38,22 +38,28 @@ public class JF_AdminOptions extends javax.swing.JFrame {
     }
 
     public JButton getBtnBitacora() {
-        return btnBitacora;
+        return btnAdmiBitacora;
     }
 
     public JButton getBtnEstadisticas() {
         return btnPartidos;
     }
 
-    public JButton getBtnParametros() {
-        return btnParametros;
+    public JButton getBtnAdmiParametros() {
+        return btnAdmiParametros;
     }
 
     public JButton getBtnPartidos() {
         return btnPartidos;
     }
-    
-    
+
+    public JButton getBtnAdmiOther() {
+        return btnOther;
+    }
+
+    public void setBtnOther(JButton btnOther) {
+        this.btnOther = btnOther;
+    }
     
 
     /**
@@ -70,9 +76,9 @@ public class JF_AdminOptions extends javax.swing.JFrame {
         btnAdmiNoticias = new javax.swing.JButton();
         btnAdmiCatalogos = new javax.swing.JButton();
         btnPartidos = new javax.swing.JButton();
-        btnParametros = new javax.swing.JButton();
+        btnAdmiParametros = new javax.swing.JButton();
         btnAdmiPersonas = new javax.swing.JButton();
-        btnBitacora = new javax.swing.JButton();
+        btnAdmiBitacora = new javax.swing.JButton();
         lblAdminOpciones = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         btnOther = new javax.swing.JButton();
@@ -109,11 +115,11 @@ public class JF_AdminOptions extends javax.swing.JFrame {
             }
         });
 
-        btnParametros.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        btnParametros.setText("Parámetros");
-        btnParametros.addActionListener(new java.awt.event.ActionListener() {
+        btnAdmiParametros.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnAdmiParametros.setText("Parámetros");
+        btnAdmiParametros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnParametrosActionPerformed(evt);
+                btnAdmiParametrosActionPerformed(evt);
             }
         });
 
@@ -125,11 +131,11 @@ public class JF_AdminOptions extends javax.swing.JFrame {
             }
         });
 
-        btnBitacora.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        btnBitacora.setText("Bitácora");
-        btnBitacora.addActionListener(new java.awt.event.ActionListener() {
+        btnAdmiBitacora.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnAdmiBitacora.setText("Bitácora");
+        btnAdmiBitacora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBitacoraActionPerformed(evt);
+                btnAdmiBitacoraActionPerformed(evt);
             }
         });
 
@@ -179,11 +185,11 @@ public class JF_AdminOptions extends javax.swing.JFrame {
                                     .addComponent(btnAdmiCatalogos))
                                 .addGap(35, 35, 35)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnBitacora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnAdmiBitacora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnAdmiNoticias, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnParametros, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAdmiParametros, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnAdmiPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)))
                 .addComponent(lblLogo)
@@ -209,8 +215,8 @@ public class JF_AdminOptions extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPartidos, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBitacora, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnParametros, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAdmiBitacora, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdmiParametros, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(80, 80, 80)
                 .addComponent(btnOther, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
@@ -230,9 +236,9 @@ public class JF_AdminOptions extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnParametrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnParametrosActionPerformed
+    private void btnAdmiParametrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmiParametrosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnParametrosActionPerformed
+    }//GEN-LAST:event_btnAdmiParametrosActionPerformed
 
     private void btnPartidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPartidosActionPerformed
         
@@ -250,9 +256,9 @@ public class JF_AdminOptions extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAdmiPersonasActionPerformed
 
-    private void btnBitacoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBitacoraActionPerformed
+    private void btnAdmiBitacoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmiBitacoraActionPerformed
 
-    }//GEN-LAST:event_btnBitacoraActionPerformed
+    }//GEN-LAST:event_btnAdmiBitacoraActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
@@ -264,13 +270,13 @@ public class JF_AdminOptions extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdmiBitacora;
     private javax.swing.JButton btnAdmiCatalogos;
     private javax.swing.JButton btnAdmiNoticias;
+    private javax.swing.JButton btnAdmiParametros;
     private javax.swing.JButton btnAdmiPersonas;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnBitacora;
     private javax.swing.JButton btnOther;
-    private javax.swing.JButton btnParametros;
     private javax.swing.JButton btnPartidos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAdminOpciones;

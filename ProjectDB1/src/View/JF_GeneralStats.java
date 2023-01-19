@@ -53,9 +53,11 @@ public class JF_GeneralStats extends javax.swing.JFrame {
         cmbAgeRange = new javax.swing.JComboBox<>();
         lblStats9 = new javax.swing.JLabel();
         lblStats10 = new javax.swing.JLabel();
-        cmbGender = new javax.swing.JComboBox<>();
+        cmbTeam = new javax.swing.JComboBox<>();
         lblStats11 = new javax.swing.JLabel();
         lblPlayerXAge = new javax.swing.JLabel();
+        cmbGender1 = new javax.swing.JComboBox<>();
+        lblStats18 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         lblStats = new javax.swing.JLabel();
         lblStats1 = new javax.swing.JLabel();
@@ -156,9 +158,9 @@ public class JF_GeneralStats extends javax.swing.JFrame {
 
         lblStats9.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 14)); // NOI18N
         lblStats9.setForeground(new java.awt.Color(255, 255, 255));
-        lblStats9.setText("Rango de edad:");
+        lblStats9.setText("Team:");
         jPanel2.add(lblStats9);
-        lblStats9.setBounds(20, 30, 110, 20);
+        lblStats9.setBounds(130, 30, 50, 20);
 
         lblStats10.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 14)); // NOI18N
         lblStats10.setForeground(new java.awt.Color(255, 255, 255));
@@ -166,28 +168,43 @@ public class JF_GeneralStats extends javax.swing.JFrame {
         jPanel2.add(lblStats10);
         lblStats10.setBounds(20, 80, 110, 20);
 
-        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbGender.addActionListener(new java.awt.event.ActionListener() {
+        cmbTeam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbTeam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbGenderActionPerformed(evt);
+                cmbTeamActionPerformed(evt);
             }
         });
-        jPanel2.add(cmbGender);
-        cmbGender.setBounds(20, 100, 100, 30);
+        jPanel2.add(cmbTeam);
+        cmbTeam.setBounds(130, 50, 100, 30);
 
         lblStats11.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 14)); // NOI18N
         lblStats11.setForeground(new java.awt.Color(255, 255, 255));
         lblStats11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblStats11.setText("Total:");
         jPanel2.add(lblStats11);
-        lblStats11.setBounds(230, 40, 50, 30);
+        lblStats11.setBounds(240, 60, 50, 20);
 
         lblPlayerXAge.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
         lblPlayerXAge.setForeground(new java.awt.Color(255, 255, 255));
         lblPlayerXAge.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPlayerXAge.setText("0.0");
         jPanel2.add(lblPlayerXAge);
-        lblPlayerXAge.setBounds(170, 70, 110, 50);
+        lblPlayerXAge.setBounds(180, 90, 110, 40);
+
+        cmbGender1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbGender1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbGender1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cmbGender1);
+        cmbGender1.setBounds(20, 100, 100, 30);
+
+        lblStats18.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 14)); // NOI18N
+        lblStats18.setForeground(new java.awt.Color(255, 255, 255));
+        lblStats18.setText("Rango de edad:");
+        jPanel2.add(lblStats18);
+        lblStats18.setBounds(20, 30, 110, 20);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(90, 590, 310, 140);
@@ -508,7 +525,7 @@ public class JF_GeneralStats extends javax.swing.JFrame {
     }
 
     public JComboBox<String> getCmbGender() {
-        return cmbGender;
+        return cmbTeam;
     }
 
     public JComboBox<String> getCmbGroup() {
@@ -591,9 +608,13 @@ public class JF_GeneralStats extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
-    private void cmbGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGenderActionPerformed
+    private void cmbTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTeamActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbGenderActionPerformed
+    }//GEN-LAST:event_cmbTeamActionPerformed
+
+    private void cmbGender1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGender1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbGender1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -635,10 +656,11 @@ public class JF_GeneralStats extends javax.swing.JFrame {
     private javax.swing.JButton btnGroupTable;
     private javax.swing.JComboBox<String> cmbAgeRange;
     private javax.swing.JComboBox<String> cmbAuthor;
-    private javax.swing.JComboBox<String> cmbGender;
+    private javax.swing.JComboBox<String> cmbGender1;
     private javax.swing.JComboBox<String> cmbGroup;
     private javax.swing.JComboBox<String> cmbNewsEvent;
     private javax.swing.JLabel cmbReviewAverage;
+    private javax.swing.JComboBox<String> cmbTeam;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
@@ -672,6 +694,7 @@ public class JF_GeneralStats extends javax.swing.JFrame {
     private javax.swing.JLabel lblStats15;
     private javax.swing.JLabel lblStats16;
     private javax.swing.JLabel lblStats17;
+    private javax.swing.JLabel lblStats18;
     private javax.swing.JLabel lblStats2;
     private javax.swing.JLabel lblStats3;
     private javax.swing.JLabel lblStats4;

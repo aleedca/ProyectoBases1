@@ -7,6 +7,7 @@ package Controller;
 import Model.model_Account;
 import Model.model_AdminCatalogs;
 import Model.model_AdminMatches;
+import Model.model_AdminParameters;
 import Model.model_AdminPerson;
 import Model.model_Login;
 import Model.model_News;
@@ -15,6 +16,8 @@ import View.JF_AdminCatalogs;
 import View.JF_AdminMatch;
 import View.JF_AdminMatches;
 import View.JF_AdminOptions;
+import View.JF_AdminOther;
+import View.JF_AdminParameters;
 import View.JF_AdminPerson;
 import View.JF_EditAccount;
 import View.JF_Login;
@@ -53,6 +56,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private final JF_AdminMatches viewAdminMatches;
     private final JF_AdminScheduleMatch viewScheduleMatch;
     private final JF_AdminMatch viewAdminMatch; 
+    private final JF_AdminParameters viewAdminParameters;
+    private final JF_AdminOther viewAdminOther;
     
     
     private final model_Login modelLogin;
@@ -61,6 +66,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private final model_News modelNews;
     private final model_Account accountModel;
     private final model_AdminMatches modelAdminMatches;
+    private final model_AdminParameters modelAdminParameters;
     
     private boolean flagRegister;
     private boolean flagAdminPerson;
@@ -92,6 +98,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         JF_AdminPerson adminPerson = new JF_AdminPerson();
         this.viewAdminPerson = adminPerson;
         
+        //View AdminOther
+        JF_AdminOther adminOther = new JF_AdminOther();
+        this.viewAdminOther = adminOther;
+
         //View Request
         JF_Request request = new JF_Request();
         this.viewRequest = request;
@@ -111,10 +121,13 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         JF_AdminScheduleMatch scheduleMatch = new JF_AdminScheduleMatch();
         this.viewScheduleMatch = scheduleMatch;
         
-        
         //View Admin Match
         JF_AdminMatch adminMatch = new JF_AdminMatch();
         this.viewAdminMatch = adminMatch;
+        
+        //View Admin Parameters
+        JF_AdminParameters adminParameters = new JF_AdminParameters();
+        this.viewAdminParameters = adminParameters;
                
         //Model Login
         model_Login validateLogin = new model_Login();
@@ -138,6 +151,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         //Model Admin Matches
         this.modelAdminMatches = new model_AdminMatches();
         
+        //Model Admin Parameters
+        this.modelAdminParameters = new model_AdminParameters();
+        
         //Request Controller
         RequestController controller = new RequestController();
         this.requestController = controller;
@@ -160,7 +176,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         fillPositions();
         fillTeams();
         fillTypePerson();
-        fillStadiums();
         principal.showMostViewedNews();
         principal.showLastNews();
         
@@ -201,14 +216,23 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         viewMenuAdmin.getBtnAdmiPersonas().addActionListener(this);
         viewMenuAdmin.getBtnAdmiCatalogos().addActionListener(this);
         viewMenuAdmin.getBtnPartidos().addActionListener(this);
+        viewMenuAdmin.getBtnAdmiParametros().addActionListener(this);
+        viewMenuAdmin.getBtnBitacora().addActionListener(this);
+        viewMenuAdmin.getBtnAdmiOther().addActionListener(this);
         
         //AdminMatches
+        viewAdminMatches.getBtnGroupRaffle().addActionListener(this);
         viewAdminMatches.getBtnScheduleMatch().addActionListener(this);
         viewAdminMatches.getBtnAdminScheduledMatch().addActionListener(this);
         viewAdminMatches.getBtnBack().addActionListener(this);
         
         //AdminScheduleMatch
         viewScheduleMatch.getBtnBack().addActionListener(this);
+        
+        viewScheduleMatch.getCbmTeam1().addItemListener(this);
+        viewScheduleMatch.getCbmTeam2().addItemListener(this);
+        viewScheduleMatch.getCbmStadium().addItemListener(this);
+        viewScheduleMatch.getCbmGroup().addItemListener(this);
     
         
         //AdminMatch
@@ -229,6 +253,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         //AdminCatalogOption
         adminCatalogsController.getViewAdminCatalogs().getBtnBack().addActionListener(this);
                
+        //AdminParameters
+        viewAdminParameters.getBtnBack().addActionListener(this);
+        viewAdminParameters.getBtnAceptar().addActionListener(this);
+        viewAdminParameters.getRbtnAgregar().addActionListener(this);
+        viewAdminParameters.getRbtnEditar().addActionListener(this);
+        
         //Request
         viewRequest.getBtnBackRequest().addActionListener(this);
         
@@ -265,6 +295,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         //AdminCatalogs
         adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().addItemListener(this);
          
+        
+        //AdminOther
+        viewAdminOther.getBtnBack().addActionListener(this);
+        viewAdminOther.getCmbContinent().addItemListener(this);
+        viewAdminOther.getCmbCountry().addItemListener(this);
+        
     }
     
     
@@ -272,6 +308,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private void fillGenders(){
         viewRegister.getCmbGender().removeAllItems();
         viewAdminPerson.getCmbGender().removeAllItems();
+
+        
         
         viewRegister.getCmbGender().addItem("Seleccione Género");
         viewAdminPerson.getCmbGender().addItem("Seleccione Género");
@@ -298,6 +336,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private void fillCountries(){
         viewRegister.getCmbCountry().removeAllItems();
         viewAdminPerson.getCmbCountry().removeAllItems();
+        viewAdminOther.getCmbCountry().removeAllItems();
         
         viewRegister.getCmbProvince().removeAllItems();
         viewRegister.getCmbProvince().setEnabled(false);
@@ -319,10 +358,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         viewRegister.getCmbCountry().addItem("Seleccione País");
         viewAdminPerson.getCmbCountry().addItem("Seleccione País");
+        viewAdminOther.getCmbCountry().addItem("Seleccione País");
         for(int i=0; i<modelRegister.getCountries().size();i++){
             String nameCountry = modelRegister.getCountries().get(i).getNameCountry();
             viewRegister.getCmbCountry().addItem(nameCountry);
             viewAdminPerson.getCmbCountry().addItem(nameCountry);
+            viewAdminOther.getCmbCountry().addItem(nameCountry);
         }
     }
     
@@ -389,6 +430,70 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             viewAdminPerson.getCmbTypePosition().addItem(namePosition);
         }
     }
+    
+    private void fillTeamsAdMatches(int idGroup, boolean flag1, boolean flag2){
+        viewScheduleMatch.getCbmTeam1().removeAllItems();
+        viewScheduleMatch.getCbmTeam2().removeAllItems();
+        
+        int idGroupArr;
+        int idTeamArr;
+        int idTeam;
+        String nameTeam;
+        
+        viewScheduleMatch.getCbmTeam1().setEnabled(flag1);
+        viewScheduleMatch.getCbmTeam2().setEnabled(flag2);
+        
+        if(viewScheduleMatch.getCbmTeam1().isEnabled()){
+            viewScheduleMatch.getCbmTeam1().addItem("Seleccione Equipo");
+            
+            for(int i=0; i<modelAdminMatches.getTeamxgroup().size();i++){
+                
+                idGroupArr = modelAdminMatches.getTeamxgroup().get(i).getIdGroup();
+                
+                if(idGroupArr == idGroup){
+                    
+                    idTeamArr = modelAdminMatches.getTeamxgroup().get(i).getIdTeam();
+                    
+                    for(int j=0; j<modelAdminPerson.getTeams().size();j++){
+                        nameTeam = modelAdminPerson.getTeams().get(j).getNameTeam();
+                        idTeam = modelAdminPerson.getTeams().get(j).getIdTeam();
+                        
+                        if(idTeamArr == idTeam){
+                            viewScheduleMatch.getCbmTeam1().addItem(nameTeam);
+                        }  
+                    }
+                }
+            }
+            
+        }
+        
+        String nameTeamSelected = viewScheduleMatch.getCbmTeam1().getSelectedItem().toString();
+        if(viewScheduleMatch.getCbmTeam2().isEnabled()){
+            viewScheduleMatch.getCbmTeam2().addItem("Seleccione Equipo");
+            
+            for(int i=0; i<modelAdminMatches.getTeamxgroup().size();i++){
+                
+                idGroupArr = modelAdminMatches.getTeamxgroup().get(i).getIdGroup();
+                
+                if(idGroupArr == idGroup){
+                    
+                    idTeamArr = modelAdminMatches.getTeamxgroup().get(i).getIdTeam();
+                    
+                    for(int j=0; j<modelAdminPerson.getTeams().size();j++){
+                        nameTeam = modelAdminPerson.getTeams().get(j).getNameTeam();
+                        idTeam = modelAdminPerson.getTeams().get(j).getIdTeam();
+                        
+                        if(idTeamArr == idTeam && !nameTeam.equals(nameTeamSelected)){
+                            viewScheduleMatch.getCbmTeam2().addItem(nameTeam);
+                        }  
+                    }
+                }
+            }
+            
+        }
+         
+    }
+    
     
     private void fillTeams(){
         viewAdminPerson.getCmbTeam().removeAllItems();
@@ -709,13 +814,28 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
     }
     
-    public void fillStadiums(){
+    private void fillStadiums(){
         viewScheduleMatch.getCbmStadium().removeAllItems();
         
-        viewScheduleMatch.getCbmStadium().addItem("Seleccione el estadio");
+        viewScheduleMatch.getCbmStadium().addItem("Seleccione Estadio");
          for(int i=0; i<modelAdminMatches.getStadiums().size();i++){
            viewScheduleMatch.getCbmStadium().addItem(modelAdminMatches.getStadiums().get(i).getNameStadium());
         }
+    }
+    
+    
+    private void fillGroup(){
+        viewScheduleMatch.getCbmGroup().removeAllItems();
+        
+        viewScheduleMatch.getCbmGroup().addItem("Seleccione Grupo");
+         for(int i=0; i<modelAdminMatches.getGroups().size();i++){
+           viewScheduleMatch.getCbmGroup().addItem(modelAdminMatches.getGroups().get(i).getDescriptionGroup());
+        }
+    }
+    
+    
+    private void fillContinent(){
+    
     }
     
     
@@ -815,12 +935,18 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 flagRegister = false;
             }
 
-            if(modelLogin.userAlreadyExists(viewAdminPerson.getTxtUsername())){
+            if(modelLogin.userAlreadyExists(viewRegister.getTxtUsername())){
                 JOptionPane.showMessageDialog(null, "Username ya existente. Debe ingresar un username diferente", "Error", JOptionPane.WARNING_MESSAGE);
                 viewRegister.cleanUsername();
                 flagRegister = false;
             }
-
+            
+            
+            if(modelRegister.identificationAlreadyExists(viewRegister.getTxtIdentification())== true){
+                JOptionPane.showMessageDialog(null, "Identificación ya existente. Debe ingresar una identificación diferente", "Error", JOptionPane.WARNING_MESSAGE);
+                flagRegister = false;
+            }
+            
         }
     }//END REGISTERVALIDATONS
     
@@ -902,7 +1028,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             modelNews.updateNews();
             adminNewsController.fillAdminNews();
             adminNewsRestore();
-            updateNewsSuccessful();
+            if(updateNewsSuccessful()){
+                System.out.println("se actualizó");
+            }
         }
         else{
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
@@ -1013,6 +1141,13 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 JOptionPane.showMessageDialog(null, "Debe ingresar una identificación", "Error", JOptionPane.WARNING_MESSAGE);
                 flagAdminPerson = false;
             }
+            
+            if(modelRegister.identificationAlreadyExists(viewAdminPerson.getTxtIdentification())== true){
+                JOptionPane.showMessageDialog(null, "Identificación ya existente. Debe ingresar una identificación diferente", "Error", JOptionPane.WARNING_MESSAGE);
+                flagAdminPerson = false;
+            }
+            
+            
         }//VALIDATE EMPTY FIELDS
     }
     
@@ -1627,6 +1762,33 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         return false;
     }
     
+    // ---------------- VALIDATIONS ADMIN MATCHES ----------------
+    private boolean validateTeamExist(){
+        if(modelAdminMatches.validateTeamExist() == false){
+             JOptionPane.showMessageDialog(null, "Debe crear equipos antes de realizar alguna de estas acciones", "Error", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+    
+    
+    private boolean validateGroupExist(){
+        if(modelAdminMatches.validateGroupExist() == false){
+            JOptionPane.showMessageDialog(null, "Debe crear grupos antes de realizar alguna de estas acciones", "Error", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    private boolean validateSoccerMatchExist(){
+        if(this.modelAdminMatches.validateSoccerMatchExist() == false){
+             JOptionPane.showMessageDialog(null, "Por el momento no se puede administrador un partido ya que aún no hay partidos programados.", "Error", JOptionPane.WARNING_MESSAGE);
+             return false;
+        }
+        return true;
+    }
+    
     //----------------SHOW MORE VIEWED AND LAST NEWS ----------------------------------
     
     
@@ -2001,16 +2163,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                         viewAdminPerson.setTeam("Seleccione Equipo");
                         viewAdminPerson.setPosition("Seleccione Posición");
                         viewAdminPerson.setGender("Seleccione Género");
-                    }
-                 
+                    }    
                 }
-            
-                
-            
-            }
-        
+            } 
         }
-        
         
         
         //XD LOL
@@ -2019,6 +2175,58 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 adminCatalogsController.fillCatalogs();
             }
         }
+        
+        
+        //ADMIN SCHEDULE MATCH
+        if(e.getSource() == viewScheduleMatch.getCbmGroup()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewScheduleMatch.getCbmGroup().getSelectedItem().toString();
+                if(!"Seleccione Grupo".equals(choice)){
+                    
+                    for(int i=0; i<modelAdminMatches.getGroups().size();i++){
+                        String nameGroup = modelAdminMatches.getGroups().get(i).getDescriptionGroup();
+                        
+                        if(choice.equals(nameGroup)){
+                            int idGroup = modelAdminMatches.getGroups().get(i).getIdGroup();
+                            fillTeamsAdMatches(idGroup, true, false);  
+                        }                        
+                    }
+                    
+                }else{
+                    viewScheduleMatch.getCbmTeam1().removeAllItems();
+                    viewScheduleMatch.getCbmTeam1().setEnabled(false);
+                    
+                    viewScheduleMatch.getCbmTeam2().removeAllItems();
+                    viewScheduleMatch.getCbmTeam2().setEnabled(false);         
+                }
+            }     
+        }
+        
+        
+        //TEAM 1 -> ADMIN SCHEDULE MATCH
+        if(e.getSource() == viewScheduleMatch.getCbmTeam1()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choiceGroup = viewScheduleMatch.getCbmGroup().getSelectedItem().toString();
+                String choice = viewScheduleMatch.getCbmTeam1().getSelectedItem().toString();
+                
+                if(!"Seleccione Grupo".equals(choiceGroup)){                    
+                    for(int i=0; i<modelAdminMatches.getGroups().size();i++){
+                        String nameGroup = modelAdminMatches.getGroups().get(i).getDescriptionGroup();
+                        
+                        if(choiceGroup.equals(nameGroup)){
+                            int idGroup = modelAdminMatches.getGroups().get(i).getIdGroup();
+                            
+                            if(!"Seleccione Equipo".equals(choice)){
+                                fillTeamsAdMatches(idGroup, true, true);
+                            }  
+                        }                        
+                    }           
+                }else{
+                    viewScheduleMatch.getCbmTeam2().removeAllItems();
+                    viewScheduleMatch.getCbmTeam2().setEnabled(false);         
+                }            
+            }     
+        }       
 
     }
     
@@ -2088,7 +2296,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         
-        //------ SCREEN REGISTRO ---------------------
+        //------ SCREEN REGISTER---------------------
         
         if(e.getSource() == viewRegister.getBtnBack()){
             viewPrincipal.setVisible(true);
@@ -2126,6 +2334,15 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         //-------------- SCREEN AdminOptions -----------------------
+        if(e.getSource() == viewMenuAdmin.getBtnAdmiOther()){
+             viewMenuAdmin.setVisible(false);
+             viewAdminOther.setVisible(true);
+        }
+        
+        if(e.getSource() == viewMenuAdmin.getBtnBitacora()){
+            JOptionPane.showMessageDialog(null, "Lo sentimos, esta opción no se encuentra implementada", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
         if(e.getSource() == viewMenuAdmin.getBtnBack()){
             viewMenuAdmin.setVisible(false);
             viewPrincipal.getBtnLogin().setVisible(false);
@@ -2162,6 +2379,19 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             viewMenuAdmin.setVisible(false);
             adminCatalogsController.getViewAdminCatalogs().setVisible(true);
         }
+        
+        if(e.getSource() == viewMenuAdmin.getBtnAdmiParametros()){                    
+            viewMenuAdmin.setVisible(false);
+            viewAdminParameters.setVisible(true);
+        }
+        
+        //------------- SCREEN ADMIN OTHER ------------------
+        if(e.getSource() == viewAdminOther.getBtnBack()){
+            viewAdminOther.setVisible(false);
+            viewMenuAdmin.setVisible(true);
+        }
+        
+        
         
         //-------------- SCREEN AdminNews -----------------------
         if(e.getSource() == adminNewsController.getViewAdminNews().getBtnBack()){
@@ -2215,6 +2445,11 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             this.viewMenuAdmin.setVisible(true);
         }
         
+        //-------------- SCREEN AdminParameters -----------------------
+        if(e.getSource() == viewAdminParameters.getBtnBack()){
+            viewAdminParameters.setVisible(false);
+            this.viewMenuAdmin.setVisible(true);
+        }
         
         //----------- SCREEN Request -------------------------
         if(e.getSource() == viewRequest.getBtnBackRequest()){
@@ -2257,6 +2492,11 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         if(e.getSource() == viewMyAccount.getBtnEditProfile()){
+            viewEditAccount.getCmbGender().removeAllItems();
+            for(int i = 0; i < accountModel.getGenders().size(); i++){
+                String tmp = accountModel.getGenders().get(i).getDescriptionGender();
+                viewEditAccount.getCmbGender().addItem(tmp);
+            }
             viewEditAccount.UpdateInfo(accountModel.getAccountLogged());
             viewMyAccount.setVisible(false);
             viewEditAccount.setVisible(true);
@@ -2268,10 +2508,37 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             viewMyAccount.setVisible(true);
         }
         
+        if(e.getSource() == viewEditAccount.getBtnLoadPicture()){
+            if(accountModel.selectPhoto(viewEditAccount)){
+                viewEditAccount.setImageLabel(accountModel.getPhoto());
+            }
+        }
+        
         if(e.getSource() == viewEditAccount.getBtnConfirm()){
+            String username = accountModel.getUsernameValidated();
+            String password = viewEditAccount.getTextFieldPassword().getText();
+            String firstName = viewEditAccount.getTextFieldName1().getText();
+            String secondName = viewEditAccount.getTextFieldName2().getText();
+            String firstLastName = viewEditAccount.getTextFieldLastName1().getText();
+            String secondLastName = viewEditAccount.getTextFieldLastName2().getText();
+            int genderIndex = viewEditAccount.getCmbGender().getSelectedIndex() + 1;
+            String email = viewEditAccount.getTextFieldMail().getText();
+            String tmpNumber = viewEditAccount.getTextFieldPhone().getText();
+            String finalNumber = tmpNumber.substring(0,4) + tmpNumber.substring(5);
+            int number = Integer.parseInt(finalNumber);
+            String photoUrl = "";
+            if("".equals(accountModel.getPhoto())){
+                photoUrl = accountModel.getAccountLogged().getPhotoUrl();
+            }
+            else if(!"".equals(accountModel.getPhoto())) {
+                photoUrl = accountModel.getPhoto();
+            }
+            
+            accountModel.updateProfileInformation(username, password, firstName, secondName, firstLastName, secondLastName, genderIndex, email, number, photoUrl);
             //falta llamar el procedimiento de update
             accountModel.setUsernameValidated(model_Login.getUsernameLogin());
             viewMyAccount.UpdateInfo(accountModel.getAccountLogged());
+            JOptionPane.showMessageDialog(viewEditAccount, "Actualización confirmada.");
             viewEditAccount.setVisible(false);
             viewMyAccount.setVisible(true);
         }
@@ -2428,14 +2695,30 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         //-------------- SCREEN AdminMatches -----------------------
+        if(e.getSource() == viewAdminMatches.getBtnGroupRaffle()){
+            if(validateTeamExist() == true){
+                //Llamar al procedimiento de rifar grupos
+                System.out.println("Hacer rifa");
+            }  
+        }
+        
+        
         if(e.getSource() == viewAdminMatches.getBtnScheduleMatch()){
-            viewAdminMatches.setVisible(false);
-            viewScheduleMatch.setVisible(true);
+            if(validateGroupExist()== true && validateTeamExist()==true){
+                viewAdminMatches.setVisible(false);
+                
+                fillGroup();
+                fillStadiums();
+        
+                viewScheduleMatch.setVisible(true);
+            }
         }
         
         if(e.getSource() == viewAdminMatches.getBtnAdminScheduledMatch()){
-            viewAdminMatches.setVisible(false);
-            viewAdminMatch.setVisible(true);
+            if(validateSoccerMatchExist()){
+                viewAdminMatches.setVisible(false);
+                viewAdminMatch.setVisible(true);
+            } 
         }
         
         if(e.getSource() == viewAdminMatches.getBtnBack()){
@@ -2473,15 +2756,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     public void valueChanged(ListSelectionEvent e) {
         if(e.getSource() == adminNewsController.getViewAdminNews().getTblNoticias().getSelectionModel() && flagEditNews){
             if(adminNewsController.getViewAdminNews().getTblNoticias().getRowCount() > 0){
-                System.out.println("antes");
                 int index = (int) adminNewsController.getViewAdminNews().getTblNoticias().getValueAt(adminNewsController.getViewAdminNews().getTblNoticias().getSelectedRow(),0);
-                System.out.println("despues");
+                modelNews.setIdNews(index);
                 adminNewsController.fillUpdateAdminNews(index);
             }
-        }
-        else{
-            //modelNews.setIdNews(0);
-            //adminNewsController.getViewAdminNews().getTblNoticias().clearSelection();
         }
     }
   

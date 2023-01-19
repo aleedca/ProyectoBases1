@@ -44,10 +44,10 @@ public class DA_News {
             news.setNewsStatus(rs.getString("descriptionNewsStatus"));
             news.setTitle(rs.getString("title"));
             news.setPublicationDate(rs.getString("publicationDate"));
-            news.setViews(rs.getInt("viewsNews"));
             news.setLink(rs.getString("linkNews"));
             news.setPhoto(rs.getString("photo"));
             news.setText(rs.getString("textNews"));
+            news.setViews(rs.getInt("viewsNews"));
             newsArr.add(news);
         }
 
