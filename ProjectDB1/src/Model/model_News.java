@@ -105,11 +105,12 @@ public class model_News {
 
     public void updateNews(){
         try {
+            System.out.println(idNews);
             this.resultUpdateStatus = DA_News.updateStatus(this.idNews, this.idNewsStatus);
             this.resultUpdateType = DA_News.updateType(this.idNews, this.idNewsType);
-            this.resultUpdateStatus = DA_News.updateTitle(this.idNews, this.newsTitle);
-            this.resultUpdateStatus = DA_News.updateText(this.idNews, this.newsText);
-            this.resultUpdateStatus = DA_News.updatePhoto(this.idNews, this.photo);
+            this.resultUpdateTitle = DA_News.updateTitle(this.idNews, this.newsTitle);
+            this.resultUpdateText = DA_News.updateText(this.idNews, this.newsText);
+            this.resultUpdatePhoto = DA_News.updatePhoto(this.idNews, this.photo);
         } catch (SQLException ex) {
             System.out.println(ex);
         }

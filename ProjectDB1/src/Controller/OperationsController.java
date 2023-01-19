@@ -921,7 +921,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             modelNews.updateNews();
             adminNewsController.fillAdminNews();
             adminNewsRestore();
-            updateNewsSuccessful();
+            if(updateNewsSuccessful()){
+                System.out.println("se actualizó");
+            }
         }
         else{
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
@@ -2537,12 +2539,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 System.out.println("antes");
                 int index = (int) adminNewsController.getViewAdminNews().getTblNoticias().getValueAt(adminNewsController.getViewAdminNews().getTblNoticias().getSelectedRow(),0);
                 System.out.println("despues");
+                modelNews.setIdNews(index);
                 adminNewsController.fillUpdateAdminNews(index);
             }
-        }
-        else{
-            //modelNews.setIdNews(0);
-            //adminNewsController.getViewAdminNews().getTblNoticias().clearSelection();
         }
     }
   

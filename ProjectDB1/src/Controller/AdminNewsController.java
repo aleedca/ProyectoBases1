@@ -94,7 +94,7 @@ public final class AdminNewsController {
         
         try {
             newsArr = DA_News.getInfoNews(index);
-            //modelNews.setIdNews(index);
+            
             viewAdminNews.getCmbEstado().setSelectedIndex(newsArr.get(0).getIdNewsStatus());
             viewAdminNews.getCmbTipo().setSelectedIndex(newsArr.get(0).getIdNewsType());
             viewAdminNews.getTxtTitulo().setText(newsArr.get(0).getTitle());

@@ -12,6 +12,8 @@ import Objects.Stadium;
 import Objects.Team;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -38,7 +40,11 @@ public class model_AdminMatches {
     //BUILDER 
 
     public model_AdminMatches() {
-        
+        try {
+            this.stadiums = DA_Catalogs.getStadium();
+        } catch (SQLException ex) {
+            Logger.getLogger(model_AdminMatches.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void fillScheduleMatch(){
@@ -46,8 +52,6 @@ public class model_AdminMatches {
             this.genders = DA_Catalogs.getGender();
 
             this.teams = DA_Catalogs.getTeam();
-
-            this.stadiums = DA_Catalogs.getStadium();
 
             this.groups = DA_Catalogs.getGroup();
 
