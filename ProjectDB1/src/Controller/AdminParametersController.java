@@ -52,7 +52,7 @@ public class AdminParametersController {
         }
     }
     
-    public void fillUpdateParameters(int idParameter){
+    public void fillUpdateAdminParameters(){
         try {
             ArrayList<Parameter> parameters = DA_Parameters.getInfoParameter(modelParameters.getName());
             modelParameters.setIdParameter(DA_Parameters.getResultIdInfo());
