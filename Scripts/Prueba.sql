@@ -27,8 +27,10 @@ CREATE OR REPLACE PROCEDURE generateGroup(pTotalGroup IN NUMBER, pIdEvent IN NUM
 vnIdMax NUMBER(10);
 vnIdMin NUMBER(10);
 vnQuantity NUMBER(1);
+vnCount NUMBER(1):=1;
 vnNumber NUMBER(2);
-vnDescription VARCHAR2;
+vnCHAR NUMBER(2):=65;
+vnDescription VARCHAR2(32);
 vnFlag BOOLEAN:=TRUE;
 BEGIN
     SELECT MIN(idTeam) 
@@ -38,25 +40,39 @@ BEGIN
     SELECT MAX(idTeam)
     INTO vnIdMax
     FROM Team;
-
+    
     FOR i IN 1..pTotalGroup
     LOOP
-        insertGroupEvent (pIdEvent, vnDescription);
-        
-        SELECT
-        ROUND(DBMS_RANDOM.VALUE(vnIdMin,vnIdMax)) 
-        INTO vnNumber
+        SELECT CHR(vnCHAR)
+        INTO vnDescription
         FROM dual;
-        DBMS_OUTPUT.PUT_LINE(vnNumber);
         
-        SELECT COUNT(*) INTO vnCantidad
-        FROM TeamXGroup WHERE idTeam = vnNumber;
-        /*
-        IF vnCantidad = 0
-        THEN
-            insertTeamXGroup (vnNumber, pidGroupEvent IN NUMBER)
-        END IF;*/
-           
+        insertGroupEvent (pIdEvent, 'Grupo' || vnDescription);
+        
+        WHILE(vnFlag = TRUE)
+        LOOP
+            SELECT
+            ROUND(DBMS_RANDOM.VALUE(vnIdMin,vnIdMax)) 
+            INTO vnNumber
+            FROM dual;
+            DBMS_OUTPUT.PUT_LINE(vnNumber);
+            
+            SELECT COUNT(*) INTO vnQuantity
+            FROM TeamXGroup WHERE idTeam = vnNumber;
+
+            IF (vnQuantity = 0)
+            THEN
+                insertTeamXGroup (vnNumber, s_groupevent.currval);
+                vnCount:=vnCount+1;
+            END IF;
+            
+            IF(vnCount = 4)
+            THEN
+                vnFlag:=FALSE;
+            END IF;
+        END LOOP;
+        
+        vnCHAR:=vnCHAR+1;   
     END LOOP;
 END generateGroup;
 
