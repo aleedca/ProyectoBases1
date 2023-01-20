@@ -1059,7 +1059,7 @@ END getCountryTeam;
 CREATE OR REPLACE PROCEDURE getMostViewedNews(curMostViewedNews OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curMostViewedNews FOR
-    SELECT title, viewsNews
+    SELECT idNews, title, viewsNews
     FROM News
     ORDER BY viewsNews DESC;
 END getMostViewedNews;
@@ -1068,7 +1068,7 @@ END getMostViewedNews;
 CREATE OR REPLACE PROCEDURE getLastNews(curLastNews OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curLastNews FOR
-    SELECT title, publicationDate
+    SELECT idNews, title, publicationDate
     FROM News
     ORDER BY publicationDate DESC;
 END getLastNews;
