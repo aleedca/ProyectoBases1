@@ -77,5 +77,3 @@ BEGIN
         vnFlag:=TRUE;
     END LOOP;
 END generateRaffle;
-
-EXEC generateRaffle(2,1);
