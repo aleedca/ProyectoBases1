@@ -31,6 +31,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class model_AdminMatches {
     
+
     //Attributes to insert a Team -> ADMIN OTHER SCREEN
     private int idCountryTeam;
     private String nameTeam;
@@ -41,18 +42,26 @@ public class model_AdminMatches {
     
     //--------------------------------------------------------
     
-    
-    private String date;
-    private String hour;
-    
-    private int team1;
-    private int team2;
-
-    private int stadium;
+    //Attributes to insert a Match -> ADMIN SCHEDULE MATCH
     private ArrayList<Stadium> stadiums;
-    private int group;
     private ArrayList<Group> groups;
     
+    private int stadium;
+    private String date;
+    private String hour;
+   
+    private int group;
+    private int team1;
+    private int team2;
+    
+    //--------------------------------------------------------
+
+    //Attributes to Manager a Match -> ADMIN MATCH
+
+
+    
+    
+    //--------------------------------------------------------
     private ArrayList<TeamXGroup> teamxgroup;
     
     private int resultInsertMatch;
@@ -118,7 +127,7 @@ public class model_AdminMatches {
         try {
             
             this.resultInsertMatch = DA_SoccerMatch.insertSoccerMatch(stadium, date, hour);
-            
+
             if(this.resultInsertMatch == 0){
                 return true;
             }

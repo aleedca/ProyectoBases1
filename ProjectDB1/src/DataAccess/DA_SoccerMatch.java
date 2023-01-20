@@ -40,6 +40,22 @@ public class DA_SoccerMatch {
         return result;   
     }
     
+    public static void insertPlayerXMatchXTeam(int idSoccerMatch, int idTeam1, int idTeam2) throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        PreparedStatement sql = conn.prepareStatement("{call insertPlayerXMatchXTeam(?,?,?)}");
+        //INPUT
+        sql.setInt(1, idSoccerMatch);
+        sql.setInt(2, idTeam1);
+        sql.setInt(3, idTeam2);
+
+        sql.execute();
+    }
+    
+    
+    
+    
+    
     
     public static ArrayList<TeamXGroup> getTeamXGroup() throws SQLException {
         Connection conn = sysConnection.getConexion();
