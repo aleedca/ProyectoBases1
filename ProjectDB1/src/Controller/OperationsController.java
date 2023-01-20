@@ -1025,7 +1025,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             adminNewsController.fillAdminNews();
             adminNewsRestore();
             if(updateNewsSuccessful()){
-                System.out.println("se actualizó");
+                JOptionPane.showMessageDialog(null, "Se actualizó con éxito.");            
             }
         }
         else{
@@ -2261,14 +2261,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 }    
             }   
         }
-            
-                
-        
-        
-        
-        
+               
 
-    }
+    }//ITEAM LISTENER
     
     @Override
     public void actionPerformed(ActionEvent e) {
