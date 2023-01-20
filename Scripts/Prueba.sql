@@ -23,15 +23,13 @@ BEGIN
 END validateNumberOfUnits;
 
 
-
-
-
---- curContinent OUT SYS_REFCURSOR
-CREATE OR REPLACE PROCEDURE generateGroup IS
-vnIdMax NUMBER(2);
-vnIdMin NUMBER(1);
-vnCantidad NUMBER(1);
+CREATE OR REPLACE PROCEDURE generateGroup(pTotalGroup IN NUMBER, pIdEvent IN NUMBER) IS
+vnIdMax NUMBER(10);
+vnIdMin NUMBER(10);
+vnQuantity NUMBER(1);
 vnNumber NUMBER(2);
+vnDescription VARCHAR2;
+vnFlag BOOLEAN:=TRUE;
 BEGIN
     SELECT MIN(idTeam) 
     INTO vnIdMin
@@ -41,10 +39,12 @@ BEGIN
     INTO vnIdMax
     FROM Team;
 
-    FOR i IN vnIdMin..vnIdMax
+    FOR i IN 1..pTotalGroup
     LOOP
+        insertGroupEvent (pIdEvent, vnDescription);
+        
         SELECT
-        ROUND(DBMS_RANDOM.VALUE(1,16)) 
+        ROUND(DBMS_RANDOM.VALUE(vnIdMin,vnIdMax)) 
         INTO vnNumber
         FROM dual;
         DBMS_OUTPUT.PUT_LINE(vnNumber);
