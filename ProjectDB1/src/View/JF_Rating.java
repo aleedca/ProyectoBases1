@@ -82,6 +82,35 @@ public class JF_Rating extends javax.swing.JFrame {
     public JLabel getLblTitleNews() {
         return lblTitleNews;
     }
+
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
+    public JButton getBtnConfirm() {
+        return btnConfirm;
+    }
+
+    public JButton getBtnStar1() {
+        return btnStar1;
+    }
+
+    public JButton getBtnStar2() {
+        return btnStar2;
+    }
+
+    public JButton getBtnStar3() {
+        return btnStar3;
+    }
+
+    public JButton getBtnStar4() {
+        return btnStar4;
+    }
+
+    public JButton getBtnStar5() {
+        return btnStar5;
+    }
+    
     
 
     /**
@@ -102,9 +131,9 @@ public class JF_Rating extends javax.swing.JFrame {
         btnStar4 = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         btnConfirm = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(460, 450));
         setMinimumSize(new java.awt.Dimension(460, 450));
         setResizable(false);
 
@@ -161,12 +190,24 @@ public class JF_Rating extends javax.swing.JFrame {
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("RATING");
         jPanel1.add(lblTitle);
-        lblTitle.setBounds(10, 10, 440, 60);
+        lblTitle.setBounds(90, 10, 280, 60);
 
         btnConfirm.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 14)); // NOI18N
         btnConfirm.setText("CONFIRMAR");
         jPanel1.add(btnConfirm);
         btnConfirm.setBounds(170, 350, 120, 27);
+
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
+        btnBack.setBorderPainted(false);
+        btnBack.setContentAreaFilled(false);
+        btnBack.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/backPressed.png"))); // NOI18N
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBack);
+        btnBack.setBounds(20, 20, 46, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,6 +222,10 @@ public class JF_Rating extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,6 +263,7 @@ public class JF_Rating extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnConfirm;
     private javax.swing.JButton btnStar1;
     private javax.swing.JButton btnStar2;

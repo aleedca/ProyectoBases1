@@ -57,7 +57,7 @@ public class DA_News {
     public static News getNewsSpecific(int idNews) throws SQLException {
         Connection conn = sysConnection.getConexion();
         
-        CallableStatement sql = conn.prepareCall("{call getNewsSpecific(?,?)}");
+        CallableStatement sql = conn.prepareCall("{call getSpecificNews(?,?)}");
         sql.setInt(1, idNews);
         sql.registerOutParameter(2, OracleTypes.REF_CURSOR);
         sql.execute();
@@ -78,18 +78,34 @@ public class DA_News {
         news.setText(rs.getString("textNews"));
         getAverageNewsRating(news);
         
+        System.out.println("/////////////////////////////////////////////////////////////////////////");
+        System.out.println(news.getIdNews());
+        System.out.println(news.getText());
+        System.out.println(news.getAuthor());
+        System.out.println(news.getIdNewsStatus());
+        System.out.println(news.getIdNewsType());
+        System.out.println(news.getPhoto());
+        System.out.println(news.getPublicationDate());
+        System.out.println(news.getTitle());
+        
         return news;
     }
     
     public static void getAverageNewsRating(News pNews) throws SQLException{
         Connection conn = sysConnection.getConexion();
         
-        CallableStatement sql = conn.prepareCall("{call getNewsSpecific(?,?)}");
+        CallableStatement sql = conn.prepareCall("{call getAverageNewsRating(?,?)}");
         sql.setInt(1, pNews.getIdNews());
         sql.registerOutParameter(2, OracleTypes.NUMBER);
         sql.execute();
         
-        int result = ((BigDecimal) sql.getObject(2)).intValue();
+        int result;
+        try{
+            result = ((BigDecimal) sql.getObject(2)).intValue();
+        }catch(NullPointerException e){
+            System.out.println(e);
+            result = 0;
+        }
         pNews.setRateNumber(result);
     }
     
@@ -171,13 +187,12 @@ public class DA_News {
         ArrayList<News> mostViewedNews = new ArrayList<>();
         while(rs.next()){
             News news = new News();
-            
+            news.setIdNews(rs.getInt("idNews"));
             news.setTitle(rs.getString("title"));
             news.setViews(rs.getInt("viewsNews"));
            
             mostViewedNews.add(news);
         }
-        
         return mostViewedNews;
     }
     
@@ -193,12 +208,12 @@ public class DA_News {
         while(rs.next()){
             News news = new News();
             
+            news.setIdNews(rs.getInt("idNews"));
             news.setTitle(rs.getString("title"));
             news.setPublicationDate(rs.getString("publicationDate"));
            
             lastNews.add(news);
         }
-        
         return lastNews;
     }
     

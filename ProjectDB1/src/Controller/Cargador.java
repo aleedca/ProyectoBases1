@@ -14,6 +14,17 @@ import javax.swing.table.DefaultTableModel;
 
 public class Cargador {
     
+    private ArrayList<News> mostViewedNews;
+    private ArrayList<News> lastNews;
+
+    public ArrayList<News> getMostViewedNews() {
+        return mostViewedNews;
+    }
+
+    public ArrayList<News> getLastNews() {
+        return lastNews;
+    }
+    
     public static void main (String [] args){
     }
     
@@ -74,6 +85,7 @@ public class Cargador {
     
     
     DefaultTableModel showMostViewedNews(ArrayList<News> mostViewedNews ){
+        this.mostViewedNews = mostViewedNews;
         
         Object [] header = {"Noticia", "Visualizaciones"};
         
@@ -89,6 +101,7 @@ public class Cargador {
     }
     
     DefaultTableModel showLastNews(ArrayList<News> lastNews ){
+        this.lastNews = lastNews;
         
         Object [] header = {"Noticia", "Publicación"};
         
