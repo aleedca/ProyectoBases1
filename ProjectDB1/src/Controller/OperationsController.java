@@ -1048,6 +1048,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
     private void adminNewsValidationsUpdate(String choice1, String choice2){
         if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
+            adminNewsController.getViewAdminNews().getTblNoticias().clearSelection();
             modelNews.updateNews();
             adminNewsController.fillAdminNews();
             adminNewsRestore();

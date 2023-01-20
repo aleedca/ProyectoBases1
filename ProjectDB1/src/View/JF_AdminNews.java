@@ -219,6 +219,7 @@ public class JF_AdminNews extends javax.swing.JFrame {
             }
         });
         tblNoticias.setIntercellSpacing(new java.awt.Dimension(3, 3));
+        tblNoticias.setRowSelectionAllowed(false);
         tblNoticias.setShowGrid(true);
         tblNoticias.getTableHeader().setResizingAllowed(false);
         tblNoticias.getTableHeader().setReorderingAllowed(false);
