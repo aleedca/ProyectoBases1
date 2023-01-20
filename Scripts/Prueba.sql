@@ -27,7 +27,7 @@ CREATE OR REPLACE PROCEDURE generateRaffle(pTotalGroup IN NUMBER, pIdEvent IN NU
 vnIdMax NUMBER(10);
 vnIdMin NUMBER(10);
 vnQuantity NUMBER(1);
-vnCount NUMBER(1):=1;
+vnCount NUMBER(1):=0;
 vnNumber NUMBER(2);
 vnCHAR NUMBER(2):=65;
 vnDescription VARCHAR2(32);
@@ -47,7 +47,7 @@ BEGIN
         INTO vnDescription
         FROM dual;
         
-        insertGroupEvent (pIdEvent, 'Grupo' || vnDescription);
+        insertGroupEvent (pIdEvent, 'Grupo ' || vnDescription);
         
         WHILE(vnFlag = TRUE)
         LOOP
@@ -55,9 +55,9 @@ BEGIN
             ROUND(DBMS_RANDOM.VALUE(vnIdMin,vnIdMax)) 
             INTO vnNumber
             FROM dual;
-            DBMS_OUTPUT.PUT_LINE(vnNumber);
-            
-            SELECT COUNT(*) INTO vnQuantity
+
+            SELECT COUNT(*) 
+            INTO vnQuantity
             FROM TeamXGroup WHERE idTeam = vnNumber;
 
             IF (vnQuantity = 0)
@@ -72,6 +72,10 @@ BEGIN
             END IF;
         END LOOP;
         
-        vnCHAR:=vnCHAR+1;   
+        vnCHAR:=vnCHAR+1;
+        vnCount:=0;
+        vnFlag:=TRUE;
     END LOOP;
 END generateRaffle;
+
+EXEC generateRaffle(2,1);
