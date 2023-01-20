@@ -998,6 +998,25 @@ BEGIN
     INNER JOIN NewsType ON News.idNewsType = NewsType.idNewsType;
 END getNews;
 
+CREATE OR REPLACE PROCEDURE getNewsSpecific(pIdNews IN NUMBER, curNews OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curNews FOR
+    SELECT News.idNews, NewsType.descriptionNewsType, NewsStatus.descriptionNewsStatus, title, UserPerson.username, publicationDate, photo, textNews
+    FROM News 
+    INNER JOIN NewsStatus ON News.idNewsStatus = NewsStatus.idNewsStatus
+    INNER JOIN NewsType ON News.idNewsType = NewsType.idNewsType
+    INNER JOIN UserXNews ON UserXNews.idNews = News.idNews
+    INNER JOIN UserPerson ON UserPerson.username = UserXNews.username
+    WHERE News.idNews = pIdNews;
+END getNewsSpecific;
+
+CREATE OR REPLACE PROCEDURE getAverageNewsRating(pIdNews IN NUMBER, averageRating OUT NUMBER) IS
+tmpAverage NUMBER;
+BEGIN
+    SELECT AVG(rating) INTO tmpAverage FROM Rating WHERE Rating.idNews = pIdNews;
+    averageRating := tmpAverage;
+END getAverageNewsRating;
+
 CREATE OR REPLACE PROCEDURE getInfoNews(pIdNews IN NUMBER, curNews OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curNews FOR
@@ -1040,7 +1059,7 @@ END getCountryTeam;
 CREATE OR REPLACE PROCEDURE getMostViewedNews(curMostViewedNews OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curMostViewedNews FOR
-    SELECT title, viewsNews
+    SELECT idNews, title, viewsNews
     FROM News
     ORDER BY viewsNews DESC;
 END getMostViewedNews;
@@ -1049,7 +1068,7 @@ END getMostViewedNews;
 CREATE OR REPLACE PROCEDURE getLastNews(curLastNews OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curLastNews FOR
-    SELECT title, publicationDate
+    SELECT idNews, title, publicationDate
     FROM News
     ORDER BY publicationDate DESC;
 END getLastNews;

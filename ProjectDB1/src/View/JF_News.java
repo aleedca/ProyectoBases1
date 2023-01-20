@@ -16,7 +16,7 @@ import javax.swing.JLabel;
  */
 public class JF_News extends javax.swing.JFrame {
     
-    //private NewsClass NewsInfo = new NewsClass();
+    private News NewsInfo;
 
     /**
      * Creates new form JF_NewsWindow
@@ -24,9 +24,22 @@ public class JF_News extends javax.swing.JFrame {
     public JF_News() {
         initComponents();
         this.setLocationRelativeTo(this);
-        setRatingIcons(3);
-        this.setImageLabel(this.lblPhoto, "src/Images/prueba.jpg");
     }
+    
+    public void UpdateInfo(News news){
+        this.NewsInfo = news;
+        loadInfo();
+    }
+    
+    private void loadInfo(){
+        setImageLabel(this.lblPhoto,this.NewsInfo.getPhoto());
+        this.lblNewsBody.setText(this.NewsInfo.getText());
+        this.lblNewsType.setText(this.NewsInfo.getNewsType());
+        this.lblAuthor.setText(this.NewsInfo.getAuthor());
+        this.lblDate.setText(this.NewsInfo.getPublicationDate());
+        this.setRatingIcons(this.NewsInfo.getRateNumber());
+    }
+    
     
     private void setImageLabel(JLabel labelName, String imageDirectory){
         ImageIcon image = new ImageIcon(imageDirectory);
@@ -115,6 +128,12 @@ public class JF_News extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         textAreaComment = new javax.swing.JTextArea();
         btnBack = new javax.swing.JButton();
+        label = new javax.swing.JLabel();
+        lblNewsType = new javax.swing.JLabel();
+        label1 = new javax.swing.JLabel();
+        lblAuthor = new javax.swing.JLabel();
+        label2 = new javax.swing.JLabel();
+        lblDate = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1292, 746));
@@ -126,7 +145,7 @@ public class JF_News extends javax.swing.JFrame {
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setText("TITLE");
         jPanel1.add(lblTitle);
-        lblTitle.setBounds(110, 70, 150, 60);
+        lblTitle.setBounds(110, 70, 660, 60);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
         jPanel1.add(jLabel2);
@@ -142,7 +161,7 @@ public class JF_News extends javax.swing.JFrame {
         lblNewsBody.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lblNewsBody.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel1.add(lblNewsBody);
-        lblNewsBody.setBounds(100, 400, 650, 320);
+        lblNewsBody.setBounds(100, 400, 670, 320);
 
         lblRating.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 36)); // NOI18N
         lblRating.setForeground(new java.awt.Color(255, 255, 255));
@@ -233,6 +252,42 @@ public class JF_News extends javax.swing.JFrame {
         jPanel1.add(btnBack);
         btnBack.setBounds(50, 80, 46, 40);
 
+        label.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        label.setForeground(new java.awt.Color(255, 255, 255));
+        label.setText("Fecha:");
+        jPanel1.add(label);
+        label.setBounds(540, 310, 60, 30);
+
+        lblNewsType.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        lblNewsType.setForeground(new java.awt.Color(255, 255, 255));
+        lblNewsType.setText("TITLE");
+        jPanel1.add(lblNewsType);
+        lblNewsType.setBounds(640, 250, 150, 30);
+
+        label1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        label1.setForeground(new java.awt.Color(255, 255, 255));
+        label1.setText("Categoria:");
+        jPanel1.add(label1);
+        label1.setBounds(540, 250, 90, 30);
+
+        lblAuthor.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        lblAuthor.setForeground(new java.awt.Color(255, 255, 255));
+        lblAuthor.setText("TITLE");
+        jPanel1.add(lblAuthor);
+        lblAuthor.setBounds(640, 280, 150, 30);
+
+        label2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        label2.setForeground(new java.awt.Color(255, 255, 255));
+        label2.setText("Autor:");
+        jPanel1.add(label2);
+        label2.setBounds(540, 280, 49, 30);
+
+        lblDate.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        lblDate.setForeground(new java.awt.Color(255, 255, 255));
+        lblDate.setText("TITLE");
+        jPanel1.add(lblDate);
+        lblDate.setBounds(640, 310, 150, 30);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -300,7 +355,13 @@ public class JF_News extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel label;
+    private javax.swing.JLabel label1;
+    private javax.swing.JLabel label2;
+    private javax.swing.JLabel lblAuthor;
+    private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblNewsBody;
+    private javax.swing.JLabel lblNewsType;
     private javax.swing.JLabel lblPhoto;
     private javax.swing.JLabel lblRating;
     private javax.swing.JLabel lblStar1;

@@ -8,6 +8,7 @@ import DataAccess.DA_News;
 import Objects.NewsStatus;
 import Objects.NewsType;
 import View.JF_AdminNews;
+import View.JF_News;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -51,10 +52,15 @@ public class model_News {
     private String newsStatus;
     private int idNewsStatus;
     private ArrayList<NewsType> newsTypeArr;
+    private News selectedNews;
     
     private final JFileChooser file = new JFileChooser();
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");
 
+    public void setSelectedNews(JF_News viewNews, News selectedNews) {
+        this.selectedNews = selectedNews;
+        viewNews.UpdateInfo(selectedNews);
+    }
     
     public void loadNewsArr(){
         try {
