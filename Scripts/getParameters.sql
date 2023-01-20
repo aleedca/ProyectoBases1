@@ -9,14 +9,21 @@ BEGIN
     FROM ParameterTable;
 END getParameters;
 
-CREATE OR REPLACE PROCEDURE getInfoParameters(pNameParameter IN VARCHAR, idParameter OUT NUMBER, curParameter OUT SYS_REFCURSOR) IS
+CREATE OR REPLACE PROCEDURE getInfoParameters(pNameParameter IN VARCHAR, pidParameter OUT NUMBER, curParameter OUT SYS_REFCURSOR) IS
 BEGIN
+    SELECT idParameterTable
+    INTO pidParameter
+    FROM ParameterTable
+    WHERE nameParameter = pNameParameter;
+
     OPEN curParameter FOR
     SELECT nameParameter, valueParameter
     FROM ParameterTable
     WHERE nameParameter = pNameParameter;
-    
-    idParameter:= idParameterTable;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        pidParameter := SQLCODE;   
 END getInfoParameters;
 
 CREATE OR REPLACE PROCEDURE updateParameter(pIdParameter IN NUMBER, pNameParameter IN VARCHAR, pValueParameter IN NUMBER, codResult OUT NUMBER) AS
