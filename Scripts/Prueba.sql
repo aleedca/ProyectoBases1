@@ -23,7 +23,7 @@ BEGIN
 END validateNumberOfUnits;
 
 
-CREATE OR REPLACE PROCEDURE generateGroup(pTotalGroup IN NUMBER, pIdEvent IN NUMBER) IS
+CREATE OR REPLACE PROCEDURE generateRaffle(pTotalGroup IN NUMBER, pIdEvent IN NUMBER) IS
 vnIdMax NUMBER(10);
 vnIdMin NUMBER(10);
 vnQuantity NUMBER(1);
@@ -74,6 +74,4 @@ BEGIN
         
         vnCHAR:=vnCHAR+1;   
     END LOOP;
-END generateGroup;
-
-EXEC generateGroup;
+END generateRaffle;
