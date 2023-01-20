@@ -6,6 +6,7 @@ package View;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
@@ -403,6 +404,15 @@ public class JF_AdminOther extends javax.swing.JFrame {
     public void setTxtNameTeam(JTextField txtNameTeam) {
         this.txtNameTeam = txtNameTeam;
     }
+
+    public JLabel getLblFlag() {
+        return lblFlag;
+    }
+
+    public void setLblFlag(JLabel lblFlag) {
+        this.lblFlag = lblFlag;
+    }
+    
     
     
 

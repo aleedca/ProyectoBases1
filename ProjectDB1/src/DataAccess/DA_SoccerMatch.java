@@ -4,8 +4,7 @@
  */
 package DataAccess;
 
-import Objects.Gender;
-import Objects.Team;
+
 import Objects.TeamXGroup;
 import java.math.BigDecimal;
 import java.sql.CallableStatement;

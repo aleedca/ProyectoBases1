@@ -12,10 +12,17 @@ import Objects.Group;
 import Objects.Stadium;
 import Objects.Team;
 import Objects.TeamXGroup;
+import View.JF_AdminOther;
+import java.awt.Image;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /**
@@ -54,6 +61,10 @@ public class model_AdminMatches {
     private int resultSoccerMatchExist;
     private int resultinsertTeam;
     
+    private final JFileChooser file = new JFileChooser();
+    private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");
+    
+    
     //BUILDER 
 
     public model_AdminMatches() {
@@ -70,6 +81,30 @@ public class model_AdminMatches {
         }
     }
 
+    
+     //----------------------------------------------------------------------
+    
+    public boolean selectPhoto(JF_AdminOther teamRegister){
+        file.setFileFilter(this.filter);
+        file.showOpenDialog(teamRegister);
+        try{
+            flag = file.getSelectedFile().getPath();
+            return true;
+        }catch(NullPointerException e){
+            System.out.println("No se ha seleccionado ningún fichero");
+        } 
+        
+        return false;
+    }
+    
+    
+    public void setImageLabel(JLabel labelName){
+        ImageIcon image = new ImageIcon(this.flag);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_SMOOTH));
+        labelName.setIcon(icon);
+    }
+    
+    
     public void fillMatch(){
     
     
