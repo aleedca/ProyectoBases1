@@ -13,6 +13,19 @@ BEGIN
 END insertTeamXGroup;
 
 
+CREATE OR REPLACE PROCEDURE validateNumberOfUnits(codResult OUT NUMBER) IS
+vnTotalTeam NUMBER(10);
+BEGIN
+    SELECT COUNT(*)
+    INTO vnTotalTeam
+    FROM Team;
+    codResult := vnTotalTeam;
+END validateNumberOfUnits;
+
+
+
+
+
 --- curContinent OUT SYS_REFCURSOR
 CREATE OR REPLACE PROCEDURE generateGroup IS
 vnIdMax NUMBER(2);
