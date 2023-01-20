@@ -88,11 +88,11 @@ public class DA_SoccerMatch {
     public static void insertTeam(int idCountryTeam, String nameTeam, String flag) throws SQLException {
         Connection conn = sysConnection.getConexion();
         
-        PreparedStatement sql = conn.prepareStatement("{call insertTeam(?,?,?,?)}");
+        PreparedStatement sql = conn.prepareStatement("{call insertTeam(?,?,?)}");
         //INPUT
         sql.setInt(1, idCountryTeam);
-        sql.setString(3, nameTeam);
-        sql.setString(4, flag);
+        sql.setString(2, nameTeam);
+        sql.setString(3, flag);
 
         sql.execute();
     }
