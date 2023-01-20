@@ -71,6 +71,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private boolean flagRegister;
     private boolean flagAdminPerson;
     private boolean flagEditNews = false;
+    private boolean flagAdminOther;
     
     private final RequestController requestController;
     private final AdminNewsController adminNewsController;
@@ -176,10 +177,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         fillPositions();
         fillTeams();
         fillTypePerson();
+        fillContinent();
         principal.showMostViewedNews();
         principal.showLastNews();
-        
-       
 
     }
     
@@ -298,6 +298,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         //AdminOther
         viewAdminOther.getBtnBack().addActionListener(this);
+        viewAdminOther.getBtnAdd().addActionListener(this);
+        viewAdminOther.getBtnUploadFlag().addActionListener(this);
         viewAdminOther.getCmbContinent().addItemListener(this);
         viewAdminOther.getCmbCountry().addItemListener(this);
         
@@ -358,12 +360,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         viewRegister.getCmbCountry().addItem("Seleccione País");
         viewAdminPerson.getCmbCountry().addItem("Seleccione País");
-        viewAdminOther.getCmbCountry().addItem("Seleccione País");
         for(int i=0; i<modelRegister.getCountries().size();i++){
             String nameCountry = modelRegister.getCountries().get(i).getNameCountry();
             viewRegister.getCmbCountry().addItem(nameCountry);
             viewAdminPerson.getCmbCountry().addItem(nameCountry);
-            viewAdminOther.getCmbCountry().addItem(nameCountry);
         }
     }
     
@@ -435,9 +435,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         viewScheduleMatch.getCbmTeam1().removeAllItems();
         viewScheduleMatch.getCbmTeam2().removeAllItems();
         
-        int idGroupArr;
-        int idTeamArr;
-        int idTeam;
+        int idGroupArr, idTeamArr, idTeam;
         String nameTeam;
         
         viewScheduleMatch.getCbmTeam1().setEnabled(flag1);
@@ -536,11 +534,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
     
     private void fillPerson(){
-        String firstName;
-        String secondName;
-        String firstLastName;
-        String secondLastName;
-        String fullName;
+        String firstName, secondName, firstLastName, secondLastName, fullName;
         
         viewAdminPerson.getCmbPerson().removeAllItems();
         viewAdminPerson.getCmbPerson().addItem("Seleccione Persona"); 
@@ -571,10 +565,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
     
     private void fillPlayerInformation(){
-        String name, province, canton,secondName, firstLastName, secondLastName,typeIdentification;
-        String country, district,gender, team, position,  mail, address,  birthdate;
-        int  idTypeIdentification, identification, idGender, idTeam, idPosition, numTShirt, phoneNumber;  
-        int idCountry,idProvince, idCanton, idDistrict;
+        String name, province, canton,secondName, firstLastName, secondLastName,typeIdentification, country, district,gender, team, position,  mail, address,  birthdate;
+        int  idTypeIdentification, identification, idGender, idTeam, idPosition, numTShirt, phoneNumber, idCountry,idProvince, idCanton, idDistrict;  
+
     
         for(int i=0; i<modelAdminPerson.getPlayersInfo().size();i++){
             name = modelAdminPerson.getPlayersInfo().get(i).getFirstName();
@@ -685,32 +678,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
    
     private void fillTeamWorkerInformation(){
-        String name;
-        String secondName;
-        String firstLastName;
-        String secondLastName;        
-        String typeIdentification;
-        int idTypeIdentification;
-        int identification;
-        String gender;
-        int idGender;        
-        String team;
-        int idTeam;
-        String position;
-        int idPosition;
-        String mail;
-        String address;
-        int phoneNumber;
-        String country;
-        int idCountry;
-        String province;
-        int idProvince;
-        String canton;
-        int idCanton;
-        String district;
-        int idDistrict;
-        
-    
+        String name, secondName, firstLastName, secondLastName,typeIdentification, gender, team, position,  mail, address, country, province, canton, district;
+        int idTypeIdentification, identification, idGender, idTeam, idPosition, phoneNumber, idCountry, idProvince, idCanton, idDistrict;
+
         for(int i=0; i<modelAdminPerson.getTeamWorkersInfo().size();i++){
             name = modelAdminPerson.getTeamWorkersInfo().get(i).getFirstName();
             viewAdminPerson.setTxtName(name);
@@ -834,8 +804,34 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     }
     
     
-    private void fillContinent(){
+    private void fillCountryTeam(int idContinent){
+        viewAdminOther.getCmbCountry().setEnabled(true);
+        viewAdminOther.getCmbCountry().removeAllItems();
+        String nameCountry;
+        int idContinentArr;
+        
+        viewAdminOther.getCmbCountry().addItem("Seleccione País");
+        for(int k=0; k<modelAdminMatches.getCountryTeams().size();k++){    
+            nameCountry = modelAdminMatches.getCountryTeams().get(k).getNameCountryTeam();
+            idContinentArr = modelAdminMatches.getCountryTeams().get(k).getIdContinent();   
+            
+            if(idContinent == idContinentArr){
+                viewAdminOther.getCmbCountry().addItem(nameCountry);
+            }     
+        }
     
+    }
+    
+    
+    private void fillContinent(){
+        viewAdminOther.getCmbContinent().removeAllItems();
+        String nameContinent;
+        
+        viewAdminOther.getCmbContinent().addItem("Seleccione Continente");
+        for(int i=0; i<modelAdminMatches.getContinents().size();i++){
+            nameContinent = modelAdminMatches.getContinents().get(i).getNameContinent();
+            viewAdminOther.getCmbContinent().addItem(nameContinent);
+        }
     }
     
     
@@ -1029,7 +1025,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             adminNewsController.fillAdminNews();
             adminNewsRestore();
             if(updateNewsSuccessful()){
-                System.out.println("se actualizó");
+                JOptionPane.showMessageDialog(null, "Se actualizó con éxito.");            
             }
         }
         else{
@@ -2112,12 +2108,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     }
                 
                 }
-                
-                
-                
-                
-                
-                
+
+                //EDIT
                 if(viewAdminPerson.getRbtnEdit().isSelected()){
                     if(!"Seleccione Persona".equals(choice)){
                         
@@ -2226,9 +2218,52 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     viewScheduleMatch.getCbmTeam2().setEnabled(false);         
                 }            
             }     
-        }       
+        }
+        
+        
+        //CONTINENT -> ADMIN OTHER
+        if(e.getSource() == viewAdminOther.getCmbContinent()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewAdminOther.getCmbContinent().getSelectedItem().toString();
+                String nameContinent;
+                int idContinent;
+                
+                if(!"Seleccione Continente".equals(choice)){
+                    for(int i=0; i<modelAdminMatches.getContinents().size();i++){
+                        nameContinent = modelAdminMatches.getContinents().get(i).getNameContinent();
+                        if(choice.equals(nameContinent)){
+                            idContinent = modelAdminMatches.getContinents().get(i).getIdContinent();
+                            System.out.println(idContinent);
+                            fillCountryTeam(idContinent);
+                        }
+                    }
+                }else{
+                    viewAdminOther.getCmbCountry().setEnabled(false);
+                }     
+            }   
+        }
+        
+        //COUNTRYTEAM -> ADMIN OTHER
+        if(e.getSource() == viewAdminOther.getCmbCountry()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = viewAdminOther.getCmbCountry().getSelectedItem().toString();
+                String nameCountryTeam;
+                int idCountryTeam;
+                
+                if(!"Seleccione País".equals(choice)){
+                    for(int i=0; i<modelAdminMatches.getCountryTeams().size();i++){
+                        nameCountryTeam = modelAdminMatches.getCountryTeams().get(i).getNameCountryTeam();
+                        if(choice.equals(nameCountryTeam)){
+                            idCountryTeam = modelAdminMatches.getCountryTeams().get(i).getIdCountryTeam();
+                            modelAdminMatches.setIdCountryTeam(idCountryTeam);
+                        }
+                    }
+                }    
+            }   
+        }
+               
 
-    }
+    }//ITEAM LISTENER
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -2389,6 +2424,53 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         if(e.getSource() == viewAdminOther.getBtnBack()){
             viewAdminOther.setVisible(false);
             viewMenuAdmin.setVisible(true);
+        }
+        
+        if(e.getSource() == viewAdminOther.getBtnUploadFlag()){
+            if(modelAdminMatches.selectPhoto(viewAdminOther)){
+                viewAdminOther.setLocationRelativeTo(viewAdminOther);
+                modelAdminMatches.setImageLabel(viewAdminOther.getLblFlag());
+                viewRegister.repaint();
+            }
+        }
+        
+        if(e.getSource() == viewAdminOther.getBtnAdd()){
+            flagAdminOther = true;
+            modelAdminMatches.setNameTeam(viewAdminOther.getTxtNameTeam().getText());
+        
+            if(modelAdminMatches.getNameTeam().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Por favor, ingrese el nombre del equipo", "Error", JOptionPane.WARNING_MESSAGE);
+            }else{
+            
+                if(modelRegister.validateFormatString(modelAdminMatches.getNameTeam()) == false){
+                     JOptionPane.showMessageDialog(null, "Formato inválido. \nRecuerde solo ingresar letras en el nombre del equipo", "Error", JOptionPane.WARNING_MESSAGE);
+                     flagAdminOther = false;
+                }
+                
+                if(modelRegister.validatePhoto(modelAdminMatches.getFlag())){
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar una foto", "Error", JOptionPane.WARNING_MESSAGE);
+                    flagAdminOther = false;
+                }
+                
+                
+                 if("Seleccione Continente".equals(viewAdminOther.getCmbContinent().getSelectedItem().toString())){
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar un continente", "Error", JOptionPane.WARNING_MESSAGE);
+                    flagAdminOther = false;
+                }
+                
+                
+            }
+            
+            if(flagAdminOther == true){
+                modelAdminMatches.insertTeam();
+                
+                JOptionPane.showMessageDialog(null, "Se ha insertado el equipo con éxito");
+                
+                
+                viewAdminOther.getTxtNameTeam().setText("");
+                viewAdminOther.getCmbContinent().setSelectedItem("Seleccione Continente");
+            }
+
         }
         
         
