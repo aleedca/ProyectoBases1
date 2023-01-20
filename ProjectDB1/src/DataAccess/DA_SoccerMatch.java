@@ -5,6 +5,7 @@
 package DataAccess;
 
 
+import Objects.Continent;
 import Objects.TeamXGroup;
 import java.math.BigDecimal;
 import java.sql.CallableStatement;
@@ -59,6 +60,28 @@ public class DA_SoccerMatch {
         }
 
         return teamsxgroups;
+    }
+    
+    
+    public static ArrayList<Continent> getContinet() throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getContinent(?)}");
+        
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<Continent> continents = new ArrayList<>();
+        while(rs.next()){
+            Continent continent = new Continent();
+            
+            continent.setIdContinent(rs.getInt("idContinent"));
+            continent.setNameContinent(rs.getString("nameContinent"));
+            continents.add(continent);
+        }
+
+        return continents;
     }
     
     

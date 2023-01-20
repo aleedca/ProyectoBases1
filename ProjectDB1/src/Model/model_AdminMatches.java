@@ -70,6 +70,8 @@ public class model_AdminMatches {
     public model_AdminMatches() {
         try {
             
+            this.continents = DA_SoccerMatch.getContinet();
+            
             this.stadiums = DA_Catalogs.getStadium();
             
             this.groups = DA_Catalogs.getGroup();
