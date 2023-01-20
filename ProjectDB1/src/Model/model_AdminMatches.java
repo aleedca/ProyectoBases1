@@ -127,7 +127,7 @@ public class model_AdminMatches {
             
             this.resultInsertMatch = DA_SoccerMatch.insertSoccerMatch(stadium, date, hour);
             
-            if(this.resultInsertMatch != 0){
+            if(this.resultInsertMatch != -1){
                 DA_SoccerMatch.insertPlayerXMatchXTeam(resultInsertMatch, team1, team2);
             }
               
