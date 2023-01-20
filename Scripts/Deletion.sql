@@ -24,9 +24,6 @@ DROP TABLE NewsStatus;
 DROP TABLE UserPerson;
 DROP TABLE UserType;
 
-DROP TABLE EventWorkerXSoccerMatch;
-DROP TABLE EventWorker;
-
 DROP TABLE TeamXGroup;
 
 DROP TABLE Mail;

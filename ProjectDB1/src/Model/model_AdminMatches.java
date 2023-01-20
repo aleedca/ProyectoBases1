@@ -72,6 +72,8 @@ public class model_AdminMatches {
             
             this.continents = DA_SoccerMatch.getContinet();
             
+            this.countryTeams = DA_Catalogs.getCountryTeam();
+            
             this.stadiums = DA_Catalogs.getStadium();
             
             this.groups = DA_Catalogs.getGroup();

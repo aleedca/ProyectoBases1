@@ -13,12 +13,25 @@ BEGIN
 END insertTeamXGroup;
 
 
---- curContinent OUT SYS_REFCURSOR
-CREATE OR REPLACE PROCEDURE generateGroup IS
-vnIdMax NUMBER(2);
-vnIdMin NUMBER(1);
-vnCantidad NUMBER(1);
+CREATE OR REPLACE PROCEDURE validateNumberOfUnits(codResult OUT NUMBER) IS
+vnTotalTeam NUMBER(10);
+BEGIN
+    SELECT COUNT(*)
+    INTO vnTotalTeam
+    FROM Team;
+    codResult := vnTotalTeam;
+END validateNumberOfUnits;
+
+
+CREATE OR REPLACE PROCEDURE generateRaffle(pTotalGroup IN NUMBER, pIdEvent IN NUMBER) IS
+vnIdMax NUMBER(10);
+vnIdMin NUMBER(10);
+vnQuantity NUMBER(1);
+vnCount NUMBER(1):=0;
 vnNumber NUMBER(2);
+vnCHAR NUMBER(2):=65;
+vnDescription VARCHAR2(32);
+vnFlag BOOLEAN:=TRUE;
 BEGIN
     SELECT MIN(idTeam) 
     INTO vnIdMin
@@ -27,24 +40,40 @@ BEGIN
     SELECT MAX(idTeam)
     INTO vnIdMax
     FROM Team;
-
-    FOR i IN vnIdMin..vnIdMax
+    
+    FOR i IN 1..pTotalGroup
     LOOP
-        SELECT
-        ROUND(DBMS_RANDOM.VALUE(1,16)) 
-        INTO vnNumber
+        SELECT CHR(vnCHAR)
+        INTO vnDescription
         FROM dual;
-        DBMS_OUTPUT.PUT_LINE(vnNumber);
         
-        SELECT COUNT(*) INTO vnCantidad
-        FROM TeamXGroup WHERE idTeam = vnNumber;
-        /*
-        IF vnCantidad = 0
-        THEN
-            insertTeamXGroup (vnNumber, pidGroupEvent IN NUMBER)
-        END IF;*/
-           
-    END LOOP;
-END generateGroup;
+        insertGroupEvent (pIdEvent, 'Grupo ' || vnDescription);
+        
+        WHILE(vnFlag = TRUE)
+        LOOP
+            SELECT
+            ROUND(DBMS_RANDOM.VALUE(vnIdMin,vnIdMax)) 
+            INTO vnNumber
+            FROM dual;
 
-EXEC generateGroup;
+            SELECT COUNT(*) 
+            INTO vnQuantity
+            FROM TeamXGroup WHERE idTeam = vnNumber;
+
+            IF (vnQuantity = 0)
+            THEN
+                insertTeamXGroup (vnNumber, s_groupevent.currval);
+                vnCount:=vnCount+1;
+            END IF;
+            
+            IF(vnCount = 4)
+            THEN
+                vnFlag:=FALSE;
+            END IF;
+        END LOOP;
+        
+        vnCHAR:=vnCHAR+1;
+        vnCount:=0;
+        vnFlag:=TRUE;
+    END LOOP;
+END generateRaffle;

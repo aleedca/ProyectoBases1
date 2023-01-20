@@ -1,5 +1,48 @@
 /*
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Encryption and Decryption Procedures
+-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+*/
+
+CREATE OR REPLACE PROCEDURE encryptionPassword (text IN VARCHAR2, encrypted_text OUT VARCHAR2) AS  
+raw_set RAW(100);  
+raw_password RAW(100);  
+encryption_result RAW(100);  
+encryption_password VARCHAR2(100) := 'Q?Tx.H9h@%5,:QxV';  
+operation_mode NUMBER; 
+BEGIN    
+    raw_set:=utl_i18n.string_to_raw(text,'AL32UTF8');    
+    raw_password := utl_i18n.string_to_raw(encryption_password,'AL32UTF8');        
+    operation_mode:=DBMS_CRYPTO.ENCRYPT_DES + DBMS_CRYPTO.PAD_ZERO + DBMS_CRYPTO.CHAIN_ECB;        
+    encryption_result:=DBMS_CRYPTO.ENCRYPT(raw_set,operation_mode,raw_password);           
+    dbms_output.put_line(encryption_result);    
+    encrypted_text := RAWTOHEX (encryption_result);  
+END encryptionPassword; 
+
+
+CREATE OR REPLACE PROCEDURE decryptionPassword (encrypted_text IN VARCHAR2, decrypted_text OUT VARCHAR2) AS   
+raw_set RAW(100);   
+raw_password RAW(100);   
+decryption_result RAW(100);   
+decryption_password VARCHAR2(100) := 'Q?Tx.H9h@%5,:QxV';   
+operation_mode NUMBER; 
+BEGIN   
+    raw_set:=HEXTORAW(encrypted_text);   
+    raw_password :=utl_i18n.string_to_raw(decryption_password,'AL32UTF8');   
+    operation_mode:=DBMS_CRYPTO.ENCRYPT_DES + DBMS_CRYPTO.PAD_ZERO + DBMS_CRYPTO.CHAIN_ECB;      
+    decryption_result:=DBMS_CRYPTO.DECRYPT(raw_set,operation_mode,raw_password);   
+    dbms_output.put_line(decryption_result);   
+    decrypted_text := utl_i18n.raw_to_char (decryption_result,'AL32UTF8'); 
+END decryptionPassword;  
+
+/*VARIABLE encryptedPassword VARCHAR2(200);
+BEGIN
+encryptionPassword('Admin001', :encryptedPassword);
+END;*/
+
+
+/*
+-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 Insertion Procedures
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 */
@@ -797,47 +840,6 @@ BEGIN
     COMMIT;
 END updateProfile;
 
-/*
--=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-Encryption and Decryption Procedures
--=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-*/
-
-CREATE OR REPLACE PROCEDURE encryptionPassword (text IN VARCHAR2, encrypted_text OUT VARCHAR2) AS  
-raw_set RAW(100);  
-raw_password RAW(100);  
-encryption_result RAW(100);  
-encryption_password VARCHAR2(100) := 'Q?Tx.H9h@%5,:QxV';  
-operation_mode NUMBER; 
-BEGIN    
-    raw_set:=utl_i18n.string_to_raw(text,'AL32UTF8');    
-    raw_password := utl_i18n.string_to_raw(encryption_password,'AL32UTF8');        
-    operation_mode:=DBMS_CRYPTO.ENCRYPT_DES + DBMS_CRYPTO.PAD_ZERO + DBMS_CRYPTO.CHAIN_ECB;        
-    encryption_result:=DBMS_CRYPTO.ENCRYPT(raw_set,operation_mode,raw_password);           
-    dbms_output.put_line(encryption_result);    
-    encrypted_text := RAWTOHEX (encryption_result);  
-END encryptionPassword; 
-
-
-CREATE OR REPLACE PROCEDURE decryptionPassword (encrypted_text IN VARCHAR2, decrypted_text OUT VARCHAR2) AS   
-raw_set RAW(100);   
-raw_password RAW(100);   
-decryption_result RAW(100);   
-decryption_password VARCHAR2(100) := 'Q?Tx.H9h@%5,:QxV';   
-operation_mode NUMBER; 
-BEGIN   
-    raw_set:=HEXTORAW(encrypted_text);   
-    raw_password :=utl_i18n.string_to_raw(decryption_password,'AL32UTF8');   
-    operation_mode:=DBMS_CRYPTO.ENCRYPT_DES + DBMS_CRYPTO.PAD_ZERO + DBMS_CRYPTO.CHAIN_ECB;      
-    decryption_result:=DBMS_CRYPTO.DECRYPT(raw_set,operation_mode,raw_password);   
-    dbms_output.put_line(decryption_result);   
-    decrypted_text := utl_i18n.raw_to_char (decryption_result,'AL32UTF8'); 
-END decryptionPassword;  
-
-/*VARIABLE encryptedPassword VARCHAR2(200);
-BEGIN
-encryptionPassword('Admin001', :encryptedPassword);
-END;*/
 
 /*
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -998,6 +1000,43 @@ BEGIN
     INNER JOIN NewsType ON News.idNewsType = NewsType.idNewsType;
 END getNews;
 
+CREATE OR REPLACE PROCEDURE getSpecificNews(pIdNews IN NUMBER, cursorNews OUT SYS_REFCURSOR) IS
+tmpNewsViews NUMBER;
+BEGIN
+    OPEN cursorNews FOR
+    SELECT News.idNews, NewsType.descriptionNewsType, NewsStatus.descriptionNewsStatus, News.title, UserPerson.username, News.publicationDate, News.photo, News.textNews
+    FROM News 
+    INNER JOIN NewsStatus ON NewsStatus.idNewsStatus = News.idNewsStatus
+    INNER JOIN NewsType ON NewsType.idNewsType = News.idNewsType
+    INNER JOIN UserXNews ON UserXNews.idNews = News.idNews
+    INNER JOIN UserPerson ON UserPerson.username = UserXNews.username
+    WHERE News.idNews = pIdNews;
+    
+    SELECT viewsnews INTO tmpNewsViews FROM News WHERE idNews = pIdNews;
+    
+    
+    UPDATE News
+    SET viewsNews = tmpNewsViews+1
+    WHERE idNews = pIdNews;
+END getSpecificNews;
+
+CREATE OR REPLACE PROCEDURE getAverageNewsRating(pIdNews IN NUMBER, averageRating OUT NUMBER) IS
+tmpAverage NUMBER(1,0);
+BEGIN
+    BEGIN
+    SELECT AVG(rating) INTO tmpAverage FROM Rating WHERE Rating.idNews = pIdNews;
+    EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        tmpAverage:=0;
+    END;
+    IF tmpAverage = 0 THEN
+        averageRating := 0;
+    ELSE
+        averageRating := tmpAverage;
+    END IF;
+END getAverageNewsRating;
+
 CREATE OR REPLACE PROCEDURE getInfoNews(pIdNews IN NUMBER, curNews OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curNews FOR
@@ -1040,7 +1079,7 @@ END getCountryTeam;
 CREATE OR REPLACE PROCEDURE getMostViewedNews(curMostViewedNews OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curMostViewedNews FOR
-    SELECT title, viewsNews
+    SELECT idNews, title, viewsNews
     FROM News
     ORDER BY viewsNews DESC;
 END getMostViewedNews;
@@ -1049,7 +1088,7 @@ END getMostViewedNews;
 CREATE OR REPLACE PROCEDURE getLastNews(curLastNews OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curLastNews FOR
-    SELECT title, publicationDate
+    SELECT idNews, title, publicationDate
     FROM News
     ORDER BY publicationDate DESC;
 END getLastNews;
@@ -1091,7 +1130,7 @@ BEGIN
     INNER JOIN PersonXPhone ON PersonXPhone.idPerson = Person.idPerson
     INNER JOIN Phone ON Phone.idPhone = PersonXPhone.idPhone
     WHERE UserPerson.username = pUsername;
-END;
+END getAccountInformation;
 
 
 /*

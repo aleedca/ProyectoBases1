@@ -26,8 +26,22 @@ public class News {
     private String text;
     
     private int views;
-    private float rateNumber;
+    private int rateNumber;
     private ArrayList<NewsComment> comments;
+
+    public News() {
+    }
+   
+    public News(int idNews, String newsType, String newsStatus, String title, String author, String publicationDate, String photo, String text) {
+        this.idNews = idNews;
+        this.newsType = newsType;
+        this.newsStatus = newsStatus;
+        this.title = title;
+        this.author = author;
+        this.publicationDate = publicationDate;
+        this.photo = photo;
+        this.text = text;
+    }
 
     public int getIdNews() {
         return idNews;
@@ -125,11 +139,11 @@ public class News {
         this.views = views;
     }
 
-    public float getRateNumber() {
+    public int getRateNumber() {
         return rateNumber;
     }
 
-    public void setRateNumber(float rateNumber) {
+    public void setRateNumber(int rateNumber) {
         this.rateNumber = rateNumber;
     }
 

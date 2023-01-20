@@ -82,14 +82,16 @@ END;
 EXEC insertPlayerXMatchXTeam(2, 5, 7);
 
 ---- NEWS
-EXEC insertNews(1, 1, 'Messi Campeon', TO_DATE('04-01-2023 15:33', 'DD-MM-YYYY HH24:MI'), 'linkEjemplo', 'fotomessi', 'Messi campeon del mundo, su actuacion ha sido espectacular en el campo y fuera de ella, gran jugador y persona. Dio todo por un país y sus seguidores.');
-EXEC insertNews(2, 4, 'Ronaldo lo ficha un equipo de Arabia Saudita', NULL, 'linkEjemplo', 'fotoronaldo', 'El Al-Nassr es un grande de Arabia, un historico de la Liga de su país, pero no juega esta temporada la Liga de Campeones asiática, pero CR se mostró ilusionado por su nuevo reto: Estoy encantado con una nueva experiencia en una liga diferente y un país diferente, la visión que tiene Al Nassr es muy inspiradora. Estoy muy emocionado de unirme a mis compañeros de equipo y de ayudar a lograr más éxitos');
-EXEC insertNews(2, 2, 'DiMaria y su camino a la copa', NULL, 'linkEjemplo', 'fotodimaria', 'Por eso, yo al fútbol le debo todo". Y cómo comenzó en el deporte? Su madre, Diana, se estaba volviendo loca con su hijo hiperactivo, "no paraba de correr", y un pediatra le recomendó que hiciera fútbol. Al tiempo de romperla en su club de barrio, comenzó a ir a las Inferiores de Rosario Central. El predio quedaba a nueve kilometros de su casa, y como no tenían auto, la madre pedaleaba con su bicicleta todos los días para llevar a ángel al entrenamiento.');
-
+DECLARE numberOutput NUMBER(10);
+BEGIN
+insertNews(1, 1, 'Messi Campeon', TO_DATE('04-01-2023 15:33', 'DD-MM-YYYY HH24:MI'), 'linkEjemplo', 'fotomessi', 'Messi campeon del mundo, su actuacion ha sido espectacular en el campo y fuera de ella, gran jugador y persona. Dio todo por un país y sus seguidores.', numberOutput);
+insertNews(2, 4, 'Ronaldo lo ficha un equipo de Arabia Saudita', NULL, 'linkEjemplo', 'fotoronaldo', 'El Al-Nassr es un grande de Arabia, un historico de la Liga de su país, pero no juega esta temporada la Liga de Campeones asiática, pero CR se mostró ilusionado por su nuevo reto: Estoy encantado con una nueva experiencia en una liga diferente y un país diferente, la visión que tiene Al Nassr es muy inspiradora. Estoy muy emocionado de unirme a mis compañeros de equipo y de ayudar a lograr más éxitos', numberOutput);
+insertNews(2, 2, 'DiMaria y su camino a la copa', NULL, 'linkEjemplo', 'fotodimaria', 'Por eso, yo al fútbol le debo todo". Y cómo comenzó en el deporte? Su madre, Diana, se estaba volviendo loca con su hijo hiperactivo, "no paraba de correr", y un pediatra le recomendó que hiciera fútbol. Al tiempo de romperla en su club de barrio, comenzó a ir a las Inferiores de Rosario Central. El predio quedaba a nueve kilometros de su casa, y como no tenían auto, la madre pedaleaba con su bicicleta todos los días para llevar a ángel al entrenamiento.', numberOutput);
+END;
 --- UserXNews
-EXEC insertUserXNews('admin02', 1);
-EXEC insertUserXNews('mario97_AK', 2);
-EXEC insertUserXNews('admin01', 3);
+EXEC insertUserXNews('admin01', 0);
+EXEC insertUserXNews('admin01', 1);
+EXEC insertUserXNews('admin01', 2);
 
 -- FavoriteNews
 EXEC insertFavoriteNews('mario97_AK', 1);
