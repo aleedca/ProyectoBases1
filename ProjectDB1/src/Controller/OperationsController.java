@@ -71,11 +71,13 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private boolean flagRegister;
     private boolean flagAdminPerson;
     private boolean flagEditNews = false;
+    private boolean flagEditParameter = false;
     private boolean flagAdminOther;
     
     private final RequestController requestController;
     private final AdminNewsController adminNewsController;
     private final AdminCatalogsController adminCatalogsController;
+    private final AdminParametersController adminParametersController;
     
     
     //Constructor 2da version
@@ -167,6 +169,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         AdminCatalogsController adminCatalogsController = new AdminCatalogsController();
         this.adminCatalogsController = adminCatalogsController;
         
+        //AdminParameters Controller
+        AdminParametersController adminParametersController = new AdminParametersController();
+        this.adminParametersController = adminParametersController;
         
         _init_(); 
         
@@ -258,6 +263,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         viewAdminParameters.getBtnAceptar().addActionListener(this);
         viewAdminParameters.getRbtnAgregar().addActionListener(this);
         viewAdminParameters.getRbtnEditar().addActionListener(this);
+        adminParametersController.getViewAdminParameters().getTblParametros().getSelectionModel().addListSelectionListener(this);
         
         //Request
         viewRequest.getBtnBackRequest().addActionListener(this);
@@ -492,7 +498,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
          
     }
     
-    
     private void fillTeams(){
         viewAdminPerson.getCmbTeam().removeAllItems();
         
@@ -532,7 +537,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         return full;
     } 
     
-    
     private void fillPerson(){
         String firstName, secondName, firstLastName, secondLastName, fullName;
         
@@ -562,7 +566,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
     }
-    
     
     private void fillPlayerInformation(){
         String name, province, canton,secondName, firstLastName, secondLastName,typeIdentification, country, district,gender, team, position,  mail, address,  birthdate;
@@ -676,7 +679,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
     }
     
-   
     private void fillTeamWorkerInformation(){
         String name, secondName, firstLastName, secondLastName,typeIdentification, gender, team, position,  mail, address, country, province, canton, district;
         int idTypeIdentification, identification, idGender, idTeam, idPosition, phoneNumber, idCountry, idProvince, idCanton, idDistrict;
@@ -793,7 +795,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
     }
     
-    
     private void fillGroup(){
         viewScheduleMatch.getCbmGroup().removeAllItems();
         
@@ -802,7 +803,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
            viewScheduleMatch.getCbmGroup().addItem(modelAdminMatches.getGroups().get(i).getDescriptionGroup());
         }
     }
-    
     
     private void fillCountryTeam(int idContinent){
         viewAdminOther.getCmbCountry().setEnabled(true);
@@ -821,7 +821,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
     
     }
-    
     
     private void fillContinent(){
         viewAdminOther.getCmbContinent().removeAllItems();
@@ -1025,7 +1024,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             adminNewsController.fillAdminNews();
             adminNewsRestore();
             if(updateNewsSuccessful()){
-                JOptionPane.showMessageDialog(null, "Se actualizó con éxito.");            
+                JOptionPane.showMessageDialog(null, "Noticia editada con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);            
             }
         }
         else{
@@ -1042,6 +1041,31 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         adminNewsController.getViewAdminNews().setLocationRelativeTo(adminNewsController.getViewAdminNews());
         modelNews.setImageLabel(adminNewsController.getViewAdminNews().getLblImagen());
         adminNewsController.getViewAdminNews().repaint();
+    }
+    
+    //------------ VALIDATIONS ADMINPARAMETERS ---------------------------    
+    private void adminParametersValidationsInsert(){
+        if(modelAdminParameters.validateEmptyFields()){
+            modelAdminParameters.insertParameter();
+            adminParametersController.fillAdminParameters();
+            adminParametersController.getViewAdminParameters().clearAll();
+            JOptionPane.showMessageDialog(null, "Parámetri creado con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
+        }
+    }
+    
+    private void adminParametersValidationsUpdate(){
+        if(modelAdminParameters.validateEmptyFields()){
+            modelAdminParameters.updateParameter();
+            adminParametersController.fillAdminParameters();
+            adminParametersController.getViewAdminParameters().clearAll();
+            JOptionPane.showMessageDialog(null, "Parámetri creado con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
+        }
     }
     
     //------------ VALIDATIONS AND CREATE ADMIN PERSON ---------------------------
@@ -1484,7 +1508,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
     }
     
-    
     private void updatesPlayer(int idPerson, int i){
         String secondName, secondLastName, birthdate, combination ;
         String country, province, canton, district,typeIdentification,gender, team, position;
@@ -1726,7 +1749,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
 }//END UPDATEPLAYER   
     
-    
     private boolean updateSuccessful(){
         
         if(modelAdminPerson.getResultUpdateFirstName() == 0 && modelAdminPerson.getResultUpdateSecondName() == 0 &&  modelAdminPerson.getResultUpdateDistrict()==0){
@@ -1766,7 +1788,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         return true;
     }
-    
     
     private boolean validateGroupExist(){
         if(modelAdminMatches.validateGroupExist() == false){
@@ -2300,9 +2321,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             viewMyAccount.setVisible(true);
             viewPrincipal.setVisible(false); 
         }
-        
-        
-               
+              
         if(e.getSource() == viewPrincipal.getBtnExit()){
             viewPrincipal.setVisible(false);
             
@@ -2531,6 +2550,30 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         if(e.getSource() == viewAdminParameters.getBtnBack()){
             viewAdminParameters.setVisible(false);
             this.viewMenuAdmin.setVisible(true);
+        }
+        
+        if(e.getSource() == adminParametersController.getViewAdminParameters().getBtnAceptar()){
+            modelAdminParameters.setName(adminParametersController.getViewAdminParameters().getTxtNombre().getText());
+            modelAdminParameters.setValue(adminParametersController.getViewAdminParameters().getTxtValor().getText());
+            
+            if(adminParametersController.getViewAdminParameters().getRbtnAgregar().isSelected()){
+                adminParametersValidationsInsert();
+            }
+            
+            if(adminParametersController.getViewAdminParameters().getRbtnEditar().isSelected()){
+                adminParametersValidationsUpdate();
+            }
+            flagEditParameter = false;
+            adminParametersController.getViewAdminParameters().getRbtnAgregar().setSelected(true);
+        }
+        
+        if(e.getSource() == adminParametersController.getViewAdminParameters().getRbtnAgregar()){
+            adminParametersController.getViewAdminParameters().clearAll();
+            flagEditParameter = false;
+        }
+
+        if(e.getSource() == adminParametersController.getViewAdminParameters().getRbtnEditar()){
+            flagEditParameter = true;
         }
         
         //----------- SCREEN Request -------------------------
@@ -2841,6 +2884,13 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 int index = (int) adminNewsController.getViewAdminNews().getTblNoticias().getValueAt(adminNewsController.getViewAdminNews().getTblNoticias().getSelectedRow(),0);
                 modelNews.setIdNews(index);
                 adminNewsController.fillUpdateAdminNews(index);
+            }
+        }
+        if(e.getSource() == adminParametersController.getViewAdminParameters().getTblParametros().getSelectionModel() && flagEditParameter){
+            if(adminParametersController.getViewAdminParameters().getTblParametros().getRowCount() > 0){
+                String name = (String) adminParametersController.getViewAdminParameters().getTblParametros().getValueAt(adminNewsController.getViewAdminNews().getTblNoticias().getSelectedRow(),0);
+                modelAdminParameters.setName(name);
+                adminParametersController.fillUpdateAdminParameters();
             }
         }
     }
