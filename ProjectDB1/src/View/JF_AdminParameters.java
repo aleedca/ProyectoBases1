@@ -36,8 +36,6 @@ public class JF_AdminParameters extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         lblAdminOther = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblParametros = new javax.swing.JTable();
         rbtnAgregar = new javax.swing.JRadioButton();
         rbtnEditar = new javax.swing.JRadioButton();
         lblEntradaParametro = new javax.swing.JLabel();
@@ -45,6 +43,8 @@ public class JF_AdminParameters extends javax.swing.JFrame {
         btnAceptar = new javax.swing.JButton();
         txtValor = new javax.swing.JTextField();
         lblNombreParametro = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblParametros = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -77,41 +77,6 @@ public class JF_AdminParameters extends javax.swing.JFrame {
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
         jPanel1.add(lblLogo);
         lblLogo.setBounds(1065, 6, 200, 125);
-
-        tblParametros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nombre", "Entrada"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblParametros.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tblParametros);
-        if (tblParametros.getColumnModel().getColumnCount() > 0) {
-            tblParametros.getColumnModel().getColumn(0).setMinWidth(400);
-            tblParametros.getColumnModel().getColumn(0).setPreferredWidth(400);
-            tblParametros.getColumnModel().getColumn(1).setMinWidth(70);
-            tblParametros.getColumnModel().getColumn(1).setPreferredWidth(70);
-        }
-
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(50, 180, 610, 480);
 
         rbtnAgregar.setBackground(new java.awt.Color(86, 4, 44));
         btnGroupParametros.add(rbtnAgregar);
@@ -156,7 +121,7 @@ public class JF_AdminParameters extends javax.swing.JFrame {
         btnAceptar.setText("Aceptar");
         btnAceptar.setBorderPainted(false);
         jPanel1.add(btnAceptar);
-        btnAceptar.setBounds(920, 630, 130, 40);
+        btnAceptar.setBounds(920, 610, 130, 40);
 
         txtValor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(txtValor);
@@ -167,6 +132,44 @@ public class JF_AdminParameters extends javax.swing.JFrame {
         lblNombreParametro.setText("Nombre del parámetro:");
         jPanel1.add(lblNombreParametro);
         lblNombreParametro.setBounds(730, 360, 220, 30);
+
+        tblParametros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Valor"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblParametros.setIntercellSpacing(new java.awt.Dimension(3, 3));
+        tblParametros.setShowGrid(true);
+        tblParametros.getTableHeader().setResizingAllowed(false);
+        tblParametros.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblParametros);
+        if (tblParametros.getColumnModel().getColumnCount() > 0) {
+            tblParametros.getColumnModel().getColumn(0).setMinWidth(400);
+            tblParametros.getColumnModel().getColumn(0).setPreferredWidth(400);
+            tblParametros.getColumnModel().getColumn(1).setMinWidth(70);
+            tblParametros.getColumnModel().getColumn(1).setPreferredWidth(70);
+        }
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(70, 160, 580, 480);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
