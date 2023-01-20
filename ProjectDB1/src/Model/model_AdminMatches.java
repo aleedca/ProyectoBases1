@@ -122,12 +122,15 @@ public class model_AdminMatches {
     }
     
     public void insertMatch(){
+        //CAMBIAR A BOOLEAN
         try {
             
             this.resultInsertMatch = DA_SoccerMatch.insertSoccerMatch(stadium, date, hour);
-
-            DA_SoccerMatch.insertPlayerXMatchXTeam(resultInsertMatch, team1, team2);
-         
+            
+            if(this.resultInsertMatch != 0){
+                DA_SoccerMatch.insertPlayerXMatchXTeam(resultInsertMatch, team1, team2);
+            }
+              
         } catch (SQLException ex) {
             System.out.println(ex);
         }
