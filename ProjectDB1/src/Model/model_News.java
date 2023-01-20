@@ -57,9 +57,15 @@ public class model_News {
     private final JFileChooser file = new JFileChooser();
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");
 
-    public void setSelectedNews(JF_News viewNews, News selectedNews) {
-        this.selectedNews = selectedNews;
-        viewNews.UpdateInfo(selectedNews);
+    public void setSelectedNews(JF_News viewNews, int selectedNewsIndex) {
+        try {
+            //System.out.println("***************************************");
+            //System.out.println(selectedNewsIndex);
+            this.selectedNews = DA_News.getNewsSpecific(selectedNewsIndex);
+            viewNews.UpdateInfo(this.selectedNews);
+        } catch (SQLException ex) {
+           System.out.println(ex);
+        }
     }
     
     public void loadNewsArr(){
