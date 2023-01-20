@@ -37,7 +37,7 @@ public class JF_AdminOther extends javax.swing.JFrame {
         lblAdminOther = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
-        btnAgregar = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         rbtnEquipo = new javax.swing.JRadioButton();
@@ -106,10 +106,10 @@ public class JF_AdminOther extends javax.swing.JFrame {
         jPanel1.add(btnEliminar);
         btnEliminar.setBounds(920, 660, 180, 40);
 
-        btnAgregar.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        btnAgregar.setText("Agregar");
-        jPanel1.add(btnAgregar);
-        btnAgregar.setBounds(480, 660, 180, 40);
+        btnAdd.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        btnAdd.setText("Agregar");
+        jPanel1.add(btnAdd);
+        btnAdd.setBounds(480, 660, 180, 40);
 
         jList1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 204, 0), 3));
         jList1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
@@ -341,13 +341,15 @@ public class JF_AdminOther extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUploadFlagActionPerformed
 
-    public JButton getBtnAgregar() {
-        return btnAgregar;
+    public JButton getBtnAdd() {
+        return btnAdd;
     }
 
-    public void setBtnAgregar(JButton btnAgregar) {
-        this.btnAgregar = btnAgregar;
+    public void setBtnAdd(JButton btnAdd) {
+        this.btnAdd = btnAdd;
     }
+
+    
 
     public JButton getBtnBack() {
         return btnBack;
@@ -419,7 +421,7 @@ public class JF_AdminOther extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
