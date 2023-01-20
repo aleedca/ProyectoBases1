@@ -86,7 +86,7 @@ public class DA_GroupList {
             country.setIdCountryTeam(rs.getInt("idCountryTeam"));
             country.setIdContinent(rs.getInt("idContinent"));
             country.setNameCountryTeam(rs.getString("nameCountryTeam"));
-            country.setTeamFlag(rs.getString("flag"));
+            //country.setTeamFlag(rs.getString("flag"));
             
             countryTeam.add(country);
         }

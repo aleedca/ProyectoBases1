@@ -6,14 +6,23 @@ package Model;
 
 import DataAccess.DA_Catalogs;
 import DataAccess.DA_SoccerMatch;
+import Objects.Continent;
+import Objects.CountryTeam;
 import Objects.Group;
 import Objects.Stadium;
 import Objects.Team;
 import Objects.TeamXGroup;
+import View.JF_AdminOther;
+import java.awt.Image;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /**
@@ -21,18 +30,24 @@ import java.util.logging.Logger;
  * @author Nahomy
  */
 public class model_AdminMatches {
+    
+    //Attributes to insert a Team -> ADMIN OTHER SCREEN
+    private int idCountryTeam;
+    private String nameTeam;
+    private String flag;
+    
+    private ArrayList<Continent> continents;
+    private ArrayList<CountryTeam> countryTeams;
+    
+    //--------------------------------------------------------
+    
+    
     private String date;
     private String hour;
     
     private int team1;
     private int team2;
-    
-    private int idContinent;
-    private String nameCountry;
-    private String nameTeam;
-    private String flag;
-    
-    
+
     private int stadium;
     private ArrayList<Stadium> stadiums;
     private int group;
@@ -46,10 +61,16 @@ public class model_AdminMatches {
     private int resultSoccerMatchExist;
     private int resultinsertTeam;
     
+    private final JFileChooser file = new JFileChooser();
+    private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");
+    
+    
     //BUILDER 
 
     public model_AdminMatches() {
         try {
+            
+            this.continents = DA_SoccerMatch.getContinet();
             
             this.stadiums = DA_Catalogs.getStadium();
             
@@ -62,6 +83,30 @@ public class model_AdminMatches {
         }
     }
 
+    
+     //----------------------------------------------------------------------
+    
+    public boolean selectPhoto(JF_AdminOther teamRegister){
+        file.setFileFilter(this.filter);
+        file.showOpenDialog(teamRegister);
+        try{
+            flag = file.getSelectedFile().getPath();
+            return true;
+        }catch(NullPointerException e){
+            System.out.println("No se ha seleccionado ningún fichero");
+        } 
+        
+        return false;
+    }
+    
+    
+    public void setImageLabel(JLabel labelName){
+        ImageIcon image = new ImageIcon(this.flag);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_SMOOTH));
+        labelName.setIcon(icon);
+    }
+    
+    
     public void fillMatch(){
     
     
@@ -85,7 +130,7 @@ public class model_AdminMatches {
     
     public void insertTeam(){   
         try {
-            DA_SoccerMatch.insertTeam(idContinent, nameCountry, nameTeam, flag);
+            DA_SoccerMatch.insertTeam(idCountryTeam, nameTeam, flag);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -256,6 +301,46 @@ public class model_AdminMatches {
 
     public void setResultinsertTeam(int resultinsertTeam) {
         this.resultinsertTeam = resultinsertTeam;
+    }
+
+    public int getIdCountryTeam() {
+        return idCountryTeam;
+    }
+
+    public void setIdCountryTeam(int idCountryTeam) {
+        this.idCountryTeam = idCountryTeam;
+    }
+
+    public String getNameTeam() {
+        return nameTeam;
+    }
+
+    public void setNameTeam(String nameTeam) {
+        this.nameTeam = nameTeam;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
+
+    public ArrayList<Continent> getContinents() {
+        return continents;
+    }
+
+    public void setContinents(ArrayList<Continent> continents) {
+        this.continents = continents;
+    }
+
+    public ArrayList<CountryTeam> getCountryTeams() {
+        return countryTeams;
+    }
+
+    public void setCountryTeams(ArrayList<CountryTeam> countryTeams) {
+        this.countryTeams = countryTeams;
     }
     
     

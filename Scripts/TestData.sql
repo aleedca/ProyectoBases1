@@ -6,14 +6,14 @@ EXEC insertGroupEvent (1, 'Grupo A');
 EXEC insertGroupEvent (1, 'Grupo B');
 
 -- CountryTeam
-EXEC insertCountryTeam (3, 'Espana', 'banderaEspana');
-EXEC insertCountryTeam (3, 'Francia', 'banderaFrancia');
-EXEC insertCountryTeam (3, 'Alemania', 'banderaAlemania');
-EXEC insertCountryTeam (3, 'Portugal', 'banderaPortugal');
-EXEC insertCountryTeam (2, 'Brasil', 'banderaBrasil');
-EXEC insertCountryTeam (2, 'Argentina', 'banderaArgentina');
-EXEC insertCountryTeam (2, 'Uruguay', 'banderaUruguay');
-EXEC insertCountryTeam (2, 'Costa Rica', 'banderaCostaRica');
+EXEC insertCountryTeam (3, 'Espana');
+EXEC insertCountryTeam (3, 'Francia');
+EXEC insertCountryTeam (3, 'Alemania');
+EXEC insertCountryTeam (3, 'Portugal');
+EXEC insertCountryTeam (2, 'Brasil');
+EXEC insertCountryTeam (2, 'Argentina');
+EXEC insertCountryTeam (2, 'Uruguay');
+EXEC insertCountryTeam (2, 'Costa Rica');
 
 -- Team
 EXEC insertTeam(1, 1, 'Espana');
@@ -36,18 +36,18 @@ EXEC insertGroupStats (7, 0, 0, 4, 2, 20, 10);
 EXEC insertGroupStats (8, 0, 0, 4, 2, 20, 10);
 
 --- SoccerMatch
-EXEC insertSoccerMatch(1, TO_DATE('04-08-2023 15:35', 'DD-MM-YYYY HH24:MI'));
-EXEC insertSoccerMatch(1, TO_DATE('10-10-2023 10:30', 'DD-MM-YYYY HH24:MI'));
-EXEC insertSoccerMatch(2, TO_DATE('12-10-2023 8:00', 'DD-MM-YYYY HH24:MI'));
-EXEC insertSoccerMatch(2, TO_DATE('14-11-2023 15:40', 'DD-MM-YYYY HH24:MI'));
-EXEC insertSoccerMatch(3, TO_DATE('15-02-2023 14:30', 'DD-MM-YYYY HH24:MI'));
-EXEC insertSoccerMatch(3, TO_DATE('23-11-2023 18:00', 'DD-MM-YYYY HH24:MI'));
-EXEC insertSoccerMatch(4, TO_DATE('10-10-2023 10:30', 'DD-MM-YYYY HH24:MI'));
-EXEC insertSoccerMatch(4, TO_DATE('30-01-2023 18:10', 'DD-MM-YYYY HH24:MI'));
-EXEC insertSoccerMatch(5, TO_DATE('05-08-2023 13:30', 'DD-MM-YYYY HH24:MI'));
-EXEC insertSoccerMatch(5, TO_DATE('9-06-2023 10:30', 'DD-MM-YYYY HH24:MI'));
-EXEC insertSoccerMatch(6, TO_DATE('19-03-2023 12:30', 'DD-MM-YYYY HH24:MI'));
-EXEC insertSoccerMatch(6, TO_DATE('17-09-2023 13:00', 'DD-MM-YYYY HH24:MI'));
+EXEC insertSoccerMatch(1, '04-08-2023 15:35');
+EXEC insertSoccerMatch(1, '10-10-2023 10:30');
+EXEC insertSoccerMatch(2, '12-10-2023 8:00');
+EXEC insertSoccerMatch(2, '14-11-2023 15:40');
+EXEC insertSoccerMatch(3, '15-02-2023 14:30');
+EXEC insertSoccerMatch(3, '23-11-2023 18:00');
+EXEC insertSoccerMatch(4, '10-10-2023 10:30');
+EXEC insertSoccerMatch(4, '30-01-2023 18:10');
+EXEC insertSoccerMatch(5, '05-08-2023 13:30');
+EXEC insertSoccerMatch(5, '9-06-2023 10:30');
+EXEC insertSoccerMatch(6, '19-03-2023 12:30');
+EXEC insertSoccerMatch(6, '17-09-2023 13:00');
 
 --- UserPerson
 EXEC insertUserPerson('admin02', 1,'Admin002', 408920922, 'Pedro', 'N/A', 'Rivera', 'N/A', 'Foto Perfil', 11, 2, 3, 'pedro@gmail.com', 63921230, 2, '100 metros al Oeste de la Municipalidad de San Antonio.');

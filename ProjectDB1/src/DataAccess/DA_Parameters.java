@@ -28,6 +28,15 @@ public class DA_Parameters {
         resultIdInfo = result;
     }
     
+    public static void insertParameter(String name, int value) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call insertParameterTable(?,?)}");
+        
+        sql.setString(1, name);
+        sql.setInt(2, value);
+        sql.execute();
+    }
+    
     public static ArrayList<Parameter> getParameters() throws SQLException {
         Connection conn = sysConnection.getConexion();
         

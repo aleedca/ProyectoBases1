@@ -83,14 +83,14 @@ public class JF_AdminParameters extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nombre", "Entrada"
+                "Nombre", "Entrada"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -101,16 +101,13 @@ public class JF_AdminParameters extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblParametros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblParametros.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblParametros);
         if (tblParametros.getColumnModel().getColumnCount() > 0) {
-            tblParametros.getColumnModel().getColumn(0).setMinWidth(70);
-            tblParametros.getColumnModel().getColumn(0).setPreferredWidth(70);
-            tblParametros.getColumnModel().getColumn(1).setMinWidth(400);
-            tblParametros.getColumnModel().getColumn(1).setPreferredWidth(400);
-            tblParametros.getColumnModel().getColumn(2).setMinWidth(70);
-            tblParametros.getColumnModel().getColumn(2).setPreferredWidth(70);
+            tblParametros.getColumnModel().getColumn(0).setMinWidth(400);
+            tblParametros.getColumnModel().getColumn(0).setPreferredWidth(400);
+            tblParametros.getColumnModel().getColumn(1).setMinWidth(70);
+            tblParametros.getColumnModel().getColumn(1).setPreferredWidth(70);
         }
 
         jPanel1.add(jScrollPane1);
@@ -201,6 +198,10 @@ public class JF_AdminParameters extends javax.swing.JFrame {
 
     }//GEN-LAST:event_rbtnEditarActionPerformed
 
+    public void clearAll(){
+        txtNombre.setText("");
+        txtValor.setText("");
+    }
     
     public JRadioButton getRbtnAgregar() {
         return rbtnAgregar;

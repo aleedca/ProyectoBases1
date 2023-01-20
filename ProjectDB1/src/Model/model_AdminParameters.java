@@ -35,7 +35,15 @@ public class model_AdminParameters {
         return true;
     }
     
-    public void updateParameters(){
+    public void insertParameter(){
+        try {
+            DA_Parameters.insertParameter(this.name, Integer.parseInt(this.value));
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void updateParameter(){
         try {
             this.resultUpdateParameter = DA_Parameters.updateParameter(this.idParameter, this.name, Integer.parseInt(this.value));
         } catch (SQLException ex) {
