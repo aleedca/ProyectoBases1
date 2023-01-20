@@ -366,6 +366,24 @@ Update Procedures
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 */
 
+--- SOCCERMATCH
+CREATE OR REPLACE PROCEDURE updateSoccerMatch (pidPerson IN NUMBER, pYellowCards IN NUMBER, pRedCards IN NUMBER, pOffsides IN NUMBER, pCorners IN NUMBER, pSaves IN NUMBER, pGoals IN NUMBER) AS
+BEGIN
+    UPDATE PlayerXSoccerMatchXTeam
+    SET yellowCards = pYellowCards, 
+    redCards = pRedCards,
+    offsides = pOffsides,
+    corners = pCorners,
+    saves = pSaves,
+    goals = pGoals
+    WHERE idPerson = pidPerson;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END updateSoccerMatch;
+
+
 --- FIRSTNAME
 CREATE OR REPLACE PROCEDURE updateFirstName (pidPerson IN NUMBER, pFirstName IN VARCHAR2, codResult OUT NUMBER) AS
 BEGIN
