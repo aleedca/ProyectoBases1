@@ -54,6 +54,45 @@ public class DA_News {
         return newsArr;
     }
     
+    public static News getNewsSpecific(int idNews) throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getNewsSpecific(?,?)}");
+        sql.setInt(1, idNews);
+        sql.registerOutParameter(2, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(2);
+        
+        rs.next();
+        
+        News news = new News();
+            
+        news.setIdNews(rs.getInt("idNews"));
+        news.setNewsType(rs.getString("descriptionNewsType"));
+        news.setNewsStatus(rs.getString("descriptionNewsStatus"));
+        news.setTitle(rs.getString("title"));
+        news.setAuthor(rs.getString("username"));
+        news.setPublicationDate(rs.getString("publicationDate"));
+        news.setPhoto(rs.getString("photo"));
+        news.setText(rs.getString("textNews"));
+        getAverageNewsRating(news);
+        
+        return news;
+    }
+    
+    public static void getAverageNewsRating(News pNews) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getNewsSpecific(?,?)}");
+        sql.setInt(1, pNews.getIdNews());
+        sql.registerOutParameter(2, OracleTypes.NUMBER);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(2)).intValue();
+        pNews.setRateNumber(result);
+    }
+    
     public static ArrayList<News> getInfoNews(int idNews) throws SQLException {
         Connection conn = sysConnection.getConexion();
         
