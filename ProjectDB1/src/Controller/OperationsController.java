@@ -56,7 +56,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private final JF_AdminMatches viewAdminMatches;
     private final JF_AdminScheduleMatch viewScheduleMatch;
     private final JF_AdminMatch viewAdminMatch; 
-    private final JF_AdminParameters viewAdminParameters;
     private final JF_AdminOther viewAdminOther;
     
     
@@ -128,10 +127,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         JF_AdminMatch adminMatch = new JF_AdminMatch();
         this.viewAdminMatch = adminMatch;
         
-        //View Admin Parameters
-        JF_AdminParameters adminParameters = new JF_AdminParameters();
-        this.viewAdminParameters = adminParameters;
-               
+         
         //Model Login
         model_Login validateLogin = new model_Login();
         this.modelLogin = validateLogin;  
@@ -259,10 +255,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         adminCatalogsController.getViewAdminCatalogs().getBtnBack().addActionListener(this);
                
         //AdminParameters
-        viewAdminParameters.getBtnBack().addActionListener(this);
-        viewAdminParameters.getBtnAceptar().addActionListener(this);
-        viewAdminParameters.getRbtnAgregar().addActionListener(this);
-        viewAdminParameters.getRbtnEditar().addActionListener(this);
+        adminParametersController.getViewAdminParameters().getBtnAceptar().addActionListener(this);
+        adminParametersController.getViewAdminParameters().getBtnBack().addActionListener(this);
+        adminParametersController.getViewAdminParameters().getRbtnAgregar().addActionListener(this);
+        adminParametersController.getViewAdminParameters().getRbtnEditar().addActionListener(this);
         adminParametersController.getViewAdminParameters().getTblParametros().getSelectionModel().addListSelectionListener(this);
         
         //Request
@@ -2436,7 +2432,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         if(e.getSource() == viewMenuAdmin.getBtnAdmiParametros()){                    
             viewMenuAdmin.setVisible(false);
-            viewAdminParameters.setVisible(true);
+            adminParametersController.getViewAdminParameters().setVisible(true);
         }
         
         //------------- SCREEN ADMIN OTHER ------------------
@@ -2547,8 +2543,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         //-------------- SCREEN AdminParameters -----------------------
-        if(e.getSource() == viewAdminParameters.getBtnBack()){
-            viewAdminParameters.setVisible(false);
+        if(e.getSource() == adminParametersController.getViewAdminParameters().getBtnBack()){
+            adminParametersController.getViewAdminParameters().setVisible(false);
             this.viewMenuAdmin.setVisible(true);
         }
         

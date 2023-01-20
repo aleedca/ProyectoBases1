@@ -101,7 +101,6 @@ public class JF_AdminParameters extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblParametros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblParametros.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblParametros);
         if (tblParametros.getColumnModel().getColumnCount() > 0) {
