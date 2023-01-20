@@ -9,6 +9,7 @@ import Controller.RequestController;
 import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -28,11 +29,16 @@ public class JF_Principal extends javax.swing.JFrame {
     }
     
     public void showMostViewedNews() throws SQLException{
+        System.out.println("Actualicé las más vistas");
+        DefaultTableModel modelTable = (DefaultTableModel) tblMostViewedNews.getModel();
+        modelTable.setRowCount(0);
         tblMostViewedNews.setModel(controller.showMostViewedNews());
-       
     }
     
     public void showLastNews() throws SQLException{
+        System.out.println("Actualicé las más recientes");
+        DefaultTableModel modelTable = (DefaultTableModel) tblLastNews.getModel();
+        modelTable.setRowCount(0);
         tblLastNews.setModel(controller.showLastNews());
        
     }
@@ -40,6 +46,18 @@ public class JF_Principal extends javax.swing.JFrame {
 
     //GETTERS
 
+    public JTable getTblLastNews() {
+        return tblLastNews;
+    }
+
+    public JTable getTblMostViewedNews() {
+        return tblMostViewedNews;
+    }
+
+    public RequestController getController() {
+        return controller;
+    }
+    
     public JButton getBtnAccount() {
         return btnAccount;
     }
@@ -67,6 +85,7 @@ public class JF_Principal extends javax.swing.JFrame {
     public JLabel getLblWelcome() {
         return lblWelcome;
     }
+    
     
     
     
@@ -332,7 +351,6 @@ public class JF_Principal extends javax.swing.JFrame {
             }
         });
         tblLastNews.setRowHeight(30);
-        tblLastNews.setShowHorizontalLines(false);
         jScrollPane1.setViewportView(tblLastNews);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

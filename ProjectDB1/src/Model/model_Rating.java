@@ -13,6 +13,7 @@ import View.JF_Rating;
 public class model_Rating {
     
     private int rate = 0;
+    private int idNews;
     private String title;
 
     public model_Rating() {
@@ -43,5 +44,14 @@ public class model_Rating {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public int getIdNews() {
+        return idNews;
+    }
+
+    public void setIdNews(int idNews) {
+        this.idNews = idNews;
+    }
+    
     
 }

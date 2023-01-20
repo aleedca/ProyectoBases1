@@ -29,7 +29,9 @@ public class RequestController {
     
     private final model_Request modelRequest = new model_Request();
 
-
+    public Cargador getCargador() {
+        return cargador;
+    }
 
     
     public DefaultTableModel showTeamList(String teamName, String playerFstName, String playerSndName, String playerFstLastName, String playerSndLastName, String position) throws SQLException{

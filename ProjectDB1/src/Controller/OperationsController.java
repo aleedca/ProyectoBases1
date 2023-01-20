@@ -11,7 +11,9 @@ import Model.model_AdminParameters;
 import Model.model_AdminPerson;
 import Model.model_Login;
 import Model.model_News;
+import Model.model_Rating;
 import Model.model_Register;
+import Objects.News;
 import View.JF_AdminCatalogs;
 import View.JF_AdminMatch;
 import View.JF_AdminMatches;
@@ -26,6 +28,8 @@ import View.JF_Principal;
 import View.JF_Register;
 import View.JF_Request;
 import View.JF_AdminScheduleMatch;
+import View.JF_News;
+import View.JF_Rating;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -57,6 +61,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private final JF_AdminScheduleMatch viewScheduleMatch;
     private final JF_AdminMatch viewAdminMatch; 
     private final JF_AdminOther viewAdminOther;
+    private final JF_News viewNews;
+    private final JF_Rating viewRating;
     
     
     private final model_Login modelLogin;
@@ -66,12 +72,14 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private final model_Account accountModel;
     private final model_AdminMatches modelAdminMatches;
     private final model_AdminParameters modelAdminParameters;
+    private final model_Rating ratingModel;
     
     private boolean flagRegister;
     private boolean flagAdminPerson;
     private boolean flagEditNews = false;
     private boolean flagEditParameter = false;
     private boolean flagAdminOther;
+    private boolean newsOpened = false;
     
     private final RequestController requestController;
     private final AdminNewsController adminNewsController;
@@ -83,6 +91,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     public OperationsController(JF_Principal principal) throws SQLException { 
         //View Principal
         this.viewPrincipal = principal;
+        
+        //View News
+        this.viewNews = new JF_News();
+        
+        //View Rating
+        this.viewRating = new JF_Rating();
         
         //View Login
         JF_Login login = new JF_Login();
@@ -153,6 +167,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         //Model Admin Parameters
         this.modelAdminParameters = new model_AdminParameters();
         
+        // Model Rating
+        this.ratingModel = new model_Rating();
+        
         //Request Controller
         RequestController controller = new RequestController();
         this.requestController = controller;
@@ -179,8 +196,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         fillTeams();
         fillTypePerson();
         fillContinent();
-        principal.showMostViewedNews();
-        principal.showLastNews();
+        viewPrincipal.showMostViewedNews();
+        viewPrincipal.showLastNews();
 
     }
     
@@ -193,6 +210,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         viewPrincipal.getBtnRequests().addActionListener(this);
         viewPrincipal.getBtnAccount().addActionListener(this);
         viewPrincipal.getBtnExit().addActionListener(this);
+        viewPrincipal.getTblMostViewedNews().getSelectionModel().addListSelectionListener(this);
+        viewPrincipal.getTblLastNews().getSelectionModel().addListSelectionListener(this);
         
         //Login
         viewLogin.getBtnLogin().addActionListener(this);
@@ -273,6 +292,19 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         viewEditAccount.getBtnConfirm().addActionListener(this);
         viewEditAccount.getBtnLoadPicture().addActionListener(this);
         
+        //News
+       viewNews.getBtnBack().addActionListener(this);
+       viewNews.getBtnComment().addActionListener(this);
+       viewNews.getBtnRating().addActionListener(this);
+       
+       //Rating
+       viewRating.getBtnBack().addActionListener(this);
+       viewRating.getBtnConfirm().addActionListener(this);
+       viewRating.getBtnStar1().addActionListener(this);
+       viewRating.getBtnStar2().addActionListener(this);
+       viewRating.getBtnStar3().addActionListener(this);
+       viewRating.getBtnStar4().addActionListener(this);
+       viewRating.getBtnStar5().addActionListener(this);
         
         //AdminPerson
         viewAdminPerson.getBtnBackAdminPerson().addActionListener(this);
@@ -2494,6 +2526,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         if(e.getSource() == adminNewsController.getViewAdminNews().getBtnBack()){
             adminNewsController.getViewAdminNews().setVisible(false);
             this.viewMenuAdmin.setVisible(true);
+            /*try{
+                viewPrincipal.showMostViewedNews();
+                viewPrincipal.showLastNews();
+            }catch(Exception ex){
+                System.out.println(ex);
+            }*/
         }
         
         if(e.getSource() == adminNewsController.getViewAdminNews().getBtnAceptar()){
@@ -2664,6 +2702,72 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             viewMyAccount.setVisible(true);
         }
                 
+        //---------------- Screen news --------------------------------------
+        if(e.getSource() == viewNews.getBtnBack()){
+            viewNews.setVisible(false);
+            viewPrincipal.setVisible(true);
+            
+            try{
+                viewPrincipal.showMostViewedNews();
+            }catch(Exception ex){
+                System.out.println(ex);
+            }
+            
+            try{
+                viewPrincipal.showLastNews();
+            }catch(Exception ex){
+                System.out.println(ex);
+            }
+            
+            this.newsOpened = false;
+        }
+        
+        if(e.getSource() == viewNews.getBtnRating()){
+            viewNews.setVisible(false);
+            ratingModel.setTitle(viewNews.getNewsInfo().getTitle());
+            ratingModel.setIdNews(viewNews.getNewsInfo().getIdNews());          
+            viewRating.setVisible(true);
+        }
+        
+        if(e.getSource() == viewNews.getBtnComment()){
+            viewNews.setVisible(false);
+            viewPrincipal.setVisible(true);
+        }
+        
+        //---------------- Screen Rating --------------------------------------
+        if(e.getSource() == viewRating.getBtnBack()){
+            viewRating.setVisible(false);
+            viewNews.setVisible(true);
+        }
+        
+        if(e.getSource() == viewRating.getBtnConfirm()){
+            viewRating.setVisible(false);
+            viewNews.setVisible(true);
+        }
+        
+        if(e.getSource() == viewRating.getBtnStar1()){
+            viewRating.setRatingIcons(1);
+        }
+        
+        if(e.getSource() == viewRating.getBtnStar2()){
+            viewRating.setRatingIcons(2);
+        }
+        
+        if(e.getSource() == viewRating.getBtnStar3()){
+            viewRating.setRatingIcons(3);
+        }
+        
+        
+        if(e.getSource() == viewRating.getBtnStar4()){
+            viewRating.setRatingIcons(4);
+        }
+        
+        if(e.getSource() == viewRating.getBtnStar5()){
+            viewRating.setRatingIcons(5);
+        }
+        
+        
+        
         //-------------- SCREEN AdminPerson -----------------------
         if(e.getSource() == viewAdminPerson.getBtnBackAdminPerson()){
             viewAdminPerson.cleanAll();
@@ -2888,6 +2992,35 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 modelAdminParameters.setName(name);
                 adminParametersController.fillUpdateAdminParameters();
             }
+        }
+        
+        if(e.getSource() == viewPrincipal.getTblLastNews().getSelectionModel() && !newsOpened){
+            if( viewPrincipal.getTblLastNews().getRowCount() > 0){
+                int index = viewPrincipal.getTblLastNews().getSelectedRow();
+                News selectedNews = viewPrincipal.getController().getCargador().getLastNews().get(index);
+                int newsIndex = selectedNews.getIdNews();
+                this.modelNews.setSelectedNews(this.viewNews, newsIndex);
+                this.viewPrincipal.setVisible(false);
+                this.viewNews.setVisible(true);
+                this.newsOpened = true;
+            }
+            
+            
+            
+        }
+        
+        if(e.getSource() == viewPrincipal.getTblMostViewedNews().getSelectionModel() && !newsOpened){
+            if( viewPrincipal.getTblMostViewedNews().getRowCount() > 0){
+                int index = viewPrincipal.getTblMostViewedNews().getSelectedRow();
+                News selectedNews = viewPrincipal.getController().getCargador().getMostViewedNews().get(index);
+                int newsIndex = selectedNews.getIdNews();
+                this.modelNews.setSelectedNews(this.viewNews, newsIndex);
+                this.viewPrincipal.setVisible(false);
+                this.viewNews.setVisible(true);
+                this.newsOpened = true;
+            }
+            
+            
         }
     }
   
