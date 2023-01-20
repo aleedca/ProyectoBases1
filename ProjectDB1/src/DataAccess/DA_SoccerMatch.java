@@ -53,10 +53,6 @@ public class DA_SoccerMatch {
     }
     
     
-    
-    
-    
-    
     public static ArrayList<TeamXGroup> getTeamXGroup() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
