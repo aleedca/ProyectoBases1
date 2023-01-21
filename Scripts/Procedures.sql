@@ -1394,7 +1394,7 @@ BEGIN
         SELECT Person.idPerson 
         INTO vnIdPerson
         FROM Person
-        WHERE Person.identification = identification;
+        WHERE Person.identification = pidentification;
     EXCEPTION
     WHEN OTHERS THEN
         ROLLBACK;
