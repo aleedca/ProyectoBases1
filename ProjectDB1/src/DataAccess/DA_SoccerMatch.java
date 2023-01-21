@@ -51,6 +51,26 @@ public class DA_SoccerMatch {
 
         sql.execute();
     }
+
+    
+    public static void updateSoccerMatch(int idPlayer, int YellowCards, int redCards, int offsides, int corners, int saves, int goals) throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        PreparedStatement sql = conn.prepareStatement("{call updateSoccerMatch(?,?,?,?,?,?,?)}");
+        //INPUT
+        sql.setInt(1, idPlayer);
+        sql.setInt(2, YellowCards);
+        sql.setInt(3, redCards);
+        sql.setInt(4, offsides);
+        sql.setInt(5, corners);
+        sql.setInt(6, saves);
+        sql.setInt(7, goals);
+
+        sql.execute();
+    }
+    
+    
+    
     
     
     public static ArrayList<TeamXGroup> getTeamXGroup() throws SQLException {

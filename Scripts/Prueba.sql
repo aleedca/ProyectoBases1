@@ -12,6 +12,21 @@ BEGIN
     COMMIT;
 END insertTeamXGroup;
 
+--- SoccerMatch
+CREATE OR REPLACE PROCEDURE getSoccerMatch (pidSoccerMatch IN NUMBER, curSoccerMatch OUT SYS_REFCURSOR) 
+AS
+vnTeam1 VARCHAR2(32);
+vnTeam2 VARCHAR2(32);
+BEGIN
+    SELECT vnTeam1
+
+
+    OPEN curSoccerMatch FOR
+    SELECT descriptionGroupEvent, name, nameStadium
+    FROM TeamXGroup;
+END getSoccerMatch;
+
+
 
 CREATE OR REPLACE PROCEDURE validateNumberOfUnits(codResult OUT NUMBER) IS
 vnTotalTeam NUMBER(10);
