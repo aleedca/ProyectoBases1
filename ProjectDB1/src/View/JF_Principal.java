@@ -110,7 +110,6 @@ public class JF_Principal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         lblWelcome = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
         btnSignUp = new javax.swing.JButton();
         btnAccount = new javax.swing.JButton();
@@ -122,6 +121,8 @@ public class JF_Principal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLastNews = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1285, 752));
@@ -187,20 +188,6 @@ public class JF_Principal extends javax.swing.JFrame {
         });
         pnlBackground.add(btnLogin);
         btnLogin.setBounds(940, 70, 120, 30);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
-        );
-
-        pnlBackground.add(jPanel1);
-        jPanel1.setBounds(40, 220, 440, 450);
 
         btnExit.setBackground(new java.awt.Color(86, 4, 44));
         btnExit.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -371,6 +358,28 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(jPanel2);
         jPanel2.setBounds(550, 480, 690, 200);
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Equipo1", "Hora", "Equipo2"
+            }
+        ));
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(1).setMinWidth(50);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(50);
+        }
+
+        pnlBackground.add(jScrollPane2);
+        jScrollPane2.setBounds(60, 230, 410, 450);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -426,11 +435,12 @@ public class JF_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JTable tblLastNews;

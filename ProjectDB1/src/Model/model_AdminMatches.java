@@ -9,10 +9,12 @@ import DataAccess.DA_SoccerMatch;
 import Objects.Continent;
 import Objects.CountryTeam;
 import Objects.Group;
+import Objects.Match;
 import Objects.Stadium;
 import Objects.Team;
 import Objects.TeamXGroup;
 import View.JF_AdminOther;
+import View.JF_AdminScheduleMatch;
 import java.awt.Image;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
@@ -71,6 +74,8 @@ public class model_AdminMatches {
     private final JFileChooser file = new JFileChooser();
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");
     
+    //------------------------------------
+    private ArrayList<Match> matches;
     
     //BUILDER 
 
@@ -82,6 +87,8 @@ public class model_AdminMatches {
             this.countryTeams = DA_Catalogs.getCountryTeam();
             
             this.teamxgroup = DA_SoccerMatch.getTeamXGroup();
+            
+            this.matches = DA_SoccerMatch.getTodayMatches();
 
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -124,14 +131,32 @@ public class model_AdminMatches {
     
     public boolean insertMatch(){
         try {
+            int enoughPlayersTeam1 = DA_SoccerMatch.validateEnoughPlayers(team1);
+            int enoughPlayersTeam2 = DA_SoccerMatch.validateEnoughPlayers(team2);
             
-            this.resultInsertMatch = DA_SoccerMatch.insertSoccerMatch(stadium, date, hour);
-            System.out.println("IDSOCCERTEAM: "+this.resultInsertMatch);
-            
-            if(this.resultInsertMatch != -1){
-                DA_SoccerMatch.insertPlayerXMatchXTeam(resultInsertMatch, team1, team2);
-                return true;
+            if(enoughPlayersTeam1 == 0 && enoughPlayersTeam2 == 0){
+                this.resultInsertMatch = DA_SoccerMatch.insertSoccerMatch(stadium, date, hour);
+                System.out.println("IDSOCCERTEAM: "+this.resultInsertMatch);
+
+                if(this.resultInsertMatch != -1){
+                    DA_SoccerMatch.insertPlayerXMatchXTeam(resultInsertMatch, team1, team2);
+                    return true;
+                }
             }
+            else{
+                System.out.println("Entré al error de que no hay suficientes players");
+                if(enoughPlayersTeam1 == 1 && enoughPlayersTeam2 == 0){
+                    JOptionPane.showMessageDialog(null, "El equipo 1 no tiene suficientes jugadores registrados. El mínimo es 5 jugadores por equipo.", "Error", JOptionPane.WARNING_MESSAGE);
+                }
+                else if(enoughPlayersTeam1 == 1 && enoughPlayersTeam2 == 1){
+                    JOptionPane.showMessageDialog(null, "Ninguno de los dos equipos tiene suficientes jugadores registrados. El mínimo es 5 jugadores por equipo.", "Error", JOptionPane.WARNING_MESSAGE);
+                }
+                else if(enoughPlayersTeam1 == 0 && enoughPlayersTeam2 == 1){
+                    JOptionPane.showMessageDialog(null, "El equipo 2 no tiene suficientes jugadores registrados. El mínimo es 5 jugadores por equipo.", "Error", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+            
+            
               
         } catch (SQLException ex) {
             System.out.println(ex);
