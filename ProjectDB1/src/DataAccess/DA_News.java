@@ -7,6 +7,7 @@ package DataAccess;
 
 
 import Objects.News;
+import Objects.NewsComment;
 import Objects.NewsStatus;
 import Objects.NewsType;
 import java.math.BigDecimal;
@@ -91,6 +92,39 @@ public class DA_News {
         return news;
     }
     
+    public static void commentNews(int idNews, String username, String comment) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call insertNewsComment(?,?,?)}");
+        sql.setInt(1, idNews);
+        sql.setString(2, username);
+        sql.setString(3, comment);
+        sql.execute();
+        
+    }
+    
+    public static ArrayList<NewsComment> getNewsComments(int idNews) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getNewsComments(?,?)}");
+        sql.setInt(1, idNews);
+        sql.registerOutParameter(2, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(2);
+        ArrayList<NewsComment> newsCommentsArr = new ArrayList<>();
+        while(rs.next()){
+            NewsComment newsComment = new NewsComment();
+            
+            newsComment.setUsername(rs.getString("username"));
+            newsComment.setCommentBody(rs.getString("textnewscomment"));
+            newsCommentsArr.add(newsComment);
+        }
+
+        return newsCommentsArr;
+        
+    }
+    
     public static void getAverageNewsRating(News pNews) throws SQLException{
         Connection conn = sysConnection.getConexion();
         
@@ -107,6 +141,17 @@ public class DA_News {
             result = 0;
         }
         pNews.setRateNumber(result);
+    }
+    
+    public static void rateANews(String username, int idNews, int rate) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call insertRating(?,?,?)}");
+        sql.setString(1, username);
+        sql.setInt(2, idNews);
+        sql.setInt(3, rate);
+        sql.execute();
+        
     }
     
     public static ArrayList<News> getInfoNews(int idNews) throws SQLException {

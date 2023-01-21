@@ -973,10 +973,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             }
             
             
-            if(modelRegister.identificationAlreadyExists(viewRegister.getTxtIdentification())== true){
+            /*if(modelRegister.identificationAlreadyExists(viewRegister.getTxtIdentification())== true){
                 JOptionPane.showMessageDialog(null, "Identificación ya existente. Debe ingresar una identificación diferente", "Error", JOptionPane.WARNING_MESSAGE);
                 flagRegister = false;
-            }
+            }*/
             
         }
     }//END REGISTERVALIDATONS
@@ -1024,14 +1024,14 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 viewPrincipal.getBtnAccount().setVisible(true);
                 viewPrincipal.getBtnExit().setVisible(true);
 
-                viewPrincipal.setTxtLblWelcome("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
+                viewPrincipal.setTxtLblWelcome("BIENVENIDO/A"+" "+modelLogin.getUsernameLogin());
                 viewPrincipal.getLblWelcome().setVisible(true);
 
                 if(modelLogin.validateUserType() == true){ //Es true -> Admin
                     //Frame de Admin                         
                     viewPrincipal.getBtnOpAdm().setVisible(true);
                 }
-
+                modelLogin.setLogged(true);
                 viewPrincipal.setVisible(true);   
 
             }else{
@@ -1203,10 +1203,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 flagAdminPerson = false;
             }
             
-            if(modelRegister.identificationAlreadyExists(viewAdminPerson.getTxtIdentification())== true){
+            /*if(modelRegister.identificationAlreadyExists(viewAdminPerson.getTxtIdentification())== true){
                 JOptionPane.showMessageDialog(null, "Identificación ya existente. Debe ingresar una identificación diferente", "Error", JOptionPane.WARNING_MESSAGE);
                 flagAdminPerson = false;
-            }
+            }*/
             
             
         }//VALIDATE EMPTY FIELDS
@@ -2371,6 +2371,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
               
         if(e.getSource() == viewPrincipal.getBtnExit()){
             viewPrincipal.setVisible(false);
+            modelLogin.setLogged(false);
             
             viewPrincipal.getLblWelcome().setVisible(false);
             viewPrincipal.getBtnRequests().setVisible(false);
@@ -2744,47 +2745,71 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         if(e.getSource() == viewNews.getBtnRating()){
-            viewNews.setVisible(false);
-            ratingModel.setTitle(viewNews.getNewsInfo().getTitle());
-            ratingModel.setIdNews(viewNews.getNewsInfo().getIdNews());          
-            viewRating.setVisible(true);
+            if(modelLogin.isLogged()){
+                viewNews.setVisible(false);
+                ratingModel.setNews(viewNews.getNewsInfo());
+                viewRating.setTitle(viewNews.getNewsInfo().getTitle());        
+                viewRating.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(viewNews, "Error: para calificar una noticia debe estar loggeado!");
+            }
+            
         }
         
         if(e.getSource() == viewNews.getBtnComment()){
-            viewNews.setVisible(false);
-            viewPrincipal.setVisible(true);
+            if(modelLogin.isLogged()){
+                String textComment = viewNews.getTxtComment().getText();
+                String username = this.modelLogin.getUsernameLogin();
+                if(!"".equals(textComment)){
+                    modelNews.insertCommentNews(username, textComment);
+                    JOptionPane.showMessageDialog(viewNews, "Se ha agregado tu comentario!");
+                    modelNews.loadNewsComment(viewNews);
+                    viewNews.getTxtComment().setText("");
+                }else{
+                    JOptionPane.showMessageDialog(viewNews, "Error: No puede ingresar un comentario vacío!");
+                }
+            }else{
+                JOptionPane.showMessageDialog(viewNews, "Error: para comentar una noticia debe estar loggeado!");
+                viewNews.getTxtComment().setText("");
+            }
         }
         
         //---------------- Screen Rating --------------------------------------
         if(e.getSource() == viewRating.getBtnBack()){
             viewRating.setVisible(false);
             viewNews.setVisible(true);
+            ratingModel.setRate(modelLogin.getUsernameLogin(),viewRating, 0);
         }
         
-        if(e.getSource() == viewRating.getBtnConfirm()){
-            viewRating.setVisible(false);
-            viewNews.setVisible(true);
+        if(e.getSource() == viewRating.getBtnConfirm() && modelLogin.isLogged()){
+            if(ratingModel.submitRate()){
+                this.modelNews.setSelectedNews(this.viewNews, ratingModel.getNews().getIdNews());
+                viewRating.setVisible(false);
+                viewNews.setVisible(true);
+                ratingModel.setRate(modelLogin.getUsernameLogin(),viewRating, 0);
+            }else{
+                JOptionPane.showMessageDialog(viewRating, "Error: la calificación debe ser como mínimo de una estrella!");
+            }
         }
         
         if(e.getSource() == viewRating.getBtnStar1()){
-            viewRating.setRatingIcons(1);
+            ratingModel.setRate(modelLogin.getUsernameLogin(),viewRating, 1);
         }
         
         if(e.getSource() == viewRating.getBtnStar2()){
-            viewRating.setRatingIcons(2);
+            ratingModel.setRate(modelLogin.getUsernameLogin(),viewRating, 2);
         }
         
         if(e.getSource() == viewRating.getBtnStar3()){
-            viewRating.setRatingIcons(3);
+            ratingModel.setRate(modelLogin.getUsernameLogin(), viewRating, 3);
         }
         
-        
         if(e.getSource() == viewRating.getBtnStar4()){
-            viewRating.setRatingIcons(4);
+            ratingModel.setRate(modelLogin.getUsernameLogin(), viewRating, 4);
         }
         
         if(e.getSource() == viewRating.getBtnStar5()){
-            viewRating.setRatingIcons(5);
+           ratingModel.setRate(modelLogin.getUsernameLogin(), viewRating, 5);
         }
         
         
@@ -3045,21 +3070,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        /*if(e.getSource() == adminNewsController.getViewAdminNews().getTblNoticias().getSelectionModel() && flagEditNews){
-            if(adminNewsController.getViewAdminNews().getTblNoticias().getRowCount() > 0){
-                int index = (int) adminNewsController.getViewAdminNews().getTblNoticias().getValueAt(adminNewsController.getViewAdminNews().getTblNoticias().getSelectedRow(),0);
-                modelNews.setIdNews(index);
-                adminNewsController.fillUpdateAdminNews(index);
-            }
-        }*/
-        
-        /*if(e.getSource() == adminParametersController.getViewAdminParameters().getTblParametros().getSelectionModel() && flagEditParameter){
-            if(adminParametersController.getViewAdminParameters().getTblParametros().getRowCount() > 0){
-                String name = (String) adminParametersController.getViewAdminParameters().getTblParametros().getValueAt(adminNewsController.getViewAdminNews().getTblNoticias().getSelectedRow(),0);
-                modelAdminParameters.setName(name);
-                adminParametersController.fillUpdateAdminParameters();
-            }
-        }*/
         
         if(e.getSource() == viewPrincipal.getTblLastNews().getSelectionModel() && !newsOpened){
             if( viewPrincipal.getTblLastNews().getRowCount() > 0){
@@ -3067,13 +3077,11 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 News selectedNews = viewPrincipal.getController().getCargador().getLastNews().get(index);
                 int newsIndex = selectedNews.getIdNews();
                 this.modelNews.setSelectedNews(this.viewNews, newsIndex);
+                this.modelNews.loadNewsComment(this.viewNews);
                 this.viewPrincipal.setVisible(false);
                 this.viewNews.setVisible(true);
                 this.newsOpened = true;
             }
-            
-            
-            
         }
         
         if(e.getSource() == viewPrincipal.getTblMostViewedNews().getSelectionModel() && !newsOpened){
@@ -3082,12 +3090,11 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 News selectedNews = viewPrincipal.getController().getCargador().getMostViewedNews().get(index);
                 int newsIndex = selectedNews.getIdNews();
                 this.modelNews.setSelectedNews(this.viewNews, newsIndex);
+                this.modelNews.loadNewsComment(this.viewNews);
                 this.viewPrincipal.setVisible(false);
                 this.viewNews.setVisible(true);
                 this.newsOpened = true;
             }
-            
-            
         }
     }
   

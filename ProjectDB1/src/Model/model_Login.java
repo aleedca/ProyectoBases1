@@ -16,6 +16,7 @@ public class model_Login {
     private static String usernameLogin;
     private String passwordLogin;
     private int resultUserType;
+    private boolean Logged = false;
     
     
     //--------- METODOS -------------------
@@ -89,6 +90,14 @@ public class model_Login {
 
     public static String getUsernameLogin() {
         return usernameLogin;
+    }
+
+    public boolean isLogged() {
+        return Logged;
+    }
+
+    public void setLogged(boolean Logged) {
+        this.Logged = Logged;
     }
 
     public void setUsernameLogin(String usernameLogin) {

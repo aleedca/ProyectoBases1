@@ -5,6 +5,7 @@
 package Model;
 import Objects.News;
 import DataAccess.DA_News;
+import Objects.NewsComment;
 import Objects.NewsStatus;
 import Objects.NewsType;
 import View.JF_AdminNews;
@@ -18,10 +19,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Image;
 import java.util.Date;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -54,6 +57,8 @@ public class model_News {
     private ArrayList<NewsType> newsTypeArr;
     private News selectedNews;
     
+    private ArrayList<NewsComment> comments;
+    
     private final JFileChooser file = new JFileChooser();
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");
 
@@ -75,6 +80,35 @@ public class model_News {
         } catch (SQLException ex) {
            System.out.println(ex);
         }
+    }
+    
+    public void loadNewsComment(JF_News newsView){
+        try {
+            this.comments = DA_News.getNewsComments(this.selectedNews.getIdNews());
+            
+            DefaultTableModel modelTable = (DefaultTableModel) newsView.getTblComments().getModel();
+            modelTable.setRowCount(0);
+            
+            for(int i = 0; i < comments.size(); i++){
+                Vector row = new Vector();
+                
+                row.add(comments.get(i).getUsername());
+                row.add(comments.get(i).getCommentBody());
+                modelTable.addRow(row);
+            }
+        } catch (SQLException ex) {
+           System.out.println(ex);
+        }
+    }
+    
+    public boolean insertCommentNews(String username, String commentBody){
+        try {
+            DA_News.commentNews(this.selectedNews.getIdNews(), username, commentBody);
+            return true;
+        } catch (SQLException ex) {
+           System.out.println(ex);
+        }
+        return false;
     }
     
     public void loadNewsStatusArr(){

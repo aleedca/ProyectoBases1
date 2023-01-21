@@ -4,31 +4,48 @@
  */
 package Model;
 
+import DataAccess.DA_News;
+import Objects.News;
 import View.JF_Rating;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Isaac
  */
 public class model_Rating {
-    
+    private String username;
     private int rate = 0;
-    private int idNews;
-    private String title;
+    private News news;
+    private DA_News dataAccessNews = new DA_News();
 
     public model_Rating() {
     }
 
-    public model_Rating(int rate, String title) {
+    public model_Rating(int rate, News news) {
         this.rate = rate;
-        this.title = title;
+        this.news = news;
     }
 
     public int getRate() {
         return rate;
     }
+    
+    public boolean submitRate(){
+        try{
+            if(this.rate > 0){
+                this.dataAccessNews.rateANews(this.username, this.news.getIdNews(), this.rate);
+                return true;
+            }            
+        }catch(SQLException ex){
+            System.out.println(ex);
+        }
+        return false;
+    }
 
-    public void setRate(JF_Rating ratingView, int rate) {
+    public void setRate(String username, JF_Rating ratingView, int rate) {
+        this.username = username;
         this.rate = rate;
         selectARating(ratingView);
     }
@@ -37,21 +54,11 @@ public class model_Rating {
         ratingView.setRatingIcons(this.rate);
     }
 
-    public String getTitle() {
-        return title;
+    public News getNews() {
+        return news;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setNews(News news) {
+        this.news = news;
     }
-
-    public int getIdNews() {
-        return idNews;
-    }
-
-    public void setIdNews(int idNews) {
-        this.idNews = idNews;
-    }
-    
-    
 }

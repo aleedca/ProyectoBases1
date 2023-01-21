@@ -79,6 +79,10 @@ public class JF_Rating extends javax.swing.JFrame {
         
     }
 
+    public void setTitle(String title){
+        this.lblTitleNews.setText(title);
+    }
+    
     public JLabel getLblTitleNews() {
         return lblTitleNews;
     }
@@ -188,7 +192,7 @@ public class JF_Rating extends javax.swing.JFrame {
         lblTitle.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 36)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("RATING");
+        lblTitle.setText("Calificación");
         jPanel1.add(lblTitle);
         lblTitle.setBounds(90, 10, 280, 60);
 
