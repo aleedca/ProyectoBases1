@@ -198,6 +198,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         fillContinent();
         viewPrincipal.showMostViewedNews();
         viewPrincipal.showLastNews();
+        modelAdminMatches.fillTodayMatches(viewPrincipal);
 
     }
     
@@ -3038,6 +3039,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             
             if(modelAdminMatches.insertMatch()){
                 JOptionPane.showMessageDialog(null, "Se ha registrado el partido con éxito.");
+                modelAdminMatches.fillTodayMatches(viewPrincipal);
             }else{
                 JOptionPane.showMessageDialog(null, "No se logró registrar el partido", "Error", JOptionPane.WARNING_MESSAGE);
             }

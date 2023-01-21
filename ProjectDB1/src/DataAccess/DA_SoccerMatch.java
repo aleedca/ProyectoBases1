@@ -187,7 +187,7 @@ public class DA_SoccerMatch {
     public static ArrayList<Match> getTodayMatches() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
-        CallableStatement sql = conn.prepareCall("{call validateEnoughPlayers(?,?)}");
+        CallableStatement sql = conn.prepareCall("{call getTodaySoccerMatches(?)}");
         
         //Output parameter
         sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
@@ -199,7 +199,7 @@ public class DA_SoccerMatch {
         while(rs.next()){
             if("".equals(tmpMatch.getNameTeam1())){
                tmpMatch.setNameTeam1(rs.getString("nameteam"));
-               tmpMatch.setHour(rs.getString("datehour").substring(12));
+               tmpMatch.setHour(rs.getString("datehour").substring(11));
             }else if(!"".equals(tmpMatch.getNameTeam1()) && "".equals(tmpMatch.getNameTeam2())){
                tmpMatch.setNameTeam2(rs.getString("nameteam"));
                todayMatches.add(tmpMatch);

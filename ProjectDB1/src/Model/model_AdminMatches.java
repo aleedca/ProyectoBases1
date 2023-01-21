@@ -15,9 +15,11 @@ import Objects.Team;
 import Objects.TeamXGroup;
 import View.JF_AdminOther;
 import View.JF_AdminScheduleMatch;
+import View.JF_Principal;
 import java.awt.Image;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -26,6 +28,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -75,7 +78,7 @@ public class model_AdminMatches {
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");
     
     //------------------------------------
-    private ArrayList<Match> matches;
+    private ArrayList<Match> todayMatches;
     
     //BUILDER 
 
@@ -88,13 +91,26 @@ public class model_AdminMatches {
             
             this.teamxgroup = DA_SoccerMatch.getTeamXGroup();
             
-            this.matches = DA_SoccerMatch.getTodayMatches();
+            this.todayMatches = DA_SoccerMatch.getTodayMatches();
 
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
 
+    public void fillTodayMatches(JF_Principal viewPrincipal) {
+        DefaultTableModel modelTable = (DefaultTableModel) viewPrincipal.getTblTodayMatches().getModel();
+        modelTable.setRowCount(0);
+        
+        for(int i = 0; i < this.todayMatches.size(); i++){
+                Vector row = new Vector();
+                
+                row.add(this.todayMatches.get(i).getNameTeam1());
+                row.add(this.todayMatches.get(i).getHour());
+                row.add(this.todayMatches.get(i).getNameTeam2());
+                modelTable.addRow(row);
+            }
+    }
     
      //----------------------------------------------------------------------
     

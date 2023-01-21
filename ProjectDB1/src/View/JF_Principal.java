@@ -43,6 +43,11 @@ public class JF_Principal extends javax.swing.JFrame {
     
 
     //GETTERS
+    
+
+    public JTable getTblTodayMatches() {
+        return tblTodayMatches;
+    }
 
     public JTable getTblLastNews() {
         return tblLastNews;
@@ -122,7 +127,7 @@ public class JF_Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLastNews = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblTodayMatches = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1285, 752));
@@ -358,7 +363,7 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(jPanel2);
         jPanel2.setBounds(550, 480, 690, 200);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblTodayMatches.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -368,13 +373,21 @@ public class JF_Principal extends javax.swing.JFrame {
             new String [] {
                 "Equipo1", "Hora", "Equipo2"
             }
-        ));
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(1).setMinWidth(50);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(50);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblTodayMatches.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tblTodayMatches);
+        if (tblTodayMatches.getColumnModel().getColumnCount() > 0) {
+            tblTodayMatches.getColumnModel().getColumn(1).setMinWidth(70);
+            tblTodayMatches.getColumnModel().getColumn(1).setPreferredWidth(70);
+            tblTodayMatches.getColumnModel().getColumn(1).setMaxWidth(70);
         }
 
         pnlBackground.add(jScrollPane2);
@@ -440,10 +453,10 @@ public class JF_Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JTable tblLastNews;
     private javax.swing.JTable tblMostViewedNews;
+    private javax.swing.JTable tblTodayMatches;
     // End of variables declaration//GEN-END:variables
 }
