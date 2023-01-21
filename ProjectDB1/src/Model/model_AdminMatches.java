@@ -81,10 +81,6 @@ public class model_AdminMatches {
             
             this.countryTeams = DA_Catalogs.getCountryTeam();
             
-            this.stadiums = DA_Catalogs.getStadium();
-            
-            this.groups = DA_Catalogs.getGroup();
-            
             this.teamxgroup = DA_SoccerMatch.getTeamXGroup();
 
         } catch (SQLException ex) {
@@ -117,23 +113,31 @@ public class model_AdminMatches {
     
     
     public void fillMatch(){
-    
-    
+        try {
+            this.stadiums = DA_Catalogs.getStadium();
+            
+            this.groups = DA_Catalogs.getGroup();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
     
-    public void insertMatch(){
-        //CAMBIAR A BOOLEAN
+    public boolean insertMatch(){
         try {
             
             this.resultInsertMatch = DA_SoccerMatch.insertSoccerMatch(stadium, date, hour);
+            System.out.println("IDSOCCERTEAM: "+this.resultInsertMatch);
             
             if(this.resultInsertMatch != -1){
                 DA_SoccerMatch.insertPlayerXMatchXTeam(resultInsertMatch, team1, team2);
+                return true;
             }
               
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+        
+        return false;
     }
     
     public void insertTeam(){   
@@ -144,6 +148,18 @@ public class model_AdminMatches {
         }
     }
     
+    public void generateRaffle(){
+        try {
+            int teams =  DA_SoccerMatch.getTeamUnits();
+            int totalGroup = teams/4;
+            
+            DA_SoccerMatch.generateRaffle(totalGroup);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(model_AdminMatches.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
     
     
     

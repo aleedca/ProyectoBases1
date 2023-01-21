@@ -248,6 +248,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         //AdminScheduleMatch
         viewScheduleMatch.getBtnBack().addActionListener(this);
+        viewScheduleMatch.getBtnSave().addActionListener(this);
         
         viewScheduleMatch.getCbmTeam1().addItemListener(this);
         viewScheduleMatch.getCbmTeam2().addItemListener(this);
@@ -468,66 +469,70 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
     }
     
-    private void fillTeamsAdMatches(int idGroup, boolean flag1, boolean flag2){
+    private void fillTeam1(int idGroup){
+        viewScheduleMatch.getCbmTeam1().setEnabled(true);
         viewScheduleMatch.getCbmTeam1().removeAllItems();
-        viewScheduleMatch.getCbmTeam2().removeAllItems();
         
         int idGroupArr, idTeamArr, idTeam;
         String nameTeam;
-        
-        viewScheduleMatch.getCbmTeam1().setEnabled(flag1);
-        viewScheduleMatch.getCbmTeam2().setEnabled(flag2);
-        
-        if(viewScheduleMatch.getCbmTeam1().isEnabled()){
-            viewScheduleMatch.getCbmTeam1().addItem("Seleccione Equipo");
-            
-            for(int i=0; i<modelAdminMatches.getTeamxgroup().size();i++){
-                
-                idGroupArr = modelAdminMatches.getTeamxgroup().get(i).getIdGroup();
-                
-                if(idGroupArr == idGroup){
-                    
-                    idTeamArr = modelAdminMatches.getTeamxgroup().get(i).getIdTeam();
-                    
-                    for(int j=0; j<modelAdminPerson.getTeams().size();j++){
-                        nameTeam = modelAdminPerson.getTeams().get(j).getNameTeam();
-                        idTeam = modelAdminPerson.getTeams().get(j).getIdTeam();
-                        
-                        if(idTeamArr == idTeam){
-                            viewScheduleMatch.getCbmTeam1().addItem(nameTeam);
-                        }  
-                    }
+        viewScheduleMatch.getCbmTeam1().addItem("Seleccione Equipo");
+
+        for(int i=0; i<modelAdminMatches.getTeamxgroup().size();i++){
+
+            idGroupArr = modelAdminMatches.getTeamxgroup().get(i).getIdGroup();
+
+            if(idGroupArr == idGroup){
+
+                idTeamArr = modelAdminMatches.getTeamxgroup().get(i).getIdTeam();
+
+                for(int j=0; j<modelAdminPerson.getTeams().size();j++){
+                    nameTeam = modelAdminPerson.getTeams().get(j).getNameTeam();
+                    idTeam = modelAdminPerson.getTeams().get(j).getIdTeam();
+
+                    if(idTeamArr == idTeam){
+                        viewScheduleMatch.getCbmTeam1().addItem(nameTeam);
+                    }  
                 }
             }
-            
         }
+    }
+    
+    
+    private void fillTeam2(int idGroup){
+        viewScheduleMatch.getCbmTeam2().setEnabled(true);
+        viewScheduleMatch.getCbmTeam2().removeAllItems();
+
+        int idGroupArr, idTeamArr, idTeam;
+        String nameTeam;
         
         String nameTeamSelected = viewScheduleMatch.getCbmTeam1().getSelectedItem().toString();
-        if(viewScheduleMatch.getCbmTeam2().isEnabled()){
-            viewScheduleMatch.getCbmTeam2().addItem("Seleccione Equipo");
-            
-            for(int i=0; i<modelAdminMatches.getTeamxgroup().size();i++){
-                
-                idGroupArr = modelAdminMatches.getTeamxgroup().get(i).getIdGroup();
-                
-                if(idGroupArr == idGroup){
-                    
-                    idTeamArr = modelAdminMatches.getTeamxgroup().get(i).getIdTeam();
-                    
-                    for(int j=0; j<modelAdminPerson.getTeams().size();j++){
-                        nameTeam = modelAdminPerson.getTeams().get(j).getNameTeam();
-                        idTeam = modelAdminPerson.getTeams().get(j).getIdTeam();
-                        
-                        if(idTeamArr == idTeam && !nameTeam.equals(nameTeamSelected)){
-                            viewScheduleMatch.getCbmTeam2().addItem(nameTeam);
-                        }  
-                    }
+        
+        viewScheduleMatch.getCbmTeam2().addItem("Seleccione Equipo");
+
+        for(int i=0; i<modelAdminMatches.getTeamxgroup().size();i++){
+
+            idGroupArr = modelAdminMatches.getTeamxgroup().get(i).getIdGroup();
+
+            if(idGroupArr == idGroup){
+
+                idTeamArr = modelAdminMatches.getTeamxgroup().get(i).getIdTeam();
+
+                for(int j=0; j<modelAdminPerson.getTeams().size();j++){
+                    nameTeam = modelAdminPerson.getTeams().get(j).getNameTeam();
+                    idTeam = modelAdminPerson.getTeams().get(j).getIdTeam();
+
+                    if(idTeamArr == idTeam && !nameTeam.equals(nameTeamSelected)){
+                        viewScheduleMatch.getCbmTeam2().addItem(nameTeam);
+                    }  
                 }
             }
-            
         }
-         
+        
+        
+    
+    
     }
+    
     
     private void fillTeams(){
         viewAdminPerson.getCmbTeam().removeAllItems();
@@ -2137,11 +2142,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         //PERSON -> ADMINPERSON
         if(e.getSource() == viewAdminPerson.getCmbPerson()){
             if(e.getStateChange() == ItemEvent.SELECTED){
-                String firstName;
-                String secondName;
-                String firstLastName;
-                String secondLastName;
-                String fullName;
+                String firstName, secondName, firstLastName, secondLastName, fullName;
                 String choice = viewAdminPerson.getSelectedPerson();
                 
                 
@@ -2237,7 +2238,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                         
                         if(choice.equals(nameGroup)){
                             int idGroup = modelAdminMatches.getGroups().get(i).getIdGroup();
-                            fillTeamsAdMatches(idGroup, true, false);  
+                            fillTeam1(idGroup);
                         }                        
                     }
                     
@@ -2256,27 +2257,21 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         if(e.getSource() == viewScheduleMatch.getCbmTeam1()){
             if(e.getStateChange() == ItemEvent.SELECTED){
                 String choiceGroup = viewScheduleMatch.getCbmGroup().getSelectedItem().toString();
-                String choice = viewScheduleMatch.getCbmTeam1().getSelectedItem().toString();
-                
-                if(!"Seleccione Grupo".equals(choiceGroup)){                    
-                    for(int i=0; i<modelAdminMatches.getGroups().size();i++){
-                        String nameGroup = modelAdminMatches.getGroups().get(i).getDescriptionGroup();
-                        
-                        if(choiceGroup.equals(nameGroup)){
-                            int idGroup = modelAdminMatches.getGroups().get(i).getIdGroup();
-                            
-                            if(!"Seleccione Equipo".equals(choice)){
-                                fillTeamsAdMatches(idGroup, true, true);
-                            }  
-                        }                        
-                    }           
-                }else{
-                    viewScheduleMatch.getCbmTeam2().removeAllItems();
-                    viewScheduleMatch.getCbmTeam2().setEnabled(false);         
-                }            
+                String choice = viewScheduleMatch.getCbmTeam1().getSelectedItem().toString();                                
+                for(int i=0; i<modelAdminMatches.getGroups().size();i++){
+                    String nameGroup = modelAdminMatches.getGroups().get(i).getDescriptionGroup();
+
+                    if(choiceGroup.equals(nameGroup)){
+                        int idGroup = modelAdminMatches.getGroups().get(i).getIdGroup();
+
+                        if(!"Seleccione Equipo".equals(choice)){
+                            fillTeam2(idGroup);
+                        }
+
+                    }                        
+                }           
             }     
         }
-        
         
         //CONTINENT -> ADMIN OTHER
         if(e.getSource() == viewAdminOther.getCmbContinent()){
@@ -2948,8 +2943,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         //-------------- SCREEN AdminMatches -----------------------
         if(e.getSource() == viewAdminMatches.getBtnGroupRaffle()){
             if(validateTeamExist() == true){
-                //Llamar al procedimiento de rifar grupos
-                System.out.println("Hacer rifa");
+                modelAdminMatches.generateRaffle();
             }  
         }
         
@@ -2958,6 +2952,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             if(validateGroupExist()== true && validateTeamExist()==true){
                 viewAdminMatches.setVisible(false);
                 
+                modelAdminMatches.fillMatch();
                 fillGroup();
                 fillStadiums();
         
@@ -2984,11 +2979,56 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             viewAdminMatches.setVisible(true);
         }
         
-        //-------------- SCREEN AdminMatches -----------------------
+        
+        if(e.getSource() == viewScheduleMatch.getBtnSave()){
+            modelAdminMatches.setDate(viewScheduleMatch.getTxtMatchDate().getText());
+            modelAdminMatches.setHour(viewScheduleMatch.getTxtMatchHour().getText());
+          
+            String nameStadium = viewScheduleMatch.getCbmStadium().getSelectedItem().toString();
+            String Team1 = viewScheduleMatch.getCbmTeam1().getSelectedItem().toString();
+            String Team2 = viewScheduleMatch.getCbmTeam2().getSelectedItem().toString();
+                    
+            for(int j=0; j<modelAdminPerson.getTeams().size();j++){
+                if(Team1.equals(modelAdminPerson.getTeams().get(j).getNameTeam())){
+                    modelAdminMatches.setTeam1(modelAdminPerson.getTeams().get(j).getIdTeam());
+                }
+                
+                if(Team2.equals(modelAdminPerson.getTeams().get(j).getNameTeam())){
+                    modelAdminMatches.setTeam2(modelAdminPerson.getTeams().get(j).getIdTeam());
+                }
+                   
+            }
+ 
+            for(int i=0; i<modelAdminMatches.getStadiums().size();i++){
+                if(nameStadium.equals(modelAdminMatches.getStadiums().get(i).getNameStadium())){
+                    modelAdminMatches.setStadium(modelAdminMatches.getStadiums().get(i).getIdStadium());
+                }
+            }
+            
+            System.out.println(modelAdminMatches.getStadium());
+            System.out.println(modelAdminMatches.getDate());
+            System.out.println(modelAdminMatches.getHour());
+            System.out.println(modelAdminMatches.getTeam1());
+            System.out.println(modelAdminMatches.getTeam2());
+            
+            if(modelAdminMatches.insertMatch()){
+                JOptionPane.showMessageDialog(null, "Se ha registrado el partido con éxito.");
+            }else{
+                JOptionPane.showMessageDialog(null, "No se logró registrar el partido", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+        
+        }
+        
+        //-------------- SCREEN AdminMatch -----------------------
         if(e.getSource() == viewAdminMatch.getBtnBack()){
             viewAdminMatch.setVisible(false);
             viewAdminMatches.setVisible(true);
         }
+        
+
+        
+        
+        
     }
         
     

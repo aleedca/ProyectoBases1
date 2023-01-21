@@ -6,6 +6,7 @@ package View;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 
 /**
  *
@@ -41,6 +42,30 @@ public class JF_AdminScheduleMatch extends javax.swing.JFrame {
     public JButton getBtnBack() {
         return btnBack;
     }
+
+    public JButton getBtnSave() {
+        return btnSave;
+    }
+
+    public void setBtnSave(JButton btnSave) {
+        this.btnSave = btnSave;
+    }
+
+    public JFormattedTextField getTxtMatchDate() {
+        return txtMatchDate;
+    }
+
+    public void setTxtMatchDate(JFormattedTextField txtMatchDate) {
+        this.txtMatchDate = txtMatchDate;
+    }
+
+    public JFormattedTextField getTxtMatchHour() {
+        return txtMatchHour;
+    }
+
+    public void setTxtMatchHour(JFormattedTextField txtMatchHour) {
+        this.txtMatchHour = txtMatchHour;
+    }
     
     
     
@@ -73,7 +98,7 @@ public class JF_AdminScheduleMatch extends javax.swing.JFrame {
         cbmStadium = new javax.swing.JComboBox<>();
         txtMatchDate = new javax.swing.JFormattedTextField();
         txtMatchHour = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,10 +156,8 @@ public class JF_AdminScheduleMatch extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Programar");
+        btnSave.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        btnSave.setText("Programar");
 
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
@@ -176,7 +199,7 @@ public class JF_AdminScheduleMatch extends javax.swing.JFrame {
                             .addComponent(txtMatchDate)
                             .addComponent(txtMatchHour)))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -213,7 +236,7 @@ public class JF_AdminScheduleMatch extends javax.swing.JFrame {
                     .addComponent(lblHour)
                     .addComponent(txtMatchHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
 
@@ -242,11 +265,11 @@ public class JF_AdminScheduleMatch extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cbmGroup;
     private javax.swing.JComboBox<String> cbmStadium;
     private javax.swing.JComboBox<String> cbmTeam1;
     private javax.swing.JComboBox<String> cbmTeam2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblDate;

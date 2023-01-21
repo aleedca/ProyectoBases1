@@ -25,7 +25,7 @@ public class DA_SoccerMatch {
     public static int insertSoccerMatch(int idStadium, String date, String hour) throws SQLException {
         Connection conn = sysConnection.getConexion();
         
-        CallableStatement sql = conn.prepareCall("{call insertSoccerMatch(?,?)}");
+        CallableStatement sql = conn.prepareCall("{call insertSoccerMatch(?,?,?)}");
         String dateHour = date+" "+hour;
         //Input parameters
         sql.setInt(1, idStadium);
@@ -67,6 +67,19 @@ public class DA_SoccerMatch {
         sql.setInt(7, goals);
 
         sql.execute();
+    }
+    
+    
+    public static int getTeamUnits() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call validateNumberOfUnits(?)}");
+        //Output parameter
+        sql.registerOutParameter(1, OracleTypes.NUMBER);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(1)).intValue();
+        return result;   
     }
     
     
@@ -130,6 +143,19 @@ public class DA_SoccerMatch {
     }
     
     
+    
+    
+    
+    public static void generateRaffle(int TotalGroup) throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        PreparedStatement sql = conn.prepareStatement("{call generateRaffle(?,?)}");
+        //INPUT
+        sql.setInt(1, TotalGroup);
+        sql.setInt(2, 1);
+
+        sql.execute();
+    }
     
     
     
