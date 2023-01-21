@@ -1,12 +1,12 @@
 ---CATALOGS RESTANTES----------------------------------------------------------------------
-CREATE OR REPLACE PROCEDURE insertGender(pDescriptionGender IN VARCHAR) AS
+CREATE OR REPLACE PROCEDURE insertGender(pDescriptionGender IN VARCHAR2) AS
 BEGIN
     INSERT INTO Gender(idGender, descriptionGender, userCreation, lastUser, lastDate, dateCreation)
     VALUES(s_gender.nextval, pDescriptionGender, NULL, NULL, NULL, NULL);
     COMMIT;
 END insertGender;
 
-CREATE OR REPLACE PROCEDURE insertTypeIdentification(pNameTypeIdentification IN VARCHAR, pTypeMask IN VARCHAR) AS
+CREATE OR REPLACE PROCEDURE insertTypeIdentification(pNameTypeIdentification IN VARCHAR2, pTypeMask IN VARCHAR2) AS
 BEGIN
     INSERT INTO TypeIdentification(idTypeIdentification, nameTypeIdentification, typeMask, userCreation, lastUser, lastDate, dateCreation)
     VALUES(s_typeIdentification.nextval, pNameTypeIdentification, pTypeMask, NULL, NULL, NULL, NULL);
@@ -34,7 +34,7 @@ BEGIN
     COMMIT;
 END insertCountry;
 
-CREATE OR REPLACE PROCEDURE insertCountryTeam(pIdContinent IN NUMBER, pNameContinent IN VARCHAR) AS
+CREATE OR REPLACE PROCEDURE insertCountryTeam(pIdContinent IN NUMBER, pNameCountryTeam IN VARCHAR2) AS
 BEGIN
     INSERT INTO CountryTeam(idCountryTeam, idContinent, nameCountryTeam, userCreation, lastUser, lastDate, dateCreation)
     VALUES(s_countryteam.nextval, pIdContinent, pNameCountryTeam, NULL, NULL, NULL, NULL);
@@ -62,10 +62,10 @@ BEGIN
     COMMIT;
 END insertDistrict;
 
-CREATE OR REPLACE PROCEDURE updateGender(pIdGender IN NUMBER, pDescriptionGender IN VARCHAR) AS
+CREATE OR REPLACE PROCEDURE updateGender(pIdGender IN NUMBER, pDescriptionGender IN VARCHAR2) AS
 BEGIN
     UPDATE Gender
-    SET decriptionGender = pDescriptionGender
+    SET descriptionGender = pDescriptionGender
     WHERE idGender = pIdGender;
     COMMIT;
 EXCEPTION
@@ -73,7 +73,7 @@ EXCEPTION
         ROLLBACK;
 END updateGender;
 
-CREATE OR REPLACE PROCEDURE updateTypeIdentification(pIdTypeIdentification IN NUMBER, pNameTypeIdentification IN VARCHAR) AS
+CREATE OR REPLACE PROCEDURE updateTypeIdentification(pIdTypeIdentification IN NUMBER, pNameTypeIdentification IN VARCHAR2) AS
 BEGIN
     UPDATE TypeIdentification
     SET nameTypeIdentification = pNameTypeIdentification
@@ -84,7 +84,7 @@ EXCEPTION
         ROLLBACK;
 END updateTypeIdentification;
 
-CREATE OR REPLACE PROCEDURE updateCountry(pIdCountry IN NUMBER, pNameCountry IN VARCHAR) AS
+CREATE OR REPLACE PROCEDURE updateCountry(pIdCountry IN NUMBER, pNameCountry IN VARCHAR2) AS
 BEGIN
     UPDATE Country
     SET nameCountry = pNameCountry
@@ -95,7 +95,7 @@ EXCEPTION
         ROLLBACK;
 END updateCountry;
 
-CREATE OR REPLACE PROCEDURE updateProvince(pIdProvince IN NUMBER, pIdCountry IN NUMBER, pNameProvince IN VARCHAR) AS
+CREATE OR REPLACE PROCEDURE updateProvince(pIdProvince IN NUMBER, pIdCountry IN NUMBER, pNameProvince IN VARCHAR2) AS
 BEGIN
     UPDATE Province
     SET idCountry = pIdCountry
@@ -110,7 +110,7 @@ EXCEPTION
         ROLLBACK;
 END updateProvince;
 
-CREATE OR REPLACE PROCEDURE updateCanton(pIdCanton IN NUMBER, pIdProvince IN NUMBER, pNameCanton IN VARCHAR) AS
+CREATE OR REPLACE PROCEDURE updateCanton(pIdCanton IN NUMBER, pIdProvince IN NUMBER, pNameCanton IN VARCHAR2) AS
 BEGIN
     UPDATE Canton
     SET idProvince = pIdProvince
@@ -125,7 +125,7 @@ EXCEPTION
         ROLLBACK;
 END updateCanton;
 
-CREATE OR REPLACE PROCEDURE updateDistrict(pIdDistrict IN NUMBER, pIdCanton IN NUMBER, pNameDistrict IN VARCHAR) AS
+CREATE OR REPLACE PROCEDURE updateDistrict(pIdDistrict IN NUMBER, pIdCanton IN NUMBER, pNameDistrict IN VARCHAR2) AS
 BEGIN
     UPDATE District
     SET idCanton = pIdCanton
@@ -140,7 +140,7 @@ EXCEPTION
         ROLLBACK;
 END updateDistrict;
 
-CREATE OR REPLACE PROCEDURE updatePosition(pIdPosition IN NUMBER, pDescriptionPosition IN VARCHAR) AS
+CREATE OR REPLACE PROCEDURE updatePosition(pIdPosition IN NUMBER, pDescriptionPosition IN VARCHAR2) AS
 BEGIN
     UPDATE PersonPosition
     SET descriptionPersonPosition = pDescriptionPosition
@@ -151,7 +151,7 @@ EXCEPTION
         ROLLBACK;
 END updatePosition;
 
-CREATE OR REPLACE PROCEDURE updateContinent(pIdContinent IN NUMBER, pNameContinent IN VARCHAR) AS
+CREATE OR REPLACE PROCEDURE updateContinent(pIdContinent IN NUMBER, pNameContinent IN VARCHAR2) AS
 BEGIN
     UPDATE Continent
     SET nameContinent = pNameContinent
@@ -162,7 +162,7 @@ EXCEPTION
         ROLLBACK;
 END updateContinent;
 
-CREATE OR REPLACE PROCEDURE updateCountryTeam(pIdCountryTeam IN NUMBER, pIdContinent IN NUMBER, pNameCountryTeam IN VARCHAR) AS
+CREATE OR REPLACE PROCEDURE updateCountryTeam(pIdCountryTeam IN NUMBER, pIdContinent IN NUMBER, pNameCountryTeam IN VARCHAR2) AS
 BEGIN
     UPDATE CountryTeam
     SET idContinent = pIdContinent
