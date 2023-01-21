@@ -79,16 +79,6 @@ public class DA_News {
         news.setText(rs.getString("textNews"));
         getAverageNewsRating(news);
         
-        System.out.println("/////////////////////////////////////////////////////////////////////////");
-        System.out.println(news.getIdNews());
-        System.out.println(news.getText());
-        System.out.println(news.getAuthor());
-        System.out.println(news.getIdNewsStatus());
-        System.out.println(news.getIdNewsType());
-        System.out.println(news.getPhoto());
-        System.out.println(news.getPublicationDate());
-        System.out.println(news.getTitle());
-        
         return news;
     }
     
