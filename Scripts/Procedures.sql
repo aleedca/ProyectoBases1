@@ -1114,6 +1114,7 @@ BEGIN
     OPEN curMostViewedNews FOR
     SELECT idNews, title, viewsNews
     FROM News
+    WHERE News.idnewsstatus = 1
     ORDER BY viewsNews DESC;
 END getMostViewedNews;
 
@@ -1123,6 +1124,7 @@ BEGIN
     OPEN curLastNews FOR
     SELECT idNews, title, publicationDate
     FROM News
+    WHERE News.idnewsstatus = 1
     ORDER BY publicationDate DESC;
 END getLastNews;
 
@@ -1267,31 +1269,72 @@ BEGIN
 END getTotalPublishedNews;
 
 
-CREATE OR REPLACE PROCEDURE getAverageReviewsAuthor(pUsername IN VARCHAR2, outAverage OUT NUMBER)
+CREATE OR REPLACE PROCEDURE getAverageReviewsAuthor(cursorAverage OUT SYS_REFCURSOR)
 AS
-resultAverage NUMBER;
 BEGIN
-    SELECT AVG(Rating.rating) INTO resultAverage
+    OPEN cursorAverage FOR
+    SELECT AVG(Rating.rating) average, UserXNews.username
     FROM Rating 
     INNER JOIN UserXNews ON UserXNews.idNews = Rating.idNews 
-    WHERE UserXNews.username = pUsername;
+    GROUP BY UserXNews.username
+    ORDER BY AVG(Rating.rating) DESC;
     
-    outAverage := resultAverage;
 END getAverageReviewsAuthor;
 
 
-CREATE OR REPLACE PROCEDURE getTotalPlayersXAge(rangeStart IN NUMBER, rangeEnd IN NUMBER, pIdGender IN NUMBER, pIdTeam IN NUMBER, outTotalPlayers OUT NUMBER)
+CREATE OR REPLACE PROCEDURE getTotalPlayersXAge(pIdGender IN NUMBER, pIdTeam IN NUMBER, cursorPlayers OUT SYS_REFCURSOR)
 AS
-totalPlayers NUMBER;
 BEGIN
-    SELECT COUNT(1) INTO totalPlayers FROM Player
+
+    OPEN cursorPlayers FOR
+    SELECT COUNT(1)
+    FROM Player
     INNER JOIN Person ON Person.idPerson = Player.idPerson
     WHERE Player.birthdate IS NOT NULL
-    AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
     AND Person.idGender = NVL(pIdGender, Person.idGender)
-    AND TRUNC((sysdate - Player.birthdate)/365) BETWEEN rangeStart AND rangeEnd;
+    AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
+    AND TRUNC((SYSDATE- Player.birthdate)/365) BETWEEN 0 AND 18
+    UNION
+    SELECT COUNT(1)
+    FROM Player
+    INNER JOIN Person ON Person.idPerson = Player.idPerson
+    WHERE Player.birthdate IS NOT NULL
+    AND Person.idGender = NVL(pIdGender, Person.idGender)
+    AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
+    AND TRUNC((SYSDATE- Player.birthdate)/365) BETWEEN 19 AND 30
+    UNION
+    SELECT COUNT(1)
+    FROM Player
+    INNER JOIN Person ON Person.idPerson = Player.idPerson
+    WHERE Player.birthdate IS NOT NULL
+    AND Person.idGender = NVL(pIdGender, Person.idGender)
+    AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
+    AND TRUNC((SYSDATE- Player.birthdate)/365) BETWEEN 31 AND 45
+    UNION
+    SELECT COUNT(1)
+    FROM Player
+    INNER JOIN Person ON Person.idPerson = Player.idPerson
+    WHERE Player.birthdate IS NOT NULL
+    AND Person.idGender = NVL(pIdGender, Person.idGender)
+    AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
+    AND TRUNC((SYSDATE- Player.birthdate)/365) BETWEEN 46 AND 60
+    UNION
+    SELECT COUNT(1)
+    FROM Player
+    INNER JOIN Person ON Person.idPerson = Player.idPerson
+    WHERE Player.birthdate IS NOT NULL
+    AND Person.idGender = NVL(pIdGender, Person.idGender)
+    AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
+    AND TRUNC((SYSDATE- Player.birthdate)/365) BETWEEN 61 AND 75
+    UNION
+    SELECT COUNT(1)
+    FROM Player
+    INNER JOIN Person ON Person.idPerson = Player.idPerson
+    WHERE Player.birthdate IS NOT NULL
+    AND Person.idGender = NVL(pIdGender, Person.idGender)
+    AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
+    AND TRUNC((SYSDATE- Player.birthdate)/365) > 75;
     
-    outTotalPlayers := totalPlayers;
 END getTotalPlayersXAge;
 
 
