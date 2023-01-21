@@ -79,6 +79,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private boolean flagEditNews = false;
     private boolean flagEditParameter = false;
     private boolean flagAddCatalogs;
+    private boolean flagEditCatalogs;
     private boolean flagAdminOther;
     private boolean newsOpened = false;
     
@@ -336,6 +337,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         //AdminCatalogs
         adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().addItemListener(this);
         adminCatalogsController.getViewAdminCatalogs().getBtnAgregar().addActionListener(this);
+        adminCatalogsController.getViewAdminCatalogs().getBtnModificar().addActionListener(this);
          
         
         //AdminOther
@@ -3057,6 +3059,19 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         
         // ---------------- SCREEN AdminCatalogs -------------------
+        if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getBtnModificar()){
+            flagEditCatalogs = false;
+            if(adminCatalogsController.getViewAdminCatalogs().getTextModificar().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Debe modificar un catálogo", "Error", JOptionPane.WARNING_MESSAGE);
+            }else{
+                 
+             }
+        
+        }
+        
+        
+        
+        
         if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getBtnAgregar()){
             flagAddCatalogs = false;
             String text = adminCatalogsController.getViewAdminCatalogs().getTextAgregar();
