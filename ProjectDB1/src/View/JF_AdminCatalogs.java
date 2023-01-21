@@ -72,7 +72,7 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         jLabel2.setBounds(126, 66, 445, 48);
 
         cmbCatalogo.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        cmbCatalogo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un catálogo", "Tipo de Identificación", "Género", "Posición", "País", "Provincia", "Cantón", "Distrito", "Estado de Noticia", "Tipo de Noticia" }));
+        cmbCatalogo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un catálogo", "Tipo de Identificación", "Género", "Posición", "Continente", "País", "Provincia", "Cantón", "Distrito", "Estado de Noticia", "Tipo de Noticia", "País de Equipo" }));
         cmbCatalogo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbCatalogoActionPerformed(evt);

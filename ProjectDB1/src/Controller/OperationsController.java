@@ -78,6 +78,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private boolean flagAdminPerson;
     private boolean flagEditNews = false;
     private boolean flagEditParameter = false;
+    private boolean flagAddCatalogs;
     private boolean flagAdminOther;
     private boolean newsOpened = false;
     
@@ -199,6 +200,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         viewPrincipal.showMostViewedNews();
         viewPrincipal.showLastNews();
         modelAdminMatches.fillTodayMatches(viewPrincipal);
+        adminCatalogsController.fillCatalogs();
 
     }
     
@@ -3056,15 +3058,58 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         // ---------------- SCREEN AdminCatalogs -------------------
         if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getBtnAgregar()){
-            String gender = adminCatalogsController.getViewAdminCatalogs().getTextAgregar();
+            flagAddCatalogs = false;
+            String text = adminCatalogsController.getViewAdminCatalogs().getTextAgregar();
             
             if(adminCatalogsController.getViewAdminCatalogs().getTextAgregar().isEmpty()){
              JOptionPane.showMessageDialog(null, "Por favor, debe de ingresar un catálogo", "Error", JOptionPane.WARNING_MESSAGE);
             }else{
-                adminCatalogsController.getModelAdminCatalogs().setDescriptionGender(gender);
-                JOptionPane.showMessageDialog(null, "Se agregó de manera éxitosa.");
-                adminCatalogsController.getModelAdminCatalogs().insertGender();
-                //adminCatalogsController.fillCatalogs();
+                
+                if("Género".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                    adminCatalogsController.getModelAdminCatalogs().setDescriptionGender(text);
+                    adminCatalogsController.getModelAdminCatalogs().insertGender();
+                    adminCatalogsController.getViewAdminCatalogs().setTextAgregar("");
+                    adminCatalogsController.fillCatalogs();
+                    flagAddCatalogs = true;
+                }
+                
+//                if("Tipo identificación".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+//                    adminCatalogsController.getModelAdminCatalogs().setNameTypeIdentification(text);
+//                    adminCatalogsController.getModelAdminCatalogs().insertTypeIdentification();
+//                    flagAddCatalogs = true;
+//                }
+
+
+                if("Posición".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                    adminCatalogsController.getModelAdminCatalogs().setDescriptionPosition(text);
+                    adminCatalogsController.getModelAdminCatalogs().insertPosition();
+                    adminCatalogsController.getViewAdminCatalogs().setTextAgregar("");
+                    adminCatalogsController.fillCatalogs();
+                    flagAddCatalogs = true;
+                }
+                
+                if("País".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                    adminCatalogsController.getModelAdminCatalogs().setNameCountry(text);
+                    adminCatalogsController.getModelAdminCatalogs().insertCountry();
+                    adminCatalogsController.getViewAdminCatalogs().setTextAgregar("");
+                    adminCatalogsController.fillCatalogs();
+                    flagAddCatalogs = true;
+                }
+                
+                
+                if("Continente".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                    adminCatalogsController.getModelAdminCatalogs().setNameContinent(text);
+                    adminCatalogsController.getModelAdminCatalogs().insertContinent();
+                    adminCatalogsController.getViewAdminCatalogs().setTextAgregar("");
+                    adminCatalogsController.fillCatalogs();
+                    flagAddCatalogs = true;
+                }
+                
+                
+                
+                if(flagAddCatalogs == true){
+                    JOptionPane.showMessageDialog(null, "Se agregó de manera éxitosa.");
+                }
             }
         }
 

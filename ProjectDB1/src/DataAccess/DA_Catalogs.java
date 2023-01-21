@@ -360,7 +360,7 @@ public class DA_Catalogs {
     
     public static void insertPosition(String descriptionPosition) throws SQLException{
         Connection conn = sysConnection.getConexion();
-        CallableStatement sql = conn.prepareCall("{call insetPosition(?)}");
+        CallableStatement sql = conn.prepareCall("{call insertPosition(?)}");
         
         sql.setString(1, descriptionPosition);
         sql.execute();

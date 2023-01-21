@@ -13,9 +13,9 @@ BEGIN
     COMMIT;
 END insertTypeIdentification;
 
-CREATE OR REPLACE PROCEDURE insertPosition(pDescriptionPosition IN VARCHAR) AS
+CREATE OR REPLACE PROCEDURE insertPosition(pDescriptionPosition IN VARCHAR2) AS
 BEGIN
-    INSERT INTO PersonPosition(idPersonPosition, descriptionPosition, userCreation, lastUser, lastDate, dateCreation)
+    INSERT INTO PersonPosition(idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation)
     VALUES(s_personposition.nextval, pDescriptionPosition, NULL, NULL, NULL, NULL);
     COMMIT;
 END insertPosition;
@@ -27,7 +27,7 @@ BEGIN
     COMMIT;
 END insertContinent;
 
-CREATE OR REPLACE PROCEDURE insertCountry(pNameCountry IN VARCHAR) AS
+CREATE OR REPLACE PROCEDURE insertCountry(pNameCountry IN VARCHAR2) AS
 BEGIN
     INSERT INTO Country(idCountry, nameCountry, userCreation, lastUser, lastDate, dateCreation)
     VALUES(s_country.nextval, pNameCountry, NULL, NULL, NULL, NULL);

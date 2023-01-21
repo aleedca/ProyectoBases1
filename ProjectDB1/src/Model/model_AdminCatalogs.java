@@ -29,7 +29,8 @@ import java.util.logging.Logger;
  */
 public class model_AdminCatalogs {
     private int idTypeIdentification;
-    private String nameTpeIdentification;
+    private String nameTypeIdentification;
+    private String nameMask;
     private ArrayList<TypeIdentification> identificationTypes;
     
     private int idCountry;
@@ -77,8 +78,18 @@ public class model_AdminCatalogs {
     private int resultDeleteTypeIdentification;
     private int resultDeleteCountry;
     private int resultDeleteProvince;
+    private int resultDeleteCanton;
+    private int resultDeleteDistrict;    
+    private int resultDeletePosition;
+    private int resultDeleteContinent;
+    private int resultDeleteCountryTeam;
     
     public model_AdminCatalogs(){
+        
+    }
+    
+    //--------------------------- LOAD -------------------------------------
+    public void loadCatalogs(){
         try {
             this.genders = DA_Catalogs.getGender();
             
@@ -100,93 +111,14 @@ public class model_AdminCatalogs {
             
             this.newsType = DA_News.getNewsType();
             
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-    
-    //--------------------------- LOAD -------------------------------------
-    public void loadGenders(){
-        try {
-            this.genders = DA_Catalogs.getGender();
+            this.continents = DA_Catalogs.getContinent();
+            
+            this.countryTeams = DA_Catalogs.getCountryTeam();
             
         } catch (SQLException ex) {
            System.out.println(ex);
         }
     }
-
-    public void loadIdentificationTypes (){
-        try {
-            this.identificationTypes = DA_Catalogs.getTypeIdentification();
-            
-        } catch (SQLException ex) {
-           System.out.println(ex);
-        }
-    }
-
-    public void loadCountries  (){
-        try {
-            this.countries = DA_Catalogs.getCountry();
-            
-        } catch (SQLException ex) {
-           System.out.println(ex);
-        }
-    }
-
-    public void loadProvinces (){
-        try {
-            this.provinces = DA_Catalogs.getProvince();
-            
-        } catch (SQLException ex) {
-           System.out.println(ex);
-        }
-    }
-    
-    public void loadCantons (){
-        try {
-            this.cantons = DA_Catalogs.getCanton();
-            
-        } catch (SQLException ex) {
-           System.out.println(ex);
-        }
-    }
-
-    public void loadDistricts  (){
-        try {
-            this.districts = DA_Catalogs.getDistrict();
-            
-        } catch (SQLException ex) {
-           System.out.println(ex);
-        }
-    }
-
-    public void loadEvents (){
-        try {
-            this.events = DA_Catalogs.getEvent();
-            
-        } catch (SQLException ex) {
-           System.out.println(ex);
-        }
-    }
-
-    public void loadNewsStatus  (){
-        try {
-            this.newsStatus = DA_News.getNewsStatus();
-            
-        } catch (SQLException ex) {
-           System.out.println(ex);
-        }
-    }
-
-    public void loadNewsType  (){
-        try {
-            this.newsType = DA_News.getNewsType();
-            
-        } catch (SQLException ex) {
-           System.out.println(ex);
-        }
-    }
-    
 
     //---------------------------------------------------------------
     
@@ -197,6 +129,72 @@ public class model_AdminCatalogs {
            System.out.println(ex);
         }
     }
+    
+    public void insertTypeIdentification(){
+      try{
+        DA_Catalogs.insertTypeIdentification(this.nameTypeIdentification, this.nameMask);
+      } catch(SQLException ex){
+        System.out.println(ex);
+      }
+    }
+
+    public void insertCountry(){
+      try{
+        DA_Catalogs.insertCountry(this.nameCountry);
+      } catch(SQLException ex){
+        System.out.println(ex);
+      }
+    }
+
+    public void insertProvince(){
+      try{
+        DA_Catalogs.insertProvince(this.idCountry, this.nameProvince);
+      } catch(SQLException ex){
+        System.out.println(ex);
+      }
+    }
+
+    public void insertCanton(){
+      try{
+        DA_Catalogs.insertCanton(this.idProvince, this.nameCanton);
+      } catch(SQLException ex){
+        System.out.println(ex);
+      }
+    }
+
+    public void insertDistrict(){
+      try{
+        DA_Catalogs.insertDistrict(this.idCanton, this.nameDistrict);
+      } catch(SQLException ex){
+        System.out.println(ex);
+      }
+    }
+
+    public void insertPosition(){
+      try{
+        DA_Catalogs.insertPosition(this.descriptionPosition);
+      } catch(SQLException ex){
+        System.out.println(ex);
+      }
+    }
+
+    public void insertContinent(){
+      try{
+        DA_Catalogs.insertContinent(this.nameContinent);
+      } catch(SQLException ex){
+        System.out.println(ex);
+      }
+    }
+
+    public void insertCountryTeam(){
+      try{
+        DA_Catalogs.insertCountryTeam(this.idContinent, this.nameCountryTeam);
+      } catch(SQLException ex){
+        System.out.println(ex);
+      }
+    }
+    
+    
     
     //------------- UPDATE -------------------------------
     public void updateGender(){
@@ -209,7 +207,7 @@ public class model_AdminCatalogs {
 
     public void updateTypeIdentification(){
       try{
-        DA_Catalogs.updateTypeIdentification(this.idTypeIdentification, this.nameTpeIdentification);
+        DA_Catalogs.updateTypeIdentification(this.idTypeIdentification, this.nameTypeIdentification);
       } catch(SQLException ex){
         System.out.println(ex);
       }
@@ -287,8 +285,458 @@ public class model_AdminCatalogs {
        return false;
     }
 
+    public boolean deleteTypeIdentificaion(){
+      try {
+        this.resultDeleteTypeIdentification = DA_Catalogs.deleteTypeIdentification(this.idTypeIdentification);
+
+        if(this.resultDeleteTypeIdentification == 0){
+          return true;
+        }
+      } catch (SQLException ex) {
+          System.out.println(ex);
+      }
+
+      return false;
+    }
+
+    public boolean deleteCountry(){
+      try{
+        this.resultDeleteCountry = DA_Catalogs.deleteCountry(this.idCountry);
+        if(this.resultDeleteCountry == 0){
+          return true;
+        }
+      } catch (SQLException ex) {
+          System.out.println(ex);
+      }
+
+      return false;
+    }
+
+    public boolean deleteProvince(){
+      try{
+        this.resultDeleteProvince = DA_Catalogs.deleteProvince(this.idProvince);
+        if(this.resultDeleteProvince == 0){
+          return true;
+        }
+      } catch (SQLException ex) {
+          System.out.println(ex);
+      }
+
+      return false;
+    }
+
+    public boolean deleteCanton(){
+      try{
+        this.resultDeleteCanton = DA_Catalogs.deleteCanton(this.idCanton);
+        if(this.resultDeleteCanton == 0){
+          return true;
+        }
+      } catch (SQLException ex) {
+          System.out.println(ex);
+      }
+
+      return false;
+    }
+
+    public boolean deleteDistrict(){
+      try{
+        this.resultDeleteDistrict = DA_Catalogs.deleteDistrict(this.idDistrict);
+        if(this.resultDeleteDistrict == 0){
+          return true;
+        }
+      } catch (SQLException ex) {
+          System.out.println(ex);
+      }
+
+      return false;
+    }
+
+    public boolean deletePosition(){
+      try{
+        this.resultDeletePosition = DA_Catalogs.deletePosition(this.idPosition);
+        if(this.resultDeletePosition == 0){
+          return true;
+        }
+      } catch (SQLException ex) {
+          System.out.println(ex);
+      }
+
+      return false;
+    }
+
+    public boolean deleteContinent(){
+      try{
+        this.resultDeleteContinent = DA_Catalogs.deleteContinent(this.idContinent);
+        if(this.resultDeleteContinent == 0){
+          return true;
+        }
+      } catch (SQLException ex) {
+          System.out.println(ex);
+      }
+
+      return false;
+    }
+
+    public boolean deleteCountryTeam(){
+      try{
+        this.resultDeleteCountryTeam = DA_Catalogs.deleteCountryTeam(this.idCountryTeam);
+        if(this.resultDeleteCountryTeam == 0){
+          return true;
+        }
+      } catch (SQLException ex) {
+          System.out.println(ex);
+      }
+
+      return false;
+    }
     
     
     //----------- GETTERS AND SETTERS ----------------
+
+    public int getIdTypeIdentification() {
+        return idTypeIdentification;
+    }
+
+    public void setIdTypeIdentification(int idTypeIdentification) {
+        this.idTypeIdentification = idTypeIdentification;
+    }
+
+    public String getNameTypeIdentification() {
+        return nameTypeIdentification;
+    }
+
+    public void setNameTypeIdentification(String nameTypeIdentification) {
+        this.nameTypeIdentification = nameTypeIdentification;
+    }
+
+    public String getNameMask() {
+        return nameMask;
+    }
+
+    public void setNameMask(String nameMask) {
+        this.nameMask = nameMask;
+    }
+
+    public ArrayList<TypeIdentification> getIdentificationTypes() {
+        return identificationTypes;
+    }
+
+    public void setIdentificationTypes(ArrayList<TypeIdentification> identificationTypes) {
+        this.identificationTypes = identificationTypes;
+    }
+
+    public int getIdCountry() {
+        return idCountry;
+    }
+
+    public void setIdCountry(int idCountry) {
+        this.idCountry = idCountry;
+    }
+
+    public String getNameCountry() {
+        return nameCountry;
+    }
+
+    public void setNameCountry(String nameCountry) {
+        this.nameCountry = nameCountry;
+    }
+
+    public ArrayList<Country> getCountries() {
+        return countries;
+    }
+
+    public void setCountries(ArrayList<Country> countries) {
+        this.countries = countries;
+    }
+
+    public int getIdProvince() {
+        return idProvince;
+    }
+
+    public void setIdProvince(int idProvince) {
+        this.idProvince = idProvince;
+    }
+
+    public String getNameProvince() {
+        return nameProvince;
+    }
+
+    public void setNameProvince(String nameProvince) {
+        this.nameProvince = nameProvince;
+    }
+
+    public ArrayList<Province> getProvinces() {
+        return provinces;
+    }
+
+    public void setProvinces(ArrayList<Province> provinces) {
+        this.provinces = provinces;
+    }
+
+    public int getIdCanton() {
+        return idCanton;
+    }
+
+    public void setIdCanton(int idCanton) {
+        this.idCanton = idCanton;
+    }
+
+    public String getNameCanton() {
+        return nameCanton;
+    }
+
+    public void setNameCanton(String nameCanton) {
+        this.nameCanton = nameCanton;
+    }
+
+    public ArrayList<Canton> getCantons() {
+        return cantons;
+    }
+
+    public void setCantons(ArrayList<Canton> cantons) {
+        this.cantons = cantons;
+    }
+
+    public int getIdDistrict() {
+        return idDistrict;
+    }
+
+    public void setIdDistrict(int idDistrict) {
+        this.idDistrict = idDistrict;
+    }
+
+    public String getNameDistrict() {
+        return nameDistrict;
+    }
+
+    public void setNameDistrict(String nameDistrict) {
+        this.nameDistrict = nameDistrict;
+    }
+
+    public ArrayList<District> getDistricts() {
+        return districts;
+    }
+
+    public void setDistricts(ArrayList<District> districts) {
+        this.districts = districts;
+    }
+
+    public int getEvent() {
+        return event;
+    }
+
+    public void setEvent(int event) {
+        this.event = event;
+    }
+
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(ArrayList<Event> events) {
+        this.events = events;
+    }
+
+    public int getIdPosition() {
+        return idPosition;
+    }
+
+    public void setIdPosition(int idPosition) {
+        this.idPosition = idPosition;
+    }
+
+    public String getDescriptionPosition() {
+        return descriptionPosition;
+    }
+
+    public void setDescriptionPosition(String descriptionPosition) {
+        this.descriptionPosition = descriptionPosition;
+    }
+
+    public ArrayList<Position> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(ArrayList<Position> positions) {
+        this.positions = positions;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public ArrayList<NewsStatus> getNewsStatus() {
+        return newsStatus;
+    }
+
+    public void setNewsStatus(ArrayList<NewsStatus> newsStatus) {
+        this.newsStatus = newsStatus;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public ArrayList<NewsType> getNewsType() {
+        return newsType;
+    }
+
+    public void setNewsType(ArrayList<NewsType> newsType) {
+        this.newsType = newsType;
+    }
+
+    public int getIdGender() {
+        return idGender;
+    }
+
+    public void setIdGender(int idGender) {
+        this.idGender = idGender;
+    }
+
+    public String getDescriptionGender() {
+        return descriptionGender;
+    }
+
+    public void setDescriptionGender(String descriptionGender) {
+        this.descriptionGender = descriptionGender;
+    }
+
+    public ArrayList<Gender> getGenders() {
+        return genders;
+    }
+
+    public void setGenders(ArrayList<Gender> genders) {
+        this.genders = genders;
+    }
+
+    public int getIdContinent() {
+        return idContinent;
+    }
+
+    public void setIdContinent(int idContinent) {
+        this.idContinent = idContinent;
+    }
+
+    public String getNameContinent() {
+        return nameContinent;
+    }
+
+    public void setNameContinent(String nameContinent) {
+        this.nameContinent = nameContinent;
+    }
+
+    public ArrayList<Continent> getContinents() {
+        return continents;
+    }
+
+    public void setContinents(ArrayList<Continent> continents) {
+        this.continents = continents;
+    }
+
+    public int getIdCountryTeam() {
+        return idCountryTeam;
+    }
+
+    public void setIdCountryTeam(int idCountryTeam) {
+        this.idCountryTeam = idCountryTeam;
+    }
+
+    public String getNameCountryTeam() {
+        return nameCountryTeam;
+    }
+
+    public void setNameCountryTeam(String nameCountryTeam) {
+        this.nameCountryTeam = nameCountryTeam;
+    }
+
+    public ArrayList<CountryTeam> getCountryTeams() {
+        return countryTeams;
+    }
+
+    public void setCountryTeams(ArrayList<CountryTeam> countryTeams) {
+        this.countryTeams = countryTeams;
+    }
+
+    public int getResultDeleteGender() {
+        return resultDeleteGender;
+    }
+
+    public void setResultDeleteGender(int resultDeleteGender) {
+        this.resultDeleteGender = resultDeleteGender;
+    }
+
+    public int getResultDeleteTypeIdentification() {
+        return resultDeleteTypeIdentification;
+    }
+
+    public void setResultDeleteTypeIdentification(int resultDeleteTypeIdentification) {
+        this.resultDeleteTypeIdentification = resultDeleteTypeIdentification;
+    }
+
+    public int getResultDeleteCountry() {
+        return resultDeleteCountry;
+    }
+
+    public void setResultDeleteCountry(int resultDeleteCountry) {
+        this.resultDeleteCountry = resultDeleteCountry;
+    }
+
+    public int getResultDeleteProvince() {
+        return resultDeleteProvince;
+    }
+
+    public void setResultDeleteProvince(int resultDeleteProvince) {
+        this.resultDeleteProvince = resultDeleteProvince;
+    }
+
+    public int getResultDeleteCanton() {
+        return resultDeleteCanton;
+    }
+
+    public void setResultDeleteCanton(int resultDeleteCanton) {
+        this.resultDeleteCanton = resultDeleteCanton;
+    }
+
+    public int getResultDeleteDistrict() {
+        return resultDeleteDistrict;
+    }
+
+    public void setResultDeleteDistrict(int resultDeleteDistrict) {
+        this.resultDeleteDistrict = resultDeleteDistrict;
+    }
+
+    public int getResultDeletePosition() {
+        return resultDeletePosition;
+    }
+
+    public void setResultDeletePosition(int resultDeletePosition) {
+        this.resultDeletePosition = resultDeletePosition;
+    }
+
+    public int getResultDeleteContinent() {
+        return resultDeleteContinent;
+    }
+
+    public void setResultDeleteContinent(int resultDeleteContinent) {
+        this.resultDeleteContinent = resultDeleteContinent;
+    }
+
+    public int getResultDeleteCountryTeam() {
+        return resultDeleteCountryTeam;
+    }
+
+    public void setResultDeleteCountryTeam(int resultDeleteCountryTeam) {
+        this.resultDeleteCountryTeam = resultDeleteCountryTeam;
+    }
        
+    
+    
 }
