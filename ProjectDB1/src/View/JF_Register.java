@@ -202,7 +202,7 @@ public class JF_Register extends javax.swing.JFrame {
         this.txtSecondLastName.setText("");
     }
 
-    private void cleanIdentification() {
+    public void cleanIdentification() {
         this.txtIdentification.setText("");
     }
     
@@ -304,7 +304,6 @@ public class JF_Register extends javax.swing.JFrame {
         cmbTypeIdentification = new javax.swing.JComboBox<>();
         txtPhone = new javax.swing.JFormattedTextField();
         txtIdentification = new javax.swing.JFormattedTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
         txtAddress = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -595,11 +594,11 @@ public class JF_Register extends javax.swing.JFrame {
         txtIdentification.setBounds(310, 440, 230, 22);
 
         txtAddress.setColumns(20);
+        txtAddress.setLineWrap(true);
         txtAddress.setRows(5);
-        jScrollPane1.setViewportView(txtAddress);
-
-        pnlBackground.add(jScrollPane1);
-        jScrollPane1.setBounds(630, 590, 340, 86);
+        txtAddress.setPreferredSize(new java.awt.Dimension(282, 84));
+        pnlBackground.add(txtAddress);
+        txtAddress.setBounds(630, 590, 340, 90);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -692,7 +691,6 @@ public class JF_Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblAvatar;
     private javax.swing.JLabel lblCanton;

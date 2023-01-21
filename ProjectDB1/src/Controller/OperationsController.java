@@ -979,10 +979,11 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             }
             
             
-            /*if(modelRegister.identificationAlreadyExists(viewRegister.getTxtIdentification())== true){
+            if(modelRegister.identificationAlreadyExists(viewRegister.getTxtIdentification())== true){
                 JOptionPane.showMessageDialog(null, "Identificación ya existente. Debe ingresar una identificación diferente", "Error", JOptionPane.WARNING_MESSAGE);
+                viewRegister.cleanIdentification();
                 flagRegister = false;
-            }*/
+            }
             
         }
     }//END REGISTERVALIDATONS
@@ -2407,6 +2408,17 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         //------ SCREEN REGISTER---------------------
         
         if(e.getSource() == viewRegister.getBtnBack()){
+            viewRegister.cleanAll();
+            
+            fillGenders();
+            fillIdentificationTypes();     
+            fillCountries();
+
+            modelRegister.setPhoto("src/Images/avatar.png");
+            viewRegister.setLocationRelativeTo(viewRegister);
+            modelRegister.setImageLabel(viewRegister.getLblAvatar());
+            viewRegister.repaint();  
+            
             viewPrincipal.setVisible(true);
             viewRegister.setVisible(false);
         }
