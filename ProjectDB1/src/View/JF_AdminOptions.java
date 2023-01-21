@@ -4,6 +4,9 @@
  */
 package View;
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
@@ -17,6 +20,24 @@ public class JF_AdminOptions extends javax.swing.JFrame {
      */
     public JF_AdminOptions() {
         initComponents();
+        setButtonImages();
+    }
+    
+    private void setButtonImages(){
+        setImageButton(btnAdmiCatalogos, "src/Images/adminCatalogs.png");
+        setImageButton(btnAdmiNoticias, "src/Images/adminNews.png");
+        setImageButton(btnAdmiPersonas, "src/Images/adminPerson.png");
+        setImageButton(btnPartidos, "src/Images/adminMatches.png");
+        setImageButton(btnAdmiBitacora, "src/Images/adminLog.png");
+        setImageButton(btnAdmiParametros, "src/Images/adminParameters.png");
+        setImageButton(btnOther, "src/Images/adminOther.png");
+    }
+    
+    private void setImageButton(JButton buttonName, String imageDirectory){
+        ImageIcon image = new ImageIcon(imageDirectory);
+        Icon icon = new ImageIcon(image.getImage().getScaledInstance(buttonName.getWidth(), buttonName.getHeight(), Image.SCALE_DEFAULT));
+        buttonName.setIcon(icon);
+        this.repaint();
     }
     
     //GETTERS AND SETTERS
@@ -88,60 +109,71 @@ public class JF_AdminOptions extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(86, 4, 44));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
+        jPanel1.setLayout(null);
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logo.png"))); // NOI18N
+        jPanel1.add(lblLogo);
+        lblLogo.setBounds(1066, 6, 200, 125);
 
         btnAdmiNoticias.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        btnAdmiNoticias.setText("Administrar Noticias");
         btnAdmiNoticias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdmiNoticiasActionPerformed(evt);
             }
         });
+        jPanel1.add(btnAdmiNoticias);
+        btnAdmiNoticias.setBounds(490, 160, 300, 159);
 
         btnAdmiCatalogos.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        btnAdmiCatalogos.setText("Administrar Catálogos");
         btnAdmiCatalogos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdmiCatalogosActionPerformed(evt);
             }
         });
+        jPanel1.add(btnAdmiCatalogos);
+        btnAdmiCatalogos.setBounds(170, 160, 299, 159);
 
         btnPartidos.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        btnPartidos.setText("Administrar Partidos");
         btnPartidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPartidosActionPerformed(evt);
             }
         });
+        jPanel1.add(btnPartidos);
+        btnPartidos.setBounds(170, 340, 299, 159);
 
         btnAdmiParametros.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        btnAdmiParametros.setText("Parámetros");
         btnAdmiParametros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdmiParametrosActionPerformed(evt);
             }
         });
+        jPanel1.add(btnAdmiParametros);
+        btnAdmiParametros.setBounds(810, 340, 299, 159);
 
         btnAdmiPersonas.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        btnAdmiPersonas.setText("Administrar Personas");
         btnAdmiPersonas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdmiPersonasActionPerformed(evt);
             }
         });
+        jPanel1.add(btnAdmiPersonas);
+        btnAdmiPersonas.setBounds(810, 160, 299, 159);
 
         btnAdmiBitacora.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        btnAdmiBitacora.setText("Bitácora");
         btnAdmiBitacora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdmiBitacoraActionPerformed(evt);
             }
         });
+        jPanel1.add(btnAdmiBitacora);
+        btnAdmiBitacora.setBounds(490, 340, 300, 159);
 
         lblAdminOpciones.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
         lblAdminOpciones.setForeground(new java.awt.Color(255, 255, 255));
         lblAdminOpciones.setText("Opciones de Administrador");
+        jPanel1.add(lblAdminOpciones);
+        lblAdminOpciones.setBounds(111, 42, 521, 48);
 
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
@@ -152,75 +184,17 @@ public class JF_AdminOptions extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
+        jPanel1.add(btnBack);
+        btnBack.setBounds(47, 50, 46, 40);
 
         btnOther.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        btnOther.setText("Administrar Eventos, Estadios y Equipos");
         btnOther.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOtherActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(btnBack)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblAdminOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnOther, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(171, 171, 171)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnPartidos, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAdmiCatalogos))
-                                .addGap(35, 35, 35)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnAdmiBitacora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnAdmiNoticias, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAdmiParametros, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAdmiPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)))
-                .addComponent(lblLogo)
-                .addGap(14, 14, 14))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblLogo))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAdminOpciones))))
-                .addGap(133, 133, 133)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdmiCatalogos, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdmiNoticias, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdmiPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPartidos, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdmiBitacora, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdmiParametros, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(80, 80, 80)
-                .addComponent(btnOther, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
-        );
+        jPanel1.add(btnOther);
+        btnOther.setBounds(350, 520, 594, 166);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

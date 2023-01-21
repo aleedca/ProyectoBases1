@@ -74,14 +74,17 @@ public final class AdminNewsController {
             modelNews.loadNewsArr();
 
             ArrayList<News> newsArr = modelNews.getNewsArr();
-
             
             DefaultTableModel modelTable = (DefaultTableModel) viewAdminNews.getTblNoticias().getModel();
             modelTable.setRowCount(0);
-
-
+            
+            viewAdminNews.getCmbSelectNews().removeAllItems();
+            
             for(int i = 0; i < newsArr.size(); i++){
                 Vector row = new Vector();
+                Integer tmpIdNews = newsArr.get(i).getIdNews();
+                viewAdminNews.getCmbSelectNews().addItem(tmpIdNews.toString());
+                
                 row.add(newsArr.get(i).getIdNews());
                 row.add(newsArr.get(i).getTitle());
                 row.add(newsArr.get(i).getNewsStatus());
@@ -91,7 +94,7 @@ public final class AdminNewsController {
                 modelTable.addRow(row);
             }
         }catch(Exception ex){
-            System.out.println("error "+ex);
+            System.out.println(ex);
         }
     }
     
