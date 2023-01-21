@@ -1034,7 +1034,8 @@ BEGIN
     OPEN curNews FOR
     SELECT NewsComment.username, NewsComment.textnewscomment
     FROM NewsComment
-    WHERE idNews = pIdNews;
+    WHERE idNews = pIdNews
+    ORDER BY idNewsComment ASC;
 END getNewsComments;
 
 CREATE OR REPLACE PROCEDURE getSpecificNews(pIdNews IN NUMBER, cursorNews OUT SYS_REFCURSOR) IS
@@ -1144,6 +1145,19 @@ BEGIN
     SELECT idTeamXGroup, idTeam,idGroupEvent
     FROM TeamXGroup;
 END getTeamXGroup;
+
+
+CREATE OR REPLACE PROCEDURE getTodaySoccerMatches(curTodayMatches OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curTodayMatches FOR
+    SELECT Team.nameteam, SoccerMatch.datehour
+    FROM playerxsoccermatchxteam
+    INNER JOIN SoccerMatch ON SoccerMatch.idSoccerMatch = playerxsoccermatchxteam.idSoccerMatch
+    INNER JOIN Team ON Team.idTeam = playerxsoccermatchxteam.idTeam
+    WHERE TRUNC(Soccermatch.datehour) = TRUNC(SYSDATE)
+    GROUP BY Team.nameteam, SoccerMatch.datehour;
+    
+END getTodaySoccerMatches;
 
 
 -- My Account Information
@@ -1454,6 +1468,22 @@ BEGIN
         codResult := 1;
     END IF;
 END validateSoccerMatchExist;
+
+CREATE OR REPLACE PROCEDURE validateEnoughPlayers(pIdTeam IN NUMBER, codResult OUT NUMBER) IS
+vnTotalPlayers NUMBER(10);
+BEGIN
+    SELECT COUNT(*)
+    INTO vnTotalPlayers
+    FROM Player
+    WHERE Player.idTeam = pIdTeam;
+    
+    IF(vnTotalPlayers >= 5)
+    THEN
+        codResult := 0;
+    ELSE
+        codResult := 1;
+    END IF;
+END validateEnoughPlayers;
 
 /*
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
