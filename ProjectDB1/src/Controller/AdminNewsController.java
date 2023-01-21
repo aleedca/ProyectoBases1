@@ -28,14 +28,13 @@ public final class AdminNewsController {
     private final model_News modelNews;
     
     //Constructor 2da version
-    public AdminNewsController() { 
+    public AdminNewsController(model_News pModelNews) { 
         //View AdminNews
         JF_AdminNews adminNews = new JF_AdminNews();
         this.viewAdminNews = adminNews;  
         
         //Model News
-        model_News validateNews = new model_News();
-        this.modelNews = validateNews;
+        this.modelNews = pModelNews;
 
         fillAdminNews(); 
         fillStatus();
@@ -109,6 +108,7 @@ public final class AdminNewsController {
             viewAdminNews.getTxtTitulo().setText(newsArr.get(0).getTitle());
             viewAdminNews.getTxtTexto().setText(newsArr.get(0).getText());
             modelNews.setPhoto(newsArr.get(0).getPhoto());
+            System.out.println(newsArr.get(0).getPhoto());
             viewAdminNews.setImageLabel(modelNews.getPhoto());
             
         } catch (SQLException ex) {

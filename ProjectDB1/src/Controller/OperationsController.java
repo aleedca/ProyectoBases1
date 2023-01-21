@@ -175,7 +175,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         this.requestController = controller;
         
         //AdminNews Controller
-        AdminNewsController adminNController = new AdminNewsController();
+        AdminNewsController adminNController = new AdminNewsController(modelNews);
         this.adminNewsController = adminNController;
         
         //AdminCatalogs Controller
@@ -268,8 +268,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         adminNewsController.getViewAdminNews().getBtnAceptar().addActionListener(this);
         adminNewsController.getViewAdminNews().getBtnBack().addActionListener(this);
         adminNewsController.getViewAdminNews().getBtnCargarImagen().addActionListener(this);
-        adminNewsController.getViewAdminNews().getTblNoticias().getSelectionModel().addListSelectionListener(this);
-        
+        //adminNewsController.getViewAdminNews().getTblNoticias().getSelectionModel().addListSelectionListener(this);
+ 
         adminNewsController.getViewAdminNews().getCmbSelectNews().addItemListener(this);
         
         //AdminCatalogOption
@@ -280,7 +280,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         adminParametersController.getViewAdminParameters().getBtnBack().addActionListener(this);
         adminParametersController.getViewAdminParameters().getRbtnAgregar().addActionListener(this);
         adminParametersController.getViewAdminParameters().getRbtnEditar().addActionListener(this);
-        adminParametersController.getViewAdminParameters().getTblParametros().getSelectionModel().addListSelectionListener(this);
+        //adminParametersController.getViewAdminParameters().getTblParametros().getSelectionModel().addListSelectionListener(this);
+        adminParametersController.getViewAdminParameters().getCmbSelectParameters().addItemListener(this);
         
         //Request
         viewRequest.getBtnBackRequest().addActionListener(this);
@@ -1037,11 +1038,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
     //------------ VALIDATIONS ADMINNEWS ---------------------------
     private void adminNewsValidationsInsert(String choice1, String choice2){
-      if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
+        if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
             modelNews.insertNews();
             adminNewsController.fillAdminNews();
             adminNewsRestore();
             JOptionPane.showMessageDialog(null, "Noticia creada con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+
         }
         else{
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
@@ -1049,18 +1051,20 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     }
     
     private void adminNewsValidationsUpdate(String choice1, String choice2){
+        System.out.println(modelNews.validatePhoto());
         if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
             adminNewsController.getViewAdminNews().getTblNoticias().clearSelection();
             modelNews.updateNews();
             adminNewsController.fillAdminNews();
-            adminNewsRestore();
             if(updateNewsSuccessful()){
+                adminNewsRestore();
                 JOptionPane.showMessageDialog(null, "Noticia editada con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);            
             }
         }
         else{
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
         }
+        
     }
     
     private void adminNewsRestore(){
@@ -1080,11 +1084,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             modelAdminParameters.insertParameter();
             adminParametersController.fillAdminParameters();
             adminParametersController.getViewAdminParameters().clearAll();
-            JOptionPane.showMessageDialog(null, "Parámetri creado con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Parámetro creado con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
         }
+        
     }
     
     private void adminParametersValidationsUpdate(){
@@ -1092,7 +1097,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             modelAdminParameters.updateParameter();
             adminParametersController.fillAdminParameters();
             adminParametersController.getViewAdminParameters().clearAll();
-            JOptionPane.showMessageDialog(null, "Parámetri creado con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Parámetro creado con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
@@ -2321,6 +2326,14 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 adminNewsController.fillUpdateAdminNews(index);
             }
         }
+        
+        if(e.getSource() == adminParametersController.getViewAdminParameters().getCmbSelectParameters()){
+            if(adminParametersController.getViewAdminParameters().getCmbSelectParameters().getItemCount() > 0){
+                int index = Integer.parseInt(adminParametersController.getViewAdminParameters().getCmbSelectParameters().getSelectedItem().toString());
+                modelAdminParameters.setIdParameter(index);
+                adminParametersController.fillUpdateAdminParameters(index);
+            }
+        }
                
 
     }//ITEM LISTENER
@@ -2563,10 +2576,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             if(adminNewsController.getViewAdminNews().getRbtnEditar().isSelected()){
                 adminNewsValidationsUpdate(choice1, choice2);
             }
-            flagEditNews = false;
-            adminNewsController.getViewAdminNews().getRbtnAgregar().setSelected(true);
-            adminNewsController.getViewAdminNews().getLblInstruction().setVisible(false);
-            adminNewsController.getViewAdminNews().getCmbSelectNews().setVisible(false);
         }
         
         if(e.getSource() == adminNewsController.getViewAdminNews().getRbtnAgregar()){
@@ -2614,8 +2623,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             if(adminParametersController.getViewAdminParameters().getRbtnEditar().isSelected()){
                 adminParametersValidationsUpdate();
             }
-            flagEditParameter = false;
-            adminParametersController.getViewAdminParameters().getRbtnAgregar().setSelected(true);
         }
         
         if(e.getSource() == adminParametersController.getViewAdminParameters().getRbtnAgregar()){
@@ -2625,6 +2632,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
 
         if(e.getSource() == adminParametersController.getViewAdminParameters().getRbtnEditar()){
             flagEditParameter = true;
+            adminParametersController.getViewAdminParameters().getLblInstruction().setVisible(true);
+            adminParametersController.getViewAdminParameters().getCmbSelectParameters().setVisible(true);
         }
         
         //----------- SCREEN Request -------------------------
@@ -3004,13 +3013,13 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             }
         }*/
         
-        if(e.getSource() == adminParametersController.getViewAdminParameters().getTblParametros().getSelectionModel() && flagEditParameter){
+        /*if(e.getSource() == adminParametersController.getViewAdminParameters().getTblParametros().getSelectionModel() && flagEditParameter){
             if(adminParametersController.getViewAdminParameters().getTblParametros().getRowCount() > 0){
                 String name = (String) adminParametersController.getViewAdminParameters().getTblParametros().getValueAt(adminNewsController.getViewAdminNews().getTblNoticias().getSelectedRow(),0);
                 modelAdminParameters.setName(name);
                 adminParametersController.fillUpdateAdminParameters();
             }
-        }
+        }*/
         
         if(e.getSource() == viewPrincipal.getTblLastNews().getSelectionModel() && !newsOpened){
             if( viewPrincipal.getTblLastNews().getRowCount() > 0){

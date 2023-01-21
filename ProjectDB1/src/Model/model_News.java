@@ -31,7 +31,7 @@ public class model_News {
     //atributos que aparecen el design de AdminNews
     private String newsTitle;
     private String newsText;
-    private String photo;
+    private String photo = "";
     private String author;
     private Date publicationDate;
     
@@ -102,7 +102,7 @@ public class model_News {
     }
     
     public boolean validatePhoto(){
-        if(this.photo == null){return false;}
+        if("".equals(this.photo)){return false;}
         return true;
     }
     
@@ -117,7 +117,6 @@ public class model_News {
 
     public void updateNews(){
         try {
-            System.out.println(idNews);
             this.resultUpdateStatus = DA_News.updateStatus(this.idNews, this.idNewsStatus);
             this.resultUpdateType = DA_News.updateType(this.idNews, this.idNewsType);
             this.resultUpdateTitle = DA_News.updateTitle(this.idNews, this.newsTitle);
@@ -149,7 +148,7 @@ public class model_News {
     }
     
     // GETTERS AND SETTERS
-
+    
     public String getAuthor() {
         return author;
     }

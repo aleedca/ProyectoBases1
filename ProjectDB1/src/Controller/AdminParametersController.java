@@ -37,25 +37,38 @@ public class AdminParametersController {
     
     
     public void fillAdminParameters(){
-        modelParameters.loadParameters();
-        
-        ArrayList<Parameter> parameters = modelParameters.getParameters();
-        
-        DefaultTableModel modelTable = (DefaultTableModel) viewAdminParameters.getTblParametros().getModel();
-        modelTable.setRowCount(0);
-        
-        for(int i = 0; i < parameters.size(); i++){
-            Vector row = new Vector();
-            row.add(parameters.get(i).getNameParameter());
-            row.add(parameters.get(i).getValueParameter());
-            modelTable.addRow(row);
+        try{
+            modelParameters.loadParameters();
+
+            ArrayList<Parameter> parameters = modelParameters.getParameters();
+
+            DefaultTableModel modelTable = (DefaultTableModel) viewAdminParameters.getTblParametros().getModel();
+            modelTable.setRowCount(0);
+
+            viewAdminParameters.getCmbSelectParameters().removeAllItems();
+
+            for(int i = 0; i < parameters.size(); i++){
+                Vector row = new Vector();
+                Integer tmpIdParameters = parameters.get(i).getIdParameter();
+                viewAdminParameters.getCmbSelectParameters().addItem(tmpIdParameters.toString());
+                
+                row.add(parameters.get(i).getIdParameter());
+                row.add(parameters.get(i).getNameParameter());
+                row.add(parameters.get(i).getValueParameter());
+                modelTable.addRow(row);
+            }
+        }catch(Exception ex){
+            System.out.println(ex);
         }
     }
     
-    public void fillUpdateAdminParameters(){
+    public void fillUpdateAdminParameters(int index){
+        ArrayList<Parameter> parameters;
+        System.out.println(index);
+        
         try {
-            ArrayList<Parameter> parameters = DA_Parameters.getInfoParameter(modelParameters.getName());
-            modelParameters.setIdParameter(DA_Parameters.getResultIdInfo());
+            parameters = DA_Parameters.getInfoParameter(index);
+            System.out.println(parameters.get(0).getNameParameter());
             viewAdminParameters.getTxtNombre().setText(parameters.get(0).getNameParameter());
             viewAdminParameters.getTxtValor().setText(Integer.toString(parameters.get(0).getValueParameter()));
             
