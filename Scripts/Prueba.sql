@@ -18,11 +18,12 @@ AS
 vnTeam1 VARCHAR2(32);
 vnTeam2 VARCHAR2(32);
 BEGIN
-    SELECT vnTeam1
-
-
+    SELECT idTeam
+    FROM PlayerXMatchXTeam
+    WHERE idSoccerMatch = pidSoccerMatch;
+    
     OPEN curSoccerMatch FOR
-    SELECT descriptionGroupEvent, name, nameStadium
+    SELECT descriptionGroupEvent, vnTeam1, nameStadium
     FROM TeamXGroup;
 END getSoccerMatch;
 
