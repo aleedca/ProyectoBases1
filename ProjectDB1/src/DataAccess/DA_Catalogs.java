@@ -420,39 +420,88 @@ public class DA_Catalogs {
     }
     
     // UPDATE CATALOGS
-    public static void updateGender(){
-    
+    public static void updateGender(int idGender, String descriptionGender) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call updateGender(?,?)}");
+        
+        sql.setInt(1, idGender);
+        sql.setString(2, descriptionGender);
+        sql.execute();
     }
     
-    public static void updateTypeIdentification(){
-    
+    public static void updateTypeIdentification(int idTypeIdentification, String nameTpeIdentification) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call updateTypeIdentification(?,?)}");
+        
+        sql.setInt(1, idTypeIdentification);
+        sql.setString(2, nameTpeIdentification);
+        sql.execute();
     }
     
-    public static void updateCountry(){
-    
+    public static void updateCountry(int idCountry, String nameCountry) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call updateCountry(?,?)}");
+        
+        sql.setInt(1, idCountry);
+        sql.setString(2, nameCountry);
+        sql.execute();
     }
     
-    public static void updateProvince(){
-    
+    public static void updateProvince(int idProvince, int idCountry, String nameProvince) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call updateProvince(?,?,?)}");
+        
+        sql.setInt(1, idProvince);
+        sql.setInt(2, idCountry);
+        sql.setString(3, nameProvince);
+        sql.execute();
     }
     
-    public static void updateCanton(){
-    
+    public static void updateCanton(int idCanton, int idProvince, String nameCanton) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call updateCanton(?,?,?)}");
+        
+        sql.setInt(1, idCanton);
+        sql.setInt(2, idProvince);
+        sql.setString(3, nameCanton);
+        sql.execute();
     }
     
-    public static void updateDistrict(){
-    
+    public static void updateDistrict(int idDistrict, int idCanton, String nameDistrict) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call updateDistrict(?,?,?)}");
+        
+        sql.setInt(1, idDistrict);
+        sql.setInt(2, idCanton);
+        sql.setString(3, nameDistrict);
+        sql.execute();
     }
     
-    public static void updatePosition(){
-    
+    public static void updatePosition(int idPosition, String descriptionPosition) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call updatePosition(?,?)}");
+        
+        sql.setInt(1, idPosition);
+        sql.setString(2, descriptionPosition);
+        sql.execute();
     }
     
-    public static void updateContinent(){
-    
+    public static void updateContinent(int idContinent, String nameContinent) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call updateContinent(?,?)}");
+        
+        sql.setInt(1, idContinent);
+        sql.setString(2, nameContinent);
+        sql.execute();
     }
     
-    public static void updateCountryTeam(){
-    
+    public static void updateCountryTeam(int idCountryTeam, int idContinent, String nameCountryTeam) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call updateCountryTeam(?,?,?)}");
+        
+        sql.setInt(1, idCountryTeam);
+        sql.setInt(2, idContinent);
+        sql.setString(3, nameCountryTeam);
+        sql.execute();
     }
 }
