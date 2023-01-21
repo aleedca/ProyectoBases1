@@ -7,6 +7,7 @@ package View;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -32,25 +33,26 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtAdd = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cmbCatalogo = new javax.swing.JComboBox<>();
-        btnAceptar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
-        txtAgregar = new javax.swing.JTextField();
+        btnAccept = new javax.swing.JButton();
         lblOpciones = new javax.swing.JLabel();
-        txtModificar = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         lblCatalogo = new javax.swing.JLabel();
-        lblAgregar = new javax.swing.JLabel();
-        btnAgregar = new javax.swing.JButton();
-        cmbSeleccionar = new javax.swing.JComboBox<>();
-        lblSeleccionar = new javax.swing.JLabel();
-        lblModificar = new javax.swing.JLabel();
+        lblAddEditDelete = new javax.swing.JLabel();
+        cmbSelect = new javax.swing.JComboBox<>();
+        lblSelect = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblOpciones = new javax.swing.JTable();
+        rbtnAdd = new javax.swing.JRadioButton();
+        rbtnDelete = new javax.swing.JRadioButton();
+        rbtnEdit = new javax.swing.JRadioButton();
+        txtAddEditDelete = new javax.swing.JTextField();
+
+        txtAdd.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1280, 720));
@@ -81,44 +83,19 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         jPanel1.add(cmbCatalogo);
         cmbCatalogo.setBounds(263, 214, 346, 38);
 
-        btnAceptar.setBackground(new java.awt.Color(0, 153, 0));
-        btnAceptar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAceptar.setText("Aceptar");
-        jPanel1.add(btnAceptar);
-        btnAceptar.setBounds(330, 660, 196, 39);
-        btnAceptar.setVisible(false);
-
-        btnModificar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        btnModificar.setText("Modificar");
-        jPanel1.add(btnModificar);
-        btnModificar.setBounds(470, 480, 196, 39);
-
-        btnEliminar.setBackground(new java.awt.Color(204, 0, 0));
-        btnEliminar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnEliminar);
-        btnEliminar.setBounds(810, 660, 360, 39);
-
-        txtAgregar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel1.add(txtAgregar);
-        txtAgregar.setBounds(180, 360, 260, 40);
+        btnAccept.setBackground(new java.awt.Color(0, 153, 0));
+        btnAccept.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnAccept.setForeground(new java.awt.Color(255, 255, 255));
+        btnAccept.setText("Aceptar");
+        jPanel1.add(btnAccept);
+        btnAccept.setBounds(510, 380, 130, 40);
+        btnAccept.setVisible(false);
 
         lblOpciones.setFont(new java.awt.Font("Yu Gothic UI", 0, 23)); // NOI18N
         lblOpciones.setForeground(new java.awt.Color(255, 255, 255));
         lblOpciones.setText("Lista Catálogo");
         jPanel1.add(lblOpciones);
-        lblOpciones.setBounds(806, 201, 367, 47);
-
-        txtModificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel1.add(txtModificar);
-        txtModificar.setBounds(180, 480, 260, 40);
+        lblOpciones.setBounds(720, 200, 367, 47);
 
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
@@ -138,40 +115,24 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         jPanel1.add(lblCatalogo);
         lblCatalogo.setBounds(113, 217, 144, 32);
 
-        lblAgregar.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        lblAgregar.setForeground(new java.awt.Color(255, 255, 255));
-        lblAgregar.setText("Agregar ");
-        jPanel1.add(lblAgregar);
-        lblAgregar.setBounds(180, 330, 260, 25);
+        lblAddEditDelete.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        lblAddEditDelete.setForeground(new java.awt.Color(255, 255, 255));
+        lblAddEditDelete.setText("Agregar ");
+        jPanel1.add(lblAddEditDelete);
+        lblAddEditDelete.setBounds(170, 340, 260, 25);
 
-        btnAgregar.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
-        btnAgregar.setText("Agregar");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnAgregar);
-        btnAgregar.setBounds(470, 360, 196, 39);
+        cmbSelect.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cmbSelect);
+        cmbSelect.setBounds(170, 480, 280, 40);
+        cmbSelect.setVisible(false);
 
-        cmbSeleccionar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cmbSeleccionar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cmbSeleccionar);
-        cmbSeleccionar.setBounds(440, 560, 220, 40);
-        cmbSeleccionar.setVisible(false);
-
-        lblSeleccionar.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
-        lblSeleccionar.setForeground(new java.awt.Color(255, 255, 255));
-        lblSeleccionar.setText("Seleccione");
-        jPanel1.add(lblSeleccionar);
-        lblSeleccionar.setBounds(180, 560, 250, 27);
-        lblSeleccionar.setVisible(false);
-
-        lblModificar.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        lblModificar.setForeground(new java.awt.Color(255, 255, 255));
-        lblModificar.setText("Modificar");
-        jPanel1.add(lblModificar);
-        lblModificar.setBounds(180, 450, 260, 25);
+        lblSelect.setFont(new java.awt.Font("Yu Gothic UI", 0, 20)); // NOI18N
+        lblSelect.setForeground(new java.awt.Color(255, 255, 255));
+        lblSelect.setText("Seleccione");
+        jPanel1.add(lblSelect);
+        lblSelect.setBounds(170, 440, 250, 27);
+        lblSelect.setVisible(false);
 
         tblOpciones.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         tblOpciones.setModel(new javax.swing.table.DefaultTableModel(
@@ -195,7 +156,48 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tblOpciones);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(810, 250, 360, 390);
+        jScrollPane2.setBounds(720, 260, 360, 390);
+
+        rbtnAdd.setBackground(new java.awt.Color(86, 4, 44));
+        rbtnAdd.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        rbtnAdd.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnAdd.setText("Agregar");
+        rbtnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnAddActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbtnAdd);
+        rbtnAdd.setBounds(160, 280, 120, 37);
+        rbtnAdd.setSelected(true);
+
+        rbtnDelete.setBackground(new java.awt.Color(86, 4, 44));
+        rbtnDelete.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        rbtnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnDelete.setText("Eliminar");
+        rbtnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnDeleteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbtnDelete);
+        rbtnDelete.setBounds(460, 280, 130, 37);
+
+        rbtnEdit.setBackground(new java.awt.Color(86, 4, 44));
+        rbtnEdit.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        rbtnEdit.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnEdit.setText("Editar");
+        rbtnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnEditActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbtnEdit);
+        rbtnEdit.setBounds(320, 280, 90, 37);
+
+        txtAddEditDelete.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel1.add(txtAddEditDelete);
+        txtAddEditDelete.setBounds(170, 380, 280, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,41 +213,94 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public JButton getBtnAgregar() {
-        return btnAgregar;
+    public JButton getBtnAccept() {
+        return btnAccept;
     }
 
-    public JButton getBtnEliminar() {
-        return btnEliminar;
+    public void setBtnAccept(JButton btnAccept) {
+        this.btnAccept = btnAccept;
     }
 
-    public JButton getBtnModificar() {
-        return btnModificar;
+    public JComboBox<String> getCmbSelect() {
+        return cmbSelect;
     }
 
-    
+    public void setCmbSelect(JComboBox<String> cmbSelect) {
+        this.cmbSelect = cmbSelect;
+    }
+
+    public JLabel getLblAddEditDelete() {
+        return lblAddEditDelete;
+    }
+
+    public void setLblAddEditDelete(JLabel lblAddEditDelete) {
+        this.lblAddEditDelete = lblAddEditDelete;
+    }
+
+    public JLabel getLblSelect() {
+        return lblSelect;
+    }
+
+    public void setLblSelect(JLabel lblSelect) {
+        this.lblSelect = lblSelect;
+    }
+
+    public JRadioButton getRbtnAdd() {
+        return rbtnAdd;
+    }
+
+    public void setRbtnAdd(JRadioButton rbtnAdd) {
+        this.rbtnAdd = rbtnAdd;
+    }
+
+    public JRadioButton getRbtnDelete() {
+        return rbtnDelete;
+    }
+
+    public void setRbtnDelete(JRadioButton rbtnDelete) {
+        this.rbtnDelete = rbtnDelete;
+    }
+
+    public JRadioButton getRbtnEdit() {
+        return rbtnEdit;
+    }
+
+    public void setRbtnEdit(JRadioButton rbtnEdit) {
+        this.rbtnEdit = rbtnEdit;
+    }
+
+    public String getTxtAddEditDelete() {
+        return txtAddEditDelete.getText();
+    }
+
+    public void setTxtAddEditDelete(JTextField txtAddEditDelete) {
+        this.txtAddEditDelete = txtAddEditDelete;
+    }
+
+    //-----------------------------------------------
+ 
+    public JButton getBtnBack() {
+        return btnBack;
+    }
+
+    public void setBtnBack(JButton btnBack) {
+        this.btnBack = btnBack;
+    }
+
+    public JComboBox<String> getCmbCatalogo() {
+        return cmbCatalogo;
+    }
+
+    public void setCmbCatalogo(JComboBox<String> cmbCatalogo) {
+        this.cmbCatalogo = cmbCatalogo;
+    }
+
     public JLabel getLblCatalogo() {
         return lblCatalogo;
     }
 
-    public void setLblCatalogoJLabel (JLabel lblCatalogo) {
+    public void setLblCatalogo(JLabel lblCatalogo) {
         this.lblCatalogo = lblCatalogo;
-    }
-
-    public JLabel getLblAgregar() {
-        return lblAgregar;
-    }
-
-    public void setLblAgregar(JLabel lblAgregar) {
-        this.lblAgregar = lblAgregar;
-    }
-
-    public JLabel getLblModificar() {
-        return lblModificar;
-    }
-
-    public void setLblModificar(JLabel lblModificar) {
-        this.lblModificar = lblModificar;
     }
 
     public JLabel getLblOpciones() {
@@ -256,39 +311,6 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         this.lblOpciones = lblOpciones;
     }
 
-    
-    public JComboBox<String> getCmbCatalogo() {
-        return cmbCatalogo;
-    }
-
-    public void setCmbCatalogo(JComboBox<String> cmbCatalogo) {
-        this.cmbCatalogo = cmbCatalogo;
-    }
-
-    public String getTextAgregar() {
-        return txtAgregar.getText();
-    }
-
-    public void setTextAgregar(String text) {
-        this.txtAgregar.setText(text);
-    }
-
-    public String getTextModificar() {
-        return txtModificar.getText();
-    }
-
-    public void setjTextField3(String text) {
-        this.txtModificar.setText(text);
-    }
-    
-    public JButton getBtnBack() {
-        return btnBack;
-    }
-
-    public void setBtnBack(JButton btnBack) {
-        this.btnBack = btnBack;
-    }
-
     public JTable getTblOpciones() {
         return tblOpciones;
     }
@@ -296,28 +318,9 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
     public void setTblOpciones(JTable tblOpciones) {
         this.tblOpciones = tblOpciones;
     }
-
-    public JComboBox<String> getCmbSeleccionar() {
-        return cmbSeleccionar;
-    }
-
-    public void setCmbSeleccionar(JComboBox<String> cmbSeleccionar) {
-        this.cmbSeleccionar = cmbSeleccionar;
-    }
-    
-    public JLabel getLblSeleccionar() {
-        return lblSeleccionar;
-    }
-
-    public JButton getBtnAceptar() {
-        return btnAceptar;
-    }
     
     
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // validar si de verdad desea eliminar el item seleccionado de la lista
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
     }//GEN-LAST:event_btnBackActionPerformed
@@ -326,31 +329,38 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cmbCatalogoActionPerformed
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+    private void rbtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnAddActionPerformed
 
-    }//GEN-LAST:event_btnAgregarActionPerformed
+    }//GEN-LAST:event_rbtnAddActionPerformed
+
+    private void rbtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnDeleteActionPerformed
+
+    }//GEN-LAST:event_rbtnDeleteActionPerformed
+
+    private void rbtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnEditActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnModificar;
     private javax.swing.JComboBox<String> cmbCatalogo;
-    private javax.swing.JComboBox<String> cmbSeleccionar;
+    private javax.swing.JComboBox<String> cmbSelect;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblAgregar;
+    private javax.swing.JLabel lblAddEditDelete;
     private javax.swing.JLabel lblCatalogo;
-    private javax.swing.JLabel lblModificar;
     private javax.swing.JLabel lblOpciones;
-    private javax.swing.JLabel lblSeleccionar;
+    private javax.swing.JLabel lblSelect;
+    private javax.swing.JRadioButton rbtnAdd;
+    private javax.swing.JRadioButton rbtnDelete;
+    private javax.swing.JRadioButton rbtnEdit;
     private javax.swing.JTable tblOpciones;
-    private javax.swing.JTextField txtAgregar;
-    private javax.swing.JTextField txtModificar;
+    private javax.swing.JTextField txtAdd;
+    private javax.swing.JTextField txtAddEditDelete;
     // End of variables declaration//GEN-END:variables
 }

@@ -41,47 +41,60 @@ public class AdminCatalogsController {
 
     
     public void fillCatalogs(){
-        viewAdminCatalogs.getCmbSeleccionar().removeAllItems();
+        viewAdminCatalogs.getCmbSelect().removeAllItems();
         this.modelAdminCatalogs.loadCatalogs();
        
         DefaultTableModel modelTable = (DefaultTableModel) viewAdminCatalogs.getTblOpciones().getModel();
         modelTable.setRowCount(0); 
         
         viewAdminCatalogs.getLblOpciones().setText("Catálogo ");
-        viewAdminCatalogs.getLblAgregar().setText("Agregar ");
-        viewAdminCatalogs.getLblModificar().setText("Modificar ");
         String catalog = viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString();
         
         
         if(!"Seleccione un catálogo".equals(catalog)){
-            viewAdminCatalogs.getLblOpciones().setText(viewAdminCatalogs.getLblOpciones().getText() + "" + catalog);
-            viewAdminCatalogs.getLblAgregar().setText(viewAdminCatalogs.getLblAgregar().getText() + "" + catalog);
-            viewAdminCatalogs.getLblModificar().setText(viewAdminCatalogs.getLblModificar().getText() + "" + catalog);
+            viewAdminCatalogs.getLblSelect().setVisible(false);
+            viewAdminCatalogs.getCmbSelect().setVisible(false);
+            viewAdminCatalogs.getBtnAccept().setVisible(false);
             
-            viewAdminCatalogs.getLblSeleccionar().setVisible(false);
-            viewAdminCatalogs.getCmbSeleccionar().setVisible(false);
-            viewAdminCatalogs.getBtnAceptar().setVisible(false);
+            if(viewAdminCatalogs.getRbtnAdd().isSelected()){
+                viewAdminCatalogs.getLblOpciones().setText(viewAdminCatalogs.getLblOpciones().getText() + "" + catalog);
+                viewAdminCatalogs.getLblAddEditDelete().setText("Agregar ");
+                viewAdminCatalogs.getLblAddEditDelete().setText(viewAdminCatalogs.getLblAddEditDelete().getText() + "" + catalog);
+            }
+            
+            if(viewAdminCatalogs.getRbtnEdit().isSelected()){
+                viewAdminCatalogs.getLblOpciones().setText(viewAdminCatalogs.getLblOpciones().getText() + "" + catalog);
+                viewAdminCatalogs.getLblAddEditDelete().setText("Modificar ");
+                viewAdminCatalogs.getLblAddEditDelete().setText(viewAdminCatalogs.getLblAddEditDelete().getText() + "" + catalog);
+            }
+            
+            
+            if(viewAdminCatalogs.getRbtnDelete().isSelected()){
+                viewAdminCatalogs.getLblOpciones().setText(viewAdminCatalogs.getLblOpciones().getText() + "" + catalog);
+                viewAdminCatalogs.getLblAddEditDelete().setText("Eliminar ");
+                viewAdminCatalogs.getLblAddEditDelete().setText(viewAdminCatalogs.getLblAddEditDelete().getText() + "" + catalog);
+            }
         }
         
-        if("Provincia".equals(catalog) && viewAdminCatalogs.getBtnAgregar().isSelected()){
-            viewAdminCatalogs.getLblSeleccionar().setText("Selecione un Pais");
-            viewAdminCatalogs.getLblSeleccionar().setVisible(true);
-            viewAdminCatalogs.getCmbSeleccionar().setVisible(true);
-            viewAdminCatalogs.getBtnAceptar().setVisible(true);
+        if("Provincia".equals(catalog) && viewAdminCatalogs.getRbtnAdd().isSelected()){
+            viewAdminCatalogs.getLblSelect().setText("Selecione País");
+            viewAdminCatalogs.getLblSelect().setVisible(true);
+            viewAdminCatalogs.getCmbSelect().setVisible(true);
+            viewAdminCatalogs.getBtnAccept().setVisible(true);
         }
         
-        if("Cantón".equals(catalog) && viewAdminCatalogs.getBtnAgregar().isSelected()){
-            viewAdminCatalogs.getLblSeleccionar().setText("Selecione una Provincia");
-            viewAdminCatalogs.getLblSeleccionar().setVisible(true);
-            viewAdminCatalogs.getCmbSeleccionar().setVisible(true);
-            viewAdminCatalogs.getBtnAceptar().setVisible(true);
+        if("Cantón".equals(catalog) && viewAdminCatalogs.getRbtnAdd().isSelected()){
+            viewAdminCatalogs.getLblSelect().setText("Selecione una Provincia");
+            viewAdminCatalogs.getLblSelect().setVisible(true);
+            viewAdminCatalogs.getCmbSelect().setVisible(true);
+            viewAdminCatalogs.getBtnAccept().setVisible(true);
         }
         
-        if("Distrito".equals(catalog) && viewAdminCatalogs.getBtnAgregar().isSelected()){
-            viewAdminCatalogs.getLblSeleccionar().setText("Selecione un Cantón");
-            viewAdminCatalogs.getLblSeleccionar().setVisible(true);
-            viewAdminCatalogs.getCmbSeleccionar().setVisible(true);
-            viewAdminCatalogs.getBtnAceptar().setVisible(true);
+        if("Distrito".equals(catalog) && viewAdminCatalogs.getRbtnAdd().isSelected()){
+            viewAdminCatalogs.getLblSelect().setText("Selecione un Cantón");
+            viewAdminCatalogs.getLblSelect().setVisible(true);
+            viewAdminCatalogs.getCmbSelect().setVisible(true);
+            viewAdminCatalogs.getBtnAccept().setVisible(true);
         }
         
         if("Género".equals(viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString())){
@@ -135,7 +148,7 @@ public class AdminCatalogsController {
             }
             
             for(int i=0; i< modelAdminCatalogs.getCountries().size();i++){
-                viewAdminCatalogs.getCmbSeleccionar().addItem(modelAdminCatalogs.getCountries().get(i).getNameCountry());
+                viewAdminCatalogs.getCmbSelect().addItem(modelAdminCatalogs.getCountries().get(i).getNameCountry());
             }
         }
         
@@ -146,7 +159,7 @@ public class AdminCatalogsController {
             }
             
             for(int i=0; i< modelAdminCatalogs.getProvinces().size();i++){
-                viewAdminCatalogs.getCmbSeleccionar().addItem(modelAdminCatalogs.getProvinces().get(i).getNameProvince());
+                viewAdminCatalogs.getCmbSelect().addItem(modelAdminCatalogs.getProvinces().get(i).getNameProvince());
             }
         }
         
@@ -157,7 +170,7 @@ public class AdminCatalogsController {
             }
             
             for(int i=0; i< modelAdminCatalogs.getCantons().size();i++){
-                viewAdminCatalogs.getCmbSeleccionar().addItem(modelAdminCatalogs.getCantons().get(i).getNameCanton());
+                viewAdminCatalogs.getCmbSelect().addItem(modelAdminCatalogs.getCantons().get(i).getNameCanton());
             }
         }
         
