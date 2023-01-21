@@ -1,3 +1,62 @@
+---CATALOGS RESTANTES----------------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE insertGender(pDescriptionGender IN VARCHAR) IS
+BEGIN
+    INSERT INTO Gender(idGender, descriptionGender, userCreation, lastUser, lastDate, dateCreation)
+    VALUES(s_gender.nextval, pDescriptionGender, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertGender;
+
+CREATE OR REPLACE PROCEDURE insertTypeIdentification(pNameTypeIdentification IN VARCHAR, pTypeMask IN VARCHAR) IS
+BEGIN
+    INSERT INTO TypeIdentification(idTypeIdentification, nameTypeIdentification, typeMask, userCreation, lastUser, lastDate, dateCreation)
+    VALUES(s_typeIdentification.nextval, pNameTypeIdentification, pTypeMask, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertTypeIdentification;
+
+CREATE OR REPLACE PROCEDURE insertPosition(pDescriptionPosition IN VARCHAR) IS
+BEGIN
+    INSERT INTO PersonPosition(idPersonPosition, descriptionPosition, userCreation, lastUser, lastDate, dateCreation)
+    VALUES(s_personposition.nextval, pDescriptionPosition, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertPosition;
+
+CREATE OR REPLACE PROCEDURE insertContinent(pNameContinent IN VARCHAR2) AS
+BEGIN
+    INSERT INTO Continent (idContinent, nameContinent, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_continent.nextval, pNameContinent, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertContinent;
+
+CREATE OR REPLACE PROCEDURE insertCountry(pNameCountry IN VARCHAR) IS
+BEGIN
+    INSERT INTO Country(idCountry, nameCountry, userCreation, lastUser, lastDate, dateCreation)
+    VALUES(s_country.nextval, pNameCountry, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertCountry;
+
+CREATE OR REPLACE PROCEDURE insertProvince(pIdCountry IN NUMBER, pNameProvince IN VARCHAR2) AS
+BEGIN
+    INSERT INTO Province (idProvince, idCountry, nameProvince, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_province.nextval, pIdCountry, pNameProvince,NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertProvince;
+
+CREATE OR REPLACE PROCEDURE insertCanton(pIdProvince IN NUMBER, pNameCanton IN VARCHAR2) AS
+BEGIN
+    INSERT INTO Canton(idCanton, idProvince, nameCanton, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_canton.nextval, pIdProvince, pNameCanton,NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertCanton;
+
+CREATE OR REPLACE PROCEDURE insertDistrict(pIdCanton IN NUMBER,pNameDistrict IN VARCHAR2) AS
+BEGIN
+    INSERT INTO District(idDistrict, idCanton, nameDistrict, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_district.nextval, pIdCanton, pNameDistrict,NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertDistrict;
+
+---------------------------------------------------------------------------------------
+
 CREATE OR REPLACE PROCEDURE getContinent(curContinent OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curContinent FOR
@@ -7,7 +66,7 @@ END getContinent;
 
 CREATE OR REPLACE PROCEDURE insertTeamXGroup (pidTeam IN NUMBER, pidGroupEvent IN NUMBER) AS
 BEGIN
-    INSERT INTO TeamXGroup (idTeamXGroup, idTeam, idGroupEvent,userCreation, lastUser, lastDate, dateCreation)
+    INSERT INTO TeamXGroup (idTeamXGroup, idTeam, idGroupEvent, userCreation, lastUser, lastDate, dateCreation)
     VALUES (s_teamxgroup.nextval, pidTeam, pidGroupEvent,NULL, NULL, NULL, NULL);
     COMMIT;
 END insertTeamXGroup;

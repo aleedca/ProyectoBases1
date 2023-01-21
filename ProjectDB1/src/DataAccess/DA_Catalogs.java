@@ -305,40 +305,81 @@ public class DA_Catalogs {
     }   
        
     // INSERTIONS CATALOGS
-    public static void insertGender(){
-    
+    public static void insertGender(String descriptionGender) throws SQLException{      
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call insertGender(?)}");
+        
+        sql.setString(1, descriptionGender);
+        sql.execute();
     }
     
-    public static void insertTypeIdentification(){
-    
+    public static void insertTypeIdentification(String nameType, String nameMask) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call insertTpeIdentificaion(?,?)}");
+        
+        sql.setString(1, nameType);
+        sql.setString(2, nameMask);
+        sql.execute();
     }
     
-    public static void insertCountry(){
-    
+    public static void insertCountry(String nameCountry) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call insertCountry(?)}");
+        
+        sql.setString(1, nameCountry);
+        sql.execute();
     }
     
-    public static void insertProvince(){
-    
+    public static void insertProvince(int idCountry, String nameProvince) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call insertProvince(?,?)}");
+        
+        sql.setInt(1, idCountry);
+        sql.setString(2, nameProvince);
+        sql.execute();
     }
     
-    public static void insertCanton(){
-    
+    public static void insertCanton(int idProvince, String nameCanton) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call insertCanton(?,?)}");
+        
+        sql.setInt(1, idProvince);
+        sql.setString(2, nameCanton);
+        sql.execute();
     }
     
-    public static void insertDistrict(){
-    
+    public static void insertDistrict(int idCanton, String nameDistrict) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call insertDistrict(?,?)}");
+        
+        sql.setInt(1, idCanton);
+        sql.setString(2, nameDistrict);
+        sql.execute();
     }
     
-    public static void insertPosition(){
-    
+    public static void insertPosition(String descriptionPosition) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call insetPosition(?)}");
+        
+        sql.setString(1, descriptionPosition);
+        sql.execute();
     }
     
-    public static void insertContinent(){
-    
+    public static void insertContinent(String nameContinent) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call insertContinent(?)}");
+        
+        sql.setString(1, nameContinent);
+        sql.execute();
     }
     
-    public static void insertCountryTeam(){
-    
+    public static void insertCountryTeam(int idContinent, String nameContinent) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call insertCountryTeam(?,?)}");
+        
+        sql.setInt(1, idContinent);
+        sql.setString(2, nameContinent);
+        sql.execute();
     }
     
     // DELETIONS CATALOGS
