@@ -29,16 +29,21 @@ public class AdminCatalogsController {
         model_AdminCatalogs validateNews = new model_AdminCatalogs();
         this.modelAdminCatalogs = validateNews;
         
-        fillCatalogs();
     }
 
     public JF_AdminCatalogs getViewAdminCatalogs() {
         return viewAdminCatalogs;
     }
+
+    public model_AdminCatalogs getModelAdminCatalogs() {
+        return modelAdminCatalogs;
+    }
+
     
     public void fillCatalogs(){
         viewAdminCatalogs.getCmbSeleccionar().removeAllItems();
-        
+        this.modelAdminCatalogs.loadCatalogs();
+       
         DefaultTableModel modelTable = (DefaultTableModel) viewAdminCatalogs.getTblOpciones().getModel();
         modelTable.setRowCount(0); 
         
@@ -99,6 +104,22 @@ public class AdminCatalogsController {
                 modelTable.addRow(row);
             }
         }
+        
+        if("Continente".equals(viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString())){
+            for(int i=0; i< modelAdminCatalogs.getContinents().size();i++){
+                Object[] row = {modelAdminCatalogs.getContinents().get(i).getNameContinent()};
+                modelTable.addRow(row);
+            }
+        }
+        
+        if("País de Equipo".equals(viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString())){
+            for(int i=0; i< modelAdminCatalogs.getCountryTeams().size();i++){
+                Object[] row = {modelAdminCatalogs.getCountryTeams().get(i).getNameCountryTeam()};
+                modelTable.addRow(row);
+            }
+        }
+        
+        
         
         if("País".equals(viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString())){
             for(int i=0; i< modelAdminCatalogs.getCountries().size();i++){

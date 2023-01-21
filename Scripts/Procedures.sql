@@ -64,12 +64,7 @@ BEGIN
 END insertGroupEvent;
 
 -- CountryTeam
-CREATE OR REPLACE PROCEDURE insertCountryTeam (pIdContinent IN NUMBER, pNameCountryTeam IN VARCHAR2) AS
-BEGIN
-    INSERT INTO CountryTeam (idCountryTeam, idContinent, nameCountryTeam, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_countryTeam.nextval, pIdContinent, pNameCountryTeam, NULL, NULL, NULL, NULL);
-    COMMIT;
-END insertCountryTeam;
+
 
 -- Team
 CREATE OR REPLACE PROCEDURE insertTeam(pIdCountryTeam IN NUMBER, pNameTeam IN VARCHAR2, pFlag IN VARCHAR2)
@@ -1122,7 +1117,7 @@ BEGIN
     ORDER BY viewsNews DESC;
 END getMostViewedNews;
 
-
+ 
 CREATE OR REPLACE PROCEDURE getLastNews(curLastNews OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curLastNews FOR
