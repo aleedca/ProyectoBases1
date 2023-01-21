@@ -4,12 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/View/JF_AdminMatch.java</file>
+            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/Controller/AdminNewsController.java</file>
+            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/Controller/OperationsController.java</file>
             <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/DataAccess/DA_SoccerMatch.java</file>
             <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/View/JF_AdminScheduleMatch.java</file>
-            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/View/JF_Principal.java</file>
             <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/View/JF_AdminMatches.java</file>
-            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/DataAccess/sysConnection.java</file>
             <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/Model/model_AdminMatches.java</file>
+            <file>file:/C:/Users/Isaac/Desktop/TEC/2022%20-%20Verano/Bases%20de%20datos%201/Proyecto/ProyectoBases1/ProjectDB1/src/Objects/Match.java</file>
         </group>
     </open-files>
 </project-private>

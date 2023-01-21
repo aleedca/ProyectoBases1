@@ -9,8 +9,8 @@ package Objects;
  * @author Isaac
  */
 public class Match {
-    private String nameTeam1;
-    private String nameTeam2;
+    private String nameTeam1 = "";
+    private String nameTeam2 = "";
     private String hour;
 
     public Match() {

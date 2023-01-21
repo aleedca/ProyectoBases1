@@ -6,6 +6,7 @@ package DataAccess;
 
 
 import Objects.Continent;
+import Objects.Match;
 import Objects.TeamXGroup;
 import java.math.BigDecimal;
 import java.sql.CallableStatement;
@@ -166,6 +167,49 @@ public class DA_SoccerMatch {
         int result = ((BigDecimal) sql.getObject(1)).intValue();
         System.out.println("El resultado de la validacion de PARTIDOS es: "+ result);
         return result;   
+    }
+    
+    public static int validateEnoughPlayers(int idTeam) throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call validateEnoughPlayers(?,?)}");
+        
+        //Output parameter
+        sql.setInt(1, idTeam);
+        sql.registerOutParameter(2, OracleTypes.NUMBER);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(2)).intValue();
+        System.out.println("El resultado de la validacion de PARTIDOS es: "+ result);
+        return result;   
+    }
+    
+    public static ArrayList<Match> getTodayMatches() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call validateEnoughPlayers(?,?)}");
+        
+        //Output parameter
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<Match> todayMatches = new ArrayList<>();
+        Match tmpMatch = new Match();
+        while(rs.next()){
+            if("".equals(tmpMatch.getNameTeam1())){
+               tmpMatch.setNameTeam1(rs.getString("nameteam"));
+               tmpMatch.setHour(rs.getString("datehour").substring(12));
+            }else if(!"".equals(tmpMatch.getNameTeam1()) && "".equals(tmpMatch.getNameTeam2())){
+               tmpMatch.setNameTeam2(rs.getString("nameteam"));
+               todayMatches.add(tmpMatch);
+               tmpMatch = new Match();
+            }
+        }
+
+        return todayMatches;
+        
+        
     }
     
 
