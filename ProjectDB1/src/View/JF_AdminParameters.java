@@ -5,6 +5,8 @@
 package View;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -20,6 +22,8 @@ public class JF_AdminParameters extends javax.swing.JFrame {
      */
     public JF_AdminParameters() {
         initComponents();
+        this.lblInstruction.setVisible(false);
+        this.cmbSelectParameters.setVisible(false);
     }
 
     /**
@@ -45,6 +49,8 @@ public class JF_AdminParameters extends javax.swing.JFrame {
         lblNombreParametro = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblParametros = new javax.swing.JTable();
+        lblInstruction = new javax.swing.JLabel();
+        cmbSelectParameters = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -109,11 +115,11 @@ public class JF_AdminParameters extends javax.swing.JFrame {
         lblEntradaParametro.setForeground(new java.awt.Color(255, 255, 255));
         lblEntradaParametro.setText("Entrada del parámetro:");
         jPanel1.add(lblEntradaParametro);
-        lblEntradaParametro.setBounds(730, 420, 220, 30);
+        lblEntradaParametro.setBounds(730, 440, 220, 30);
 
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(txtNombre);
-        txtNombre.setBounds(960, 360, 250, 30);
+        txtNombre.setBounds(960, 380, 250, 30);
 
         btnAceptar.setBackground(new java.awt.Color(86, 4, 44));
         btnAceptar.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
@@ -125,27 +131,27 @@ public class JF_AdminParameters extends javax.swing.JFrame {
 
         txtValor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(txtValor);
-        txtValor.setBounds(960, 420, 250, 30);
+        txtValor.setBounds(960, 440, 250, 30);
 
         lblNombreParametro.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         lblNombreParametro.setForeground(new java.awt.Color(255, 255, 255));
         lblNombreParametro.setText("Nombre del parámetro:");
         jPanel1.add(lblNombreParametro);
-        lblNombreParametro.setBounds(730, 360, 220, 30);
+        lblNombreParametro.setBounds(730, 380, 220, 30);
 
         tblParametros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nombre", "Valor"
+                "ID", "Nombre", "Valor"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -156,20 +162,34 @@ public class JF_AdminParameters extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblParametros.setEnabled(false);
         tblParametros.setIntercellSpacing(new java.awt.Dimension(3, 3));
         tblParametros.setShowGrid(true);
         tblParametros.getTableHeader().setResizingAllowed(false);
         tblParametros.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblParametros);
         if (tblParametros.getColumnModel().getColumnCount() > 0) {
-            tblParametros.getColumnModel().getColumn(0).setMinWidth(400);
-            tblParametros.getColumnModel().getColumn(0).setPreferredWidth(400);
-            tblParametros.getColumnModel().getColumn(1).setMinWidth(70);
-            tblParametros.getColumnModel().getColumn(1).setPreferredWidth(70);
+            tblParametros.getColumnModel().getColumn(0).setMinWidth(40);
+            tblParametros.getColumnModel().getColumn(0).setPreferredWidth(40);
+            tblParametros.getColumnModel().getColumn(0).setMaxWidth(40);
+            tblParametros.getColumnModel().getColumn(1).setMinWidth(400);
+            tblParametros.getColumnModel().getColumn(1).setPreferredWidth(400);
+            tblParametros.getColumnModel().getColumn(2).setMinWidth(70);
+            tblParametros.getColumnModel().getColumn(2).setPreferredWidth(70);
         }
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(70, 160, 580, 480);
+
+        lblInstruction.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 16)); // NOI18N
+        lblInstruction.setForeground(new java.awt.Color(255, 255, 255));
+        lblInstruction.setText("Seleccione el ID del parámetro a editar:");
+        jPanel1.add(lblInstruction);
+        lblInstruction.setBounds(830, 270, 280, 22);
+
+        cmbSelectParameters.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cmbSelectParameters);
+        cmbSelectParameters.setBounds(850, 300, 240, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -204,6 +224,8 @@ public class JF_AdminParameters extends javax.swing.JFrame {
     public void clearAll(){
         txtNombre.setText("");
         txtValor.setText("");
+        lblInstruction.setVisible(false);
+        cmbSelectParameters.setVisible(false);
     }
     
     public JRadioButton getRbtnAgregar() {
@@ -262,6 +284,24 @@ public class JF_AdminParameters extends javax.swing.JFrame {
         this.btnBack = btnBack;
     }
 
+    public JComboBox<String> getCmbSelectParameters() {
+        return cmbSelectParameters;
+    }
+
+    public void setCmbSelectParameters(JComboBox<String> cmbSelectParameters) {
+        this.cmbSelectParameters = cmbSelectParameters;
+    }
+
+    public JLabel getLblInstruction() {
+        return lblInstruction;
+    }
+
+    public void setLblInstruction(JLabel lblInstruction) {
+        this.lblInstruction = lblInstruction;
+    }
+    
+    
+
     
     /**
      * @param args the command line arguments
@@ -302,10 +342,12 @@ public class JF_AdminParameters extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBack;
     private javax.swing.ButtonGroup btnGroupParametros;
+    private javax.swing.JComboBox<String> cmbSelectParameters;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdminOther;
     private javax.swing.JLabel lblEntradaParametro;
+    private javax.swing.JLabel lblInstruction;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombreParametro;
     private javax.swing.JRadioButton rbtnAgregar;

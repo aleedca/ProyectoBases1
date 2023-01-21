@@ -49,6 +49,7 @@ public class DA_Parameters {
         while(rs.next()){
             Parameter parameter = new Parameter();
             
+            parameter.setIdParameter(rs.getInt("idParameterTable"));
             parameter.setNameParameter(rs.getString("nameParameter"));
             parameter.setValueParameter(rs.getInt("valueParameter"));
             parameters.add(parameter);
@@ -57,16 +58,15 @@ public class DA_Parameters {
         return parameters;
     }
     
-    public static ArrayList<Parameter> getInfoParameter(String name) throws SQLException {
+    public static ArrayList<Parameter> getInfoParameter(int idParameter) throws SQLException {
         Connection conn = sysConnection.getConexion();
         
-        CallableStatement sql = conn.prepareCall("{call getInfoParameter(?,?,?)}");
-        sql.setString(1, name);
-        sql.registerOutParameter(2, OracleTypes.NUMBER);
-        sql.registerOutParameter(3, OracleTypes.REF_CURSOR);
+        CallableStatement sql = conn.prepareCall("{call getInfoParameter(?,?)}");
+        sql.setInt(1, idParameter);
+        sql.registerOutParameter(2, OracleTypes.REF_CURSOR);
         sql.execute();
         
-        ResultSet rs = (ResultSet) sql.getObject(3);
+        ResultSet rs = (ResultSet) sql.getObject(2);
         ArrayList<Parameter> parameters = new ArrayList<>();
         while(rs.next()){
             Parameter parameter = new Parameter();
@@ -77,7 +77,6 @@ public class DA_Parameters {
             parameters.add(parameter);
         }
 
-        resultIdInfo = ((BigDecimal) sql.getObject(2)).intValue();
         return parameters;
     }
     
@@ -88,7 +87,7 @@ public class DA_Parameters {
         //Input parameters
         sql.setInt(1, idParameter);
         sql.setString(2, name);
-        sql.setInt(2, value);
+        sql.setInt(3, value);
 
         //Output parameter
         sql.registerOutParameter(4, OracleTypes.NUMBER);
