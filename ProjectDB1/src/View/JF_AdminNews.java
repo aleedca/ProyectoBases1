@@ -29,6 +29,8 @@ public class JF_AdminNews extends javax.swing.JFrame {
     public JF_AdminNews() {
         initComponents();
         this.setLocationRelativeTo(this);
+        this.lblInstruction.setVisible(false);
+        this.cmbSelectNews.setVisible(false);
     }
     
     public void setImageLabel(String photoUrl){
@@ -74,6 +76,8 @@ public class JF_AdminNews extends javax.swing.JFrame {
         tblNoticias = new javax.swing.JTable();
         lblEstado = new javax.swing.JLabel();
         txtTexto = new javax.swing.JTextArea();
+        cmbSelectNews = new javax.swing.JComboBox<>();
+        lblInstruction = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -118,7 +122,7 @@ public class JF_AdminNews extends javax.swing.JFrame {
             }
         });
         jPanel1.add(rbtnAgregar);
-        rbtnAgregar.setBounds(810, 160, 150, 37);
+        rbtnAgregar.setBounds(990, 180, 150, 37);
         rbtnAgregar.setSelected(true);
 
         rbtnEditar.setBackground(new java.awt.Color(86, 4, 44));
@@ -132,51 +136,51 @@ public class JF_AdminNews extends javax.swing.JFrame {
             }
         });
         jPanel1.add(rbtnEditar);
-        rbtnEditar.setBounds(1050, 160, 100, 37);
+        rbtnEditar.setBounds(1140, 180, 90, 37);
 
         cmbEstado.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
         jPanel1.add(cmbEstado);
-        cmbEstado.setBounds(790, 230, 190, 30);
+        cmbEstado.setBounds(790, 250, 190, 30);
 
         lblTipo.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         lblTipo.setForeground(new java.awt.Color(255, 255, 255));
         lblTipo.setText("Tipo:");
         jPanel1.add(lblTipo);
-        lblTipo.setBounds(1010, 220, 60, 40);
+        lblTipo.setBounds(1010, 240, 60, 40);
 
         cmbTipo.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
         jPanel1.add(cmbTipo);
-        cmbTipo.setBounds(1060, 230, 190, 30);
+        cmbTipo.setBounds(1060, 250, 190, 30);
 
         lblTitulo.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Título:");
         jPanel1.add(lblTitulo);
-        lblTitulo.setBounds(720, 280, 60, 30);
+        lblTitulo.setBounds(720, 300, 60, 30);
 
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(txtTitulo);
-        txtTitulo.setBounds(790, 280, 410, 30);
+        txtTitulo.setBounds(790, 300, 410, 30);
 
         lblTexto.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         lblTexto.setForeground(new java.awt.Color(255, 255, 255));
         lblTexto.setText("Texto:");
         jPanel1.add(lblTexto);
-        lblTexto.setBounds(720, 340, 120, 25);
+        lblTexto.setBounds(720, 360, 120, 25);
 
         lblFoto.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         lblFoto.setForeground(new java.awt.Color(255, 255, 255));
         lblFoto.setText("Foto:");
         jPanel1.add(lblFoto);
-        lblFoto.setBounds(990, 340, 70, 30);
+        lblFoto.setBounds(990, 360, 70, 30);
 
         btnCargarImagen.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnCargarImagen.setText("Cargar foto");
         btnCargarImagen.setAlignmentY(0.0F);
         jPanel1.add(btnCargarImagen);
-        btnCargarImagen.setBounds(1060, 340, 120, 30);
+        btnCargarImagen.setBounds(1060, 360, 120, 30);
 
         lblImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/avatar.png"))); // NOI18N
@@ -185,7 +189,7 @@ public class JF_AdminNews extends javax.swing.JFrame {
         lblImagen.setMinimumSize(new java.awt.Dimension(180, 230));
         lblImagen.setPreferredSize(new java.awt.Dimension(180, 230));
         jPanel1.add(lblImagen);
-        lblImagen.setBounds(1010, 380, 180, 230);
+        lblImagen.setBounds(1010, 410, 180, 230);
 
         btnAceptar.setBackground(new java.awt.Color(86, 4, 44));
         btnAceptar.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
@@ -193,7 +197,7 @@ public class JF_AdminNews extends javax.swing.JFrame {
         btnAceptar.setText("Aceptar");
         btnAceptar.setBorderPainted(false);
         jPanel1.add(btnAceptar);
-        btnAceptar.setBounds(920, 630, 130, 40);
+        btnAceptar.setBounds(920, 660, 130, 40);
 
         tblNoticias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,7 +222,9 @@ public class JF_AdminNews extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblNoticias.setEnabled(false);
         tblNoticias.setIntercellSpacing(new java.awt.Dimension(3, 3));
+        tblNoticias.setRowSelectionAllowed(false);
         tblNoticias.setShowGrid(true);
         tblNoticias.getTableHeader().setResizingAllowed(false);
         tblNoticias.getTableHeader().setReorderingAllowed(false);
@@ -240,13 +246,23 @@ public class JF_AdminNews extends javax.swing.JFrame {
         lblEstado.setForeground(new java.awt.Color(255, 255, 255));
         lblEstado.setText("Estado:");
         jPanel1.add(lblEstado);
-        lblEstado.setBounds(720, 220, 120, 40);
+        lblEstado.setBounds(720, 240, 120, 40);
 
         txtTexto.setColumns(20);
         txtTexto.setLineWrap(true);
         txtTexto.setRows(5);
         jPanel1.add(txtTexto);
-        txtTexto.setBounds(720, 380, 232, 230);
+        txtTexto.setBounds(720, 410, 232, 230);
+
+        cmbSelectNews.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cmbSelectNews);
+        cmbSelectNews.setBounds(720, 190, 230, 30);
+
+        lblInstruction.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 14)); // NOI18N
+        lblInstruction.setForeground(new java.awt.Color(255, 255, 255));
+        lblInstruction.setText("Seleccione el ID de la noticia a editar.");
+        jPanel1.add(lblInstruction);
+        lblInstruction.setBounds(720, 160, 240, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -270,6 +286,14 @@ public class JF_AdminNews extends javax.swing.JFrame {
     public boolean validateSelectedRow(){
         if(tblNoticias.getSelectionModel().isSelectionEmpty()){return false;}
         return true;
+    }
+
+    public JComboBox<String> getCmbSelectNews() {
+        return cmbSelectNews;
+    }
+
+    public JLabel getLblInstruction() {
+        return lblInstruction;
     }
     
     public JComboBox<String> getCmbEstado() {
@@ -381,6 +405,7 @@ public class JF_AdminNews extends javax.swing.JFrame {
     private javax.swing.JButton btnCargarImagen;
     private javax.swing.ButtonGroup btnGroupAdmiNoticias;
     private javax.swing.JComboBox<String> cmbEstado;
+    private javax.swing.JComboBox<String> cmbSelectNews;
     private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -388,6 +413,7 @@ public class JF_AdminNews extends javax.swing.JFrame {
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel lblImagen;
+    private javax.swing.JLabel lblInstruction;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblTexto;
     private javax.swing.JLabel lblTipo;

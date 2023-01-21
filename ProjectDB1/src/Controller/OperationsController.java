@@ -270,6 +270,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         adminNewsController.getViewAdminNews().getBtnCargarImagen().addActionListener(this);
         adminNewsController.getViewAdminNews().getTblNoticias().getSelectionModel().addListSelectionListener(this);
         
+        adminNewsController.getViewAdminNews().getCmbSelectNews().addItemListener(this);
+        
         //AdminCatalogOption
         adminCatalogsController.getViewAdminCatalogs().getBtnBack().addActionListener(this);
                
@@ -1048,6 +1050,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
     private void adminNewsValidationsUpdate(String choice1, String choice2){
         if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
+            adminNewsController.getViewAdminNews().getTblNoticias().clearSelection();
             modelNews.updateNews();
             adminNewsController.fillAdminNews();
             adminNewsRestore();
@@ -2210,7 +2213,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         
-        //XD LOL
+        
         if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo()){
             if(e.getStateChange() == ItemEvent.SELECTED){
                 adminCatalogsController.fillCatalogs();
@@ -2310,9 +2313,17 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 }    
             }   
         }
+        
+        if(e.getSource() == adminNewsController.getViewAdminNews().getCmbSelectNews()){
+            if(adminNewsController.getViewAdminNews().getCmbSelectNews().getItemCount() > 0){
+                int index = Integer.parseInt(adminNewsController.getViewAdminNews().getCmbSelectNews().getSelectedItem().toString());
+                modelNews.setIdNews(index);
+                adminNewsController.fillUpdateAdminNews(index);
+            }
+        }
                
 
-    }//ITEAM LISTENER
+    }//ITEM LISTENER
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -2554,14 +2565,20 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             }
             flagEditNews = false;
             adminNewsController.getViewAdminNews().getRbtnAgregar().setSelected(true);
+            adminNewsController.getViewAdminNews().getLblInstruction().setVisible(false);
+            adminNewsController.getViewAdminNews().getCmbSelectNews().setVisible(false);
         }
         
         if(e.getSource() == adminNewsController.getViewAdminNews().getRbtnAgregar()){
             adminNewsRestore();
             flagEditNews = false;
+            adminNewsController.getViewAdminNews().getLblInstruction().setVisible(false);
+            adminNewsController.getViewAdminNews().getCmbSelectNews().setVisible(false);
         }
 
         if(e.getSource() == adminNewsController.getViewAdminNews().getRbtnEditar()){
+            adminNewsController.getViewAdminNews().getLblInstruction().setVisible(true);
+            adminNewsController.getViewAdminNews().getCmbSelectNews().setVisible(true);
             flagEditNews = true;
         }
 
@@ -2979,13 +2996,14 @@ public class OperationsController implements ActionListener, ItemListener, ListS
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        if(e.getSource() == adminNewsController.getViewAdminNews().getTblNoticias().getSelectionModel() && flagEditNews){
+        /*if(e.getSource() == adminNewsController.getViewAdminNews().getTblNoticias().getSelectionModel() && flagEditNews){
             if(adminNewsController.getViewAdminNews().getTblNoticias().getRowCount() > 0){
                 int index = (int) adminNewsController.getViewAdminNews().getTblNoticias().getValueAt(adminNewsController.getViewAdminNews().getTblNoticias().getSelectedRow(),0);
                 modelNews.setIdNews(index);
                 adminNewsController.fillUpdateAdminNews(index);
             }
-        }
+        }*/
+        
         if(e.getSource() == adminParametersController.getViewAdminParameters().getTblParametros().getSelectionModel() && flagEditParameter){
             if(adminParametersController.getViewAdminParameters().getTblParametros().getRowCount() > 0){
                 String name = (String) adminParametersController.getViewAdminParameters().getTblParametros().getValueAt(adminNewsController.getViewAdminNews().getTblNoticias().getSelectedRow(),0);

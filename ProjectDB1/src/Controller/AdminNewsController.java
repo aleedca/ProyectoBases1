@@ -70,22 +70,31 @@ public final class AdminNewsController {
     }
     
     public void fillAdminNews(){
-        modelNews.loadNewsArr();
-        
-        ArrayList<News> newsArr = modelNews.getNewsArr();
-        
-        DefaultTableModel modelTable = (DefaultTableModel) viewAdminNews.getTblNoticias().getModel();
-        modelTable.setRowCount(0);
-        
-        for(int i = 0; i < newsArr.size(); i++){
-            Vector row = new Vector();
-            row.add(newsArr.get(i).getIdNews());
-            row.add(newsArr.get(i).getTitle());
-            row.add(newsArr.get(i).getNewsStatus());
-            row.add(newsArr.get(i).getPublicationDate());
-            row.add(newsArr.get(i).getNewsType());
-            row.add(newsArr.get(i).getViews());
-            modelTable.addRow(row);
+        try{
+            modelNews.loadNewsArr();
+
+            ArrayList<News> newsArr = modelNews.getNewsArr();
+            
+            DefaultTableModel modelTable = (DefaultTableModel) viewAdminNews.getTblNoticias().getModel();
+            modelTable.setRowCount(0);
+            
+            viewAdminNews.getCmbSelectNews().removeAllItems();
+            
+            for(int i = 0; i < newsArr.size(); i++){
+                Vector row = new Vector();
+                Integer tmpIdNews = newsArr.get(i).getIdNews();
+                viewAdminNews.getCmbSelectNews().addItem(tmpIdNews.toString());
+                
+                row.add(newsArr.get(i).getIdNews());
+                row.add(newsArr.get(i).getTitle());
+                row.add(newsArr.get(i).getNewsStatus());
+                row.add(newsArr.get(i).getPublicationDate());
+                row.add(newsArr.get(i).getNewsType());
+                row.add(newsArr.get(i).getViews());
+                modelTable.addRow(row);
+            }
+        }catch(Exception ex){
+            System.out.println(ex);
         }
     }
     
