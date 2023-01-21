@@ -17,6 +17,7 @@ import Objects.Province;
 import Objects.Stadium;
 import Objects.Team;
 import Objects.TypeIdentification;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import java.sql.Connection;
@@ -383,40 +384,103 @@ public class DA_Catalogs {
     }
     
     // DELETIONS CATALOGS
-    public static void deleteGender(){
-    
+    public static int deleteGender(int idGender) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call deleteGender(?,?)}");
+        
+        sql.setInt(1, idGender);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(2)).intValue();
+        return result;
     }
     
-    public static void deleteTypeIdentification(){
-    
+    public static int deleteTypeIdentification(int idTypeIdentification) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call deleteTypeIdentification(?,?)}");
+        
+        sql.setInt(1, idTypeIdentification);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(2)).intValue();
+        return result;
     }
     
-    public static void deleteCountry(){
-    
+    public static int deleteCountry(int idCountry) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call deleteCountry(?,?)}");
+        
+        sql.setInt(1, idCountry);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(2)).intValue();
+        return result;
     }
     
-    public static void deleteProvince(){
-    
+    public static int deleteProvince(int idProvince) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call deleteProvince(?,?)}");
+        
+        sql.setInt(1, idProvince);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(2)).intValue();
+        return result;
     }
     
-    public static void deleteCanton(){
-    
+    public static int deleteCanton(int idCanton) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call deleteCanton(?,?)}");
+        
+        sql.setInt(1, idCanton);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(2)).intValue();
+        return result;
     }
     
-    public static void deleteDistrict(){
-    
+    public static int deleteDistrict(int idDistrict) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call deleteDistrict(?,?)}");
+        
+        sql.setInt(1, idDistrict);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(2)).intValue();
+        return result;
     }
     
-    public static void deletePosition(){
-    
+    public static int deletePosition(int idPosition) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call deletePosition(?,?)}");
+        
+        sql.setInt(1, idPosition);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(2)).intValue();
+        return result;
     }
     
-    public static void deleteContinent(){
-    
+    public static int deleteContinent(int idContinent) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call deleteContinent(?,?)}");
+        
+        sql.setInt(1, idContinent);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(2)).intValue();
+        return result;
     }
     
-    public static void deleteCountryTeam(){
-    
+    public static int deleteCountryTeam(int idCountryTeam) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        CallableStatement sql = conn.prepareCall("{call deleteCountryTeam(?,?)}");
+        
+        sql.setInt(1, idCountryTeam);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(2)).intValue();
+        return result;
     }
     
     // UPDATE CATALOGS

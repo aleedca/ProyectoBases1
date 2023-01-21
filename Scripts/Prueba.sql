@@ -176,6 +176,123 @@ EXCEPTION
     WHEN OTHERS THEN
         ROLLBACK;
 END updateCountryTeam;
+
+CREATE OR REPLACE PROCEDURE deleteGender(pIdGender IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM Gender
+    WHERE idGender = pIdGender;
+    
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteGender;
+
+CREATE OR REPLACE PROCEDURE deleteTypeIdentification(pIdTypeIdentification IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM TypeIdentification
+    WHERE idTypeIdentification = pIdTypeIdentification;
+    
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteTypeIdentification;
+
+CREATE OR REPLACE PROCEDURE deleteCountry(pIdCountry IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM Country
+    WHERE idCountry = pIdCountry;
+    
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteCountry;
+
+CREATE OR REPLACE PROCEDURE deleteProvince(pIdProvince IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM Province
+    WHERE idProvince = pIdProvince;
+    
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteProvince;
+
+CREATE OR REPLACE PROCEDURE deleteCanton(pIdCanton IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM Canton
+    WHERE idCanton = pIdCanton;
+    
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteCanton;
+
+CREATE OR REPLACE PROCEDURE deleteDistrict (pidDistrict IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM District
+    WHERE idDistrict = pidDistrict;
+
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteDistrict;
+
+CREATE OR REPLACE PROCEDURE deletePosition (pidPersonPosition IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM PersonPosition
+    WHERE idPersonPosition = pidPersonPosition;
+
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deletePosition;
+
+CREATE OR REPLACE PROCEDURE deleteContinent (pidContinent IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM Continent
+    WHERE idContinent = pidContinent;
+
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteContinent;
+
+CREATE OR REPLACE PROCEDURE deleteCountryTeam (pidCountryTeam IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM CountryTeam
+    WHERE idCountryTeam = pidCountryTeam;
+
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteCountryTeam;
 ---------------------------------------------------------------------------------------
 
 CREATE OR REPLACE PROCEDURE getContinent(curContinent OUT SYS_REFCURSOR) IS
