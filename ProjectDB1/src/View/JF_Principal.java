@@ -363,6 +363,7 @@ public class JF_Principal extends javax.swing.JFrame {
         pnlBackground.add(jPanel2);
         jPanel2.setBounds(550, 480, 690, 200);
 
+        tblTodayMatches.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 14)); // NOI18N
         tblTodayMatches.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
