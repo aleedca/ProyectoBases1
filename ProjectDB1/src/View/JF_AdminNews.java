@@ -281,6 +281,8 @@ public class JF_AdminNews extends javax.swing.JFrame {
     public void clearAll(){
         txtTitulo.setText("");
         txtTexto.setText("");
+        lblInstruction.setVisible(false);
+        cmbSelectNews.setVisible(false);
     }
     
     public boolean validateSelectedRow(){

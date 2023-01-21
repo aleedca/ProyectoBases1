@@ -175,7 +175,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         this.requestController = controller;
         
         //AdminNews Controller
-        AdminNewsController adminNController = new AdminNewsController();
+        AdminNewsController adminNController = new AdminNewsController(modelNews);
         this.adminNewsController = adminNController;
         
         //AdminCatalogs Controller
@@ -1038,11 +1038,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     
     //------------ VALIDATIONS ADMINNEWS ---------------------------
     private void adminNewsValidationsInsert(String choice1, String choice2){
-      if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
+        if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
             modelNews.insertNews();
             adminNewsController.fillAdminNews();
             adminNewsRestore();
             JOptionPane.showMessageDialog(null, "Noticia creada con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+
         }
         else{
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
@@ -1050,18 +1051,20 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     }
     
     private void adminNewsValidationsUpdate(String choice1, String choice2){
+        System.out.println(modelNews.validatePhoto());
         if(modelNews.validateEmptyFields() && modelNews.validatePhoto() && choice1 != "Seleccione Estado" && choice2 != "Seleccione Tipo"){
             adminNewsController.getViewAdminNews().getTblNoticias().clearSelection();
             modelNews.updateNews();
             adminNewsController.fillAdminNews();
-            adminNewsRestore();
             if(updateNewsSuccessful()){
+                adminNewsRestore();
                 JOptionPane.showMessageDialog(null, "Noticia editada con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);            
             }
         }
         else{
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
         }
+        
     }
     
     private void adminNewsRestore(){
@@ -1086,6 +1089,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         else{
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios solicitados", "Error", JOptionPane.WARNING_MESSAGE);            
         }
+        
     }
     
     private void adminParametersValidationsUpdate(){
@@ -2572,10 +2576,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             if(adminNewsController.getViewAdminNews().getRbtnEditar().isSelected()){
                 adminNewsValidationsUpdate(choice1, choice2);
             }
-            flagEditNews = false;
-            adminNewsController.getViewAdminNews().getRbtnAgregar().setSelected(true);
-            adminNewsController.getViewAdminNews().getLblInstruction().setVisible(false);
-            adminNewsController.getViewAdminNews().getCmbSelectNews().setVisible(false);
         }
         
         if(e.getSource() == adminNewsController.getViewAdminNews().getRbtnAgregar()){
@@ -2623,10 +2623,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             if(adminParametersController.getViewAdminParameters().getRbtnEditar().isSelected()){
                 adminParametersValidationsUpdate();
             }
-            flagEditParameter = false;
-            adminParametersController.getViewAdminParameters().getRbtnAgregar().setSelected(true);
-            adminParametersController.getViewAdminParameters().getLblInstruction().setVisible(false);
-            adminParametersController.getViewAdminParameters().getCmbSelectParameters().setVisible(false);
         }
         
         if(e.getSource() == adminParametersController.getViewAdminParameters().getRbtnAgregar()){
