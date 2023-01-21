@@ -29,14 +29,12 @@ public class JF_Principal extends javax.swing.JFrame {
     }
     
     public void showMostViewedNews() throws SQLException{
-        System.out.println("Actualicé las más vistas");
         DefaultTableModel modelTable = (DefaultTableModel) tblMostViewedNews.getModel();
         modelTable.setRowCount(0);
         tblMostViewedNews.setModel(controller.showMostViewedNews());
     }
     
     public void showLastNews() throws SQLException{
-        System.out.println("Actualicé las más recientes");
         DefaultTableModel modelTable = (DefaultTableModel) tblLastNews.getModel();
         modelTable.setRowCount(0);
         tblLastNews.setModel(controller.showLastNews());

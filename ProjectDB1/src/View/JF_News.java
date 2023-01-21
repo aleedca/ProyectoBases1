@@ -10,6 +10,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -123,6 +125,15 @@ public class JF_News extends javax.swing.JFrame {
         return NewsInfo;
     }
 
+    public JTable getTblComments() {
+        return tblComments;
+    }
+
+    public JTextArea getTxtComment() {
+        return txtComment;
+    }
+
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -146,7 +157,7 @@ public class JF_News extends javax.swing.JFrame {
         btnComment = new javax.swing.JButton();
         btnRating = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblComments = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
         label = new javax.swing.JLabel();
         lblNewsType = new javax.swing.JLabel();
@@ -209,7 +220,7 @@ public class JF_News extends javax.swing.JFrame {
         btnComment.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 12)); // NOI18N
         btnComment.setText("Comentar");
         jPanel1.add(btnComment);
-        btnComment.setBounds(1147, 630, 83, 90);
+        btnComment.setBounds(1147, 630, 100, 90);
 
         btnRating.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         btnRating.setText("Calificar");
@@ -221,7 +232,7 @@ public class JF_News extends javax.swing.JFrame {
         jPanel1.add(btnRating);
         btnRating.setBounds(620, 190, 100, 40);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblComments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -240,17 +251,18 @@ public class JF_News extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setRowHeight(30);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(100);
+        tblComments.setEnabled(false);
+        tblComments.setRowHeight(30);
+        tblComments.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblComments);
+        if (tblComments.getColumnModel().getColumnCount() > 0) {
+            tblComments.getColumnModel().getColumn(0).setMinWidth(100);
+            tblComments.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblComments.getColumnModel().getColumn(0).setMaxWidth(100);
         }
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(870, 152, 360, 460);
+        jScrollPane1.setBounds(870, 152, 380, 460);
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
         btnBack.setBorderPainted(false);
@@ -381,7 +393,6 @@ public class JF_News extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel label;
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label2;
@@ -396,6 +407,7 @@ public class JF_News extends javax.swing.JFrame {
     private javax.swing.JLabel lblStar4;
     private javax.swing.JLabel lblStar5;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTable tblComments;
     private javax.swing.JTextArea txtBody;
     private javax.swing.JTextArea txtComment;
     // End of variables declaration//GEN-END:variables

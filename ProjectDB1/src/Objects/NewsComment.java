@@ -11,6 +11,9 @@ package Objects;
 public class NewsComment {
     private String commentBody;
     private String username;
+
+    public NewsComment() {
+    }
     
     public NewsComment(String pComment, String pUsername){
         this.commentBody = pComment;

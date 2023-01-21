@@ -337,11 +337,22 @@ END insertNewsComment;
 -- Rating
 CREATE OR REPLACE PROCEDURE insertRating(pUsername IN VARCHAR2, pIdNews IN NUMBER, pRating IN NUMBER)
 AS
+counter NUMBER;
 BEGIN
-    INSERT INTO Rating(idRating, username, idNews, rating, userCreation, lastUser, lastDate, dateCreation)
-    VALUES(s_rating.NEXTVAL, pUsername, pIdNews, pRating, NULL, NULL, NULL, NULL);
-    COMMIT;
+    SELECT COUNT(1) INTO counter FROM Rating WHERE username = pUsername AND idNews = pIdNews;
+    
+    IF counter > 0 THEN
+        UPDATE Rating
+        SET rating = pRating
+        WHERE username = pUsername AND idNews = pIdNews;
+    ELSE
+        INSERT INTO Rating(idRating, username, idNews, rating, userCreation, lastUser, lastDate, dateCreation)
+        VALUES(s_rating.NEXTVAL, pUsername, pIdNews, pRating, NULL, NULL, NULL, NULL);
+        COMMIT;
+    END IF;
 END insertRating;
+
+
 
 ----------------------------------------------------------------------------------------------------------------
 -- NewsChange
@@ -1017,6 +1028,14 @@ BEGIN
     INNER JOIN NewsStatus ON News.idNewsStatus = NewsStatus.idNewsStatus
     INNER JOIN NewsType ON News.idNewsType = NewsType.idNewsType;
 END getNews;
+
+CREATE OR REPLACE PROCEDURE getNewsComments(pIdNews IN NUMBER, curNews OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curNews FOR
+    SELECT NewsComment.username, NewsComment.textnewscomment
+    FROM NewsComment
+    WHERE idNews = pIdNews;
+END getNewsComments;
 
 CREATE OR REPLACE PROCEDURE getSpecificNews(pIdNews IN NUMBER, cursorNews OUT SYS_REFCURSOR) IS
 tmpNewsViews NUMBER;
