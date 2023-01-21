@@ -52,7 +52,6 @@ public class DA_SoccerMatch {
         sql.execute();
     }
 
-    
     public static void updateSoccerMatch(int idPlayer, int YellowCards, int redCards, int offsides, int corners, int saves, int goals) throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -69,7 +68,6 @@ public class DA_SoccerMatch {
         sql.execute();
     }
     
-    
     public static int getTeamUnits() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -81,11 +79,7 @@ public class DA_SoccerMatch {
         int result = ((BigDecimal) sql.getObject(1)).intValue();
         return result;   
     }
-    
-    
-    
-    
-    
+     
     public static ArrayList<TeamXGroup> getTeamXGroup() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -106,30 +100,7 @@ public class DA_SoccerMatch {
 
         return teamsxgroups;
     }
-    
-    
-    public static ArrayList<Continent> getContinet() throws SQLException{
-        Connection conn = sysConnection.getConexion();
-        
-        CallableStatement sql = conn.prepareCall("{call getContinent(?)}");
-        
-        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
-        sql.execute();
-        
-        ResultSet rs = (ResultSet) sql.getObject(1);
-        ArrayList<Continent> continents = new ArrayList<>();
-        while(rs.next()){
-            Continent continent = new Continent();
-            
-            continent.setIdContinent(rs.getInt("idContinent"));
-            continent.setNameContinent(rs.getString("nameContinent"));
-            continents.add(continent);
-        }
 
-        return continents;
-    }
-    
-    
     public static void insertTeam(int idCountryTeam, String nameTeam, String flag) throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -141,11 +112,7 @@ public class DA_SoccerMatch {
 
         sql.execute();
     }
-    
-    
-    
-    
-    
+
     public static void generateRaffle(int TotalGroup) throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -156,12 +123,7 @@ public class DA_SoccerMatch {
 
         sql.execute();
     }
-    
-    
-    
-    
-    
-    
+
     //------------------ VALIDATIONS ---------------------------------------
     
     public static int validateGroupExist() throws SQLException {
@@ -192,7 +154,6 @@ public class DA_SoccerMatch {
         return result;   
     }
     
-    
     public static int validateSoccerMatchExist() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -207,9 +168,5 @@ public class DA_SoccerMatch {
         return result;   
     }
     
-    
-    
-    
-    
-    
+
 }

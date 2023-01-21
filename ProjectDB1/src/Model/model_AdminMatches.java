@@ -77,7 +77,7 @@ public class model_AdminMatches {
     public model_AdminMatches() {
         try {
             
-            this.continents = DA_SoccerMatch.getContinet();
+            this.continents = DA_Catalogs.getContinent();
             
             this.countryTeams = DA_Catalogs.getCountryTeam();
             

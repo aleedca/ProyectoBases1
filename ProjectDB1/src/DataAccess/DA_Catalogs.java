@@ -5,6 +5,7 @@
 package DataAccess;
 
 import Objects.Canton;
+import Objects.Continent;
 import Objects.Country;
 import Objects.CountryTeam;
 import Objects.District;
@@ -30,6 +31,7 @@ import oracle.jdbc.OracleTypes;
  */
 public class DA_Catalogs {
     
+    // GETTERS CATALOGS
     public static ArrayList<Gender> getGender() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -68,6 +70,27 @@ public class DA_Catalogs {
         }
 
         return identificationTypes;
+    }
+    
+    public static ArrayList<Continent> getContinent() throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getContinent(?)}");
+        
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<Continent> continents = new ArrayList<>();
+        while(rs.next()){
+            Continent continent = new Continent();
+            
+            continent.setIdContinent(rs.getInt("idContinent"));
+            continent.setNameContinent(rs.getString("nameContinent"));
+            continents.add(continent);
+        }
+
+        return continents;
     }
     
     public static ArrayList<Country> getCountry() throws SQLException {
@@ -194,7 +217,6 @@ public class DA_Catalogs {
         return events;
     }
     
-    
     public static ArrayList<Group> getGroup() throws SQLException {
         Connection conn = sysConnection.getConexion();
         
@@ -215,7 +237,6 @@ public class DA_Catalogs {
         return groups;
     }
     
-
     public static ArrayList<Team> getTeam() throws SQLException {
         Connection conn = sysConnection.getConexion();
 
@@ -283,4 +304,114 @@ public class DA_Catalogs {
         return stadiums;
     }   
        
+    // INSERTIONS CATALOGS
+    public static void insertGender(){
+    
+    }
+    
+    public static void insertTypeIdentification(){
+    
+    }
+    
+    public static void insertCountry(){
+    
+    }
+    
+    public static void insertProvince(){
+    
+    }
+    
+    public static void insertCanton(){
+    
+    }
+    
+    public static void insertDistrict(){
+    
+    }
+    
+    public static void insertPosition(){
+    
+    }
+    
+    public static void insertContinent(){
+    
+    }
+    
+    public static void insertCountryTeam(){
+    
+    }
+    
+    // DELETIONS CATALOGS
+    public static void deleteGender(){
+    
+    }
+    
+    public static void deleteTypeIdentification(){
+    
+    }
+    
+    public static void deleteCountry(){
+    
+    }
+    
+    public static void deleteProvince(){
+    
+    }
+    
+    public static void deleteCanton(){
+    
+    }
+    
+    public static void deleteDistrict(){
+    
+    }
+    
+    public static void deletePosition(){
+    
+    }
+    
+    public static void deleteContinent(){
+    
+    }
+    
+    public static void deleteCountryTeam(){
+    
+    }
+    
+    // UPDATE CATALOGS
+    public static void updateGender(){
+    
+    }
+    
+    public static void updateTypeIdentification(){
+    
+    }
+    
+    public static void updateCountry(){
+    
+    }
+    
+    public static void updateProvince(){
+    
+    }
+    
+    public static void updateCanton(){
+    
+    }
+    
+    public static void updateDistrict(){
+    
+    }
+    
+    public static void updatePosition(){
+    
+    }
+    
+    public static void updateContinent(){
+    
+    }
+    
+    public static void updateCountryTeam(){
+    
+    }
 }
