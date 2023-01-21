@@ -333,6 +333,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         //AdminCatalogs
         adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().addItemListener(this);
+        adminCatalogsController.getViewAdminCatalogs().getBtnAgregar().addActionListener(this);
          
         
         //AdminOther
@@ -3052,6 +3053,20 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             viewAdminMatches.setVisible(true);
         }
         
+        
+        // ---------------- SCREEN AdminCatalogs -------------------
+        if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getBtnAgregar()){
+            String gender = adminCatalogsController.getViewAdminCatalogs().getTextAgregar();
+            
+            if(adminCatalogsController.getViewAdminCatalogs().getTextAgregar().isEmpty()){
+             JOptionPane.showMessageDialog(null, "Por favor, debe de ingresar un catálogo", "Error", JOptionPane.WARNING_MESSAGE);
+            }else{
+                adminCatalogsController.getModelAdminCatalogs().setDescriptionGender(gender);
+                JOptionPane.showMessageDialog(null, "Se agregó de manera éxitosa.");
+                adminCatalogsController.getModelAdminCatalogs().insertGender();
+                //adminCatalogsController.fillCatalogs();
+            }
+        }
 
         
         

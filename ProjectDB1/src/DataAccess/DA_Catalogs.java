@@ -374,12 +374,12 @@ public class DA_Catalogs {
         sql.execute();
     }
     
-    public static void insertCountryTeam(int idContinent, String nameContinent) throws SQLException{
+    public static void insertCountryTeam(int idContinent, String nameCountryTeam) throws SQLException{
         Connection conn = sysConnection.getConexion();
         CallableStatement sql = conn.prepareCall("{call insertCountryTeam(?,?)}");
         
         sql.setInt(1, idContinent);
-        sql.setString(2, nameContinent);
+        sql.setString(2, nameCountryTeam);
         sql.execute();
     }
     

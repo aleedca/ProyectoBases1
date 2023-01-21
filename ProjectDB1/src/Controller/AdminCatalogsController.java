@@ -35,6 +35,11 @@ public class AdminCatalogsController {
     public JF_AdminCatalogs getViewAdminCatalogs() {
         return viewAdminCatalogs;
     }
+
+    public model_AdminCatalogs getModelAdminCatalogs() {
+        return modelAdminCatalogs;
+    }
+
     
     public void fillCatalogs(){
         viewAdminCatalogs.getCmbSeleccionar().removeAllItems();
