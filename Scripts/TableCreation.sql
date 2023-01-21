@@ -1077,7 +1077,7 @@ NOCYCLE;
 -- Stadium
 CREATE TABLE Stadium(
     idStadium NUMBER(10) PRIMARY KEY,
-    idCountry NUMBER(10) CONSTRAINT stadium_idCountry_nn NOT NULL, 
+    idAddress NUMBER(10) CONSTRAINT stadium_idAddress_nn NOT NULL, 
     nameStadium VARCHAR2(32) CONSTRAINT stadium_name_nn NOT NULL,
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
@@ -1093,8 +1093,8 @@ IS 'Repository to store the information of the stadiums of the event.';
 COMMENT ON COLUMN Stadium.idStadium
 IS 'Unique identifier of the Stadium Table.';
 
-COMMENT ON COLUMN Stadium.idCountry
-IS 'Reference to Country Table';
+COMMENT ON COLUMN Stadium.idAddress
+IS 'Reference to Address Table';
 
 COMMENT ON COLUMN Stadium.nameStadium
 IS 'Name of the stadium.';
@@ -1891,7 +1891,7 @@ ALTER TABLE NewsComment
 -----------------------------------------------------------------------------------------
 -- FK Stadium-Country
 ALTER TABLE Stadium
-    ADD CONSTRAINT fk_stadium_country FOREIGN KEY (idCountry) REFERENCES Country(idCountry);
+    ADD CONSTRAINT fk_stadium_address FOREIGN KEY (idAddress) REFERENCES Address(idAddress);
 
 -- FK Province-Country
 ALTER TABLE Province
