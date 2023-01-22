@@ -33,7 +33,7 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtAdd = new javax.swing.JTextField();
+        btnGroupOptions = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -50,9 +50,8 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         rbtnAdd = new javax.swing.JRadioButton();
         rbtnDelete = new javax.swing.JRadioButton();
         rbtnEdit = new javax.swing.JRadioButton();
+        txtMask = new javax.swing.JTextField();
         txtAddEditDelete = new javax.swing.JTextField();
-
-        txtAdd.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1280, 720));
@@ -89,7 +88,6 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         btnAccept.setText("Aceptar");
         jPanel1.add(btnAccept);
         btnAccept.setBounds(510, 380, 130, 40);
-        btnAccept.setVisible(false);
 
         lblOpciones.setFont(new java.awt.Font("Yu Gothic UI", 0, 23)); // NOI18N
         lblOpciones.setForeground(new java.awt.Color(255, 255, 255));
@@ -159,6 +157,7 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         jScrollPane2.setBounds(720, 260, 360, 390);
 
         rbtnAdd.setBackground(new java.awt.Color(86, 4, 44));
+        btnGroupOptions.add(rbtnAdd);
         rbtnAdd.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         rbtnAdd.setForeground(new java.awt.Color(255, 255, 255));
         rbtnAdd.setText("Agregar");
@@ -172,6 +171,7 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         rbtnAdd.setSelected(true);
 
         rbtnDelete.setBackground(new java.awt.Color(86, 4, 44));
+        btnGroupOptions.add(rbtnDelete);
         rbtnDelete.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         rbtnDelete.setForeground(new java.awt.Color(255, 255, 255));
         rbtnDelete.setText("Eliminar");
@@ -184,6 +184,7 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         rbtnDelete.setBounds(460, 280, 130, 37);
 
         rbtnEdit.setBackground(new java.awt.Color(86, 4, 44));
+        btnGroupOptions.add(rbtnEdit);
         rbtnEdit.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         rbtnEdit.setForeground(new java.awt.Color(255, 255, 255));
         rbtnEdit.setText("Editar");
@@ -194,6 +195,11 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         });
         jPanel1.add(rbtnEdit);
         rbtnEdit.setBounds(320, 280, 90, 37);
+
+        txtMask.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel1.add(txtMask);
+        txtMask.setBounds(170, 480, 280, 40);
+        txtMask.setVisible(false);
 
         txtAddEditDelete.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPanel1.add(txtAddEditDelete);
@@ -229,14 +235,6 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         this.cmbSelect = cmbSelect;
     }
 
-    public JLabel getLblAddEditDelete() {
-        return lblAddEditDelete;
-    }
-
-    public void setLblAddEditDelete(JLabel lblAddEditDelete) {
-        this.lblAddEditDelete = lblAddEditDelete;
-    }
-
     public JLabel getLblSelect() {
         return lblSelect;
     }
@@ -269,13 +267,6 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         this.rbtnEdit = rbtnEdit;
     }
 
-    public String getTxtAddEditDelete() {
-        return txtAddEditDelete.getText();
-    }
-
-    public void setTxtAddEditDelete(JTextField txtAddEditDelete) {
-        this.txtAddEditDelete = txtAddEditDelete;
-    }
 
     //-----------------------------------------------
  
@@ -318,6 +309,33 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
     public void setTblOpciones(JTable tblOpciones) {
         this.tblOpciones = tblOpciones;
     }
+
+    public JTextField getTxtMask() {
+        return txtMask;
+    }
+
+    public void setTxtMask(String txtMask) {
+        this.txtMask.setText(txtMask);
+    }
+
+    public JLabel getLblAddEditDelete() {
+        return lblAddEditDelete;
+    }
+
+    public void setLblAddEditDelete(String lblAddEditDelete) {
+        this.lblAddEditDelete.setText(lblAddEditDelete);
+    }
+
+    public JTextField getTxtAddEditDelete() {
+        return txtAddEditDelete;
+    }
+
+    public void setTxtAddEditDelete(String txtAddEditDelete) {
+        this.txtAddEditDelete.setText(txtAddEditDelete);
+    }
+    
+    
+    
     
     
     
@@ -346,6 +364,7 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnBack;
+    private javax.swing.ButtonGroup btnGroupOptions;
     private javax.swing.JComboBox<String> cmbCatalogo;
     private javax.swing.JComboBox<String> cmbSelect;
     private javax.swing.JLabel jLabel1;
@@ -360,7 +379,7 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtnDelete;
     private javax.swing.JRadioButton rbtnEdit;
     private javax.swing.JTable tblOpciones;
-    private javax.swing.JTextField txtAdd;
     private javax.swing.JTextField txtAddEditDelete;
+    private javax.swing.JTextField txtMask;
     // End of variables declaration//GEN-END:variables
 }

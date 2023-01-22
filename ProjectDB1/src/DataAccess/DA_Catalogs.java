@@ -316,7 +316,7 @@ public class DA_Catalogs {
     
     public static void insertTypeIdentification(String nameType, String nameMask) throws SQLException{
         Connection conn = sysConnection.getConexion();
-        CallableStatement sql = conn.prepareCall("{call insertTpeIdentificaion(?,?)}");
+        CallableStatement sql = conn.prepareCall("{call insertTypeIdentification(?,?)}");
         
         sql.setString(1, nameType);
         sql.setString(2, nameMask);
