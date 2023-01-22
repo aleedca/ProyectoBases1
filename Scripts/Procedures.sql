@@ -898,7 +898,7 @@ BEGIN
 END updateProfile;
 
 --- MATCHES
-CREATE OR REPLACE PROCEDURE updateSoccerMatch (pidPerson IN NUMBER, pYellowCards IN NUMBER, pRedCards IN NUMBER, pOffsides IN NUMBER, pCorners IN NUMBER, pSaves IN NUMBER, pGoals IN NUMBER) AS
+CREATE OR REPLACE PROCEDURE updateSoccerMatch (pIdSoccerMatch IN NUMBER, pidPerson IN NUMBER, pYellowCards IN NUMBER, pRedCards IN NUMBER, pOffsides IN NUMBER, pCorners IN NUMBER, pSaves IN NUMBER, pGoals IN NUMBER) AS
 BEGIN
     UPDATE PlayerXSoccerMatchXTeam
     SET yellowCards = pYellowCards, 
@@ -907,7 +907,8 @@ BEGIN
     corners = pCorners,
     saves = pSaves,
     goals = pGoals
-    WHERE idPerson = pidPerson;
+    WHERE idPerson = pidPerson
+    AND idSoccerMatch = pIdSoccerMatch;
     COMMIT;
 EXCEPTION
     WHEN OTHERS THEN
