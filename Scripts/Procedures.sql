@@ -363,6 +363,20 @@ BEGIN
     
 END insertNews;
 
+CREATE OR REPLACE PROCEDURE insertNewsType(pDescriptionType IN VARCHAR2) AS
+BEGIN
+    INSERT INTO NewsType(idNewsType, descriptionNewsType, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_newstype.nextval, pDescriptionType, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertNewsType;
+
+CREATE OR REPLACE PROCEDURE insertNewsStatus(pDescriptionStatus IN VARCHAR2) AS
+BEGIN
+    INSERT INTO NewsStatus(idNewsStatus, descriptionNewsStatus, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_newsstatuts.nextval, pDescriptionStatus, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertNewsStatus;
+
 CREATE OR REPLACE PROCEDURE insertFavoriteNews (pUsername IN VARCHAR2, pIdNews IN NUMBER) AS
 BEGIN
     INSERT INTO FavoriteNews (idFavoriteNews, username, idNews, userCreation, lastUser, lastDate, dateCreation)
