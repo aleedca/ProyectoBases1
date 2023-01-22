@@ -22,17 +22,6 @@ public class model_Stats {
     public model_Stats() {
     }
 
-    public model_Stats(int topNGoalScorers, int topNGoalKeepers, int totalMatches, int matchesPlayed, int totalGoalsScored, int totalSaves, int totalRedCards, int totalYellowCards) {
-        this.topNGoalScorers = topNGoalScorers;
-        this.topNGoalKeepers = topNGoalKeepers;
-        this.totalMatches = totalMatches;
-        this.matchesPlayed = matchesPlayed;
-        this.totalGoalsScored = totalGoalsScored;
-        this.totalSaves = totalSaves;
-        this.totalRedCards = totalRedCards;
-        this.totalYellowCards = totalYellowCards;
-    }
-
     public int getTopNGoalScorers() {
         return topNGoalScorers;
     }

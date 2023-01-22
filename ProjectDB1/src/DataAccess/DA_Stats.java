@@ -5,11 +5,13 @@
 package DataAccess;
 
 
+import Objects.AuthorReview;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import oracle.jdbc.OracleTypes;
 
 /**
@@ -21,8 +23,6 @@ public class DA_Stats {
     public static int getTotalPublishedNews() throws SQLException{
         Connection conn = sysConnection.getConexion();
         
-        
-        
         CallableStatement sql = conn.prepareCall("{call getTotalPublishedNews(?)}");
         
         sql.registerOutParameter(1,OracleTypes.NUMBER);
@@ -33,18 +33,25 @@ public class DA_Stats {
         return result;
     }
     
-    public static float getAverageRating(String pUsername) throws SQLException{
+    public static ArrayList<AuthorReview> getAverageRating() throws SQLException{
         Connection conn = sysConnection.getConexion();
         
-        CallableStatement sql = conn.prepareCall("{call getAverageReviewsAuthor(?,?)}");
-        
-        sql.setString(1, pUsername); 
-        sql.registerOutParameter(2,OracleTypes.NUMBER);
+        CallableStatement sql = conn.prepareCall("{call getAverageReviewsAuthor(?)}");
+        sql.registerOutParameter(1,OracleTypes.REF_CURSOR);
         sql.execute();
         
-        float result = ((BigDecimal) sql.getObject(2)).intValue();
+        ResultSet rs = (ResultSet) sql.getObject(2);
+        ArrayList<AuthorReview> authorReviews = new ArrayList<>();
+        while(rs.next()){
+            AuthorReview authorRating = new AuthorReview();
+            
+            authorRating.setUsername(rs.getString("username"));
+            authorRating.setAverageRating(rs.getInt("average"));
+            
+            authorReviews.add(authorRating);
+        }
         
-        return result;
+        return authorReviews;
     }
     
     

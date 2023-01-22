@@ -128,6 +128,10 @@ public class JF_Principal extends javax.swing.JFrame {
         tblLastNews = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblTodayMatches = new javax.swing.JTable();
+        btnShowStats = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblMostViewedNews1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1285, 752));
@@ -166,14 +170,14 @@ public class JF_Principal extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Partidos de hoy");
         pnlBackground.add(jLabel3);
-        jLabel3.setBounds(40, 170, 440, 40);
+        jLabel3.setBounds(50, 170, 440, 40);
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Últimas Noticias");
         pnlBackground.add(jLabel4);
-        jLabel4.setBounds(551, 440, 690, 32);
+        jLabel4.setBounds(540, 440, 690, 32);
 
         lblWelcome.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         lblWelcome.setForeground(new java.awt.Color(255, 255, 255));
@@ -238,7 +242,7 @@ public class JF_Principal extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Noticias más vistas");
         pnlBackground.add(jLabel6);
-        jLabel6.setBounds(550, 170, 680, 50);
+        jLabel6.setBounds(540, 170, 680, 50);
 
         btnOpAdm.setBackground(new java.awt.Color(86, 4, 44));
         btnOpAdm.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -308,7 +312,7 @@ public class JF_Principal extends javax.swing.JFrame {
         );
 
         pnlBackground.add(jPanel4);
-        jPanel4.setBounds(550, 230, 690, 190);
+        jPanel4.setBounds(540, 230, 690, 190);
 
         jPanel2.setBackground(new java.awt.Color(254, 195, 16));
         jPanel2.setForeground(new java.awt.Color(254, 195, 16));
@@ -361,7 +365,7 @@ public class JF_Principal extends javax.swing.JFrame {
         );
 
         pnlBackground.add(jPanel2);
-        jPanel2.setBounds(550, 480, 690, 200);
+        jPanel2.setBounds(540, 480, 690, 200);
 
         tblTodayMatches.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 14)); // NOI18N
         tblTodayMatches.setModel(new javax.swing.table.DefaultTableModel(
@@ -392,7 +396,70 @@ public class JF_Principal extends javax.swing.JFrame {
         }
 
         pnlBackground.add(jScrollPane2);
-        jScrollPane2.setBounds(60, 230, 410, 450);
+        jScrollPane2.setBounds(70, 230, 410, 370);
+
+        btnShowStats.setBackground(new java.awt.Color(255, 204, 51));
+        btnShowStats.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        btnShowStats.setText("Ver Estadísticas");
+        pnlBackground.add(btnShowStats);
+        btnShowStats.setBounds(70, 610, 410, 70);
+
+        jPanel5.setBackground(new java.awt.Color(254, 195, 16));
+        jPanel5.setForeground(new java.awt.Color(254, 195, 16));
+
+        tblMostViewedNews1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        tblMostViewedNews1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Noticia ", "Visualizaciones"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblMostViewedNews1.setRowHeight(30);
+        tblMostViewedNews1.setShowGrid(false);
+        tblMostViewedNews1.setShowVerticalLines(true);
+        tblMostViewedNews1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane4.setViewportView(tblMostViewedNews1);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        pnlBackground.add(jPanel5);
+        jPanel5.setBounds(540, 230, 690, 190);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -439,6 +506,7 @@ public class JF_Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnOpAdm;
     private javax.swing.JButton btnRequests;
+    private javax.swing.JButton btnShowStats;
     private javax.swing.JButton btnSignUp;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -451,13 +519,16 @@ public class JF_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JTable tblLastNews;
     private javax.swing.JTable tblMostViewedNews;
+    private javax.swing.JTable tblMostViewedNews1;
     private javax.swing.JTable tblTodayMatches;
     // End of variables declaration//GEN-END:variables
 }

@@ -2614,12 +2614,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         
-        //-------------- SCREEN AdminCatalogs -----------------------
-        if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getBtnBack()){
-            adminCatalogsController.getViewAdminCatalogs().setVisible(false);
-            this.viewMenuAdmin.setVisible(true);
-        }
-        
         //-------------- SCREEN AdminParameters -----------------------
         if(e.getSource() == adminParametersController.getViewAdminParameters().getBtnBack()){
             adminParametersController.getViewAdminParameters().setVisible(false);
@@ -3071,6 +3065,11 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         
         // ---------------- SCREEN AdminCatalogs -------------------
+        if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getBtnBack()){
+            adminCatalogsController.getViewAdminCatalogs().setVisible(false);
+            this.viewMenuAdmin.setVisible(true);
+        }
+        
         if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getBtnModificar()){
             flagEditCatalogs = false;
             if(adminCatalogsController.getViewAdminCatalogs().getTextModificar().isEmpty()){
@@ -3080,8 +3079,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
              }
         
         }
-        
-        
         
         
         if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getBtnAgregar()){
