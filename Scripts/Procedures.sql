@@ -363,6 +363,20 @@ BEGIN
     
 END insertNews;
 
+CREATE OR REPLACE PROCEDURE insertNewsType(pDescriptionType IN VARCHAR2) AS
+BEGIN
+    INSERT INTO NewsType(idNewsType, descriptionNewsType, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_newstype.nextval, pDescriptionType, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertNewsType;
+
+CREATE OR REPLACE PROCEDURE insertNewsStatus(pDescriptionStatus IN VARCHAR2) AS
+BEGIN
+    INSERT INTO NewsStatus(idNewsStatus, descriptionNewsStatus, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_newsstatuts.nextval, pDescriptionStatus, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertNewsStatus;
+
 CREATE OR REPLACE PROCEDURE insertFavoriteNews (pUsername IN VARCHAR2, pIdNews IN NUMBER) AS
 BEGIN
     INSERT INTO FavoriteNews (idFavoriteNews, username, idNews, userCreation, lastUser, lastDate, dateCreation)
@@ -457,12 +471,8 @@ EXCEPTION
         ROLLBACK;
 END updateCountry;
 
-CREATE OR REPLACE PROCEDURE updateProvince(pIdProvince IN NUMBER, pIdCountry IN NUMBER, pNameProvince IN VARCHAR2) AS
+CREATE OR REPLACE PROCEDURE updateProvince(pIdProvince IN NUMBER, pNameProvince IN VARCHAR2) AS
 BEGIN
-    UPDATE Province
-    SET idCountry = pIdCountry
-    WHERE idProvince = pIdProvince;
-
     UPDATE Province
     SET nameProvince = pNameProvince
     WHERE idProvince = pIdProvince;
@@ -472,12 +482,8 @@ EXCEPTION
         ROLLBACK;
 END updateProvince;
 
-CREATE OR REPLACE PROCEDURE updateCanton(pIdCanton IN NUMBER, pIdProvince IN NUMBER, pNameCanton IN VARCHAR2) AS
+CREATE OR REPLACE PROCEDURE updateCanton(pIdCanton IN NUMBER, pNameCanton IN VARCHAR2) AS
 BEGIN
-    UPDATE Canton
-    SET idProvince = pIdProvince
-    WHERE idCanton = pIdCanton;
-
     UPDATE Canton
     SET nameCanton = pNameCanton
     WHERE idCanton = pIdCanton;
@@ -487,12 +493,8 @@ EXCEPTION
         ROLLBACK;
 END updateCanton;
 
-CREATE OR REPLACE PROCEDURE updateDistrict(pIdDistrict IN NUMBER, pIdCanton IN NUMBER, pNameDistrict IN VARCHAR2) AS
+CREATE OR REPLACE PROCEDURE updateDistrict(pIdDistrict IN NUMBER, pNameDistrict IN VARCHAR2) AS
 BEGIN
-    UPDATE District
-    SET idCanton = pIdCanton
-    WHERE idDistrict = pIdDistrict;
-
     UPDATE District
     SET nameDistrict = pNameDistrict
     WHERE idDistrict = pIdDistrict;
@@ -524,12 +526,8 @@ EXCEPTION
         ROLLBACK;
 END updateContinent;
 
-CREATE OR REPLACE PROCEDURE updateCountryTeam(pIdCountryTeam IN NUMBER, pIdContinent IN NUMBER, pNameCountryTeam IN VARCHAR2) AS
+CREATE OR REPLACE PROCEDURE updateCountryTeam(pIdCountryTeam IN NUMBER, pNameCountryTeam IN VARCHAR2) AS
 BEGIN
-    UPDATE CountryTeam
-    SET idContinent = pIdContinent
-    WHERE idCountryTeam = pIdCountryTeam;
-    
     UPDATE CountryTeam
     SET nameCountryTeam = pNameCountryTeam
     WHERE idCountryTeam = pIdCountryTeam;
@@ -538,6 +536,28 @@ EXCEPTION
     WHEN OTHERS THEN
         ROLLBACK;
 END updateCountryTeam;
+
+CREATE OR REPLACE PROCEDURE updateNewsType(pIdNewsType IN NUMBER, pDescriptionType IN VARCHAR2) AS
+BEGIN
+    UPDATE NewsType
+    SET descriptionNewsType = pDescriptionType
+    WHERE idNewsType = pIdNewsType;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END updateNewsType;
+
+CREATE OR REPLACE PROCEDURE updateNewsStatus(pIdNewsStatus IN NUMBER, pDescriptionStatus IN VARCHAR2) AS
+BEGIN
+    UPDATE NewsStatus
+    SET descriptionNewsStatus = pDescriptionStatus
+    WHERE idNewsStatus = pIdNewsStatus;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END updateNewsStatus;
 
 --- INFO PERSON
 CREATE OR REPLACE PROCEDURE updateFirstName (pidPerson IN NUMBER, pFirstName IN VARCHAR2, codResult OUT NUMBER) AS
@@ -1870,6 +1890,32 @@ EXCEPTION
         ROLLBACK;
         codResult := SQLCODE;
 END deleteCountryTeam;
+
+CREATE OR REPLACE PROCEDURE deleteNewsType(pIdNewsType IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM NewsType
+    WHERE idNewsType = pIdNewsType;
+    
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteNewsType;
+
+CREATE OR REPLACE PROCEDURE deleteNewsStatus(pIdNewsStatus IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM NewsStatus
+    WHERE idNewsStatus = pIdNewsStatus;
+    
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteNewsStatus;
 
 /*
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
