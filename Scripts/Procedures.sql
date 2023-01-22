@@ -373,7 +373,7 @@ END insertNewsType;
 CREATE OR REPLACE PROCEDURE insertNewsStatus(pDescriptionStatus IN VARCHAR2) AS
 BEGIN
     INSERT INTO NewsStatus(idNewsStatus, descriptionNewsStatus, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_newsstatuts.nextval, pDescriptionStatus, NULL, NULL, NULL, NULL);
+    VALUES (s_newsstatus.nextval, pDescriptionStatus, NULL, NULL, NULL, NULL);
     COMMIT;
 END insertNewsStatus;
 
