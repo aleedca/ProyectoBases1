@@ -4,6 +4,11 @@
  */
 package View;
 
+import DataAccess.DA_Catalogs;
+import Objects.Gender;
+import Objects.Team;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -45,9 +50,10 @@ public class JF_GeneralStats extends javax.swing.JFrame {
         lblStats9 = new javax.swing.JLabel();
         lblStats10 = new javax.swing.JLabel();
         cmbTeam = new javax.swing.JComboBox<>();
-        cmbGender1 = new javax.swing.JComboBox<>();
+        cmbGender = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tableTopGoalPlayers2 = new javax.swing.JTable();
+        tblAgeRange = new javax.swing.JTable();
+        btnSearchAge = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         lblStats = new javax.swing.JLabel();
         lblStats1 = new javax.swing.JLabel();
@@ -57,7 +63,7 @@ public class JF_GeneralStats extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         lblStats3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tableTopGoalPlayers1 = new javax.swing.JTable();
+        tblAuthorReviews = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         lblStats13 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -82,7 +88,7 @@ public class JF_GeneralStats extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         lblStats12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableTopGoalPlayers = new javax.swing.JTable();
+        tableTopGoalScorers = new javax.swing.JTable();
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI", 1, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -138,13 +144,13 @@ public class JF_GeneralStats extends javax.swing.JFrame {
         lblStats9.setForeground(new java.awt.Color(255, 255, 255));
         lblStats9.setText("Team:");
         jPanel2.add(lblStats9);
-        lblStats9.setBounds(180, 50, 50, 20);
+        lblStats9.setBounds(120, 50, 50, 20);
 
         lblStats10.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 14)); // NOI18N
         lblStats10.setForeground(new java.awt.Color(255, 255, 255));
         lblStats10.setText("Género:");
         jPanel2.add(lblStats10);
-        lblStats10.setBounds(20, 50, 50, 20);
+        lblStats10.setBounds(10, 50, 50, 20);
 
         cmbTeam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbTeam.addActionListener(new java.awt.event.ActionListener() {
@@ -153,19 +159,19 @@ public class JF_GeneralStats extends javax.swing.JFrame {
             }
         });
         jPanel2.add(cmbTeam);
-        cmbTeam.setBounds(180, 70, 110, 30);
+        cmbTeam.setBounds(120, 70, 100, 30);
 
-        cmbGender1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbGender1.addActionListener(new java.awt.event.ActionListener() {
+        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbGender1ActionPerformed(evt);
+                cmbGenderActionPerformed(evt);
             }
         });
-        jPanel2.add(cmbGender1);
-        cmbGender1.setBounds(20, 70, 100, 30);
+        jPanel2.add(cmbGender);
+        cmbGender.setBounds(10, 70, 100, 30);
 
-        tableTopGoalPlayers2.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        tableTopGoalPlayers2.setModel(new javax.swing.table.DefaultTableModel(
+        tblAgeRange.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        tblAgeRange.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -184,16 +190,26 @@ public class JF_GeneralStats extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tableTopGoalPlayers2.getTableHeader().setReorderingAllowed(false);
-        jScrollPane4.setViewportView(tableTopGoalPlayers2);
-        if (tableTopGoalPlayers2.getColumnModel().getColumnCount() > 0) {
-            tableTopGoalPlayers2.getColumnModel().getColumn(1).setMinWidth(80);
-            tableTopGoalPlayers2.getColumnModel().getColumn(1).setPreferredWidth(80);
-            tableTopGoalPlayers2.getColumnModel().getColumn(1).setMaxWidth(80);
+        tblAgeRange.getTableHeader().setReorderingAllowed(false);
+        jScrollPane4.setViewportView(tblAgeRange);
+        if (tblAgeRange.getColumnModel().getColumnCount() > 0) {
+            tblAgeRange.getColumnModel().getColumn(1).setMinWidth(80);
+            tblAgeRange.getColumnModel().getColumn(1).setPreferredWidth(80);
+            tblAgeRange.getColumnModel().getColumn(1).setMaxWidth(80);
         }
 
         jPanel2.add(jScrollPane4);
-        jScrollPane4.setBounds(20, 110, 270, 160);
+        jScrollPane4.setBounds(10, 140, 290, 130);
+
+        btnSearchAge.setBackground(new java.awt.Color(255, 204, 102));
+        btnSearchAge.setText("Buscar");
+        btnSearchAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchAgeActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnSearchAge);
+        btnSearchAge.setBounds(10, 110, 90, 20);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(90, 140, 310, 290);
@@ -251,8 +267,8 @@ public class JF_GeneralStats extends javax.swing.JFrame {
         jPanel6.add(lblStats3);
         lblStats3.setBounds(10, 10, 250, 40);
 
-        tableTopGoalPlayers1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        tableTopGoalPlayers1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAuthorReviews.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        tblAuthorReviews.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -271,12 +287,12 @@ public class JF_GeneralStats extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tableTopGoalPlayers1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(tableTopGoalPlayers1);
-        if (tableTopGoalPlayers1.getColumnModel().getColumnCount() > 0) {
-            tableTopGoalPlayers1.getColumnModel().getColumn(1).setMinWidth(80);
-            tableTopGoalPlayers1.getColumnModel().getColumn(1).setPreferredWidth(80);
-            tableTopGoalPlayers1.getColumnModel().getColumn(1).setMaxWidth(80);
+        tblAuthorReviews.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(tblAuthorReviews);
+        if (tblAuthorReviews.getColumnModel().getColumnCount() > 0) {
+            tblAuthorReviews.getColumnModel().getColumn(1).setMinWidth(80);
+            tblAuthorReviews.getColumnModel().getColumn(1).setPreferredWidth(80);
+            tblAuthorReviews.getColumnModel().getColumn(1).setMaxWidth(80);
         }
 
         jPanel6.add(jScrollPane3);
@@ -363,9 +379,8 @@ public class JF_GeneralStats extends javax.swing.JFrame {
         jPanel4.add(lblStats7);
         lblStats7.setBounds(20, 60, 170, 20);
 
-        btnGroupTable.setBackground(new java.awt.Color(86, 4, 44));
+        btnGroupTable.setBackground(new java.awt.Color(255, 204, 51));
         btnGroupTable.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 14)); // NOI18N
-        btnGroupTable.setForeground(new java.awt.Color(255, 255, 255));
         btnGroupTable.setText("Ver tabla");
         btnGroupTable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -373,7 +388,7 @@ public class JF_GeneralStats extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnGroupTable);
-        btnGroupTable.setBounds(200, 90, 90, 30);
+        btnGroupTable.setBounds(170, 90, 130, 30);
 
         jPanel1.add(jPanel4);
         jPanel4.setBounds(90, 440, 310, 140);
@@ -464,8 +479,8 @@ public class JF_GeneralStats extends javax.swing.JFrame {
         jPanel8.add(lblStats12);
         lblStats12.setBounds(10, 10, 140, 40);
 
-        tableTopGoalPlayers.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        tableTopGoalPlayers.setModel(new javax.swing.table.DefaultTableModel(
+        tableTopGoalScorers.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        tableTopGoalScorers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -491,12 +506,12 @@ public class JF_GeneralStats extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tableTopGoalPlayers.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tableTopGoalPlayers);
-        if (tableTopGoalPlayers.getColumnModel().getColumnCount() > 0) {
-            tableTopGoalPlayers.getColumnModel().getColumn(1).setMinWidth(80);
-            tableTopGoalPlayers.getColumnModel().getColumn(1).setPreferredWidth(80);
-            tableTopGoalPlayers.getColumnModel().getColumn(1).setMaxWidth(80);
+        tableTopGoalScorers.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tableTopGoalScorers);
+        if (tableTopGoalScorers.getColumnModel().getColumnCount() > 0) {
+            tableTopGoalScorers.getColumnModel().getColumn(1).setMinWidth(80);
+            tableTopGoalScorers.getColumnModel().getColumn(1).setPreferredWidth(80);
+            tableTopGoalScorers.getColumnModel().getColumn(1).setMaxWidth(80);
         }
 
         jPanel8.add(jScrollPane1);
@@ -519,6 +534,8 @@ public class JF_GeneralStats extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     public JButton getBtnBack() {
         return btnBack;
     }
@@ -527,9 +544,12 @@ public class JF_GeneralStats extends javax.swing.JFrame {
         return btnGroupTable;
     }
 
+    public JComboBox<String> getCmbTeam() {
+        return cmbTeam;
+    }
 
     public JComboBox<String> getCmbGender() {
-        return cmbTeam;
+        return cmbGender;
     }
 
     public JComboBox<String> getCmbGroup() {
@@ -572,13 +592,27 @@ public class JF_GeneralStats extends javax.swing.JFrame {
         return progressBarMatches;
     }
 
-    public JTable getTableTopGoalPlayers() {
-        return tableTopGoalPlayers;
-    }
-
     public JTable getTableTopGoalkeepers() {
         return tableTopGoalkeepers;
     }
+
+    public JTable getTableTopGoalScorers() {
+        return tableTopGoalScorers;
+    }
+
+    public JTable getTblAgeRange() {
+        return tblAgeRange;
+    }
+
+    public JTable getTblAuthorReviews() {
+        return tblAuthorReviews;
+    }
+
+    public JButton getBtnSearchAge() {
+        return btnSearchAge;
+    }
+    
+    
 
     private void cmbNewsEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNewsEventActionPerformed
         // TODO add your handling code here:
@@ -596,13 +630,17 @@ public class JF_GeneralStats extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
-    private void cmbGender1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGender1ActionPerformed
+    private void cmbGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGenderActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbGender1ActionPerformed
+    }//GEN-LAST:event_cmbGenderActionPerformed
 
     private void cmbTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTeamActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbTeamActionPerformed
+
+    private void btnSearchAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchAgeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -642,7 +680,8 @@ public class JF_GeneralStats extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnGroupTable;
-    private javax.swing.JComboBox<String> cmbGender1;
+    private javax.swing.JButton btnSearchAge;
+    private javax.swing.JComboBox<String> cmbGender;
     private javax.swing.JComboBox<String> cmbGroup;
     private javax.swing.JComboBox<String> cmbNewsEvent;
     private javax.swing.JComboBox<String> cmbTeam;
@@ -686,9 +725,9 @@ public class JF_GeneralStats extends javax.swing.JFrame {
     private javax.swing.JLabel lblStats9;
     private javax.swing.JLabel lblYellowCards;
     private javax.swing.JProgressBar progressBarMatches;
-    private javax.swing.JTable tableTopGoalPlayers;
-    private javax.swing.JTable tableTopGoalPlayers1;
-    private javax.swing.JTable tableTopGoalPlayers2;
+    private javax.swing.JTable tableTopGoalScorers;
     private javax.swing.JTable tableTopGoalkeepers;
+    private javax.swing.JTable tblAgeRange;
+    private javax.swing.JTable tblAuthorReviews;
     // End of variables declaration//GEN-END:variables
 }

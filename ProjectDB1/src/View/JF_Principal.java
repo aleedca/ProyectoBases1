@@ -43,7 +43,10 @@ public class JF_Principal extends javax.swing.JFrame {
     
 
     //GETTERS
-    
+
+    public JButton getBtnShowStats() {
+        return btnShowStats;
+    }
 
     public JTable getTblTodayMatches() {
         return tblTodayMatches;
