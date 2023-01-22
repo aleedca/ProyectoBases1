@@ -5,7 +5,6 @@
 package Controller;
 
 import Model.model_Account;
-import Model.model_AdminCatalogs;
 import Model.model_AdminMatches;
 import Model.model_AdminParameters;
 import Model.model_AdminPerson;
@@ -15,7 +14,6 @@ import Model.model_Rating;
 import Model.model_Register;
 import Model.model_Stats;
 import Objects.News;
-import View.JF_AdminCatalogs;
 import View.JF_AdminMatch;
 import View.JF_AdminMatches;
 import View.JF_AdminOptions;
@@ -2434,10 +2432,63 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                         }
                     }
                     
+                   if("Cantón".equals(choice1)){
+                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getCantons().size();i++){
+                            if(id == adminCatalogsController.getModelAdminCatalogs().getCantons().get(i).getIdCanton()){
+                                String canton = adminCatalogsController.getModelAdminCatalogs().getCantons().get(i).getNameCanton();
+                                adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete(canton);
+                            }
+                        }
+                    }
+                   
+                   
+                    if("Distrito".equals(choice1)){
+                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getDistricts().size();i++){
+                            if(id == adminCatalogsController.getModelAdminCatalogs().getDistricts().get(i).getIdDistrict()){
+                                String district = adminCatalogsController.getModelAdminCatalogs().getDistricts().get(i).getNameDistrict();
+                                adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete(district);
+                            }
+                        }
+                    }
+                    
+                    if("País de Equipo".equals(choice1)){
+                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getCountryTeams().size();i++){
+                            if(id == adminCatalogsController.getModelAdminCatalogs().getCountryTeams().get(i).getIdCountryTeam()){
+                                String countryTeam = adminCatalogsController.getModelAdminCatalogs().getCountryTeams().get(i).getNameCountryTeam();
+                                adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete(countryTeam);
+                            }
+                        }
+                    }
                    
                     
+                    if("Tipo de Identificación".equals(choice1)){
+                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getIdentificationTypes().size();i++){
+                            if(id == adminCatalogsController.getModelAdminCatalogs().getIdentificationTypes().get(i).getIdTypeIdentification()){
+                                String typeIdentification = adminCatalogsController.getModelAdminCatalogs().getIdentificationTypes().get(i).getNameTypeIdentification();
+                                adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete(typeIdentification);
+                            }
+                        }
+                    }
+                    
+                    if("Tipo de Noticia".equals(choice1)){
+                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getNewsType().size();i++){
+                            if(id == adminCatalogsController.getModelAdminCatalogs().getNewsType().get(i).getIdNewsType()){
+                                String newsType = adminCatalogsController.getModelAdminCatalogs().getNewsType().get(i).getDescriptionNewsType();
+                                adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete(newsType);
+                            }
+                        }
+                    }
+                   
+                    if("Estado de Noticia".equals(choice1)){
+                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getNewsStatus().size();i++){
+                            if(id == adminCatalogsController.getModelAdminCatalogs().getNewsStatus().get(i).getIdNewsStatus()){
+                                String newsStatus = adminCatalogsController.getModelAdminCatalogs().getNewsStatus().get(i).getDescriptionNewsStatus();
+                                adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete(newsStatus);
+                            }
+                        }
+                    }
  
-                }//ADD SELECTED
+                }//ADD SELECTED FALSE
             }
         }
         
@@ -3224,21 +3275,20 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 if("Cantón".equals(catalog)){
                     adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione una Provincia");
                     adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
-                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelectAdd().setVisible(true);
                 }
                 
                 
                 if("Distrito".equals(catalog)){
                     adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione un Cantón");
                     adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
-                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelectAdd().setVisible(true);
                 }
                 
                 if("País de Equipo".equals(catalog)){
                     adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione un País de Equipo");
                     adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
-                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
-                
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelectAdd().setVisible(true);
                 }
                 
                 if("Tipo de Identificación".equals(catalog)){
@@ -3292,8 +3342,42 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
                     adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
                 }
-         
                 
+                if("Cantón".equals(catalog)){ 
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el cantón a editar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+                
+                if("Distrito".equals(catalog)){ 
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el distrito a editar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+                
+                if("País de Equipo".equals(catalog)){ 
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el país de equipo a editar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+                
+                if("Estado de Noticia".equals(catalog)){ 
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el estado de noticia a editar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+                
+                if("Tipo de Noticia".equals(catalog)){ 
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el tipo de noticia a editar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }    
+                
+                if("Tipo de Identificación".equals(catalog)){ 
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el tipo de identificación a editar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }  
             }        
         }
         
@@ -3343,13 +3427,47 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
                     adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
                 }
+                
+                if("Cantón".equals(catalog)){
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el cantón a eliminar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+                
+                if("Distrito".equals(catalog)){
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el distrito a eliminar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+                
+                if("País de Equipo".equals(catalog)){
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el país de equipo a eliminar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
                
+                if("Estado de Noticia".equals(catalog)){
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el estado de noticia a eliminar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+                
+                if("Tipo de Noticia".equals(catalog)){
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el tipo de noticia a eliminar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+                
+                if("Tipo de Identificación".equals(catalog)){
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el tipo de identificación a eliminar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
                 
             }        
         }
         
-        
-                        
+             
         if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getBtnAccept()){
             flagAddCatalogs = false;
             flagEditCatalogs = false;
@@ -3410,7 +3528,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     
                     if("Provincia".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
                         
-                        String nameCountry = adminCatalogsController.getViewAdminCatalogs().getCmbSelect().getSelectedItem().toString();
+                        String nameCountry = adminCatalogsController.getViewAdminCatalogs().getCmbSelectAdd().getSelectedItem().toString();
                         
                         for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getCountries().size();i++){
                             if(nameCountry.equals(adminCatalogsController.getModelAdminCatalogs().getCountries().get(i).getNameCountry())){
@@ -3428,7 +3546,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     
                     if("Cantón".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
                         
-                        String nameProvince = adminCatalogsController.getViewAdminCatalogs().getCmbSelect().getSelectedItem().toString();
+                        String nameProvince = adminCatalogsController.getViewAdminCatalogs().getCmbSelectAdd().getSelectedItem().toString();
                         
                         for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getProvinces().size();i++){
                             if(nameProvince.equals(adminCatalogsController.getModelAdminCatalogs().getProvinces().get(i).getNameProvince())){
@@ -3446,7 +3564,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     
                     if("Distrito".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
                         
-                        String nameCanton = adminCatalogsController.getViewAdminCatalogs().getCmbSelect().getSelectedItem().toString();
+                        String nameCanton = adminCatalogsController.getViewAdminCatalogs().getCmbSelectAdd().getSelectedItem().toString();
                         
                         for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getCantons().size();i++){
                             if(nameCanton.equals(adminCatalogsController.getModelAdminCatalogs().getCantons().get(i).getNameCanton())){
@@ -3465,12 +3583,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     
                    if("País de Equipo".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
                         
-                        String nameContinent = adminCatalogsController.getViewAdminCatalogs().getCmbSelect().getSelectedItem().toString();
+                        String nameContinent = adminCatalogsController.getViewAdminCatalogs().getCmbSelectAdd().getSelectedItem().toString();
                         
                         for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getContinents().size();i++){
                             if(nameContinent.equals(adminCatalogsController.getModelAdminCatalogs().getContinents().get(i).getNameContinent())){
                                 int idContinent = adminCatalogsController.getModelAdminCatalogs().getContinents().get(i).getIdContinent();
-                                adminCatalogsController.getModelAdminCatalogs().setIdCanton(idContinent);
+                                adminCatalogsController.getModelAdminCatalogs().setIdContinent(idContinent);
                             }
                         }
 
@@ -3481,7 +3599,21 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                         flagAddCatalogs = true;
                     }
 
-                   //FALTA LA INSERCIONES DE ESTADO DE NOTICIA Y TIPO DE NOTICIA
+                    if("Estado de Noticia".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setDescriptionStatus(text);
+                        adminCatalogsController.getModelAdminCatalogs().insertNewsStatus();
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                        adminCatalogsController.fillCatalogs();
+                        flagAddCatalogs = true;
+                    }
+                    
+                    if("Tipo de Noticia".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setDescriptionType(text);
+                        adminCatalogsController.getModelAdminCatalogs().insertNewsType();
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                        adminCatalogsController.fillCatalogs();
+                        flagAddCatalogs = true;
+                    }
                    
                     if(flagAddCatalogs == true){
                         JOptionPane.showMessageDialog(null, "Se agregó de manera éxitosa.");
@@ -3528,21 +3660,71 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                         flagEditCatalogs = true;
                     }
                     
-                   if("Provincia".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
-                        adminCatalogsController.getModelAdminCatalogs().setIdProvince(id);
-                        adminCatalogsController.getModelAdminCatalogs().setNameProvince(text);
-                        adminCatalogsController.getModelAdminCatalogs().updateCountry();
+                    if("País de Equipo".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdCountryTeam(id);
+                        adminCatalogsController.getModelAdminCatalogs().setNameCountryTeam(text);
+                        adminCatalogsController.getModelAdminCatalogs().updateCountryTeam();
                         adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
                         adminCatalogsController.fillCatalogs();
                         flagEditCatalogs = true;
                     }
                     
+                   if("Provincia".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdProvince(id);
+                        adminCatalogsController.getModelAdminCatalogs().setNameProvince(text);
+                        adminCatalogsController.getModelAdminCatalogs().updateProvince();
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                        adminCatalogsController.fillCatalogs();
+                        flagEditCatalogs = true;
+                    }
+                   
+                   if("Cantón".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdCanton(id);
+                        adminCatalogsController.getModelAdminCatalogs().setNameCanton(text);
+                        adminCatalogsController.getModelAdminCatalogs().updateCanton();
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                        adminCatalogsController.fillCatalogs();
+                        flagEditCatalogs = true;
+                    }
+                    
+                   if("Distrito".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdDistrict(id);
+                        adminCatalogsController.getModelAdminCatalogs().setNameDistrict(text);
+                        adminCatalogsController.getModelAdminCatalogs().updateDistrict();
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                        adminCatalogsController.fillCatalogs();
+                        flagEditCatalogs = true;
+                    } 
+                   
+                    if("Tipo de Identificación".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdTypeIdentification(id);
+                        adminCatalogsController.getModelAdminCatalogs().setNameTypeIdentification(text);
+                        adminCatalogsController.getModelAdminCatalogs().updateTypeIdentification();
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                        adminCatalogsController.fillCatalogs();
+                        flagEditCatalogs = true;
+                    } 
+                   
+                    
+                    if("Tipo de Noticia".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdNewsType(id);
+                        adminCatalogsController.getModelAdminCatalogs().setDescriptionType(text);
+                        adminCatalogsController.getModelAdminCatalogs().updateNewsType();
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                        adminCatalogsController.fillCatalogs();
+                        flagEditCatalogs = true;
+                    } 
                     
                     
-                    
-                    
-                    //FALTA EL EDITAR
-                    
+                    if("Estado de Noticia".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdNewsStatus(id);
+                        adminCatalogsController.getModelAdminCatalogs().setDescriptionStatus(text);
+                        adminCatalogsController.getModelAdminCatalogs().updateNewsStatus();
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                        adminCatalogsController.fillCatalogs();
+                        flagEditCatalogs = true;
+                    } 
+
                     if(flagEditCatalogs == true){
                         JOptionPane.showMessageDialog(null, "Se editó de manera éxitosa.");
                     }
@@ -3636,20 +3818,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                         adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
                     }
                     
-                    if("Provincia".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
-                        adminCatalogsController.getModelAdminCatalogs().setIdProvince(id);                        
-                        
-                        if(adminCatalogsController.getModelAdminCatalogs().deleteProvince() == false){
-                            JOptionPane.showMessageDialog(null, "El catálogo se encuentra en uso. No se puede eliminar.", "Eliminación", JOptionPane.WARNING_MESSAGE);
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito.");
-                            adminCatalogsController.fillCatalogs();
-                            flagAddCatalogs = true;
-                        }
-                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
-                    }
-                    
-                    if("Canton".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                    if("Cantón".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
                         adminCatalogsController.getModelAdminCatalogs().setIdCanton(id);                        
                         
                         if(adminCatalogsController.getModelAdminCatalogs().deleteCanton() == false){
@@ -3688,6 +3857,35 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                         }
                         adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
                     }
+                    
+                    
+                   if("Estado de Noticia".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdNewsStatus(id);                        
+                        
+                        if(adminCatalogsController.getModelAdminCatalogs().deleteNewsStatus()== false){
+                            JOptionPane.showMessageDialog(null, "El catálogo se encuentra en uso. No se puede eliminar.", "Eliminación", JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito.");
+                            adminCatalogsController.fillCatalogs();
+                            flagAddCatalogs = true;
+                        }
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                    }
+                   
+                   
+                   if("Tipo de Noticia".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdNewsType(id);                        
+                        
+                        if(adminCatalogsController.getModelAdminCatalogs().deleteNewsType() == false){
+                            JOptionPane.showMessageDialog(null, "El catálogo se encuentra en uso. No se puede eliminar.", "Eliminación", JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito.");
+                            adminCatalogsController.fillCatalogs();
+                            flagAddCatalogs = true;
+                        }
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                    }
+                    
                 }//DELETE
             
             
