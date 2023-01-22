@@ -553,6 +553,28 @@ EXCEPTION
         ROLLBACK;
 END updateCountryTeam;
 
+CREATE OR REPLACE PROCEDURE updateNewsType(pIdNewsType IN NUMBER, pDescriptionType IN VARCHAR2) AS
+BEGIN
+    UPDATE NewsType
+    SET descriptionNewsType = pDescriptionType
+    WHERE idNewsType = pIdNewsType;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END updateNewsType;
+
+CREATE OR REPLACE PROCEDURE updateNewsStatus(pIdNewsStatus IN NUMBER, pDescriptionStatus IN VARCHAR2) AS
+BEGIN
+    UPDATE NewsStatus
+    SET descriptionNewsStatus = pDescriptionStatus
+    WHERE idNewsStatus = pIdNewsStatus;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END updateNewsStatus;
+
 --- INFO PERSON
 CREATE OR REPLACE PROCEDURE updateFirstName (pidPerson IN NUMBER, pFirstName IN VARCHAR2, codResult OUT NUMBER) AS
 BEGIN
@@ -1884,6 +1906,32 @@ EXCEPTION
         ROLLBACK;
         codResult := SQLCODE;
 END deleteCountryTeam;
+
+CREATE OR REPLACE PROCEDURE deleteNewsType(pIdNewsType IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM NewsType
+    WHERE idNewsType = pIdNewsType;
+    
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteNewsType;
+
+CREATE OR REPLACE PROCEDURE deleteNewsStatus(pIdNewsStatus IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM NewsStatus
+    WHERE idNewsStatus = pIdNewsStatus;
+    
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteNewsStatus;
 
 /*
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
