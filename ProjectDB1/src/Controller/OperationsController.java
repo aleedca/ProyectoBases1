@@ -361,6 +361,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         //AdminCatalogs
         adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().addItemListener(this);
+        adminCatalogsController.getViewAdminCatalogs().getCmbSelect().addActionListener(this);
         adminCatalogsController.getViewAdminCatalogs().getBtnAccept().addActionListener(this);
         
         adminCatalogsController.getViewAdminCatalogs().getRbtnAdd().addActionListener(this);
@@ -2381,6 +2382,28 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
                
 
+        //ADMIN CATALOGS
+        if(e.getSource() ==  adminCatalogsController.getViewAdminCatalogs().getCmbSelect()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String choice = adminCatalogsController.getViewAdminCatalogs().getCmbSelect().getSelectedItem().toString();
+                int id = Integer.parseInt(choice);
+                if("Género".equals(choice)){
+
+                    for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getGenders().size();i++){
+                         if(id == adminCatalogsController.getModelAdminCatalogs().getGenders().get(i).getIdGender()){
+                            String gender = adminCatalogsController.getModelAdminCatalogs().getGenders().get(i).getDescriptionGender();
+                             adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete(gender);
+                         }
+                     }
+                    
+                    
+                } 
+                
+            }
+        }
+        
+        
+        
     }//ITEM LISTENER
     
     @Override
@@ -3182,8 +3205,6 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
                     adminCatalogsController.getViewAdminCatalogs().getTxtMask().setVisible(true);
                 }
-                
-
             }  
         }
         
@@ -3199,6 +3220,13 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 adminCatalogsController.getViewAdminCatalogs().getLblOpciones().setText(adminCatalogsController.getViewAdminCatalogs().getLblOpciones().getText() + "" + catalog);
                 adminCatalogsController.getViewAdminCatalogs().getLblAddEditDelete().setText("Modificar ");
                 adminCatalogsController.getViewAdminCatalogs().getLblAddEditDelete().setText(adminCatalogsController.getViewAdminCatalogs().getLblAddEditDelete().getText() + "" + catalog);
+            
+               if("Género".equals(catalog)){
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el género a editar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+            
             
             }        
         }
@@ -3216,6 +3244,14 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 adminCatalogsController.getViewAdminCatalogs().getLblOpciones().setText(adminCatalogsController.getViewAdminCatalogs().getLblOpciones().getText() + "" + catalog);
                 adminCatalogsController.getViewAdminCatalogs().getLblAddEditDelete().setText("Eliminar ");
                 adminCatalogsController.getViewAdminCatalogs().getLblAddEditDelete().setText(adminCatalogsController.getViewAdminCatalogs().getLblAddEditDelete().getText() + "" + catalog);
+            
+                if("Género".equals(catalog)){
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el género a eliminar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+                
+                
             }        
         }
         
@@ -3223,8 +3259,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                         
         if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getBtnAccept()){
             flagAddCatalogs = false;
-            this.flagEditCatalogs = false;
+            flagEditCatalogs = false;
             String text = adminCatalogsController.getViewAdminCatalogs().getTxtAddEditDelete().getText();
+            String idStr;
+            int id;
             
             if(text.isEmpty()){
                 JOptionPane.showMessageDialog(null, "Debe completar el campo solicitado", "Error", JOptionPane.WARNING_MESSAGE);
@@ -3315,10 +3353,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     
                     if("Distrito".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
                         
-                        String nameCsnton = adminCatalogsController.getViewAdminCatalogs().getCmbSelect().getSelectedItem().toString();
+                        String nameCanton = adminCatalogsController.getViewAdminCatalogs().getCmbSelect().getSelectedItem().toString();
                         
-                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getDistricts().size();i++){
-                            if(nameCsnton.equals(adminCatalogsController.getModelAdminCatalogs().getCantons().get(i).getNameCanton())){
+                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getCantons().size();i++){
+                            if(nameCanton.equals(adminCatalogsController.getModelAdminCatalogs().getCantons().get(i).getNameCanton())){
                                 int idCanton = adminCatalogsController.getModelAdminCatalogs().getCantons().get(i).getIdCanton();
                                 adminCatalogsController.getModelAdminCatalogs().setIdCanton(idCanton);
                             }
@@ -3332,31 +3370,72 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     }
                     
                     
-                    
-                    
-                    
+                   if("País de Equipo".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        
+                        String nameContinent = adminCatalogsController.getViewAdminCatalogs().getCmbSelect().getSelectedItem().toString();
+                        
+                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getContinents().size();i++){
+                            if(nameContinent.equals(adminCatalogsController.getModelAdminCatalogs().getContinents().get(i).getNameContinent())){
+                                int idContinent = adminCatalogsController.getModelAdminCatalogs().getContinents().get(i).getIdContinent();
+                                adminCatalogsController.getModelAdminCatalogs().setIdCanton(idContinent);
+                            }
+                        }
+
+                        adminCatalogsController.getModelAdminCatalogs().setNameCountryTeam(text);
+                        adminCatalogsController.getModelAdminCatalogs().insertCountryTeam();
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                        adminCatalogsController.fillCatalogs();
+                        flagAddCatalogs = true;
+                    }
+
+                   //FALTA LA INSERCIONES DE ESTADO DE NOTICIA Y TIPO DE NOTICIA
+                   
                     if(flagAddCatalogs == true){
                         JOptionPane.showMessageDialog(null, "Se agregó de manera éxitosa.");
                     }
-                    
-                    
                 }//ADD
+                
+                if(adminCatalogsController.getViewAdminCatalogs().getRbtnEdit().isSelected()){
+                    idStr = adminCatalogsController.getViewAdminCatalogs().getCmbSelect().getSelectedItem().toString();
+                    id = Integer.parseInt(idStr);
+                    
+                    if("Género".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdGender(id);
+                        adminCatalogsController.getModelAdminCatalogs().setDescriptionGender(text);
+                        adminCatalogsController.getModelAdminCatalogs().updateGender();
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                        adminCatalogsController.fillCatalogs();
+                        flagAddCatalogs = true;
+                    }
+                    //FALTA EL EDITAR
+                    
+                }//EDIT
+                
+                if(adminCatalogsController.getViewAdminCatalogs().getRbtnDelete().isSelected()){
+                    idStr = adminCatalogsController.getViewAdminCatalogs().getCmbSelect().getSelectedItem().toString();
+                    id = Integer.parseInt(idStr);
+                    
+                    if("Género".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdGender(id);                        
+                        
+                        if(adminCatalogsController.getModelAdminCatalogs().deleteGender() == false){
+                            JOptionPane.showMessageDialog(null, "El catálogo se encuentra en uso. No se puede eliminar.", "Eliminación", JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            adminCatalogsController.fillCatalogs();
+                            flagAddCatalogs = true;
+                        }
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                    }
+                    
+                    
+                    
+                    //FALTA EL ELIMINAR
+                    
+                }//DELETE
             
             
             }
-            
-
-                
-//                if("Tipo identificación".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
-//                    adminCatalogsController.getModelAdminCatalogs().setNameTypeIdentification(text);
-//                    adminCatalogsController.getModelAdminCatalogs().insertTypeIdentification();
-//                    flagAddCatalogs = true;
-//                }
-
-        }
-        
- 
-        
+        }        
     }//ACTION PERFOMED
         
     

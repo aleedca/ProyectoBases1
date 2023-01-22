@@ -43,6 +43,8 @@ public class AdminCatalogsController {
     public void fillCatalogs(){
         viewAdminCatalogs.getCmbSelect().removeAllItems();
         this.modelAdminCatalogs.loadCatalogs();
+        int id;
+        String idStr;
        
         DefaultTableModel modelTable = (DefaultTableModel) viewAdminCatalogs.getTblOpciones().getModel();
         modelTable.setRowCount(0); 
@@ -51,6 +53,10 @@ public class AdminCatalogsController {
             for(int i=0; i< modelAdminCatalogs.getGenders().size();i++){
                 Object[] row = {modelAdminCatalogs.getGenders().get(i).getDescriptionGender()};
                 modelTable.addRow(row);
+                
+                id = modelAdminCatalogs.getGenders().get(i).getIdGender();
+                idStr = String.valueOf(id);
+                viewAdminCatalogs.getCmbSelect().addItem(idStr);
             }
         }
         
@@ -58,6 +64,10 @@ public class AdminCatalogsController {
             for(int i=0; i< modelAdminCatalogs.getIdentificationTypes().size();i++){
                 Object[] row = {modelAdminCatalogs.getIdentificationTypes().get(i).getNameTypeIdentification()};
                 modelTable.addRow(row);
+                
+                id = modelAdminCatalogs.getIdentificationTypes().get(i).getIdTypeIdentification();
+                idStr = String.valueOf(id);
+                viewAdminCatalogs.getCmbSelect().addItem(idStr);
             }
         }
         
@@ -65,6 +75,10 @@ public class AdminCatalogsController {
             for(int i=0; i< modelAdminCatalogs.getPositions().size();i++){
                 Object[] row = {modelAdminCatalogs.getPositions().get(i).getDescriptionPersonPosition()};
                 modelTable.addRow(row);
+                
+                id = modelAdminCatalogs.getPositions().get(i).getIdPersonPosition();
+                idStr = String.valueOf(id);
+                viewAdminCatalogs.getCmbSelect().addItem(idStr);
             }
         }
         
@@ -72,21 +86,21 @@ public class AdminCatalogsController {
             for(int i=0; i< modelAdminCatalogs.getContinents().size();i++){
                 Object[] row = {modelAdminCatalogs.getContinents().get(i).getNameContinent()};
                 modelTable.addRow(row);
+                
+                id = modelAdminCatalogs.getContinents().get(i).getIdContinent();
+                idStr = String.valueOf(id);
+                viewAdminCatalogs.getCmbSelect().addItem(idStr);
             }
         }
-        
-        if("País de Equipo".equals(viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString())){
-            for(int i=0; i< modelAdminCatalogs.getCountryTeams().size();i++){
-                Object[] row = {modelAdminCatalogs.getCountryTeams().get(i).getNameCountryTeam()};
-                modelTable.addRow(row);
-            }
-        }
-        
          
         if("País".equals(viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString())){
             for(int i=0; i< modelAdminCatalogs.getCountries().size();i++){
                 Object[] row = {modelAdminCatalogs.getCountries().get(i).getNameCountry()};
                 modelTable.addRow(row);
+                
+                id = modelAdminCatalogs.getCountries().get(i).getIdCountry();
+                idStr = String.valueOf(id);
+                viewAdminCatalogs.getCmbSelect().addItem(idStr);
             }
         }
         
