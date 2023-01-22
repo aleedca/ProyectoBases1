@@ -132,6 +132,7 @@ public class model_AdminCatalogs {
     
     public void insertTypeIdentification(){
       try{
+        System.out.println("Entro al DA");
         DA_Catalogs.insertTypeIdentification(this.nameTypeIdentification, this.nameMask);
       } catch(SQLException ex){
         System.out.println(ex);

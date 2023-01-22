@@ -46,6 +46,7 @@ public class model_AdminMatches {
     private ArrayList<Continent> continents;
     private ArrayList<CountryTeam> countryTeams;
     
+    private int idAddress;
     //--------------------------------------------------------
     
     //Attributes to insert a Match -> ADMIN SCHEDULE MATCH
@@ -64,6 +65,8 @@ public class model_AdminMatches {
     //Attributes to Manager a Match -> ADMIN MATCH
     private int group;
 
+    private String typeEvent;
+    private String nameStadium;
 
     //--------------------------------------------------------
     private ArrayList<TeamXGroup> teamxgroup;
@@ -111,6 +114,27 @@ public class model_AdminMatches {
                 modelTable.addRow(row);
             }
     }
+    
+    //-------------------------------------------
+
+
+//    public void insertEvent(){
+//      try{
+//        DA_Catalogs.insertEvent(this.typeEvent);
+//      } catch(SQLException ex){
+//        System.out.println(ex);
+//      }
+//    }
+//
+//    public void insertStadium(){
+//      try{
+//        DA_Catalogs.insertStadium(this.idAddress, this.nameStadium);
+//      } catch(SQLException ex){
+//        System.out.println(ex);
+//      }
+//    }
+    
+    
     
      //----------------------------------------------------------------------
     

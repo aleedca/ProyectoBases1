@@ -41,53 +41,22 @@ public class AdminCatalogsController {
 
     
     public void fillCatalogs(){
-        viewAdminCatalogs.getCmbSeleccionar().removeAllItems();
+        viewAdminCatalogs.getCmbSelect().removeAllItems();
         this.modelAdminCatalogs.loadCatalogs();
+        int id;
+        String idStr;
        
         DefaultTableModel modelTable = (DefaultTableModel) viewAdminCatalogs.getTblOpciones().getModel();
         modelTable.setRowCount(0); 
-        
-        viewAdminCatalogs.getLblOpciones().setText("Catálogo ");
-        viewAdminCatalogs.getLblAgregar().setText("Agregar ");
-        viewAdminCatalogs.getLblModificar().setText("Modificar ");
-        String catalog = viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString();
-        
-        
-        if(!"Seleccione un catálogo".equals(catalog)){
-            viewAdminCatalogs.getLblOpciones().setText(viewAdminCatalogs.getLblOpciones().getText() + "" + catalog);
-            viewAdminCatalogs.getLblAgregar().setText(viewAdminCatalogs.getLblAgregar().getText() + "" + catalog);
-            viewAdminCatalogs.getLblModificar().setText(viewAdminCatalogs.getLblModificar().getText() + "" + catalog);
-            
-            viewAdminCatalogs.getLblSeleccionar().setVisible(false);
-            viewAdminCatalogs.getCmbSeleccionar().setVisible(false);
-            viewAdminCatalogs.getBtnAceptar().setVisible(false);
-        }
-        
-        if("Provincia".equals(catalog) && viewAdminCatalogs.getBtnAgregar().isSelected()){
-            viewAdminCatalogs.getLblSeleccionar().setText("Selecione un Pais");
-            viewAdminCatalogs.getLblSeleccionar().setVisible(true);
-            viewAdminCatalogs.getCmbSeleccionar().setVisible(true);
-            viewAdminCatalogs.getBtnAceptar().setVisible(true);
-        }
-        
-        if("Cantón".equals(catalog) && viewAdminCatalogs.getBtnAgregar().isSelected()){
-            viewAdminCatalogs.getLblSeleccionar().setText("Selecione una Provincia");
-            viewAdminCatalogs.getLblSeleccionar().setVisible(true);
-            viewAdminCatalogs.getCmbSeleccionar().setVisible(true);
-            viewAdminCatalogs.getBtnAceptar().setVisible(true);
-        }
-        
-        if("Distrito".equals(catalog) && viewAdminCatalogs.getBtnAgregar().isSelected()){
-            viewAdminCatalogs.getLblSeleccionar().setText("Selecione un Cantón");
-            viewAdminCatalogs.getLblSeleccionar().setVisible(true);
-            viewAdminCatalogs.getCmbSeleccionar().setVisible(true);
-            viewAdminCatalogs.getBtnAceptar().setVisible(true);
-        }
         
         if("Género".equals(viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString())){
             for(int i=0; i< modelAdminCatalogs.getGenders().size();i++){
                 Object[] row = {modelAdminCatalogs.getGenders().get(i).getDescriptionGender()};
                 modelTable.addRow(row);
+                
+                id = modelAdminCatalogs.getGenders().get(i).getIdGender();
+                idStr = String.valueOf(id);
+                viewAdminCatalogs.getCmbSelect().addItem(idStr);
             }
         }
         
@@ -95,6 +64,10 @@ public class AdminCatalogsController {
             for(int i=0; i< modelAdminCatalogs.getIdentificationTypes().size();i++){
                 Object[] row = {modelAdminCatalogs.getIdentificationTypes().get(i).getNameTypeIdentification()};
                 modelTable.addRow(row);
+                
+                id = modelAdminCatalogs.getIdentificationTypes().get(i).getIdTypeIdentification();
+                idStr = String.valueOf(id);
+                viewAdminCatalogs.getCmbSelect().addItem(idStr);
             }
         }
         
@@ -102,6 +75,10 @@ public class AdminCatalogsController {
             for(int i=0; i< modelAdminCatalogs.getPositions().size();i++){
                 Object[] row = {modelAdminCatalogs.getPositions().get(i).getDescriptionPersonPosition()};
                 modelTable.addRow(row);
+                
+                id = modelAdminCatalogs.getPositions().get(i).getIdPersonPosition();
+                idStr = String.valueOf(id);
+                viewAdminCatalogs.getCmbSelect().addItem(idStr);
             }
         }
         
@@ -109,22 +86,21 @@ public class AdminCatalogsController {
             for(int i=0; i< modelAdminCatalogs.getContinents().size();i++){
                 Object[] row = {modelAdminCatalogs.getContinents().get(i).getNameContinent()};
                 modelTable.addRow(row);
+                
+                id = modelAdminCatalogs.getContinents().get(i).getIdContinent();
+                idStr = String.valueOf(id);
+                viewAdminCatalogs.getCmbSelect().addItem(idStr);
             }
         }
-        
-        if("País de Equipo".equals(viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString())){
-            for(int i=0; i< modelAdminCatalogs.getCountryTeams().size();i++){
-                Object[] row = {modelAdminCatalogs.getCountryTeams().get(i).getNameCountryTeam()};
-                modelTable.addRow(row);
-            }
-        }
-        
-        
-        
+         
         if("País".equals(viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString())){
             for(int i=0; i< modelAdminCatalogs.getCountries().size();i++){
                 Object[] row = {modelAdminCatalogs.getCountries().get(i).getNameCountry()};
                 modelTable.addRow(row);
+                
+                id = modelAdminCatalogs.getCountries().get(i).getIdCountry();
+                idStr = String.valueOf(id);
+                viewAdminCatalogs.getCmbSelect().addItem(idStr);
             }
         }
         
@@ -135,7 +111,7 @@ public class AdminCatalogsController {
             }
             
             for(int i=0; i< modelAdminCatalogs.getCountries().size();i++){
-                viewAdminCatalogs.getCmbSeleccionar().addItem(modelAdminCatalogs.getCountries().get(i).getNameCountry());
+                viewAdminCatalogs.getCmbSelect().addItem(modelAdminCatalogs.getCountries().get(i).getNameCountry());
             }
         }
         
@@ -146,7 +122,7 @@ public class AdminCatalogsController {
             }
             
             for(int i=0; i< modelAdminCatalogs.getProvinces().size();i++){
-                viewAdminCatalogs.getCmbSeleccionar().addItem(modelAdminCatalogs.getProvinces().get(i).getNameProvince());
+                viewAdminCatalogs.getCmbSelect().addItem(modelAdminCatalogs.getProvinces().get(i).getNameProvince());
             }
         }
         
@@ -157,9 +133,22 @@ public class AdminCatalogsController {
             }
             
             for(int i=0; i< modelAdminCatalogs.getCantons().size();i++){
-                viewAdminCatalogs.getCmbSeleccionar().addItem(modelAdminCatalogs.getCantons().get(i).getNameCanton());
+                viewAdminCatalogs.getCmbSelect().addItem(modelAdminCatalogs.getCantons().get(i).getNameCanton());
             }
         }
+        
+        
+        if("País de Equipo".equals(viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString())){
+            for(int i=0; i< modelAdminCatalogs.getCountryTeams().size();i++){
+                Object[] row = {modelAdminCatalogs.getCountryTeams().get(i).getNameCountryTeam()};
+                modelTable.addRow(row);
+            }
+            
+            for(int i=0; i< modelAdminCatalogs.getContinents().size();i++){
+                viewAdminCatalogs.getCmbSelect().addItem(modelAdminCatalogs.getContinents().get(i).getNameContinent());
+            }
+        }
+       
         
         if("Estado de Noticia".equals(viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString())){
             for(int i=0; i< modelAdminCatalogs.getNewsStatus().size();i++){

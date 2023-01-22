@@ -37,6 +37,7 @@ public class DA_Person {
             int phoneNumber, int idDistrict, String address) throws SQLException
     {
         Connection conn = sysConnection.getConexion();
+                
 
         PreparedStatement sql = conn.prepareStatement("{ call insertUserPerson(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
         //Input parameters
@@ -45,9 +46,22 @@ public class DA_Person {
         sql.setString(3, password);
         sql.setInt(4, identification);
         sql.setString(5, firstName);
-        sql.setString(6, secondName);
+        
+        if("".equals(secondName)){
+            sql.setString(6, "N/A");
+        }else{
+            sql.setString(6, secondName);
+        }
+        
         sql.setString(7, firstLastName);
-        sql.setString(8, secondLastName);
+        
+        
+        if("".equals(secondLastName)){
+            sql.setString(8, "N/A");
+        }else{
+            sql.setString(8, secondLastName);
+        }
+
         sql.setString(9, photo);
         sql.setInt(10, 11);
         sql.setInt(11, idTypeIdentification);

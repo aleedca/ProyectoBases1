@@ -303,8 +303,8 @@ NOCYCLE;
 -- TypeIdentification
 CREATE TABLE TypeIdentification(
     idTypeIdentification NUMBER(10) PRIMARY KEY,
-    nameTypeIdentification VARCHAR2(16) CONSTRAINT typeIdentification_name_nn NOT NULL,
-    typeMask VARCHAR2(16) CONSTRAINT typeIdentification_typeMask_nn NOT NULL,
+    nameTypeIdentification VARCHAR2(64) CONSTRAINT typeIdentification_name_nn NOT NULL,
+    typeMask VARCHAR2(32) CONSTRAINT typeIdentification_typeMask_nn NOT NULL,
     userCreation VARCHAR2(16),
     lastUser VARCHAR2(16),
     lastDate DATE,
