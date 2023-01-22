@@ -19,7 +19,6 @@ BEGIN
     encrypted_text := RAWTOHEX (encryption_result);  
 END encryptionPassword; 
 
-
 CREATE OR REPLACE PROCEDURE decryptionPassword (encrypted_text IN VARCHAR2, decrypted_text OUT VARCHAR2) AS   
 raw_set RAW(100);   
 raw_password RAW(100);   
@@ -40,14 +39,13 @@ BEGIN
 encryptionPassword('Admin001', :encryptedPassword);
 END;*/
 
-
 /*
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 Insertion Procedures
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 */
 
--- Event
+--- MATCHES
 CREATE OR REPLACE PROCEDURE insertEvent (pTypeEvent IN VARCHAR2) AS
 BEGIN
     INSERT INTO Event (idEvent, typeEvent, userCreation, lastUser, lastDate, dateCreation)
@@ -55,18 +53,13 @@ BEGIN
     COMMIT;
 END insertEvent;
 
--- GroupEvent
-CREATE OR REPLACE PROCEDURE insertGroupEvent (pIdEvent IN NUMBER, pDescription IN VARCHAR2) AS
+CREATE OR REPLACE PROCEDURE insertStadium(pIdCountry IN NUMBER, pNameStadium IN VARCHAR2) AS
 BEGIN
-    INSERT INTO GroupEvent (idGroupEvent, idEvent, descriptionGroupEvent, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_groupEvent.nextval, pIdEvent, pDescription, NULL, NULL, NULL, NULL);
+    INSERT INTO Stadium(idStadium, idCountry, nameStadium, userCreation, lastUser, lastDate, dateCreation)
+    VALUES(s_stadium.nextval, pIdCountry, pNameStadium, NULL, NULL, NULL, NULL);
     COMMIT;
-END insertGroupEvent;
+END insertStadium;
 
--- CountryTeam
-
-
--- Team
 CREATE OR REPLACE PROCEDURE insertTeam(pIdCountryTeam IN NUMBER, pNameTeam IN VARCHAR2, pFlag IN VARCHAR2)
 AS
 BEGIN
@@ -75,161 +68,20 @@ BEGIN
     COMMIT;
 END insertTeam;
 
--- GroupStats
-CREATE OR REPLACE PROCEDURE insertGroupStats (pIdTeam IN NUMBER, pWonMatches IN NUMBER, pTiedMatches IN NUMBER, pLostMatches IN NUMBER, pGoalsScored IN NUMBER, pGoalsReceived IN NUMBER, pFairPlayPoints IN NUMBER) AS
+CREATE OR REPLACE PROCEDURE insertGroupEvent (pIdEvent IN NUMBER, pDescription IN VARCHAR2) AS
 BEGIN
-    INSERT INTO GroupStats (idStats, idTeam, wonMatches, tiedMatches, lostMatches, goalsScored, goalsReceived, fairPlayPoints, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_groupstats.nextval, pIdTeam, pWonMatches, pTiedMatches, pLostMatches, pGoalsScored, pGoalsReceived, pFairPlayPoints, NULL, NULL, NULL, NULL);
+    INSERT INTO GroupEvent (idGroupEvent, idEvent, descriptionGroupEvent, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_groupEvent.nextval, pIdEvent, pDescription, NULL, NULL, NULL, NULL);
     COMMIT;
-END insertGroupStats;
+END insertGroupEvent;
 
--- PersonXPhone
-CREATE OR REPLACE PROCEDURE insertPersonXPhone(pIdPerson IN NUMBER,pIdPhone IN NUMBER)
-AS
+CREATE OR REPLACE PROCEDURE insertTeamXGroup (pidTeam IN NUMBER, pidGroupEvent IN NUMBER) AS
 BEGIN
-    INSERT INTO PersonXPhone(idPersonXPhone, idPerson ,idPhone, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_personxphone.NEXTVAL, pIdPerson, pIdPhone, NULL, NULL, NULL, NULL);
-END insertPersonXPhone;
+    INSERT INTO TeamXGroup (idTeamXGroup, idTeam, idGroupEvent, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_teamxgroup.nextval, pidTeam, pidGroupEvent,NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertTeamXGroup;
 
--- Phone
-CREATE OR REPLACE PROCEDURE insertPhone (pPhoneNumber IN NUMBER) AS
-BEGIN
-    BEGIN
-        INSERT INTO Phone (idPhone, phoneNumber, userCreation, lastUser, lastDate, dateCreation)
-        VALUES (s_phone.nextval, pPhoneNumber, NULL, NULL, NULL, NULL);
-    END;
-END insertPhone;
-
--- Mail
-CREATE OR REPLACE PROCEDURE insertMail (pIdPerson IN NUMBER, pDescription IN VARCHAR2) AS
-BEGIN
-    INSERT INTO Mail (idMail, idPerson, descriptionMail, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_mail.nextval, pidPerson, pDescription, NULL, NULL, NULL, NULL);
-END insertMail;
-
--- Address
-CREATE OR REPLACE PROCEDURE insertAddress (pIdDistrict IN NUMBER, pDescriptionAddress IN VARCHAR2) AS
-BEGIN
-    INSERT INTO Address (idAddress, idDistrict, descriptionAddress, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_address.nextval, pIdDistrict, pDescriptionAddress, NULL, NULL, NULL, NULL);
-END insertAddress;
-
--- Person
-CREATE OR REPLACE PROCEDURE insertPerson (pIdentification IN NUMBER, pFirstName IN VARCHAR2, 
-            pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2, 
-            pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER, pIdAddress IN NUMBER, 
-            pIdTypeIdentification IN NUMBER, pIdGender IN NUMBER)
-AS
-BEGIN
-    INSERT INTO Person(idPerson, identification, firstName, secondName, 
-                firstLastName, secondLastName, photo, idPersonPosition, idAddress, 
-                idTypeIdentification, idGender, userCreation, lastUser, lastDate, dateCreation)
-    VALUES (s_person.nextval, pIdentification, pFirstName, pSecondName, pFirstLastName, pSecondLastName, 
-            pPhoto, pIdPersonPosition, pIdAddress, pIdTypeIdentification, pIdGender, NULL, NULL, NULL, NULL);
-END insertPerson;
-
--- Player
-CREATE OR REPLACE PROCEDURE insertPlayer (pIdentification IN NUMBER, pFirstName IN VARCHAR2, 
-            pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2, 
-            pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER, pIdTypeIdentification IN NUMBER, 
-            pIdGender IN NUMBER, pIdTeam IN NUMBER, pBirthdate VARCHAR2, 
-            pTShirtNum NUMBER, pPhoneNumber IN NUMBER,pMail IN VARCHAR2, pIdDistrict IN NUMBER,
-            pDescriptionAddress IN VARCHAR2, codResult OUT NUMBER)
-AS
-BEGIN
-    BEGIN
-        insertAddress (pIdDistrict, pDescriptionAddress);  
-        insertPerson (pIdentification, pFirstName, pSecondName, pFirstLastName, 
-                      pSecondLastName, pPhoto, pIdPersonPosition, s_address.currval, 
-                      pIdTypeIdentification, pIdGender);
-            
-        INSERT INTO Player(idPerson, idTeam, birthdate, tShirtNum, userCreation, lastUser, lastDate, dateCreation)
-        VALUES (s_person.currval, pIdTeam, TO_DATE(pBirthdate), pTShirtNum, NULL, NULL, NULL, NULL); 
-            
-        insertMail (s_person.currval, pMail);
-        insertPhone (pPhoneNumber);
-        insertPersonXPhone (s_person.currval, s_phone.currval);
-        
-        codResult:= 0;
-        COMMIT;
-    EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        codResult := SQLCODE;
-    END;
-END insertPlayer;
-
--- TeamWorker
-CREATE OR REPLACE PROCEDURE insertTeamWorker(pIdentification IN NUMBER, pIdTeam IN NUMBER, pFirstName IN VARCHAR2, 
-                pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2,
-                pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER, pIdTypeIdentification IN NUMBER, 
-                pIdGender IN NUMBER, pPhoneNumber IN NUMBER, pIdDistrict IN NUMBER, 
-                pMail IN VARCHAR2, pDescriptionAddress IN VARCHAR2, codResult OUT NUMBER)
-AS
-BEGIN
-    BEGIN
-        insertAddress (pIdDistrict, pDescriptionAddress); 
-        
-        insertPerson (pIdentification, pFirstName, pSecondName, pFirstLastName, 
-                      pSecondLastName, pPhoto, pIdPersonPosition, s_address.currval, 
-                      pIdTypeIdentification, pIdGender);
-
-        INSERT INTO TeamWorker(idPerson, idTeam, userCreation, lastUser, lastDate, dateCreation)
-        VALUES (s_person.currval, pIdTeam, NULL, NULL, NULL, NULL);
-        
-        insertMail (s_person.currval, pMail);
-        insertPhone (pPhoneNumber);
-        insertPersonXPhone (s_person.currval, s_phone.currval);
-        
-        codResult:= 0;   
-        COMMIT;
-    EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        codResult := SQLCODE;
-    END;
-END insertTeamWorker;
-
--- UserPerson
-CREATE OR REPLACE PROCEDURE insertUserPerson(pUsername IN VARCHAR2, pUserType IN VARCHAR2, pPassword IN VARCHAR2, 
-            pIdentification IN NUMBER, pFirstName IN VARCHAR2, 
-            pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2, 
-            pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER,
-            pIdTypeIdentification IN NUMBER, pIdGender IN NUMBER, pMail IN VARCHAR2, pPhoneNumber IN NUMBER,
-            pIdDistrict IN NUMBER, pDescriptionAddress IN VARCHAR2)
-AS 
-vnIdUserType NUMBER(10);
-vnPassword VARCHAR2(200);
-BEGIN
-    BEGIN
-        SELECT ut.idUserType
-        INTO vnIdUserType
-        FROM UserType UT
-        WHERE ut.descriptionUserType = pUserType;
-    END;
-
-    BEGIN 
-        insertAddress (pIdDistrict, pDescriptionAddress); 
-        
-        insertPerson (pIdentification, pFirstName, pSecondName, pFirstLastName, 
-                      pSecondLastName, pPhoto, pIdPersonPosition, s_address.currval, 
-                      pIdTypeIdentification, pIdGender);
-                      
-        encryptionPassword (pPassword,  vnPassword);
-
-        INSERT INTO UserPerson(username, idUserType, idPerson, passwordUser, 
-                               userCreation, lastUser, lastDate, dateCreation)
-        VALUES(pUsername, vnIdUserType,s_person.currval, vnPassword, NULL, NULL, NULL, NULL);
-            
-        insertMail (s_person.currval, pMail);
-        insertPhone (pPhoneNumber);
-        insertPersonXPhone (s_person.currval, s_phone.currval);
-        
-        COMMIT;
-    END;
-END insertUserPerson;
-
--- SoccerMatch
 CREATE OR REPLACE PROCEDURE insertSoccerMatch(pIdStadium IN NUMBER, pDateHour IN VARCHAR2, outIdSoccerMatch OUT NUMBER)
 AS
 BEGIN
@@ -244,7 +96,6 @@ EXCEPTION
         outIdSoccerMatch := -1; 
 END insertSoccerMatch;
 
---Insertion PlayerXSoccerMatchXTeam ---------------------
 CREATE OR REPLACE PROCEDURE insertTeam1(pIdMatch IN NUMBER, pIdTeam1 IN NUMBER) AS
 vnIdPlayer NUMBER;
     CURSOR playersTeam1 IS
@@ -284,7 +135,6 @@ BEGIN
     CLOSE playersTeam2;
 END insertTeam2;
 
-
 CREATE OR REPLACE PROCEDURE insertPlayerXMatchXTeam(pIdMatch IN NUMBER, pIdTeam1 IN NUMBER, pIdTeam2 IN NUMBER)
 AS
 BEGIN
@@ -292,8 +142,217 @@ BEGIN
     insertTeam2(pIdMatch, pIdTeam2); 
 END insertPlayerXMatchXTeam;
 
---------------------------------------------------------------------------------------------------
--- News
+CREATE OR REPLACE PROCEDURE insertGroupStats (pIdTeam IN NUMBER, pWonMatches IN NUMBER, pTiedMatches IN NUMBER, pLostMatches IN NUMBER, pGoalsScored IN NUMBER, pGoalsReceived IN NUMBER, pFairPlayPoints IN NUMBER) AS
+BEGIN
+    INSERT INTO GroupStats (idStats, idTeam, wonMatches, tiedMatches, lostMatches, goalsScored, goalsReceived, fairPlayPoints, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_groupstats.nextval, pIdTeam, pWonMatches, pTiedMatches, pLostMatches, pGoalsScored, pGoalsReceived, pFairPlayPoints, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertGroupStats;
+
+--- CATALOGS
+CREATE OR REPLACE PROCEDURE insertCountryTeam(pIdContinent IN NUMBER, pNameCountryTeam IN VARCHAR2) AS
+BEGIN
+    INSERT INTO CountryTeam(idCountryTeam, idContinent, nameCountryTeam, userCreation, lastUser, lastDate, dateCreation)
+    VALUES(s_countryteam.nextval, pIdContinent, pNameCountryTeam, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertCountryTeam;
+
+CREATE OR REPLACE PROCEDURE insertGender(pDescriptionGender IN VARCHAR2) AS
+BEGIN
+    INSERT INTO Gender(idGender, descriptionGender, userCreation, lastUser, lastDate, dateCreation)
+    VALUES(s_gender.nextval, pDescriptionGender, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertGender;
+
+CREATE OR REPLACE PROCEDURE insertTypeIdentification(pNameTypeIdentification IN VARCHAR2, pTypeMask IN VARCHAR2) AS
+BEGIN
+    INSERT INTO TypeIdentification(idTypeIdentification, nameTypeIdentification, typeMask, userCreation, lastUser, lastDate, dateCreation)
+    VALUES(s_typeIdentification.nextval, pNameTypeIdentification, pTypeMask, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertTypeIdentification;
+
+CREATE OR REPLACE PROCEDURE insertPosition(pDescriptionPosition IN VARCHAR2) AS
+BEGIN
+    INSERT INTO PersonPosition(idPersonPosition, descriptionPersonPosition, userCreation, lastUser, lastDate, dateCreation)
+    VALUES(s_personposition.nextval, pDescriptionPosition, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertPosition;
+
+CREATE OR REPLACE PROCEDURE insertContinent(pNameContinent IN VARCHAR2) AS
+BEGIN
+    INSERT INTO Continent (idContinent, nameContinent, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_continent.nextval, pNameContinent, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertContinent;
+
+CREATE OR REPLACE PROCEDURE insertCountry(pNameCountry IN VARCHAR2) AS
+BEGIN
+    INSERT INTO Country(idCountry, nameCountry, userCreation, lastUser, lastDate, dateCreation)
+    VALUES(s_country.nextval, pNameCountry, NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertCountry;
+
+CREATE OR REPLACE PROCEDURE insertProvince(pIdCountry IN NUMBER, pNameProvince IN VARCHAR2) AS
+BEGIN
+    INSERT INTO Province (idProvince, idCountry, nameProvince, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_province.nextval, pIdCountry, pNameProvince,NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertProvince;
+
+CREATE OR REPLACE PROCEDURE insertCanton(pIdProvince IN NUMBER, pNameCanton IN VARCHAR2) AS
+BEGIN
+    INSERT INTO Canton(idCanton, idProvince, nameCanton, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_canton.nextval, pIdProvince, pNameCanton,NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertCanton;
+
+CREATE OR REPLACE PROCEDURE insertDistrict(pIdCanton IN NUMBER, pNameDistrict IN VARCHAR2) AS
+BEGIN
+    INSERT INTO District(idDistrict, idCanton, nameDistrict, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_district.nextval, pIdCanton, pNameDistrict,NULL, NULL, NULL, NULL);
+    COMMIT;
+END insertDistrict;
+
+--- INFO PERSON
+CREATE OR REPLACE PROCEDURE insertPersonXPhone(pIdPerson IN NUMBER,pIdPhone IN NUMBER)
+AS
+BEGIN
+    INSERT INTO PersonXPhone(idPersonXPhone, idPerson ,idPhone, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_personxphone.NEXTVAL, pIdPerson, pIdPhone, NULL, NULL, NULL, NULL);
+END insertPersonXPhone;
+
+CREATE OR REPLACE PROCEDURE insertPhone (pPhoneNumber IN NUMBER) AS
+BEGIN
+    BEGIN
+        INSERT INTO Phone (idPhone, phoneNumber, userCreation, lastUser, lastDate, dateCreation)
+        VALUES (s_phone.nextval, pPhoneNumber, NULL, NULL, NULL, NULL);
+    END;
+END insertPhone;
+
+CREATE OR REPLACE PROCEDURE insertMail (pIdPerson IN NUMBER, pDescription IN VARCHAR2) AS
+BEGIN
+    INSERT INTO Mail (idMail, idPerson, descriptionMail, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_mail.nextval, pidPerson, pDescription, NULL, NULL, NULL, NULL);
+END insertMail;
+
+CREATE OR REPLACE PROCEDURE insertAddress (pIdDistrict IN NUMBER, pDescriptionAddress IN VARCHAR2) AS
+BEGIN
+    INSERT INTO Address (idAddress, idDistrict, descriptionAddress, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_address.nextval, pIdDistrict, pDescriptionAddress, NULL, NULL, NULL, NULL);
+END insertAddress;
+
+CREATE OR REPLACE PROCEDURE insertPerson (pIdentification IN NUMBER, pFirstName IN VARCHAR2, 
+            pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2, 
+            pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER, pIdAddress IN NUMBER, 
+            pIdTypeIdentification IN NUMBER, pIdGender IN NUMBER)
+AS
+BEGIN
+    INSERT INTO Person(idPerson, identification, firstName, secondName, 
+                firstLastName, secondLastName, photo, idPersonPosition, idAddress, 
+                idTypeIdentification, idGender, userCreation, lastUser, lastDate, dateCreation)
+    VALUES (s_person.nextval, pIdentification, pFirstName, pSecondName, pFirstLastName, pSecondLastName, 
+            pPhoto, pIdPersonPosition, pIdAddress, pIdTypeIdentification, pIdGender, NULL, NULL, NULL, NULL);
+END insertPerson;
+
+CREATE OR REPLACE PROCEDURE insertPlayer (pIdentification IN NUMBER, pFirstName IN VARCHAR2, 
+            pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2, 
+            pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER, pIdTypeIdentification IN NUMBER, 
+            pIdGender IN NUMBER, pIdTeam IN NUMBER, pBirthdate VARCHAR2, 
+            pTShirtNum NUMBER, pPhoneNumber IN NUMBER,pMail IN VARCHAR2, pIdDistrict IN NUMBER,
+            pDescriptionAddress IN VARCHAR2, codResult OUT NUMBER)
+AS
+BEGIN
+    BEGIN
+        insertAddress (pIdDistrict, pDescriptionAddress);  
+        insertPerson (pIdentification, pFirstName, pSecondName, pFirstLastName, 
+                      pSecondLastName, pPhoto, pIdPersonPosition, s_address.currval, 
+                      pIdTypeIdentification, pIdGender);
+            
+        INSERT INTO Player(idPerson, idTeam, birthdate, tShirtNum, userCreation, lastUser, lastDate, dateCreation)
+        VALUES (s_person.currval, pIdTeam, TO_DATE(pBirthdate), pTShirtNum, NULL, NULL, NULL, NULL); 
+            
+        insertMail (s_person.currval, pMail);
+        insertPhone (pPhoneNumber);
+        insertPersonXPhone (s_person.currval, s_phone.currval);
+        
+        codResult:= 0;
+        COMMIT;
+    EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+    END;
+END insertPlayer;
+
+CREATE OR REPLACE PROCEDURE insertTeamWorker(pIdentification IN NUMBER, pIdTeam IN NUMBER, pFirstName IN VARCHAR2, 
+                pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2,
+                pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER, pIdTypeIdentification IN NUMBER, 
+                pIdGender IN NUMBER, pPhoneNumber IN NUMBER, pIdDistrict IN NUMBER, 
+                pMail IN VARCHAR2, pDescriptionAddress IN VARCHAR2, codResult OUT NUMBER)
+AS
+BEGIN
+    BEGIN
+        insertAddress (pIdDistrict, pDescriptionAddress); 
+        
+        insertPerson (pIdentification, pFirstName, pSecondName, pFirstLastName, 
+                      pSecondLastName, pPhoto, pIdPersonPosition, s_address.currval, 
+                      pIdTypeIdentification, pIdGender);
+
+        INSERT INTO TeamWorker(idPerson, idTeam, userCreation, lastUser, lastDate, dateCreation)
+        VALUES (s_person.currval, pIdTeam, NULL, NULL, NULL, NULL);
+        
+        insertMail (s_person.currval, pMail);
+        insertPhone (pPhoneNumber);
+        insertPersonXPhone (s_person.currval, s_phone.currval);
+        
+        codResult:= 0;   
+        COMMIT;
+    EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+    END;
+END insertTeamWorker;
+
+CREATE OR REPLACE PROCEDURE insertUserPerson(pUsername IN VARCHAR2, pUserType IN VARCHAR2, pPassword IN VARCHAR2, 
+            pIdentification IN NUMBER, pFirstName IN VARCHAR2, 
+            pSecondName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSecondLastName IN VARCHAR2, 
+            pPhoto IN VARCHAR2, pIdPersonPosition IN NUMBER,
+            pIdTypeIdentification IN NUMBER, pIdGender IN NUMBER, pMail IN VARCHAR2, pPhoneNumber IN NUMBER,
+            pIdDistrict IN NUMBER, pDescriptionAddress IN VARCHAR2)
+AS 
+vnIdUserType NUMBER(10);
+vnPassword VARCHAR2(200);
+BEGIN
+    BEGIN
+        SELECT ut.idUserType
+        INTO vnIdUserType
+        FROM UserType UT
+        WHERE ut.descriptionUserType = pUserType;
+    END;
+
+    BEGIN 
+        insertAddress (pIdDistrict, pDescriptionAddress); 
+        
+        insertPerson (pIdentification, pFirstName, pSecondName, pFirstLastName, 
+                      pSecondLastName, pPhoto, pIdPersonPosition, s_address.currval, 
+                      pIdTypeIdentification, pIdGender);
+                      
+        encryptionPassword (pPassword,  vnPassword);
+
+        INSERT INTO UserPerson(username, idUserType, idPerson, passwordUser, 
+                               userCreation, lastUser, lastDate, dateCreation)
+        VALUES(pUsername, vnIdUserType,s_person.currval, vnPassword, NULL, NULL, NULL, NULL);
+            
+        insertMail (s_person.currval, pMail);
+        insertPhone (pPhoneNumber);
+        insertPersonXPhone (s_person.currval, s_phone.currval);
+        
+        COMMIT;
+    END;
+END insertUserPerson;
+
+--- NEWS
 CREATE OR REPLACE PROCEDURE insertNews (pIdNewsStatus IN NUMBER, pIdNewsType IN NUMBER, pTitle IN VARCHAR2, pPublicationDate IN DATE, pLinkNews IN VARCHAR2, pPhoto IN VARCHAR2, pTextNews IN VARCHAR2, idNews OUT NUMBER) AS
 BEGIN
     INSERT INTO News (idNews, idNewsStatus, idNewsType, title, publicationDate, viewsNews, linkNews, photo, textNews, userCreation, lastUser, lastDate, dateCreation)
@@ -304,7 +363,6 @@ BEGIN
     
 END insertNews;
 
---FavoriteNews
 CREATE OR REPLACE PROCEDURE insertFavoriteNews (pUsername IN VARCHAR2, pIdNews IN NUMBER) AS
 BEGIN
     INSERT INTO FavoriteNews (idFavoriteNews, username, idNews, userCreation, lastUser, lastDate, dateCreation)
@@ -312,7 +370,6 @@ BEGIN
     COMMIT;
 END insertFavoriteNews;
 
---UserXNews
 CREATE OR REPLACE PROCEDURE insertUserXNews(pUsername IN VARCHAR2, pIdNews IN NUMBER) AS
 BEGIN
     INSERT INTO UserXNews (idUserXNews, username, idNews, userCreation, lastUser, lastDate, dateCreation)
@@ -320,7 +377,6 @@ BEGIN
     COMMIT;
 END insertUserXNews;
 
--- NewsComment
 CREATE OR REPLACE PROCEDURE insertNewsComment (pIdNews IN NUMBER, pUsername IN VARCHAR2, ptextNewsComment IN VARCHAR2)
 AS
 BEGIN
@@ -329,7 +385,6 @@ BEGIN
     COMMIT;
 END insertNewsComment;
 
--- Rating
 CREATE OR REPLACE PROCEDURE insertRating(pUsername IN VARCHAR2, pIdNews IN NUMBER, pRating IN NUMBER)
 AS
 counter NUMBER;
@@ -347,10 +402,7 @@ BEGIN
     END IF;
 END insertRating;
 
-
-
-----------------------------------------------------------------------------------------------------------------
--- NewsChange
+--- BLOG AND PARAMETERS
 CREATE OR REPLACE PROCEDURE insertNewsChange (pIdNews IN NUMBER, pIdBlog IN NUMBER, pUsername IN VARCHAR2, pCurrentText IN VARCHAR2, pPreviousText IN VARCHAR2, pDescriptionNewsChange IN VARCHAR2, pDateHour IN DATE) AS
 BEGIN
     INSERT INTO NewsChange (idNewsChange, idNews, idBlog, username, currentText, previousText, descriptionNewsChange, dateHour, userCreation, lastUser, lastDate, dateCreation)
@@ -358,7 +410,6 @@ BEGIN
     COMMIT;
 END insertNewsChange;
 
--- ParameterTable
 CREATE OR REPLACE PROCEDURE insertParameterTable (pNameParameter IN VARCHAR2, pValueParameter IN NUMBER) AS
 BEGIN
     INSERT INTO ParameterTable (idParameterTable, nameParameter, valueParameter, userCreation, lastUser, lastDate, dateCreation)
@@ -372,25 +423,123 @@ Update Procedures
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 */
 
---- SOCCERMATCH
-CREATE OR REPLACE PROCEDURE updateSoccerMatch (pidPerson IN NUMBER, pYellowCards IN NUMBER, pRedCards IN NUMBER, pOffsides IN NUMBER, pCorners IN NUMBER, pSaves IN NUMBER, pGoals IN NUMBER) AS
+--- CATALOGS
+CREATE OR REPLACE PROCEDURE updateGender(pIdGender IN NUMBER, pDescriptionGender IN VARCHAR2) AS
 BEGIN
-    UPDATE PlayerXSoccerMatchXTeam
-    SET yellowCards = pYellowCards, 
-    redCards = pRedCards,
-    offsides = pOffsides,
-    corners = pCorners,
-    saves = pSaves,
-    goals = pGoals
-    WHERE idPerson = pidPerson;
+    UPDATE Gender
+    SET descriptionGender = pDescriptionGender
+    WHERE idGender = pIdGender;
     COMMIT;
 EXCEPTION
     WHEN OTHERS THEN
         ROLLBACK;
-END updateSoccerMatch;
+END updateGender;
 
+CREATE OR REPLACE PROCEDURE updateTypeIdentification(pIdTypeIdentification IN NUMBER, pNameTypeIdentification IN VARCHAR2) AS
+BEGIN
+    UPDATE TypeIdentification
+    SET nameTypeIdentification = pNameTypeIdentification
+    WHERE idTypeIdentification = pIdTypeIdentification;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END updateTypeIdentification;
 
---- FIRSTNAME
+CREATE OR REPLACE PROCEDURE updateCountry(pIdCountry IN NUMBER, pNameCountry IN VARCHAR2) AS
+BEGIN
+    UPDATE Country
+    SET nameCountry = pNameCountry
+    WHERE idCountry = pIdCountry;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END updateCountry;
+
+CREATE OR REPLACE PROCEDURE updateProvince(pIdProvince IN NUMBER, pIdCountry IN NUMBER, pNameProvince IN VARCHAR2) AS
+BEGIN
+    UPDATE Province
+    SET idCountry = pIdCountry
+    WHERE idProvince = pIdProvince;
+
+    UPDATE Province
+    SET nameProvince = pNameProvince
+    WHERE idProvince = pIdProvince;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END updateProvince;
+
+CREATE OR REPLACE PROCEDURE updateCanton(pIdCanton IN NUMBER, pIdProvince IN NUMBER, pNameCanton IN VARCHAR2) AS
+BEGIN
+    UPDATE Canton
+    SET idProvince = pIdProvince
+    WHERE idCanton = pIdCanton;
+
+    UPDATE Canton
+    SET nameCanton = pNameCanton
+    WHERE idCanton = pIdCanton;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END updateCanton;
+
+CREATE OR REPLACE PROCEDURE updateDistrict(pIdDistrict IN NUMBER, pIdCanton IN NUMBER, pNameDistrict IN VARCHAR2) AS
+BEGIN
+    UPDATE District
+    SET idCanton = pIdCanton
+    WHERE idDistrict = pIdDistrict;
+
+    UPDATE District
+    SET nameDistrict = pNameDistrict
+    WHERE idDistrict = pIdDistrict;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END updateDistrict;
+
+CREATE OR REPLACE PROCEDURE updatePosition(pIdPosition IN NUMBER, pDescriptionPosition IN VARCHAR2) AS
+BEGIN
+    UPDATE PersonPosition
+    SET descriptionPersonPosition = pDescriptionPosition
+    WHERE idPersonPosition = pIdPosition;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END updatePosition;
+
+CREATE OR REPLACE PROCEDURE updateContinent(pIdContinent IN NUMBER, pNameContinent IN VARCHAR2) AS
+BEGIN
+    UPDATE Continent
+    SET nameContinent = pNameContinent
+    WHERE idContinent = pIdContinent;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END updateContinent;
+
+CREATE OR REPLACE PROCEDURE updateCountryTeam(pIdCountryTeam IN NUMBER, pIdContinent IN NUMBER, pNameCountryTeam IN VARCHAR2) AS
+BEGIN
+    UPDATE CountryTeam
+    SET idContinent = pIdContinent
+    WHERE idCountryTeam = pIdCountryTeam;
+    
+    UPDATE CountryTeam
+    SET nameCountryTeam = pNameCountryTeam
+    WHERE idCountryTeam = pIdCountryTeam;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END updateCountryTeam;
+
+--- INFO PERSON
 CREATE OR REPLACE PROCEDURE updateFirstName (pidPerson IN NUMBER, pFirstName IN VARCHAR2, codResult OUT NUMBER) AS
 BEGIN
     UPDATE Person
@@ -405,7 +554,6 @@ EXCEPTION
         codResult := SQLCODE;   
 END updateFirstName;
 
---- SECONDNAME
 CREATE OR REPLACE PROCEDURE updateSecondName (pidPerson IN NUMBER, pSecondName IN VARCHAR2, codResult OUT NUMBER) AS
 BEGIN
     UPDATE Person
@@ -420,7 +568,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updateSecondName;
 
---- FIRSTLASTNAME
 CREATE OR REPLACE PROCEDURE updateFirstLastName (pidPerson IN NUMBER, pFirstLastName IN VARCHAR2, codResult OUT NUMBER) AS
 BEGIN
     UPDATE Person
@@ -435,7 +582,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updateFirstLastName;
 
---- SECONDLASTNAME
 CREATE OR REPLACE PROCEDURE updateSecondLastName (pidPerson IN NUMBER, pSecondLastName IN VARCHAR2, codResult OUT NUMBER) AS
 BEGIN
     UPDATE Person
@@ -450,7 +596,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updateSecondLastName;
 
---- TYPEIDENTIFICATION
 CREATE OR REPLACE PROCEDURE updateTypeIdentification(pidPerson IN NUMBER, pTypeIdentification IN NUMBER, codResult OUT NUMBER) AS
 BEGIN
     UPDATE Person
@@ -465,7 +610,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updateTypeIdentification;
 
---- IDENTIFICATION
 CREATE OR REPLACE PROCEDURE updateIdentification(pidPerson IN NUMBER, pIdentification IN NUMBER, codResult OUT NUMBER) AS
 BEGIN
     UPDATE Person
@@ -480,7 +624,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updateIdentification;
 
---- MAIL
 CREATE OR REPLACE PROCEDURE updateMail(pidPerson IN NUMBER, pMail IN VARCHAR2, codResult OUT NUMBER) AS
 BEGIN
     UPDATE Mail
@@ -495,41 +638,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updateMail;
 
---- TEAM
-CREATE OR REPLACE PROCEDURE updateTeam(pidPerson IN NUMBER, pidTeam IN NUMBER, codResult OUT NUMBER) AS
-vnIdPerson NUMBER(10);
-BEGIN
-    BEGIN
-        SELECT idPerson
-        INTO vnIdPerson
-        FROM Player 
-        WHERE idPerson = pidPerson;
-    EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        vnIdPerson:=-1; 
-    END;
-
-    IF(vnIdPerson != -1)
-    THEN
-        UPDATE Player
-        SET idTeam = pidTeam
-        WHERE idPerson = vnIdPerson;
-    ELSE
-        UPDATE TeamWorker
-        SET idTeam = pidTeam
-        WHERE idPerson = pidPerson;
-    END IF;
-    
-    codResult:= 0;
-    COMMIT;
-EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        codResult := SQLCODE; 
-END updateTeam;
-
---- PERSONPOSITION
 CREATE OR REPLACE PROCEDURE updatePersonPosition(pidPerson IN NUMBER, pPosition IN NUMBER, codResult OUT NUMBER) AS
 BEGIN
     UPDATE Person
@@ -544,7 +652,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updatePersonPosition;
 
---- PHONE
 CREATE OR REPLACE PROCEDURE updatePhone(pidPerson IN NUMBER, pPhoneNumber IN NUMBER, codResult OUT NUMBER) AS
 vnIdPhone NUMBER(10);
 BEGIN
@@ -574,7 +681,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updatePhone;
 
---- GENDER
 CREATE OR REPLACE PROCEDURE updateGender(pidPerson IN NUMBER, pidGender IN NUMBER, codResult OUT NUMBER) AS
 BEGIN
     UPDATE Person
@@ -589,8 +695,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updateGender;
 
-
---- ADDRESS
 CREATE OR REPLACE PROCEDURE updateAddress(pidAddress IN NUMBER, pDescriptionAddress IN VARCHAR2, codResult OUT NUMBER) AS
 BEGIN
     UPDATE Address
@@ -605,7 +709,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updateAddress;
 
---- DISTRICT
 CREATE OR REPLACE PROCEDURE updateDistrict(pidPerson IN NUMBER, pidDistrict IN NUMBER, codResult OUT NUMBER) AS
 vnIdAddress NUMBER(10);
 BEGIN
@@ -626,7 +729,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updateDistrict;
 
---- CANTON
 CREATE OR REPLACE PROCEDURE updateCanton(pidPerson IN NUMBER, pidCanton IN NUMBER, codResult OUT NUMBER) AS
 vnIdDistrict NUMBER(10);
 BEGIN
@@ -649,7 +751,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updateCanton;
 
---- PROVINCE
 CREATE OR REPLACE PROCEDURE updateProvince(pidPerson IN NUMBER, pidProvince IN NUMBER, codResult OUT NUMBER) AS
 vnIdCanton NUMBER(10);
 BEGIN
@@ -673,8 +774,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updateProvince;
 
-
---- COUNTRY
 CREATE OR REPLACE PROCEDURE updateCountry(pidPerson IN NUMBER, pidCountry IN NUMBER, codResult OUT NUMBER) AS
 vnIdProvince NUMBER(10);
 BEGIN
@@ -699,7 +798,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updateCountry;
 
---- PHOTO
 CREATE OR REPLACE PROCEDURE updatePhoto(pidPerson IN NUMBER, pPhoto IN VARCHAR2, codResult OUT NUMBER) AS
 BEGIN
     UPDATE Person
@@ -714,7 +812,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updatePhoto;
 
---- BIRTHDATE
 CREATE OR REPLACE PROCEDURE updateBirthDate(pidPerson IN NUMBER, pBirthDate IN VARCHAR2, codResult OUT NUMBER) AS
 BEGIN
     UPDATE Player
@@ -729,7 +826,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updateBirthDate;
 
---- NUMBER OF T-SHIRT
 CREATE OR REPLACE PROCEDURE updateTShirtNum(pidPerson IN NUMBER, pTShirtNum IN NUMBER, codResult OUT NUMBER) AS
 BEGIN
     UPDATE Player
@@ -744,89 +840,6 @@ EXCEPTION
         codResult := SQLCODE; 
 END updateTShirtNum;
 
--------------- NEWS -----------------
--- Status
-CREATE OR REPLACE PROCEDURE updateStatus(pIdNews IN NUMBER, pIdNewsStatus IN NUMBER, codResult OUT NUMBER) AS
-BEGIN
-    UPDATE News
-    SET idNewsStatus = pIdNewsStatus
-    WHERE idNews = pIdNews;
-    
-    codResult:= 0;
-    COMMIT;
-    
-EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        codResult := SQLCODE;   
-END updateStatus ;
-
--- Type
-CREATE OR REPLACE PROCEDURE updateType(pIdNews IN NUMBER, pIdNewsType IN NUMBER, codResult OUT NUMBER) AS
-BEGIN
-    UPDATE News
-    SET idNewsType = pIdNewsType
-    WHERE idNews = pIdNews;
-    
-    codResult:= 0;
-    COMMIT;
-    
-EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        codResult := SQLCODE;   
-END updateType;
-
--- Title
-CREATE OR REPLACE PROCEDURE updateTitle(pIdNews IN NUMBER, pTitle IN VARCHAR2, codResult OUT NUMBER) AS
-BEGIN
-    UPDATE News
-    SET title = pTitle
-    WHERE idNews = pIdNews;
-    
-    codResult:= 0;
-    COMMIT;
-    
-EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        codResult := SQLCODE;   
-END updateTitle;
-
--- Text
-CREATE OR REPLACE PROCEDURE updateText(pIdNews IN NUMBER, pText IN VARCHAR2, codResult OUT NUMBER) AS
-BEGIN
-    UPDATE News
-    SET textNews = pText
-    WHERE idNews = pIdNews;
-    
-    codResult:= 0;
-    COMMIT;
-    
-EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        codResult := SQLCODE;   
-END updateText;
-
--- Photo
-CREATE OR REPLACE PROCEDURE updatePhoto(pIdNews IN NUMBER, pPhoto IN VARCHAR2, codResult OUT NUMBER) AS
-BEGIN
-    UPDATE News
-    SET photo = pPhoto
-    WHERE idNews = pIdNews;
-    
-    codResult:= 0;
-    COMMIT;
-    
-EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        codResult := SQLCODE;   
-END updatePhoto;
-
-
--- Edit Account
 CREATE OR REPLACE PROCEDURE updateProfile(pUsername IN VARCHAR2, pPassword IN VARCHAR2, pFirstName IN VARCHAR2,
                                         pSndName IN VARCHAR2, pFirstLastName IN VARCHAR2, pSndLastName IN VARCHAR2,
                                         pGender IN NUMBER, pEmail IN VARCHAR2, pPhone IN NUMBER, pPhoto IN VARCHAR2)
@@ -864,13 +877,159 @@ BEGIN
     COMMIT;
 END updateProfile;
 
+--- MATCHES
+CREATE OR REPLACE PROCEDURE updateSoccerMatch (pidPerson IN NUMBER, pYellowCards IN NUMBER, pRedCards IN NUMBER, pOffsides IN NUMBER, pCorners IN NUMBER, pSaves IN NUMBER, pGoals IN NUMBER) AS
+BEGIN
+    UPDATE PlayerXSoccerMatchXTeam
+    SET yellowCards = pYellowCards, 
+    redCards = pRedCards,
+    offsides = pOffsides,
+    corners = pCorners,
+    saves = pSaves,
+    goals = pGoals
+    WHERE idPerson = pidPerson;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END updateSoccerMatch;
+
+CREATE OR REPLACE PROCEDURE updateTeam(pidPerson IN NUMBER, pidTeam IN NUMBER, codResult OUT NUMBER) AS
+vnIdPerson NUMBER(10);
+BEGIN
+    BEGIN
+        SELECT idPerson
+        INTO vnIdPerson
+        FROM Player 
+        WHERE idPerson = pidPerson;
+    EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        vnIdPerson:=-1; 
+    END;
+
+    IF(vnIdPerson != -1)
+    THEN
+        UPDATE Player
+        SET idTeam = pidTeam
+        WHERE idPerson = vnIdPerson;
+    ELSE
+        UPDATE TeamWorker
+        SET idTeam = pidTeam
+        WHERE idPerson = pidPerson;
+    END IF;
+    
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE; 
+END updateTeam;
+
+--- NEWS
+CREATE OR REPLACE PROCEDURE updateStatus(pIdNews IN NUMBER, pIdNewsStatus IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    UPDATE News
+    SET idNewsStatus = pIdNewsStatus
+    WHERE idNews = pIdNews;
+    
+    codResult:= 0;
+    COMMIT;
+    
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;   
+END updateStatus ;
+
+CREATE OR REPLACE PROCEDURE updateType(pIdNews IN NUMBER, pIdNewsType IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    UPDATE News
+    SET idNewsType = pIdNewsType
+    WHERE idNews = pIdNews;
+    
+    codResult:= 0;
+    COMMIT;
+    
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;   
+END updateType;
+
+CREATE OR REPLACE PROCEDURE updateTitle(pIdNews IN NUMBER, pTitle IN VARCHAR2, codResult OUT NUMBER) AS
+BEGIN
+    UPDATE News
+    SET title = pTitle
+    WHERE idNews = pIdNews;
+    
+    codResult:= 0;
+    COMMIT;
+    
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;   
+END updateTitle;
+
+CREATE OR REPLACE PROCEDURE updateText(pIdNews IN NUMBER, pText IN VARCHAR2, codResult OUT NUMBER) AS
+BEGIN
+    UPDATE News
+    SET textNews = pText
+    WHERE idNews = pIdNews;
+    
+    codResult:= 0;
+    COMMIT;
+    
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;   
+END updateText;
+
+CREATE OR REPLACE PROCEDURE updatePhoto(pIdNews IN NUMBER, pPhoto IN VARCHAR2, codResult OUT NUMBER) AS
+BEGIN
+    UPDATE News
+    SET photo = pPhoto
+    WHERE idNews = pIdNews;
+    
+    codResult:= 0;
+    COMMIT;
+    
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;   
+END updatePhoto;
+
+--- PARAMETERS
+CREATE OR REPLACE PROCEDURE updateParameter(pIdParameter IN NUMBER, pNameParameter IN VARCHAR, pValueParameter IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    UPDATE ParameterTable
+    SET nameParameter = pNameParameter
+    WHERE idParameterTable = pIdParameter;
+    
+    UPDATE ParameterTable
+    SET valueParameter = pValueParameter
+    WHERE idParameterTable = pIdParameter;
+    
+    codResult:= 0;
+    COMMIT;
+    
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;   
+END updateParameter;
 
 /*
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 Get Information Procedures
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 */
--------------- PEOPLE --------------------
+
+--- INFO PERSON
 CREATE OR REPLACE PROCEDURE getPlayer (curPlayer OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curPlayer FOR
@@ -946,8 +1105,7 @@ EXCEPTION
         codResult := SQLCODE; 
 END getPersonInformation;
 
--------------- CATALOGS ------------------------------
-
+--- MATCHES
 CREATE OR REPLACE PROCEDURE getEvent (curEvent OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curEvent FOR
@@ -962,6 +1120,78 @@ BEGIN
     FROM GroupEvent;
 END getGroupEvent;
 
+
+CREATE OR REPLACE PROCEDURE getStadium(curStadium OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curStadium FOR
+    SELECT  idStadium, idCountry, nameStadium
+    FROM Stadium;
+END getStadium;
+
+CREATE OR REPLACE PROCEDURE getTeam(curTeam OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curTeam FOR
+    SELECT idTeam, nameTeam
+    FROM Team
+    ORDER BY idTeam;
+END getTeam;
+
+CREATE OR REPLACE PROCEDURE getTeamXGroup (curTeamXGroup OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curTeamXGroup FOR
+    SELECT idTeamXGroup, idTeam,idGroupEvent
+    FROM TeamXGroup;
+END getTeamXGroup;
+
+CREATE OR REPLACE PROCEDURE getTodaySoccerMatches(curTodayMatches OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curTodayMatches FOR
+    SELECT Team.nameteam, SoccerMatch.datehour
+    FROM playerxsoccermatchxteam
+    INNER JOIN SoccerMatch ON SoccerMatch.idSoccerMatch = playerxsoccermatchxteam.idSoccerMatch
+    INNER JOIN Team ON Team.idTeam = playerxsoccermatchxteam.idTeam
+    WHERE TRUNC(Soccermatch.datehour) = TRUNC(SYSDATE)
+    GROUP BY Team.nameteam, SoccerMatch.datehour;
+    
+END getTodaySoccerMatches;
+
+CREATE OR REPLACE PROCEDURE getAccountInformation(pUsername IN VARCHAR2, outAccountCursor OUT SYS_REFCURSOR)
+AS
+encryptedPassword VARCHAR(200);
+normalPassword VARCHAR2(200);
+BEGIN
+    
+    SELECT passwordUser INTO encryptedPassword FROM UserPerson WHERE username = pUsername;
+    decryptionPassword(encryptedPassword, normalPassword);
+
+    OPEN outAccountCursor FOR
+    SELECT UserPerson.username, normalPassword passwordUser, Person.firstName, Person.secondName,
+    Person.firstLastName, Person.secondLastName, Person.identification, Gender.descriptionGender,
+    Mail.descriptionMail, Phone.phoneNumber, Person.photo
+    FROM UserPerson
+    INNER JOIN Person ON Person.idPerson = UserPerson.idPerson
+    INNER JOIN Gender ON Person.idGender = Gender.idGender
+    INNER JOIN Mail ON Mail.idPerson = Person.idPerson
+    INNER JOIN PersonXPhone ON PersonXPhone.idPerson = Person.idPerson
+    INNER JOIN Phone ON Phone.idPhone = PersonXPhone.idPhone
+    WHERE UserPerson.username = pUsername;
+END getAccountInformation;
+
+CREATE OR REPLACE PROCEDURE getSoccerMatch (pidSoccerMatch IN NUMBER, curSoccerMatch OUT SYS_REFCURSOR) 
+AS
+vnTeam1 VARCHAR2(32);
+vnTeam2 VARCHAR2(32);
+BEGIN
+    SELECT idTeam
+    FROM PlayerXMatchXTeam
+    WHERE idSoccerMatch = pidSoccerMatch;
+    
+    OPEN curSoccerMatch FOR
+    SELECT descriptionGroupEvent, vnTeam1, nameStadium
+    FROM TeamXGroup;
+END getSoccerMatch;
+
+--- CATALOGS
 CREATE OR REPLACE PROCEDURE getGender(curGender OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curGender FOR
@@ -983,6 +1213,12 @@ BEGIN
     FROM TypeIdentification;
 END getTypeIdentification;
 
+CREATE OR REPLACE PROCEDURE getContinent(curContinent OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curContinent FOR
+    SELECT  idContinent, nameContinent
+    FROM Continent;
+END getContinent;
 
 CREATE OR REPLACE PROCEDURE getCountry(curCountry OUT SYS_REFCURSOR) IS
 BEGIN
@@ -991,6 +1227,12 @@ BEGIN
     FROM Country;
 END getCountry;
 
+CREATE OR REPLACE PROCEDURE getCountryTeam(curCountryTeam OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curCountryTeam FOR
+    SELECT  idCountryTeam, idContinent, nameCountryTeam
+    FROM CountryTeam;
+END getCountryTeam;
 
 CREATE OR REPLACE PROCEDURE getProvince(curProvince OUT SYS_REFCURSOR) IS
 BEGIN
@@ -999,14 +1241,12 @@ BEGIN
     FROM Province;
 END getProvince;
 
-
 CREATE OR REPLACE PROCEDURE getCanton(curCanton OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curCanton FOR
     SELECT idProvince, idCanton, nameCanton
     FROM Canton;
 END getCanton;
-
 
 CREATE OR REPLACE PROCEDURE getDistrict(curDistrict OUT SYS_REFCURSOR) IS
 BEGIN
@@ -1015,6 +1255,7 @@ BEGIN
     FROM District;
 END getDistrict;
 
+--- NEWS
 CREATE OR REPLACE PROCEDURE getNews(curNews OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curNews FOR
@@ -1094,22 +1335,6 @@ BEGIN
     FROM NewsType;
 END getNewsType;
 
-CREATE OR REPLACE PROCEDURE getTeam(curTeam OUT SYS_REFCURSOR) IS
-BEGIN
-    OPEN curTeam FOR
-    SELECT idTeam, nameTeam
-    FROM Team
-    ORDER BY idTeam;
-END getTeam;
-
-CREATE OR REPLACE PROCEDURE getCountryTeam(curCountryTeam OUT SYS_REFCURSOR) IS
-BEGIN
-    OPEN curCountryTeam FOR
-    SELECT  idCountryTeam, idContinent, nameCountryTeam
-    FROM CountryTeam;
-END getCountryTeam;
-
-
 CREATE OR REPLACE PROCEDURE getMostViewedNews(curMostViewedNews OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curMostViewedNews FOR
@@ -1119,7 +1344,6 @@ BEGIN
     ORDER BY viewsNews DESC;
 END getMostViewedNews;
 
- 
 CREATE OR REPLACE PROCEDURE getLastNews(curLastNews OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curLastNews FOR
@@ -1129,124 +1353,7 @@ BEGIN
     ORDER BY publicationDate DESC;
 END getLastNews;
 
-CREATE OR REPLACE PROCEDURE getStadium(curStadium OUT SYS_REFCURSOR) IS
-BEGIN
-    OPEN curStadium FOR
-    SELECT  idStadium, idCountry, nameStadium
-    FROM Stadium;
-END getStadium;
-
-
-CREATE OR REPLACE PROCEDURE getTeamXGroup (curTeamXGroup OUT SYS_REFCURSOR) IS
-BEGIN
-    OPEN curTeamXGroup FOR
-    SELECT idTeamXGroup, idTeam,idGroupEvent
-    FROM TeamXGroup;
-END getTeamXGroup;
-
-
-CREATE OR REPLACE PROCEDURE getTodaySoccerMatches(curTodayMatches OUT SYS_REFCURSOR) IS
-BEGIN
-    OPEN curTodayMatches FOR
-    SELECT Team.nameteam, SoccerMatch.datehour
-    FROM playerxsoccermatchxteam
-    INNER JOIN SoccerMatch ON SoccerMatch.idSoccerMatch = playerxsoccermatchxteam.idSoccerMatch
-    INNER JOIN Team ON Team.idTeam = playerxsoccermatchxteam.idTeam
-    WHERE TRUNC(Soccermatch.datehour) = TRUNC(SYSDATE)
-    GROUP BY Team.nameteam, SoccerMatch.datehour;
-    
-END getTodaySoccerMatches;
-
-
--- My Account Information
-CREATE OR REPLACE PROCEDURE getAccountInformation(pUsername IN VARCHAR2, outAccountCursor OUT SYS_REFCURSOR)
-AS
-encryptedPassword VARCHAR(200);
-normalPassword VARCHAR2(200);
-BEGIN
-    
-    SELECT passwordUser INTO encryptedPassword FROM UserPerson WHERE username = pUsername;
-    decryptionPassword(encryptedPassword, normalPassword);
-
-    OPEN outAccountCursor FOR
-    SELECT UserPerson.username, normalPassword passwordUser, Person.firstName, Person.secondName,
-    Person.firstLastName, Person.secondLastName, Person.identification, Gender.descriptionGender,
-    Mail.descriptionMail, Phone.phoneNumber, Person.photo
-    FROM UserPerson
-    INNER JOIN Person ON Person.idPerson = UserPerson.idPerson
-    INNER JOIN Gender ON Person.idGender = Gender.idGender
-    INNER JOIN Mail ON Mail.idPerson = Person.idPerson
-    INNER JOIN PersonXPhone ON PersonXPhone.idPerson = Person.idPerson
-    INNER JOIN Phone ON Phone.idPhone = PersonXPhone.idPhone
-    WHERE UserPerson.username = pUsername;
-END getAccountInformation;
-
-
-/*
--=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-Requests Procedures
--=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-*/
-
-CREATE OR REPLACE PROCEDURE getGroupList(pGroupList OUT SYS_REFCURSOR, pTeamName IN VARCHAR2, pMatchDate IN VARCHAR2, pStadium IN VARCHAR2, pTeamFlag IN VARCHAR2)
-IS 
-BEGIN
-    OPEN pGroupList FOR 
-    SELECT Team.nameTeam, SoccerMatch.dateHour, Stadium.nameStadium, Team.flag
-    FROM Stadium 
-    INNER JOIN SoccerMatch ON SoccerMatch.idStadium = Stadium.idStadium
-    INNER JOIN PlayerXSoccerMatchXTeam ON SoccerMatch.idSoccerMatch = PlayerXSoccerMatchXTeam.idSoccerMatch
-    INNER JOIN Team ON PlayerXSoccerMatchXTeam.idTeam = Team.idTeam
-    INNER JOIN CountryTeam ON Team.idCountryTeam = CountryTeam.idCountryTeam 
-    WHERE Team.nameTeam = NVL (pTeamName, Team.nameTeam) AND SoccerMatch.dateHour = NVL (TO_DATE(pMatchDate, 'DD-MM-YYYY HH24:MI'), SoccerMatch.dateHour) 
-    AND Stadium.nameStadium = NVL (pStadium, Stadium.nameStadium) AND Team.flag = NVL (pTeamFlag, Team.flag);
-END getGroupList;
-
-
-CREATE OR REPLACE PROCEDURE getTeamList(pTeamName IN VARCHAR2, pPlayerFstName IN VARCHAR2, pPlayerSndName IN VARCHAR2,
-                                        pPlayerFstLastName IN VARCHAR2, pPlayerSndLastName IN VARCHAR2, pPosition IN VARCHAR2,pTeamList OUT SYS_REFCURSOR)
-AS  
-BEGIN
-    OPEN pTeamList FOR
-    SELECT Person.firstName, Person.secondName, Person.firstLastname, Person.secondLastname, Person.photo, PersonPosition.descriptionPersonPosition 
-    FROM Team
-    INNER JOIN Player ON Player.idTeam = Team.idTeam
-    INNER JOIN Person ON Person.idPerson = Player.idPerson
-    INNER JOIN PersonPosition ON PersonPosition.idPersonPosition = Person.idPersonPosition 
-    WHERE Team.nameTeam = NVL (pTeamName, Team.nameTeam) AND Person.firstName = NVL(pPlayerFstName, Person.firstName)
-    AND Person.secondName = NVL(pPlayerSndName, Person.secondName)
-    AND Person.secondLastName = NVL(pPlayerSndLastName, Person.secondLastName) AND Person.firstLastName = NVL(pPlayerFstLastName, Person.firstLastName)
-    AND PersonPosition.descriptionPersonPosition= NVL (pPosition, PersonPosition.descriptionPersonPosition);
-END getTeamList;
-
-/*
-Se deben mostrar todas las noticias (autor, título, fecha de publicación, tipo de artículo)
-ordenados por antigüedad del más reciente al más antiguo. Filtros: autor, fecha, mundial.
-
-NOT WORKING
-*/
-
-CREATE OR REPLACE PROCEDURE getNewsList(pNewsList OUT SYS_REFCURSOR, pAuthorName IN VARCHAR2, pAuthorLastName IN VARCHAR2, pDate IN DATE, pEvent IN VARCHAR2)
-IS 
-BEGIN
-    OPEN pTeamList FOR 
-    SELECT Person.firstName, Person.lastName, News.title, News.publicationDate, NewsType.descriptionNewsType
-    FROM UserXNews
-    INNER JOIN News ON News.idNews = UserXNews.idNews
-    INNER JOIN UserPerson ON UserPerson.username = UserXNews.username
-    INNER JOIN Person ON Person.idPerson = UserPerson.idPerson
-    INNER JOIN NewsType ON News.idNewsType = NewsType.idNewsType
-    WHERE Person.firstName = NVL(pAuthorName, Person.firstName) AND Person.lastName = NVL(pAuthorLastName, Person.lastName)
-    AND News.publicationDate = NVL(pDate, News.publicationDate)
-    ORDER BY News.publicationDate DESC;
-END getNewsList;
-
-/*
--=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-Statistics Procedures
--=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-*/
-
+--- STATISTICS
 CREATE OR REPLACE PROCEDURE getGroupStats(pIdGroup IN NUMBER, outGroupStats OUT SYS_REFCURSOR)
 AS
 BEGIN
@@ -1258,7 +1365,6 @@ BEGIN
     WHERE GroupEvent.idGroupEvent = pIdGroup;
 END;
 
-
 CREATE OR REPLACE PROCEDURE getTotalPublishedNews(outPublishedNews OUT NUMBER)
 AS
 resultTotal NUMBER;
@@ -1268,7 +1374,6 @@ BEGIN
     
     outPublishedNews := resultTotal;
 END getTotalPublishedNews;
-
 
 CREATE OR REPLACE PROCEDURE getAverageReviewsAuthor(cursorAverage OUT SYS_REFCURSOR)
 AS
@@ -1281,7 +1386,6 @@ BEGIN
     ORDER BY AVG(Rating.rating) DESC;
     
 END getAverageReviewsAuthor;
-
 
 CREATE OR REPLACE PROCEDURE getTotalPlayersXAge(pIdGender IN NUMBER, pIdTeam IN NUMBER, cursorPlayers OUT SYS_REFCURSOR)
 AS
@@ -1338,7 +1442,6 @@ BEGIN
     
 END getTotalPlayersXAge;
 
-
 CREATE OR REPLACE PROCEDURE getTopNGoalScorer(topQuantity OUT NUMBER, outGoalScorerCursor OUT SYS_REFCURSOR)
 AS
 topN NUMBER;
@@ -1389,6 +1492,74 @@ BEGIN
     
 END getPlayedMatches;
 
+--- PARAMETERS
+CREATE OR REPLACE PROCEDURE getParameters (curParameter OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curParameter FOR
+    SELECT idParameterTable, nameParameter, valueParameter
+    FROM ParameterTable;
+END getParameters;
+
+CREATE OR REPLACE PROCEDURE getInfoParameter(pIdParameter IN NUMBER, curParameter OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curParameter FOR
+    SELECT idParameterTable, nameParameter, valueParameter
+    FROM ParameterTable
+    WHERE idParameterTable = pIdParameter;
+END getInfoParameter;
+
+--- REQUESTS
+CREATE OR REPLACE PROCEDURE getGroupList(pGroupList OUT SYS_REFCURSOR, pTeamName IN VARCHAR2, pMatchDate IN VARCHAR2, pStadium IN VARCHAR2, pTeamFlag IN VARCHAR2)
+IS 
+BEGIN
+    OPEN pGroupList FOR 
+    SELECT Team.nameTeam, SoccerMatch.dateHour, Stadium.nameStadium, Team.flag
+    FROM Stadium 
+    INNER JOIN SoccerMatch ON SoccerMatch.idStadium = Stadium.idStadium
+    INNER JOIN PlayerXSoccerMatchXTeam ON SoccerMatch.idSoccerMatch = PlayerXSoccerMatchXTeam.idSoccerMatch
+    INNER JOIN Team ON PlayerXSoccerMatchXTeam.idTeam = Team.idTeam
+    INNER JOIN CountryTeam ON Team.idCountryTeam = CountryTeam.idCountryTeam 
+    WHERE Team.nameTeam = NVL (pTeamName, Team.nameTeam) AND SoccerMatch.dateHour = NVL (TO_DATE(pMatchDate, 'DD-MM-YYYY HH24:MI'), SoccerMatch.dateHour) 
+    AND Stadium.nameStadium = NVL (pStadium, Stadium.nameStadium) AND Team.flag = NVL (pTeamFlag, Team.flag);
+END getGroupList;
+
+CREATE OR REPLACE PROCEDURE getTeamList(pTeamName IN VARCHAR2, pPlayerFstName IN VARCHAR2, pPlayerSndName IN VARCHAR2,
+                                        pPlayerFstLastName IN VARCHAR2, pPlayerSndLastName IN VARCHAR2, pPosition IN VARCHAR2,pTeamList OUT SYS_REFCURSOR)
+AS  
+BEGIN
+    OPEN pTeamList FOR
+    SELECT Person.firstName, Person.secondName, Person.firstLastname, Person.secondLastname, Person.photo, PersonPosition.descriptionPersonPosition 
+    FROM Team
+    INNER JOIN Player ON Player.idTeam = Team.idTeam
+    INNER JOIN Person ON Person.idPerson = Player.idPerson
+    INNER JOIN PersonPosition ON PersonPosition.idPersonPosition = Person.idPersonPosition 
+    WHERE Team.nameTeam = NVL (pTeamName, Team.nameTeam) AND Person.firstName = NVL(pPlayerFstName, Person.firstName)
+    AND Person.secondName = NVL(pPlayerSndName, Person.secondName)
+    AND Person.secondLastName = NVL(pPlayerSndLastName, Person.secondLastName) AND Person.firstLastName = NVL(pPlayerFstLastName, Person.firstLastName)
+    AND PersonPosition.descriptionPersonPosition= NVL (pPosition, PersonPosition.descriptionPersonPosition);
+END getTeamList;
+
+CREATE OR REPLACE PROCEDURE getNewsList(pNewsList OUT SYS_REFCURSOR, pAuthorName IN VARCHAR2, pAuthorLastName IN VARCHAR2, pDate IN DATE, pEvent IN VARCHAR2)
+/*
+Se deben mostrar todas las noticias (autor, título, fecha de publicación, tipo de artículo)
+ordenados por antigüedad del más reciente al más antiguo. Filtros: autor, fecha, mundial.
+
+NOT WORKING
+*/
+IS 
+BEGIN
+    OPEN pTeamList FOR 
+    SELECT Person.firstName, Person.lastName, News.title, News.publicationDate, NewsType.descriptionNewsType
+    FROM UserXNews
+    INNER JOIN News ON News.idNews = UserXNews.idNews
+    INNER JOIN UserPerson ON UserPerson.username = UserXNews.username
+    INNER JOIN Person ON Person.idPerson = UserPerson.idPerson
+    INNER JOIN NewsType ON News.idNewsType = NewsType.idNewsType
+    WHERE Person.firstName = NVL(pAuthorName, Person.firstName) AND Person.lastName = NVL(pAuthorLastName, Person.lastName)
+    AND News.publicationDate = NVL(pDate, News.publicationDate)
+    ORDER BY News.publicationDate DESC;
+END getNewsList;
+
 /*
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 Validation Procedures
@@ -1428,7 +1599,6 @@ EXCEPTION
         codResult := SQLCODE;        
 END validateUser;
 
-
 CREATE OR REPLACE PROCEDURE validateUserAlreadyExists(pUsername IN VARCHAR2,codResult OUT NUMBER) 
 IS
 vnIdPerson NUMBER(10);
@@ -1452,7 +1622,6 @@ BEGIN
     END IF; 
 END validateUserAlreadyExists;
 
-
 CREATE OR REPLACE PROCEDURE validateIdentAlreadyExists(pidentification IN NUMBER,codResult OUT NUMBER) 
 IS
 vnIdPerson NUMBER(10);
@@ -1475,7 +1644,6 @@ BEGIN
          codResult := 1;
     END IF; 
 END validateIdentAlreadyExists;
-
 
 CREATE OR REPLACE PROCEDURE validateGroupExist(codResult OUT NUMBER) IS
 vnTotalGroup NUMBER(10);
@@ -1538,14 +1706,24 @@ BEGIN
     END IF;
 END validateEnoughPlayers;
 
+CREATE OR REPLACE PROCEDURE validateNumberOfUnits(codResult OUT NUMBER) IS
+vnTotalTeam NUMBER(10);
+BEGIN
+    SELECT COUNT(*)
+    INTO vnTotalTeam
+    FROM Team;
+    codResult := vnTotalTeam;
+END validateNumberOfUnits;
+
+--CREAR procedimiento que valide si el nombre del parametro ya existe
 /*
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 Deletion Procedures
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 */
 
--- NOT WORKING
 CREATE PROCEDURE removeAll (pidEvent IN NUMBER) AS
+-- NOT WORKING
 ---vnIdGroupEvent NUMBER(10);
 BEGIN
 
@@ -1576,3 +1754,179 @@ BEGIN
     COMMIT;
 END removeAll;
 
+CREATE OR REPLACE PROCEDURE deleteGender(pIdGender IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM Gender
+    WHERE idGender = pIdGender;
+    
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteGender;
+
+CREATE OR REPLACE PROCEDURE deleteTypeIdentification(pIdTypeIdentification IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM TypeIdentification
+    WHERE idTypeIdentification = pIdTypeIdentification;
+    
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteTypeIdentification;
+
+CREATE OR REPLACE PROCEDURE deleteCountry(pIdCountry IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM Country
+    WHERE idCountry = pIdCountry;
+    
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteCountry;
+
+CREATE OR REPLACE PROCEDURE deleteProvince(pIdProvince IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM Province
+    WHERE idProvince = pIdProvince;
+    
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteProvince;
+
+CREATE OR REPLACE PROCEDURE deleteCanton(pIdCanton IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM Canton
+    WHERE idCanton = pIdCanton;
+    
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteCanton;
+
+CREATE OR REPLACE PROCEDURE deleteDistrict (pidDistrict IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM District
+    WHERE idDistrict = pidDistrict;
+
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteDistrict;
+
+CREATE OR REPLACE PROCEDURE deletePosition (pidPersonPosition IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM PersonPosition
+    WHERE idPersonPosition = pidPersonPosition;
+
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deletePosition;
+
+CREATE OR REPLACE PROCEDURE deleteContinent (pidContinent IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM Continent
+    WHERE idContinent = pidContinent;
+
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteContinent;
+
+CREATE OR REPLACE PROCEDURE deleteCountryTeam (pidCountryTeam IN NUMBER, codResult OUT NUMBER) AS
+BEGIN
+    DELETE FROM CountryTeam
+    WHERE idCountryTeam = pidCountryTeam;
+
+    codResult:= 0;
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+        codResult := SQLCODE;
+END deleteCountryTeam;
+
+/*
+-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Other Procedures
+-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+*/
+CREATE OR REPLACE PROCEDURE generateRaffle(pTotalGroup IN NUMBER, pIdEvent IN NUMBER) IS
+vnIdMax NUMBER(10);
+vnIdMin NUMBER(10);
+vnQuantity NUMBER(1);
+vnCount NUMBER(1):=0;
+vnNumber NUMBER(2);
+vnCHAR NUMBER(2):=65;
+vnDescription VARCHAR2(32);
+vnFlag BOOLEAN:=TRUE;
+BEGIN
+    SELECT MIN(idTeam) 
+    INTO vnIdMin
+    FROM Team;
+    
+    SELECT MAX(idTeam)
+    INTO vnIdMax
+    FROM Team;
+    
+    FOR i IN 1..pTotalGroup
+    LOOP
+        SELECT CHR(vnCHAR)
+        INTO vnDescription
+        FROM dual;
+        
+        insertGroupEvent (pIdEvent, 'Grupo ' || vnDescription);
+        
+        WHILE(vnFlag = TRUE)
+        LOOP
+            SELECT
+            ROUND(DBMS_RANDOM.VALUE(vnIdMin,vnIdMax)) 
+            INTO vnNumber
+            FROM dual;
+
+            SELECT COUNT(*) 
+            INTO vnQuantity
+            FROM TeamXGroup WHERE idTeam = vnNumber;
+
+            IF (vnQuantity = 0)
+            THEN
+                insertTeamXGroup (vnNumber, s_groupevent.currval);
+                vnCount:=vnCount+1;
+            END IF;
+            
+            IF(vnCount = 4)
+            THEN
+                vnFlag:=FALSE;
+            END IF;
+        END LOOP;
+        
+        vnCHAR:=vnCHAR+1;
+        vnCount:=0;
+        vnFlag:=TRUE;
+    END LOOP;
+END generateRaffle;
