@@ -224,7 +224,7 @@ public class model_AdminCatalogs {
 
     public void updateProvince(){
       try{
-        DA_Catalogs.updateProvince(this.idProvince, this.idCountry, this.nameProvince);
+        DA_Catalogs.updateProvince(this.idProvince, this.nameProvince);
       } catch(SQLException ex){
         System.out.println(ex);
       }

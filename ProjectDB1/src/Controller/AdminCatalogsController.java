@@ -109,10 +109,6 @@ public class AdminCatalogsController {
                 Object[] row = {modelAdminCatalogs.getProvinces().get(i).getNameProvince()};
                 modelTable.addRow(row);
             }
-            
-            for(int i=0; i< modelAdminCatalogs.getCountries().size();i++){
-                viewAdminCatalogs.getCmbSelect().addItem(modelAdminCatalogs.getCountries().get(i).getNameCountry());
-            }
         }
         
         if("Cantón".equals(viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString())){

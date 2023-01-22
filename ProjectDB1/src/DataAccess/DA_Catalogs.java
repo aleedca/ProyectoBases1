@@ -306,6 +306,25 @@ public class DA_Catalogs {
     }   
        
     // INSERTIONS CATALOGS
+    public static void insertStadium(int idCountry, String nameStadium) throws SQLException{
+      Connection conn = sysConnection.getConexion();
+      CallableStatement sql = conn.prepareCall("{call insertStadium(?,?)}");
+
+      sql.setInt(1, idCountry);
+      sql.setString(2, nameStadium);
+      sql.execute();
+    }
+
+    public static void insertEvent(String typeEvent) throws SQLException{
+      Connection conn = sysConnection.getConexion();
+      CallableStatement sql = conn.prepareCall("{call insertEvent(?)}");
+
+      sql.setString(1, typeEvent);
+      sql.execute();
+    }
+    
+    
+    
     public static void insertGender(String descriptionGender) throws SQLException{      
         Connection conn = sysConnection.getConexion();
         CallableStatement sql = conn.prepareCall("{call insertGender(?)}");
@@ -389,6 +408,7 @@ public class DA_Catalogs {
         CallableStatement sql = conn.prepareCall("{call deleteGender(?,?)}");
         
         sql.setInt(1, idGender);
+        sql.registerOutParameter(2, OracleTypes.NUMBER);
         sql.execute();
         
         int result = ((BigDecimal) sql.getObject(2)).intValue();
@@ -400,6 +420,7 @@ public class DA_Catalogs {
         CallableStatement sql = conn.prepareCall("{call deleteTypeIdentification(?,?)}");
         
         sql.setInt(1, idTypeIdentification);
+        sql.registerOutParameter(2, OracleTypes.NUMBER);
         sql.execute();
         
         int result = ((BigDecimal) sql.getObject(2)).intValue();
@@ -411,6 +432,7 @@ public class DA_Catalogs {
         CallableStatement sql = conn.prepareCall("{call deleteCountry(?,?)}");
         
         sql.setInt(1, idCountry);
+        sql.registerOutParameter(2, OracleTypes.NUMBER);
         sql.execute();
         
         int result = ((BigDecimal) sql.getObject(2)).intValue();
@@ -422,6 +444,7 @@ public class DA_Catalogs {
         CallableStatement sql = conn.prepareCall("{call deleteProvince(?,?)}");
         
         sql.setInt(1, idProvince);
+        sql.registerOutParameter(2, OracleTypes.NUMBER);
         sql.execute();
         
         int result = ((BigDecimal) sql.getObject(2)).intValue();
@@ -433,6 +456,7 @@ public class DA_Catalogs {
         CallableStatement sql = conn.prepareCall("{call deleteCanton(?,?)}");
         
         sql.setInt(1, idCanton);
+        sql.registerOutParameter(2, OracleTypes.NUMBER);
         sql.execute();
         
         int result = ((BigDecimal) sql.getObject(2)).intValue();
@@ -444,6 +468,7 @@ public class DA_Catalogs {
         CallableStatement sql = conn.prepareCall("{call deleteDistrict(?,?)}");
         
         sql.setInt(1, idDistrict);
+        sql.registerOutParameter(2, OracleTypes.NUMBER);
         sql.execute();
         
         int result = ((BigDecimal) sql.getObject(2)).intValue();
@@ -455,6 +480,7 @@ public class DA_Catalogs {
         CallableStatement sql = conn.prepareCall("{call deletePosition(?,?)}");
         
         sql.setInt(1, idPosition);
+        sql.registerOutParameter(2, OracleTypes.NUMBER);
         sql.execute();
         
         int result = ((BigDecimal) sql.getObject(2)).intValue();
@@ -466,6 +492,7 @@ public class DA_Catalogs {
         CallableStatement sql = conn.prepareCall("{call deleteContinent(?,?)}");
         
         sql.setInt(1, idContinent);
+        sql.registerOutParameter(2, OracleTypes.NUMBER);
         sql.execute();
         
         int result = ((BigDecimal) sql.getObject(2)).intValue();
@@ -477,6 +504,7 @@ public class DA_Catalogs {
         CallableStatement sql = conn.prepareCall("{call deleteCountryTeam(?,?)}");
         
         sql.setInt(1, idCountryTeam);
+        sql.registerOutParameter(2, OracleTypes.NUMBER);
         sql.execute();
         
         int result = ((BigDecimal) sql.getObject(2)).intValue();
@@ -511,12 +539,11 @@ public class DA_Catalogs {
         sql.execute();
     }
     
-    public static void updateProvince(int idProvince, int idCountry, String nameProvince) throws SQLException{
+    public static void updateProvince(int idProvince, String nameProvince) throws SQLException{
         Connection conn = sysConnection.getConexion();
-        CallableStatement sql = conn.prepareCall("{call updateProvince(?,?,?)}");
+        CallableStatement sql = conn.prepareCall("{call updateProvince(?,?)}");
         
         sql.setInt(1, idProvince);
-        sql.setInt(2, idCountry);
         sql.setString(3, nameProvince);
         sql.execute();
     }

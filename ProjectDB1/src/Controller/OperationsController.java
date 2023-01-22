@@ -361,7 +361,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         //AdminCatalogs
         adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().addItemListener(this);
-        adminCatalogsController.getViewAdminCatalogs().getCmbSelect().addActionListener(this);
+        adminCatalogsController.getViewAdminCatalogs().getCmbSelect().addItemListener(this);
         adminCatalogsController.getViewAdminCatalogs().getBtnAccept().addActionListener(this);
         
         adminCatalogsController.getViewAdminCatalogs().getRbtnAdd().addActionListener(this);
@@ -1239,11 +1239,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 flagAdminPerson = false;
             }
             
-            /*if(modelRegister.identificationAlreadyExists(viewAdminPerson.getTxtIdentification())== true){
+            if(modelRegister.identificationAlreadyExists(viewAdminPerson.getTxtIdentification())== true){
                 JOptionPane.showMessageDialog(null, "Identificación ya existente. Debe ingresar una identificación diferente", "Error", JOptionPane.WARNING_MESSAGE);
                 flagAdminPerson = false;
-            }*/
-            
+            }
             
         }//VALIDATE EMPTY FIELDS
     }
@@ -2268,16 +2267,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 }
             } 
         }
-        
-        
-        
-        if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo()){
-            if(e.getStateChange() == ItemEvent.SELECTED){
-                adminCatalogsController.fillCatalogs();
-            }
-        }
-        
-        
+                
         //ADMIN SCHEDULE MATCH
         if(e.getSource() == viewScheduleMatch.getCbmGroup()){
             if(e.getStateChange() == ItemEvent.SELECTED){
@@ -2383,21 +2373,102 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                
 
         //ADMIN CATALOGS
+        if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo()){
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String idStr;
+                int id;
+                adminCatalogsController.fillCatalogs();
+                
+                String choice = adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString();
+                if(adminCatalogsController.getViewAdminCatalogs().getRbtnAdd().isSelected()){
+                    //MOSTRAR LAS RELACIONES FK
+                    
+                    if("Provincia".equals(choice)){
+                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getCountries().size();i++){
+                            adminCatalogsController.getViewAdminCatalogs().getCmbSelect().addItem(adminCatalogsController.getModelAdminCatalogs().getCountries().get(i).getNameCountry());
+                        }
+                    }
+                
+                }else{
+                    //PARA SELECCIONAR DE LA TABLA (PK)
+                    
+                    if("Provincia".equals(choice)){
+                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getProvinces().size();i++){
+                            id = adminCatalogsController.getModelAdminCatalogs().getProvinces().get(i).getIdProvince();
+                            idStr = String.valueOf(id);
+                            adminCatalogsController.getViewAdminCatalogs().getCmbSelect().addItem(idStr);
+                        }
+                    }
+                
+                
+                }
+                
+                
+                
+                
+            }
+        }
+        
+        
+        
         if(e.getSource() ==  adminCatalogsController.getViewAdminCatalogs().getCmbSelect()){
             if(e.getStateChange() == ItemEvent.SELECTED){
-                String choice = adminCatalogsController.getViewAdminCatalogs().getCmbSelect().getSelectedItem().toString();
-                int id = Integer.parseInt(choice);
-                if("Género".equals(choice)){
+                String choice1 = adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString();
+                String choice2 = adminCatalogsController.getViewAdminCatalogs().getCmbSelect().getSelectedItem().toString();
+                int id = Integer.parseInt(choice2);
+                
+                if(adminCatalogsController.getViewAdminCatalogs().getRbtnAdd().isSelected() == false){
+                    if("Género".equals(choice1)){
+                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getGenders().size();i++){
+                            if(id == adminCatalogsController.getModelAdminCatalogs().getGenders().get(i).getIdGender()){
+                                String gender = adminCatalogsController.getModelAdminCatalogs().getGenders().get(i).getDescriptionGender();
+                                adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete(gender);
+                            }
+                        }
+                    }
 
-                    for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getGenders().size();i++){
-                         if(id == adminCatalogsController.getModelAdminCatalogs().getGenders().get(i).getIdGender()){
-                            String gender = adminCatalogsController.getModelAdminCatalogs().getGenders().get(i).getDescriptionGender();
-                             adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete(gender);
-                         }
-                     }
+                    if("Posición".equals(choice1)){
+                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getPositions().size();i++){
+                            if(id == adminCatalogsController.getModelAdminCatalogs().getPositions().get(i).getIdPersonPosition()){
+                                String position = adminCatalogsController.getModelAdminCatalogs().getPositions().get(i).getDescriptionPersonPosition();
+                                adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete(position);
+                            }
+                        }
+                    }
+
+                    if("País".equals(choice1)){
+                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getCountries().size();i++){
+                            if(id == adminCatalogsController.getModelAdminCatalogs().getCountries().get(i).getIdCountry()){
+                                String country = adminCatalogsController.getModelAdminCatalogs().getCountries().get(i).getNameCountry();
+                                adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete(country);
+                            }
+                        }
+                    }
+                    
+                    if("Continente".equals(choice1)){
+                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getContinents().size();i++){
+                            if(id == adminCatalogsController.getModelAdminCatalogs().getContinents().get(i).getIdContinent()){
+                                String continent = adminCatalogsController.getModelAdminCatalogs().getContinents().get(i).getNameContinent();
+                                adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete(continent);
+                            }
+                        }
+                    }
                     
                     
-                } 
+                    if("Provincia".equals(choice1)){
+                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getProvinces().size();i++){
+                            if(id == adminCatalogsController.getModelAdminCatalogs().getProvinces().get(i).getIdProvince()){
+                                String province = adminCatalogsController.getModelAdminCatalogs().getProvinces().get(i).getNameProvince();
+                                adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete(province);
+                            }
+                        }
+                    }
+                    
+                   
+                    
+ 
+                }
+                
                 
             }
         }
@@ -3161,10 +3232,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getRbtnAdd()){
+            adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
             String catalog = adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString();
             adminCatalogsController.getViewAdminCatalogs().getLblOpciones().setText("Catálogo ");
             
             if(!"Seleccione un catálogo".equals(catalog)){
+                
                 adminCatalogsController.getViewAdminCatalogs().getTxtMask().setVisible(false);
                 adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(false);
                 adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(false);
@@ -3209,6 +3282,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         }
         
         if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getRbtnEdit()){
+            adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
             String catalog = adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString();
             adminCatalogsController.getViewAdminCatalogs().getLblOpciones().setText("Catálogo ");
             
@@ -3226,13 +3300,34 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
                     adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
                 }
+               
+                if("Posición".equals(catalog)){
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione la posición a editar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+                
+                if("País".equals(catalog)){
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el país a editar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+                
+                if("Continente".equals(catalog)){
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el continente a editar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
             
+               
             
+                
             }        
         }
         
         
         if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getRbtnDelete()){
+            adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
             String catalog = adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString();
             adminCatalogsController.getViewAdminCatalogs().getLblOpciones().setText("Catálogo ");
             
@@ -3251,6 +3346,27 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
                 }
                 
+               if("Posición".equals(catalog)){
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione la posición a eliminar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+                
+               
+                if("País".equals(catalog)){
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el país a eliminar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+               
+                if("Continente".equals(catalog)){
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione el continente a eliminar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+                
+                
+               
                 
             }        
         }
@@ -3405,12 +3521,58 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                         adminCatalogsController.getModelAdminCatalogs().updateGender();
                         adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
                         adminCatalogsController.fillCatalogs();
-                        flagAddCatalogs = true;
+                        flagEditCatalogs = true;
                     }
+                    
+                    if("Posición".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdPosition(id);
+                        adminCatalogsController.getModelAdminCatalogs().setDescriptionPosition(text);
+                        adminCatalogsController.getModelAdminCatalogs().updatePosition();
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                        adminCatalogsController.fillCatalogs();
+                        flagEditCatalogs = true;
+                    }
+                    
+                    if("Continente".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdContinent(id);
+                        adminCatalogsController.getModelAdminCatalogs().setNameContinent(text);
+                        adminCatalogsController.getModelAdminCatalogs().updateContinent();
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                        adminCatalogsController.fillCatalogs();
+                        flagEditCatalogs = true;
+                    }
+                    
+                    if("País".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdCountry(id);
+                        adminCatalogsController.getModelAdminCatalogs().setNameCountry(text);
+                        adminCatalogsController.getModelAdminCatalogs().updateCountry();
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                        adminCatalogsController.fillCatalogs();
+                        flagEditCatalogs = true;
+                    }
+                    
+                   if("Provincia".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdProvince(id);
+                        adminCatalogsController.getModelAdminCatalogs().setNameCountry(text);
+                        adminCatalogsController.getModelAdminCatalogs().updateCountry();
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                        adminCatalogsController.fillCatalogs();
+                        flagEditCatalogs = true;
+                    }
+                    
+                    
+                    
+                    
+                    
                     //FALTA EL EDITAR
+                    
+                    if(flagEditCatalogs == true){
+                        JOptionPane.showMessageDialog(null, "Se editó de manera éxitosa.");
+                    }
                     
                 }//EDIT
                 
+                //DELETE
                 if(adminCatalogsController.getViewAdminCatalogs().getRbtnDelete().isSelected()){
                     idStr = adminCatalogsController.getViewAdminCatalogs().getCmbSelect().getSelectedItem().toString();
                     id = Integer.parseInt(idStr);
@@ -3421,6 +3583,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                         if(adminCatalogsController.getModelAdminCatalogs().deleteGender() == false){
                             JOptionPane.showMessageDialog(null, "El catálogo se encuentra en uso. No se puede eliminar.", "Eliminación", JOptionPane.WARNING_MESSAGE);
                         }else{
+                            JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito.");
                             adminCatalogsController.fillCatalogs();
                             flagAddCatalogs = true;
                         }
@@ -3428,9 +3591,126 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     }
                     
                     
+                    if("Posición".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdPosition(id);                        
+                        
+                        if(adminCatalogsController.getModelAdminCatalogs().deletePosition() == false){
+                            JOptionPane.showMessageDialog(null, "El catálogo se encuentra en uso. No se puede eliminar.", "Eliminación", JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito.");
+                            adminCatalogsController.fillCatalogs();
+                            flagAddCatalogs = true;
+                        }
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                    }
                     
-                    //FALTA EL ELIMINAR
+                   if("Continente".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdContinent(id);                        
+                        
+                        if(adminCatalogsController.getModelAdminCatalogs().deleteContinent() == false){
+                            JOptionPane.showMessageDialog(null, "El catálogo se encuentra en uso. No se puede eliminar.", "Eliminación", JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito.");
+                            adminCatalogsController.fillCatalogs();
+                            flagAddCatalogs = true;
+                        }
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                    }
+                   
+                   
+                    if("País".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdCountry(id);                        
+                        
+                        if(adminCatalogsController.getModelAdminCatalogs().deleteCountry() == false){
+                            JOptionPane.showMessageDialog(null, "El catálogo se encuentra en uso. No se puede eliminar.", "Eliminación", JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito.");
+                            adminCatalogsController.fillCatalogs();
+                            flagAddCatalogs = true;
+                        }
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                    }
                     
+                    
+                    if("Tipo de Identificación".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdTypeIdentification(id);                        
+                        
+                        if(adminCatalogsController.getModelAdminCatalogs().deleteTypeIdentificaion() == false){
+                            JOptionPane.showMessageDialog(null, "El catálogo se encuentra en uso. No se puede eliminar.", "Eliminación", JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito.");
+                            adminCatalogsController.fillCatalogs();
+                            flagAddCatalogs = true;
+                        }
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                    }
+                    
+                    
+                    if("Provincia".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdProvince(id);                        
+                        
+                        if(adminCatalogsController.getModelAdminCatalogs().deleteProvince() == false){
+                            JOptionPane.showMessageDialog(null, "El catálogo se encuentra en uso. No se puede eliminar.", "Eliminación", JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito.");
+                            adminCatalogsController.fillCatalogs();
+                            flagAddCatalogs = true;
+                        }
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                    }
+                    
+                    if("Provincia".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdProvince(id);                        
+                        
+                        if(adminCatalogsController.getModelAdminCatalogs().deleteProvince() == false){
+                            JOptionPane.showMessageDialog(null, "El catálogo se encuentra en uso. No se puede eliminar.", "Eliminación", JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito.");
+                            adminCatalogsController.fillCatalogs();
+                            flagAddCatalogs = true;
+                        }
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                    }
+                    
+                    if("Canton".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdCanton(id);                        
+                        
+                        if(adminCatalogsController.getModelAdminCatalogs().deleteCanton() == false){
+                            JOptionPane.showMessageDialog(null, "El catálogo se encuentra en uso. No se puede eliminar.", "Eliminación", JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito.");
+                            adminCatalogsController.fillCatalogs();
+                            flagAddCatalogs = true;
+                        }
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                    }
+                    
+                    if("Distrito".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdDistrict(id);                        
+                        
+                        if(adminCatalogsController.getModelAdminCatalogs().deleteDistrict() == false){
+                            JOptionPane.showMessageDialog(null, "El catálogo se encuentra en uso. No se puede eliminar.", "Eliminación", JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito.");
+                            adminCatalogsController.fillCatalogs();
+                            flagAddCatalogs = true;
+                        }
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                    }
+                    
+                    
+                    if("País de Equipo".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
+                        adminCatalogsController.getModelAdminCatalogs().setIdCountryTeam(id);                        
+                        
+                        if(adminCatalogsController.getModelAdminCatalogs().deleteCountryTeam()== false){
+                            JOptionPane.showMessageDialog(null, "El catálogo se encuentra en uso. No se puede eliminar.", "Eliminación", JOptionPane.WARNING_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito.");
+                            adminCatalogsController.fillCatalogs();
+                            flagAddCatalogs = true;
+                        }
+                        adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
+                    }
                 }//DELETE
             
             

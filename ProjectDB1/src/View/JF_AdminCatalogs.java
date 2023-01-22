@@ -129,7 +129,7 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         lblSelect.setForeground(new java.awt.Color(255, 255, 255));
         lblSelect.setText("Seleccione");
         jPanel1.add(lblSelect);
-        lblSelect.setBounds(170, 440, 250, 27);
+        lblSelect.setBounds(170, 440, 480, 27);
         lblSelect.setVisible(false);
 
         tblOpciones.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
