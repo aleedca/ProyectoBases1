@@ -1098,7 +1098,8 @@ CREATE OR REPLACE PROCEDURE getTeam(curTeam OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curTeam FOR
     SELECT idTeam, nameTeam
-    FROM Team;
+    FROM Team
+    ORDER BY idTeam;
 END getTeam;
 
 CREATE OR REPLACE PROCEDURE getCountryTeam(curCountryTeam OUT SYS_REFCURSOR) IS
@@ -1287,7 +1288,7 @@ AS
 BEGIN
 
     OPEN cursorPlayers FOR
-    SELECT COUNT(1)
+    SELECT COUNT(1) quantity
     FROM Player
     INNER JOIN Person ON Person.idPerson = Player.idPerson
     WHERE Player.birthdate IS NOT NULL
@@ -1295,7 +1296,7 @@ BEGIN
     AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
     AND TRUNC((SYSDATE- Player.birthdate)/365) BETWEEN 0 AND 18
     UNION
-    SELECT COUNT(1)
+    SELECT COUNT(1) quantity
     FROM Player
     INNER JOIN Person ON Person.idPerson = Player.idPerson
     WHERE Player.birthdate IS NOT NULL
@@ -1303,7 +1304,7 @@ BEGIN
     AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
     AND TRUNC((SYSDATE- Player.birthdate)/365) BETWEEN 19 AND 30
     UNION
-    SELECT COUNT(1)
+    SELECT COUNT(1) quantity
     FROM Player
     INNER JOIN Person ON Person.idPerson = Player.idPerson
     WHERE Player.birthdate IS NOT NULL
@@ -1311,7 +1312,7 @@ BEGIN
     AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
     AND TRUNC((SYSDATE- Player.birthdate)/365) BETWEEN 31 AND 45
     UNION
-    SELECT COUNT(1)
+    SELECT COUNT(1) quantity
     FROM Player
     INNER JOIN Person ON Person.idPerson = Player.idPerson
     WHERE Player.birthdate IS NOT NULL
@@ -1319,7 +1320,7 @@ BEGIN
     AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
     AND TRUNC((SYSDATE- Player.birthdate)/365) BETWEEN 46 AND 60
     UNION
-    SELECT COUNT(1)
+    SELECT COUNT(1) quantity
     FROM Player
     INNER JOIN Person ON Person.idPerson = Player.idPerson
     WHERE Player.birthdate IS NOT NULL
@@ -1327,7 +1328,7 @@ BEGIN
     AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
     AND TRUNC((SYSDATE- Player.birthdate)/365) BETWEEN 61 AND 75
     UNION
-    SELECT COUNT(1)
+    SELECT COUNT(1) quantity
     FROM Player
     INNER JOIN Person ON Person.idPerson = Player.idPerson
     WHERE Player.birthdate IS NOT NULL
@@ -1348,13 +1349,13 @@ BEGIN
     topQuantity:= topN;
     
     OPEN outGoalScorerCursor FOR
-    SELECT Person.idPerson, SUM(PlayerXSoccerMatchXTeam.goals)
+    SELECT Person.firstname ||' '||Person.firstLastName fullName, SUM(PlayerXSoccerMatchXTeam.goals) totalGoals
     FROM Player
     INNER JOIN Person ON Person.idPerson = Player.idPerson
     INNER JOIN PlayerXSoccerMatchXTeam ON PlayerXSoccerMatchXTeam.idPerson = Person.idPerson
-    GROUP BY Person.idPerson
+    GROUP BY Person.firstname ||' '||Person.firstLastName
     ORDER BY SUM(PlayerXSoccerMatchXTeam.goals) DESC;
-END;
+END getTopNGoalScorer;
 
 CREATE OR REPLACE PROCEDURE getTopNGoalKeepers(topQuantity OUT NUMBER, outGoalKeepersCursor OUT SYS_REFCURSOR)
 AS
@@ -1366,13 +1367,27 @@ BEGIN
     topQuantity:= topN;
     
     OPEN outGoalKeepersCursor FOR
-    SELECT Person.idPerson, SUM(PlayerXSoccerMatchXTeam.saves)
+    SELECT Person.firstname ||' '||Person.firstLastName fullName, SUM(PlayerXSoccerMatchXTeam.saves) totalSaves
     FROM Player
     INNER JOIN Person ON Person.idPerson = Player.idPerson
     INNER JOIN PlayerXSoccerMatchXTeam ON PlayerXSoccerMatchXTeam.idPerson = Person.idPerson
-    GROUP BY Person.idPerson
+    WHERE Person.idPersonPosition = 1
+    GROUP BY Person.firstname ||' '||Person.firstLastName
     ORDER BY SUM(PlayerXSoccerMatchXTeam.goals) DESC;
-END;
+END getTopNGoalKeepers;
+
+CREATE OR REPLACE PROCEDURE getPlayedMatches(playedMatches OUT NUMBER, totalMatches OUT NUMBER)
+AS
+vnTotalMatches NUMBER;
+vnPlayedMatches NUMBER;
+BEGIN
+    SELECT COUNT(1) INTO vnTotalMatches FROM SoccerMatch;
+    SELECT COUNT(1) INTO vnPlayedMatches FROM SoccerMatch WHERE SoccerMatch.datehour < SYSDATE;
+    
+    playedMatches := vnPlayedMatches;
+    totalMatches := vnTotalMatches;
+    
+END getPlayedMatches;
 
 /*
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-

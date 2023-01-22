@@ -13,6 +13,7 @@ import Model.model_Login;
 import Model.model_News;
 import Model.model_Rating;
 import Model.model_Register;
+import Model.model_Stats;
 import Objects.News;
 import View.JF_AdminCatalogs;
 import View.JF_AdminMatch;
@@ -28,6 +29,8 @@ import View.JF_Principal;
 import View.JF_Register;
 import View.JF_Request;
 import View.JF_AdminScheduleMatch;
+import View.JF_GeneralStats;
+import View.JF_GroupStats;
 import View.JF_News;
 import View.JF_Rating;
 import java.awt.event.ActionEvent;
@@ -63,6 +66,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private final JF_AdminOther viewAdminOther;
     private final JF_News viewNews;
     private final JF_Rating viewRating;
+    private final JF_GeneralStats viewStats;
+    private final JF_GroupStats viewGroupStats;
     
     
     private final model_Login modelLogin;
@@ -73,6 +78,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private final model_AdminMatches modelAdminMatches;
     private final model_AdminParameters modelAdminParameters;
     private final model_Rating ratingModel;
+    private final model_Stats modelStats;
     
     private boolean flagRegister;
     private boolean flagAdminPerson;
@@ -96,6 +102,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         //View News
         this.viewNews = new JF_News();
+        
+        //View Stats
+        this.viewStats = new JF_GeneralStats();
+        
+        //View Group Stats
+        this.viewGroupStats = new JF_GroupStats();
         
         //View Rating
         this.viewRating = new JF_Rating();
@@ -172,6 +184,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         // Model Rating
         this.ratingModel = new model_Rating();
         
+        // Model Stats
+        this.modelStats = new model_Stats();
+        
         //Request Controller
         RequestController controller = new RequestController();
         this.requestController = controller;
@@ -216,6 +231,16 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         viewPrincipal.getBtnExit().addActionListener(this);
         viewPrincipal.getTblMostViewedNews().getSelectionModel().addListSelectionListener(this);
         viewPrincipal.getTblLastNews().getSelectionModel().addListSelectionListener(this);
+        viewPrincipal.getBtnShowStats().addActionListener(this);
+        
+        //ViewStats
+        viewStats.getBtnBack().addActionListener(this);
+        viewStats.getBtnGroupTable().addActionListener(this);
+        viewStats.getCmbGender().addItemListener(this);
+        viewStats.getCmbGroup().addItemListener(this);
+        viewStats.getCmbTeam().addItemListener(this);
+        viewStats.getCmbNewsEvent().addItemListener(this);
+        viewStats.getBtnSearchAge().addActionListener(this);
         
         //Login
         viewLogin.getBtnLogin().addActionListener(this);
@@ -1921,6 +1946,21 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         }
         
+        //ComboEvent Stats
+        if(e.getSource() == viewStats.getCmbNewsEvent()){
+            String selected;
+            try{
+                selected = viewStats.getCmbNewsEvent().getSelectedItem().toString();
+            }catch(Exception ex){
+                selected = "--------------";
+            }
+            
+            if("--------------".equals(selected)){
+                viewStats.getLblNewsEvent().setText("0");
+            }else{
+                modelStats.getNewsPublished(viewStats);
+            }
+        }
         
         //PROVINCE -> REGISTER
         if( e.getSource() == viewRegister.getCmbProvince()){
@@ -2391,6 +2431,29 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                         
             viewPrincipal.setVisible(true);
         }
+        
+        if(e.getSource() == viewPrincipal.getBtnShowStats()){
+            this.modelStats.fillGenderStats(viewStats);
+            this.modelStats.fillTeamStats(viewStats);
+            this.modelStats.fillTblAverageReviews(viewStats);
+            this.modelStats.fillEventStats(viewStats);
+            this.modelStats.fillTopGoalers(viewStats);
+            this.modelStats.fillTopKeepers(viewStats);
+            this.modelStats.progressBar(viewStats);
+            this.viewPrincipal.setVisible(false);
+            this.viewStats.setVisible(true);
+        }
+        
+        //-----------------Screen Stats ----------------------------------
+        if(e.getSource() == viewStats.getBtnBack()){
+            viewStats.setVisible(false);
+            viewPrincipal.setVisible(true);
+        }
+        
+        if(e.getSource() == viewStats.getBtnSearchAge()){
+            modelStats.fillTblAgeRange(viewStats);
+        }
+        
         
         //-------------- SCREEN LOGIN ----------------------  
         if(e.getSource() == viewLogin.getBtnLogin()){

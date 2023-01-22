@@ -6,6 +6,7 @@ package DataAccess;
 
 
 import Objects.AuthorReview;
+import Objects.PlayerStats;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.CallableStatement;
@@ -33,6 +34,77 @@ public class DA_Stats {
         return result;
     }
     
+    public static ArrayList<PlayerStats> getTopGoalScorers() throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getTopNGoalScorer(?,?)}");
+        
+        sql.registerOutParameter(1,OracleTypes.NUMBER);
+        sql.registerOutParameter(2,OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        int topN = ((BigDecimal) sql.getObject(1)).intValue();
+        
+        ResultSet rs = (ResultSet) sql.getObject(2);
+        ArrayList<PlayerStats> goalers = new ArrayList<>();
+        int counter = 0;
+        while(rs.next() && counter < topN){
+            PlayerStats goaler = new PlayerStats();
+            
+            goaler.setName(rs.getString("fullName"));
+            goaler.setGoals(rs.getInt("totalGoals"));
+            
+            goalers.add(goaler);
+            counter++;
+        }
+        return goalers;
+    }
+    
+    public static ArrayList<PlayerStats> getTopGoalKeepers() throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getTopNGoalKeepers(?,?)}");
+        
+        sql.registerOutParameter(1,OracleTypes.NUMBER);
+        sql.registerOutParameter(2,OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        int topN = ((BigDecimal) sql.getObject(1)).intValue();
+        
+        ResultSet rs = (ResultSet) sql.getObject(2);
+        ArrayList<PlayerStats> keepers = new ArrayList<>();
+        int counter = 0;
+        while(rs.next() && counter < topN){
+            PlayerStats keeper = new PlayerStats();
+            
+            keeper.setName(rs.getString("fullName"));
+            keeper.setSaves(rs.getInt("totalSaves"));
+            
+            keepers.add(keeper);
+            counter++;
+        }
+        return keepers;
+    }
+    
+    public static ArrayList<Integer> getPlayedMatches() throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getPlayedMatches(?,?)}");
+        
+        sql.registerOutParameter(1,OracleTypes.NUMBER);
+        sql.registerOutParameter(2,OracleTypes.NUMBER);
+        sql.execute();
+        
+        int playedMatches = ((BigDecimal) sql.getObject(1)).intValue();
+        int totalMatches = ((BigDecimal) sql.getObject(2)).intValue();
+        
+        ArrayList<Integer> matches = new ArrayList<>();
+        matches.add(playedMatches);
+        matches.add(totalMatches);
+        return matches;
+    }
+    
+    
     public static ArrayList<AuthorReview> getAverageRating() throws SQLException{
         Connection conn = sysConnection.getConexion();
         
@@ -40,7 +112,7 @@ public class DA_Stats {
         sql.registerOutParameter(1,OracleTypes.REF_CURSOR);
         sql.execute();
         
-        ResultSet rs = (ResultSet) sql.getObject(2);
+        ResultSet rs = (ResultSet) sql.getObject(1);
         ArrayList<AuthorReview> authorReviews = new ArrayList<>();
         while(rs.next()){
             AuthorReview authorRating = new AuthorReview();
@@ -52,6 +124,38 @@ public class DA_Stats {
         }
         
         return authorReviews;
+    }
+    
+    public static ArrayList getAgeRangeTotals(int idGender, int idTeam) throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getTotalPlayersXAge(?,?,?)}");
+        
+        if(idGender == 0){
+            sql.setString(1, null);
+        }else{
+            sql.setInt(1, idGender);
+        }
+        
+        if(idTeam == 0){
+            sql.setString(2, null);
+        }else{
+            sql.setInt(2, idTeam);
+        }
+        
+        sql.registerOutParameter(3,OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(3);
+        ArrayList quantities = new ArrayList();
+        while(rs.next()){
+            
+            int quantity = rs.getInt("quantity");
+            
+            quantities.add(quantity);
+        }
+        
+        return quantities;
     }
     
     
