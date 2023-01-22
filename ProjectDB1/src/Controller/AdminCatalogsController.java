@@ -42,6 +42,7 @@ public class AdminCatalogsController {
     
     public void fillCatalogs(){
         viewAdminCatalogs.getCmbSelect().removeAllItems();
+        viewAdminCatalogs.getCmbSelectAdd().removeAllItems();
         this.modelAdminCatalogs.loadCatalogs();
         int id;
         String idStr;
@@ -104,11 +105,24 @@ public class AdminCatalogsController {
             }
         }
         
+        //-------------------------------------------------------------------------------------------
+        
         if("Provincia".equals(viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString())){
             for(int i=0; i< modelAdminCatalogs.getProvinces().size();i++){
                 Object[] row = {modelAdminCatalogs.getProvinces().get(i).getNameProvince()};
                 modelTable.addRow(row);
             }
+            
+            for(int i=0; i< modelAdminCatalogs.getCountries().size();i++){
+                    String nameCountry =  modelAdminCatalogs.getCountries().get(i).getNameCountry();
+                    viewAdminCatalogs.getCmbSelectAdd().addItem(nameCountry);
+            }    
+            
+            for(int i=0; i< modelAdminCatalogs.getProvinces().size();i++){
+                id = modelAdminCatalogs.getProvinces().get(i).getIdProvince();
+                idStr = String.valueOf(id);
+                viewAdminCatalogs.getCmbSelect().addItem(idStr);
+            }   
         }
         
         if("Cantón".equals(viewAdminCatalogs.getCmbCatalogo().getSelectedItem().toString())){

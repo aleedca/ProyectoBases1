@@ -2375,37 +2375,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         //ADMIN CATALOGS
         if(e.getSource() == adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo()){
             if(e.getStateChange() == ItemEvent.SELECTED){
-                String idStr;
-                int id;
                 adminCatalogsController.fillCatalogs();
-                
-                String choice = adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString();
-                if(adminCatalogsController.getViewAdminCatalogs().getRbtnAdd().isSelected()){
-                    //MOSTRAR LAS RELACIONES FK
-                    
-                    if("Provincia".equals(choice)){
-                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getCountries().size();i++){
-                            adminCatalogsController.getViewAdminCatalogs().getCmbSelect().addItem(adminCatalogsController.getModelAdminCatalogs().getCountries().get(i).getNameCountry());
-                        }
-                    }
-                
-                }else{
-                    //PARA SELECCIONAR DE LA TABLA (PK)
-                    
-                    if("Provincia".equals(choice)){
-                        for(int i=0; i< adminCatalogsController.getModelAdminCatalogs().getProvinces().size();i++){
-                            id = adminCatalogsController.getModelAdminCatalogs().getProvinces().get(i).getIdProvince();
-                            idStr = String.valueOf(id);
-                            adminCatalogsController.getViewAdminCatalogs().getCmbSelect().addItem(idStr);
-                        }
-                    }
-                
-                
-                }
-                
-                
-                
-                
             }
         }
         
@@ -2467,13 +2437,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                    
                     
  
-                }
-                
-                
+                }//ADD SELECTED
             }
         }
-        
-        
         
     }//ITEM LISTENER
     
@@ -3241,6 +3207,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 adminCatalogsController.getViewAdminCatalogs().getTxtMask().setVisible(false);
                 adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(false);
                 adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(false);
+                adminCatalogsController.getViewAdminCatalogs().getCmbSelectAdd().setVisible(false);
             
                 adminCatalogsController.getViewAdminCatalogs().getLblOpciones().setText(adminCatalogsController.getViewAdminCatalogs().getLblOpciones().getText() + "" + catalog);
                 adminCatalogsController.getViewAdminCatalogs().getLblAddEditDelete().setText("Agregar ");
@@ -3250,7 +3217,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 if("Provincia".equals(catalog)){
                     adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione País");
                     adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
-                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelectAdd().setVisible(true);
+                    
                 }
                 
                 if("Cantón".equals(catalog)){
@@ -3318,9 +3286,13 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
                     adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
                 }
-            
-               
-            
+                
+                if("Provincia".equals(catalog)){ 
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione la provincia a editar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
+         
                 
             }        
         }
@@ -3335,6 +3307,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                 adminCatalogsController.getViewAdminCatalogs().getTxtMask().setVisible(false);
                 adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(false);
                 adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(false);
+                adminCatalogsController.getViewAdminCatalogs().getCmbSelectAdd().setVisible(false);
             
                 adminCatalogsController.getViewAdminCatalogs().getLblOpciones().setText(adminCatalogsController.getViewAdminCatalogs().getLblOpciones().getText() + "" + catalog);
                 adminCatalogsController.getViewAdminCatalogs().getLblAddEditDelete().setText("Eliminar ");
@@ -3365,7 +3338,11 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
                 }
                 
-                
+                if("Provincia".equals(catalog)){
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setText("Seleccione la provincia a eliminar");
+                    adminCatalogsController.getViewAdminCatalogs().getLblSelect().setVisible(true);
+                    adminCatalogsController.getViewAdminCatalogs().getCmbSelect().setVisible(true);
+                }
                
                 
             }        
@@ -3553,7 +3530,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
                     
                    if("Provincia".equals(adminCatalogsController.getViewAdminCatalogs().getCmbCatalogo().getSelectedItem().toString())){
                         adminCatalogsController.getModelAdminCatalogs().setIdProvince(id);
-                        adminCatalogsController.getModelAdminCatalogs().setNameCountry(text);
+                        adminCatalogsController.getModelAdminCatalogs().setNameProvince(text);
                         adminCatalogsController.getModelAdminCatalogs().updateCountry();
                         adminCatalogsController.getViewAdminCatalogs().setTxtAddEditDelete("");
                         adminCatalogsController.fillCatalogs();
