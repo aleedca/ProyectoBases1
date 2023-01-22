@@ -20,8 +20,6 @@ import Objects.Province;
 import Objects.TypeIdentification;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -83,6 +81,13 @@ public class model_AdminCatalogs {
     private int resultDeletePosition;
     private int resultDeleteContinent;
     private int resultDeleteCountryTeam;
+    
+    private String descriptionType;
+    private String descriptionStatus;
+    private int idNewsType;
+    private int idNewsStatus;
+    private int resultDeleteNewsType = 0;
+    private int resultDeleteNewsStatus = 0;
     
     public model_AdminCatalogs(){
         
@@ -195,8 +200,22 @@ public class model_AdminCatalogs {
       }
     }
     
-    
-    
+    public void insertNewsType(){
+      try{
+        DA_Catalogs.insertNewsType(this.descriptionType);
+      } catch(SQLException ex){
+        System.out.println(ex);
+      }
+    }
+
+    public void insertNewsStatus(){
+      try{
+        DA_Catalogs.insertNewsStatus(this.descriptionStatus);
+      } catch(SQLException ex){
+        System.out.println(ex);
+      }
+    }
+   
     //------------- UPDATE -------------------------------
     public void updateGender(){
         try {
@@ -224,7 +243,7 @@ public class model_AdminCatalogs {
 
     public void updateProvince(){
       try{
-        DA_Catalogs.updateProvince(this.idProvince, this.idCountry, this.nameProvince);
+        DA_Catalogs.updateProvince(this.idProvince, this.nameProvince);
       } catch(SQLException ex){
         System.out.println(ex);
       }
@@ -232,7 +251,7 @@ public class model_AdminCatalogs {
 
     public void updateCanton(){
       try{
-        DA_Catalogs.updateCanton(this.idCanton, this.idProvince, this.nameCanton);
+        DA_Catalogs.updateCanton(this.idCanton, this.nameCanton);
       } catch(SQLException ex){
         System.out.println(ex);
       }
@@ -240,7 +259,7 @@ public class model_AdminCatalogs {
 
     public void updateDistrict(){
       try{
-        DA_Catalogs.updateDistrict(this.idDistrict, this.idCanton, this.nameDistrict);
+        DA_Catalogs.updateDistrict(this.idDistrict, this.nameDistrict);
       } catch(SQLException ex){
         System.out.println(ex);
       }
@@ -264,11 +283,29 @@ public class model_AdminCatalogs {
 
     public void updateCountryTeam(){
       try{
-        DA_Catalogs.updateCountryTeam(this.idCountryTeam, this.idContinent, this.nameCountryTeam);
+        DA_Catalogs.updateCountryTeam(this.idCountryTeam,  this.nameCountryTeam);
       } catch(SQLException ex){
         System.out.println(ex);
       }
     }
+    
+    public void updateNewsType(){
+      try{
+        DA_Catalogs.updateNewsType(this.idNewsType, this.descriptionType);
+      } catch(SQLException ex){
+        System.out.println(ex);
+      }
+    }
+
+    public void updateNewsStatus(){
+      try{
+        DA_Catalogs.updateNewsStatus(this.idNewsStatus, this.descriptionStatus);
+      } catch(SQLException ex){
+        System.out.println(ex);
+      }
+    }
+    
+    
 
     //------------------------ DELETES ---------------------------------------
     public boolean deleteGender(){
@@ -391,6 +428,33 @@ public class model_AdminCatalogs {
       return false;
     }
     
+    
+    public boolean deleteNewsType(){
+      try{
+        this.resultDeleteNewsType = DA_Catalogs.deleteNewsType(this.idNewsType);
+        if(this.resultDeleteNewsType == 0){
+          return true;
+        }
+      } catch (SQLException ex) {
+        System.out.println(ex);
+      }
+
+      return false;
+    }
+
+    public boolean deleteNewsStatus(){
+      try{
+        this.resultDeleteNewsStatus = DA_Catalogs.deleteNewsStatus(this.idNewsStatus);
+        if(this.resultDeleteNewsStatus == 0){
+          return true;
+        }
+      } catch (SQLException ex) {
+        System.out.println(ex);
+      }
+
+      return false;
+    }
+
     
     //----------- GETTERS AND SETTERS ----------------
 
@@ -736,6 +800,38 @@ public class model_AdminCatalogs {
 
     public void setResultDeleteCountryTeam(int resultDeleteCountryTeam) {
         this.resultDeleteCountryTeam = resultDeleteCountryTeam;
+    }
+
+    public String getDescriptionType() {
+        return descriptionType;
+    }
+
+    public void setDescriptionType(String descriptionType) {
+        this.descriptionType = descriptionType;
+    }
+
+    public String getDescriptionStatus() {
+        return descriptionStatus;
+    }
+
+    public void setDescriptionStatus(String descriptionStatus) {
+        this.descriptionStatus = descriptionStatus;
+    }
+
+    public int getIdNewsType() {
+        return idNewsType;
+    }
+
+    public void setIdNewsType(int idNewsType) {
+        this.idNewsType = idNewsType;
+    }
+
+    public int getIdNewsStatus() {
+        return idNewsStatus;
+    }
+
+    public void setIdNewsStatus(int idNewsStatus) {
+        this.idNewsStatus = idNewsStatus;
     }
        
     

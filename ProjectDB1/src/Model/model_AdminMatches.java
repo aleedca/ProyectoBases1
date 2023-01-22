@@ -118,21 +118,21 @@ public class model_AdminMatches {
     //-------------------------------------------
 
 
-//    public void insertEvent(){
-//      try{
-//        DA_Catalogs.insertEvent(this.typeEvent);
-//      } catch(SQLException ex){
-//        System.out.println(ex);
-//      }
-//    }
-//
-//    public void insertStadium(){
-//      try{
-//        DA_Catalogs.insertStadium(this.idAddress, this.nameStadium);
-//      } catch(SQLException ex){
-//        System.out.println(ex);
-//      }
-//    }
+    public void insertEvent(){
+      try{
+        DA_Catalogs.insertEvent(this.typeEvent);
+      } catch(SQLException ex){
+        System.out.println(ex);
+      }
+    }
+
+    public void insertStadium(){
+      try{
+        DA_Catalogs.insertStadium(this.idAddress, this.nameStadium);
+      } catch(SQLException ex){
+        System.out.println(ex);
+      }
+    }
     
     
     
@@ -430,6 +430,38 @@ public class model_AdminMatches {
 
     public void setCountryTeams(ArrayList<CountryTeam> countryTeams) {
         this.countryTeams = countryTeams;
+    }
+
+    public int getIdAddress() {
+        return idAddress;
+    }
+
+    public void setIdAddress(int idAddress) {
+        this.idAddress = idAddress;
+    }
+
+    public String getTypeEvent() {
+        return typeEvent;
+    }
+
+    public void setTypeEvent(String typeEvent) {
+        this.typeEvent = typeEvent;
+    }
+
+    public String getNameStadium() {
+        return nameStadium;
+    }
+
+    public void setNameStadium(String nameStadium) {
+        this.nameStadium = nameStadium;
+    }
+
+    public ArrayList<Match> getTodayMatches() {
+        return todayMatches;
+    }
+
+    public void setTodayMatches(ArrayList<Match> todayMatches) {
+        this.todayMatches = todayMatches;
     }
     
     

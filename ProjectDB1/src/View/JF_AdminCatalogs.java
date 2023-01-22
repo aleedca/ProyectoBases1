@@ -52,6 +52,7 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         rbtnEdit = new javax.swing.JRadioButton();
         txtMask = new javax.swing.JTextField();
         txtAddEditDelete = new javax.swing.JTextField();
+        cmbSelectAdd = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1280, 720));
@@ -129,7 +130,7 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         lblSelect.setForeground(new java.awt.Color(255, 255, 255));
         lblSelect.setText("Seleccione");
         jPanel1.add(lblSelect);
-        lblSelect.setBounds(170, 440, 250, 27);
+        lblSelect.setBounds(170, 440, 480, 27);
         lblSelect.setVisible(false);
 
         tblOpciones.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
@@ -205,15 +206,27 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
         jPanel1.add(txtAddEditDelete);
         txtAddEditDelete.setBounds(170, 380, 280, 40);
 
+        cmbSelectAdd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cmbSelectAdd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cmbSelectAdd);
+        cmbSelectAdd.setBounds(170, 480, 280, 40);
+        cmbSelectAdd.setVisible(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -333,6 +346,14 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
     public void setTxtAddEditDelete(String txtAddEditDelete) {
         this.txtAddEditDelete.setText(txtAddEditDelete);
     }
+
+    public JComboBox<String> getCmbSelectAdd() {
+        return cmbSelectAdd;
+    }
+
+    public void setCmbSelectAdd(JComboBox<String> cmbSelectAdd) {
+        this.cmbSelectAdd = cmbSelectAdd;
+    }
     
     
     
@@ -367,6 +388,7 @@ public class JF_AdminCatalogs extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btnGroupOptions;
     private javax.swing.JComboBox<String> cmbCatalogo;
     private javax.swing.JComboBox<String> cmbSelect;
+    private javax.swing.JComboBox<String> cmbSelectAdd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
