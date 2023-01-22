@@ -19,7 +19,6 @@ BEGIN
     encrypted_text := RAWTOHEX (encryption_result);  
 END encryptionPassword; 
 
-
 CREATE OR REPLACE PROCEDURE decryptionPassword (encrypted_text IN VARCHAR2, decrypted_text OUT VARCHAR2) AS   
 raw_set RAW(100);   
 raw_password RAW(100);   
@@ -45,7 +44,6 @@ END;*/
 Insertion Procedures
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 */
-
 
 --- MATCHES
 CREATE OR REPLACE PROCEDURE insertEvent (pTypeEvent IN VARCHAR2) AS
@@ -1718,7 +1716,6 @@ BEGIN
 END validateNumberOfUnits;
 
 --CREAR procedimiento que valide si el nombre del parametro ya existe
-
 /*
 -=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 Deletion Procedures
