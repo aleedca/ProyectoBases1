@@ -64,9 +64,13 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAdmiNoticias">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="cc" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="24" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Administrar Noticias"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdmiNoticiasActionPerformed"/>
@@ -79,9 +83,13 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAdmiCatalogos">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="cc" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="24" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Administrar Cat&#xe1;logos"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdmiCatalogosActionPerformed"/>
@@ -94,9 +102,13 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnPartidos">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="cc" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="24" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Administrar Partidos"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPartidosActionPerformed"/>
@@ -109,9 +121,13 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAdmiParametros">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="cc" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="24" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Administrar Par&#xe1;metros"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdmiParametrosActionPerformed"/>
@@ -124,9 +140,13 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAdmiPersonas">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="cc" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="24" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Administrar Personas"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdmiPersonasActionPerformed"/>
@@ -139,9 +159,13 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAdmiBitacora">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="cc" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="24" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Administrar Bit&#xe1;cora"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdmiBitacoraActionPerformed"/>
@@ -192,9 +216,13 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnOther">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="cc" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="24" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Administrar Eventos, Estadios y Equipos"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOtherActionPerformed"/>

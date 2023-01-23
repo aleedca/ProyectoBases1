@@ -20,7 +20,8 @@ public class JF_AdminOptions extends javax.swing.JFrame {
      */
     public JF_AdminOptions() {
         initComponents();
-        setButtonImages();
+        //setButtonImages();
+        this.setLocationRelativeTo(this);
     }
     
     private void setButtonImages(){
@@ -115,7 +116,9 @@ public class JF_AdminOptions extends javax.swing.JFrame {
         jPanel1.add(lblLogo);
         lblLogo.setBounds(1066, 6, 200, 125);
 
+        btnAdmiNoticias.setBackground(new java.awt.Color(255, 204, 102));
         btnAdmiNoticias.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnAdmiNoticias.setText("Administrar Noticias");
         btnAdmiNoticias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdmiNoticiasActionPerformed(evt);
@@ -124,7 +127,9 @@ public class JF_AdminOptions extends javax.swing.JFrame {
         jPanel1.add(btnAdmiNoticias);
         btnAdmiNoticias.setBounds(490, 160, 300, 159);
 
+        btnAdmiCatalogos.setBackground(new java.awt.Color(255, 204, 102));
         btnAdmiCatalogos.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnAdmiCatalogos.setText("Administrar Catálogos");
         btnAdmiCatalogos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdmiCatalogosActionPerformed(evt);
@@ -133,7 +138,9 @@ public class JF_AdminOptions extends javax.swing.JFrame {
         jPanel1.add(btnAdmiCatalogos);
         btnAdmiCatalogos.setBounds(170, 160, 299, 159);
 
+        btnPartidos.setBackground(new java.awt.Color(255, 204, 102));
         btnPartidos.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnPartidos.setText("Administrar Partidos");
         btnPartidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPartidosActionPerformed(evt);
@@ -142,7 +149,9 @@ public class JF_AdminOptions extends javax.swing.JFrame {
         jPanel1.add(btnPartidos);
         btnPartidos.setBounds(170, 340, 299, 159);
 
+        btnAdmiParametros.setBackground(new java.awt.Color(255, 204, 102));
         btnAdmiParametros.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnAdmiParametros.setText("Administrar Parámetros");
         btnAdmiParametros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdmiParametrosActionPerformed(evt);
@@ -151,7 +160,9 @@ public class JF_AdminOptions extends javax.swing.JFrame {
         jPanel1.add(btnAdmiParametros);
         btnAdmiParametros.setBounds(810, 340, 299, 159);
 
+        btnAdmiPersonas.setBackground(new java.awt.Color(255, 204, 102));
         btnAdmiPersonas.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnAdmiPersonas.setText("Administrar Personas");
         btnAdmiPersonas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdmiPersonasActionPerformed(evt);
@@ -160,7 +171,9 @@ public class JF_AdminOptions extends javax.swing.JFrame {
         jPanel1.add(btnAdmiPersonas);
         btnAdmiPersonas.setBounds(810, 160, 299, 159);
 
+        btnAdmiBitacora.setBackground(new java.awt.Color(255, 204, 102));
         btnAdmiBitacora.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnAdmiBitacora.setText("Administrar Bitácora");
         btnAdmiBitacora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdmiBitacoraActionPerformed(evt);
@@ -187,7 +200,9 @@ public class JF_AdminOptions extends javax.swing.JFrame {
         jPanel1.add(btnBack);
         btnBack.setBounds(47, 50, 46, 40);
 
+        btnOther.setBackground(new java.awt.Color(255, 204, 102));
         btnOther.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        btnOther.setText("Administrar Eventos, Estadios y Equipos");
         btnOther.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOtherActionPerformed(evt);
