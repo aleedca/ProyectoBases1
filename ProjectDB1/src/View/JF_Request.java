@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 
@@ -580,7 +581,8 @@ public class JF_Request extends javax.swing.JFrame {
     
     //Send data to the NewsList query
     private void btnRequestNewsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestNewsListActionPerformed
-        try {
+        JOptionPane.showMessageDialog(null, "Esta funcionalidad no está implementada", "Error", JOptionPane.WARNING_MESSAGE);
+        /*try {
             JF_RequestNewsList newsList = new  JF_RequestNewsList();
             
             String author = txtAuthorName.getText();
@@ -617,7 +619,7 @@ public class JF_Request extends javax.swing.JFrame {
             
         } catch (SQLException ex) {
             Logger.getLogger(JF_Request.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }//GEN-LAST:event_btnRequestNewsListActionPerformed
     
     //Send data to the GroupList query
