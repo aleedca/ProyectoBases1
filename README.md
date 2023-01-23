@@ -1,7 +1,7 @@
 # ProyectoBases1
 
 ### KICKOFF
-Authors: Isaac Araya Solano, Alexia Cerdas Aguilar, Nahomi Bolaños Valverde, Mariana Fernández Martínez
+Integrantes del proyecto: Isaac Araya Solano, Alexia Cerdas Aguilar, Nahomi Bolaños Valverde, Mariana Fernández Martínez
 - Ingeniería en Computación Verano 2022-2023
 - Instituto Tecnológico de Costa Rica
 - Profesora: Adriana Álvarez
