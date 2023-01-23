@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 
-public class Cargador {
+public class Loader {
     
     private ArrayList<News> mostViewedNews;
     private ArrayList<News> lastNews;

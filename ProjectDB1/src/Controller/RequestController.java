@@ -23,13 +23,13 @@ public class RequestController {
     private final DA_News admMVN = new DA_News();
     private final DA_News admLN = new DA_News();
     
-    private final Cargador cargador = new Cargador();
+    private final Loader cargador = new Loader();
     
     
     
     private final model_Request modelRequest = new model_Request();
 
-    public Cargador getCargador() {
+    public Loader getCargador() {
         return cargador;
     }
 

@@ -6,6 +6,7 @@ package DataAccess;
 
 
 import Objects.AuthorReview;
+import Objects.DashboardStats;
 import Objects.PlayerStats;
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -158,6 +159,29 @@ public class DA_Stats {
         return quantities;
     }
     
-    
+    public static DashboardStats getDashboardStats() throws SQLException{
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getDashboardNumbers(?,?,?,?)}");
+        sql.registerOutParameter(1,OracleTypes.NUMBER);
+        sql.registerOutParameter(2,OracleTypes.NUMBER);
+        sql.registerOutParameter(3,OracleTypes.NUMBER);
+        sql.registerOutParameter(4,OracleTypes.NUMBER);
+        sql.execute();
+        
+        float goals = ((BigDecimal) sql.getObject(1)).floatValue();
+        float saves = ((BigDecimal) sql.getObject(2)).floatValue();
+        float yellowCards = ((BigDecimal) sql.getObject(3)).floatValue();
+        float redCards = ((BigDecimal) sql.getObject(4)).floatValue();
+        
+        DashboardStats stats = new DashboardStats();
+        
+        stats.setGoalsPerMatch(goals);
+        stats.setRedCardsPerMatch(redCards);
+        stats.setSavesPerMatch(saves);
+        stats.setYellowCardsPerMatch(yellowCards);
+        
+        return stats;
+    }
     
 }

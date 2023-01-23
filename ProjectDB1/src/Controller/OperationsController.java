@@ -2595,6 +2595,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             this.modelStats.fillTopGoalers(viewStats);
             this.modelStats.fillTopKeepers(viewStats);
             this.modelStats.progressBar(viewStats);
+            this.modelStats.fillDashboard(viewStats);
             this.viewPrincipal.setVisible(false);
             this.viewStats.setVisible(true);
         }
@@ -2607,6 +2608,10 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         if(e.getSource() == viewStats.getBtnSearchAge()){
             modelStats.fillTblAgeRange(viewStats);
+        }
+        
+        if(e.getSource() == viewStats.getBtnGroupTable()){
+            JOptionPane.showMessageDialog(null, "Esta funcionalidad no está implementada.", "Lo sentimos", JOptionPane.WARNING_MESSAGE);
         }
         
         

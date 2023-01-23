@@ -443,27 +443,31 @@ public class JF_GeneralStats extends javax.swing.JFrame {
 
         lblSavesXMatch.setFont(new java.awt.Font("Yu Gothic UI", 1, 48)); // NOI18N
         lblSavesXMatch.setForeground(new java.awt.Color(255, 255, 255));
+        lblSavesXMatch.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSavesXMatch.setText("0.0");
         jPanel7.add(lblSavesXMatch);
-        lblSavesXMatch.setBounds(650, 180, 70, 60);
+        lblSavesXMatch.setBounds(610, 180, 140, 60);
 
         lblRedCards.setFont(new java.awt.Font("Yu Gothic UI", 1, 48)); // NOI18N
         lblRedCards.setForeground(new java.awt.Color(255, 255, 255));
+        lblRedCards.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRedCards.setText("0.0");
         jPanel7.add(lblRedCards);
-        lblRedCards.setBounds(260, 180, 70, 60);
+        lblRedCards.setBounds(220, 180, 110, 60);
 
         lblGoalsXMatch.setFont(new java.awt.Font("Yu Gothic UI", 1, 48)); // NOI18N
         lblGoalsXMatch.setForeground(new java.awt.Color(255, 255, 255));
+        lblGoalsXMatch.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblGoalsXMatch.setText("0.0");
         jPanel7.add(lblGoalsXMatch);
-        lblGoalsXMatch.setBounds(80, 180, 70, 60);
+        lblGoalsXMatch.setBounds(70, 180, 110, 60);
 
         lblYellowCards.setFont(new java.awt.Font("Yu Gothic UI", 1, 48)); // NOI18N
         lblYellowCards.setForeground(new java.awt.Color(255, 255, 255));
+        lblYellowCards.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblYellowCards.setText("0.0");
         jPanel7.add(lblYellowCards);
-        lblYellowCards.setBounds(470, 180, 70, 60);
+        lblYellowCards.setBounds(470, 180, 120, 60);
 
         jPanel1.add(jPanel7);
         jPanel7.setBounds(410, 440, 790, 290);

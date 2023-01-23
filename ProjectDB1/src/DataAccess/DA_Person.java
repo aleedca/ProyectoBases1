@@ -688,10 +688,5 @@ public class DA_Person {
         int result = ((BigDecimal) sql.getObject(3)).intValue();
         return result;
     }
-    
 
-    
-    
-    
-    
 }

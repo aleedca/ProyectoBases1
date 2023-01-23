@@ -7,6 +7,7 @@ package Model;
 import DataAccess.DA_Catalogs;
 import DataAccess.DA_Stats;
 import Objects.AuthorReview;
+import Objects.DashboardStats;
 import Objects.Event;
 import Objects.Gender;
 import Objects.PlayerStats;
@@ -79,6 +80,24 @@ public class model_Stats {
                 Team team = teams.get(i);
                 viewStats.getCmbTeam().addItem(team.getNameTeam());
             }
+            
+        }catch(SQLException ex){
+            System.out.println(ex);
+        }
+    }
+    
+    public void fillDashboard(JF_GeneralStats viewStats){
+        try{
+            DashboardStats stats = DA_Stats.getDashboardStats();
+            Float goals = stats.getGoalsPerMatch();
+            Float saves = stats.getSavesPerMatch();
+            Float yellowCards = stats.getYellowCardsPerMatch();
+            Float redCards = stats.getRedCardsPerMatch();
+            
+            viewStats.getLblGoalsXMatch().setText(goals.toString());
+            viewStats.getLblSavesXMatch().setText(saves.toString());
+            viewStats.getLblYellowCards().setText(yellowCards.toString());
+            viewStats.getLblRedCards().setText(redCards.toString());
             
         }catch(SQLException ex){
             System.out.println(ex);

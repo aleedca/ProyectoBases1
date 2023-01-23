@@ -1429,6 +1429,28 @@ BEGIN
     WHERE GroupEvent.idGroupEvent = pIdGroup;
 END;
 
+
+CREATE OR REPLACE PROCEDURE getDashboardNumbers(goalsPerMatch OUT NUMBER, savesPerMatch OUT NUMBER, yellowCardsPerMatch OUT NUMBER, redCardsPerMatch OUT NUMBER)
+AS
+vnMatches NUMBER;
+vnGoals NUMBER;
+vnSaves NUMBER;
+vnYellowCards NUMBER;
+vnRedCards NUMBER;
+BEGIN
+    SELECT COUNT(1) INTO vnMatches FROM SoccerMatch;
+    SELECT SUM(goals) INTO vnGoals FROM PlayerXSoccerMatchXTeam;
+    SELECT SUM(saves) INTO vnSaves FROM PlayerXSoccerMatchXTeam;
+    SELECT SUM(yellowCards) INTO vnYellowCards FROM PlayerXSoccerMatchXTeam;
+    SELECT SUM(redCards) INTO vnRedCards FROM PlayerXSoccerMatchXTeam;
+    
+    goalsPerMatch := vnGoals/vnMatches;
+    savesPerMatch := vnSaves/vnMatches;
+    yellowCardsPerMatch := vnYellowCards/vnMatches;
+    redCardsPerMatch := vnRedCards/vnMatches;
+END getDashboardNumbers;
+
+
 CREATE OR REPLACE PROCEDURE getTotalPublishedNews(outPublishedNews OUT NUMBER)
 AS
 resultTotal NUMBER;
@@ -1540,7 +1562,7 @@ BEGIN
     INNER JOIN PlayerXSoccerMatchXTeam ON PlayerXSoccerMatchXTeam.idPerson = Person.idPerson
     WHERE Person.idPersonPosition = 1
     GROUP BY Person.firstname ||' '||Person.firstLastName
-    ORDER BY SUM(PlayerXSoccerMatchXTeam.goals) DESC;
+    ORDER BY SUM(PlayerXSoccerMatchXTeam.saves) DESC;
 END getTopNGoalKeepers;
 
 CREATE OR REPLACE PROCEDURE getPlayedMatches(playedMatches OUT NUMBER, totalMatches OUT NUMBER)
