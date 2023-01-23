@@ -90,6 +90,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private boolean newsOpened = false;
     private boolean matchOpened = false;
     private boolean raffledPerformed = false;
+    private boolean matchSelected = false;
+    private boolean playerSelected = false;
     
     private final RequestController requestController;
     private final AdminNewsController adminNewsController;
@@ -286,12 +288,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         viewScheduleMatch.getCbmStadium().addItemListener(this);
         viewScheduleMatch.getCbmGroup().addItemListener(this);
         
-        //AdminScheduledMatch
-        this.viewAdminMatch.getCmbMatches().addItemListener(this);
-    
-        
         //AdminMatch
         viewAdminMatch.getBtnBack().addActionListener(this);
+        viewAdminMatch.getBtnSaveInfo().addActionListener(this);
+        viewAdminMatch.getCmbIdPlayer().addItemListener(this);
+        viewAdminMatch.getCmbMatches().addItemListener(this);
+        
         
         //AdminNews
         adminNewsController.getViewAdminNews().getRbtnAgregar().addActionListener(this);
@@ -2028,13 +2030,34 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         if(e.getSource() == viewAdminMatch.getCmbMatches() && matchOpened){
             if(!"-----".equals(viewAdminMatch.getCmbMatches().getSelectedItem().toString())){
-                int index = viewAdminMatch.getCmbMatches().getSelectedIndex() - 1;
-                Match selectedMatch = this.modelAdminMatches.getMatches().get(index);
-                viewAdminMatch.updateInfo(selectedMatch);
+                modelAdminMatches.setSelectedMatch(viewAdminMatch);
+                modelAdminMatches.fillListsOfPlayers(viewAdminMatch);
+                viewAdminMatch.updateInfo(modelAdminMatches.getSelectedMatch());
+                matchSelected = true;
             }else{
                 viewAdminMatch.matchNotSelected();
+                matchSelected = false;
             }
         }
+        
+        if(e.getSource() == viewAdminMatch.getCmbIdPlayer() && matchSelected){
+            try{
+                if(!"-----".equals(viewAdminMatch.getCmbIdPlayer().getSelectedItem().toString())){
+                    modelAdminMatches.setIdPlayerSelected(Integer.parseInt(viewAdminMatch.getCmbIdPlayer().getSelectedItem().toString()));
+                    modelAdminMatches.updateStats();
+                    modelAdminMatches.getNameSelectedPlayer(viewAdminMatch);
+                    viewAdminMatch.updateStats(modelAdminMatches.getCurrentStats());
+                    this.playerSelected = true;
+                
+                }else{
+                    viewAdminMatch.playerNotSelected();
+                    this.playerSelected = false;
+                }
+            }catch(Exception ex){
+                System.out.println(ex);
+            }
+        }
+        
         
         //CANTON -> REGISTER
         if( e.getSource() == viewRegister.getCmbCanton()){
@@ -3227,6 +3250,11 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             viewAdminMatches.setVisible(true);
             matchOpened = false;
             viewAdminMatch.matchNotSelected();
+        }
+        
+        if(e.getSource() == viewAdminMatch.getBtnSaveInfo() && playerSelected){
+            //aqui el update
+            modelAdminMatches.submitUpdatedStats(viewAdminMatch);
         }
         
         //-------------- SCREEN ScheduleMatch -----------------------

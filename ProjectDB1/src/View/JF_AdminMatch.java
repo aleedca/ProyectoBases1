@@ -5,9 +5,15 @@
 package View;
 
 import Objects.Match;
+import Objects.MatchPlayer;
+import Objects.PlayerStats;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JTable;
 
 /**
  *
@@ -21,6 +27,7 @@ public class JF_AdminMatch extends javax.swing.JFrame {
     public JF_AdminMatch() {
         initComponents();
         matchNotSelected();
+        playerNotSelected();
     }
 
     /**
@@ -57,22 +64,24 @@ public class JF_AdminMatch extends javax.swing.JFrame {
         lblCorners = new javax.swing.JLabel();
         lblGoals = new javax.swing.JLabel();
         lblSavers1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         lblPlayersTeam2 = new javax.swing.JLabel();
         lblPlayersTeam1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
         lblPlayer = new javax.swing.JLabel();
         lblNamePlayer = new javax.swing.JLabel();
         txtYellowCards = new javax.swing.JFormattedTextField();
         txtRedCards = new javax.swing.JFormattedTextField();
-        txtExpulsions = new javax.swing.JFormattedTextField();
+        txtOffsides = new javax.swing.JFormattedTextField();
         txtCorners = new javax.swing.JFormattedTextField();
-        txtSavers = new javax.swing.JFormattedTextField();
+        txtSaves = new javax.swing.JFormattedTextField();
         txtGoals = new javax.swing.JFormattedTextField();
         btnSaveInfo = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblPlayers2 = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblPlayers1 = new javax.swing.JTable();
+        cmbIdPlayer = new javax.swing.JComboBox<>();
+        lblPlayer1 = new javax.swing.JLabel();
 
         jLabel5.setText("xxxxxxxxxx");
 
@@ -177,110 +186,90 @@ public class JF_AdminMatch extends javax.swing.JFrame {
         lblRedCard.setForeground(new java.awt.Color(255, 255, 255));
         lblRedCard.setText("Tarjetas Rojas");
         jPanel1.add(lblRedCard);
-        lblRedCard.setBounds(430, 304, 87, 20);
+        lblRedCard.setBounds(520, 300, 87, 20);
 
         lblYellowCard.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblYellowCard.setForeground(new java.awt.Color(255, 255, 255));
         lblYellowCard.setText("Tarjetas Amarillas");
         jPanel1.add(lblYellowCard);
-        lblYellowCard.setBounds(430, 264, 111, 20);
+        lblYellowCard.setBounds(520, 260, 111, 20);
 
         lblExpulsions.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblExpulsions.setForeground(new java.awt.Color(255, 255, 255));
-        lblExpulsions.setText("Expulsiones");
+        lblExpulsions.setText("Fuera de juego");
         jPanel1.add(lblExpulsions);
-        lblExpulsions.setBounds(430, 344, 73, 20);
+        lblExpulsions.setBounds(520, 340, 100, 20);
 
         lblCorners.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblCorners.setForeground(new java.awt.Color(255, 255, 255));
-        lblCorners.setText("Corners");
+        lblCorners.setText("Tiros de esquina");
         jPanel1.add(lblCorners);
-        lblCorners.setBounds(430, 384, 48, 20);
+        lblCorners.setBounds(520, 380, 110, 20);
 
         lblGoals.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblGoals.setForeground(new java.awt.Color(255, 255, 255));
         lblGoals.setText("Goles");
         jPanel1.add(lblGoals);
-        lblGoals.setBounds(430, 467, 35, 20);
+        lblGoals.setBounds(520, 460, 35, 20);
 
         lblSavers1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblSavers1.setForeground(new java.awt.Color(255, 255, 255));
-        lblSavers1.setText("Savers");
+        lblSavers1.setText("Paradas");
         jPanel1.add(lblSavers1);
-        lblSavers1.setBounds(430, 424, 40, 20);
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(36, 234, 159, 230);
+        lblSavers1.setBounds(520, 420, 100, 20);
 
         lblPlayersTeam2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblPlayersTeam2.setForeground(new java.awt.Color(255, 255, 255));
         lblPlayersTeam2.setText("Jugadores Team2");
         jPanel1.add(lblPlayersTeam2);
-        lblPlayersTeam2.setBounds(201, 208, 109, 20);
+        lblPlayersTeam2.setBounds(120, 350, 109, 20);
 
         lblPlayersTeam1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblPlayersTeam1.setForeground(new java.awt.Color(255, 255, 255));
         lblPlayersTeam1.setText("Jugadores Team1");
         jPanel1.add(lblPlayersTeam1);
-        lblPlayersTeam1.setBounds(36, 208, 107, 20);
-
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList2);
-
-        jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(201, 234, 151, 230);
+        lblPlayersTeam1.setBounds(120, 140, 107, 20);
 
         lblPlayer.setBackground(new java.awt.Color(255, 255, 255));
         lblPlayer.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblPlayer.setForeground(new java.awt.Color(255, 255, 255));
-        lblPlayer.setText("Jugador");
+        lblPlayer.setText("Seleccione el jugador:");
         jPanel1.add(lblPlayer);
-        lblPlayer.setBounds(430, 208, 50, 20);
+        lblPlayer.setBounds(340, 210, 150, 20);
 
         lblNamePlayer.setForeground(new java.awt.Color(255, 255, 255));
         lblNamePlayer.setText("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         jPanel1.add(lblNamePlayer);
-        lblNamePlayer.setBounds(526, 211, 210, 16);
+        lblNamePlayer.setBounds(620, 210, 210, 20);
 
         txtYellowCards.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         jPanel1.add(txtYellowCards);
-        txtYellowCards.setBounds(559, 264, 51, 22);
+        txtYellowCards.setBounds(650, 260, 51, 22);
 
         txtRedCards.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         jPanel1.add(txtRedCards);
-        txtRedCards.setBounds(559, 304, 51, 22);
+        txtRedCards.setBounds(650, 300, 51, 22);
 
-        txtExpulsions.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        jPanel1.add(txtExpulsions);
-        txtExpulsions.setBounds(559, 344, 51, 22);
+        txtOffsides.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jPanel1.add(txtOffsides);
+        txtOffsides.setBounds(650, 340, 51, 22);
 
         txtCorners.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         jPanel1.add(txtCorners);
-        txtCorners.setBounds(559, 384, 51, 22);
+        txtCorners.setBounds(650, 380, 51, 22);
 
-        txtSavers.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        jPanel1.add(txtSavers);
-        txtSavers.setBounds(559, 424, 51, 22);
+        txtSaves.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jPanel1.add(txtSaves);
+        txtSaves.setBounds(650, 420, 51, 22);
 
         txtGoals.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         jPanel1.add(txtGoals);
-        txtGoals.setBounds(559, 467, 51, 22);
+        txtGoals.setBounds(650, 460, 51, 22);
 
         btnSaveInfo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         btnSaveInfo.setText("Guardar");
         jPanel1.add(btnSaveInfo);
-        btnSaveInfo.setBounds(686, 464, 80, 27);
+        btnSaveInfo.setBounds(580, 520, 120, 30);
 
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
@@ -293,6 +282,63 @@ public class JF_AdminMatch extends javax.swing.JFrame {
         });
         jPanel1.add(btnBack);
         btnBack.setBounds(6, 9, 46, 39);
+
+        tblPlayers2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID", "Nombre"
+            }
+        ));
+        tblPlayers2.setEnabled(false);
+        tblPlayers2.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(tblPlayers2);
+        if (tblPlayers2.getColumnModel().getColumnCount() > 0) {
+            tblPlayers2.getColumnModel().getColumn(0).setMinWidth(40);
+            tblPlayers2.getColumnModel().getColumn(0).setPreferredWidth(40);
+            tblPlayers2.getColumnModel().getColumn(0).setMaxWidth(40);
+        }
+
+        jPanel1.add(jScrollPane3);
+        jScrollPane3.setBounds(40, 380, 270, 170);
+
+        tblPlayers1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID", "Nombre"
+            }
+        ));
+        tblPlayers1.setEnabled(false);
+        tblPlayers1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane4.setViewportView(tblPlayers1);
+        if (tblPlayers1.getColumnModel().getColumnCount() > 0) {
+            tblPlayers1.getColumnModel().getColumn(0).setMinWidth(40);
+            tblPlayers1.getColumnModel().getColumn(0).setPreferredWidth(40);
+            tblPlayers1.getColumnModel().getColumn(0).setMaxWidth(40);
+        }
+
+        jPanel1.add(jScrollPane4);
+        jScrollPane4.setBounds(40, 170, 270, 170);
+
+        cmbIdPlayer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cmbIdPlayer);
+        cmbIdPlayer.setBounds(340, 240, 140, 30);
+
+        lblPlayer1.setBackground(new java.awt.Color(255, 255, 255));
+        lblPlayer1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        lblPlayer1.setForeground(new java.awt.Color(255, 255, 255));
+        lblPlayer1.setText("Jugador");
+        jPanel1.add(lblPlayer1);
+        lblPlayer1.setBounds(520, 210, 50, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -317,6 +363,54 @@ public class JF_AdminMatch extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
+    public void updateInfo(Match currentMatch){
+        this.lblNameStadium.setText(currentMatch.getStadium());
+        this.lblNameTeam1.setText(currentMatch.getNameTeam1());
+        this.lblNameTeam2.setText(currentMatch.getNameTeam2());
+        this.lblGroupName.setText(currentMatch.getGroupName());
+        this.lblDateInfo.setText(currentMatch.getDate());
+        this.lblHourInfo.setText(currentMatch.getHour());
+    }
+    
+    public void loadPlayers(ArrayList<MatchPlayer> playersTeam1, ArrayList<MatchPlayer> playersTeam2){
+        
+    }
+    
+    public void matchNotSelected(){
+        this.lblNameStadium.setText("---------");
+        this.lblNameTeam1.setText("---------");
+        this.lblNameTeam2.setText("---------");
+        this.lblGroupName.setText("---------");
+        this.lblDateInfo.setText("---------");
+        this.lblHourInfo.setText("---------");
+    }
+    
+    public void updateStats(PlayerStats stats){
+        Integer corners = stats.getCorners();
+        Integer offsides = stats.getOffsides();
+        Integer yellowcards = stats.getYellowCards();
+        Integer redcards = stats.getRedCards();
+        Integer goals = stats.getGoals();
+        Integer saves = stats.getSaves();
+        
+        this.txtCorners.setText(corners.toString());
+        this.txtOffsides.setText(offsides.toString());
+        this.txtGoals.setText(goals.toString());
+        this.txtRedCards.setText(redcards.toString());
+        this.txtYellowCards.setText(yellowcards.toString());
+        this.txtSaves.setText(saves.toString());
+        
+    }
+    
+    public void playerNotSelected(){
+        this.lblNamePlayer.setText("---------------");
+        this.txtCorners.setText("");
+        this.txtOffsides.setText("");
+        this.txtGoals.setText("");
+        this.txtRedCards.setText("");
+        this.txtYellowCards.setText("");
+        this.txtSaves.setText("");
+    }
     
     //-----------GETTERS-------------
     
@@ -332,36 +426,60 @@ public class JF_AdminMatch extends javax.swing.JFrame {
         return btnSaveInfo;
     }
 
-    public void updateInfo(Match currentMatch){
-        this.lblNameStadium.setText(currentMatch.getStadium());
-        this.lblNameTeam1.setText(currentMatch.getNameTeam1());
-        this.lblNameTeam2.setText(currentMatch.getNameTeam2());
-        this.lblGroupName.setText(currentMatch.getGroupName());
-        this.lblDateInfo.setText(currentMatch.getDate());
-        this.lblHourInfo.setText(currentMatch.getHour());
+    public JTable getTblPlayers1() {
+        return tblPlayers1;
+    }
+
+    public JTable getTblPlayers2() {
+        return tblPlayers2;
+    }
+
+    public JComboBox<String> getCmbIdPlayer() {
+        return cmbIdPlayer;
+    }
+
+    public JLabel getLblNamePlayer() {
+        return lblNamePlayer;
+    }
+
+    public JFormattedTextField getTxtCorners() {
+        return txtCorners;
+    }
+
+    public JFormattedTextField getTxtGoals() {
+        return txtGoals;
+    }
+
+    public JFormattedTextField getTxtOffsides() {
+        return txtOffsides;
+    }
+
+    public JFormattedTextField getTxtRedCards() {
+        return txtRedCards;
+    }
+
+    public JFormattedTextField getTxtSaves() {
+        return txtSaves;
+    }
+
+    public JFormattedTextField getTxtYellowCards() {
+        return txtYellowCards;
     }
     
-    public void matchNotSelected(){
-        this.lblNameStadium.setText("---------");
-        this.lblNameTeam1.setText("---------");
-        this.lblNameTeam2.setText("---------");
-        this.lblGroupName.setText("---------");
-        this.lblDateInfo.setText("---------");
-        this.lblHourInfo.setText("---------");
-    }
     
     
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSaveInfo;
+    private javax.swing.JComboBox<String> cmbIdPlayer;
     private javax.swing.JComboBox<String> cmbMatches;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCorners;
     private javax.swing.JLabel lblDate;
@@ -378,6 +496,7 @@ public class JF_AdminMatch extends javax.swing.JFrame {
     private javax.swing.JLabel lblNameTeam1;
     private javax.swing.JLabel lblNameTeam2;
     private javax.swing.JLabel lblPlayer;
+    private javax.swing.JLabel lblPlayer1;
     private javax.swing.JLabel lblPlayersTeam1;
     private javax.swing.JLabel lblPlayersTeam2;
     private javax.swing.JLabel lblRedCard;
@@ -387,12 +506,14 @@ public class JF_AdminMatch extends javax.swing.JFrame {
     private javax.swing.JLabel lblTeam2;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblYellowCard;
+    private javax.swing.JTable tblPlayers1;
+    private javax.swing.JTable tblPlayers2;
     private javax.swing.JFormattedTextField txtCorners;
-    private javax.swing.JFormattedTextField txtExpulsions;
     private javax.swing.JFormattedTextField txtGoals;
+    private javax.swing.JFormattedTextField txtOffsides;
     private javax.swing.JFormattedTextField txtRedCards;
     private javax.swing.JFormattedTextField txtRedCards1;
-    private javax.swing.JFormattedTextField txtSavers;
+    private javax.swing.JFormattedTextField txtSaves;
     private javax.swing.JFormattedTextField txtYellowCards;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,6 +7,8 @@ package DataAccess;
 
 import Objects.Continent;
 import Objects.Match;
+import Objects.MatchPlayer;
+import Objects.PlayerStats;
 import Objects.TeamXGroup;
 import java.math.BigDecimal;
 import java.sql.CallableStatement;
@@ -230,8 +232,10 @@ public class DA_SoccerMatch {
                tmpMatch.setHour(rs.getString("datehour").substring(11));
                tmpMatch.setStadium(rs.getString("nameStadium"));
                tmpMatch.setGroupName(rs.getString("descriptionGroupEvent"));
+               tmpMatch.setIdTeam1(rs.getInt("idTeam"));
             }else if(!"".equals(tmpMatch.getNameTeam1()) && "".equals(tmpMatch.getNameTeam2())){
                tmpMatch.setNameTeam2(rs.getString("nameteam"));
+               tmpMatch.setIdTeam2(rs.getInt("idTeam"));
                Matches.add(tmpMatch);
                tmpMatch = new Match();
             }
@@ -258,5 +262,75 @@ public class DA_SoccerMatch {
             return false;
         }
     }
+    
+    public static ArrayList<MatchPlayer> getPlayersFromATeam(int idTeam) throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getPlayersFromATeam(?,?)}");
+        
+        //Output parameter
+        sql.setInt(1, idTeam);
+        sql.registerOutParameter(2, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(2);
+        ArrayList<MatchPlayer> players = new ArrayList<>();
+        
+        while(rs.next()){
+            MatchPlayer player = new MatchPlayer();
+            
+            player.setIdPlayer(rs.getInt("idPerson"));
+            player.setFullName(rs.getString("fullName"));
+            
+            players.add(player);   
+        }
+        return players;
+    }
 
+    //getPlayerStatsXMatch
+    
+    
+    public static PlayerStats getPlayerStatsXMatch(int idPlayer, int idMatch) throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getPlayerStatsXMatch(?,?,?)}");
+        
+        //Output parameter
+        sql.setInt(1, idPlayer);
+        sql.setInt(2, idMatch);
+        sql.registerOutParameter(3, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(3);
+        
+        rs.next();
+        PlayerStats stats = new PlayerStats();
+        
+        stats.setRedCards(rs.getInt("redcards"));
+        stats.setGoals(rs.getInt("goals"));
+        stats.setYellowCards(rs.getInt("yellowcards"));
+        stats.setSaves(rs.getInt("saves"));
+        stats.setCorners(rs.getInt("corners"));
+        stats.setOffsides(rs.getInt("offsides"));
+        
+        return stats;
+    }
+    
+    public static void updateSoccerMatch(int idMatch, int idPlayer, int yellowcards, int redcards, int offsides, int corners, int saves, int goals) throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call updateSoccerMatch(?,?,?,?,?,?,?,?)}");
+        
+        //Output parameter
+        sql.setInt(1, idMatch);
+        sql.setInt(2, idPlayer);
+        sql.setInt(3, yellowcards);
+        sql.setInt(4, redcards);
+        sql.setInt(5, offsides);
+        sql.setInt(6, corners);
+        sql.setInt(7, saves);
+        sql.setInt(8, goals);
+        sql.execute();
+    }
+    
 }

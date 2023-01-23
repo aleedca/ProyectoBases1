@@ -10,6 +10,8 @@ import Objects.Continent;
 import Objects.CountryTeam;
 import Objects.Group;
 import Objects.Match;
+import Objects.MatchPlayer;
+import Objects.PlayerStats;
 import Objects.Stadium;
 import Objects.Team;
 import Objects.TeamXGroup;
@@ -31,6 +33,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
+import javax.swing.DefaultListModel;
 
 
 /**
@@ -83,8 +86,15 @@ public class model_AdminMatches {
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG", "jpg", "png");
     
     //------------------------------------
+    
     private ArrayList<Match> todayMatches;
     private ArrayList<Match> matches;
+    private Match selectedMatch;
+    
+    private ArrayList<MatchPlayer> playersTeam1;
+    private ArrayList<MatchPlayer> playersTeam2;
+    private int idPlayerSelected;
+    private PlayerStats currentStats;
     
     //BUILDER 
 
@@ -133,6 +143,119 @@ public class model_AdminMatches {
             matchString = match.getNameTeam1() + " vs " + match.getNameTeam2();
             
             viewAdminMatch.getCmbMatches().addItem(matchString);
+        }
+    }
+    
+    public void fillListsOfPlayers(JF_AdminMatch viewAdminMatch){
+        try{
+            this.playersTeam1 = DA_SoccerMatch.getPlayersFromATeam(selectedMatch.getIdTeam1());
+            this.playersTeam2 = DA_SoccerMatch.getPlayersFromATeam(selectedMatch.getIdTeam2());
+            
+            DefaultTableModel modelTable1 = (DefaultTableModel) viewAdminMatch.getTblPlayers1().getModel();
+            DefaultTableModel modelTable2 = (DefaultTableModel) viewAdminMatch.getTblPlayers2().getModel();
+            
+            modelTable1.setRowCount(0);
+            modelTable2.setRowCount(0);
+            viewAdminMatch.getCmbIdPlayer().removeAllItems();
+            viewAdminMatch.getCmbIdPlayer().addItem("-----");
+            
+            
+            for(int i = 0; i < playersTeam1.size(); i++){
+                Vector row = new Vector();
+                MatchPlayer tmp = playersTeam1.get(i);
+                Integer idPlayer = tmp.getIdPlayer();
+                row.add(idPlayer);
+                row.add(tmp.getFullName());
+                
+                modelTable1.addRow(row);
+                viewAdminMatch.getCmbIdPlayer().addItem(idPlayer.toString());
+            }
+            
+            for(int j = 0; j < playersTeam2.size(); j++){
+                Vector row = new Vector();
+                MatchPlayer tmp = playersTeam2.get(j);
+                Integer idPlayer = tmp.getIdPlayer();
+                row.add(idPlayer);
+                row.add(tmp.getFullName());
+                
+                modelTable2.addRow(row);
+                viewAdminMatch.getCmbIdPlayer().addItem(idPlayer.toString());
+            }
+        }catch(SQLException ex){
+            System.out.println(ex);
+        }
+        
+    }
+    
+    public void getNameSelectedPlayer(JF_AdminMatch viewAdminMatch){
+        String name = "";
+        
+        for(int i = 0; i < playersTeam1.size(); i++){
+                Vector row = new Vector();
+                MatchPlayer tmp = playersTeam1.get(i);
+                Integer idPlayer = tmp.getIdPlayer();
+                if(idPlayer == this.idPlayerSelected){
+                    name = tmp.getFullName();
+                }
+            }
+            
+        for(int j = 0; j < playersTeam2.size(); j++){
+            MatchPlayer tmp = playersTeam2.get(j);
+            Integer idPlayer = tmp.getIdPlayer();
+            if(idPlayer == this.idPlayerSelected){
+                    name = tmp.getFullName();
+            }
+        }
+        
+        viewAdminMatch.getLblNamePlayer().setText(name);
+        
+    }
+    
+    public void setSelectedMatch(JF_AdminMatch viewAdminMatch){
+        int index = viewAdminMatch.getCmbMatches().getSelectedIndex() - 1;
+        this.selectedMatch = this.matches.get(index);
+    }
+    
+    
+    public void updateStats(){
+        try{
+            currentStats = DA_SoccerMatch.getPlayerStatsXMatch(this.idPlayerSelected, this.selectedMatch.getIdMatch());
+        }catch(SQLException ex){
+            System.out.println(ex);
+        }
+    }
+    
+    
+    public void submitUpdatedStats(JF_AdminMatch viewAdminMatch){
+        boolean statsOk = false;
+        int yellowcards = 0;
+        int redcards = 0;
+        int offsides = 0;
+        int corners = 0;
+        int saves = 0;
+        int goals = 0;
+        try{
+            yellowcards = Integer.parseInt(viewAdminMatch.getTxtYellowCards().getText());
+            redcards = Integer.parseInt(viewAdminMatch.getTxtRedCards().getText());
+            offsides = Integer.parseInt(viewAdminMatch.getTxtOffsides().getText());
+            corners = Integer.parseInt(viewAdminMatch.getTxtCorners().getText());
+            saves = Integer.parseInt(viewAdminMatch.getTxtSaves().getText());
+            goals = Integer.parseInt(viewAdminMatch.getTxtGoals().getText());
+            statsOk = true;
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Las estadísticas deben estar completas y deben ser numerales.", "Error", JOptionPane.WARNING_MESSAGE);
+            viewAdminMatch.getCmbIdPlayer().setSelectedIndex(0);
+        }
+        
+        
+        try{
+            if(statsOk){
+                DA_SoccerMatch.updateSoccerMatch(this.selectedMatch.getIdMatch(), this.idPlayerSelected, yellowcards, redcards, offsides, corners, saves, goals);
+                JOptionPane.showMessageDialog(null, "Estadísticas Actualizadas!");
+                viewAdminMatch.getCmbIdPlayer().setSelectedIndex(0);
+            }
+        }catch(SQLException ex){
+            System.out.println(ex);
         }
     }
     
@@ -298,9 +421,35 @@ public class model_AdminMatches {
     
     
     
+
     //--------------GETTERS AND SETTERS--------------
+    public int getIdPlayerSelected() {
+        return idPlayerSelected;
+    }
     
+    public void setIdPlayerSelected(int idPlayerSelected) {
+        this.idPlayerSelected = idPlayerSelected;
+    }
+
+    public PlayerStats getCurrentStats() {
+        return currentStats;
+    }
+
+    public void setCurrentStats(PlayerStats currentStats) {
+        this.currentStats = currentStats;
+    }
+
+    public Match getSelectedMatch() {
+        return selectedMatch;
+    }
+
+    public ArrayList<MatchPlayer> getPlayersTeam1() {
+        return playersTeam1;
+    }
     
+    public ArrayList<MatchPlayer> getPlayersTeam2() {
+        return playersTeam2;
+    }
 
     public ArrayList<Match> getMatches() {
         return matches;

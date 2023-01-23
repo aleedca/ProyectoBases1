@@ -68,10 +68,10 @@ BEGIN
     
     INSERT INTO Team(idTeam, idCountryTeam, nameTeam, flag, userCreation, lastUser, lastDate, dateCreation)
     VALUES(vnIdTeam, pIdCountryTeam, pNameTeam, pFlag, NULL, NULL, NULL, NULL);
-    COMMIT;
     
     INSERT INTO GroupStats(IDSTATS, IDTEAM, WONMATCHES, TIEDMATCHES, LOSTMATCHES, GOALSSCORED, GOALSRECEIVED, FAIRPLAYPOINTS, USERCREATION, LASTUSER, LASTDATE, DATECREATION) 
     VALUES (s_groupstats.NEXTVAL, vnIdTeam, 0, 0, 0, 0, 0, 0, null, null, null, null);
+    COMMIT;
 END insertTeam;
 
 CREATE OR REPLACE PROCEDURE insertGroupEvent (pIdEvent IN NUMBER, pDescription IN VARCHAR2) AS
@@ -1185,16 +1185,35 @@ END getTodaySoccerMatches;
 CREATE OR REPLACE PROCEDURE getSoccerMatches(curMatches OUT SYS_REFCURSOR) IS
 BEGIN
     OPEN curMatches FOR
-    SELECT SoccerMatch.idSoccerMatch, Team.nameteam, SoccerMatch.datehour, Stadium.nameStadium, GroupEvent.descriptionGroupEvent
+    SELECT SoccerMatch.idSoccerMatch, Team.idTeam, Team.nameteam, SoccerMatch.datehour, Stadium.nameStadium, GroupEvent.descriptionGroupEvent
     FROM playerxsoccermatchxteam
     INNER JOIN SoccerMatch ON SoccerMatch.idSoccerMatch = playerxsoccermatchxteam.idSoccerMatch
     INNER JOIN Team ON Team.idTeam = playerxsoccermatchxteam.idTeam
     INNER JOIN Stadium ON SoccerMatch.idStadium = Stadium.idStadium
     INNER JOIN TeamXGroup ON Team.idTeam = TeamXGroup.idTeam
     INNER JOIN GroupEvent ON GroupEvent.idGroupEvent = TeamXGroup.idGroupEvent
-    GROUP BY SoccerMatch.idSoccerMatch, Team.nameteam, SoccerMatch.datehour, Stadium.nameStadium, GroupEvent.descriptionGroupEvent;
+    GROUP BY SoccerMatch.idSoccerMatch, Team.idTeam, Team.nameteam, SoccerMatch.datehour, Stadium.nameStadium, GroupEvent.descriptionGroupEvent
+    ORDER BY SoccerMatch.idSoccerMatch ASC;
     
 END getSoccerMatches;
+
+CREATE OR REPLACE PROCEDURE getPlayersFromATeam(pIdTeam IN NUMBER, curPlayers OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curPlayers FOR
+    SELECT Player.idPerson, Person.firstName||' '||Person.firstLastName fullName
+    FROM Player
+    INNER JOIN Person ON Person.idPerson = Player.idPerson
+    WHERE Player.idTeam = pIdTeam;
+END getPlayersFromATeam;
+
+CREATE OR REPLACE PROCEDURE getPlayerStatsXMatch(pIdPlayer IN NUMBER, pIdMatch IN NUMBER, curInfo OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curInfo FOR
+    SELECT yellowcards, redcards, offsides, corners, saves, goals
+    FROM PlayerXSoccerMatchXTeam
+    WHERE idPerson = pIdPlayer AND idSoccerMatch = pIdMatch;
+END getPlayerStatsXMatch;
+
 
 CREATE OR REPLACE PROCEDURE getAccountInformation(pUsername IN VARCHAR2, outAccountCursor OUT SYS_REFCURSOR)
 AS

@@ -65,15 +65,6 @@ public class Person {
         this.lastDate = lastDate;
     }
     
-    
-
-
-
-    
-
-    
-      
-    
     //GETTERS AND SETTERS
 
     public int getIdPerson() {

@@ -9,10 +9,12 @@ package Objects;
  * @author Isaac
  */
 public class Match {
+    private int idMatch;
+    private int idTeam1;
+    private int idTeam2;
     private String nameTeam1 = "";
     private String nameTeam2 = "";
     private String hour;
-    private int idMatch;
     private String stadium;
     private String date;
     private String groupName;
@@ -75,5 +77,22 @@ public class Match {
     public void setGroupName(String groupName) {
         this.groupName = groupName;
     }
+
+    public int getIdTeam1() {
+        return idTeam1;
+    }
+
+    public void setIdTeam1(int idTeam1) {
+        this.idTeam1 = idTeam1;
+    }
+
+    public int getIdTeam2() {
+        return idTeam2;
+    }
+
+    public void setIdTeam2(int idTeam2) {
+        this.idTeam2 = idTeam2;
+    }
+    
     
 }

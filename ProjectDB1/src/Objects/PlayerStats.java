@@ -13,6 +13,10 @@ public class PlayerStats {
     private String name;
     private int goals;
     private int saves;
+    private int yellowCards;
+    private int redCards;
+    private int offsides;
+    private int corners;
 
     public String getName() {
         return name;
@@ -36,6 +40,38 @@ public class PlayerStats {
 
     public void setSaves(int saves) {
         this.saves = saves;
+    }
+
+    public int getYellowCards() {
+        return yellowCards;
+    }
+
+    public void setYellowCards(int yellowCards) {
+        this.yellowCards = yellowCards;
+    }
+
+    public int getRedCards() {
+        return redCards;
+    }
+
+    public void setRedCards(int redCards) {
+        this.redCards = redCards;
+    }
+
+    public int getOffsides() {
+        return offsides;
+    }
+
+    public void setOffsides(int offsides) {
+        this.offsides = offsides;
+    }
+
+    public int getCorners() {
+        return corners;
+    }
+
+    public void setCorners(int corners) {
+        this.corners = corners;
     }
     
     
