@@ -12,6 +12,10 @@ public class Match {
     private String nameTeam1 = "";
     private String nameTeam2 = "";
     private String hour;
+    private int idMatch;
+    private String stadium;
+    private String date;
+    private String groupName;
 
     public Match() {
     }
@@ -39,9 +43,37 @@ public class Match {
     public void setHour(String hour) {
         this.hour = hour;
     }
-    
-    
-    
-    
+
+    public int getIdMatch() {
+        return idMatch;
+    }
+
+    public void setIdMatch(int idMatch) {
+        this.idMatch = idMatch;
+    }
+
+    public String getStadium() {
+        return stadium;
+    }
+
+    public void setStadium(String stadium) {
+        this.stadium = stadium;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
     
 }

@@ -20,6 +20,7 @@ import javax.swing.JTextArea;
 public class JF_News extends javax.swing.JFrame {
     
     private News NewsInfo;
+    private boolean favorite;
 
     /**
      * Creates new form JF_NewsWindow
@@ -49,6 +50,13 @@ public class JF_News extends javax.swing.JFrame {
         ImageIcon image = new ImageIcon(imageDirectory);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_DEFAULT));
         labelName.setIcon(icon);
+        this.repaint();
+    }
+    
+    private void setButtonImage(JButton buttonName, String imageDirectory){
+        ImageIcon image = new ImageIcon(imageDirectory);
+        Icon icon = new ImageIcon(image.getImage());
+        buttonName.setIcon(icon);
         this.repaint();
     }
     
@@ -167,6 +175,7 @@ public class JF_News extends javax.swing.JFrame {
         lblDate = new javax.swing.JLabel();
         txtBody = new javax.swing.JTextArea();
         txtComment = new javax.swing.JTextArea();
+        btnFavorite = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1292, 746));
@@ -328,6 +337,18 @@ public class JF_News extends javax.swing.JFrame {
         jPanel1.add(txtComment);
         txtComment.setBounds(870, 630, 270, 90);
 
+        btnFavorite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/emptyHeart.png"))); // NOI18N
+        btnFavorite.setBorderPainted(false);
+        btnFavorite.setContentAreaFilled(false);
+        btnFavorite.setFocusPainted(false);
+        btnFavorite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFavoriteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnFavorite);
+        btnFavorite.setBounds(730, 190, 46, 40);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -349,6 +370,17 @@ public class JF_News extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnFavoriteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavoriteActionPerformed
+        if(this.favorite){
+            this.favorite = false;
+            setButtonImage(this.btnFavorite, "src/Images/emptyHeart.png");
+        }else{
+            this.favorite = true;
+            setButtonImage(this.btnFavorite, "src/Images/fullHeart.png");
+        }
+        
+    }//GEN-LAST:event_btnFavoriteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -389,6 +421,7 @@ public class JF_News extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnComment;
+    private javax.swing.JButton btnFavorite;
     private javax.swing.JButton btnRating;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
