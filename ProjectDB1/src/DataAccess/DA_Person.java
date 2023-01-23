@@ -147,9 +147,21 @@ public class DA_Person {
         //Input parameters
         sql.setInt(1, identification);
         sql.setString(2, firstName);
-        sql.setString(3, secondName);
+        
+        if("".equals(secondName)){
+            sql.setString(3, "N/A");
+        }else{
+            sql.setString(3, secondName);
+        }
+        
         sql.setString(4, firstLastName);
-        sql.setString(5, secondLastName);
+        
+        if("".equals(secondLastName)){
+            sql.setString(5, "N/A");
+        }else{
+            sql.setString(5, secondLastName);
+        }       
+        
         sql.setString(6, photo);
       
         sql.setInt(7, idPosition);
@@ -188,9 +200,21 @@ public class DA_Person {
         sql.setInt(1, identification);
         sql.setInt(2, idTeam);
         sql.setString(3, firstName);
-        sql.setString(4, secondName);
+        
+        if("".equals(secondName)){
+            sql.setString(4, "N/A");
+        }else{
+            sql.setString(4, secondName);
+        }
+        
         sql.setString(5, firstLastName);
-        sql.setString(6, secondLastName);
+        
+        if("".equals(secondLastName)){
+            sql.setString(6, "N/A");
+        }else{
+            sql.setString(6, secondLastName);
+        }    
+        
         sql.setString(7, photo);
       
         sql.setInt(8, idPosition);
