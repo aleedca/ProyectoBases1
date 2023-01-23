@@ -62,10 +62,16 @@ END insertStadium;
 
 CREATE OR REPLACE PROCEDURE insertTeam(pIdCountryTeam IN NUMBER, pNameTeam IN VARCHAR2, pFlag IN VARCHAR2)
 AS
+vnIdTeam NUMBER;
 BEGIN
+    vnIdTeam := s_team.NEXTVAL;
+    
     INSERT INTO Team(idTeam, idCountryTeam, nameTeam, flag, userCreation, lastUser, lastDate, dateCreation)
-    VALUES(s_team.NEXTVAL, pIdCountryTeam, pNameTeam, pFlag, NULL, NULL, NULL, NULL);
+    VALUES(vnIdTeam, pIdCountryTeam, pNameTeam, pFlag, NULL, NULL, NULL, NULL);
     COMMIT;
+    
+    INSERT INTO GroupStats(IDSTATS, IDTEAM, WONMATCHES, TIEDMATCHES, LOSTMATCHES, GOALSSCORED, GOALSRECEIVED, FAIRPLAYPOINTS, USERCREATION, LASTUSER, LASTDATE, DATECREATION) 
+    VALUES (s_groupstats.NEXTVAL, vnIdTeam, 0, 0, 0, 0, 0, 0, null, null, null, null);
 END insertTeam;
 
 CREATE OR REPLACE PROCEDURE insertGroupEvent (pIdEvent IN NUMBER, pDescription IN VARCHAR2) AS
@@ -1176,6 +1182,20 @@ BEGIN
     
 END getTodaySoccerMatches;
 
+CREATE OR REPLACE PROCEDURE getSoccerMatches(curMatches OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN curMatches FOR
+    SELECT SoccerMatch.idSoccerMatch, Team.nameteam, SoccerMatch.datehour, Stadium.nameStadium, GroupEvent.descriptionGroupEvent
+    FROM playerxsoccermatchxteam
+    INNER JOIN SoccerMatch ON SoccerMatch.idSoccerMatch = playerxsoccermatchxteam.idSoccerMatch
+    INNER JOIN Team ON Team.idTeam = playerxsoccermatchxteam.idTeam
+    INNER JOIN Stadium ON SoccerMatch.idStadium = Stadium.idStadium
+    INNER JOIN TeamXGroup ON Team.idTeam = TeamXGroup.idTeam
+    INNER JOIN GroupEvent ON GroupEvent.idGroupEvent = TeamXGroup.idGroupEvent
+    GROUP BY SoccerMatch.idSoccerMatch, Team.nameteam, SoccerMatch.datehour, Stadium.nameStadium, GroupEvent.descriptionGroupEvent;
+    
+END getSoccerMatches;
+
 CREATE OR REPLACE PROCEDURE getAccountInformation(pUsername IN VARCHAR2, outAccountCursor OUT SYS_REFCURSOR)
 AS
 encryptedPassword VARCHAR(200);
@@ -1374,7 +1394,11 @@ BEGIN
     ORDER BY publicationDate DESC;
 END getLastNews;
 
---- STATISTICS
+/*
+-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Statistic Procedures
+-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+*/
 CREATE OR REPLACE PROCEDURE getGroupStats(pIdGroup IN NUMBER, outGroupStats OUT SYS_REFCURSOR)
 AS
 BEGIN
@@ -1420,7 +1444,7 @@ BEGIN
     AND Person.idGender = NVL(pIdGender, Person.idGender)
     AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
     AND TRUNC((SYSDATE- Player.birthdate)/365) BETWEEN 0 AND 18
-    UNION
+    UNION ALL
     SELECT COUNT(1) quantity
     FROM Player
     INNER JOIN Person ON Person.idPerson = Player.idPerson
@@ -1428,7 +1452,7 @@ BEGIN
     AND Person.idGender = NVL(pIdGender, Person.idGender)
     AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
     AND TRUNC((SYSDATE- Player.birthdate)/365) BETWEEN 19 AND 30
-    UNION
+    UNION ALL
     SELECT COUNT(1) quantity
     FROM Player
     INNER JOIN Person ON Person.idPerson = Player.idPerson
@@ -1436,7 +1460,7 @@ BEGIN
     AND Person.idGender = NVL(pIdGender, Person.idGender)
     AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
     AND TRUNC((SYSDATE- Player.birthdate)/365) BETWEEN 31 AND 45
-    UNION
+    UNION ALL
     SELECT COUNT(1) quantity
     FROM Player
     INNER JOIN Person ON Person.idPerson = Player.idPerson
@@ -1444,7 +1468,7 @@ BEGIN
     AND Person.idGender = NVL(pIdGender, Person.idGender)
     AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
     AND TRUNC((SYSDATE- Player.birthdate)/365) BETWEEN 46 AND 60
-    UNION
+    UNION ALL
     SELECT COUNT(1) quantity
     FROM Player
     INNER JOIN Person ON Person.idPerson = Player.idPerson
@@ -1452,7 +1476,7 @@ BEGIN
     AND Person.idGender = NVL(pIdGender, Person.idGender)
     AND Player.idTeam = NVL(pIdTeam, Player.idTeam)
     AND TRUNC((SYSDATE- Player.birthdate)/365) BETWEEN 61 AND 75
-    UNION
+    UNION ALL
     SELECT COUNT(1) quantity
     FROM Player
     INNER JOIN Person ON Person.idPerson = Player.idPerson
@@ -1735,6 +1759,20 @@ BEGIN
     FROM Team;
     codResult := vnTotalTeam;
 END validateNumberOfUnits;
+
+CREATE OR REPLACE PROCEDURE validateRaffledPerformed(codResult OUT NUMBER) IS
+vnResult NUMBER(10);
+BEGIN
+    SELECT COUNT(*)
+    INTO vnResult
+    FROM TeamXGroup;
+    
+    IF vnResult > 0 THEN
+        codResult := 1;
+    ELSE
+        codResult := 0;
+    END IF;
+END validateRaffledPerformed;
 
 --CREAR procedimiento que valide si el nombre del parametro ya existe
 /*

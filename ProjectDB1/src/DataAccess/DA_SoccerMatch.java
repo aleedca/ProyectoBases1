@@ -208,9 +208,55 @@ public class DA_SoccerMatch {
         }
 
         return todayMatches;
-        
-        
     }
     
+    public static ArrayList<Match> getMatches() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call getSoccerMatches(?)}");
+        
+        //Output parameter
+        sql.registerOutParameter(1, OracleTypes.REF_CURSOR);
+        sql.execute();
+        
+        ResultSet rs = (ResultSet) sql.getObject(1);
+        ArrayList<Match> Matches = new ArrayList<>();
+        Match tmpMatch = new Match();
+        while(rs.next()){
+            if("".equals(tmpMatch.getNameTeam1())){
+               tmpMatch.setIdMatch(rs.getInt("idSoccerMatch"));
+               tmpMatch.setNameTeam1(rs.getString("nameteam"));
+               tmpMatch.setDate(rs.getString("datehour").substring(0, 11));
+               tmpMatch.setHour(rs.getString("datehour").substring(11));
+               tmpMatch.setStadium(rs.getString("nameStadium"));
+               tmpMatch.setGroupName(rs.getString("descriptionGroupEvent"));
+            }else if(!"".equals(tmpMatch.getNameTeam1()) && "".equals(tmpMatch.getNameTeam2())){
+               tmpMatch.setNameTeam2(rs.getString("nameteam"));
+               Matches.add(tmpMatch);
+               tmpMatch = new Match();
+            }
+        }
+
+        return Matches;
+    }
+    
+    
+    public static boolean raffledPerformed() throws SQLException {
+        Connection conn = sysConnection.getConexion();
+        
+        CallableStatement sql = conn.prepareCall("{call validateRaffledPerformed(?)}");
+        
+        //Output parameter
+        sql.registerOutParameter(1, OracleTypes.NUMBER);
+        sql.execute();
+        
+        int result = ((BigDecimal) sql.getObject(1)).intValue();
+
+        if(result == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }
