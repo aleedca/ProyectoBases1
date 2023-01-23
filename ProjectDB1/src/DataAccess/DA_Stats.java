@@ -169,10 +169,22 @@ public class DA_Stats {
         sql.registerOutParameter(4,OracleTypes.NUMBER);
         sql.execute();
         
-        float goals = ((BigDecimal) sql.getObject(1)).floatValue();
-        float saves = ((BigDecimal) sql.getObject(2)).floatValue();
-        float yellowCards = ((BigDecimal) sql.getObject(3)).floatValue();
-        float redCards = ((BigDecimal) sql.getObject(4)).floatValue();
+        float goals;
+        float saves;
+        float yellowCards;
+        float redCards;
+        
+        try{
+            goals = ((BigDecimal) sql.getObject(1)).floatValue();
+            saves = ((BigDecimal) sql.getObject(2)).floatValue();
+            yellowCards = ((BigDecimal) sql.getObject(3)).floatValue();
+            redCards = ((BigDecimal) sql.getObject(4)).floatValue();
+        }catch(Exception ex){
+            goals = 0;
+            saves = 0;
+            yellowCards = 0;
+            redCards = 0;
+        }
         
         DashboardStats stats = new DashboardStats();
         
