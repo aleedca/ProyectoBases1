@@ -2698,6 +2698,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             viewPrincipal.setTxtLblWelcome("BIENVENIDO/A "+" "+modelLogin.getUsernameLogin());
             viewPrincipal.getLblWelcome().setVisible(true);
             viewPrincipal.getBtnOpAdm().setVisible(true);
+            modelAdminMatches.fillTodayMatches(viewPrincipal);
             
             viewPrincipal.setVisible(true);
         }
