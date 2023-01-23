@@ -4,7 +4,10 @@
  */
 package View;
 
+import Objects.Match;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 
 /**
  *
@@ -17,6 +20,7 @@ public class JF_AdminMatch extends javax.swing.JFrame {
      */
     public JF_AdminMatch() {
         initComponents();
+        matchNotSelected();
     }
 
     /**
@@ -34,18 +38,18 @@ public class JF_AdminMatch extends javax.swing.JFrame {
         lblTitle = new javax.swing.JLabel();
         lblGroup = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbMatches = new javax.swing.JComboBox<>();
         lblGroup1 = new javax.swing.JLabel();
         lblTeam1 = new javax.swing.JLabel();
         lblStadium = new javax.swing.JLabel();
         lblHour = new javax.swing.JLabel();
         lblTeam2 = new javax.swing.JLabel();
         lblDate = new javax.swing.JLabel();
-        lblGroupInfo = new javax.swing.JLabel();
-        lblStadiumInfo = new javax.swing.JLabel();
+        lblGroupName = new javax.swing.JLabel();
+        lblNameStadium = new javax.swing.JLabel();
         lblDateInfo = new javax.swing.JLabel();
-        lblTeam1Info = new javax.swing.JLabel();
-        lblTeam2Info = new javax.swing.JLabel();
+        lblNameTeam1 = new javax.swing.JLabel();
+        lblNameTeam2 = new javax.swing.JLabel();
         lblHourInfo = new javax.swing.JLabel();
         lblRedCard = new javax.swing.JLabel();
         lblYellowCard = new javax.swing.JLabel();
@@ -60,7 +64,7 @@ public class JF_AdminMatch extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
         lblPlayer = new javax.swing.JLabel();
-        lblPlayerInfo = new javax.swing.JLabel();
+        lblNamePlayer = new javax.swing.JLabel();
         txtYellowCards = new javax.swing.JFormattedTextField();
         txtRedCards = new javax.swing.JFormattedTextField();
         txtExpulsions = new javax.swing.JFormattedTextField();
@@ -75,87 +79,135 @@ public class JF_AdminMatch extends javax.swing.JFrame {
         txtRedCards1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(876, 573));
 
         jPanel1.setBackground(new java.awt.Color(86, 4, 44));
+        jPanel1.setMaximumSize(new java.awt.Dimension(876, 573));
+        jPanel1.setMinimumSize(new java.awt.Dimension(876, 573));
+        jPanel1.setLayout(null);
 
         lblTitle.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("Administrar partido programado");
+        jPanel1.add(lblTitle);
+        lblTitle.setBounds(58, 16, 812, 32);
 
         lblGroup.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblGroup.setForeground(new java.awt.Color(255, 255, 255));
         lblGroup.setText("Grupo");
+        jPanel1.add(lblGroup);
+        lblGroup.setBounds(358, 70, 39, 20);
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator1);
+        jSeparator1.setBounds(36, 54, 804, 10);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbMatches.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cmbMatches);
+        cmbMatches.setBounds(36, 101, 274, 22);
 
         lblGroup1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblGroup1.setForeground(new java.awt.Color(255, 255, 255));
         lblGroup1.setText("Partido programado:");
+        jPanel1.add(lblGroup1);
+        lblGroup1.setBounds(36, 70, 128, 20);
 
         lblTeam1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblTeam1.setForeground(new java.awt.Color(255, 255, 255));
         lblTeam1.setText("Team 1");
+        jPanel1.add(lblTeam1);
+        lblTeam1.setBounds(358, 102, 44, 20);
 
         lblStadium.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblStadium.setForeground(new java.awt.Color(255, 255, 255));
         lblStadium.setText("Estadio");
+        jPanel1.add(lblStadium);
+        lblStadium.setBounds(621, 70, 45, 20);
 
         lblHour.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblHour.setForeground(new java.awt.Color(255, 255, 255));
         lblHour.setText("Hora");
+        jPanel1.add(lblHour);
+        lblHour.setBounds(621, 135, 30, 20);
 
         lblTeam2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblTeam2.setForeground(new java.awt.Color(255, 255, 255));
         lblTeam2.setText("Team 2");
+        jPanel1.add(lblTeam2);
+        lblTeam2.setBounds(358, 135, 46, 20);
 
         lblDate.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblDate.setForeground(new java.awt.Color(255, 255, 255));
         lblDate.setText("Fecha");
+        jPanel1.add(lblDate);
+        lblDate.setBounds(621, 102, 36, 20);
 
-        lblGroupInfo.setForeground(new java.awt.Color(255, 255, 255));
-        lblGroupInfo.setText("xxxxxxxxxx");
+        lblGroupName.setForeground(new java.awt.Color(255, 255, 255));
+        lblGroupName.setText("xxxxxxxxxx");
+        jPanel1.add(lblGroupName);
+        lblGroupName.setBounds(428, 73, 180, 16);
 
-        lblStadiumInfo.setForeground(new java.awt.Color(255, 255, 255));
-        lblStadiumInfo.setText("xxxxxxxxxx");
+        lblNameStadium.setForeground(new java.awt.Color(255, 255, 255));
+        lblNameStadium.setText("xxxxxxxxxx");
+        jPanel1.add(lblNameStadium);
+        lblNameStadium.setBounds(692, 73, 170, 16);
 
         lblDateInfo.setForeground(new java.awt.Color(255, 255, 255));
         lblDateInfo.setText("xxxxxxxxxx");
+        jPanel1.add(lblDateInfo);
+        lblDateInfo.setBounds(692, 105, 170, 16);
 
-        lblTeam1Info.setForeground(new java.awt.Color(255, 255, 255));
-        lblTeam1Info.setText("xxxxxxxxxx");
+        lblNameTeam1.setForeground(new java.awt.Color(255, 255, 255));
+        lblNameTeam1.setText("xxxxxxxxxx");
+        jPanel1.add(lblNameTeam1);
+        lblNameTeam1.setBounds(428, 105, 180, 16);
 
-        lblTeam2Info.setForeground(new java.awt.Color(255, 255, 255));
-        lblTeam2Info.setText("xxxxxxxxxx");
+        lblNameTeam2.setForeground(new java.awt.Color(255, 255, 255));
+        lblNameTeam2.setText("xxxxxxxxxx");
+        jPanel1.add(lblNameTeam2);
+        lblNameTeam2.setBounds(428, 135, 170, 16);
 
         lblHourInfo.setForeground(new java.awt.Color(255, 255, 255));
         lblHourInfo.setText("xxxxxxxxxx");
+        jPanel1.add(lblHourInfo);
+        lblHourInfo.setBounds(692, 135, 170, 16);
 
         lblRedCard.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblRedCard.setForeground(new java.awt.Color(255, 255, 255));
         lblRedCard.setText("Tarjetas Rojas");
+        jPanel1.add(lblRedCard);
+        lblRedCard.setBounds(430, 304, 87, 20);
 
         lblYellowCard.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblYellowCard.setForeground(new java.awt.Color(255, 255, 255));
         lblYellowCard.setText("Tarjetas Amarillas");
+        jPanel1.add(lblYellowCard);
+        lblYellowCard.setBounds(430, 264, 111, 20);
 
         lblExpulsions.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblExpulsions.setForeground(new java.awt.Color(255, 255, 255));
         lblExpulsions.setText("Expulsiones");
+        jPanel1.add(lblExpulsions);
+        lblExpulsions.setBounds(430, 344, 73, 20);
 
         lblCorners.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblCorners.setForeground(new java.awt.Color(255, 255, 255));
         lblCorners.setText("Corners");
+        jPanel1.add(lblCorners);
+        lblCorners.setBounds(430, 384, 48, 20);
 
         lblGoals.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblGoals.setForeground(new java.awt.Color(255, 255, 255));
         lblGoals.setText("Goles");
+        jPanel1.add(lblGoals);
+        lblGoals.setBounds(430, 467, 35, 20);
 
         lblSavers1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblSavers1.setForeground(new java.awt.Color(255, 255, 255));
         lblSavers1.setText("Savers");
+        jPanel1.add(lblSavers1);
+        lblSavers1.setBounds(430, 424, 40, 20);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -164,13 +216,20 @@ public class JF_AdminMatch extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(36, 234, 159, 230);
+
         lblPlayersTeam2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblPlayersTeam2.setForeground(new java.awt.Color(255, 255, 255));
         lblPlayersTeam2.setText("Jugadores Team2");
+        jPanel1.add(lblPlayersTeam2);
+        lblPlayersTeam2.setBounds(201, 208, 109, 20);
 
         lblPlayersTeam1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblPlayersTeam1.setForeground(new java.awt.Color(255, 255, 255));
         lblPlayersTeam1.setText("Jugadores Team1");
+        jPanel1.add(lblPlayersTeam1);
+        lblPlayersTeam1.setBounds(36, 208, 107, 20);
 
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -179,29 +238,49 @@ public class JF_AdminMatch extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jList2);
 
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(201, 234, 151, 230);
+
         lblPlayer.setBackground(new java.awt.Color(255, 255, 255));
         lblPlayer.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblPlayer.setForeground(new java.awt.Color(255, 255, 255));
         lblPlayer.setText("Jugador");
+        jPanel1.add(lblPlayer);
+        lblPlayer.setBounds(430, 208, 50, 20);
 
-        lblPlayerInfo.setForeground(new java.awt.Color(255, 255, 255));
-        lblPlayerInfo.setText("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        lblNamePlayer.setForeground(new java.awt.Color(255, 255, 255));
+        lblNamePlayer.setText("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        jPanel1.add(lblNamePlayer);
+        lblNamePlayer.setBounds(526, 211, 210, 16);
 
         txtYellowCards.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jPanel1.add(txtYellowCards);
+        txtYellowCards.setBounds(559, 264, 51, 22);
 
         txtRedCards.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jPanel1.add(txtRedCards);
+        txtRedCards.setBounds(559, 304, 51, 22);
 
         txtExpulsions.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jPanel1.add(txtExpulsions);
+        txtExpulsions.setBounds(559, 344, 51, 22);
 
         txtCorners.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jPanel1.add(txtCorners);
+        txtCorners.setBounds(559, 384, 51, 22);
 
         txtSavers.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jPanel1.add(txtSavers);
+        txtSavers.setBounds(559, 424, 51, 22);
 
         txtGoals.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jPanel1.add(txtGoals);
+        txtGoals.setBounds(559, 467, 51, 22);
 
         btnSaveInfo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        btnSaveInfo.setForeground(new java.awt.Color(0, 0, 0));
         btnSaveInfo.setText("Guardar");
+        jPanel1.add(btnSaveInfo);
+        btnSaveInfo.setBounds(686, 464, 80, 27);
 
         btnBack.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
@@ -212,178 +291,18 @@ public class JF_AdminMatch extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblGroup1)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(153, 153, 153)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblTeam2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblTeam2Info))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblGroup)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(lblGroupInfo))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblTeam1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblTeam1Info)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblHour)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblHourInfo))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblDate)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblDateInfo))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblStadium)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(lblStadiumInfo)))
-                                .addGap(88, 88, 88))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblPlayersTeam1)
-                                        .addGap(58, 58, 58)
-                                        .addComponent(lblPlayersTeam2)))
-                                .addGap(78, 78, 78)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblPlayer)
-                                        .addGap(46, 46, 46)
-                                        .addComponent(lblPlayerInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblYellowCard)
-                                            .addComponent(lblRedCard)
-                                            .addComponent(lblExpulsions)
-                                            .addComponent(lblCorners)
-                                            .addComponent(lblSavers1)
-                                            .addComponent(lblGoals))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtSavers, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtCorners, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtExpulsions, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtRedCards, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtYellowCards, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(txtGoals, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(76, 76, 76)
-                                                .addComponent(btnSaveInfo)))))))
-                        .addGap(0, 30, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblTitle)
-                    .addComponent(btnBack))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblGroup)
-                            .addComponent(lblStadium)
-                            .addComponent(lblGroup1)
-                            .addComponent(lblGroupInfo)
-                            .addComponent(lblStadiumInfo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTeam1)
-                            .addComponent(lblDate)
-                            .addComponent(lblDateInfo)
-                            .addComponent(lblTeam1Info))
-                        .addGap(11, 11, 11))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblTeam2)
-                        .addComponent(lblHour))
-                    .addComponent(lblTeam2Info)
-                    .addComponent(lblHourInfo))
-                .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPlayersTeam2)
-                            .addComponent(lblPlayersTeam1)
-                            .addComponent(lblPlayer)
-                            .addComponent(lblPlayerInfo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblYellowCard)
-                            .addComponent(txtYellowCards, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblRedCard)
-                            .addComponent(txtRedCards, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblExpulsions)
-                            .addComponent(txtExpulsions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCorners)
-                            .addComponent(txtCorners, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblSavers1)
-                            .addComponent(txtSavers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblGoals)
-                            .addComponent(txtGoals, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSaveInfo))))
-                .addContainerGap(82, Short.MAX_VALUE))
-        );
+        jPanel1.add(btnBack);
+        btnBack.setBounds(6, 9, 46, 39);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
         );
 
         pack();
@@ -404,12 +323,39 @@ public class JF_AdminMatch extends javax.swing.JFrame {
     public JButton getBtnBack() {
         return btnBack;
     }
+
+    public JComboBox<String> getCmbMatches() {
+        return cmbMatches;
+    }
+
+    public JButton getBtnSaveInfo() {
+        return btnSaveInfo;
+    }
+
+    public void updateInfo(Match currentMatch){
+        this.lblNameStadium.setText(currentMatch.getStadium());
+        this.lblNameTeam1.setText(currentMatch.getNameTeam1());
+        this.lblNameTeam2.setText(currentMatch.getNameTeam2());
+        this.lblGroupName.setText(currentMatch.getGroupName());
+        this.lblDateInfo.setText(currentMatch.getDate());
+        this.lblHourInfo.setText(currentMatch.getHour());
+    }
+    
+    public void matchNotSelected(){
+        this.lblNameStadium.setText("---------");
+        this.lblNameTeam1.setText("---------");
+        this.lblNameTeam2.setText("---------");
+        this.lblGroupName.setText("---------");
+        this.lblDateInfo.setText("---------");
+        this.lblHourInfo.setText("---------");
+    }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSaveInfo;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmbMatches;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
@@ -424,21 +370,21 @@ public class JF_AdminMatch extends javax.swing.JFrame {
     private javax.swing.JLabel lblGoals;
     private javax.swing.JLabel lblGroup;
     private javax.swing.JLabel lblGroup1;
-    private javax.swing.JLabel lblGroupInfo;
+    private javax.swing.JLabel lblGroupName;
     private javax.swing.JLabel lblHour;
     private javax.swing.JLabel lblHourInfo;
+    private javax.swing.JLabel lblNamePlayer;
+    private javax.swing.JLabel lblNameStadium;
+    private javax.swing.JLabel lblNameTeam1;
+    private javax.swing.JLabel lblNameTeam2;
     private javax.swing.JLabel lblPlayer;
-    private javax.swing.JLabel lblPlayerInfo;
     private javax.swing.JLabel lblPlayersTeam1;
     private javax.swing.JLabel lblPlayersTeam2;
     private javax.swing.JLabel lblRedCard;
     private javax.swing.JLabel lblSavers1;
     private javax.swing.JLabel lblStadium;
-    private javax.swing.JLabel lblStadiumInfo;
     private javax.swing.JLabel lblTeam1;
-    private javax.swing.JLabel lblTeam1Info;
     private javax.swing.JLabel lblTeam2;
-    private javax.swing.JLabel lblTeam2Info;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblYellowCard;
     private javax.swing.JFormattedTextField txtCorners;

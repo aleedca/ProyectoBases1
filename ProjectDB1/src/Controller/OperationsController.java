@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import DataAccess.DA_SoccerMatch;
 import Model.model_Account;
 import Model.model_AdminMatches;
 import Model.model_AdminParameters;
@@ -13,6 +14,7 @@ import Model.model_News;
 import Model.model_Rating;
 import Model.model_Register;
 import Model.model_Stats;
+import Objects.Match;
 import Objects.News;
 import View.JF_AdminMatch;
 import View.JF_AdminMatches;
@@ -86,6 +88,8 @@ public class OperationsController implements ActionListener, ItemListener, ListS
     private boolean flagEditCatalogs;
     private boolean flagAdminOther;
     private boolean newsOpened = false;
+    private boolean matchOpened = false;
+    private boolean raffledPerformed = false;
     
     private final RequestController requestController;
     private final AdminNewsController adminNewsController;
@@ -281,6 +285,9 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         viewScheduleMatch.getCbmTeam2().addItemListener(this);
         viewScheduleMatch.getCbmStadium().addItemListener(this);
         viewScheduleMatch.getCbmGroup().addItemListener(this);
+        
+        //AdminScheduledMatch
+        this.viewAdminMatch.getCmbMatches().addItemListener(this);
     
         
         //AdminMatch
@@ -2017,6 +2024,17 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         }
         
+        // Admin Scheduled Match 
+        
+        if(e.getSource() == viewAdminMatch.getCmbMatches() && matchOpened){
+            if(!"-----".equals(viewAdminMatch.getCmbMatches().getSelectedItem().toString())){
+                int index = viewAdminMatch.getCmbMatches().getSelectedIndex() - 1;
+                Match selectedMatch = this.modelAdminMatches.getMatches().get(index);
+                viewAdminMatch.updateInfo(selectedMatch);
+            }else{
+                viewAdminMatch.matchNotSelected();
+            }
+        }
         
         //CANTON -> REGISTER
         if( e.getSource() == viewRegister.getCmbCanton()){
@@ -2742,12 +2760,12 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         if(e.getSource() == adminNewsController.getViewAdminNews().getBtnBack()){
             adminNewsController.getViewAdminNews().setVisible(false);
             this.viewMenuAdmin.setVisible(true);
-            /*try{
+            try{
                 viewPrincipal.showMostViewedNews();
                 viewPrincipal.showLastNews();
             }catch(Exception ex){
                 System.out.println(ex);
-            }*/
+            }
         }
         
         if(e.getSource() == adminNewsController.getViewAdminNews().getBtnAceptar()){
@@ -3158,7 +3176,16 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         //-------------- SCREEN AdminMatches -----------------------
         if(e.getSource() == viewAdminMatches.getBtnGroupRaffle()){
             if(validateTeamExist() == true){
-                modelAdminMatches.generateRaffle();
+                try{
+                    raffledPerformed = DA_SoccerMatch.raffledPerformed();
+                }catch(SQLException ex){
+                    System.out.println(ex);
+                }
+                if(!raffledPerformed){
+                    modelAdminMatches.generateRaffle();
+                }else{
+                    JOptionPane.showMessageDialog(null, "La rifa ya ha sido efectuada.", "Error", JOptionPane.WARNING_MESSAGE);
+                }
             }  
         }
         
@@ -3175,16 +3202,31 @@ public class OperationsController implements ActionListener, ItemListener, ListS
             }
         }
         
-        if(e.getSource() == viewAdminMatches.getBtnAdminScheduledMatch()){
+        if(e.getSource() == viewAdminMatches.getBtnAdminScheduledMatch() && !matchOpened){
             if(validateSoccerMatchExist()){
+                try{
+                    this.modelAdminMatches.fillSoccerMatches(viewAdminMatch);
+                }catch(Exception ex){
+                    System.out.println(ex);
+                }
+                
                 viewAdminMatches.setVisible(false);
                 viewAdminMatch.setVisible(true);
+                matchOpened = true;
             } 
         }
         
         if(e.getSource() == viewAdminMatches.getBtnBack()){
             viewAdminMatches.setVisible(false);
             viewMenuAdmin.setVisible(true);
+        }
+        
+        //-------------- SCREEN AdminMatch -----------------------
+        if(e.getSource() == viewAdminMatch.getBtnBack()){
+            viewAdminMatch.setVisible(false);
+            viewAdminMatches.setVisible(true);
+            matchOpened = false;
+            viewAdminMatch.matchNotSelected();
         }
         
         //-------------- SCREEN ScheduleMatch -----------------------
@@ -3235,11 +3277,7 @@ public class OperationsController implements ActionListener, ItemListener, ListS
         
         }
         
-        //-------------- SCREEN AdminMatch -----------------------
-        if(e.getSource() == viewAdminMatch.getBtnBack()){
-            viewAdminMatch.setVisible(false);
-            viewAdminMatches.setVisible(true);
-        }
+        
         
         
         // ---------------- SCREEN AdminCatalogs -------------------

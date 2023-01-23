@@ -24,7 +24,6 @@ public class JF_Rating extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
     }
     
-    
     private void setImageLabel(JButton buttonName, String imageDirectory){
         ImageIcon image = new ImageIcon(imageDirectory);
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(buttonName.getWidth(), buttonName.getHeight(), Image.SCALE_DEFAULT));
@@ -155,35 +154,45 @@ public class JF_Rating extends javax.swing.JFrame {
         lblTitleNews.setBounds(10, 100, 440, 80);
 
         btnStar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/emptyStar.png"))); // NOI18N
+        btnStar5.setBorderPainted(false);
         btnStar5.setContentAreaFilled(false);
+        btnStar5.setFocusPainted(false);
         btnStar5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fullStar.png"))); // NOI18N
         btnStar5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fullStar.png"))); // NOI18N
         jPanel1.add(btnStar5);
         btnStar5.setBounds(310, 220, 40, 40);
 
         btnStar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/emptyStar.png"))); // NOI18N
+        btnStar1.setBorderPainted(false);
         btnStar1.setContentAreaFilled(false);
+        btnStar1.setFocusPainted(false);
         btnStar1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fullStar.png"))); // NOI18N
         btnStar1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fullStar.png"))); // NOI18N
         jPanel1.add(btnStar1);
         btnStar1.setBounds(110, 220, 40, 40);
 
         btnStar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/emptyStar.png"))); // NOI18N
+        btnStar2.setBorderPainted(false);
         btnStar2.setContentAreaFilled(false);
+        btnStar2.setFocusPainted(false);
         btnStar2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fullStar.png"))); // NOI18N
         btnStar2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fullStar.png"))); // NOI18N
         jPanel1.add(btnStar2);
         btnStar2.setBounds(160, 220, 40, 40);
 
         btnStar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/emptyStar.png"))); // NOI18N
+        btnStar3.setBorderPainted(false);
         btnStar3.setContentAreaFilled(false);
+        btnStar3.setFocusPainted(false);
         btnStar3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fullStar.png"))); // NOI18N
         btnStar3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fullStar.png"))); // NOI18N
         jPanel1.add(btnStar3);
         btnStar3.setBounds(210, 220, 40, 40);
 
         btnStar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/emptyStar.png"))); // NOI18N
+        btnStar4.setBorderPainted(false);
         btnStar4.setContentAreaFilled(false);
+        btnStar4.setFocusPainted(false);
         btnStar4.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fullStar.png"))); // NOI18N
         btnStar4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fullStar.png"))); // NOI18N
         jPanel1.add(btnStar4);

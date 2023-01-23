@@ -13,6 +13,7 @@ import Objects.Match;
 import Objects.Stadium;
 import Objects.Team;
 import Objects.TeamXGroup;
+import View.JF_AdminMatch;
 import View.JF_AdminOther;
 import View.JF_AdminScheduleMatch;
 import View.JF_Principal;
@@ -29,6 +30,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import java.sql.SQLException;
 
 
 /**
@@ -82,6 +84,7 @@ public class model_AdminMatches {
     
     //------------------------------------
     private ArrayList<Match> todayMatches;
+    private ArrayList<Match> matches;
     
     //BUILDER 
 
@@ -95,6 +98,8 @@ public class model_AdminMatches {
             this.teamxgroup = DA_SoccerMatch.getTeamXGroup();
             
             this.todayMatches = DA_SoccerMatch.getTodayMatches();
+            
+            this.matches = DA_SoccerMatch.getMatches();
 
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -113,6 +118,22 @@ public class model_AdminMatches {
                 row.add(this.todayMatches.get(i).getNameTeam2());
                 modelTable.addRow(row);
             }
+    }
+    
+    public void fillSoccerMatches(JF_AdminMatch viewAdminMatch){
+        
+        viewAdminMatch.getCmbMatches().removeAllItems();
+        viewAdminMatch.getCmbMatches().addItem("-----");
+        
+        for(int i = 0; i < this.matches.size(); i++){
+            String matchString;
+            
+            Match match = this.matches.get(i);
+            
+            matchString = match.getNameTeam1() + " vs " + match.getNameTeam2();
+            
+            viewAdminMatch.getCmbMatches().addItem(matchString);
+        }
     }
     
     //-------------------------------------------
@@ -278,6 +299,12 @@ public class model_AdminMatches {
     
     
     //--------------GETTERS AND SETTERS--------------
+    
+    
+
+    public ArrayList<Match> getMatches() {
+        return matches;
+    }
 
     public int getStadium() {
         return stadium;
